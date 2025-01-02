@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     neovim
     wget
     git
@@ -18,11 +18,11 @@
     xdg-utils
     jq
     killall
-		rnnoise-plugin
+    rnnoise-plugin
   ];
-	programs.git = {
-		enable = true;
-		package = pkgs.gitFull;
-		config.credential.helper = "libsecret";
-	};
+  programs.git = {
+    enable = true;
+    package = pkgs.gitFull;
+    config.credential.helper = "libsecret";
+  };
 }

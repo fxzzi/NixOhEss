@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: 
+{ config, pkgs, inputs, ... }:
 {
   users.users.faaris = {
     isNormalUser = true;
@@ -10,17 +10,18 @@
       bottom
       mpv
       obs-studio
+      obs-studio-plugins.obs-vkcapture
       lxqt.pavucontrol-qt
       ffmpegthumbnailer
       bat
       eza
-			fastfetch
-			libsixel
-			ncmpcpp
-			mpd
-			mpc
-			syncthing
-			mpd-discord-rpc
+      fastfetch
+      libsixel
+      ncmpcpp
+      mpd
+      mpc
+      syncthing
+      mpd-discord-rpc
     ];
   };
   programs.zsh.enable = true;

@@ -1,13 +1,13 @@
-{ config, pkgs, ... }: 
+{ config, pkgs, ... }:
 {
   boot = {
     loader = {
       timeout = 6; # Timeout before launching default entry
-      systemd-boot = {  
+      systemd-boot = {
         enable = true; # Enable systemd-boot
         editor = false; # Disable editor for security
         consoleMode = "max"; # Set console mode to max resolution
-				extraInstallCommands = "${pkgs.gnused}/bin/sed -i '/default/ s/.*/default arch-linux-zen.efi/' /boot/loader/loader.conf";
+        extraInstallCommands = "${pkgs.gnused}/bin/sed -i '/default/ s/.*/default arch-linux-zen.efi/' /boot/loader/loader.conf";
       };
       efi.canTouchEfiVariables = true;
     };
@@ -26,11 +26,11 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
- console = {
-	 earlySetup = true; # Load font ASAP on boot (initrd)
-	 font = "ter-i28b"; # HiDPI font for 1440p Display
-	 packages = with pkgs; [terminus_font]; # Add terminus_font package
- };
+  console = {
+    earlySetup = true; # Load font ASAP on boot (initrd)
+    font = "ter-i28b"; # HiDPI font for 1440p Display
+    packages = with pkgs; [ terminus_font ]; # Add terminus_font package
+  };
 
   # Set a percentage of RAM to zstd compressed swap
   zramSwap = {
