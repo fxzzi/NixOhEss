@@ -419,11 +419,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1735856449,
+        "lastModified": 1735858873,
         "narHash": "sha256-d6rU2vk3hEVALi+dN1a2Fr7fOE20ajyoyLj5ZtAQbWQ=",
         "owner": "fazzi",
         "repo": "nvuv",
-        "rev": "20ab33add7c085083deee6aaa1030dbda0eba9c7",
+        "rev": "30f35c81b357202b6c2814699781f48bcb2140d4",
         "type": "gitlab"
       },
       "original": {
