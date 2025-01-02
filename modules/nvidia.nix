@@ -10,10 +10,8 @@
       package = config.boot.kernelPackages.nvidiaPackages.beta; # Use beta drivers
       nvidiaSettings = false; # Disable nvidia-settings applet, useless on Wayland
     };
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
       extraPackages = with pkgs; [
         libva
         libva-utils

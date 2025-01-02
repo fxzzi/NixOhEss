@@ -8,35 +8,39 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/0cbe6f5c-f8a7-4c6d-aaaf-239912012d85";
+    { device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=@nixroot" ];
     };
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/0cbe6f5c-f8a7-4c6d-aaaf-239912012d85";
-      fsType = "btrfs";
-      options = [ "subvol=@nix" ];
-    };
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/0cbe6f5c-f8a7-4c6d-aaaf-239912012d85";
+
+	fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
-  fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/0cbe6f5c-f8a7-4c6d-aaaf-239912012d85";
+
+	fileSystems."/games" =
+    { device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "subvol=@log" ];
+      options = [ "subvol=@games" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
+      fsType = "btrfs";
+      options = [ "subvol=@nix" ];
     };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/8026-A204";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices = [ ];
@@ -45,7 +49,7 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  # networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
