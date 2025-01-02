@@ -6,18 +6,21 @@
     shell = pkgs.zsh; # Set shell to zsh
     packages = with pkgs; [
       librewolf
-      nvtop-nvidia
+      nvtopPackages.nvidia
       bottom
-      macchina
-      pamixer
       mpv
       obs-studio
-      kitty
-      pavucontrol
-      gamemode
+      lxqt.pavucontrol-qt
       ffmpegthumbnailer
       bat
-      exa
+      eza
+			fastfetch
+			libsixel
+			ncmpcpp
+			mpd
+			mpc
+			syncthing
+			mpd-discord-rpc
     ];
   };
   programs.zsh.enable = true;

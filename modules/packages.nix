@@ -18,5 +18,11 @@
     xdg-utils
     jq
     killall
+		rnnoise-plugin
   ];
+	programs.git = {
+		enable = true;
+		package = pkgs.gitFull;
+		config.credential.helper = "libsecret";
+	};
 }
