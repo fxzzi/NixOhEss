@@ -36,6 +36,7 @@
     hyprsunset
     fuzzel
     pywalfox-native
+    kdePackages.qt6ct
   ];
 
   nixpkgs.overlays = [
