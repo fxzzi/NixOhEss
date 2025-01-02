@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: 
+{ config, pkgs, lib, inputs, ... }:
 
 {
   # List services that you want to enable:
@@ -14,30 +14,43 @@
   security.rtkit.enable = true; # Enable RTKit service for Pipewire priority
   security.pam.services.faaris.enableGnomeKeyring = true; # Enable gnome keyring for user
 
-	systemd = {
-		services.nvidia-gpu-temperature = {
-			description = "NVidia GPU temperature monitoring";
-			wantedBy = [ "multi-user.target" ];
-			before = [ "fancontrol.service" ];
-			script = ''
-				while :; do
-					t="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
-					echo "$((t * 1000))" > /tmp/nvidia-temp
-					sleep 5
-				done
-			'';
-			serviceConfig = {
-				Type = "simple";
-				Restart = "always";
-				RestartSec = 5;
-			};
-		};
-		services.nvidia-undervolt = {
-			description = "NVidia Undervolting script";
-			wantedBy = [ "multi-user.target" ];
-			serviceConfig = {
-				ExecStart = "${lib.getExe inputs.nvuv.packages.${pkgs.system}.nvuv} 1830 205 1000 150";
-			};
-		};
-	};
+  systemd = {
+    user.services.polkit-mate-authentication-agent-1 = {
+      description = "polkit-mate-authentication-agent-1";
+      wantedBy = [ "xdg-desktop-portal-hyprland.service" ];
+      wants = [ "xdg-desktop-portal-hyprland.service" ];
+      after = [ "xdg-desktop-portal-hyprland.service" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+    services.nvidia-gpu-temperature = {
+      description = "NVidia GPU temperature monitoring";
+      wantedBy = [ "multi-user.target" ];
+      before = [ "fancontrol.service" ];
+      script = ''
+        				while :; do
+        					t="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
+        					echo "$((t * 1000))" > /tmp/nvidia-temp
+        					sleep 5
+        				done
+        			'';
+      serviceConfig = {
+        Type = "simple";
+        Restart = "always";
+        RestartSec = 5;
+      };
+    };
+    services.nvidia-undervolt = {
+      description = "NVidia Undervolting script";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        ExecStart = "${lib.getExe inputs.nvuv.packages.${pkgs.system}.nvuv} 1830 205 1000 150";
+      };
+    };
+  };
 }

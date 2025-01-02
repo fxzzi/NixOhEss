@@ -1,7 +1,7 @@
-{ config, pkgs, ... }: 
+{ config, pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true; # Allow installing of Unfree software, mostly nvidia
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
     nvidia = {
       open = true; # Set to false until wake-up from suspend is fixed

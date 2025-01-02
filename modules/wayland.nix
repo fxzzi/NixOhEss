@@ -3,7 +3,7 @@
 {
   programs.hyprland = {
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-		portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     enable = true;
     withUWSM = true;
   };
@@ -33,9 +33,9 @@
     ags
     uwsm
     hyprpaper
-		hyprsunset
-		fuzzel
-		pywalfox-native
+    hyprsunset
+    fuzzel
+    pywalfox-native
   ];
 
   nixpkgs.overlays = [
@@ -43,11 +43,11 @@
       # replace foot with foot-transparency
       foot = prev.foot.overrideAttrs (old: {
         src = pkgs.fetchFromGitea {
-					domain = "codeberg.org";
-					owner = "fazzi";
-					repo = "foot";
-					rev = "transparency_yipee";
-					sha256 = "sha256-b632RW/88y+Rkxkpv9x2HZyp81QcOf4ASgr3z3vrB+A=";
+          domain = "codeberg.org";
+          owner = "fazzi";
+          repo = "foot";
+          rev = "transparency_yipee";
+          sha256 = "sha256-b632RW/88y+Rkxkpv9x2HZyp81QcOf4ASgr3z3vrB+A=";
         };
       });
 
@@ -55,6 +55,6 @@
       ags = prev.ags.overrideAttrs (old: {
         buildInputs = old.buildInputs ++ [ pkgs.libdbusmenu-gtk3 ];
       });
-		})
-	];
+    })
+  ];
 }
