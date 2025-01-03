@@ -4,7 +4,11 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Add to wheel for sudo access
     shell = pkgs.zsh; # Set shell to zsh
-    packages = with pkgs; [
+		
+		# See: https://github.com/nix-community/home-manager/issues/108
+		ignoreShellProgramCheck = true;
+    
+		packages = with pkgs; [
       librewolf
       nvtopPackages.nvidia
       bottom
@@ -22,10 +26,8 @@
       mpc
       syncthing
       mpd-discord-rpc
-			qbittorrent-enhanced
+      qbittorrent-enhanced
     ];
   };
-  programs.zsh.enable = true;
-  programs.zsh.histFile = "$XDG_STATE_HOME/zsh/history";
-	security.pam.services.faaris.gnupg.enable = true;
+  security.pam.services.faaris.gnupg.enable = true;
 }
