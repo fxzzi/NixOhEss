@@ -18,28 +18,28 @@
     {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "subvol=@nixroot" ];
+      options = [ "rw,noatime,ssd,discard=async,subvol=@nixroot" ];
     };
 
   fileSystems."/home" =
     {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [ "rw,noatime,ssd,discard=async,subvol=@home" ];
     };
 
   fileSystems."/games" =
     {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "subvol=@games" ];
+      options = [ "rw,noatime,ssd,discard=async,subvol=@games" ];
     };
 
   fileSystems."/nix" =
     {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "subvol=@nix" ];
+      options = [ "rw,noatime,ssd,discard=async,subvol=@nix" ];
     };
 
   fileSystems."/boot" =

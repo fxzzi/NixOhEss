@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   users.users.faaris = {
     isNormalUser = true;
@@ -22,8 +22,10 @@
       mpc
       syncthing
       mpd-discord-rpc
+			qbittorrent-enhanced
     ];
   };
   programs.zsh.enable = true;
   programs.zsh.histFile = "$XDG_STATE_HOME/zsh/history";
+	security.pam.services.faaris.gnupg.enable = true;
 }

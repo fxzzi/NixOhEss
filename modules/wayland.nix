@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, ... }:
+{ pkgs, inputs, lib, ... }:
 
 {
   programs.hyprland = {
@@ -24,7 +24,7 @@
     xdg-utils
     glib
     xorg.xrandr
-    vesktop
+   vesktop
     grim
     slurp
     foot
@@ -34,24 +34,37 @@
     uwsm
     hyprpaper
     hyprsunset
+    hyprlock
+    hypridle
     fuzzel
     pywalfox-native
     kdePackages.qt6ct
   ];
 
   nixpkgs.overlays = [
+    (self: super: {
+      electron_31 = self.electron;
+    })
     (final: prev: {
       # replace foot with foot-transparency
-      foot = prev.foot.overrideAttrs (old: {
-        src = pkgs.fetchFromGitea {
-          domain = "codeberg.org";
-          owner = "fazzi";
-          repo = "foot";
-          rev = "transparency_yipee";
-          sha256 = "sha256-b632RW/88y+Rkxkpv9x2HZyp81QcOf4ASgr3z3vrB+A=";
-        };
-      });
+      foot = prev.foot.overrideAttrs
+        (old: {
+          pname = "foot-transparency";
+          version = "1.20.0";
+          src = pkgs.fetchFromGitea {
+            domain = "codeberg.org";
+            owner = "fazzi";
+            repo = "foot";
+            rev = "transparency_yipee";
+            sha256 = "sha256-R2hZTX4/CrJysbkrc8R35PhvqbJ+BG7NJyUfwfnoB8w=";
+          };
 
+          meta = {
+            description = "A fork of foot - the fast wayland terminal emulator - now with more transparency options!! (git)";
+            mainProgram = "foot";
+            maintainers = with lib.maintainers; [ Fazzi ];
+          };
+        });
       # Overlay to add libdbusmenu-gtk3 to ags
       ags = prev.ags.overrideAttrs (old: {
         buildInputs = old.buildInputs ++ [ pkgs.libdbusmenu-gtk3 ];
