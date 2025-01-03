@@ -39,6 +39,10 @@
     fuzzel
     pywalfox-native
     kdePackages.qt6ct
+		cmake
+		meson
+		cpio
+		pkg-config
   ];
 
   nixpkgs.overlays = [

@@ -9,37 +9,22 @@
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     nvuv.url = "gitlab:fazzi/nvuv";
   };
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs: {
+
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
     nixosConfigurations.faarnixOS = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-				./modules/hardware-configuration.nix
-				./modules/audio.nix
-        ./modules/boot.nix
-        ./modules/cachix.nix
-        ./modules/fancontrol.nix
-        ./modules/fonts.nix
-        ./modules/gaming.nix
-        ./modules/networking.nix
-        ./modules/nvidia.nix
-        ./modules/packages.nix
-        ./modules/services.nix
-        ./modules/state.nix
-        ./modules/user.nix
-        ./modules/wayland.nix
-        
-        home-manager.nixosModules.home-manager
+        ./hardware-configuration.nix
+        ./modules/default.nix
+        inputs.home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          # home-manager.users.faaris = import ./hm/home.nix;
-
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
+          home-manager.backupFileExtension = "bak";
+          home-manager.users.faaris = import ./hm/default.nix;
         }
       ];
-
     };
   };
 }
-
