@@ -82,9 +82,9 @@
 
       grep = "rg";
       cat = "bat";
-      
-			# I don't like programs.eza.enableZshIntegration original 'll' alias
-			ll = "eza -la";
+
+      # I don't like programs.eza.enableZshIntegration original 'll' alias
+      ll = "eza -la";
 
       g = "git";
       ga = "git add";

@@ -8,5 +8,6 @@
 
   imports = [
 		./zsh.nix
+		./fastfetch/default.nix
 	];
 }
