@@ -13,7 +13,8 @@
     nixosConfigurations.faarnixOS = inputs.nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-        ./modules/audio.nix
+				./modules/hardware-configuration.nix
+				./modules/audio.nix
         ./modules/boot.nix
         ./modules/cachix.nix
         ./modules/fancontrol.nix
@@ -26,7 +27,7 @@
         ./modules/state.nix
         ./modules/user.nix
         ./modules/wayland.nix
-        ./modules/hardware-configuration.nix
+        
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -37,6 +38,7 @@
           # arguments to home.nix
         }
       ];
+
     };
   };
 }

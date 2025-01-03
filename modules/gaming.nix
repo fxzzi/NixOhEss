@@ -4,7 +4,9 @@
     prismlauncher
     lutris
     gamemode
+		gamescope
     mangohud
+		heroic
   ];
   services.scx = {
     enable = true;
