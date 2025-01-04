@@ -6,6 +6,14 @@
 		xdg-desktop-portal-hyprland
 	]);
 
+	home.file = {
+		".config/hypr/hypridle.conf".source = ./conf/hypridle.conf;
+		".config/hypr/hyprland-nest.conf".source = ./conf/hyprland-nest.conf;
+		".config/hypr/hyprlock.conf".source = ./conf/hyprlock.conf;
+		".config/hypr/hyprpaper.conf".source = ./conf/hyprpaper.conf;
+		".config/hypr/xdph.conf".source = ./conf/xdph.conf;
+	};
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -79,7 +87,7 @@
         disable_splash_rendering = 1 # Disable startup splashscreen
         mouse_move_focuses_monitor = 0 # Disables hover for monitor focus
         focus_on_activate = 1 # Focuses windows which ask for activation
-        enable_swallow = 1 # Enable window swalling
+        enable_swallow = 0 # Enable window swalling
         swallow_regex = ^(foot)$ # Make foot swallow executed windows
         initial_workspace_tracking = 0
       	disable_hyprland_qtutils_check = 1

@@ -26,6 +26,18 @@
       "url": "https://api.github.com/repos/Aloxaf/fzf-tab/tarball/v1.1.2",
       "hash": "061jjpgghn8d5q2m2cd2qdjwbz38qrcarldj16xvxbid4c137zs2"
     },
+    "mpd-discord-rpc": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "JakeStanger",
+        "repo": "mpd-discord-rpc"
+      },
+      "branch": "master",
+      "revision": "fe73b1d8ce88c5306ae60bca1d05528948959ad8",
+      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/fe73b1d8ce88c5306ae60bca1d05528948959ad8.tar.gz",
+      "hash": "1a1cr265j5w2kkx3xwjaynlr5lsq1cfhrrjrnc0lkv5x9nlkazhk"
+    },
     "nix-zsh-completions": {
       "type": "GitRelease",
       "repository": {

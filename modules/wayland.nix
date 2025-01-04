@@ -20,7 +20,6 @@
     slurp
     wleave
     wallust
-    ags
     hyprpaper
     hyprsunset
     hyprlock

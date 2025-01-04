@@ -24,13 +24,18 @@
 	];
 
   imports = [
-    ./zsh.nix
-		./xdg.nix
+    ./zsh
+		./xdg
     ./fastfetch
     ./hyprland
-		./obs-studio.nix
-		./thunar.nix
+		./obs-studio
+		./thunar
+		./ags
+		./foot
 		./transitioning
+		./bottom
+		./fuzzel
+		./mpd
   ];
 }
 
