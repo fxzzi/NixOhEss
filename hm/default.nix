@@ -6,11 +6,6 @@
   home.stateVersion = "24.11"; # Match your NixOS release or Home Manager version
 
   home.sessionVariables = {
-    # XDG_CONFIG_HOME = "${config.xdg.configHome}"; # User configuration files
-    # XDG_CACHE_HOME = "${config.xdg.cacheHome}"; # User cache files
-    # XDG_DATA_HOME = "${config.xdg.dataHome}"; # User data files
-    # XDG_STATE_HOME = "${config.xdg.stateHome}"; # User state files
-
     # Set other tool and configuration paths to clean up ~
     GOPATH = "${config.xdg.dataHome}/go";
     CARGO_HOME = "${config.xdg.dataHome}/cargo"; # Cargo package manager
