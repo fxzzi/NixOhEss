@@ -1,13 +1,6 @@
 { pkgs, inputs, lib, ... }:
 
 {
-  programs.hyprland = {
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-    enable = true;
-    withUWSM = true;
-  };
-
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-media-tags-plugin ]; # Enable some plugins for archive support
@@ -23,15 +16,11 @@
     mate.mate-polkit
     xdg-utils
     glib
-    xorg.xrandr
-   vesktop
     grim
     slurp
-    foot
     wleave
     wallust
     ags
-    uwsm
     hyprpaper
     hyprsunset
     hyprlock
@@ -39,10 +28,10 @@
     fuzzel
     pywalfox-native
     kdePackages.qt6ct
-		cmake
-		meson
-		cpio
-		pkg-config
+    cmake
+    meson
+    cpio
+    pkg-config
   ];
 
   nixpkgs.overlays = [

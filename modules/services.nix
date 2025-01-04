@@ -15,19 +15,19 @@
   security.pam.services.faaris.enableGnomeKeyring = true; # Enable gnome keyring for user
 
   systemd = {
-    user.services.polkit-mate-authentication-agent-1 = {
-      description = "polkit-mate-authentication-agent-1";
-      wantedBy = [ "xdg-desktop-portal-hyprland.service" ];
-      wants = [ "xdg-desktop-portal-hyprland.service" ];
-      after = [ "xdg-desktop-portal-hyprland.service" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
+    # user.services.polkit-mate-authentication-agent-1 = {
+    #   description = "polkit-mate-authentication-agent-1";
+    #   wantedBy = [ "xdg-desktop-portal-hyprland.service" ];
+    #   wants = [ "xdg-desktop-portal-hyprland.service" ];
+    #   after = [ "xdg-desktop-portal-hyprland.service" ];
+    #   serviceConfig = {
+    #     Type = "simple";
+    #     ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+    #     Restart = "on-failure";
+    #     RestartSec = 1;
+    #     TimeoutStopSec = 10;
+    #   };
+    # };
     services.nvidia-gpu-temperature = {
       description = "NVidia GPU temperature monitoring";
       wantedBy = [ "multi-user.target" ];
