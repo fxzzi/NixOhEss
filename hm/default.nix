@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs,... }:
 {
 
   home.username = "faaris";
@@ -32,12 +32,20 @@
 		./thunar
 		./ags
 		./foot
-		./transitioning
+		./nvim
 		./bottom
 		./fuzzel
 		./mpd
 		./ncmpcpp
 		./scripts
+		./wleave
+		./qtgtk
+		./fonts
+		./wallust
+		./gaming
   ];
+	home.packages = with pkgs; [
+		vesktop
+	];
 }
 

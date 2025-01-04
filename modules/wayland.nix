@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   programs.thunar = {
@@ -8,28 +8,9 @@
 
   programs.file-roller.enable = true; # Enable File Roller for GUI archive management
 
-  environment.systemPackages = with pkgs; [
-    dunst
-    libcanberra-gtk3
-    papirus-icon-theme
-    wl-clipboard
-    mate.mate-polkit
-    xdg-utils
-    glib
-    grim
-    slurp
-    wleave
-    wallust
-    hyprpaper
-    hyprsunset
-    hyprlock
-    hypridle
-    fuzzel
-    pywalfox-native
-    kdePackages.qt6ct
-    cmake
-    meson
-    cpio
-    pkg-config
-  ];
+	programs.hyprland = {
+		enable = true;
+		package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+		portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+	};
 }
