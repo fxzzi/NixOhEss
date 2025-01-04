@@ -36,6 +36,8 @@
 		./bottom
 		./fuzzel
 		./mpd
+		./ncmpcpp
+		./scripts
   ];
 }
 
