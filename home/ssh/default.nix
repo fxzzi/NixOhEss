@@ -8,27 +8,27 @@
 # GitHub
 Host github.com
 	Hostname github.com
-	IdentityFile ${config.xdg.dataHome}ssh/github
+	IdentityFile ${config.xdg.dataHome}/ssh/github
 
 # GitLab
 Host gitlab.com
 	Hostname gitlab.com
-	IdentityFile ~/.ssh/gitlab
+	IdentityFile ${config.xdg.dataHome}/ssh/gitlab
 
 # ArchLinux GitLab
 Host https://gitlab.archlinux.org
 	Hostname https://gitlab.archlinux.org/
-	IdentityFile ${config.xdg.dataHome}ssh/archlinux-gitlab
+	IdentityFile ${config.xdg.dataHome}/ssh/archlinux-gitlab
 
 # AUR
 Host aur.archlinux.org
 	Hostname aur.archlinux.org
-	IdentityFile ${config.xdg.dataHome}ssh/aur
+	IdentityFile ${config.xdg.dataHome}/ssh/aur
 
 # Codeberg
 Host codeberg.org
 	Hostname codeberg.org
-	IdentityFile ${config.xdg.dataHome}ssh/codeberg
+	IdentityFile ${config.xdg.dataHome}/ssh/codeberg
 	'';
 	};
 	programs.git = {
