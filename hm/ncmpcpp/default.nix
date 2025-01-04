@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
 	home.packages = with pkgs; [
 		libnotify
@@ -13,8 +13,7 @@
     ];
 		settings = {
 			# Directories
-			mpd_music_dir = "~/Music";
-			lyrics_directory = "~/.local/share/ncmpcpp/lyrics/";
+			lyrics_directory = "${config.xdg.dataHome}/ncmpcpp/lyrics/";
 
 			# Mouse and scrolling
 			mouse_support = "yes";

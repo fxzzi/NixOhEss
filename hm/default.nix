@@ -15,10 +15,8 @@
     ANDROID_HOME = "${config.xdg.dataHome}/android"; # Android SDK home
   };
   home.sessionPath = [
-    "${config.home.homeDirectory}/.local/scripts"
-    "${config.home.homeDirectory}/.local/bin"
-    "${config.xdg.dataHome}/cargo/bin"
-    "${config.xdg.dataHome}/go/bin"
+		# if you ever need to add dirs to $PATH,
+		# add them here!
 	];
 
   imports = [
