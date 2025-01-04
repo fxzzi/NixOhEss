@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 # Screenshot the entire monitor, a selection, or active window
 # and then copies the image to your clipboard.
 # It also saves the image locally.

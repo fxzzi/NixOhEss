@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 # dependencies: hyprpaper, fzf, a terminal with sixel support
 
 # this is a script to set a wallpaper for hyprpaper on a single monitor setup

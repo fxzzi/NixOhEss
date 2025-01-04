@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 # Function to send brightness change notification
 notification() {
 	# Get current brightness level using ddcutil

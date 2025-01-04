@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 staticwall="$HOME/.local/state/wallpaper"
 
 if [ -z "$1" ]; then

@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 # Check if the required input file is provided
 if [ "$#" -lt 1 ]; then
     echo "Usage: $0 input_file [output_resolution] [cq_level]"
