@@ -18,13 +18,10 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      serif = [ "New York Medium" ];
-      sansSerif = [ "SF Pro Text" ];
-      monospace = [
-        "SpaceMono Nerd Font"
-        "feather"
-      ];
-      emoji = [ "Noto Color Emoji" ];
+      serif = [ "New York" "Noto Color Emoji" ];
+      sansSerif = [ "SF Pro Text" "Noto Color Emoji" ];
+      monospace = [ "SpaceMono Nerd Font" "icomoon-feather" ];
+			emoji = [ "Noto Color Emoji" ];
     };
   };
 }

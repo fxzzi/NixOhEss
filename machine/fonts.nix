@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 {
   fonts.packages = with pkgs; [
     nerd-fonts.space-mono
@@ -12,9 +12,10 @@
   fonts.fontconfig = {
     subpixel.rgba = "bgr";
     defaultFonts = {
-      serif = [ "New York Medium" ];
-      sansSerif = [ "SF Pro Text" ];
-      monospace = [ "SpaceMono Nerd Font" ];
+      serif = [ "New York" "Noto Color Emoji" ];
+      sansSerif = [ "SF Pro Text" "Noto Color Emoji" ];
+      monospace = [ "SpaceMono Nerd Font" "icomoon-feather" ];
+			emoji = [ "Noto Color Emoji" ];
     };
   };
 }
