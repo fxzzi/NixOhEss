@@ -1,0 +1,91 @@
+{
+  "pins": {
+    "foot": {
+      "type": "Git",
+      "repository": {
+        "type": "Git",
+        "url": "https://codeberg.org/fazzi/foot"
+      },
+      "branch": "transparency_yipee",
+      "revision": "0c1bd790d73a1214de89223ce12c42641cb8c02d",
+      "url": null,
+      "hash": "1k07x3ww27r54z6nw13ynalnzy74fz276axrn5rb42izgr6mjs27"
+    },
+    "fzf-tab": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Aloxaf",
+        "repo": "fzf-tab"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "version": "v1.1.2",
+      "revision": "c7fb028ec0bbc1056c51508602dbd61b0f475ac3",
+      "url": "https://api.github.com/repos/Aloxaf/fzf-tab/tarball/v1.1.2",
+      "hash": "061jjpgghn8d5q2m2cd2qdjwbz38qrcarldj16xvxbid4c137zs2"
+    },
+    "nix-zsh-completions": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "nix-zsh-completions"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "version": "0.5.1",
+      "revision": "6e782b97091b07eb849b58953eb200ccc56ef833",
+      "url": "https://api.github.com/repos/nix-community/nix-zsh-completions/tarball/0.5.1",
+      "hash": "0pzqng23z21h5w9b3mv53b1jaivdjvq7pm2bfsh0m2pah5rwq1kf"
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixpkgs-unstable",
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre732187.d6973081434f/nixexprs.tar.xz",
+      "hash": "168bv1x4dvk52g9kc577wjym2inny7glp8vm5m99f77xa7x9gdsz"
+    },
+    "obs-pipewire-audio-capture": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "dimtpap",
+        "repo": "obs-pipewire-audio-capture"
+      },
+      "branch": "multiple-apps-per-source",
+      "revision": "add302ba2ca55154833d6842f6095a1866f4ad02",
+      "url": "https://github.com/dimtpap/obs-pipewire-audio-capture/archive/add302ba2ca55154833d6842f6095a1866f4ad02.tar.gz",
+      "hash": "0yrnxps15rxrmn0aqc2vy90f9bx5q49pvx7x3fp95h77474gm63j"
+    },
+    "zsh-completions": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "zsh-users",
+        "repo": "zsh-completions"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "version": "0.35.0",
+      "revision": "67921bc12502c1e7b0f156533fbac2cb51f6943d",
+      "url": "https://api.github.com/repos/zsh-users/zsh-completions/tarball/0.35.0",
+      "hash": "164jw74qlrpl6lawa4wjyhn2d04zw36ac0jsg4r6ql8769kfal8q"
+    },
+    "zsh-fzf-history-search": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "joshskidmore",
+        "repo": "zsh-fzf-history-search"
+      },
+      "branch": "master",
+      "revision": "d5a9730b5b4cb0b39959f7f1044f9c52743832ba",
+      "url": "https://github.com/joshskidmore/zsh-fzf-history-search/archive/d5a9730b5b4cb0b39959f7f1044f9c52743832ba.tar.gz",
+      "hash": "1dm1asa4ff5r42nadmj0s6hgyk1ljrckw7val8fz2n0892b8h2mm"
+    }
+  },
+  "version": 3
+}

@@ -19,6 +19,7 @@
     jq
     killall
     rnnoise-plugin
+		npins
   ];
   programs.git = {
     enable = true;
