@@ -1,9 +1,12 @@
-{ pkgs, config, ... }:
+{ pkgs, config, npins, ... }:
 {
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
     autocd = true;
+    syntaxHighlighting.enable = true;
+    historySubstringSearch.enable = true;
+    autosuggestion.enable = true;
     initExtra = ''
 
 			# Match files beginning with . without explicitly specifying the dot
@@ -78,9 +81,6 @@
       EDITOR = "nvim";
     };
     shellAliases = {
-
-      ".." = "cd ..";
-
       grep = "rg";
       cat = "bat";
 
@@ -117,69 +117,21 @@
       flakeupd = "sudo nix flake update --flake $XDG_CONFIG_HOME/nixos";
     };
     plugins = [
-
-      {
-        name = "zsh-syntax-highlighting";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-syntax-highlighting";
-          rev = "0.8.0";
-          hash = "sha256-iJdWopZwHpSyYl5/FQXEW7gl/SrKaYDEtTH9cGP7iPo=";
-        };
-      }
-      {
-        name = "zsh-history-substring-search";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-history-substring-search";
-          rev = "v1.1.0";
-          hash = "sha256-GSEvgvgWi1rrsgikTzDXokHTROoyPRlU0FVpAoEmXG4=";
-        };
-      }
       {
         name = "zsh-completions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-completions";
-          rev = "0.35.0";
-          hash = "sha256-GFHlZjIHUWwyeVoCpszgn4AmLPSSE8UVNfRmisnhkpg=";
-        };
+        src = npins.zsh-completions;
       }
       {
         name = "nix-zsh-completions";
-        src = pkgs.fetchFromGitHub {
-          owner = "nix-community";
-          repo = "nix-zsh-completions";
-          rev = "0.5.1";
-          hash = "sha256-bgbMc4HqigqgdkvUe/CWbUclwxpl17ESLzCIP8Sz+F8=";
-        };
+        src = npins.nix-zsh-completions;
       }
       {
         name = "fzf-tab";
-        src = pkgs.fetchFromGitHub {
-          owner = "Aloxaf";
-          repo = "fzf-tab";
-          rev = "v1.1.2";
-          hash = "sha256-Qv8zAiMtrr67CbLRrFjGaPzFZcOiMVEFLg1Z+N6VMhg=";
-        };
+        src = npins.fzf-tab;
       }
       {
         name = "zsh-fzf-history-search";
-        src = pkgs.fetchFromGitHub {
-          owner = "joshkidmore";
-          repo = "zsh-fzf-history-search";
-          rev = "d1aae98ccd6ce153c97a5401d79fd36418cd2958";
-          hash = "sha256-4Dp2ehZLO83NhdBOKV0BhYFIvieaZPqiZZZtxsXWRaQ=";
-        };
-      }
-      {
-        name = "zsh-autosuggestions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-autosuggestions";
-          rev = "v0.7.1";
-          hash = "sha256-vpTyYq9ZgfgdDsWzjxVAE7FZH4MALMNZIFyEOBLm5Qo=";
-        };
+        src = npins.zsh-fzf-history-search;
       }
     ];
   };

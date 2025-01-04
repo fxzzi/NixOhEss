@@ -26,11 +26,11 @@
   imports = [
     ./zsh.nix
 		./xdg.nix
-    ./fastfetch/default.nix
-    ./hyprland/default.nix
+    ./fastfetch
+    ./hyprland
 		./obs-studio.nix
 		./thunar.nix
-		./transitioning/default.nix
+		./transitioning
   ];
 }
 
