@@ -43,6 +43,7 @@
 		./fonts
 		./wallust
 		./gaming
+		./ssh
   ];
 	home.packages = with pkgs; [
 		vesktop
