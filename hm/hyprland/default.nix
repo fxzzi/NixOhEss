@@ -1,5 +1,11 @@
 { lib, inputs, pkgs, ... }:
 {
+	home.packages = (with pkgs; [
+		xdg-desktop-portal
+		xdg-desktop-portal-gtk
+		xdg-desktop-portal-hyprland
+	]);
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;

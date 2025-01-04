@@ -1,4 +1,4 @@
-{ pkgs, lib, npins, ... }:
+{ pkgs, ... }:
 
 {
   programs.thunar = {

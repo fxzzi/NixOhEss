@@ -1,9 +1,15 @@
-{ pkgs, lib, npins, ... }:
+{ lib, npins, ... }:
+
+/* 
+this nixpkgs overlay replaces foot with my fork,
+which features a few more options for transparency
+
+See: https://codeberg.org/fazzi/foot/src/branch/transparency_yipee
+*/
 
 {
   nixpkgs.overlays = [
     (final: prev: {
-      # replace foot with foot-transparency
       foot = prev.foot.overrideAttrs (old: {
         pname = "foot-transparency";
         src = npins.foot;
