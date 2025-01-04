@@ -23,7 +23,7 @@
       shfmt
       typescript-language-server
     ];
-		extraPython3Packages = with pkgs.python3Packages; [
+		extraPython3Packages = ps: with ps; [
 			python-lsp-server
 		];
   };
