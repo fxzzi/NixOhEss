@@ -7,7 +7,7 @@
       main = {
         font = "SpaceMono Nerd Font:size=17";
         line-height = "30";
-        prompt = "' '";
+        prompt = "' '";
         layer = "overlay";
         lines = "10";
         icon-theme = "Papirus-Dark";
