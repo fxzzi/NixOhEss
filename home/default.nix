@@ -23,7 +23,7 @@
     ./zsh
 		./xdg
     ./fastfetch
-    ./hyprland
+    ./hypr
 		./obs-studio
 		./thunar
 		./ags

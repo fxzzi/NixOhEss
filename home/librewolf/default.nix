@@ -23,7 +23,7 @@
   */
   home.file.".librewolf/librewolf-overrides.cfg".text = ''
     // Set the new tab URL
-    AboutNewTab.newTabURL = "${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
+    AboutNewTab.newTabURL = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
 
     # Revert some security changes
     pref("webgl.disabled", false);
