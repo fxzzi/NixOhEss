@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ ... }:
 {
 	programs.hyprlock = {
 		enable = true;
@@ -17,10 +17,10 @@
 					monitor = "";
 					path = "/tmp/wallpaper";
 					blur_size = 3;
-					blur_passes = 3; # 0 disables blurring
-					contrast = 1.1; # Vibrant!
-					brightness = 0.5;
-					vibrancy = 0.4;
+					blur_passes = 4; # 0 disables blurring
+					contrast = 1.05; # Vibrant!
+					brightness = 0.35;
+					vibrancy = 0.3;
 				}
 			];
 
