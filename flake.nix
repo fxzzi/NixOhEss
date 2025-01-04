@@ -19,10 +19,13 @@
         ./modules/default.nix
         inputs.home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "bak";
-          home-manager.users.faaris = import ./hm/default.nix;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "bak";
+            users.faaris = import ./hm/default.nix;
+						extraSpecialArgs = {inherit inputs;};
+          };
         }
       ];
     };
