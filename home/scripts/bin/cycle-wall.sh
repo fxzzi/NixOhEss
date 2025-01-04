@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 WALLPAPER_DIR="$HOME/walls/images/"
 INDEX_FILE="/tmp/wallust-index"
 

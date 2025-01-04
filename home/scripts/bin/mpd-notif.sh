@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 music_dir="$HOME/Music"
 previewdir="$XDG_STATE_HOME/ncmpcpp/previews"
 filename="$(mpc --format "$music_dir"/%file% current)"

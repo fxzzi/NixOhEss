@@ -12,5 +12,6 @@ in {
 		slurp
 		libcanberra-gtk3
 		wl-clipboard
+		mpc
 	];
 }
