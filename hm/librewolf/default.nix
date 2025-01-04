@@ -1,28 +1,54 @@
-{ ... }:
+{ pkgs, config, ... }:
 {
-	programs.librewolf = {
-		enable = true;
-		settings = {
-			"webgl.disabled" = false;  
-			"privacy.resistFingerprinting" = false;  
-			"privacy.clearOnShutdown.history" = false;  
-			"privacy.clearOnShutdown.cookies" = false;  
+	home.packages = with pkgs; [
+		pywalfox-native
+	];
+  programs.librewolf = {
+    enable = true;
+    package = pkgs.librewolf.overrideAttrs (old: {
+      nativeMessagingHosts = with pkgs; [
+        pywalfox-native
+      ];
+    });
+    languagePacks = [
+      "en-GB"
+      "en-US"
+    ];
+  };
 
-			# Stop weirdness when relaunching browser sometimes  
-			"browser.sessionstore.resume_from_crash" = false;  
+  /*
+   We can't use programs.librewolf.settings here because
+   of the special `AboutNewTab.newTabURL` override, which
+   home-manager fails to set properly.
+  */
+  home.file.".librewolf/librewolf-overrides.cfg".text = ''
+    // Set the new tab URL
+    AboutNewTab.newTabURL = "${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
 
-			# nvidia-vaapi-driver  
-			"media.ffmpeg.vaapi.enabled" = true;  
-			"widget.dmabuf.force-enabled" = true;  
+    # Revert some security changes
+    pref("webgl.disabled", false);
+    pref("privacy.resistFingerprinting", false);
+    pref("privacy.clearOnShutdown.history", false);
+    pref("privacy.clearOnShutdown.cookies", false);
 
-			"middlemouse.paste" = false;  
-			"general.autoScroll" = true;  
+    // Stop weirdness when relaunching browser sometimes
+    pref("browser.sessionstore.resume_from_crash", false);
 
-			"layout.frame_rate" = -1;  
+    // Enable NVIDIA VA-API driver
+    pref("media.ffmpeg.vaapi.enabled", true);
+    pref("widget.dmabuf.force-enabled", true);
 
-			"general.smoothScroll" = false;  
+    // Mouse behavior
+    pref("middlemouse.paste", false);
+    pref("general.autoScroll", true);
 
-			"identity.fxaccounts.enabled" = true;  
-		};
-	};
+    // Performance
+    pref("layout.frame_rate", -1);
+
+    // Smooth scrolling
+    pref("general.smoothScroll", false);
+
+    // Enable Firefox accounts
+    pref("identity.fxaccounts.enabled", true);
+  '';
 }
