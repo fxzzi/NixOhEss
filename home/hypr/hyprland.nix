@@ -1,12 +1,6 @@
 { lib, inputs, pkgs, ... }:
 {
 	home.packages = (with pkgs; [
-		# actually do hm configs for these at some point
-		hyprpaper
-		hyprsunset
-		hyprlock
-		hypridle
-		
 		# deps for hyprpm, might be able to remove later?
 		cmake
 		meson
@@ -14,14 +8,6 @@
 		pkg-config
 	]);
 	
-	home.file = {
-		".config/hypr/hypridle.conf".source = ./conf/hypridle.conf;
-		".config/hypr/hyprland-nest.conf".source = ./conf/hyprland-nest.conf;
-		".config/hypr/hyprlock.conf".source = ./conf/hyprlock.conf;
-		".config/hypr/hyprpaper.conf".source = ./conf/hyprpaper.conf;
-		".config/hypr/xdph.conf".source = ./conf/xdph.conf;
-	};
-
 	xdg.portal = {
 		enable = true;
 		xdgOpenUsePortal = true;

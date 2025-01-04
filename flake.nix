@@ -18,7 +18,7 @@
       specialArgs = { inherit inputs npins; };
       modules = [
         ./hardware-configuration.nix
-        ./modules
+        ./machine
 				./overlays
         inputs.home-manager.nixosModules.home-manager
         {
@@ -26,7 +26,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "bak";
-            users.faaris = import ./hm;
+            users.faaris = import ./home;
             extraSpecialArgs = { inherit inputs npins; };
           };
         }
