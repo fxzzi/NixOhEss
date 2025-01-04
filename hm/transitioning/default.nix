@@ -10,10 +10,9 @@
     };
 
     # Symlink the entire .local directory
-    ".local" = {
-      source = "${./.local}";
-      recursive = true;
-      # force = true;
+    ".local/scripts" = {
+      source = ./.local/scripts;
+			executable = true;
     };
   };
 }
