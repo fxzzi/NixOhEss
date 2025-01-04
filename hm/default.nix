@@ -42,6 +42,7 @@
 		./wallust
 		./gaming
 		./ssh
+		./librewolf
   ];
 	home.packages = with pkgs; [
 		vesktop

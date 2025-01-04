@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, ... }:
 {
 	programs.ssh = {
 		enable = true;
@@ -8,7 +8,7 @@
 # GitHub
 Host github.com
 	Hostname github.com
-	IdentityFile ~/.ssh/github
+	IdentityFile ${config.xdg.dataHome}ssh/github
 
 # GitLab
 Host gitlab.com
@@ -18,17 +18,17 @@ Host gitlab.com
 # ArchLinux GitLab
 Host https://gitlab.archlinux.org
 	Hostname https://gitlab.archlinux.org/
-	IdentityFile ~/.ssh/archlinux-gitlab
+	IdentityFile ${config.xdg.dataHome}ssh/archlinux-gitlab
 
 # AUR
 Host aur.archlinux.org
 	Hostname aur.archlinux.org
-	IdentityFile ~/.ssh/aur
+	IdentityFile ${config.xdg.dataHome}ssh/aur
 
 # Codeberg
 Host codeberg.org
 	Hostname codeberg.org
-	IdentityFile ~/.ssh/codeberg
+	IdentityFile ${config.xdg.dataHome}ssh/codeberg
 	'';
 	};
 	programs.git = {
