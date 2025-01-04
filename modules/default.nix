@@ -8,7 +8,6 @@ let
     ./cachix.nix
     ./fancontrol.nix
     ./fonts.nix
-    ./gaming.nix
     ./networking.nix
     ./nvidia.nix
     ./packages.nix

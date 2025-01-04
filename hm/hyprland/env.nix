@@ -7,19 +7,8 @@
     GDK_BACKEND = "wayland,x11";
     QT_QPA_PLATFORM = "wayland;xcb";
 
-    # set theming for qt5/6 apps
-    QT_QPA_PLATFORMTHEME = "qt6ct:qt5ct";
-
-    # set xcursor theming
-    XCURSOR_THEME = "XCursor-Pro-Light";
-    XCURSOR_SIZE = "24";
-
     # fix java bug on tiling wm's / compositors
     _JAVA_AWT_WM_NONREPARENTING = "1";
-
-    # set hyprcursor theme and size
-    HYPRCURSOR_THEME = "XCursor-Pro-Light-Hyprcursor";
-    HYPRCURSOR_SIZE = "24";
 
     # nvidia shenanigans
     LIBVA_DRIVER_NAME = "nvidia";

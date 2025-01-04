@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, inputs,... }:
 {
   nixpkgs.config.allowUnfree = true; # Allow installing of Unfree software, mostly nvidia
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -17,6 +17,32 @@
         libva-utils
         nvidia-vaapi-driver
       ];
+    };
+  };
+  systemd = {
+    services.nvidia-gpu-temperature = {
+      description = "NVidia GPU temperature monitoring";
+      wantedBy = [ "multi-user.target" ];
+      before = [ "fancontrol.service" ];
+      script = ''
+        				while :; do
+        					t="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
+        					echo "$((t * 1000))" > /tmp/nvidia-temp
+        					sleep 5
+        				done
+        			'';
+      serviceConfig = {
+        Type = "simple";
+        Restart = "always";
+        RestartSec = 5;
+      };
+    };
+    services.nvidia-undervolt = {
+      description = "NVidia Undervolting script";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        ExecStart = "${lib.getExe inputs.nvuv.packages.${pkgs.system}.nvuv} 1830 205 1000 150";
+      };
     };
   };
 }
