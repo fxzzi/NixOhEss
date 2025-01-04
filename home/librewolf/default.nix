@@ -21,34 +21,38 @@
    of the special `AboutNewTab.newTabURL` override, which
    home-manager fails to set properly.
   */
-  home.file.".librewolf/librewolf-overrides.cfg".text = ''
-    // Set the new tab URL
-    AboutNewTab.newTabURL = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
+  home.file.".librewolf/librewolf.overrides.cfg".text = ''
+// Set new tab page to local startpage
+let { utils:Cu } = Components;
 
-    # Revert some security changes
-    pref("webgl.disabled", false);
-    pref("privacy.resistFingerprinting", false);
-    pref("privacy.clearOnShutdown.history", false);
-    pref("privacy.clearOnShutdown.cookies", false);
+Cu.import("resource:///modules/AboutNewTab.jsm");
+let newTabURL = "file:///home/faaris/.local/packages/startpage/fazzi/index.html";
+AboutNewTab.newTabURL = newTabURL;
 
-    // Stop weirdness when relaunching browser sometimes
-    pref("browser.sessionstore.resume_from_crash", false);
+// Revert some security changes
+pref("webgl.disabled", false);
+pref("privacy.resistFingerprinting", false);
+pref("privacy.clearOnShutdown.history", false);
+pref("privacy.clearOnShutdown.cookies", false);
 
-    // Enable NVIDIA VA-API driver
-    pref("media.ffmpeg.vaapi.enabled", true);
-    pref("widget.dmabuf.force-enabled", true);
+// Stop weirdness when relaunching browser sometimes
+pref("browser.sessionstore.resume_from_crash", false);
 
-    // Mouse behavior
-    pref("middlemouse.paste", false);
-    pref("general.autoScroll", true);
+// Enable NVIDIA VA-API driver
+pref("media.ffmpeg.vaapi.enabled", true);
+pref("widget.dmabuf.force-enabled", true);
 
-    // Performance
-    pref("layout.frame_rate", -1);
+// Mouse behavior
+pref("middlemouse.paste", false);
+pref("general.autoScroll", true);
 
-    // Smooth scrolling
-    pref("general.smoothScroll", false);
+// Performance
+pref("layout.frame_rate", -1);
 
-    // Enable Firefox accounts
-    pref("identity.fxaccounts.enabled", true);
+// Smooth scrolling
+pref("general.smoothScroll", false);
+
+// Enable Firefox accounts
+pref("identity.fxaccounts.enabled", true);
   '';
 }
