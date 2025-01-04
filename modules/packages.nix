@@ -11,7 +11,6 @@
     nodejs
     cargo
     fd
-    ripgrep
     gcc
     ffmpeg
     zenmonitor
@@ -19,7 +18,7 @@
     jq
     killall
     rnnoise-plugin
-		npins
+    npins
   ];
   programs.git = {
     enable = true;

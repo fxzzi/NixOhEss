@@ -1,4 +1,4 @@
-{ pkgs, config, npins, ... }:
+{ pkgs, config, npins, lib, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -82,7 +82,7 @@ fi
       grep = "rg";
       cat = "bat";
 
-      # I don't like programs.eza.enableZshIntegration original 'll' alias
+      # I don't like programs.eza.enableZshIntegration's original 'll' alias
       ll = "eza -la";
 
       g = "git";
@@ -97,16 +97,11 @@ fi
       wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
       adb = "HOME=${config.xdg.dataHome}/android adb";
       ncm = "ncmpcpp";
-      ctl = "systemctl";
 
       hyprupd = "hyprpm update; hyprpm reload -n";
 
       die = "pkill -9";
       sudo = "sudo ";
-      yeet = "sudo pacman -Rns";
-
-      spotx = "bash <(curl -sSL https://spotx-official.github.io/run.sh)";
-      spotxset = "spotx -h -l";
 
       nixos-rebuild = "sudo nixos-rebuild --flake $XDG_CONFIG_HOME/nixos/#faarnixOS";
       flakeupd = "sudo nix flake update --flake $XDG_CONFIG_HOME/nixos";
@@ -137,4 +132,6 @@ fi
     extraOptions = [ "--group-directories-first" ];
     enableZshIntegration = true;
   };
+	programs.ripgrep.enable = true;
+	programs.bat.enable = true;
 }

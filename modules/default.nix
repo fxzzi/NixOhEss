@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 
 let
   # Import other module files
@@ -15,7 +15,7 @@ let
     ./state.nix
     ./user.nix
     ./wayland.nix
-    ./getty-tty1-only-password.nix
+    # ./getty-tty1-only-password.nix
   ];
 
 in

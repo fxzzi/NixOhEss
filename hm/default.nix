@@ -13,8 +13,6 @@
     _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java -Dawt.useSystemAAFontSettings=gasp"; # Java preferences
     CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
     ANDROID_HOME = "${config.xdg.dataHome}/android"; # Android SDK home
-
-    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/gcr/ssh"; # Keyring
   };
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/scripts"
