@@ -7,7 +7,7 @@
     serviceConfig = {
       ExecStart = [
         "" # override upstream default with an empty ExecStart
-        "@${pkgs.utillinux}/sbin/agetty agetty --login-program ${pkgs.shadow}/bin/login --skip-login -o '-p -- faaris'--noclear %I $TERM"
+        "@${pkgs.utillinux}/sbin/agetty agetty --login-program ${pkgs.shadow}/bin/login --autologin faaris --noclear %I $TERM"
       ];
     };
   };

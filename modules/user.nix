@@ -12,8 +12,6 @@
       nvtopPackages.nvidia
       bottom
       mpv
-      obs-studio
-      obs-studio-plugins.obs-vkcapture
       lxqt.pavucontrol-qt
       ffmpegthumbnailer
       bat
@@ -26,6 +24,7 @@
       syncthing
       mpd-discord-rpc
       qbittorrent-enhanced
+      librewolf
     ];
   };
   security.pam.services.faaris.gnupg.enable = true;

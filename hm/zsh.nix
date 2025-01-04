@@ -64,8 +64,9 @@
       fi
     '';
     profileExtra = ''
-      if uwsm check may-start; then
-      	exec uwsm start hyprland-uwsm.desktop
+      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+        # Run Hyprland
+        exec Hyprland
       fi
     '';
     history = {

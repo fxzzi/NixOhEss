@@ -11,7 +11,7 @@
       exec-once		= gsettings.sh # Applies gtk themes, cursor themes, etc
       exec-once		= ${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1 
       # exec-once		= hyprpm reload -nn
-      exec				= ags.sh
+      exec				= pidof ags || ${lib.getExe pkgs.ags}
       exec				= ${lib.getExe pkgs.xorg.xrandr} --output DP-3 --primary
 
       # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
@@ -335,6 +335,6 @@
       		'';
   };
   imports = [
-		./env.nix
+    ./env.nix
   ];
 }
