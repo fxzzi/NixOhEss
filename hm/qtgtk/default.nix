@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+	home.packages = with pkgs; [
+		catppuccin-papirus-folders
+	];
   qt = {
     enable = true;
     platformTheme.name = "adwaita-dark";
@@ -7,11 +10,10 @@
   gtk = {
     iconTheme = {
 			name = "Papirus-Dark";
-			package = pkgs.papirus-icon-theme;
-			# package = pkgs.catppuccin-papirus-folders.override {
-			# 	flavor = "macchiato";
-			# 	accent = "sky";
-			# };
+			package = pkgs.catppuccin-papirus-folders.override {
+				flavor = "macchiato";
+				accent = "blue";
+			};
 		};
 		cursorTheme = {
       name = "XCursor-Pro-Light";

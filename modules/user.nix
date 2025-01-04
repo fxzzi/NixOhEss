@@ -15,7 +15,6 @@
       ffmpegthumbnailer
       libsixel
       qbittorrent-enhanced
-      librewolf
     ];
   };
 }
