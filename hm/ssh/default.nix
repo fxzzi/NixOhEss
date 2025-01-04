@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
 	programs.ssh = {
 		enable = true;
@@ -31,23 +31,11 @@ Host codeberg.org
 	IdentityFile ~/.ssh/codeberg
 	'';
 	};
-	services.ssh-agent.enable = true;
-	services.gpg-agent = {
-		enable = true;
-		enableSshSupport = true;
-		enableZshIntegration = true;
-	};
 	programs.git = {
 		enable = true;
 		userName = "Fazzi";
 		userEmail = "faaris.ansari@proton.me";
 	};
-	services.gnome-keyring = {
-		enable = true;
-		components = [
-			"pkcs11"
-			"secrets"
-			"ssh"
-		];
-	};
+	services.ssh-agent.enable = true;
+	home.sessionVariables = { SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"; };
 }

@@ -10,22 +10,12 @@
 
     packages = with pkgs; [
       nvtopPackages.nvidia
-      bottom
       mpv
       lxqt.pavucontrol-qt
       ffmpegthumbnailer
-      bat
-      eza
-      fastfetch
       libsixel
-      ncmpcpp
-      mpd
-      mpc
-      syncthing
-      mpd-discord-rpc
       qbittorrent-enhanced
       librewolf
     ];
   };
-  security.pam.services.faaris.gnupg.enable = true;
 }
