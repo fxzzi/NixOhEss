@@ -8,9 +8,10 @@
     hyprland.url = "github:hyprwm/Hyprland/";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     nvuv.url = "gitlab:fazzi/nvuv";
+		nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: let
+  outputs = inputs@{ self, nixpkgs, home-manager, nixpkgs-olympus, ... }: let
     npins = import ./npins;
   in {
     nixosConfigurations.faarnixOS = inputs.nixpkgs.lib.nixosSystem {
