@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   users.users.faaris = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Add to wheel for sudo access

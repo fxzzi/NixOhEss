@@ -11,9 +11,18 @@
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nixpkgs-olympus, ... }:
-    let npins = import ./npins;
-    in {
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      nixpkgs-olympus,
+      ...
+    }:
+    let
+      npins = import ./npins;
+    in
+    {
       nixosConfigurations.fazziPC = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs npins; };

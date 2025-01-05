@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [ catppuccin-papirus-folders ];
   qt = {
     enable = true;

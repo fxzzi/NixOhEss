@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -32,25 +33,25 @@
         }
       ];
 
-      input-field = [{
-        monitor = "DP-3";
-        size = "350, 45";
-        outline_thickness = 2;
-        dots_size = 0.25; # Scale of input-field height, 0.2 - 0.8
-        dots_spacing = 0.66; # Scale of dots' absolute size, 0.0 - 1.0
-        dots_center = true;
-        outer_color = "0xff1a1b26";
-        inner_color = "0xff1a1b26";
-        font_color = "0xffc8d3f6";
-        placeholder_text = ''
-          <span font="SpaceMono Nerd Font"><i>Password...</i></span>''; # Text rendered when empty
-        fail_text =
-          ''<span font="SpaceMono Nerd Font"><i>Incorrect.</i></span>'';
-        hide_input = false;
-        position = "0, 120";
-        halign = "center";
-        valign = "bottom";
-      }];
+      input-field = [
+        {
+          monitor = "DP-3";
+          size = "350, 45";
+          outline_thickness = 2;
+          dots_size = 0.25; # Scale of input-field height, 0.2 - 0.8
+          dots_spacing = 0.66; # Scale of dots' absolute size, 0.0 - 1.0
+          dots_center = true;
+          outer_color = "0xff1a1b26";
+          inner_color = "0xff1a1b26";
+          font_color = "0xffc8d3f6";
+          placeholder_text = ''<span font="SpaceMono Nerd Font"><i>Password...</i></span>''; # Text rendered when empty
+          fail_text = ''<span font="SpaceMono Nerd Font"><i>Incorrect.</i></span>'';
+          hide_input = false;
+          position = "0, 120";
+          halign = "center";
+          valign = "bottom";
+        }
+      ];
 
       label = [
         {

@@ -1,1 +1,7 @@
-{ ... }: { imports = [ ./mpv ./music ]; }
+{ ... }:
+{
+  imports = [
+    ./mpv
+    ./music
+  ];
+}

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.mpv = {
     enable = true;
     config = {
@@ -62,10 +63,10 @@
       "LEFT" = "osd-msg-bar seek -5 relative+keyframes";
       "SHIFT+RIGHT" = "osd-msg-bar seek +1 relative+exact";
       "SHIFT+LEFT" = "osd-msg-bar seek -1 relative+exact";
-      "CTRL+RIGHT" = ''
-        frame-step ; show-text "Frame: ''${estimated-frame-number} / ''${estimated-frame-count}"'';
-      "CTRL+LEFT" = ''
-        frame-back-step ; show-text "Frame: ''${estimated-frame-number} / ''${estimated-frame-count}"'';
+      "CTRL+RIGHT" =
+        ''frame-step ; show-text "Frame: ''${estimated-frame-number} / ''${estimated-frame-count}"'';
+      "CTRL+LEFT" =
+        ''frame-back-step ; show-text "Frame: ''${estimated-frame-number} / ''${estimated-frame-count}"'';
 
       "UP" = "osd-msg-bar seek +30 relative+keyframes";
       "DOWN" = "osd-msg-bar seek -30 relative+keyframes";
@@ -96,8 +97,8 @@
       "S" = "cycle sub-visibility";
       "CTRL+s" = "cycle secondary-sid";
 
-      "l" = ''
-        cycle-values loop-file yes no ; show-text "''${?=loop-file==inf:Looping enabled (file)}''${?=loop-file==no:Looping disabled (file)}"'';
+      "l" =
+        ''cycle-values loop-file yes no ; show-text "''${?=loop-file==inf:Looping enabled (file)}''${?=loop-file==no:Looping disabled (file)}"'';
 
       "ESC" = "cycle fullscreen";
       "SPACE" = "cycle pause";

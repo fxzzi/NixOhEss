@@ -1,1 +1,10 @@
-{ ... }: { imports = [ ./bottom ./fastfetch ./nvim ./ssh ./zsh ]; }
+{ ... }:
+{
+  imports = [
+    ./bottom
+    ./fastfetch
+    ./nvim
+    ./ssh
+    ./zsh
+  ];
+}

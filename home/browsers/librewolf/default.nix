@@ -1,17 +1,23 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [ pywalfox-native ];
   programs.librewolf = {
     enable = true;
-    package = pkgs.librewolf.overrideAttrs
-      (old: { nativeMessagingHosts = with pkgs; [ pywalfox-native ]; });
-    languagePacks = [ "en-GB" "en-US" ];
+    package = pkgs.librewolf.overrideAttrs (old: {
+      nativeMessagingHosts = with pkgs; [ pywalfox-native ];
+    });
+    languagePacks = [
+      "en-GB"
+      "en-US"
+    ];
   };
 
-  /* We can't use programs.librewolf.settings here because
-     		of the special `newTabURL` override i have, which
-     		home-manager fails to set properly.
-     		the home-manager setup is pretty basic anyway, so this
-     		should suffice
+  /*
+    We can't use programs.librewolf.settings here because
+    		of the special `newTabURL` override i have, which
+    		home-manager fails to set properly.
+    		the home-manager setup is pretty basic anyway, so this
+    		should suffice
   */
   home.file.".librewolf/librewolf.overrides.cfg".text = ''
     // Set new tab page to local startpage

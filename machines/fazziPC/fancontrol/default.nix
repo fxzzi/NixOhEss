@@ -4,8 +4,7 @@
   environment.systemPackages = with pkgs; [ lm_sensors ];
   hardware = {
     fancontrol = {
-      enable =
-        true; # Enable fancontrol to control case fans depending on CPU and GPU temps
+      enable = true; # Enable fancontrol to control case fans depending on CPU and GPU temps
       config = ''
         INTERVAL=4
         DEVPATH=hwmon3=devices/pci0000:00/0000:00:18.3 hwmon2=devices/platform/nct6775.656

@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   programs.ssh = {
     enable = true;
     addKeysToAgent = "yes";
@@ -36,5 +37,7 @@
     userEmail = "faaris.ansari@proton.me";
   };
   services.ssh-agent.enable = true;
-  home.sessionVariables = { SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent"; };
+  home.sessionVariables = {
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
+  };
 }

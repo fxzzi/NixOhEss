@@ -26,10 +26,10 @@
       gcc
       nodejs
       fd
-			fzf
-			cargo
+      fzf
+      cargo
+      nixfmt-rfc-style
     ];
     extraPython3Packages = ps: with ps; [ python-lsp-server ];
   };
 }
-

@@ -5,6 +5,7 @@ local servers = {
 	["lua_ls"] = {},
 	["ts_ls"] = {},
 	["pylsp"] = {},
+	["nil_ls"] = {},
 }
 
 return {
@@ -74,6 +75,7 @@ return {
 					builtin.diagnostics.pylint,
 					builtin.diagnostics.stylelint,
 					builtin.formatting.shfmt,
+					builtin.formatting.nixfmt,
 				},
 			}
 		end,
