@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+	environment.systemPackages = with pkgs; [
+		lm_sensors
+  ];
   hardware = {
     fancontrol = {
       enable = true; # Enable fancontrol to control case fans depending on CPU and GPU temps

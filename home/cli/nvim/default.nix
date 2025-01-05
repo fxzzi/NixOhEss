@@ -22,6 +22,10 @@
       nodePackages_latest.prettier
       shfmt
       typescript-language-server
+
+			gcc
+			nodejs
+			fd
     ];
 		extraPython3Packages = ps: with ps; [
 			python-lsp-server
