@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs,... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 {
   nixpkgs.config.allowUnfree = true; # Allow installing of Unfree software, mostly nvidia
   services.xserver.videoDrivers = [ "nvidia" ];

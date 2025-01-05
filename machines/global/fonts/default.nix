@@ -1,4 +1,11 @@
-{ pkgs, inputs, config, lib, ... }: {
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
+{
   fonts.packages = with pkgs; [
     nerd-fonts.space-mono
     noto-fonts # Google Noto Fonts
@@ -14,9 +21,18 @@
     # fixes emojis on browser
     useEmbeddedBitmaps = true;
     defaultFonts = {
-      serif = [ "New York" "Noto Color Emoji" ];
-      sansSerif = [ "SF Pro Text" "Noto Color Emoji" ];
-      monospace = [ "SpaceMono Nerd Font" "icomoon-feather" ];
+      serif = [
+        "New York"
+        "Noto Color Emoji"
+      ];
+      sansSerif = [
+        "SF Pro Text"
+        "Noto Color Emoji"
+      ];
+      monospace = [
+        "SpaceMono Nerd Font"
+        "icomoon-feather"
+      ];
       emoji = [ "Noto Color Emoji" ];
     };
   };

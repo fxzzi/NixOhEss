@@ -1,4 +1,11 @@
-{ pkgs, config, npins, lib, ... }: {
+{
+  pkgs,
+  config,
+  npins,
+  lib,
+  ...
+}:
+{
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -74,7 +81,9 @@
       path = "${config.xdg.dataHome}/zsh/zsh_history";
       ignoreAllDups = true;
     };
-    localVariables = { PROMPT = "%F{yellow}%3~%f $ "; };
+    localVariables = {
+      PROMPT = "%F{yellow}%3~%f $ ";
+    };
     shellAliases = {
       grep = "rg";
       cat = "bat";

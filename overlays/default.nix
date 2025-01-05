@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [
     ./pywalfox-rc.nix
     ./foot-transparency.nix
@@ -7,4 +8,3 @@
     ./mpd-discord-rpc-git.nix
   ];
 }
-

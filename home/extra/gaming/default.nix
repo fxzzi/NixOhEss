@@ -1,6 +1,8 @@
 { pkgs, inputs, ... }:
-let nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
-in {
+let
+  nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
+in
+{
   home.packages = [
     nixpkgs-olympus.olympus
     (pkgs.prismlauncher.override {

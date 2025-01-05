@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = (with pkgs; [ ags ]);
   home.file = {
     ".config/ags/icons".source = ./config/icons;

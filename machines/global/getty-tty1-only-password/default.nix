@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # https://gist.github.com/caadar/7884b1bf16cb1fc2c7cde33d329ae37f
   # https://github.com/NixOS/nixpkgs/issues/81552
   systemd.services."getty@tty1" = {

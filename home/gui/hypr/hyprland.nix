@@ -1,11 +1,20 @@
-{ lib, inputs, pkgs, ... }: {
-  home.packages = (with pkgs; [
-    # deps for hyprpm, might be able to remove later?
-    cmake
-    meson
-    cpio
-    pkg-config
-  ]);
+{
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
+{
+  home.packages = (
+    with pkgs;
+    [
+      # deps for hyprpm, might be able to remove later?
+      cmake
+      meson
+      cpio
+      pkg-config
+    ]
+  );
 
   xdg.portal = {
     enable = true;
@@ -24,8 +33,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     systemd.enable = true;
     settings = {
       exec-once = [
@@ -41,22 +49,27 @@
         "desc:GIGA-BYTE, 2560x1440@120,1920x0,1"
         "desc:Philips, 1920x1080@75,0x0,1"
       ];
-      render = { direct_scanout = 1; };
+      render = {
+        direct_scanout = 1;
+      };
       cursor = {
         default_monitor = "DP-3";
         no_hardware_cursors = 0;
         use_cpu_buffer = 1;
       };
-      opengl = { nvidia_anti_flicker = 0; };
-      plugin.xwaylandprimary = { display = "DP-3"; };
+      opengl = {
+        nvidia_anti_flicker = 0;
+      };
+      plugin.xwaylandprimary = {
+        display = "DP-3";
+      };
 
       input = {
         repeat_rate = 55; # Set characters to repeat on hold every 55ms
         repeat_delay = 375; # Set repeat timeout to 375ms
         follow_mouse = 2; # Follow mouse clicks for window focus
         force_no_accel = 1;
-        float_switch_override_focus =
-          0; # Stop floating windows from stealing focus
+        float_switch_override_focus = 0; # Stop floating windows from stealing focus
         kb_options = "fkeys:basic_13-24";
         tablet = {
           left_handed = 1;
@@ -194,75 +207,76 @@
         "10, monitor:DP-2"
       ];
       "$MOD" = "SUPER";
-      bind = [
-        # screenshot script
-        ",Print, exec, screenshot.sh --monitor DP-3"
-        "SHIFT, Print, exec, screenshot.sh --selection"
-        "$MOD, Print, exec, screenshot.sh --active"
+      bind =
+        [
+          # screenshot script
+          ",Print, exec, screenshot.sh --monitor DP-3"
+          "SHIFT, Print, exec, screenshot.sh --selection"
+          "$MOD, Print, exec, screenshot.sh --active"
 
-        # binds for apps
-        "$MOD, F, exec, ${lib.getExe pkgs.xfce.thunar}"
-        "$MOD, T, exec, ${lib.getExe pkgs.foot}"
-        "$MOD, B, exec, ${lib.getExe pkgs.librewolf}"
-        "$MOD SHIFT, P, exec, ${lib.getExe pkgs.librewolf} --private-window"
-        "$MOD, W, exec, ${lib.getExe pkgs.vesktop}"
-        "$MOD, D, exec, pkill fuzzel || ${lib.getExe pkgs.fuzzel}"
-        "$MOD SHIFT, E, exec, pkill wleave || ${
-          lib.getExe pkgs.wleave
-        } --protocol layer-shell -b 5 -T 360 -B 360"
-        "CTRL SHIFT, Escape, exec, ${lib.getExe pkgs.foot} btm"
+          # binds for apps
+          "$MOD, F, exec, ${lib.getExe pkgs.xfce.thunar}"
+          "$MOD, T, exec, ${lib.getExe pkgs.foot}"
+          "$MOD, B, exec, ${lib.getExe pkgs.librewolf}"
+          "$MOD SHIFT, P, exec, ${lib.getExe pkgs.librewolf} --private-window"
+          "$MOD, W, exec, ${lib.getExe pkgs.vesktop}"
+          "$MOD, D, exec, pkill fuzzel || ${lib.getExe pkgs.fuzzel}"
+          "$MOD SHIFT, E, exec, pkill wleave || ${lib.getExe pkgs.wleave} --protocol layer-shell -b 5 -T 360 -B 360"
+          "CTRL SHIFT, Escape, exec, ${lib.getExe pkgs.foot} btm"
 
-        # extra schtuff
-        "$MOD, N, exec, pkill hyprsunset || ${
-          lib.getExe pkgs.hyprsunset
-        } -t 2000"
-        "$MOD, R, exec, random-wall.sh"
-        "$MOD SHIFT, R, exec, cycle-wall.sh"
-        "$MOD, J, exec, ${lib.getExe pkgs.foot} wall_picker.sh"
-        "$MOD, L, exec, ${lib.getExe' pkgs.systemd "loginctl"} lock-session"
-        ", XF86AudioPrev, exec, ${
-          lib.getExe pkgs.mpc
-        } prev; (pidof ncmpcpp || mpd-notif.sh)"
-        ", XF86AudioPlay, exec, ${lib.getExe pkgs.mpc} toggle; (mpd-notif.sh)"
-        ", XF86AudioNext, exec, ${
-          lib.getExe pkgs.mpc
-        } next; (pidof ncmpcpp || mpd-notif.sh)"
+          # extra schtuff
+          "$MOD, N, exec, pkill hyprsunset || ${lib.getExe pkgs.hyprsunset} -t 2000"
+          "$MOD, R, exec, random-wall.sh"
+          "$MOD SHIFT, R, exec, cycle-wall.sh"
+          "$MOD, J, exec, ${lib.getExe pkgs.foot} wall_picker.sh"
+          "$MOD, L, exec, ${lib.getExe' pkgs.systemd "loginctl"} lock-session"
+          ", XF86AudioPrev, exec, ${lib.getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif.sh)"
+          ", XF86AudioPlay, exec, ${lib.getExe pkgs.mpc} toggle; (mpd-notif.sh)"
+          ", XF86AudioNext, exec, ${lib.getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif.sh)"
 
-        # passthrough binds for obs
-        "Alt, M, pass,^(com.obsproject.Studio)$"
-        "Alt, N, pass,^(com.obsproject.Studio)$"
+          # passthrough binds for obs
+          "Alt, M, pass,^(com.obsproject.Studio)$"
+          "Alt, N, pass,^(com.obsproject.Studio)$"
 
-        # window management
-        "$MOD, Q, killactive"
-        "$MOD, Space, fullscreen"
-        "$MOD, Tab, togglefloating"
-        "$MOD, P, pseudo # dwindle"
-        "$MOD, S, togglesplit # dwindle"
+          # window management
+          "$MOD, Q, killactive"
+          "$MOD, Space, fullscreen"
+          "$MOD, Tab, togglefloating"
+          "$MOD, P, pseudo # dwindle"
+          "$MOD, S, togglesplit # dwindle"
 
-        # focus
-        "$MOD, left, movefocus, l"
-        "$MOD, right, movefocus, r"
-        "$MOD, up, movefocus, u"
-        "$MOD, down, movefocus, d"
+          # focus
+          "$MOD, left, movefocus, l"
+          "$MOD, right, movefocus, r"
+          "$MOD, up, movefocus, u"
+          "$MOD, down, movefocus, d"
 
-        # move
-        "$MOD SHIFT, left, movewindow, l"
-        "$MOD SHIFT, right, movewindow, r"
-        "$MOD SHIFT, up, movewindow, u"
-        "$MOD SHIFT, down, movewindow, d"
-        # navigate through workspaces on mouse
+          # move
+          "$MOD SHIFT, left, movewindow, l"
+          "$MOD SHIFT, right, movewindow, r"
+          "$MOD SHIFT, up, movewindow, u"
+          "$MOD SHIFT, down, movewindow, d"
+          # navigate through workspaces on mouse
 
-        "$MOD, mouse_down, workspace, e+1"
-        "$MOD, mouse_up, workspace, e-1"
-      ] ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (builtins.genList (i:
-          let ws = i + 1;
-          in [
-            "$MOD, code:1${toString i}, workspace, ${toString ws}"
-            "$MOD SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-          ]) 9));
+          "$MOD, mouse_down, workspace, e+1"
+          "$MOD, mouse_up, workspace, e-1"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+          builtins.concatLists (
+            builtins.genList (
+              i:
+              let
+                ws = i + 1;
+              in
+              [
+                "$MOD, code:1${toString i}, workspace, ${toString ws}"
+                "$MOD SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+              ]
+            ) 9
+          )
+        );
 
       binde = [
         # volume script
@@ -282,7 +296,10 @@
       ];
 
       # mouse bindings
-      bindm = [ "$MOD, mouse:272, movewindow" "$MOD, mouse:273, resizewindow" ];
+      bindm = [
+        "$MOD, mouse:272, movewindow"
+        "$MOD, mouse:273, resizewindow"
+      ];
 
       # use when bug reporting
       # env = [
