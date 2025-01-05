@@ -26,6 +26,8 @@
       gcc
       nodejs
       fd
+			fzf
+			cargo
     ];
     extraPython3Packages = ps: with ps; [ python-lsp-server ];
   };
