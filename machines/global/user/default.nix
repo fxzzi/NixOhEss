@@ -9,8 +9,6 @@
     ignoreShellProgramCheck = true;
 
     packages = with pkgs; [
-      nvtopPackages.nvidia
-      mpv
       lxqt.pavucontrol-qt
       ffmpegthumbnailer
       libsixel

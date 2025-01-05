@@ -8,7 +8,7 @@
     # gnome.gnome-keyring.enable = true;
     gvfs.enable = true; # Enable gvfs for stuff like trash, mtp
     gvfs.package = pkgs.gvfs; # Set to gvfs instead of gnome gvfs
-		scx = {
+		scx = lib.mkIf (config.networking.hostName == "fazziPC") {
 			enable = true;
 			scheduler = "scx_lavd";
 			package = pkgs.scx.rustscheds;
@@ -16,10 +16,9 @@
   };
 
   security.polkit.enable = true; # Enable polkit for root access in GUI apps
-  security.rtkit.enable = true; # Enable RTKit service for Pipewire priority
   security.pam.sshAgentAuth.enable = true;
 
-	services.udev.extraRules = ''
+	services.udev.extraRules = lib.mkIf (config.networking.hostName == "fazziPC") ''
 # Wooting One Legacy
 SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
 SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"

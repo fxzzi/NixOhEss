@@ -18,15 +18,24 @@
 					path = "/tmp/wallpaper";
 					blur_size = 3;
 					blur_passes = 4; # 0 disables blurring
-					contrast = 1.05; # Vibrant!
-					brightness = 0.35;
+					contrast = 0.90;
+					brightness = 0.1;
+					vibrancy = 0.1;
+				}
+				{
+					monitor = "DP-3";
+					path = "/tmp/wallpaper";
+					blur_size = 3;
+					blur_passes = 4; # 0 disables blurring
+					contrast = 1; # Vibrant!
+					brightness = 0.30;
 					vibrancy = 0.3;
 				}
 			];
 
 			input-field = [
 				{
-					monitor = "";
+					monitor = "DP-3";
 					size = "350, 45";
 					outline_thickness = 2;
 					dots_size = 0.25; # Scale of input-field height, 0.2 - 0.8
@@ -46,7 +55,7 @@
 
 			label = [
 				{
-					monitor = "";
+					monitor = "DP-3";
 					text = "cmd[update:1000] echo \"$(date +\"%H:%M:%S\")\"";
 					color = "0xffc8d3f5";
 					font_size = 72;
@@ -58,7 +67,7 @@
 					valign = "center";
 				}
 				{
-					monitor = "";
+					monitor = "DP-3";
 					text = "cmd[update:18000000] echo \"$(date +'%A, %-d %B')\"";
 					color = "0xffc8d3f5";
 					font_size = 24;
@@ -70,7 +79,7 @@
 					valign = "center";
 				}
 				{
-					monitor = "";
+					monitor = "DP-3";
 					text = "";
 					color = "0xffc8d3f5";
 					font_size = 36;

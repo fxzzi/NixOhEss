@@ -1,7 +1,6 @@
 { ... }:
 {
   networking = {
-    hostName = "faarnixOS";
     useDHCP = false;
     dhcpcd.enable = false; # Disable dhcpcd as we use a manual config below
     nameservers = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ]; # Use cloudflare DNS
@@ -19,12 +18,6 @@
       allowedUDPPorts = [ 25564 25565 4200 ];
     };
   };
-
-  services.resolved = {
-    enable = true;
-    dnsovertls = "true";
-  };
-
   services.mediamtx = {
     enable = true;
     settings = {
@@ -39,3 +32,4 @@
     };
   };
 }
+

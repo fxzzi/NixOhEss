@@ -25,6 +25,7 @@
 		./extra
 		./scripts
 		./xdg
+		./media
   ];
 	home.packages = with pkgs; [
 		vesktop
@@ -32,8 +33,6 @@
 		python3
 		fzf
 		ffmpeg
-		zenmonitor
-		npins
 	];
 }
 

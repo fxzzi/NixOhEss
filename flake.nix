@@ -14,12 +14,29 @@
   outputs = inputs@{ self, nixpkgs, home-manager, nixpkgs-olympus, ... }: let
     npins = import ./npins;
   in {
-    nixosConfigurations.faarnixOS = inputs.nixpkgs.lib.nixosSystem {
+    nixosConfigurations.fazziPC = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs npins; };
       modules = [
-        ./hardware-configuration.nix
-        ./machine
+        ./machines/fazziPC
+				./overlays
+        inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "bak";
+            users.faaris = import ./home;
+            extraSpecialArgs = { inherit inputs npins; };
+          };
+        }
+      ];
+    };
+		nixosConfigurations.fazziGO = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs npins; };
+      modules = [
+        ./machines/fazziGO
 				./overlays
         inputs.home-manager.nixosModules.home-manager
         {
