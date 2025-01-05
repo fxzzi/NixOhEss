@@ -1,7 +1,1 @@
-{ ... }:
-{
-	imports = [
-		./gaming
-		./obs-studio
-	];
-}
+{ ... }: { imports = [ ./gaming ./obs-studio ]; }

@@ -1,5 +1,4 @@
-{ pkgs, inputs, config, lib, ... }:
-{
+{ pkgs, inputs, config, lib, ... }: {
   fonts.packages = with pkgs; [
     nerd-fonts.space-mono
     noto-fonts # Google Noto Fonts
@@ -10,15 +9,15 @@
     inputs.apple-fonts.packages.${pkgs.system}.ny
   ];
   fonts.fontconfig = {
-		# main PC monitor is bgr
+    # main PC monitor is bgr
     subpixel.rgba = lib.mkIf (config.networking.hostName == "fazziPC") "bgr";
-		# fixes emojis on browser
-		useEmbeddedBitmaps = true;
+    # fixes emojis on browser
+    useEmbeddedBitmaps = true;
     defaultFonts = {
       serif = [ "New York" "Noto Color Emoji" ];
       sansSerif = [ "SF Pro Text" "Noto Color Emoji" ];
       monospace = [ "SpaceMono Nerd Font" "icomoon-feather" ];
-			emoji = [ "Noto Color Emoji" ];
+      emoji = [ "Noto Color Emoji" ];
     };
   };
 }

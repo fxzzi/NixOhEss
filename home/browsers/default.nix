@@ -1,7 +1,1 @@
-{ ... }:
-{
-	imports = [
-		./librewolf
-		./chromium
-	];
-}
+{ ... }: { imports = [ ./librewolf ./chromium ]; }

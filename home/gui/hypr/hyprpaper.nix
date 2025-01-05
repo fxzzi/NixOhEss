@@ -1,10 +1,9 @@
-{ ... }:
-{
-	services.hyprpaper = {
-		enable = true;
-		settings = {
-			ipc = 1;
-			splash = 0;
-		};
-	};
+{ ... }: {
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      ipc = 1;
+      splash = 0;
+    };
+  };
 }
