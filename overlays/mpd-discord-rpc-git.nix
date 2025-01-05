@@ -1,7 +1,5 @@
 {
   npins,
-  pkgs,
-  lib,
   ...
 }:
 
