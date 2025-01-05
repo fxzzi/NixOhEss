@@ -10,7 +10,9 @@
     inputs.apple-fonts.packages.${pkgs.system}.ny
   ];
   fonts.fontconfig = {
+		# main monitor is bgr, so use that
     subpixel.rgba = "bgr";
+		useEmbeddedBitmaps = true;
     defaultFonts = {
       serif = [ "New York" "Noto Color Emoji" ];
       sansSerif = [ "SF Pro Text" "Noto Color Emoji" ];

@@ -13,5 +13,7 @@ in {
 		libcanberra-gtk3
 		wl-clipboard
 		mpc
+		jq
+		ffmpeg
 	];
 }

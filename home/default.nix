@@ -20,30 +20,22 @@
 	];
 
   imports = [
-    ./zsh
-		./xdg
-    ./fastfetch
-    ./hypr
-		./obs-studio
-		./thunar
-		./ags
-		./foot
-		./nvim
-		./bottom
-		./fuzzel
-		./mpd
-		./ncmpcpp
+    ./browsers
+		./cli
+		./gui
+		./music
+		./extra
 		./scripts
-		./wleave
-		./qtgtk
-		./fonts
-		./wallust
-		./gaming
-		./ssh
-		./librewolf
+		./xdg
   ];
 	home.packages = with pkgs; [
 		vesktop
+		wget
+		python3
+		fzf
+		ffmpeg
+		zenmonitor
+		npins
 	];
 }
 

@@ -23,8 +23,6 @@
   };
 	home.pointerCursor = {
 		gtk.enable = true;
-		hyprcursor.enable = true;
-		hyprcursor.size = 24;
 		name = "XCursor-Pro-Light";
     package = pkgs.xcursor-pro;
 	};
