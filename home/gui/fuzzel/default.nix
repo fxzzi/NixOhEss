@@ -1,8 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.fuzzel = {
     enable = true;
+		package = (pkgs.fuzzel.override {svgBackend = "librsvg"; });
     settings = {
       main = {
         font = "SpaceMono Nerd Font:size=17";

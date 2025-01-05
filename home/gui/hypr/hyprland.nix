@@ -40,7 +40,7 @@
 			];
 			monitor = [
 				", preferred, auto, auto"
-				"desc:GIGA-BYTE, 2560x1440@170,1920x0,1"
+				"desc:GIGA-BYTE, 2560x1440@120,1920x0,1"
 				"desc:Philips, 1920x1080@75,0x0,1"
 			];
 			render = {
@@ -203,7 +203,7 @@
 			"$MOD" = "SUPER";
 			bind = [
 				# screenshot script
-				",Print, exec, screenshot.sh --monitor"
+				",Print, exec, screenshot.sh --monitor DP-3"
 				"SHIFT, Print, exec, screenshot.sh --selection"
 				"$MOD, Print, exec, screenshot.sh --active"
 

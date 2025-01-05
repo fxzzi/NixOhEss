@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, lib, ... }:
 {
   fonts.packages = with pkgs; [
     nerd-fonts.space-mono
@@ -10,8 +10,8 @@
     inputs.apple-fonts.packages.${pkgs.system}.ny
   ];
   fonts.fontconfig = {
-		# main monitor is bgr, so use that
-    subpixel.rgba = "bgr";
+		# main PC monitor is bgr
+    subpixel.rgba = lib.mkIf (config.networking.hostName == "fazziPC") "bgr";
 		# fixes emojis on browser
 		useEmbeddedBitmaps = true;
     defaultFonts = {

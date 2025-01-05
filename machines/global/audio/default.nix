@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   pw_rnnoise_config = {
@@ -46,7 +46,7 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    extraConfig.pipewire."99-input-denoising" = pw_rnnoise_config; # Add rnnoise-plugin filters
+    extraConfig.pipewire."99-input-denoising" =  lib.mkIf (config.networking.hostName == "fazziPC") pw_rnnoise_config; # Add rnnoise-plugin filters
   };
 
   # Optional but recommended
