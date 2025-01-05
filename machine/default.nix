@@ -15,6 +15,7 @@ let
     ./state.nix
     ./user.nix
     ./wayland.nix
+		./opentabletdriver.nix
     # ./getty-tty1-only-password.nix
   ];
 

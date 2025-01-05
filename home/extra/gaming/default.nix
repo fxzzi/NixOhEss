@@ -14,9 +14,11 @@ in {
     pkgs.lutris
     pkgs.gamemode
     pkgs.gamescope
-    pkgs.mangohud
     pkgs.heroic
     pkgs.osu-lazer-bin
     pkgs.cemu
   ];
+	imports = [
+		./mangohud
+	];
 }
