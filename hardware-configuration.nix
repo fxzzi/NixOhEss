@@ -5,46 +5,40 @@
 
 {
   imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
+    { device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "rw,noatime,ssd,discard=async,subvol=@nixroot" ];
+      options = [ "noatime,ssd,discard=async,subvol=@" ];
     };
 
   fileSystems."/home" =
-    {
-      device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
+    { device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "rw,noatime,ssd,discard=async,subvol=@home" ];
-    };
-
-  fileSystems."/games" =
-    {
-      device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
-      fsType = "btrfs";
-      options = [ "rw,noatime,ssd,discard=async,subvol=@games" ];
+      options = [ "noatime,ssd,discard=async,subvol=@home" ];
     };
 
   fileSystems."/nix" =
-    {
-      device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
+    { device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "rw,noatime,ssd,discard=async,subvol=@nix" ];
+      options = [ "noatime,ssd,discard=async,subvol=@nix" ];
+    };
+
+  fileSystems."/home/faaris/games" =
+    { device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
+      fsType = "btrfs";
+      options = [ "noatime,ssd,discard=async,subvol=@games" ];
     };
 
   fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/8026-A204";
+    { device = "/dev/disk/by-uuid/8026-A204";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -55,7 +49,7 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  # networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

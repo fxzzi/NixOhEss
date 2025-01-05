@@ -14,4 +14,5 @@
   system.stateVersion = "22.11"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
+	nix.settings.use-xdg-base-directories = true;
 }
