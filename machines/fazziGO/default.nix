@@ -1,8 +1,4 @@
-{ ... }:
-{
-	config.networking.hostname = "fazziGO";
-  imports = [
-		../global
-    ./networking
-  ];
+{ ... }: {
+  config.networking.hostname = "fazziGO";
+  imports = [ ../global ./networking ];
 }

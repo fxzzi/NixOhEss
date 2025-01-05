@@ -1,5 +1,4 @@
-{ inputs, pkgs, ... }:
-{
+{ inputs, pkgs, ... }: {
   home.packages = with pkgs; [
     nerd-fonts.space-mono
     noto-fonts # Google Noto Fonts
@@ -10,18 +9,14 @@
     inputs.apple-fonts.packages.${pkgs.system}.ny
     icomoon-feather
   ];
-  gtk = {
-    font = {
-      name = "SF Pro Text";
-    };
-  };
+  gtk = { font = { name = "SF Pro Text"; }; };
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
       serif = [ "New York" "Noto Color Emoji" ];
       sansSerif = [ "SF Pro Text" "Noto Color Emoji" ];
       monospace = [ "SpaceMono Nerd Font" "icomoon-feather" ];
-			emoji = [ "Noto Color Emoji" ];
+      emoji = [ "Noto Color Emoji" ];
     };
   };
 }

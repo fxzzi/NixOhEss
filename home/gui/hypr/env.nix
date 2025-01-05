@@ -1,8 +1,7 @@
-{ ... }:
-{
+{ ... }: {
   home.sessionVariables = {
     # run electron, gtk, qt apps in wayland native
-		NIXOS_OZONE_WL = "1";
+    NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     GDK_BACKEND = "wayland,x11";
     QT_QPA_PLATFORM = "wayland;xcb";

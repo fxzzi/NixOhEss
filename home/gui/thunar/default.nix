@@ -1,5 +1,4 @@
-{ lib, pkgs, config, ... }:
-{
+{ lib, pkgs, config, ... }: {
 
   # home.packages = with pkgs.xfce; [
   #   thunar
@@ -22,7 +21,9 @@
         	<name>Copy File / Folder Path</name>
         	<submenu></submenu>
         	<unique-id>1653335357081852-1</unique-id>
-        	<command>echo -n &apos;&quot;%f&quot;&apos; | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}</command>
+        	<command>echo -n &apos;&quot;%f&quot;&apos; | ${
+           lib.getExe' pkgs.wl-clipboard "wl-copy"
+         }</command>
         	<description></description>
         	<range></range>
         	<patterns>*</patterns>
@@ -61,7 +62,9 @@
         	<name>Edit as root</name>
         	<submenu></submenu>
         	<unique-id>1716201472079277-1</unique-id>
-        	<command>${lib.getExe pkgs.foot} ${lib.getExe' pkgs.sudo "sudoedit"} %f</command>
+        	<command>${lib.getExe pkgs.foot} ${
+           lib.getExe' pkgs.sudo "sudoedit"
+         } %f</command>
         	<description></description>
         	<range>*</range>
         	<patterns>*</patterns>

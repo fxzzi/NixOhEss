@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.wlogout = {
     package = pkgs.wleave;
     enable = true;

@@ -8,9 +8,9 @@
 
   programs.neovim = {
     enable = true;
-		defaultEditor = true;
-		viAlias = true;
-		vimAlias = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
     extraPackages = with pkgs; [
       bash-language-server
       vscode-langservers-extracted
@@ -23,13 +23,11 @@
       shfmt
       typescript-language-server
 
-			gcc
-			nodejs
-			fd
+      gcc
+      nodejs
+      fd
     ];
-		extraPython3Packages = ps: with ps; [
-			python-lsp-server
-		];
+    extraPython3Packages = ps: with ps; [ python-lsp-server ];
   };
 }
 

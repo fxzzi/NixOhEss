@@ -8,33 +8,34 @@
     # gnome.gnome-keyring.enable = true;
     gvfs.enable = true; # Enable gvfs for stuff like trash, mtp
     gvfs.package = pkgs.gvfs; # Set to gvfs instead of gnome gvfs
-		scx = lib.mkIf (config.networking.hostName == "fazziPC") {
-			enable = true;
-			scheduler = "scx_lavd";
-			package = pkgs.scx.rustscheds;
-		};
+    scx = lib.mkIf (config.networking.hostName == "fazziPC") {
+      enable = true;
+      scheduler = "scx_lavd";
+      package = pkgs.scx.rustscheds;
+    };
   };
 
   security.polkit.enable = true; # Enable polkit for root access in GUI apps
   security.pam.sshAgentAuth.enable = true;
 
-	services.udev.extraRules = lib.mkIf (config.networking.hostName == "fazziPC") ''
-# Wooting One Legacy
-SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
-SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
+  services.udev.extraRules =
+    lib.mkIf (config.networking.hostName == "fazziPC") ''
+      # Wooting One Legacy
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
 
-# Wooting One update mode 
-SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2402", TAG+="uaccess"
+      # Wooting One update mode 
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2402", TAG+="uaccess"
 
-# Wooting Two Legacy
-SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff02", TAG+="uaccess"
-SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff02", TAG+="uaccess"
+      # Wooting Two Legacy
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff02", TAG+="uaccess"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff02", TAG+="uaccess"
 
-# Wooting Two update mode  
-SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403", TAG+="uaccess"
+      # Wooting Two update mode  
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403", TAG+="uaccess"
 
-# Generic Wootings
-SUBSYSTEM=="hidraw", ATTRS{idVendor}=="31e3", TAG+="uaccess"
-SUBSYSTEM=="usb", ATTRS{idVendor}=="31e3", TAG+="uaccess"
-	'';
+      # Generic Wootings
+      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="31e3", TAG+="uaccess"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="31e3", TAG+="uaccess"
+      	'';
 }

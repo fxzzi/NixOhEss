@@ -12,15 +12,9 @@
         alpha-mode = "matching";
         transparent-fullscreen = "yes";
       };
-      cursor = {
-        style = "beam";
-      };
-      mouse = {
-        hide-when-typing = "yes";
-      };
-      colors = {
-        alpha = "0.75";
-      };
+      cursor = { style = "beam"; };
+      mouse = { hide-when-typing = "yes"; };
+      colors = { alpha = "0.75"; };
     };
   };
 }

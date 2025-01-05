@@ -1,5 +1,5 @@
-{ pkgs, inputs, ... }: let
-  nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
+{ pkgs, inputs, ... }:
+let nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
 in {
   home.packages = [
     nixpkgs-olympus.olympus
@@ -18,7 +18,5 @@ in {
     pkgs.osu-lazer-bin
     pkgs.cemu
   ];
-	imports = [
-		./mangohud
-	];
+  imports = [ ./mangohud ];
 }
