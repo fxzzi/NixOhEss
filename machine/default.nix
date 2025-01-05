@@ -20,6 +20,5 @@ let
 
 in
 {
-  # Include all the modules in the NixOS system configuration
   imports = modules;
 }

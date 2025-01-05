@@ -12,6 +12,7 @@
   fonts.fontconfig = {
 		# main monitor is bgr, so use that
     subpixel.rgba = "bgr";
+		# fixes emojis on browser
 		useEmbeddedBitmaps = true;
     defaultFonts = {
       serif = [ "New York" "Noto Color Emoji" ];

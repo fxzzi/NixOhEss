@@ -17,6 +17,25 @@
 
   security.polkit.enable = true; # Enable polkit for root access in GUI apps
   security.rtkit.enable = true; # Enable RTKit service for Pipewire priority
-  # security.pam.services.faaris.enableGnomeKeyring = true; # Enable gnome keyring for user
   security.pam.sshAgentAuth.enable = true;
+
+	services.udev.extraRules = ''
+# Wooting One Legacy
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
+
+# Wooting One update mode 
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2402", TAG+="uaccess"
+
+# Wooting Two Legacy
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff02", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff02", TAG+="uaccess"
+
+# Wooting Two update mode  
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2403", TAG+="uaccess"
+
+# Generic Wootings
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="31e3", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="31e3", TAG+="uaccess"
+	'';
 }
