@@ -22,7 +22,6 @@
     ./browsers
 		./cli
 		./gui
-		./music
 		./extra
 		./scripts
 		./xdg
