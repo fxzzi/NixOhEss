@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, user, ... }:
 {
-  home.username = "faaris";
-  home.homeDirectory = "/home/faaris";
+  home.username = "${user}";
+  home.homeDirectory = "/home/${user}";
   home.stateVersion = "24.11"; # Match your NixOS release or Home Manager version
 
   home.sessionVariables = {
@@ -34,6 +34,7 @@
     fzf
     ffmpeg
     lxqt.pavucontrol-qt
-    qbittorrent
+    qbittorrent-enhanced
+    telegram-desktop
   ];
 }

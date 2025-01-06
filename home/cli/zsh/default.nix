@@ -80,6 +80,7 @@
     history = {
       path = "${config.xdg.dataHome}/zsh/zsh_history";
       ignoreAllDups = true;
+			extended = true;
     };
     localVariables = {
       PROMPT = "%F{yellow}%3~%f $ ";

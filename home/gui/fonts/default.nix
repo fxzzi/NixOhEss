@@ -19,16 +19,13 @@
     enable = true;
     defaultFonts = {
       serif = [
-        "New York"
-        "Noto Color Emoji"
+        "New York Small"
       ];
       sansSerif = [
         "SF Pro Text"
-        "Noto Color Emoji"
       ];
       monospace = [
         "SpaceMono Nerd Font"
-        "icomoon-feather"
       ];
       emoji = [ "Noto Color Emoji" ];
     };

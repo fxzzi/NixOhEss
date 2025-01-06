@@ -4,25 +4,27 @@ let
   nixpkgs-sgdboop = inputs.nixpkgs-sgdboop.legacyPackages.${pkgs.system};
 in
 {
-  home.packages = [
-    nixpkgs-olympus.olympus
-    nixpkgs-sgdboop.sgdboop
-    (pkgs.prismlauncher.override {
-      # use temurin, they're better
-      jdks = [
-        pkgs.temurin-jre-bin-8
-        pkgs.temurin-jre-bin-17
-        pkgs.temurin-jre-bin-21
-      ];
-    })
-    (pkgs.osu-lazer-bin.override {
-      nativeWayland = true;
-    })
-    pkgs.lutris
-    pkgs.gamescope
-    pkgs.heroic
-    pkgs.cemu
-    pkgs.wine-staging
-  ];
+  home.packages =
+    with pkgs;
+    [
+      (prismlauncher.override {
+        # use temurin, they're better
+        jdks = [
+          temurin-jre-bin-8
+          temurin-jre-bin-17
+          temurin-jre-bin-21
+        ];
+      })
+      osu-lazer-bin
+      lutris
+      gamescope
+      heroic
+      cemu
+      wine-staging
+    ]
+    ++ [
+      nixpkgs-olympus.olympus
+      nixpkgs-sgdboop.sgdboop
+    ];
   imports = [ ./mangohud ];
 }

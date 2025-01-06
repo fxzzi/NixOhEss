@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 {
   environment.shells = [ pkgs.zsh ];
-  users.users.faaris = {
+  users.users.${user} = {
     isNormalUser = true;
     extraGroups = [
       "wheel"

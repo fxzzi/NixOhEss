@@ -5,6 +5,7 @@
   config,
   lib,
   modulesPath,
+  user,
   ...
 }:
 
@@ -39,7 +40,7 @@
     options = [ "noatime,ssd,discard=async,subvol=@nix" ];
   };
 
-  fileSystems."/home/faaris/games" = {
+  fileSystems."/home/${user}/games" = {
     device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
     fsType = "btrfs";
     options = [ "noatime,ssd,discard=async,subvol=@games" ];
