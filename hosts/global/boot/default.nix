@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -19,7 +18,7 @@
       "nowatchdog"
       "mitigations=off"
     ]; # Enable amd_pstate, disable watchdog and mitigations (not needed on personal systems)
-    kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux; # Set kernel to linux_zen
+    kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux; # Set kernel to base linux
     tmp.useTmpfs = true; # /tmp is not on tmpfs by default (why??)
     tmp.tmpfsSize = "50%";
   };
