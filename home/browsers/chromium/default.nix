@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   programs.chromium = {
     enable = true;
@@ -15,7 +20,8 @@
       "--enable-features=VaapiIgnoreDriverChecks"
     ];
   };
-  xdg.desktopEntries."wootility" = {
+	# only enable the wootility app if chromium is actually enabled
+  xdg.desktopEntries."wootility" = lib.mkIf config.programs.chromium.enable {
     name = "Wootility Web";
     exec = "${lib.getExe pkgs.chromium} --app=http://beta.wootility.io %U";
     terminal = false;
