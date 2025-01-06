@@ -1,9 +1,12 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ catppuccin-papirus-folders ];
+  home.packages = with pkgs; [
+    catppuccin-papirus-folders
+    qt6ct
+  ];
   qt = {
     enable = true;
-    platformTheme.name = "adwaita-dark";
+    platformTheme.name = "qt6ct";
   };
   gtk = {
     iconTheme = {
@@ -18,10 +21,14 @@
       package = pkgs.xcursor-pro;
       size = 24;
     };
+    theme = {
+      name = "TokyoNight";
+    };
   };
   home.pointerCursor = {
     gtk.enable = true;
     name = "XCursor-Pro-Light";
+    size = 24;
     package = pkgs.xcursor-pro;
   };
 }
