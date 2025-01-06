@@ -2,16 +2,13 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }:
 
 {
-  # List services that you want to enable:
   services = {
     printing.enable = true;
     tumbler.enable = true; # Thunar thumbnailer
-    # gnome.gnome-keyring.enable = true;
     gvfs.enable = true; # Enable gvfs for stuff like trash, mtp
     gvfs.package = pkgs.gvfs; # Set to gvfs instead of gnome gvfs
     scx = lib.mkIf (config.networking.hostName == "fazziPC") {
@@ -22,9 +19,8 @@
   };
 
   security.polkit.enable = true; # Enable polkit for root access in GUI apps
-  security.pam.sshAgentAuth.enable = true;
 
-  services.udev.extraRules = lib.mkIf (config.networking.hostName == "fazziPC") ''
+	services.udev.extraRules = lib.mkIf (config.networking.hostName == "fazziPC") ''
     # Wooting One Legacy
     SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
     SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"

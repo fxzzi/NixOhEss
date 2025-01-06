@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 {
   home.packages = with pkgs; [ pywalfox-native ];
   programs.librewolf = {
@@ -19,7 +19,7 @@
     		the home-manager setup is pretty basic anyway, so this
     		should suffice
   */
-  home.file.".librewolf/librewolf.overrides.cfg".text = ''
+  home.file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
     // Set new tab page to local startpage
     let { utils:Cu } = Components;
 

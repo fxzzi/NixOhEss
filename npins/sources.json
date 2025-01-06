@@ -66,10 +66,10 @@
         "owner": "dimtpap",
         "repo": "obs-pipewire-audio-capture"
       },
-      "branch": "multiple-apps-per-source",
-      "revision": "add302ba2ca55154833d6842f6095a1866f4ad02",
-      "url": "https://github.com/dimtpap/obs-pipewire-audio-capture/archive/add302ba2ca55154833d6842f6095a1866f4ad02.tar.gz",
-      "hash": "0yrnxps15rxrmn0aqc2vy90f9bx5q49pvx7x3fp95h77474gm63j"
+      "branch": "main",
+      "revision": "b4ca0a80c218de2c1be86d67963569e91ad14b61",
+      "url": "https://github.com/dimtpap/obs-pipewire-audio-capture/archive/b4ca0a80c218de2c1be86d67963569e91ad14b61.tar.gz",
+      "hash": "1672h12pmqirwsb8wyixj3n2kpn1m71jn9a3fj5mxkqh81xzb1h2"
     },
     "zsh-completions": {
       "type": "GitRelease",
