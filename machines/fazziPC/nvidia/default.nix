@@ -6,6 +6,7 @@
   ...
 }:
 {
+  environment.systemPackages = with pkgs; [ egl-wayland ];
   nixpkgs.config.allowUnfree = true; # Allow installing of Unfree software, mostly nvidia
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
@@ -21,11 +22,6 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
-				egl-wayland
-      ];
-      extraPackages32 = with pkgs; [
-        nvidia-vaapi-driver
-				egl-wayland
       ];
     };
   };
@@ -35,12 +31,12 @@
       wantedBy = [ "multi-user.target" ];
       before = [ "fancontrol.service" ];
       script = ''
-        				while :; do
-        					t="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
-        					echo "$((t * 1000))" > /tmp/nvidia-temp
-        					sleep 5
-        				done
-        			'';
+        while :; do
+        	t="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
+        	echo "$((t * 1000))" > /tmp/nvidia-temp
+        	sleep 5
+        done
+      '';
       serviceConfig = {
         Type = "simple";
         Restart = "always";

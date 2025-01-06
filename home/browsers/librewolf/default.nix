@@ -24,7 +24,7 @@
     let { utils:Cu } = Components;
 
     Cu.import("resource:///modules/AboutNewTab.jsm");
-    let newTabURL = "file:///home/faaris/.local/packages/startpage/fazzi/index.html";
+    let newTabURL = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
     AboutNewTab.newTabURL = newTabURL;
 
     // Revert some security changes
