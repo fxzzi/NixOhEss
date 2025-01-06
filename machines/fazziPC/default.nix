@@ -1,6 +1,7 @@
 { ... }:
 {
   networking.hostName = "fazziPC";
+	programs.gamemode.enable = true;
   imports = [
     ../global
     ./hardware-configuration.nix

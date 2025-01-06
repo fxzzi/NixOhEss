@@ -18,10 +18,14 @@
     };
     graphics = {
       enable = true;
+      enable32Bit = true;
       extraPackages = with pkgs; [
-        libva
-        libva-utils
         nvidia-vaapi-driver
+				egl-wayland
+      ];
+      extraPackages32 = with pkgs; [
+        nvidia-vaapi-driver
+				egl-wayland
       ];
     };
   };

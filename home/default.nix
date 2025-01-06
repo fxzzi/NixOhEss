@@ -33,5 +33,7 @@
     python3
     fzf
     ffmpeg
+    lxqt.pavucontrol-qt
+    qbittorrent
   ];
 }

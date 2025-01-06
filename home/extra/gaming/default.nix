@@ -1,10 +1,12 @@
 { pkgs, inputs, ... }:
 let
   nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
+  nixpkgs-sgdboop = inputs.nixpkgs-sgdboop.legacyPackages.${pkgs.system};
 in
 {
   home.packages = [
     nixpkgs-olympus.olympus
+    nixpkgs-sgdboop.sgdboop
     (pkgs.prismlauncher.override {
       # use temurin, they're better
       jdks = [
@@ -13,12 +15,14 @@ in
         pkgs.temurin-jre-bin-21
       ];
     })
+    (pkgs.osu-lazer-bin.override {
+      nativeWayland = true;
+    })
     pkgs.lutris
-    pkgs.gamemode
     pkgs.gamescope
     pkgs.heroic
-    pkgs.osu-lazer-bin
     pkgs.cemu
+    pkgs.wine-staging
   ];
   imports = [ ./mangohud ];
 }

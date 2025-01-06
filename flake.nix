@@ -9,6 +9,7 @@
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     nvuv.url = "gitlab:fazzi/nvuv";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
+		nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
   };
 
   outputs =
