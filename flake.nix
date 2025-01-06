@@ -12,53 +12,24 @@
     nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
   };
 
-  outputs =
-    inputs@{
-      nixpkgs,
-      home-manager,
-      ...
-    }:
-    let
-      npins = import ./npins;
-			# you can change your username here :)
-			user = "faaris";
-    in
-    {
-      nixosConfigurations.fazziPC = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs npins user; };
-        modules = [
-          ./machines/fazziPC
-          ./overlays
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "bak";
-              users.${user} = import ./home;
-              extraSpecialArgs = { inherit inputs npins user; };
-            };
-          }
-        ];
-      };
-      nixosConfigurations.fazziGO = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs npins user; };
-        modules = [
-          ./machines/fazziGO
-          ./overlays
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "bak";
-              users.${user} = import ./home;
-              extraSpecialArgs = { inherit inputs npins user; };
-            };
-          }
-        ];
-      };
+  outputs = { nixpkgs, home-manager, ... }@inputs:
+  let
+    npins = import ./npins;
+    user = "faaris";
+    nixosCommonSystem = hostName: nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs npins user hostName; };
+      modules = [
+        ./hosts/${hostName}
+        ./overlays
+        inputs.home-manager.nixosModules.home-manager
+      ];
     };
+  in
+  {
+    nixosConfigurations = {
+      fazziPC = nixosCommonSystem "fazziPC";
+      fazziGO = nixosCommonSystem "fazziGO";
+    };
+  };
 }

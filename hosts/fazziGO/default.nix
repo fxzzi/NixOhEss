@@ -1,6 +1,6 @@
 { ... }:
 {
-  config.networking.hostname = "fazziGO";
+  networking.hostName = "fazziGO";
   imports = [
     ../global
     ./networking
