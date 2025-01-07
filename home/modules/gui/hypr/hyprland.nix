@@ -32,9 +32,9 @@
       enable = true;
       xdgOpenUsePortal = true;
       config.common.default = "hyprland";
-      configPackages = [
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
-      ];
+      # configPackages = [
+        # inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+      # ];
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
 
@@ -45,7 +45,7 @@
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       systemd.enable = true;
       settings = {
         exec-once = [
@@ -57,7 +57,7 @@
           "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.hyprland.defaultMonitor} --primary"
         ];
         monitor = [
-          ", preferred, auto, auto"
+          "eDP-1, 1920x1080@60, 0x0, 1"
           "desc:GIGA-BYTE, 2560x1440@120,1920x0,1"
           "desc:Philips, 1920x1080@75,0x0,1"
         ];
@@ -318,19 +318,19 @@
         # 	"AQ_TRACE" = "1"
         # 	"HYPRLAND_TRACE" = "1"
         # ];
-        # debug = {
-        # 	disable_logs = 0;
-        # 	watchdog_timeout = 0;
-        # };
+        debug = {
+        	disable_logs = 0;
+        	watchdog_timeout = 0;
+        };
       };
       extraConfig = ''
-        				# submaps
-        				# Disables all keybinds for moonlight or vm's
-        				# bind = $MOD SHIFT, N, submap, clean
-        				# submap = clean
-        				# bind = $MOD SHIFT, N, submap, reset
-        				# submap = reset
-        						'';
+        # submaps
+        # Disables all keybinds for moonlight or vm's
+        bind = $MOD SHIFT, N, submap, clean
+        submap = clean
+        bind = $MOD SHIFT, N, submap, reset
+        submap = reset
+      '';
     };
   };
   imports = [ ./env.nix ];

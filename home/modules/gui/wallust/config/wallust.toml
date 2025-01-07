@@ -1,5 +1,5 @@
 check_contrast = true
-backend = "kmeans"
+backend = "wal"
 color_space = "lch"
 
 [templates]
