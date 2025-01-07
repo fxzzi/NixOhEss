@@ -37,6 +37,7 @@
     ags.enable = true;
     foot.enable = true;
     fuzzel.enable = true;
+		wleave.enable = true;
     hypr = {
       hyprland = {
         defaultMonitor = "eDP-1";

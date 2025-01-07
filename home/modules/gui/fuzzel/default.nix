@@ -25,13 +25,14 @@
           horizontal-pad = "10";
           vertical-pad = "10";
           inner-pad = "6";
-          filter-desktop = "yes";
+          filter-desktop = true;
           image-size-ratio = "0.5";
           terminal = "foot -e";
           fields = "name,exec";
           placeholder = "Search...";
           sort-result = "false";
           match-mode = "exact";
+					dpi-aware = false;
           include = "~/.cache/wallust/colors_fuzzel.ini";
         };
         border = {
