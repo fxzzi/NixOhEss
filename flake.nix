@@ -12,24 +12,35 @@
     nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
-  let
-    npins = import ./npins;
-    user = "faaris";
-    nixosCommonSystem = hostName: nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs npins user hostName; };
-      modules = [
-        ./hosts/${hostName}
-        ./overlays
-        inputs.home-manager.nixosModules.home-manager
-      ];
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
+    let
+      npins = import ./npins;
+      user = "faaris";
+      nixosCommonSystem =
+        hostName:
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit
+              inputs
+              npins
+              user
+              hostName
+              ;
+          };
+          modules = [
+            ./hosts/global # import host agnostic modules
+            ./hosts/${hostName} # import host specific modules
+            ./overlays
+            inputs.home-manager.nixosModules.home-manager
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        fazziPC = nixosCommonSystem "fazziPC";
+        fazziGO = nixosCommonSystem "fazziGO";
+      };
     };
-  in
-  {
-    nixosConfigurations = {
-      fazziPC = nixosCommonSystem "fazziPC";
-      fazziGO = nixosCommonSystem "fazziGO";
-    };
-  };
 }

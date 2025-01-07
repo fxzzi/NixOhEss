@@ -1,5 +1,12 @@
-{ inputs, npins, user, hostName, ... }:
 {
+  inputs,
+  npins,
+  user,
+  hostName,
+  ...
+}:
+{
+  environment.pathsToLink = [ "/share/zsh" ];
   imports = [
     ./audio
     ./boot
@@ -18,15 +25,13 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "bak";
-    users.${user} = import ../../home;
+    users.${user} = import ../../home/${hostName}.nix;
     extraSpecialArgs = {
       inherit
         inputs
         npins
         user
-        hostName
         ;
     };
   };
-
 }

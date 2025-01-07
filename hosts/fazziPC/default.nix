@@ -1,12 +1,12 @@
 { ... }:
 {
   networking.hostName = "fazziPC";
-	programs.gamemode.enable = true;
+	
   imports = [
     ../global
     ./hardware-configuration.nix
     ./boot
-    ./steam
+    ./gaming
     ./nvidia
     ./fancontrol
     ./networking
