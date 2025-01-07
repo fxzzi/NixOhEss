@@ -49,11 +49,11 @@
       systemd.enable = true;
       settings = {
         exec-once = [
+					"ags"
           "random-wall.sh"
           "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         ];
         exec = [
-          "pidof ags || ${lib.getExe pkgs.ags}"
           "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.hyprland.defaultMonitor} --primary"
         ];
         monitor = [
