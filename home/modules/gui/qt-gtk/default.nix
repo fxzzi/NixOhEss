@@ -5,7 +5,7 @@
     default = false;
     description = "Enables toolkit (qt and gtk) configurations.";
   };
-  config = lib.mkIf config.gui.toolkitConfig.enable {
+  config = {
     home.packages = with pkgs; [
       catppuccin-papirus-folders
       qt6ct

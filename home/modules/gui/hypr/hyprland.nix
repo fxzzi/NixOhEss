@@ -32,9 +32,9 @@
       enable = true;
       xdgOpenUsePortal = true;
       config.common.default = "hyprland";
-      # configPackages = [
-        # inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
-      # ];
+      configPackages = [
+        pkgs.xdg-desktop-portal-hyprland
+      ];
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
 
@@ -49,16 +49,16 @@
       systemd.enable = true;
       settings = {
         exec-once = [
-					"ags"
           "random-wall.sh"
           "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         ];
         exec = [
+					"pgrep ags || ags"
           "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.hyprland.defaultMonitor} --primary"
         ];
         monitor = [
           "eDP-1, 1920x1080@60, 0x0, 1"
-          "desc:GIGA-BYTE, 2560x1440@120,1920x0,1"
+          "desc:GIGA-BYTE, 2560x1440@170,1920x0,1"
           "desc:Philips, 1920x1080@75,0x0,1"
         ];
         render = {

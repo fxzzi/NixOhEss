@@ -6,6 +6,7 @@
     extraGroups = [
       "wheel"
       "gamemode"
+      "networkmanager"
     ];
     shell = pkgs.zsh; # Set shell to zsh
 
