@@ -15,6 +15,7 @@
       platformTheme.name = "qt6ct";
     };
     gtk = {
+			enable = true;
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.catppuccin-papirus-folders.override {
