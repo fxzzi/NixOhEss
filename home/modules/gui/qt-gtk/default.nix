@@ -5,9 +5,8 @@
     default = false;
     description = "Enables toolkit (qt and gtk) configurations.";
   };
-  config = {
+  config = lib.mkIf config.gui.toolkitConfig.enable {
     home.packages = with pkgs; [
-      catppuccin-papirus-folders
       qt6ct
     ];
     qt = {
@@ -16,6 +15,10 @@
     };
     gtk = {
 			enable = true;
+			font = {
+				name = "SF Pro Text";
+				size = 11.5;
+			};
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.catppuccin-papirus-folders.override {
