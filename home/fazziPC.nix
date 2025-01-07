@@ -1,7 +1,7 @@
 { ... }:
 {
-	scripts.enable = true;
-	xdgConfig.enable = true;
+  scripts.enable = true;
+  xdgConfig.enable = true;
   apps = {
     mpv.enable = true;
     obs-studio.enable = true;
@@ -14,18 +14,18 @@
       };
     };
   };
-	cli = {
-		bottom.enable = true;
-		fastfetch.enable = true;
-		neovim.enable = true;
-		ssh.enable = true;
-		zsh.enable = true;
-	};
-	music = {
-		extraApps.enable = true;
-		mpd.enable = true;
-		ncmpcpp.enable = true;
-	};
+  cli = {
+    bottom.enable = true;
+    fastfetch.enable = true;
+    neovim.enable = true;
+    ssh.enable = true;
+    zsh.enable = true;
+  };
+  music = {
+    extraApps.enable = true;
+    mpd.enable = true;
+    ncmpcpp.enable = true;
+  };
   gaming = {
     enable = true;
     mangohud.enable = true;
@@ -43,9 +43,9 @@
         enable = true;
       };
       hyprlock = {
-				enable = true;
-				multiMonitor = true;
-			};
+        enable = true;
+        multiMonitor = true;
+      };
       hypridle.enable = true;
       hyprpaper.enable = true;
       xdph.enable = true;
