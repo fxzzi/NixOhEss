@@ -26,6 +26,6 @@
     ./networking
     ./boot
     ./opentabletdriver
-    ./getty-tty1-only-password
+    ./tty1-autologin
   ];
 }
