@@ -22,7 +22,17 @@ in
         };
 
         background = lib.mkMerge [
-          # Conditional part: only include the first item if multiMonitor is enabled.
+          [
+            {
+              monitor = "${config.gui.hypr.defaultMonitor}";
+              path = "/tmp/wallpaper";
+              blur_size = 3;
+              blur_passes = 4; # 0 disables blurring
+              contrast = 1;
+              brightness = 0.3;
+              vibrancy = 0.3;
+            }
+          ]
           (lib.mkIf multiMonitor [
             {
               monitor = "";
@@ -34,17 +44,6 @@ in
               vibrancy = 0.1;
             }
           ])
-
-          # Always include this item.
-          {
-            monitor = "${config.gui.hypr.defaultMonitor}";
-            path = "/tmp/wallpaper";
-            blur_size = 3;
-            blur_passes = 4; # 0 disables blurring
-            contrast = 1;
-            brightness = 0.3;
-            vibrancy = 0.3;
-          }
         ];
 
         input-field = [

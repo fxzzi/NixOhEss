@@ -44,7 +44,7 @@ in
       xdgOpenUsePortal = true;
       config.common.default = "hyprland";
       configPackages = [
-        pkgs.xdg-desktop-portal-hyprland
+        # inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
       ];
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };

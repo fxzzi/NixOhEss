@@ -81,11 +81,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1736331935,
-        "narHash": "sha256-V0JhuwMEJXaJJlrOprlO8OZnXQyY+AhuTe9KQeKjHjo=",
+        "lastModified": 1736332518,
+        "narHash": "sha256-eb7SDvOb6iKc4qzrq24cQmAeVAqQbDfdS5LBWsjAcE0=",
         "owner": "notashelf",
         "repo": "batmon",
-        "rev": "9e387aa6731792dc879afd5a6ad98a3e63571387",
+        "rev": "90a5b894e960a903c32d3541ed40ba26b20f2761",
         "type": "github"
       },
       "original": {
@@ -300,11 +300,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1736279929,
-        "narHash": "sha256-F7e1z0rbCmvDLhbBuQ6Y/zzFYRBZXuSP1GrsterrdwU=",
+        "lastModified": 1736332425,
+        "narHash": "sha256-OLmxoLMQYLz/bbe6x6hibHL+3yFZp4C6MCjHxnqzRGo=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "67e1e46f9b6285ea260bc88844f85dec6b7d7d02",
+        "rev": "ad64726f5df0fa3cabcd6af9f872d5e8e1f65dbc",
         "type": "github"
       },
       "original": {
