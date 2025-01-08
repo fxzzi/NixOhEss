@@ -1,8 +1,12 @@
 {
   pkgs,
+  hostName,
   lib,
   ...
 }:
+let
+  keyLayout = if (hostName == "fazziGO") then "uk" else "us";
+in
 {
   boot = {
     loader = {
@@ -17,10 +21,16 @@
     kernelParams = [
       "nowatchdog"
       "mitigations=off"
-    ]; # Enable amd_pstate, disable watchdog and mitigations (not needed on personal systems)
-    # kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux; # Set kernel to base linux
+    ]; # disable watchdog and mitigations (not needed on personal systems)
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest; # Set kernel to base linux
     tmp.useTmpfs = true; # /tmp is not on tmpfs by default (why??)
     tmp.tmpfsSize = "50%";
+  };
+  console = {
+    earlySetup = true;
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+    packages = with pkgs; [ terminus_font ];
+    keyMap = "${keyLayout}";
   };
 
   # Set your time zone.

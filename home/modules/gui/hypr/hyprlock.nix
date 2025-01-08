@@ -1,4 +1,7 @@
 { lib, config, ... }:
+let
+  multiMonitor = if config.gui.hypr.secondaryMonitor != null then true else false;
+in 
 {
   options.gui.hypr.hyprlock.enable = lib.mkOption {
     type = lib.types.bool;
@@ -20,7 +23,7 @@
 
         background = lib.mkMerge [
           # Conditional part: only include the first item if multiMonitor is enabled.
-          (lib.mkIf config.gui.hypr.multiMonitor [
+          (lib.mkIf multiMonitor [
             {
               monitor = "";
               path = "/tmp/wallpaper";

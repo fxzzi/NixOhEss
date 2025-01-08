@@ -6,7 +6,9 @@
   ...
 }:
 let
-  brightnessScript = if config.gui.hypr.multiMonitor then "brightness.sh" else "brightness-laptop.sh";
+  multiMonitor = if config.gui.hypr.secondaryMonitor != null then true else false;
+  brightnessScript = if multiMonitor then "brightness.sh" else "brightness-laptop.sh";
+  wsAnim = if multiMonitor then "slidevert" else "slide";
 in
 {
   options.gui.hypr.hyprland.enable = lib.mkOption {
@@ -21,14 +23,8 @@ in
   };
   options.gui.hypr.secondaryMonitor = lib.mkOption {
     type = lib.types.nullOr lib.types.str;
-    default = "DP-2";
+    default = null;
     description = "Sets the default monitor for many configs stemming from Hyprland.";
-  };
-  options.gui.hypr.multiMonitor = lib.mkOption {
-    type = lib.types.bool;
-    # Set the default value based on whether secondaryMonitor is not null
-    default = if config.gui.hypr.secondaryMonitor != null then true else false;
-    description = "Enable multi monitor / disable laptop configs for hypr";
   };
 
   config = lib.mkIf config.gui.hypr.hyprland.enable {
@@ -114,7 +110,7 @@ in
           {
             name = "at-translated-set-2-keyboard";
             kb_layout = "gb";
-						kb_options = "";
+            kb_options = "";
           }
           {
             name = "elan0680:00-04f3:320a-touchpad";
@@ -181,7 +177,7 @@ in
             "border, 1, 8, default"
             "fade, 1, 3, smoothIn"
             "fadeDim, 1, 3, smoothOut"
-            "workspaces, 1, 5, default, slidevert"
+            "workspaces, 1, 5, default, ${wsAnim}"
           ];
         };
         dwindle = {
@@ -242,7 +238,7 @@ in
           # "minsize 3840 1080, class: ^(steam_app_252950)$"
           # "maxsize 3840 1080, class: ^(steam_app_252950)$"
         ];
-        workspace = lib.mkIf config.gui.hypr.multiMonitor [
+        workspace = lib.mkIf multiMonitor [
           "1, monitor:${config.gui.hypr.defaultMonitor}"
           "2, monitor:${config.gui.hypr.secondaryMonitor}"
           "3, monitor:${config.gui.hypr.defaultMonitor}"

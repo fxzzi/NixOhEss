@@ -7,7 +7,6 @@
 }:
 {
   environment.systemPackages = with pkgs; [ egl-wayland ];
-  nixpkgs.config.allowUnfree = true; # Allow installing of Unfree software, mostly nvidia
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
     nvidia = {
