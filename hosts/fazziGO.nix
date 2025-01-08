@@ -56,13 +56,10 @@
       exposeTemp = false;
       nvuv = {
         enable = false;
-        maxClock = 1830;
-        coreOffset = 205;
-        memOffset = 1000;
-        powerLimit = 150;
       };
     };
   };
   batmon.enable = true;
   secureboot.enable = true;
+  tty1-autologin = false;
 }

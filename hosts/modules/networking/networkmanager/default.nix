@@ -12,7 +12,7 @@
   };
   config = lib.mkIf config.netConfig.networkmanager.enable {
     environment.systemPackages = with pkgs; [
-      nm-connection-editor
+      networkmanagerapplet
     ];
     networking = {
       networkmanager = {
