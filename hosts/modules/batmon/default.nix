@@ -25,8 +25,6 @@
         ];
       };
     };
-    config = {
-    };
   };
   imports = [ inputs.batmon.nixosModules.batmon ];
 }

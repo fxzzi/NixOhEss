@@ -6,7 +6,7 @@
     description = "Enables the mediamtx service for local webRTC streaming.";
   };
   config = lib.mkIf config.netConfig.mediamtx.enable {
-    firewall = {
+    networking.firewall = {
       enable = true;
       allowedTCPPorts = [
         4200

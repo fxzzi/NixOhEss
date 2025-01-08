@@ -53,6 +53,6 @@
   };
 
   imports = [
-    ./modules/default.nix
+    ./modules
   ];
 }
