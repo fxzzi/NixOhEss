@@ -11,6 +11,7 @@
     ./hardware-configurations/${hostName}.nix
     ./modules
   ];
+	networking.hostName = hostName;
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
