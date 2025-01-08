@@ -27,10 +27,13 @@ in
             temurin-jre-bin-17
             temurin-jre-bin-21
           ];
+          gamemodeSupport = true;
         })
+        (gamescope.overrideAttrs (_: {
+          NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
+        }))
         osu-lazer-bin
         lutris
-        gamescope
         heroic
         cemu
         wine-staging

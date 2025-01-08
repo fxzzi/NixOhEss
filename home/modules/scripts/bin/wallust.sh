@@ -8,7 +8,6 @@ fi
 wallust run "$1" &
 
 ln -sf "$1" "$staticwall"
-sleep 0.5
 hyprctl hyprpaper reload ,"$1"
 
 # while wallust is still running, wait

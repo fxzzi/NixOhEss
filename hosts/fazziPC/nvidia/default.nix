@@ -6,7 +6,6 @@
   ...
 }:
 {
-  environment.systemPackages = with pkgs; [ egl-wayland ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
     nvidia = {
@@ -23,6 +22,15 @@
         nvidia-vaapi-driver
       ];
     };
+  };
+  boot.kernelParams = [ "nvidia.NVreg_UsePageAttributeTable=1" ];
+  boot.initrd = {
+    kernelModules = [
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
+    ];
   };
   systemd = {
     services.nvidia-gpu-temperature = {
