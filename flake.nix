@@ -33,8 +33,7 @@
               ;
           };
           modules = [
-            ./hosts/global # import host agnostic modules
-            ./hosts/${hostName} # import host specific modules
+            ./hosts
             ./overlays
             inputs.home-manager.nixosModules.home-manager
           ];
