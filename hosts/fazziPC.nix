@@ -56,5 +56,4 @@
   };
   batmon.enable = false;
   secureboot.enable = false;
-
 }
