@@ -11,7 +11,7 @@
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
     lanzaboote.url = "github:nix-community/lanzaboote";
-    batmon.url = "github:notashelf/batmon";
+    batmon.url = "github:fxzzi/batmon/use-default.target";
     ags.url = "github:Aylur/ags/v1"; # i still have not updated to ags v1 yet lol
   };
 
