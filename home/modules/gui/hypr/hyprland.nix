@@ -92,7 +92,8 @@ in
           follow_mouse = 2; # Follow mouse clicks for window focus
           accel_profile = "flat";
           float_switch_override_focus = 0; # Stop floating windows from stealing focus
-          kb_options = "fkeys:basic_13-24";
+					# i hate caps lock, so make it escape instead.
+          kb_options = "fkeys:basic_13-24 caps:escape";
           tablet = {
             left_handed = 1;
             output = "${config.gui.hypr.defaultMonitor}";
