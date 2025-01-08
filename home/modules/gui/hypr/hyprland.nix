@@ -77,8 +77,6 @@ in
         };
         cursor = {
           default_monitor = "${config.gui.hypr.defaultMonitor}";
-          no_hardware_cursors = 0;
-          use_cpu_buffer = 1;
         };
         opengl = {
           nvidia_anti_flicker = 0;
@@ -110,7 +108,6 @@ in
           {
             name = "at-translated-set-2-keyboard";
             kb_layout = "gb";
-            kb_options = "";
           }
           {
             name = "elan0680:00-04f3:320a-touchpad";
@@ -327,6 +324,8 @@ in
           ", XF86AudioRaiseVolume, exec, audio.sh vol up 5"
           ", XF86AudioLowerVolume, exec, audio.sh vol down 5"
           ", XF86AudioMute, exec, audio.sh vol toggle"
+          # this is my laptop's dedicated mic mute button
+          ", F20, exec, audio.sh mic toggle"
 
           # brightness script
           ", XF86MonBrightnessUp, exec, ${brightnessScript} up 5"
@@ -350,10 +349,10 @@ in
         # 	"AQ_TRACE" = "1"
         # 	"HYPRLAND_TRACE" = "1"
         # ];
-        debug = {
-          disable_logs = 0;
-          watchdog_timeout = 0;
-        };
+        # debug = {
+        #   disable_logs = 0;
+        #   watchdog_timeout = 0;
+        # };
       };
       extraConfig = ''
         # submaps
