@@ -11,7 +11,7 @@
     default = false;
     description = "Enables basic services for thunar, polkit, and printing";
   };
-	  options.services.wootingRules.enable = lib.mkOption {
+  options.services.wootingRules.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Adds extra udev rules to allow configuration of wooting keyboards.";

@@ -1,6 +1,6 @@
 { lib, config, ... }:
 {
-	options.netConfig.desktopFixedIP.enable = lib.mkOption {
+  options.netConfig.desktopFixedIP.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables my desktop fixed IP config.";

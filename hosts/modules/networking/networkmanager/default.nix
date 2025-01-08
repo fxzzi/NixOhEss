@@ -17,7 +17,7 @@
     networking = {
       networkmanager = {
         enable = true;
-				# powersaving for laptop
+        # powersaving for laptop
         wifi.powersave = true;
         dns = "systemd-resolved";
       };

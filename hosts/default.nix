@@ -1,11 +1,17 @@
-{hostName, user, inputs, npins, ...}:
 {
-	imports = [
-		./${hostName}.nix
-		./hardware-configurations/${hostName}.nix
-		./modules
-	];
-home-manager = {
+  hostName,
+  user,
+  inputs,
+  npins,
+  ...
+}:
+{
+  imports = [
+    ./${hostName}.nix
+    ./hardware-configurations/${hostName}.nix
+    ./modules
+  ];
+  home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "bak";

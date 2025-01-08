@@ -15,7 +15,7 @@
         "2606:4700:4700::1111"
         "2606:4700:4700::1001"
       ]; # Use cloudflare DNS
-			firewall.enable = true;
+      firewall.enable = true;
     };
 
     services.resolved = {
@@ -23,9 +23,9 @@
       dnsovertls = "true";
     };
   };
-	imports = [
-		./desktopFixedIP
-		./mediamtx
-		./networkmanager
-	];
+  imports = [
+    ./desktopFixedIP
+    ./mediamtx
+    ./networkmanager
+  ];
 }

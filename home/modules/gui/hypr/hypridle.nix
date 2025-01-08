@@ -1,4 +1,9 @@
-{ config, lib, hostName, ... }:
+{
+  config,
+  lib,
+  hostName,
+  ...
+}:
 {
   options.gui.hypr.hypridle.enable = lib.mkOption {
     type = lib.types.bool;

@@ -10,22 +10,22 @@
   nix.settings.warn-dirty = false;
   nix.settings.use-xdg-base-directories = true;
 
-	imports = [
-		./gpu
-		./scx
-		./user
-		./audio
-		./fonts
-		./batmon
-		./cachix
-		./gaming
-		./kernel
-		./wayland
-		./services
-		./fancontrol
-		./networking
-		./boot
-		./opentabletdriver
-		./getty-tty1-only-password
-	];
+  imports = [
+    ./gpu
+    ./scx
+    ./user
+    ./audio
+    ./fonts
+    ./batmon
+    ./cachix
+    ./gaming
+    ./kernel
+    ./wayland
+    ./services
+    ./fancontrol
+    ./networking
+    ./boot
+    ./opentabletdriver
+    ./getty-tty1-only-password
+  ];
 }

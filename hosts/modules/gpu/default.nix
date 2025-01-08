@@ -1,7 +1,7 @@
-{...}:
+{ ... }:
 {
-	imports = [
-		./nvidia
-		./amdgpu
-	];
+  imports = [
+    ./nvidia
+    ./amdgpu
+  ];
 }
