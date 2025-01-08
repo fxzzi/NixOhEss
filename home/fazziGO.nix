@@ -37,10 +37,10 @@
     ags.enable = true;
     foot.enable = true;
     fuzzel.enable = true;
-		wleave.enable = true;
+    wleave.enable = true;
     hypr = {
-			defaultMonitor = "eDP-1";
-			secondaryMonitor = null;
+      defaultMonitor = "eDP-1";
+      secondaryMonitor = null;
       hyprland.enable = true;
       hyprlock.enable = true;
       hypridle.enable = true;

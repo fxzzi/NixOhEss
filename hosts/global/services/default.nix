@@ -20,7 +20,7 @@
 
   security.polkit.enable = true; # Enable polkit for root access in GUI apps
 
-	services.udev.extraRules = lib.mkIf (config.networking.hostName == "fazziPC") ''
+  services.udev.extraRules = lib.mkIf (config.networking.hostName == "fazziPC") ''
     # Wooting One Legacy
     SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"
     SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="ff01", TAG+="uaccess"

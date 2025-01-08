@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   options.gui.wallust.enable = lib.mkOption {
     type = lib.types.bool;

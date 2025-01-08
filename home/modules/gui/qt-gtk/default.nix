@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   options.gui.toolkitConfig.enable = lib.mkOption {
     type = lib.types.bool;
@@ -14,11 +19,11 @@
       platformTheme.name = "qt6ct";
     };
     gtk = {
-			enable = true;
-			font = {
-				name = "SF Pro Text";
-				size = 11.5;
-			};
+      enable = true;
+      font = {
+        name = "SF Pro Text";
+        size = 11.5;
+      };
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.catppuccin-papirus-folders.override {

@@ -21,9 +21,9 @@
     ./gui
     ./scripts
     ./xdg
-		./music
-		./gaming
-		./apps
+    ./music
+    ./gaming
+    ./apps
   ];
   home.packages = with pkgs; [
     vesktop
