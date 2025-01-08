@@ -39,14 +39,10 @@
     fuzzel.enable = true;
 		wleave.enable = true;
     hypr = {
-      hyprland = {
-        defaultMonitor = "eDP-1";
-        enable = true;
-      };
-      hyprlock = {
-        enable = true;
-        multiMonitor = false;
-      };
+			defaultMonitor = "eDP-1";
+			secondaryMonitor = null;
+      hyprland.enable = true;
+      hyprlock.enable = true;
       hypridle.enable = true;
       hyprpaper.enable = true;
       xdph.enable = true;

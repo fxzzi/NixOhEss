@@ -4,6 +4,7 @@
 	services.upower = {
 		enable = true;
 	};
+	programs.light.enable = true;
   imports = [
     ../global
 		./hardware-configuration.nix

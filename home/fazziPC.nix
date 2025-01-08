@@ -38,14 +38,10 @@
     foot.enable = true;
     fuzzel.enable = true;
     hypr = {
-      hyprland = {
-        defaultMonitor = "DP-3";
-        enable = true;
-      };
-      hyprlock = {
-        enable = true;
-        multiMonitor = true;
-      };
+			defaultMonitor = "DP-3";
+			secondaryMonitor = "DP-2";
+      hyprland.enable = true;
+      hyprlock.enable = true;
       hypridle.enable = true;
       hyprpaper.enable = true;
       xdph.enable = true;

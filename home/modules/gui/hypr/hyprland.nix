@@ -5,17 +5,32 @@
   config,
   ...
 }:
+let
+  brightnessScript = if config.gui.hypr.multiMonitor then "brightness.sh" else "brightness-laptop.sh";
+in
 {
   options.gui.hypr.hyprland.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables hyprland and its configuration.";
   };
-  options.gui.hypr.hyprland.defaultMonitor = lib.mkOption {
+  options.gui.hypr.defaultMonitor = lib.mkOption {
     type = lib.types.str;
     default = "DP-3";
     description = "Sets the default monitor for many configs stemming from Hyprland.";
   };
+  options.gui.hypr.secondaryMonitor = lib.mkOption {
+    type = lib.types.nullOr lib.types.str;
+    default = "DP-2";
+    description = "Sets the default monitor for many configs stemming from Hyprland.";
+  };
+  options.gui.hypr.multiMonitor = lib.mkOption {
+    type = lib.types.bool;
+    # Set the default value based on whether secondaryMonitor is not null
+    default = if config.gui.hypr.secondaryMonitor != null then true else false;
+    description = "Enable multi monitor / disable laptop configs for hypr";
+  };
+
   config = lib.mkIf config.gui.hypr.hyprland.enable {
     home.packages = (
       with pkgs;
@@ -54,7 +69,7 @@
         ];
         exec = [
           "pgrep ags || ags"
-          "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.hyprland.defaultMonitor} --primary"
+          "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.defaultMonitor} --primary"
         ];
         monitor = [
           "eDP-1, 1920x1080@60, 0x0, 1"
@@ -65,7 +80,7 @@
           direct_scanout = 1;
         };
         cursor = {
-          default_monitor = "${config.gui.hypr.hyprland.defaultMonitor}";
+          default_monitor = "${config.gui.hypr.defaultMonitor}";
           no_hardware_cursors = 0;
           use_cpu_buffer = 1;
         };
@@ -73,7 +88,7 @@
           nvidia_anti_flicker = 0;
         };
         plugin.xwaylandprimary = {
-          display = "${config.gui.hypr.hyprland.defaultMonitor}";
+          display = "${config.gui.hypr.defaultMonitor}";
         };
 
         input = {
@@ -85,29 +100,30 @@
           kb_options = "fkeys:basic_13-24";
           tablet = {
             left_handed = 1;
-            output = "${config.gui.hypr.hyprland.defaultMonitor}";
+            output = "${config.gui.hypr.defaultMonitor}";
           };
           touchpad = {
             natural_scroll = true;
           };
         };
         device = [
-					{
-						name = "tpps/2-elan-trackpoint";
-						accel_profile = "flat";
-					}
-					{
-						name = "at-translated-set-2-keyboard";
-						kb_layout = "gb";
-					}
-					{
-						name = "elan0680:00-04f3:320a-touchpad";
-						accel_profile = "adaptive";
-					}
+          {
+            name = "tpps/2-elan-trackpoint";
+            accel_profile = "flat";
+          }
+          {
+            name = "at-translated-set-2-keyboard";
+            kb_layout = "gb";
+						kb_options = "";
+          }
+          {
+            name = "elan0680:00-04f3:320a-touchpad";
+            accel_profile = "adaptive";
+          }
         ];
-				gestures = {
-					workspace_swipe = true;
-				};
+        gestures = {
+          workspace_swipe = true;
+        };
         general = {
           gaps_out = 4; # Outer monitor gaps
           gaps_in = 2; # Inner window gaps
@@ -226,23 +242,23 @@
           # "minsize 3840 1080, class: ^(steam_app_252950)$"
           # "maxsize 3840 1080, class: ^(steam_app_252950)$"
         ];
-        workspace = [
-          "1, monitor:${config.gui.hypr.hyprland.defaultMonitor}"
-          "2, monitor:DP-2"
-          "3, monitor:${config.gui.hypr.hyprland.defaultMonitor}"
-          "4, monitor:DP-2"
-          "5, monitor:${config.gui.hypr.hyprland.defaultMonitor}"
-          "6, monitor:DP-2"
-          "7, monitor:${config.gui.hypr.hyprland.defaultMonitor}"
-          "8, monitor:DP-2"
-          "9, monitor:${config.gui.hypr.hyprland.defaultMonitor}"
-          "10, monitor:DP-2"
+        workspace = lib.mkIf config.gui.hypr.multiMonitor [
+          "1, monitor:${config.gui.hypr.defaultMonitor}"
+          "2, monitor:${config.gui.hypr.secondaryMonitor}"
+          "3, monitor:${config.gui.hypr.defaultMonitor}"
+          "4, monitor:${config.gui.hypr.secondaryMonitor}"
+          "5, monitor:${config.gui.hypr.defaultMonitor}"
+          "6, monitor:${config.gui.hypr.secondaryMonitor}"
+          "7, monitor:${config.gui.hypr.defaultMonitor}"
+          "8, monitor:${config.gui.hypr.secondaryMonitor}"
+          "9, monitor:${config.gui.hypr.defaultMonitor}"
+          "10, monitor:${config.gui.hypr.secondaryMonitor}"
         ];
         "$MOD" = "SUPER";
         bind =
           [
             # screenshot script
-            ",Print, exec, screenshot.sh --monitor ${config.gui.hypr.hyprland.defaultMonitor}"
+            ",Print, exec, screenshot.sh --monitor ${config.gui.hypr.defaultMonitor}"
             "SHIFT, Print, exec, screenshot.sh --selection"
             "$MOD, Print, exec, screenshot.sh --active"
 
@@ -317,8 +333,8 @@
           ", XF86AudioMute, exec, audio.sh vol toggle"
 
           # brightness script
-          ", XF86MonBrightnessUp, exec, brightness.sh up 5"
-          ", XF86MonBrightnessDown, exec, brightness.sh down 5"
+          ", XF86MonBrightnessUp, exec, ${brightnessScript} up 5"
+          ", XF86MonBrightnessDown, exec, ${brightnessScript} down 5"
 
           # resize
           "$MOD CTRL, left, resizeactive, -10 0"

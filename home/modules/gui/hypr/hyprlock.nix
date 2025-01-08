@@ -5,11 +5,6 @@
     default = false;
     description = "Enable hyprlock";
   };
-  options.gui.hypr.hyprlock.multiMonitor = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enable multimonitor configuration in hyprlock";
-  };
   config = lib.mkIf config.gui.hypr.hyprlock.enable {
     programs.hyprlock = {
       enable = true;
@@ -23,20 +18,23 @@
           ignore_empty_input = true;
         };
 
-        background = [
-					# TODO: make some way for this value in the list to only apply
-					# if multiMonitor is enabled.
+        background = lib.mkMerge [
+          # Conditional part: only include the first item if multiMonitor is enabled.
+          (lib.mkIf config.gui.hypr.multiMonitor [
+            {
+              monitor = "";
+              path = "/tmp/wallpaper";
+              blur_size = 3;
+              blur_passes = 4; # 0 disables blurring
+              contrast = 0.9;
+              brightness = 0.1;
+              vibrancy = 0.1;
+            }
+          ])
+
+          # Always include this item.
           {
-            monitor = "";
-            path = "/tmp/wallpaper";
-            blur_size = 3;
-            blur_passes = 4; # 0 disables blurring
-            contrast = 0.9;
-            brightness = 0.1;
-            vibrancy = 0.1;
-          }
-          {
-            monitor = "${config.gui.hypr.hyprland.defaultMonitor}";
+            monitor = "${config.gui.hypr.defaultMonitor}";
             path = "/tmp/wallpaper";
             blur_size = 3;
             blur_passes = 4; # 0 disables blurring
@@ -48,7 +46,7 @@
 
         input-field = [
           {
-            monitor = "${config.gui.hypr.hyprland.defaultMonitor}";
+            monitor = "${config.gui.hypr.defaultMonitor}";
             size = "350, 45";
             outline_thickness = 2;
             dots_size = 0.25; # Scale of input-field height, 0.2 - 0.8
@@ -68,7 +66,7 @@
 
         label = [
           {
-            monitor = "${config.gui.hypr.hyprland.defaultMonitor}";
+            monitor = "${config.gui.hypr.defaultMonitor}";
             text = ''cmd[update:1000] echo "$(date +"%H:%M:%S")"'';
             color = "0xffc8d3f5";
             font_size = 72;
@@ -80,7 +78,7 @@
             valign = "center";
           }
           {
-            monitor = "${config.gui.hypr.hyprland.defaultMonitor}";
+            monitor = "${config.gui.hypr.defaultMonitor}";
             text = ''cmd[update:18000000] echo "$(date +'%A, %-d %B')"'';
             color = "0xffc8d3f5";
             font_size = 24;
@@ -92,7 +90,7 @@
             valign = "center";
           }
           {
-            monitor = "${config.gui.hypr.hyprland.defaultMonitor}";
+            monitor = "${config.gui.hypr.defaultMonitor}";
             text = "";
             color = "0xffc8d3f5";
             font_size = 36;
