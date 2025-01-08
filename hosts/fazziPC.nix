@@ -6,15 +6,15 @@
     zenpower.enable = true;
     xone.enable = true;
   };
-	bootConfig = {
-		enable = true;
-		keyLayout = "us";
-	};
+  bootConfig = {
+    enable = true;
+    keyLayout = "us";
+  };
   audio = {
     pipewire = {
-			enable = true;
-			rnnoise.enable = true;
-		};
+      enable = true;
+      rnnoise.enable = true;
+    };
   };
   scx = {
     enable = true;
@@ -22,9 +22,9 @@
   };
   cachix.enable = true;
   fontConfig = {
-		enable = true;
-		subpixelLayout = "bgr";
-	};
+    enable = true;
+    subpixelLayout = "bgr";
+  };
   netConfig = {
     enable = true;
     desktopFixedIP.enable = true;

@@ -18,7 +18,7 @@
   };
 
   config = lib.mkIf config.gpu.nvidia.enable {
-		nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfree = true;
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware = {
       nvidia = {

@@ -2,7 +2,7 @@
 {
   options.cachix.enable = lib.mkOption {
     type = lib.types.bool;
-		# idk why you would disable cachix, so put this on true by default
+    # idk why you would disable cachix, so put this on true by default
     default = true;
     description = "Enables some predefined cachix servers";
   };

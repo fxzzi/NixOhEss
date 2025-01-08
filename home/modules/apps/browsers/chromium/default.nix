@@ -18,7 +18,7 @@
   config = lib.mkIf config.apps.browsers.chromium.enable {
     programs.chromium = {
       enable = true;
-			package = pkgs.ungoogled-chromium;
+      package = pkgs.ungoogled-chromium;
       commandLineArgs = [
         "--disable-crash-reporter"
         "--wayland-text-input-version=3"
