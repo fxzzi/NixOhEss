@@ -18,6 +18,7 @@
   };
   config = lib.mkIf config.user.enable {
     environment.shells = [ pkgs.${config.user.shell} ];
+		environment.pathsToLink = [ "/share/zsh" ];
     users.users.${user} = {
       isNormalUser = true;
       extraGroups = [
