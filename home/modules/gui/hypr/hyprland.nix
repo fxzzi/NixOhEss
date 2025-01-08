@@ -53,7 +53,7 @@
           "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         ];
         exec = [
-					"pgrep ags || ags"
+          "pgrep ags || ags"
           "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.hyprland.defaultMonitor} --primary"
         ];
         monitor = [
@@ -80,14 +80,34 @@
           repeat_rate = 55; # Set characters to repeat on hold every 55ms
           repeat_delay = 375; # Set repeat timeout to 375ms
           follow_mouse = 2; # Follow mouse clicks for window focus
-          force_no_accel = 1;
+          accel_profile = "flat";
           float_switch_override_focus = 0; # Stop floating windows from stealing focus
           kb_options = "fkeys:basic_13-24";
           tablet = {
             left_handed = 1;
             output = "${config.gui.hypr.hyprland.defaultMonitor}";
           };
+          touchpad = {
+            natural_scroll = true;
+          };
         };
+        device = [
+					{
+						name = "tpps/2-elan-trackpoint";
+						accel_profile = "flat";
+					}
+					{
+						name = "at-translated-set-2-keyboard";
+						kb_layout = "gb";
+					}
+					{
+						name = "elan0680:00-04f3:320a-touchpad";
+						accel_profile = "adaptive";
+					}
+        ];
+				gestures = {
+					workspace_swipe = true;
+				};
         general = {
           gaps_out = 4; # Outer monitor gaps
           gaps_in = 2; # Inner window gaps
@@ -319,8 +339,8 @@
         # 	"HYPRLAND_TRACE" = "1"
         # ];
         debug = {
-        	disable_logs = 0;
-        	watchdog_timeout = 0;
+          disable_logs = 0;
+          watchdog_timeout = 0;
         };
       };
       extraConfig = ''

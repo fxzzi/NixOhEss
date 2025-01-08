@@ -9,5 +9,6 @@
 		./hardware-configuration.nix
     ./amdgpu
     ./networking
+		./secureboot
   ];
 }

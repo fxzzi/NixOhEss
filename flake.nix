@@ -10,6 +10,7 @@
     nvuv.url = "gitlab:fazzi/nvuv";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
+		lanzaboote.url = "github:nix-community/lanzaboote";
 		# i still have not updated to ags v1 yet lol
 		ags.url = "github:Aylur/ags/v1";
   };
