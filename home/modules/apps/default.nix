@@ -5,7 +5,7 @@
   imports = [
     ./browsers
     ./obs-studio
-		./mpv
-		./thunar
+    ./mpv
+    ./thunar
   ];
 }

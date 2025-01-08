@@ -32,7 +32,7 @@
           placeholder = "Search...";
           sort-result = "false";
           match-mode = "exact";
-					dpi-aware = false;
+          dpi-aware = false;
           include = "~/.cache/wallust/colors_fuzzel.ini";
         };
         border = {

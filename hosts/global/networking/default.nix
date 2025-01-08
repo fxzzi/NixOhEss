@@ -1,8 +1,8 @@
 { ... }:
 {
   networking = {
-		useDHCP = false;
-		dhcpcd.enable = false;
+    useDHCP = false;
+    dhcpcd.enable = false;
     nameservers = [
       "1.1.1.1"
       "1.0.0.1"

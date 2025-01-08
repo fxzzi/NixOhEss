@@ -5,7 +5,7 @@
   ...
 }:
 {
-	options.apps.thunar.enable = lib.mkOption {
+  options.apps.thunar.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the thunar file manager";

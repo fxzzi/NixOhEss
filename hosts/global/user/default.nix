@@ -7,7 +7,7 @@
       "wheel"
       "gamemode"
       "networkmanager"
-			"video"
+      "video"
     ];
     shell = pkgs.zsh; # Set shell to zsh
 

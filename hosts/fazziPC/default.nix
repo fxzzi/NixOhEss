@@ -1,7 +1,7 @@
 { ... }:
 {
   networking.hostName = "fazziPC";
-	
+
   imports = [
     ../global
     ./hardware-configuration.nix
