@@ -1,7 +1,7 @@
-{...}:
+{ ... }:
 {
-	imports = [
-		./steam
-		./gamemode
-	];
+  imports = [
+    ./steam
+    ./gamemode
+  ];
 }

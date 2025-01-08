@@ -68,7 +68,7 @@ in
           "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.defaultMonitor} --primary"
         ];
         monitor = [
-					", preferred, auto, auto"
+          ", preferred, auto, auto"
           "desc:BOE, 1920x1080@60, 0x0, 1"
           "desc:GIGA-BYTE, 2560x1440@170,1920x0,1"
           "desc:Philips, 1920x1080@75,0x0,1"
@@ -92,7 +92,7 @@ in
           follow_mouse = 2; # Follow mouse clicks for window focus
           accel_profile = "flat";
           float_switch_override_focus = 0; # Stop floating windows from stealing focus
-					# i hate caps lock, so make it escape instead.
+          # i hate caps lock, so make it escape instead.
           kb_options = "fkeys:basic_13-24 caps:escape";
           tablet = {
             left_handed = 1;

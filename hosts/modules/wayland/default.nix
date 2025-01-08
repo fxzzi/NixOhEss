@@ -1,7 +1,7 @@
-{...}:
+{ ... }:
 {
-	imports = [
-		./thunar
-		./hyprland
-	];
+  imports = [
+    ./thunar
+    ./hyprland
+  ];
 }

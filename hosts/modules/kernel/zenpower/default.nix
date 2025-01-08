@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-	options.kernel.zenpower.enable = lib.mkOption {
+  options.kernel.zenpower.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables zenpower and configures kernel modules to make it work.";
