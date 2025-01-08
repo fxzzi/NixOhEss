@@ -18,6 +18,7 @@
   config = lib.mkIf config.apps.browsers.chromium.enable {
     programs.chromium = {
       enable = true;
+			package = pkgs.ungoogled-chromium;
       commandLineArgs = [
         "--disable-crash-reporter"
         "--wayland-text-input-version=3"
@@ -34,7 +35,7 @@
     # only enable the wootility app if chromium is actually enabled
     xdg.desktopEntries."wootility" = lib.mkIf config.apps.browsers.chromium.wootility.enable {
       name = "Wootility Web";
-      exec = "${lib.getExe pkgs.chromium} --app=http://beta.wootility.io %U";
+      exec = "${lib.getExe config.programs.chromium.package} --app=http://beta.wootility.io %U";
       terminal = false;
       icon = "${./wootility-web.png}";
     };
