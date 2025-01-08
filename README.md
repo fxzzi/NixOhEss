@@ -1,5 +1,9 @@
 # NixOhEss - 🇵🇸
 
+<p align="center">
+  <img src="showcase.jpg" alt="Rice Showcase">
+</p>
+
 my (might i say crap) attempt at switching to [nixOS](https://nixos.org/).
 With the power of [home-manager](https://github.com/nix-community/home-manager)
 i am finally able to manager my dotfiles and system configuration togther in one place.
@@ -18,3 +22,6 @@ my config so modular that I can use it across both of them.
 
 I was tired of having to `git rebase` my laptop and pc dotfiles branches on my
 old dotfiles repo. This solves that :)
+
+fazziGO is configured for a single monitor gui with a few options. It also boasts
+full root disk encryption and secure boot with tpm, allowing for seamless bootup.
