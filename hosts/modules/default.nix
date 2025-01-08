@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   # never change this. trust me.
   system.stateVersion = "22.11";
@@ -9,6 +9,7 @@
   nix.settings.auto-optimise-store = true;
   nix.settings.warn-dirty = false;
   nix.settings.use-xdg-base-directories = true;
+
 	imports = [
 		./gpu
 		./scx
@@ -23,8 +24,8 @@
 		./services
 		./fancontrol
 		./networking
-		./secureboot
+		./boot
 		./opentabletdriver
-		# ./getty-tty1-only-password
+		./getty-tty1-only-password
 	];
 }

@@ -15,7 +15,7 @@
         "2606:4700:4700::1111"
         "2606:4700:4700::1001"
       ]; # Use cloudflare DNS
-			firewall = true;
+			firewall.enable = true;
     };
 
     services.resolved = {

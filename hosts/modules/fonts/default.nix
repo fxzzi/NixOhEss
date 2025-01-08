@@ -5,16 +5,18 @@
 }:
 {
   options.fontConfig.subpixelLayout = lib.mkOption {
-    type = lib.types.enum [
-      "rgb"
-      "bgr"
-    ];
+    type = lib.types.str;
     default = "rgb";
-    description = "Selects which kernel you would like to use: 'latest' or 'zen'.";
+    description = "Choose the subpixel layout of your main monitor.";
   };
-  config = lib.mkIf config.fontConfig.subpixelLayout {
+  options.fontConfig.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "enables the basic font configurations.";
+  };
+  config = lib.mkIf config.fontConfig.enable {
     fonts.fontconfig = {
-      subpixel.rgba = config.fonts.subpixelLayout;
+      subpixel.rgba = config.fontConfig.subpixelLayout;
       # fixes emojis on browser
       useEmbeddedBitmaps = true;
     };

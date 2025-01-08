@@ -17,7 +17,7 @@
   };
 
   config = lib.mkIf config.scx.enable {
-    scx = {
+    services.scx = {
       enable = true;
       scheduler = config.scx.scheduler;
       package = pkgs.scx.rustscheds;
