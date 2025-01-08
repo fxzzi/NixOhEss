@@ -60,7 +60,7 @@ in
       systemd.enable = true;
       settings = {
         exec-once = [
-          "random-wall.sh"
+          "sleep 0.5; random-wall.sh"
           "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         ];
         exec = [
@@ -69,8 +69,8 @@ in
         ];
         monitor = [
           "eDP-1, 1920x1080@60, 0x0, 1"
-          "desc:GIGA-BYTE, 2560x1440@170,1920x0,1"
-          "desc:Philips, 1920x1080@75,0x0,1"
+          "DP-3, 2560x1440@170,1920x0,1"
+          "DP-2, 1920x1080@75,0x0,1"
         ];
         render = {
           direct_scanout = 1;

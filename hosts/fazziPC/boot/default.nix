@@ -1,14 +1,6 @@
 { config, pkgs, ... }:
 {
   boot = {
-    initrd = {
-      kernelModules = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
-      ];
-    };
     kernelModules = [ "nct6775" ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen; # Set kernel to linux_zen
     extraModulePackages = with config.boot.kernelPackages; [
