@@ -116,7 +116,7 @@
         sudo = "sudo ";
 
         nixos-rebuild = "sudo nixos-rebuild --flake $XDG_CONFIG_HOME/nixos";
-        flakeupd = "sudo nix flake update --flake $XDG_CONFIG_HOME/nixos";
+        flakeupd = "nix flake update --flake $XDG_CONFIG_HOME/nixos";
       };
       plugins = [
         {

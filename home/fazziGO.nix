@@ -23,8 +23,11 @@
   };
   music = {
     extraApps.enable = false;
-    mpd.enable = true;
     ncmpcpp.enable = true;
+    mpd = {
+      enable = true;
+      discord-rpc.enable = false;
+    };
   };
   gaming = {
     enable = false;
