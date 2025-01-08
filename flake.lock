@@ -81,15 +81,16 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1736332518,
-        "narHash": "sha256-eb7SDvOb6iKc4qzrq24cQmAeVAqQbDfdS5LBWsjAcE0=",
-        "owner": "notashelf",
+        "lastModified": 1736379979,
+        "narHash": "sha256-BZqQyk/j993fvBjdlXuwGaf5Gnd4K2bHpB0ymXTTIPk=",
+        "owner": "fxzzi",
         "repo": "batmon",
-        "rev": "90a5b894e960a903c32d3541ed40ba26b20f2761",
+        "rev": "e86fe61cbe03a60d0aa11eefde8871510b136d09",
         "type": "github"
       },
       "original": {
-        "owner": "notashelf",
+        "owner": "fxzzi",
+        "ref": "use-default.target",
         "repo": "batmon",
         "type": "github"
       }
