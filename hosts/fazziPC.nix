@@ -65,4 +65,5 @@
   };
   batmon.enable = false;
   secureboot.enable = false;
+	tty1-autologin = true;
 }
