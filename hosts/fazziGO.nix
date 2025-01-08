@@ -6,15 +6,25 @@
     zenpower.enable = false;
     xone.enable = false;
   };
+	bootConfig = {
+		enable = true;
+		keyLayout = "uk";
+	};
   audio = {
-    pipewire.enable = true;
-    rnnoise.enable = false;
+    pipewire = {
+			enable = true;
+			rnnoise.enable = false;
+		};
   };
   scx = {
     enable = false;
+    scheduler = "scx_lavd";
   };
   cachix.enable = true;
-  fontConfig.subpixelLayout = "rgb";
+  fontConfig = {
+		enable = true;
+		subpixelLayout = "rgb";
+	};
   netConfig = {
     enable = true;
     desktopFixedIP.enable = false;
@@ -43,9 +53,16 @@
     amdgpu.enable = true;
     nvidia = {
       enable = false;
+      exposeTemp = false;
+      nvuv = {
+        enable = false;
+        maxClock = 1830;
+        coreOffset = 205;
+        memOffset = 1000;
+        powerLimit = 150;
+      };
     };
   };
   batmon.enable = true;
   secureboot.enable = true;
-
 }
