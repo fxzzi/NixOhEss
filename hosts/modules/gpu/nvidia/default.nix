@@ -45,7 +45,7 @@
       ];
     };
     systemd = {
-      services.nvidia-gpu-temperature = lib.mkIf config.gpu.nvidia.exposeTemp {
+      services.nvidia-temp = lib.mkIf config.gpu.nvidia.exposeTemp {
         description = "NVidia GPU temperature monitoring";
         wantedBy = ["multi-user.target"];
         before = ["fancontrol.service"];
