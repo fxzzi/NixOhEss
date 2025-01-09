@@ -9,7 +9,6 @@
       librewolf.enable = true;
       chromium = {
         enable = false;
-        wootility.enable = false;
       };
     };
   };
@@ -25,12 +24,7 @@
     ncmpcpp.enable = true;
     mpd = {
       enable = true;
-      discord-rpc.enable = false;
     };
-  };
-  gaming = {
-    enable = false;
-    mangohud.enable = false;
   };
   gui = {
     fontConfig.enable = true;

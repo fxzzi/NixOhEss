@@ -19,9 +19,9 @@
                 "plugin" = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
                 "label" = "noise_suppressor_mono";
                 "control" = {
-                  "VAD Threshold (%)" = 92;
-                  "VAD Grace Period (ms)" = 25;
-                  "Retroactive VAD Grace (ms)" = 0;
+                  "VAD Threshold (%)" = config.audio.pipewire.rnnoise.vadThreshold;
+                  "VAD Grace Period (ms)" = config.audio.pipewire.rnnoise.vadGracePeriod;
+                  "Retroactive VAD Grace (ms)" = config.audio.pipewire.rnnoise.retroactiveVadGrace;
                 };
               }
             ];
@@ -47,6 +47,21 @@ in {
     type = lib.types.bool;
     default = false;
     description = "Enables the rnnoise pipewire plugin for mic noise suppression.";
+  };
+  options.audio.pipewire.rnnoise.vadThreshold = lib.mkOption {
+    type = lib.types.unsignedInt;
+    default = 50;
+    description = "Set the rnnoise VAD threshold (%)";
+  };
+  options.audio.pipewire.rnnoise.vadGracePeriod = lib.mkOption {
+    type = lib.types.unsignedInt;
+    default = 200;
+    description = "Set the rnnoise VAD grace period in milliseconds.";
+  };
+  options.audio.pipewire.rnnoise.retroactiveVadGrace = lib.mkOption {
+    type = lib.types.unsignedInt;
+    default = 0;
+    description = "Set the rnnoise retroactive VAD grace period in milliseconds.";
   };
   config = {
     services.pipewire = lib.mkIf config.audio.pipewire.rnnoise.enable {
