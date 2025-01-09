@@ -1,5 +1,8 @@
-{ config, lib, ... }:
 {
+  config,
+  lib,
+  ...
+}: {
   options.gaming.mangohud.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;
@@ -22,32 +25,32 @@
     # home-manager mangohud module doesn't support
     # setting presets. so, set them here
     home.file.".config/MangoHud/presets.conf".text = ''
-      		[preset 0]
-      		fps_only
-      		background_alpha=0
+      [preset 0]
+      fps_only
+      background_alpha=0
 
-      		hud_no_margin
-      		font_size=20
+      hud_no_margin
+      font_size=20
 
-      		[preset 1]
-      		background_alpha=0.3
-      		hud_no_margin
-      		gpu_text=GPU
-      		gpu_stats
-      		gpu_core_clock
-      		gpu_mem_clock
-      		gpu_temp
-      		gpu_power
-      		vram
-      		fps
-      		frame_timing
-      		cpu_text=CPU
-      		cpu_stats
-      		cpu_mhz
-      		cpu_temp
-      		cpu_power
-      		ram
-      		present_mode
-      	'';
+      [preset 1]
+      background_alpha=0.3
+      hud_no_margin
+      gpu_text=GPU
+      gpu_stats
+      gpu_core_clock
+      gpu_mem_clock
+      gpu_temp
+      gpu_power
+      vram
+      fps
+      frame_timing
+      cpu_text=CPU
+      cpu_stats
+      cpu_mhz
+      cpu_temp
+      cpu_power
+      ram
+      present_mode
+    '';
   };
 }

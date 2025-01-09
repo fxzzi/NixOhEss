@@ -4,14 +4,13 @@
   inputs,
   npins,
   ...
-}:
-{
+}: {
   imports = [
     ./${hostName}.nix
     ./hardware-configurations/${hostName}.nix
     ./modules
   ];
-	networking.hostName = hostName;
+  networking.hostName = hostName;
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -26,5 +25,4 @@
         ;
     };
   };
-
 }

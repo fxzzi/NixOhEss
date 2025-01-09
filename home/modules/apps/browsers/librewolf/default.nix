@@ -3,19 +3,18 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   options.apps.browsers.librewolf.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the librewolf browser.";
   };
   config = lib.mkIf config.apps.browsers.librewolf.enable {
-    home.packages = with pkgs; [ pywalfox-native ];
+    home.packages = with pkgs; [pywalfox-native];
     programs.librewolf = {
       enable = true;
       package = pkgs.librewolf.overrideAttrs (old: {
-        nativeMessagingHosts = with pkgs; [ pywalfox-native ];
+        nativeMessagingHosts = with pkgs; [pywalfox-native];
       });
       languagePacks = [
         "en-GB"
@@ -24,11 +23,11 @@
     };
 
     /*
-      We can't use programs.librewolf.settings here because
-      of the special `newTabURL` override i have, which
-      home-manager fails to set properly.
-      the home-manager setup is pretty basic anyway, so this
-      should suffice
+    We can't use programs.librewolf.settings here because
+    of the special `newTabURL` override i have, which
+    home-manager fails to set properly.
+    the home-manager setup is pretty basic anyway, so this
+    should suffice
     */
     home.file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
       // Set new tab page to local startpage

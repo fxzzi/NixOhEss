@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   options.gui.fuzzel.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -13,7 +12,7 @@
   config = lib.mkIf config.gui.fuzzel.enable {
     programs.fuzzel = {
       enable = true;
-      package = (pkgs.fuzzel.override { svgBackend = "librsvg"; });
+      package = pkgs.fuzzel.override {svgBackend = "librsvg";};
       settings = {
         main = {
           font = "SpaceMono Nerd Font:size=17";

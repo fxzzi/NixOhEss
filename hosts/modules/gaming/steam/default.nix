@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options.gaming.steam.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

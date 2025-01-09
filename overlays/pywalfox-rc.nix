@@ -1,14 +1,12 @@
-{ ... }:
-
+{...}:
 /*
-  this nixpkgs overlay bumps pywalfox to the latest rc,
-  2.8.0rc1. This is so that it better handles nix store
-  and the librewolf browser.
+this nixpkgs overlay bumps pywalfox to the latest rc,
+2.8.0rc1. This is so that it better handles nix store
+and the librewolf browser.
 
-  See: https://github.com/NixOS/nixpkgs/issues/281377
-  See: https://github.com/Frewacom/pywalfox/issues/68
+See: https://github.com/NixOS/nixpkgs/issues/281377
+See: https://github.com/Frewacom/pywalfox/issues/68
 */
-
 {
   nixpkgs.overlays = [
     (final: prev: {

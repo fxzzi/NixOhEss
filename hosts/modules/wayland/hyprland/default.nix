@@ -4,8 +4,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   options.wayland.hyprland.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

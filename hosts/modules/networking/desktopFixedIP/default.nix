@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options.netConfig.desktopFixedIP.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

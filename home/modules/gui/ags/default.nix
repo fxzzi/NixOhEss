@@ -4,14 +4,13 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   options.gui.ags.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables aylurs-gtk-shell and its configs.";
   };
-  imports = [ inputs.ags.homeManagerModules.default ];
+  imports = [inputs.ags.homeManagerModules.default];
   config = lib.mkIf config.gui.ags.enable {
     # add the home manager module
 

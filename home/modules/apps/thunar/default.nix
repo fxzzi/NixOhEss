@@ -3,8 +3,7 @@
   pkgs,
   config,
   ...
-}:
-{
+}: {
   options.apps.thunar.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

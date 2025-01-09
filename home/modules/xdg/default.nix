@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options.xdgConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

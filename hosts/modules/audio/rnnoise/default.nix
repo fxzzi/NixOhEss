@@ -3,9 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-
-let
+}: let
   pw_rnnoise_config = {
     "context.modules" = [
       {
@@ -44,8 +42,7 @@ let
       }
     ];
   };
-in
-{
+in {
   options.audio.pipewire.rnnoise.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

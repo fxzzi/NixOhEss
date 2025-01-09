@@ -2,8 +2,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   options.gui.hypr.xdph.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

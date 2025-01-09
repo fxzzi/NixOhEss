@@ -4,13 +4,10 @@
   pkgs,
   inputs,
   ...
-}:
-
-let
+}: let
   nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
   nixpkgs-sgdboop = inputs.nixpkgs-sgdboop.legacyPackages.${pkgs.system};
-in
-{
+in {
   options.gaming.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -18,8 +15,7 @@ in
   };
 
   config = lib.mkIf config.gaming.enable {
-    home.packages =
-      with pkgs;
+    home.packages = with pkgs;
       [
         (prismlauncher.override {
           jdks = [
@@ -30,7 +26,7 @@ in
           gamemodeSupport = true;
         })
         (gamescope.overrideAttrs (_: {
-          NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
+          NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
         }))
         osu-lazer-bin
         lutris
@@ -43,5 +39,5 @@ in
         nixpkgs-sgdboop.sgdboop
       ];
   };
-  imports = [ ./mangohud ];
+  imports = [./mangohud];
 }

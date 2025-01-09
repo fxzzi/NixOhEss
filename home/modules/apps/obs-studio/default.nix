@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   options.apps.obs-studio.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

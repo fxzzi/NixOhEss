@@ -3,8 +3,7 @@
   lib,
   hostName,
   ...
-}:
-{
+}: {
   options.gui.hypr.hypridle.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -24,14 +23,16 @@
             timeout = 300;
             on-timeout = "hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
-
           }
           {
             timeout = 330;
             on-timeout = "loginctl lock-session";
           }
           {
-            timeout = if hostName == "fazziPC" then 480 else 360;
+            timeout =
+              if hostName == "fazziPC"
+              then 480
+              else 360;
             on-timeout = "systemctl suspend";
           }
         ];

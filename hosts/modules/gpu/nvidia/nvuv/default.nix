@@ -4,8 +4,7 @@
   lib,
   inputs,
   ...
-}:
-{
+}: {
   options.gpu.nvidia.nvuv.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -35,7 +34,7 @@
   config = lib.mkIf config.gpu.nvidia.nvuv.enable {
     systemd.services.nvidia-undervolt = {
       description = "NVidia Undervolting script";
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = ["multi-user.target"];
       serviceConfig = {
         ExecStart = "${
           lib.getExe inputs.nvuv.packages.${pkgs.system}.nvuv

@@ -4,8 +4,7 @@
   config,
   user,
   ...
-}:
-{
+}: {
   options.user.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -17,8 +16,8 @@
     description = "Change the users shell.";
   };
   config = lib.mkIf config.user.enable {
-    environment.shells = [ pkgs.${config.user.shell} ];
-		environment.pathsToLink = [ "/share/zsh" ];
+    environment.shells = [pkgs.${config.user.shell}];
+    environment.pathsToLink = ["/share/zsh"];
     users.users.${user} = {
       isNormalUser = true;
       extraGroups = [
