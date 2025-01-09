@@ -36,9 +36,13 @@
       description = "NVidia Undervolting script";
       wantedBy = ["multi-user.target"];
       serviceConfig = {
-        ExecStart = "${
-          lib.getExe inputs.nvuv.packages.${pkgs.system}.nvuv
-        } ${builtins.toString config.gpu.nvidia.nvuv.maxClock} ${builtins.toString config.gpu.nvidia.nvuv.coreOffset} ${builtins.toString config.gpu.nvidia.nvuv.memOffset} ${builtins.toString config.gpu.nvidia.nvuv.powerLimit}";
+        ExecStart = ''
+          ${lib.getExe inputs.nvuv.packages.${pkgs.system}.nvuv} \
+          ${builtins.toString config.gpu.nvidia.nvuv.maxClock} \
+          ${builtins.toString config.gpu.nvidia.nvuv.coreOffset} \
+          ${builtins.toString config.gpu.nvidia.nvuv.memOffset} \
+          ${builtins.toString config.gpu.nvidia.nvuv.powerLimit}
+        '';
       };
     };
   };
