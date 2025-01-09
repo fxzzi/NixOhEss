@@ -14,7 +14,7 @@
     batmon.url = "github:notashelf/batmon";
     ags.url = "github:Aylur/ags/v1"; # i still have not updated to agsv2/astal yet lol
     nix-gaming.url = "github:fufexan/nix-gaming";
-    sops-nix.url = "github:Mic92/sops-nix";
+		agenix.url = "github:ryantm/agenix";
   };
 
   outputs = {
@@ -24,15 +24,17 @@
   } @ inputs: let
     npins = import ./npins;
     user = "faaris";
+		system = "x86_64-linux";
     nixosCommonSystem = hostName:
       nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        system = system;
         specialArgs = {
           inherit
             inputs
             npins
             user
             hostName
+						system
             ;
         };
         modules = [
