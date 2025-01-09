@@ -1,5 +1,6 @@
 { ... }:
 {
+	programs.light.enable = true;
   kernel = {
     type = "latest";
     higherMaxMapCount = false;
