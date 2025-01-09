@@ -12,7 +12,7 @@
     nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
     lanzaboote.url = "github:nix-community/lanzaboote";
     batmon.url = "github:notashelf/batmon";
-    ags.url = "github:Aylur/ags/v1"; # i still have not updated to ags v1 yet lol
+    ags.url = "github:Aylur/ags/v1"; # i still have not updated to agsv2/astal yet lol
     nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
