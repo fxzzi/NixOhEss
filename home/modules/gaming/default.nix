@@ -32,11 +32,12 @@ in {
         lutris
         heroic
         cemu
-        wine-staging
       ]
       ++ [
         nixpkgs-olympus.olympus
         nixpkgs-sgdboop.sgdboop
+        inputs.nix-gaming.packages.${pkgs.system}.wine-ge
+        inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
       ];
   };
   imports = [./mangohud];
