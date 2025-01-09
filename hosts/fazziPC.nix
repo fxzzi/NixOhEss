@@ -13,6 +13,7 @@
     pipewire = {
       enable = true;
       rnnoise = {
+				enable = true;
         vadThreshold = 92;
         vadGracePeriod = 20;
         retroactiveVadGrace = 0;

@@ -10,8 +10,9 @@
     description = "Enables the mediamtx service for local webRTC streaming.";
   };
   config = lib.mkIf config.netConfig.mediamtx.enable {
+    age.secrets.localip.file = ../../../../secrets/localip.age;
     system.activationScripts."localip" = ''
-      secret=$(cat "${config.sops.secrets."mediamtx/localip".path}")
+      secret=$(cat "${config.age.secrets.localip.path}")
       configFile=/etc/mediamtx.yaml
       ${pkgs.gnused}/bin/sed -i -e "s#'@localip@'#$secret#g" "$configFile"
     '';

@@ -49,17 +49,17 @@ in {
     description = "Enables the rnnoise pipewire plugin for mic noise suppression.";
   };
   options.audio.pipewire.rnnoise.vadThreshold = lib.mkOption {
-    type = lib.types.unsignedInt;
+    type = lib.types.int;
     default = 50;
     description = "Set the rnnoise VAD threshold (%)";
   };
   options.audio.pipewire.rnnoise.vadGracePeriod = lib.mkOption {
-    type = lib.types.unsignedInt;
+    type = lib.types.int;
     default = 20;
     description = "Set the rnnoise VAD grace period in milliseconds.";
   };
   options.audio.pipewire.rnnoise.retroactiveVadGrace = lib.mkOption {
-    type = lib.types.unsignedInt;
+    type = lib.types.int;
     default = 0;
     description = "Set the rnnoise retroactive VAD grace period in milliseconds.";
   };
