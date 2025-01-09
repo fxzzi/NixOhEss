@@ -32,7 +32,7 @@
   };
 
   config = lib.mkIf config.gpu.nvidia.nvuv.enable {
-    systemd.services.nvidia-undervolt = {
+    systemd.services.nvuv = {
       description = "NVidia Undervolting script";
       wantedBy = ["multi-user.target"];
       serviceConfig = {

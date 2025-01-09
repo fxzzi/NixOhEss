@@ -47,11 +47,10 @@
     };
     services.gnome-keyring = {
       enable = true;
-      components = ["pkcs11" "secrets"];
+      components = ["pkcs11" "secrets" "ssh"];
     };
-    services.ssh-agent.enable = true;
     home.sessionVariables = {
-      SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
+      SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/keyring/ssh";
     };
   };
 }
