@@ -12,7 +12,11 @@
   audio = {
     pipewire = {
       enable = true;
-      rnnoise.enable = true;
+      rnnoise = {
+        vadThreshold = 92;
+        vadGracePeriod = 20;
+        retroactiveVadGrace = 0;
+      };
     };
   };
   scx = {

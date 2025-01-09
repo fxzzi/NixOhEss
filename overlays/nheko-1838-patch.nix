@@ -10,8 +10,8 @@
           old.buildInputs
           ++ [
             pkgs.kdePackages.kirigami
-						pkgs.kdePackages.extra-cmake-modules
-						pkgs.ecm
+            pkgs.kdePackages.extra-cmake-modules
+            pkgs.ecm
           ];
       });
     })
