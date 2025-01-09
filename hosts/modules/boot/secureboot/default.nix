@@ -4,8 +4,7 @@
   pkgs,
   config,
   ...
-}:
-{
+}: {
   options.secureboot.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -25,5 +24,5 @@
       };
     };
   };
-  imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
+  imports = [inputs.lanzaboote.nixosModules.lanzaboote];
 }

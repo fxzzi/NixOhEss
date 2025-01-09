@@ -3,17 +3,14 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   kernelType =
-    if config.kernel.type == "zen" then
-      pkgs.linuxKernel.packages.linux_zen
-    else if config.kernel.type == "latest" then
-      pkgs.linuxPackages_latest
-    else
-      throw "Unsupported kernel type. Use 'zen' or 'latest'.";
-in
-{
+    if config.kernel.type == "zen"
+    then pkgs.linuxKernel.packages.linux_zen
+    else if config.kernel.type == "latest"
+    then pkgs.linuxPackages_latest
+    else throw "Unsupported kernel type. Use 'zen' or 'latest'.";
+in {
   options.kernel.type = lib.mkOption {
     type = lib.types.enum [
       "latest"

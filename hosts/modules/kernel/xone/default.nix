@@ -2,8 +2,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   options.kernel.xone.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -11,6 +10,6 @@
   };
   config = lib.mkIf config.kernel.xone.enable {
     hardware.xone.enable = true;
-    boot.extraModulePackages = with config.boot.kernelPackages; [ xone ];
+    boot.extraModulePackages = with config.boot.kernelPackages; [xone];
   };
 }

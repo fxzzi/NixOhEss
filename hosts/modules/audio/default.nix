@@ -2,8 +2,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   options.audio.pipewire.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -20,5 +19,5 @@
     # Optional but recommended
     security.rtkit.enable = true;
   };
-  imports = [ ./rnnoise ];
+  imports = [./rnnoise];
 }

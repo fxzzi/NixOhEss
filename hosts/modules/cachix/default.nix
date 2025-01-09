@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options.cachix.enable = lib.mkOption {
     type = lib.types.bool;
     # idk why you would disable cachix, so put this on true by default

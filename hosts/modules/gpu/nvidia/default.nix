@@ -3,9 +3,8 @@
   pkgs,
   lib,
   ...
-}:
-{
-  imports = [ ./nvuv ];
+}: {
+  imports = [./nvuv];
   options.gpu.nvidia.exposeTemp = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -19,7 +18,7 @@
 
   config = lib.mkIf config.gpu.nvidia.enable {
     nixpkgs.config.allowUnfree = true;
-    services.xserver.videoDrivers = [ "nvidia" ];
+    services.xserver.videoDrivers = ["nvidia"];
     hardware = {
       nvidia = {
         open = true; # Set to false until wake-up from suspend is fixed
@@ -36,7 +35,7 @@
         ];
       };
     };
-    boot.kernelParams = [ "nvidia.NVreg_UsePageAttributeTable=1" ];
+    boot.kernelParams = ["nvidia.NVreg_UsePageAttributeTable=1"];
     boot.initrd = {
       kernelModules = [
         "nvidia"
@@ -48,8 +47,8 @@
     systemd = {
       services.nvidia-gpu-temperature = lib.mkIf config.gpu.nvidia.exposeTemp {
         description = "NVidia GPU temperature monitoring";
-        wantedBy = [ "multi-user.target" ];
-        before = [ "fancontrol.service" ];
+        wantedBy = ["multi-user.target"];
+        before = ["fancontrol.service"];
         script = ''
           while :; do
           	t="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"

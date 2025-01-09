@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   options.cli.neovim.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -38,9 +37,9 @@
         fd
         fzf
         cargo
-        nixfmt-rfc-style
+        alejandra
       ];
-      extraPython3Packages = ps: with ps; [ python-lsp-server ];
+      extraPython3Packages = ps: with ps; [python-lsp-server];
     };
   };
 }

@@ -15,34 +15,34 @@
     ags.url = "github:Aylur/ags/v1"; # i still have not updated to ags v1 yet lol
   };
 
-  outputs =
-    { nixpkgs, home-manager, ... }@inputs:
-    let
-      npins = import ./npins;
-      user = "faaris";
-      nixosCommonSystem =
-        hostName:
-        nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit
-              inputs
-              npins
-              user
-              hostName
-              ;
-          };
-          modules = [
-            ./hosts
-            ./overlays
-            inputs.home-manager.nixosModules.home-manager
-          ];
+  outputs = {
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    npins = import ./npins;
+    user = "faaris";
+    nixosCommonSystem = hostName:
+      nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit
+            inputs
+            npins
+            user
+            hostName
+            ;
         };
-    in
-    {
-      nixosConfigurations = {
-        fazziPC = nixosCommonSystem "fazziPC";
-        fazziGO = nixosCommonSystem "fazziGO";
+        modules = [
+          ./hosts
+          ./overlays
+          inputs.home-manager.nixosModules.home-manager
+        ];
       };
+  in {
+    nixosConfigurations = {
+      fazziPC = nixosCommonSystem "fazziPC";
+      fazziGO = nixosCommonSystem "fazziGO";
     };
+  };
 }

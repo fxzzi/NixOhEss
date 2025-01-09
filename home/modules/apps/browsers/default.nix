@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./librewolf
     ./chromium

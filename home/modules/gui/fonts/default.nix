@@ -4,8 +4,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   options.gui.fontConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -39,7 +38,7 @@
         monospace = [
           "SpaceMono Nerd Font"
         ];
-        emoji = [ "Noto Color Emoji" ];
+        emoji = ["Noto Color Emoji"];
       };
     };
   };

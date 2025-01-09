@@ -4,8 +4,7 @@
   config,
   user,
   ...
-}:
-{
+}: {
   options.tty1-autologin = lib.mkOption {
     type = lib.types.bool;
     default = false;

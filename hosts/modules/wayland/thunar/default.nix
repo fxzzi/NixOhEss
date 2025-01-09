@@ -3,8 +3,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   options.wayland.thunar.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

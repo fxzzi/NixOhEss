@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   options.bootConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -15,7 +14,7 @@
     default = "us";
     description = "Sets the keyboard layout for ttys";
   };
-  imports = [ ./secureboot ];
+  imports = [./secureboot];
   config = lib.mkIf config.bootConfig.enable {
     boot = {
       loader = {
@@ -40,7 +39,7 @@
     console = {
       earlySetup = true;
       font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
-      packages = with pkgs; [ terminus_font ];
+      packages = with pkgs; [terminus_font];
       keyMap = config.bootConfig.keyLayout;
     };
 

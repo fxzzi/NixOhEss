@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options.music.mpd.discord-rpc.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -9,7 +12,7 @@
     services.mpd-discord-rpc = {
       enable = true;
       settings = {
-        hosts = [ "localhost:6600" ];
+        hosts = ["localhost:6600"];
         format = {
           details = "$title";
           state = "$artist";

@@ -7,9 +7,9 @@
         "url": "https://codeberg.org/fazzi/foot"
       },
       "branch": "transparency_yipee",
-      "revision": "0c1bd790d73a1214de89223ce12c42641cb8c02d",
+      "revision": "3ba67de16df51db84c43f15c0c2e3589872781dd",
       "url": null,
-      "hash": "1k07x3ww27r54z6nw13ynalnzy74fz276axrn5rb42izgr6mjs27"
+      "hash": "1kl2wmcgrwnz5rk5kpd7q20k60f92rhl618iqn5wk36hci4rrplz"
     },
     "fzf-tab": {
       "type": "GitRelease",
@@ -56,8 +56,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre734144.b30f97d8c32d/nixexprs.tar.xz",
-      "hash": "09y6xr3vnrqw2h1fsnsrv57d24ws4iwl86pss1d2gcmmvsc9agar"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre734493.8c9fd3e56472/nixexprs.tar.xz",
+      "hash": "1dl2f63ivpl074k0mlz39rl5vqpxz432rypasiya6v0ixl2cjkh8"
     },
     "obs-pipewire-audio-capture": {
       "type": "Git",
