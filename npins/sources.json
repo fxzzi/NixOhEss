@@ -26,6 +26,18 @@
       "url": "https://api.github.com/repos/Aloxaf/fzf-tab/tarball/v1.1.2",
       "hash": "061jjpgghn8d5q2m2cd2qdjwbz38qrcarldj16xvxbid4c137zs2"
     },
+    "gamescope": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "brain-anti-freeze",
+        "repo": "gamescope"
+      },
+      "branch": "present_wait_workaround",
+      "revision": "4da5c0a60ece2955cd60166ad0f93c93b0871723",
+      "url": "https://github.com/brain-anti-freeze/gamescope/archive/4da5c0a60ece2955cd60166ad0f93c93b0871723.tar.gz",
+      "hash": "1y0p1rfmir6x2zbxnlwbrcsg0i04zczg93nvjgxbcx9zawarl9hi"
+    },
     "mpd-discord-rpc": {
       "type": "Git",
       "repository": {
