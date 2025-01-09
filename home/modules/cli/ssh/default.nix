@@ -45,6 +45,10 @@
       userName = "Fazzi";
       userEmail = "faaris.ansari@proton.me";
     };
+    services.gnome-keyring = {
+      enable = true;
+      components = ["pkcs11" "secrets"];
+    };
     services.ssh-agent.enable = true;
     home.sessionVariables = {
       SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
