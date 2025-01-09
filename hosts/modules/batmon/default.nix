@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   options.batmon.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -26,5 +25,5 @@
       };
     };
   };
-  imports = [ inputs.batmon.nixosModules.batmon ];
+  imports = [inputs.batmon.nixosModules.batmon];
 }

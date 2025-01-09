@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options.cli.bottom.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -23,7 +26,7 @@
           ];
         };
         network.interface_filter = {
-          list = [ "virbr0.*" ];
+          list = ["virbr0.*"];
         };
         disk.mount_filter = {
           list = [

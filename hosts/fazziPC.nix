@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   kernel = {
     type = "zen";
     higherMaxMapCount = true;
@@ -65,5 +64,5 @@
   };
   batmon.enable = false;
   secureboot.enable = false;
-	tty1-autologin = true;
+  tty1-autologin = true;
 }

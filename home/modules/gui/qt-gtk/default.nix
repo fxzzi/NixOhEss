@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   options.gui.toolkitConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

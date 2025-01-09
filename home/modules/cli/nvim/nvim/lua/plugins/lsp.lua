@@ -75,7 +75,7 @@ return {
 					builtin.diagnostics.pylint,
 					builtin.diagnostics.stylelint,
 					builtin.formatting.shfmt,
-					builtin.formatting.nixfmt,
+					builtin.formatting.alejandra,
 				},
 			}
 		end,
@@ -95,17 +95,6 @@ return {
 		cmd = { "Mason" },
 		opts = {
 			ensure_installed = {
-				"bashls",
-				"beautysh",
-				"cssls",
-				"html",
-				"lua_ls",
-				"prettier",
-				"pylint",
-				"pylsp",
-				"shellcheck",
-				"stylua",
-				"ts_ls",
 			},
 		},
 		config = function(_, opts)

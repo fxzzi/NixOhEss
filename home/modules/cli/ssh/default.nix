@@ -2,8 +2,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   options.cli.ssh.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

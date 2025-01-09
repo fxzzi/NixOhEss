@@ -3,8 +3,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   options.netConfig.networkmanager.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

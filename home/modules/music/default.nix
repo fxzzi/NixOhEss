@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   options.music.extraApps.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

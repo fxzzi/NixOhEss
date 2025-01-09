@@ -1,5 +1,8 @@
-{ config, lib, ... }:
 {
+  config,
+  lib,
+  ...
+}: {
   options.music.mpd.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

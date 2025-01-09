@@ -1,8 +1,13 @@
-{ lib, config, ... }:
-let
-  multiMonitor = if config.gui.hypr.secondaryMonitor != null then true else false;
-in
 {
+  lib,
+  config,
+  ...
+}: let
+  multiMonitor =
+    if config.gui.hypr.secondaryMonitor != null
+    then true
+    else false;
+in {
   options.gui.hypr.hyprlock.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

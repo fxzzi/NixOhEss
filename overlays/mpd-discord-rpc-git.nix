@@ -1,15 +1,10 @@
-{
-  npins,
-  ...
-}:
-
+{npins, ...}:
 /*
-  This nixpkgs overlay bumps `mpd-discord-rpc` to the latest master
-  for some features that haven't made it into a release yet.
+This nixpkgs overlay bumps `mpd-discord-rpc` to the latest master
+for some features that haven't made it into a release yet.
 
-  See: https://github.com/JakeStanger/mpd-discord-rpc/commit/fdfa3dd
+See: https://github.com/JakeStanger/mpd-discord-rpc/commit/fdfa3dd
 */
-
 {
   nixpkgs.overlays = [
     (final: prev: {

@@ -2,8 +2,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   options.fontConfig.subpixelLayout = lib.mkOption {
     type = lib.types.str;
     default = "rgb";

@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options.netConfig.mediamtx.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -21,9 +24,9 @@
         webrtc = true;
         webrtcAddress = ":4200";
         webrtcLocalUDPAddress = ":4200";
-        webrtcAdditionalHosts = [ ];
+        webrtcAdditionalHosts = [];
         paths = {
-          all_others = { };
+          all_others = {};
         };
       };
     };

@@ -4,13 +4,20 @@
   pkgs,
   config,
   ...
-}:
-let
-  multiMonitor = if config.gui.hypr.secondaryMonitor != null then true else false;
-  brightnessScript = if multiMonitor then "brightness.sh" else "brightness-laptop.sh";
-  wsAnim = if multiMonitor then "slidevert" else "slide";
-in
-{
+}: let
+  multiMonitor =
+    if config.gui.hypr.secondaryMonitor != null
+    then true
+    else false;
+  brightnessScript =
+    if multiMonitor
+    then "brightness.sh"
+    else "brightness-laptop.sh";
+  wsAnim =
+    if multiMonitor
+    then "slidevert"
+    else "slide";
+in {
   options.gui.hypr.hyprland.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -29,8 +36,7 @@ in
 
   config = lib.mkIf config.gui.hypr.hyprland.enable {
     home.packages = (
-      with pkgs;
-      [
+      with pkgs; [
         # deps for hyprpm, might be able to remove later?
         cmake
         meson
@@ -46,7 +52,7 @@ in
       configPackages = [
         inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
       ];
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
     };
 
     home.pointerCursor = {
@@ -136,7 +142,7 @@ in
           initial_workspace_tracking = 0;
           disable_hyprland_qtutils_check = 1;
         };
-        source = [ "~/.cache/wallust/colors_hyprland.conf" ];
+        source = ["~/.cache/wallust/colors_hyprland.conf"];
         decoration = {
           rounding = 0;
           layerrule = [
@@ -309,15 +315,14 @@ in
             # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
             builtins.concatLists (
               builtins.genList (
-                i:
-                let
+                i: let
                   ws = i + 1;
-                in
-                [
+                in [
                   "$MOD, code:1${toString i}, workspace, ${toString ws}"
                   "$MOD SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
                 ]
-              ) 9
+              )
+              9
             )
           );
 
@@ -366,5 +371,5 @@ in
       '';
     };
   };
-  imports = [ ./env.nix ];
+  imports = [./env.nix];
 }

@@ -1,5 +1,8 @@
-{ hostName, lib, ... }:
 {
+  hostName,
+  lib,
+  ...
+}: {
   home.sessionVariables = lib.mkMerge [
     {
       # run electron, gtk, qt apps in wayland native

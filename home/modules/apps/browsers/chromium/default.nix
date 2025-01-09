@@ -3,8 +3,7 @@
   pkgs,
   config,
   ...
-}:
-{
+}: {
   options.apps.browsers.chromium.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;

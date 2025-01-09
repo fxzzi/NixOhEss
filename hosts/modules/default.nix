@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   # never change this. trust me.
   system.stateVersion = "22.11";
   nix.settings.experimental-features = [
