@@ -695,6 +695,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_9": {
+      "locked": {
+        "lastModified": 1731763621,
+        "narHash": "sha256-ddcX4lQL0X05AYkrkV2LMFgGdRvgap7Ho8kgon3iWZk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c69a9bffbecde46b4b939465422ddc59493d3e4d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nvuv": {
       "inputs": {
         "nixpkgs": "nixpkgs_8"
@@ -787,7 +803,8 @@
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-olympus": "nixpkgs-olympus",
         "nixpkgs-sgdboop": "nixpkgs-sgdboop",
-        "nvuv": "nvuv"
+        "nvuv": "nvuv",
+        "sops-nix": "sops-nix"
       }
     },
     "rust-overlay": {
@@ -857,6 +874,24 @@
       "original": {
         "type": "file",
         "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_9"
+      },
+      "locked": {
+        "lastModified": 1736203741,
+        "narHash": "sha256-eSjkBwBdQk+TZWFlLbclF2rAh4JxbGg8az4w/Lfe7f4=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "c9c88f08e3ee495e888b8d7c8624a0b2519cb773",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     },
     "systems": {
