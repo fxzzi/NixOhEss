@@ -13,6 +13,7 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
     batmon.url = "github:notashelf/batmon";
     ags.url = "github:Aylur/ags/v1"; # i still have not updated to ags v1 yet lol
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs = {

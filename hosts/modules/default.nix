@@ -8,6 +8,7 @@
   nix.settings.auto-optimise-store = true;
   nix.settings.warn-dirty = false;
   nix.settings.use-xdg-base-directories = true;
+  nixpkgs.config.permittedInsecurePackages = ["olm-3.2.16"];
 
   imports = [
     ./gpu
