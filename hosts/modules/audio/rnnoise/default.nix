@@ -55,7 +55,7 @@ in {
   };
   options.audio.pipewire.rnnoise.vadGracePeriod = lib.mkOption {
     type = lib.types.unsignedInt;
-    default = 200;
+    default = 20;
     description = "Set the rnnoise VAD grace period in milliseconds.";
   };
   options.audio.pipewire.rnnoise.retroactiveVadGrace = lib.mkOption {
