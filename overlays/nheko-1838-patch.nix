@@ -6,7 +6,13 @@
           url = "https://github.com/Nheko-Reborn/nheko/pull/1838.patch";
           hash = "sha256-hYG/nFPTJSRVadt7H4CgefBCwEAKCR7xU5hA5pTzpXU=";
         };
-				buildInputs = old.buildInputs ++ [pkgs.kdePackages.kirigami];
+        buildInputs =
+          old.buildInputs
+          ++ [
+            pkgs.kdePackages.kirigami
+						pkgs.kdePackages.extra-cmake-modules
+						pkgs.ecm
+          ];
       });
     })
   ];
