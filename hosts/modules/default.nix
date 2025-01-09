@@ -27,5 +27,6 @@
     ./boot
     ./opentabletdriver
     ./tty1-autologin
+		./sops
   ];
 }
