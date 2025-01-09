@@ -31,9 +31,11 @@
         "nowatchdog"
         "mitigations=off"
       ]; # disable watchdog and mitigations (not needed on personal systems)
-      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest; # Set kernel to base linux
       tmp.useTmpfs = true; # /tmp is not on tmpfs by default (why??)
       tmp.tmpfsSize = "50%";
+      extraModprobeConfig = ''
+        blacklist sp5100_tco
+      '';
     };
     console = {
       earlySetup = true;
