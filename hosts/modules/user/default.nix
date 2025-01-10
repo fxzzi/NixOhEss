@@ -16,11 +16,9 @@
     description = "Change the users shell.";
   };
   config = lib.mkIf config.user.enable {
-		age.secrets.userpass.file = ../../../secrets/userpass.age;
     environment.shells = [pkgs.${config.user.shell}];
     environment.pathsToLink = ["/share/zsh"];
     users.users.${user} = {
-			hashedPasswordFile = config.age.secrets.userpass.path; 
       isNormalUser = true;
       extraGroups = [
         "wheel"
