@@ -5,5 +5,6 @@
     ./nvim
     ./ssh
     ./zsh
+		./nh
   ];
 }
