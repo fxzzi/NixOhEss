@@ -20,7 +20,6 @@
 
   outputs = {
     nixpkgs,
-    home-manager,
     nix-formatter-pack,
     ...
   } @ inputs: let
