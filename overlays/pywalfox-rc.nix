@@ -1,4 +1,4 @@
-{...}:
+_:
 /*
 this nixpkgs overlay bumps pywalfox to the latest rc,
 2.8.0rc1. This is so that it better handles nix store
@@ -9,7 +9,7 @@ See: https://github.com/Frewacom/pywalfox/issues/68
 */
 {
   nixpkgs.overlays = [
-    (final: prev: {
+    (_final: prev: {
       pywalfox-native = prev.python3.pkgs.buildPythonApplication {
         pname = "pywalfox-native";
         version = "2.8.0rc1";
