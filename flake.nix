@@ -34,7 +34,6 @@
             npins
             user
             hostName
-						system
             ;
         };
         modules = [
