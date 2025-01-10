@@ -1,10 +1,10 @@
 {
-  system,
   inputs,
-	user,
+  user,
+  pkgs,
   ...
 }: {
-  environment.systemPackages = [inputs.agenix.packages.${system}.default];
+  environment.systemPackages = [inputs.agenix.packages.${pkgs.system}.default];
   imports = [inputs.agenix.nixosModules.default];
-	age.identityPaths = [ "/home/${user}/.local/share/ssh/agenix" ];
+  age.identityPaths = ["/home/${user}/.local/share/ssh/agenix"];
 }
