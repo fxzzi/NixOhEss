@@ -28,6 +28,7 @@ in {
         mpc
         jq
         ffmpeg
+				libsixel
       ];
   };
 }

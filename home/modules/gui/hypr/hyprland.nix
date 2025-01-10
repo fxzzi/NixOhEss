@@ -277,7 +277,7 @@ in {
             "$MOD, N, exec, pkill hyprsunset || ${lib.getExe pkgs.hyprsunset} -t 2000"
             "$MOD, R, exec, random-wall.sh"
             "$MOD SHIFT, R, exec, cycle-wall.sh"
-            "$MOD, J, exec, ${lib.getExe pkgs.foot} wall_picker.sh"
+            "$MOD, J, exec, ${lib.getExe pkgs.foot} wall-picker.sh"
             "$MOD, L, exec, ${lib.getExe' pkgs.systemd "loginctl"} lock-session"
             ", XF86AudioPrev, exec, ${lib.getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif.sh)"
             ", XF86AudioPlay, exec, ${lib.getExe pkgs.mpc} toggle; (mpd-notif.sh)"
@@ -312,7 +312,7 @@ in {
           ]
           ++ (
             # workspaces
-            # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+            # binds $MOD + [shift +] {1..9} to [move to] workspace {1..9}
             builtins.concatLists (
               builtins.genList (
                 i: let
@@ -331,8 +331,7 @@ in {
           ", XF86AudioRaiseVolume, exec, audio.sh vol up 5"
           ", XF86AudioLowerVolume, exec, audio.sh vol down 5"
           ", XF86AudioMute, exec, audio.sh vol toggle"
-          # this is my laptop's dedicated mic mute button
-          ", F20, exec, audio.sh mic toggle"
+          ", XF86AudioMicMute, exec, audio.sh mic toggle"
 
           # brightness script
           ", XF86MonBrightnessUp, exec, ${brightnessScript} up 5"
