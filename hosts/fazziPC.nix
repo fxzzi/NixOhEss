@@ -70,4 +70,5 @@
   batmon.enable = false;
   secureboot.enable = false;
   tty1-autologin = false;
+	home-manager.enable = true;
 }
