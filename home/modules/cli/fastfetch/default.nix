@@ -31,7 +31,7 @@
           }
           {
             "type" = "os";
-            "key" = " os";
+            "key" = " os";
             "keyColor" = "green";
             "format" = "{3}";
           }
