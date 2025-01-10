@@ -21,7 +21,7 @@
     services.xserver.videoDrivers = ["nvidia"];
     hardware = {
       nvidia = {
-        open = true; # Set to false until wake-up from suspend is fixed
+        open = false; # Set to false until wake-up from suspend is fixed
         modesetting.enable = true; # Enable modesetting in nvidia for nvidia-vaapi-driver
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         package = config.boot.kernelPackages.nvidiaPackages.beta; # Use beta drivers
@@ -35,7 +35,7 @@
         ];
       };
     };
-    boot.kernelParams = ["nvidia.NVreg_UsePageAttributeTable=1"];
+    boot.kernelParams = ["nvidia.NVreg_UsePageAttributeTable=1" "nvidia.NVreg_EnableGpuFirmware=0"];
     boot.initrd = {
       kernelModules = [
         "nvidia"
