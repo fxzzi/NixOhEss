@@ -7,25 +7,6 @@
 }: let
   nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
   nixpkgs-sgdboop = inputs.nixpkgs-sgdboop.legacyPackages.${pkgs.system};
-
-  wine-ge-wrapped = pkgs.runCommand "wine-ge-wrapped" {
-    buildInputs = [ inputs.nix-gaming.packages.${pkgs.system}.wine-ge ];
-  } ''
-    mkdir -p "$out/bin"
-    for f in ${inputs.nix-gaming.packages.${pkgs.system}.wine-ge}/bin/*; do
-      ln -s "$f" "$out/bin/$(basename "$f")-ge"
-    done
-  '';
-
-  wine-tkg-wrapped = pkgs.runCommand "wine-tkg-wrapped" {
-    buildInputs = [ inputs.nix-gaming.packages.${pkgs.system}.wine-tkg ];
-  } ''
-    mkdir -p "$out/bin"
-    for f in ${inputs.nix-gaming.packages.${pkgs.system}.wine-tkg}/bin/*; do
-      ln -s "$f" "$out/bin/$(basename "$f")-tkg"
-    done
-  '';
-
 in {
   options.gaming.enable = lib.mkOption {
     type = lib.types.bool;
@@ -45,6 +26,7 @@ in {
           gamemodeSupport = true;
         })
         (gamescope.overrideAttrs (_: {
+					# See: https://github.com/ValveSoftware/gamescope/issues/1622#issuecomment-2508182530
           NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
         }))
         osu-lazer-bin
@@ -56,8 +38,6 @@ in {
       ++ [
         nixpkgs-olympus.olympus
         nixpkgs-sgdboop.sgdboop
-        # wine-ge-wrapped
-        # wine-tkg-wrapped
       ];
   };
   imports = [./mangohud];
