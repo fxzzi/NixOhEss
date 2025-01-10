@@ -17,7 +17,6 @@
       ${pkgs.gnused}/bin/sed -i -e "s#'@localip@'#$secret#g" "$configFile"
     '';
     networking.firewall = {
-      enable = true;
       allowedTCPPorts = [
         4200
       ];
@@ -35,7 +34,7 @@
           "@localip@"
         ];
         paths = {
-          all_others = {};
+          fazzi = {};
         };
       };
     };

@@ -1,28 +1,11 @@
-{
-  hostName,
-  user,
-  inputs,
-  npins,
-  ...
-}: {
+{hostName, ...}: {
+  networking.hostName = hostName;
   imports = [
     ./${hostName}.nix
     ./hardware-configurations/${hostName}.nix
     ./modules
   ];
-  networking.hostName = hostName;
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    backupFileExtension = "bak";
-    users.${user} = import ../home/${hostName}.nix;
-    extraSpecialArgs = {
-      inherit
-        inputs
-        npins
-        user
-        hostName
-        ;
-    };
-  };
+
+  # never change this. trust me.
+  system.stateVersion = "22.11";
 }
