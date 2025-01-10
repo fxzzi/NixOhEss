@@ -14,20 +14,22 @@
     batmon.url = "github:notashelf/batmon";
     ags.url = "github:Aylur/ags/v1"; # i still have not updated to agsv2/astal yet lol
     nix-gaming.url = "github:fufexan/nix-gaming";
-		agenix.url = "github:ryantm/agenix";
+    agenix.url = "github:ryantm/agenix";
+    nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack"; # Add the formatter input
   };
 
   outputs = {
     nixpkgs,
     home-manager,
+    nix-formatter-pack,
     ...
   } @ inputs: let
     npins = import ./npins;
     user = "faaris";
-		system = "x86_64-linux";
+    system = "x86_64-linux";
     nixosCommonSystem = hostName:
       nixpkgs.lib.nixosSystem {
-        system = system;
+        inherit system;
         specialArgs = {
           inherit
             inputs
@@ -46,6 +48,19 @@
     nixosConfigurations = {
       fazziPC = nixosCommonSystem "fazziPC";
       fazziGO = nixosCommonSystem "fazziGO";
+    };
+
+    # Add the formatter output
+    formatter.x86_64-linux = nix-formatter-pack.lib.mkFormatter {
+      inherit nixpkgs system;
+
+      config = {
+        tools = {
+          deadnix.enable = true;
+          alejandra.enable = true;
+          statix.enable = true;
+        };
+      };
     };
   };
 }

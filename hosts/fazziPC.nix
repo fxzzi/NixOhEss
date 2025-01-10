@@ -1,4 +1,4 @@
-{...}: {
+_: {
   kernel = {
     type = "zen";
     higherMaxMapCount = true;
@@ -13,7 +13,7 @@
     pipewire = {
       enable = true;
       rnnoise = {
-				enable = true;
+        enable = true;
         vadThreshold = 92;
         vadGracePeriod = 20;
         retroactiveVadGrace = 0;
@@ -70,5 +70,5 @@
   batmon.enable = false;
   secureboot.enable = false;
   tty1-autologin = false;
-	home-manager.enable = true;
+  home-manager.enable = true;
 }

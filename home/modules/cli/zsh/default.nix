@@ -2,6 +2,7 @@
   config,
   npins,
   lib,
+  pkgs,
   ...
 }: {
   options.cli.zsh.enable = lib.mkOption {
@@ -142,5 +143,6 @@
     };
     programs.ripgrep.enable = true;
     programs.bat.enable = true;
+    home.packages = [pkgs.npins];
   };
 }

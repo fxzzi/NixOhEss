@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.light.enable = true;
   kernel = {
     type = "latest";
@@ -62,5 +62,5 @@
   batmon.enable = true;
   secureboot.enable = true;
   tty1-autologin = false;
-	home-manager.enable = true;
+  home-manager.enable = true;
 }

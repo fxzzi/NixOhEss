@@ -26,14 +26,14 @@ in {
           gamemodeSupport = true;
         })
         (gamescope.overrideAttrs (_: {
-					# See: https://github.com/ValveSoftware/gamescope/issues/1622#issuecomment-2508182530
+          # See: https://github.com/ValveSoftware/gamescope/issues/1622#issuecomment-2508182530
           NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
         }))
         osu-lazer-bin
         lutris
         heroic
         cemu
-				wine-staging
+        wine-staging
       ]
       ++ [
         nixpkgs-olympus.olympus

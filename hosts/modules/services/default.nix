@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-user,
+  user,
   ...
 }: {
   options.services.enable = lib.mkOption {
@@ -24,8 +24,8 @@ user,
     };
 
     security.polkit.enable = true; # Enable polkit for root access in GUI apps
-		security.pam.services.${user}.enableGnomeKeyring = true;
-		services.gnome.gnome-keyring.enable = true;
+    security.pam.services.${user}.enableGnomeKeyring = true;
+    services.gnome.gnome-keyring.enable = true;
 
     services.udev.extraRules = lib.mkIf config.services.wootingRules.enable ''
       # Wooting One Legacy

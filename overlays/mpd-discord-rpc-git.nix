@@ -7,7 +7,7 @@ See: https://github.com/JakeStanger/mpd-discord-rpc/commit/fdfa3dd
 */
 {
   nixpkgs.overlays = [
-    (final: prev: {
+    (_final: prev: {
       mpd-discord-rpc = prev.mpd-discord-rpc.overrideAttrs (oldAttrs: rec {
         pname = "mpd-discord-rpc-git";
         src = npins.mpd-discord-rpc;
