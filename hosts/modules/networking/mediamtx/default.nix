@@ -3,11 +3,9 @@
   config,
   pkgs,
   ...
-}: 
-let
+}: let
   port = "4200";
-in
-{
+in {
   options.netConfig.mediamtx.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -15,9 +13,9 @@ in
   };
   config = lib.mkIf config.netConfig.mediamtx.enable {
     age.secrets.localip.file = ../../../../secrets/localip.age;
-		# This is super hacky. I shouldn't have to do this. I won't have to do
-		# this once / if mediamtx allows reading IPs from a path. See:
-		# https://github.com/bluenviron/mediamtx/issues/4109#issuecomment-2581174785
+    # This is super hacky. I shouldn't have to do this. I won't have to do
+    # this once / if mediamtx allows reading IPs from a path. See:
+    # https://github.com/bluenviron/mediamtx/issues/4109#issuecomment-2581174785
     system.activationScripts."localip" = ''
       secret=$(cat "${config.age.secrets.localip.path}")
       configFile=/etc/mediamtx.yaml

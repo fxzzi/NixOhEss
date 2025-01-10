@@ -13,7 +13,7 @@
     home.packages = with pkgs; [pywalfox-native];
     programs.librewolf = {
       enable = true;
-      package = pkgs.librewolf.overrideAttrs (old: {
+      package = pkgs.librewolf.overrideAttrs (_old: {
         nativeMessagingHosts = with pkgs; [pywalfox-native];
       });
       languagePacks = [

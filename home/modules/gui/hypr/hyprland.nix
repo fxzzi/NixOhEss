@@ -35,15 +35,13 @@ in {
   };
 
   config = lib.mkIf config.gui.hypr.hyprland.enable {
-    home.packages = (
-      with pkgs; [
-        # deps for hyprpm, might be able to remove later?
-        cmake
-        meson
-        cpio
-        pkg-config
-      ]
-    );
+    home.packages = with pkgs; [
+      # deps for hyprpm, might be able to remove later?
+      cmake
+      meson
+      cpio
+      pkg-config
+    ];
 
     xdg.portal = {
       enable = true;

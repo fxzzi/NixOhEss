@@ -8,13 +8,13 @@ See: https://github.com/dimtpap/obs-pipewire-audio-capture/commit/a8647b1
 */
 {
   nixpkgs.overlays = [
-    (final: prev: {
+    (_final: prev: {
       obs-studio-plugins =
         prev.obs-studio-plugins
         // {
           obs-pipewire-audio-capture =
             prev.obs-studio-plugins.obs-pipewire-audio-capture.overrideAttrs
-            (old: {
+            (_old: {
               pname = "obs-studio-plugins.obs-pipewire-audio-capture-git";
               src = npins.obs-pipewire-audio-capture;
               cmakeFlags = [

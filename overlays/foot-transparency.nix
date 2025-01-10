@@ -11,8 +11,8 @@ See: https://codeberg.org/fazzi/foot/src/branch/transparency_yipee
 */
 {
   nixpkgs.overlays = [
-    (final: prev: {
-      foot = prev.foot.overrideAttrs (old: {
+    (_final: prev: {
+      foot = prev.foot.overrideAttrs (_old: {
         pname = "foot-transparency";
         src = npins.foot;
 
