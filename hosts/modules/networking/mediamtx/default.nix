@@ -3,7 +3,11 @@
   config,
   pkgs,
   ...
-}: {
+}: 
+let
+  port = "4200";
+in
+{
   options.netConfig.mediamtx.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -11,6 +15,9 @@
   };
   config = lib.mkIf config.netConfig.mediamtx.enable {
     age.secrets.localip.file = ../../../../secrets/localip.age;
+		# This is super hacky. I shouldn't have to do this. I won't have to do
+		# this once / if mediamtx allows reading IPs from a path. See:
+		# https://github.com/bluenviron/mediamtx/issues/4109#issuecomment-2581174785
     system.activationScripts."localip" = ''
       secret=$(cat "${config.age.secrets.localip.path}")
       configFile=/etc/mediamtx.yaml
@@ -18,18 +25,18 @@
     '';
     networking.firewall = {
       allowedTCPPorts = [
-        4200
+        (lib.toInt port)
       ];
       allowedUDPPorts = [
-        4200
+        (lib.toInt port)
       ];
     };
     services.mediamtx = {
       enable = true;
       settings = {
         webrtc = true;
-        webrtcAddress = ":4200";
-        webrtcLocalUDPAddress = ":4200";
+        webrtcAddress = ":${port}";
+        webrtcLocalUDPAddress = ":${port}";
         webrtcAdditionalHosts = [
           "@localip@"
         ];
