@@ -10,6 +10,5 @@
   };
   config = lib.mkIf config.kernel.xone.enable {
     hardware.xone.enable = true;
-    boot.extraModulePackages = with config.boot.kernelPackages; [xone];
   };
 }

@@ -19,7 +19,7 @@ See: https://codeberg.org/fazzi/foot/src/branch/transparency_yipee
         meta = {
           description = "A fork of foot - the fast wayland terminal emulator - now with more transparency options!!";
           mainProgram = "foot";
-          maintainers = with lib.maintainers; [Fazzi];
+          maintainers = with lib.maintainers; [fxzzi];
         };
       });
     })
