@@ -10,6 +10,14 @@
     description = "Enables toolkit (qt and gtk) configurations.";
   };
   config = lib.mkIf config.gui.toolkitConfig.enable {
+    dconf = {
+      enable = true;
+      settings = {
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+        };
+      };
+    };
     home.packages = with pkgs; [
       qt6ct
     ];
@@ -19,9 +27,10 @@
     };
     gtk = {
       enable = true;
+      gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
       font = {
         name = "SF Pro Text";
-        size = 11.5;
+        size = 11;
       };
       iconTheme = {
         name = "Papirus-Dark";
@@ -37,6 +46,7 @@
       };
       theme = {
         name = "TokyoNight";
+        # package = pkgs.gnome-themes-extra;
       };
     };
     home.pointerCursor = {
