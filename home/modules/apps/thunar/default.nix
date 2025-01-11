@@ -13,10 +13,6 @@
   config = lib.mkIf config.apps.thunar.enable {
     home.packages = with pkgs; [
       p7zip
-      zip
-      unzip
-      unrar
-      cdrtools
     ];
     # bookmarks for the side pane
     gtk.gtk3.bookmarks = [
