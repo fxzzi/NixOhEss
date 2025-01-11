@@ -1,7 +1,7 @@
 {
-  user,
   hostName,
   lib,
+  config,
   ...
 }: let
   sendOrRecieve =
@@ -17,7 +17,12 @@
     then "fazziPC"
     else null;
 in {
-  config = {
+  options.apps.syncthing.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enables custom syncthing config.";
+  };
+  config = lib.mkIf config.apps.syncthing.enable {
     services.syncthing = {
       enable = true;
       settings = {
@@ -36,6 +41,7 @@ in {
           "~/Music" = {
             id = "music";
             label = "Music";
+            copyOwnershipFromParent = false;
             type = sendOrRecieve;
             devices = [otherHost "Pissel 7"];
           };
