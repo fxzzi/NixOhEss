@@ -36,5 +36,6 @@ in {
   imports = [
     ./zenpower
     ./xone
+		./v4l2
   ];
 }
