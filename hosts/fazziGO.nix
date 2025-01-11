@@ -5,6 +5,7 @@ _: {
     higherMaxMapCount = false;
     zenpower.enable = false;
     xone.enable = false;
+		v4l2.enable = false;
   };
   bootConfig = {
     enable = true;
@@ -63,4 +64,5 @@ _: {
   secureboot.enable = true;
   tty1-autologin = false;
   home-manager.enable = true;
+	adb.enable = false;
 }

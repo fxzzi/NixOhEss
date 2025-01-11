@@ -19,6 +19,7 @@
     neovim.enable = true;
     ssh.enable = true;
     zsh.enable = true;
+		android.enable = true;
   };
   music = {
     extraApps.enable = true;

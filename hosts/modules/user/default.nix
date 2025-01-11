@@ -25,6 +25,7 @@
         "gamemode"
         "networkmanager"
         "video"
+				"adbusers"
       ];
       shell = pkgs.${config.user.shell}; # Set shell to zsh
 
