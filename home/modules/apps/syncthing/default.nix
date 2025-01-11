@@ -20,7 +20,6 @@ in {
   config = {
     services.syncthing = {
       enable = true;
-      tray.enable = true;
       settings = {
         devices = {
           "Pissel 7" = {
