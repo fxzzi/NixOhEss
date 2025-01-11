@@ -12,7 +12,7 @@
         folders = {
           "/home/${user}/Music" = {
             id = "music";
-            devices = ["fazziGO" "Pissel 7"];
+            devices = ["Pissel 7"];
           };
         };
       };
