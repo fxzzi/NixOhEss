@@ -6,5 +6,6 @@
     ./ssh
     ./zsh
     ./nh
+		./android
   ];
 }
