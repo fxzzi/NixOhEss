@@ -19,6 +19,6 @@
     ./agenix
     ./nix
     ./home-manager
-		./adb
+    ./adb
   ];
 }
