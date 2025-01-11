@@ -2,7 +2,7 @@
   scripts.enable = true;
   xdgConfig.enable = true;
   apps = {
-		syncthing.enable = true;
+    syncthing.enable = true;
     mpv.enable = true;
     obs-studio.enable = true;
     thunar.enable = true;
@@ -20,7 +20,7 @@
     neovim.enable = true;
     ssh.enable = true;
     zsh.enable = true;
-		android.enable = true;
+    android.enable = true;
   };
   music = {
     extraApps.enable = true;

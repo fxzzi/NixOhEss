@@ -6,9 +6,9 @@ See: https://github.com/dlundqvist/xone
 */
 {
   nixpkgs.overlays = [
-    (self: super: {
-      linuxPackages = super.linuxPackages.extend (lpself: lpsuper: {
-        xone = super.linuxPackages.xone.overrideAttrs (oldAttrs: {
+    (_self: super: {
+      linuxPackages = super.linuxPackages.extend (_lpself: _lpsuper: {
+        xone = super.linuxPackages.xone.overrideAttrs (_oldAttrs: {
           src = npins.xone;
           patches = [];
         });
