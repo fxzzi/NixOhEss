@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  user,
   ...
 }: {
   options.apps.thunar.enable = lib.mkOption {
@@ -10,6 +11,20 @@
     description = "Enables the thunar file manager";
   };
   config = lib.mkIf config.apps.thunar.enable {
+    home.packages = with pkgs; [
+      p7zip
+      zip
+      unzip
+      unrar
+      cdrtools
+    ];
+    gtk.gtk3.bookmarks = [
+      "file:///home/${user}/Downloads Downloads"
+      "file:///home/${user}/Videos Videos"
+      "file:///home/${user}/Documents/School/A-Level School"
+      "file:///home/${user}/Pictures/Screenshots Screenshots"
+      "file:///home/${user}/.config/nixos NixOS"
+    ];
     home.file = {
       # Thunar quick actions
       "uca.xml" = {
