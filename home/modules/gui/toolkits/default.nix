@@ -45,7 +45,7 @@
         size = 24;
       };
       theme = {
-        name = "TokyoNight";
+        name = "tokyonight";
         # package = pkgs.gnome-themes-extra;
       };
     };

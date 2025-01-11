@@ -18,7 +18,9 @@
     gtk.gtk3.bookmarks = [
       "file:///home/${user}/Downloads Downloads"
       "file:///home/${user}/Videos Videos"
-      "file:///home/${user}/Documents/School/A-Level School"
+      "file:///home/${user}/Documents/College/CompSci CompSci"
+			"file:///home/${user}/Documents/College/Maths Maths"
+			"file:///home/${user}/Documents/College/Physics Physics"
       "file:///home/${user}/Pictures/Screenshots Screenshots"
       "file:///home/${user}/.config/nixos NixOS"
     ];
