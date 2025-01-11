@@ -18,6 +18,7 @@
       unrar
       cdrtools
     ];
+    # bookmarks for the side pane
     gtk.gtk3.bookmarks = [
       "file:///home/${user}/Downloads Downloads"
       "file:///home/${user}/Videos Videos"
