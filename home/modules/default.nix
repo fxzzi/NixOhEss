@@ -38,5 +38,7 @@
     qbittorrent-enhanced
     telegram-desktop
     mate.atril
+		mate.eom
+		npins
   ];
 }

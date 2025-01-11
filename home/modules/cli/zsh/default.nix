@@ -78,7 +78,6 @@
       '';
       profileExtra = ''
         if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-        	# Run Hyprland
         	exec Hyprland
         fi
       '';
@@ -143,6 +142,5 @@
     };
     programs.ripgrep.enable = true;
     programs.bat.enable = true;
-    home.packages = [pkgs.npins];
   };
 }

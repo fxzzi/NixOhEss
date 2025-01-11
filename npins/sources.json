@@ -1,5 +1,17 @@
 {
   "pins": {
+    "Vesktop": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ading2210",
+        "repo": "Vesktop"
+      },
+      "branch": "main",
+      "revision": "85ec62942669843873fdfa2b32315f551b1f9706",
+      "url": "https://github.com/ading2210/Vesktop/archive/85ec62942669843873fdfa2b32315f551b1f9706.tar.gz",
+      "hash": "1jslzs4ikdki79nxq3qkly2v9s9pv9f0iqf6ywh33vdqsi3qqbxg"
+    },
     "foot": {
       "type": "Git",
       "repository": {
@@ -25,18 +37,6 @@
       "revision": "c7fb028ec0bbc1056c51508602dbd61b0f475ac3",
       "url": "https://api.github.com/repos/Aloxaf/fzf-tab/tarball/v1.1.2",
       "hash": "061jjpgghn8d5q2m2cd2qdjwbz38qrcarldj16xvxbid4c137zs2"
-    },
-    "gamescope": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "brain-anti-freeze",
-        "repo": "gamescope"
-      },
-      "branch": "present_wait_workaround",
-      "revision": "4da5c0a60ece2955cd60166ad0f93c93b0871723",
-      "url": "https://github.com/brain-anti-freeze/gamescope/archive/4da5c0a60ece2955cd60166ad0f93c93b0871723.tar.gz",
-      "hash": "1y0p1rfmir6x2zbxnlwbrcsg0i04zczg93nvjgxbcx9zawarl9hi"
     },
     "mpd-discord-rpc": {
       "type": "Git",
