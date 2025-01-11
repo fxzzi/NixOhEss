@@ -10,7 +10,7 @@ See: https://github.com/dlundqvist/xone
       linuxPackages = super.linuxPackages.extend (_lpself: _lpsuper: {
         xone = super.linuxPackages.xone.overrideAttrs (_oldAttrs: {
           src = npins.xone;
-          patches = [];
+          # patches = [];
         });
       });
     })

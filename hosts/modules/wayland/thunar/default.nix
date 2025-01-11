@@ -17,7 +17,7 @@
         thunar-media-tags-plugin
       ]; # Enable some plugins for archive support
     };
-
     programs.file-roller.enable = true; # Enable File Roller for GUI archive management
-  };
+		environment.systemPackages = [pkgs.mate.eom];
+	};
 }
