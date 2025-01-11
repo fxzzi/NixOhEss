@@ -4,6 +4,6 @@
     ./obs-studio
     ./mpv
     ./thunar
-		./syncthing
+    ./syncthing
   ];
 }

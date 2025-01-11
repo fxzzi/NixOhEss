@@ -9,7 +9,6 @@
     description = "Configures ADB debugging";
   };
   config = lib.mkIf config.adb.enable {
-		programs.adb.enable = true;
+    programs.adb.enable = true;
   };
 }
-
