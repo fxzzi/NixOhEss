@@ -17,7 +17,7 @@
       mimeApps = {
         enable = true;
         defaultApplications = {
-          # browser stuff
+          # Browser-related formats
           "application/xhtml+xml" = "librewolf.desktop";
           "text/html" = "librewolf.desktop";
           "text/xml" = "librewolf.desktop";
@@ -25,7 +25,22 @@
           "x-scheme-handler/http" = "librewolf.desktop";
           "x-scheme-handler/https" = "librewolf.desktop";
 
+          # File Manager
           "inode/directory" = "thunar.desktop";
+
+          # Archive formats
+          "application/zip" = "org.gnome.FileRoller.desktop";
+          "application/vnd.rar" = "org.gnome.FileRoller.desktop";
+          "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
+          "application/x-tar" = "org.gnome.FileRoller.desktop";
+          "application/gzip" = "org.gnome.FileRoller.desktop";
+          "application/x-bzip" = "org.gnome.FileRoller.desktop";
+          "application/x-bzip2" = "org.gnome.FileRoller.desktop";
+          "application/x-xz" = "org.gnome.FileRoller.desktop";
+          "application/x-rar-compressed" = "org.gnome.FileRoller.desktop";
+
+          # PDF Viewer
+          "application/pdf" = "atril.desktop";
         };
       };
     };
