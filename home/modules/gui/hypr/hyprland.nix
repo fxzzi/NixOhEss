@@ -263,7 +263,7 @@ in {
             "$MOD, Print, exec, screenshot.sh --active"
 
             # binds for apps
-            "$MOD, F, exec, ${lib.getExe pkgs.xfce.thunar}"
+            "$MOD, F, exec, thunar"
             "$MOD, T, exec, ${lib.getExe pkgs.foot}"
             "$MOD, B, exec, ${lib.getExe pkgs.librewolf}"
             "$MOD SHIFT, P, exec, ${lib.getExe pkgs.librewolf} --private-window"
