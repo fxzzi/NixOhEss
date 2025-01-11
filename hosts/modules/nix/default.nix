@@ -7,6 +7,8 @@ _: {
     auto-optimise-store = true;
     warn-dirty = false;
     use-xdg-base-directories = true;
+    allowed-users = ["@wheel"];
+    trusted-users = ["@wheel"];
   };
   nix.gc = {
     automatic = true;
