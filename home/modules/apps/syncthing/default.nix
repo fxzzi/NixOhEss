@@ -8,7 +8,7 @@
     if hostName == "fazziPC"
     then "sendonly"
     else if hostName == "fazziGO"
-    then "receiveonly"
+    then "sendreceive"
     else null;
   otherHost =
     if hostName == "fazziPC"
