@@ -37,5 +37,6 @@
     lxqt.pavucontrol-qt
     qbittorrent-enhanced
     telegram-desktop
+		mate.atril
   ];
 }
