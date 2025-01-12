@@ -17,7 +17,6 @@
       mimeApps = {
         enable = true;
         defaultApplications = {
-          # Browser-related formats
           "application/xhtml+xml" = "librewolf.desktop";
           "text/html" = "librewolf.desktop";
           "text/xml" = "librewolf.desktop";
@@ -25,10 +24,8 @@
           "x-scheme-handler/http" = "librewolf.desktop";
           "x-scheme-handler/https" = "librewolf.desktop";
 
-          # File Manager
           "inode/directory" = "thunar.desktop";
 
-          # Archive formats
           "application/zip" = "org.gnome.FileRoller.desktop";
           "application/vnd.rar" = "org.gnome.FileRoller.desktop";
           "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
@@ -39,10 +36,8 @@
           "application/x-xz" = "org.gnome.FileRoller.desktop";
           "application/x-rar-compressed" = "org.gnome.FileRoller.desktop";
 
-          # PDF Viewer
           "application/pdf" = "atril.desktop";
 
-          # Image Viewer
           "image/png" = "eom.desktop";
           "image/jpeg" = "eom.desktop";
           "image/jpg" = "eom.desktop";
@@ -51,6 +46,16 @@
           "image/bmp" = "eom.desktop";
           "image/tiff" = "eom.desktop";
           "image/svg+xml" = "eom.desktop";
+
+          "video/mp4" = "mpv.desktop";
+          "video/x-matroska" = "mpv.desktop"; # MKV
+          "video/webm" = "mpv.desktop";
+          "video/ogg" = "mpv.desktop";
+          "audio/mpeg" = "mpv.desktop"; # MP3
+          "audio/ogg" = "mpv.desktop";
+          "audio/flac" = "mpv.desktop";
+          "audio/wav" = "mpv.desktop";
+          "audio/aac" = "mpv.desktop";
         };
       };
     };
