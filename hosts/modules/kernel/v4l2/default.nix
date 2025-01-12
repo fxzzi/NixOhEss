@@ -12,6 +12,10 @@
     boot = {
       kernelModules = ["v4l2loopback"];
       extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
+      extraModprobeConfig = ''
+        # exclusive_caps: Chromium, Electron, etc. will only show device when actually streaming
+        options v4l2loopback exclusive_caps=1
+      '';
     };
   };
 }
