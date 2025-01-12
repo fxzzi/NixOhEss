@@ -68,14 +68,14 @@
       pref("gfx.font_rendering.opentype_svg.enabled", false);
 
       // Disable audio post processing
-			pref("media.getusermedia.audio.processing.aec", 0);
-			pref("media.getusermedia.audio.processing.aec.enabled", false);
-			pref("media.getusermedia.audio.processing.agc", 0);
-			pref("media.getusermedia.audio.processing.agc.enabled", false);
-			pref("media.getusermedia.audio.processing.agc2.forced", false);
-			pref("media.getusermedia.audio.processing.noise", 0);
-			pref("media.getusermedia.audio.processing.noise.enabled", false);
-			pref("media.getusermedia.audio.processing.hpf.enabled", false);
+      pref("media.getusermedia.audio.processing.aec", 0);
+      pref("media.getusermedia.audio.processing.aec.enabled", false);
+      pref("media.getusermedia.audio.processing.agc", 0);
+      pref("media.getusermedia.audio.processing.agc.enabled", false);
+      pref("media.getusermedia.audio.processing.agc2.forced", false);
+      pref("media.getusermedia.audio.processing.noise", 0);
+      pref("media.getusermedia.audio.processing.noise.enabled", false);
+      pref("media.getusermedia.audio.processing.hpf.enabled", false);
     '';
   };
 }
