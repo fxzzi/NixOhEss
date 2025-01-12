@@ -34,11 +34,11 @@
     python3
     fzf
     ffmpeg
-    lxqt.pavucontrol-qt
+    pwvucontrol
     qbittorrent-enhanced
     telegram-desktop
     mate.atril
-		mate.eom
-		npins
+    mate.eom
+    npins
   ];
 }
