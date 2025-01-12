@@ -17,10 +17,6 @@ _: {
       rnnoise.enable = false;
     };
   };
-  scx = {
-    enable = false;
-    scheduler = "scx_lavd";
-  };
   cachix.enable = true;
   fontConfig = {
     enable = true;
@@ -28,12 +24,10 @@ _: {
   };
   netConfig = {
     enable = true;
-    desktopFixedIP.enable = false;
     mediamtx.enable = false;
     networkmanager.enable = true;
   };
   opentabletdriver.enable = false;
-  fancontrol.enable = false;
   services = {
     enable = true;
     wootingRules.enable = false;
@@ -46,23 +40,12 @@ _: {
     hyprland.enable = true;
     thunar.enable = true;
   };
-  gaming = {
-    steam.enable = false;
-    gamemode.enable = false;
-  };
   gpu = {
     amdgpu.enable = true;
-    nvidia = {
-      enable = false;
-      exposeTemp = false;
-      nvuv = {
-        enable = false;
-      };
-    };
   };
   batmon.enable = true;
   secureboot.enable = true;
   tty1-skipusername = true;
   home-manager.enable = true;
-  adb.enable = false;
+  adb.enable = true;
 }
