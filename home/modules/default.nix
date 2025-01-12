@@ -39,6 +39,7 @@
     telegram-desktop
     mate.atril
     mate.eom
+		xournalpp
     npins
   ];
 }
