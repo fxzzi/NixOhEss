@@ -11,10 +11,10 @@
     description = "Enables the thunar file manager";
   };
   config = lib.mkIf config.apps.thunar.enable {
-		# add some packages for file-roller to work
+    # add some packages for file-roller to work
     home.packages = with pkgs; [
       p7zip
-			unar
+      unar
     ];
     # bookmarks for the side pane
     gtk.gtk3.bookmarks = [
