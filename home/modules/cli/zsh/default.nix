@@ -70,11 +70,11 @@
           bindkey '^[[A' history-substring-search-up
           bindkey '^[[B' history-substring-search-down
 
-          # if [ -z $WAYLAND_DISPLAY ]; then
-          # 	fastfetch -l none
-          # else
-          # 	fastfetch
-          # fi
+          if [ -z $WAYLAND_DISPLAY ]; then
+          	fastfetch -l none
+          else
+          	fastfetch
+          fi
         '';
         profileExtra = ''
           if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
