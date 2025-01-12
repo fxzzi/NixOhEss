@@ -10,14 +10,6 @@
     description = "Enables toolkit (qt and gtk) configurations.";
   };
   config = lib.mkIf config.gui.toolkitConfig.enable {
-    dconf = {
-      enable = true;
-      settings = {
-        "org/gnome/desktop/interface" = {
-          color-scheme = "prefer-dark";
-        };
-      };
-    };
     home.packages = with pkgs; [
       qt6ct
     ];
@@ -46,7 +38,6 @@
       };
       theme = {
         name = "tokyonight";
-        # package = pkgs.gnome-themes-extra;
       };
     };
     home.pointerCursor = {
@@ -55,5 +46,9 @@
       size = 24;
       package = pkgs.xcursor-pro;
     };
+		home.sessionVariables = {
+			# so that it uses dark theme on gtk4 apps
+			GTK_THEME = "${config.gtk.theme.name}:dark";
+		};
   };
 }
