@@ -13,9 +13,8 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
     batmon.url = "github:notashelf/batmon";
     ags.url = "github:Aylur/ags/v1"; # i still have not updated to agsv2/astal yet lol
-    nix-gaming.url = "github:fufexan/nix-gaming";
     agenix.url = "github:ryantm/agenix";
-    nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack"; # Add the formatter input
+    nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack";
   };
 
   outputs = {
