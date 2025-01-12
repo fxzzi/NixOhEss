@@ -46,9 +46,9 @@
       size = 24;
       package = pkgs.xcursor-pro;
     };
-		home.sessionVariables = {
-			# so that it uses dark theme on gtk4 apps
-			GTK_THEME = "${config.gtk.theme.name}:dark";
-		};
+    home.sessionVariables = {
+      # so that it uses dark theme on gtk4 apps
+      GTK_THEME = "${config.gtk.theme.name}:dark";
+    };
   };
 }

@@ -30,42 +30,52 @@
     should suffice
     */
     home.file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
-      // Set new tab page to local startpage
-      let { utils:Cu } = Components;
+         // Set new tab page to local startpage
+         let { utils:Cu } = Components;
 
-      Cu.import("resource:///modules/AboutNewTab.jsm");
-      let newTabURL = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
-      AboutNewTab.newTabURL = newTabURL;
+         Cu.import("resource:///modules/AboutNewTab.jsm");
+         let newTabURL = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
+         AboutNewTab.newTabURL = newTabURL;
 
-      // Revert some security changes
-      pref("webgl.disabled", false);
-      pref("privacy.resistFingerprinting", false);
-      pref("privacy.clearOnShutdown.history", false);
-      pref("privacy.clearOnShutdown.cookies", false);
+         // Revert some security changes
+         pref("webgl.disabled", false);
+         pref("privacy.resistFingerprinting", false);
+         pref("privacy.clearOnShutdown.history", false);
+         pref("privacy.clearOnShutdown.cookies", false);
 
-      // Stop weirdness when relaunching browser sometimes
-      pref("browser.sessionstore.resume_from_crash", false);
+         // Stop weirdness when relaunching browser sometimes
+         pref("browser.sessionstore.resume_from_crash", false);
 
-      // Enable NVIDIA VA-API driver
-      pref("media.ffmpeg.vaapi.enabled", true);
-      pref("widget.dmabuf.force-enabled", true);
+         // Enable NVIDIA VA-API driver
+         pref("media.ffmpeg.vaapi.enabled", true);
+         pref("widget.dmabuf.force-enabled", true);
 
-      // Mouse behavior
-      pref("middlemouse.paste", false);
-      pref("general.autoScroll", true);
+         // Mouse behavior
+         pref("middlemouse.paste", false);
+         pref("general.autoScroll", true);
 
-      // Performance
-      pref("layout.frame_rate", -1);
+         // Performance
+         pref("layout.frame_rate", -1);
 
-      // Smooth scrolling
-      pref("general.smoothScroll", false);
+         // Smooth scrolling
+         pref("general.smoothScroll", false);
 
-      // Enable Firefox accounts
-      pref("identity.fxaccounts.enabled", true);
+         // Enable Firefox accounts
+         pref("identity.fxaccounts.enabled", true);
 
-      // Use system emoji fonts
-      pref("font.name-list.emoji", "emoji");
-      pref("gfx.font_rendering.opentype_svg.enabled", false);
+         // Use system emoji fonts
+         pref("font.name-list.emoji", "emoji");
+         pref("gfx.font_rendering.opentype_svg.enabled", false);
+
+      // Disable audio post processing
+      pref("media.getusermedia.audio.processing.aec", 0);
+      pref("media.getusermedia.audio.processing.aec.enabled", false);
+      pref("media.getusermedia.audio.processing.agc", 0);
+      pref("media.getusermedia.audio.processing.agc.enabled", false);
+      pref("media.getusermedia.audio.processing.agc2.forced", false);
+      pref("media.getusermedia.audio.processing.noise", 0);
+      pref("media.getusermedia.audio.processing.noise", false);
+      pref("media.getusermedia.audio.processing.hpf.enabled", false);
     '';
   };
 }
