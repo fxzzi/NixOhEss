@@ -62,7 +62,7 @@ _: {
   };
   batmon.enable = true;
   secureboot.enable = true;
-  tty1-autologin = false;
+  tty1-skipusername = true;
   home-manager.enable = true;
   adb.enable = false;
 }

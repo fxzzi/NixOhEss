@@ -15,7 +15,7 @@
     ./networking
     ./boot
     ./opentabletdriver
-    ./tty1-autologin
+    ./tty1-skipusername
     ./agenix
     ./nix
     ./home-manager
