@@ -40,6 +40,8 @@
     mate.atril
     mate.eom
 		xournalpp
+		libreoffice-qt6-fresh
     npins
+		godot_4
   ];
 }

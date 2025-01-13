@@ -39,9 +39,10 @@ _: {
   opentabletdriver.enable = false;
   fancontrol.enable = true;
   services = {
-    enable = true;
+    printing.enable = true;
     wootingRules.enable = true;
   };
+	security.enable = true;
   user = {
     enable = true;
     shell = "zsh";
