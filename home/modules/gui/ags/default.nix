@@ -21,9 +21,9 @@
       configDir = null;
 
       # additional packages to add to gjs's runtime
-      extraPackages = with pkgs; [
-        upower
-      ];
+      # extraPackages = with pkgs; [
+      #   upower
+      # ];
     };
     home.file = {
       ".config/ags/icons".source = ./config/icons;
