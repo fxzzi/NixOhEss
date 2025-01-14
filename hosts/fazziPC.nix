@@ -36,12 +36,12 @@ _: {
     mediamtx.enable = true;
     networkmanager.enable = false;
   };
-  opentabletdriver.enable = false;
+  opentabletdriver.enable = true;
   fancontrol.enable = true;
   services = {
     cups.enable = true;
+		wootingRules.enable = true;
   };
-	hardware.wooting.enable = true;
 	security.enable = true;
   user = {
     enable = true;

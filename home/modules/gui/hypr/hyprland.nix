@@ -98,11 +98,11 @@ in {
           accel_profile = "flat";
           float_switch_override_focus = 0; # Stop floating windows from stealing focus
           # i hate caps lock, so make it escape instead.
-          kb_options = "fkeys:basic_13-24 caps:escape";
-          tablet = {
-            left_handed = 1;
-            output = "${config.gui.hypr.defaultMonitor}";
-          };
+          kb_options = "fkeys:basic_13-24, caps:escape";
+          # tablet = {
+          #   left_handed = 1;
+          #   output = "${config.gui.hypr.defaultMonitor}";
+          # };
           touchpad = {
             natural_scroll = true;
           };
