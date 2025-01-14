@@ -33,19 +33,19 @@
             "type" = "os";
             "key" = " os";
             "keyColor" = "green";
-            "format" = "{3}";
+            "format" = "{2}";
           }
           {
             "type" = "wm";
-            "key" = " wm";
+            "key" = " cm";
             "keyColor" = "blue";
             "format" = "{1}";
           }
           {
-            "type" = "packages";
-            "key" = " pk";
+            "type" = "terminal";
+            "key" = " tr";
             "keyColor" = "blue";
-            "format" = "{1}";
+            "format" = "{0}";
           }
           {
             "type" = "memory";
