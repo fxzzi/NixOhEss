@@ -20,6 +20,6 @@
     ./nix
     ./home-manager
     ./adb
-		./security
+    ./security
   ];
 }
