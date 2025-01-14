@@ -40,8 +40,8 @@ _: {
   fancontrol.enable = true;
   services = {
     printing.enable = true;
-    wootingRules.enable = true;
   };
+	hardware.wooting.enable = true;
 	security.enable = true;
   user = {
     enable = true;

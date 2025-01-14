@@ -6,7 +6,7 @@ export function BatteryWidget() {
     children: [
       Widget.Icon({
         icon: battery.bind("icon-name"),
-        class_name: battery.bind("charging").as((ch) => (ch ? "charging" : "")),
+        class_name: battery.bind("charging").as((ch) => (ch ? "charging" : "icon")),
       }),
       Widget.Label({
         class_name: "battery",
