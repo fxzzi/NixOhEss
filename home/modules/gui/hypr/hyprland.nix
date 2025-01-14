@@ -3,7 +3,7 @@
   inputs,
   pkgs,
   config,
-	osConfig,
+  osConfig,
   ...
 }: let
   multiMonitor =
