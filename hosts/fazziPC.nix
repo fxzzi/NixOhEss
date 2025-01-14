@@ -39,7 +39,7 @@ _: {
   opentabletdriver.enable = false;
   fancontrol.enable = true;
   services = {
-    printing.enable = true;
+    cups.enable = true;
   };
 	hardware.wooting.enable = true;
 	security.enable = true;
