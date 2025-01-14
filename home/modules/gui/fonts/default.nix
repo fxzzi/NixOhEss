@@ -4,7 +4,11 @@
   config,
   lib,
   ...
-}: {
+}:
+let
+	apple-fonts = inputs.apple-fonts.packages.${pkgs.system};
+in
+{
   options.gui.fontConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -17,8 +21,8 @@
       noto-fonts-emoji # Emoji Font
       noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
       # also grab apple fonts from flake
-      inputs.apple-fonts.packages.${pkgs.system}.sf-pro
-      inputs.apple-fonts.packages.${pkgs.system}.ny
+      apple-fonts.sf-pro
+      apple-fonts.ny
       icomoon-feather
     ];
     gtk = {
