@@ -42,6 +42,7 @@
 		xournalpp
 		libreoffice-qt6-fresh
     npins
-		godot_4
+		godot3
+		# godot_4
   ];
 }
