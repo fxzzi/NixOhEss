@@ -39,10 +39,10 @@
     telegram-desktop
     mate.atril
     mate.eom
-		xournalpp
-		libreoffice-qt6-fresh
+    xournalpp
+    libreoffice-qt6-fresh
     npins
-		godot3
-		# godot_4
+    godot3
+    # godot_4
   ];
 }
