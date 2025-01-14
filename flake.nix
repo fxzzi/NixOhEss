@@ -8,8 +8,6 @@
     hyprland.url = "github:hyprwm/Hyprland/";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     nvuv.url = "gitlab:fazzi/nvuv";
-    nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
-    nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
     lanzaboote.url = "github:nix-community/lanzaboote";
     batmon.url = "github:notashelf/batmon";
     ags.url = "github:Aylur/ags/v1"; # i still have not updated to agsv2/astal yet lol

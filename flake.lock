@@ -569,38 +569,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-olympus": {
-      "locked": {
-        "lastModified": 1735644231,
-        "narHash": "sha256-oouqvroxlP9AUFecx3e2zr46G6TZr4YtYmO5+Z7R4d8=",
-        "owner": "Petingoso",
-        "repo": "nixpkgs",
-        "rev": "f1088aea152b0a0b1a4478ddbab8918f05e52693",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Petingoso",
-        "ref": "olympus",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-sgdboop": {
-      "locked": {
-        "lastModified": 1726424843,
-        "narHash": "sha256-2jE0ewMBtDQDeiTZoSugFubjTYJgLhdeFPmHzR5CI4M=",
-        "owner": "Saturn745",
-        "repo": "nixpkgs",
-        "rev": "2a4a651d79cf3dd21bc3c49f106d2066891ff587",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Saturn745",
-        "ref": "sgdboop-init",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -868,8 +836,6 @@
         "lanzaboote": "lanzaboote",
         "nix-formatter-pack": "nix-formatter-pack",
         "nixpkgs": "nixpkgs_8",
-        "nixpkgs-olympus": "nixpkgs-olympus",
-        "nixpkgs-sgdboop": "nixpkgs-sgdboop",
         "nvuv": "nvuv"
       }
     },
