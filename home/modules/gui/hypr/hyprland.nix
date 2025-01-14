@@ -18,7 +18,7 @@
     if multiMonitor
     then "slidevert"
     else "slide";
-	hyprFlake = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
+  hyprFlake = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in {
   options.gui.hypr.hyprland.enable = lib.mkOption {
     type = lib.types.bool;
@@ -71,7 +71,7 @@ in {
           "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         ];
         exec = [
-          "pgrep ags || ags"
+          "pgrep ${builtins.baseNameOf (lib.getExe config.programs.ags.finalPackage)} || ${lib.getExe config.programs.ags.finalPackage}"
           "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.defaultMonitor} --primary"
         ];
         monitor = [
@@ -101,7 +101,7 @@ in {
           float_switch_override_focus = 0; # Stop floating windows from stealing focus
           # i hate caps lock, so make it escape instead.
           kb_options = "fkeys:basic_13-24, caps:escape";
-					# don't set tablet settings if opentabletdriver is enabled.
+          # don't set tablet settings if opentabletdriver is enabled.
           tablet = lib.mkIf (! osConfig.opentabletdriver.enable) {
             left_handed = 1;
             output = "${config.gui.hypr.defaultMonitor}";
