@@ -30,9 +30,9 @@ _: {
   opentabletdriver.enable = false;
   services = {
     cups.enable = true;
-		wootingRules.enable = true;
+    wootingRules.enable = true;
   };
-	security.enable = true;
+  security.enable = true;
   user = {
     enable = true;
     shell = "zsh";

@@ -10,10 +10,10 @@
     description = "Enables polkit and gnome keyring.";
   };
   config = lib.mkIf config.security.enable {
-		security = {
-			polkit.enable = true;
-			pam.services.${user}.enableGnomeKeyring = true;
-		};
+    security = {
+      polkit.enable = true;
+      pam.services.${user}.enableGnomeKeyring = true;
+    };
     services.gnome.gnome-keyring.enable = true;
   };
 }
