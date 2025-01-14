@@ -1,18 +1,21 @@
 _: {
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    auto-optimise-store = true;
-    warn-dirty = false;
-    use-xdg-base-directories = true;
-    allowed-users = ["@wheel"];
-    trusted-users = ["@wheel"];
+  nix = {
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      auto-optimise-store = true;
+      warn-dirty = false;
+      use-xdg-base-directories = true;
+      allowed-users = ["@wheel"];
+      trusted-users = ["@wheel"];
+    };
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 7d";
+    };
   };
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 7d";
-  };
+  nixpkgs.config.allowUnfree = true;
 }
