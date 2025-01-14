@@ -270,7 +270,7 @@ in {
             # it works and doesn't make a duplicate package.
             "$MOD, F, exec, ${lib.getExe' (pkgs.xfce.thunar.override {thunarPlugins = osConfig.programs.thunar.plugins;}) "thunar"}"
             "$MOD, T, exec, ${lib.getExe config.programs.foot.package}"
-            "$MOD, B, exec, ${lib.getExe config.programs.librewolf.package}"
+            "$MOD, B, exec, ${lib.getExe config.programs.librewolf.finalPackage}"
             "$MOD SHIFT, P, exec, ${lib.getExe config.programs.librewolf.package} --private-window"
             "$MOD, W, exec, ${lib.getExe pkgs.vesktop}"
             "$MOD, D, exec, pkill ${builtins.baseNameOf (lib.getExe config.programs.fuzzel.package)} || ${lib.getExe config.programs.fuzzel.package}"

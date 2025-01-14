@@ -76,6 +76,9 @@
       pref("media.getusermedia.audio.processing.noise", 0);
       pref("media.getusermedia.audio.processing.noise.enabled", false);
       pref("media.getusermedia.audio.processing.hpf.enabled", false);
+
+      // disable bookmarks bar, i don't use it
+      pref("browser.toolbars.bookmarks.visibility", never)
     '';
   };
 }
