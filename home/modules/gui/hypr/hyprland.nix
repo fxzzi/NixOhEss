@@ -266,7 +266,7 @@ in {
             "$MOD, Print, exec, screenshot.sh --active"
 
             # binds for apps
-            "$MOD, F, exec, thunar"
+            "$MOD, F, exec, thunar" # FIXME: find a better way to define thunar here.
             "$MOD, T, exec, ${lib.getExe config.programs.foot.package}"
             "$MOD, B, exec, ${lib.getExe config.programs.librewolf.package}"
             "$MOD SHIFT, P, exec, ${lib.getExe config.programs.librewolf.package} --private-window"
