@@ -1,22 +1,33 @@
 const GLib = imports.gi.GLib;
 
 export function GpuTempWidget() {
+  let hasCheckedOnce = false;
+  let hasNvidiaTemp = false;
+
   const gpuTemp = Variable("", {
     poll: [
       5000,
       () => {
+        if (hasCheckedOnce && !hasNvidiaTemp) {
+          // Skip polling if NVIDIA temp is confirmed to be unavailable
+          return "N/A";
+        }
+
         try {
           // Read NVIDIA temperature
-          const [nvidiaSuccess, nvidiaTempBytes] =
-            GLib.file_get_contents("/tmp/nvidia-temp");
+          const [nvidiaSuccess, nvidiaTempBytes] = GLib.file_get_contents("/tmp/nvidia-temp");
+          hasCheckedOnce = true;
+          hasNvidiaTemp = nvidiaSuccess;
+
           const nvidiaTemp = nvidiaSuccess
-            ? parseFloat(new TextDecoder("utf-8").decode(nvidiaTempBytes)) /
-              1000
+            ? parseFloat(new TextDecoder("utf-8").decode(nvidiaTempBytes)) / 1000
             : null;
 
           return nvidiaTemp ? `${nvidiaTemp.toFixed(0)}°C` : "N/A";
         } catch (error) {
           console.error("Error reading GPU temperature:", error);
+          hasCheckedOnce = true;
+          hasNvidiaTemp = false;
           return "N/A";
         }
       },
