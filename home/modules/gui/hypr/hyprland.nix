@@ -18,6 +18,7 @@
     if multiMonitor
     then "slidevert"
     else "slide";
+	hyprFlake = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in {
   options.gui.hypr.hyprland.enable = lib.mkOption {
     type = lib.types.bool;
@@ -36,20 +37,20 @@ in {
   };
 
   config = lib.mkIf config.gui.hypr.hyprland.enable {
-    home.packages = with pkgs; [
-      # deps for hyprpm, might be able to remove later?
-      cmake
-      meson
-      cpio
-      pkg-config
-    ];
+    # home.packages = with pkgs; [
+    #   # deps for hyprpm, might be able to remove later?
+    #   cmake
+    #   meson
+    #   cpio
+    #   pkg-config
+    # ];
 
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
       config.common.default = "hyprland";
       configPackages = [
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+        hyprFlake.xdg-desktop-portal-hyprland
       ];
       extraPortals = with pkgs; [xdg-desktop-portal-gtk];
     };
@@ -62,7 +63,7 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.variables = ["--all"];
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      package = hyprFlake.hyprland;
       systemd.enable = true;
       settings = {
         exec-once = [
@@ -100,6 +101,7 @@ in {
           float_switch_override_focus = 0; # Stop floating windows from stealing focus
           # i hate caps lock, so make it escape instead.
           kb_options = "fkeys:basic_13-24, caps:escape";
+					# don't set tablet settings if opentabletdriver is enabled.
           tablet = lib.mkIf (! osConfig.opentabletdriver.enable) {
             left_handed = 1;
             output = "${config.gui.hypr.defaultMonitor}";
@@ -265,19 +267,19 @@ in {
 
             # binds for apps
             "$MOD, F, exec, thunar"
-            "$MOD, T, exec, ${lib.getExe pkgs.foot}"
-            "$MOD, B, exec, ${lib.getExe pkgs.librewolf}"
-            "$MOD SHIFT, P, exec, ${lib.getExe pkgs.librewolf} --private-window"
+            "$MOD, T, exec, ${lib.getExe config.programs.foot.package}"
+            "$MOD, B, exec, ${lib.getExe config.programs.librewolf.package}"
+            "$MOD SHIFT, P, exec, ${lib.getExe config.programs.librewolf.package} --private-window"
             "$MOD, W, exec, ${lib.getExe pkgs.vesktop}"
-            "$MOD, D, exec, pkill fuzzel || ${lib.getExe pkgs.fuzzel}"
-            "$MOD SHIFT, E, exec, pkill wleave || ${lib.getExe pkgs.wleave} --protocol layer-shell -b 5 -T 360 -B 360"
-            "CTRL SHIFT, Escape, exec, ${lib.getExe pkgs.foot} btm"
+            "$MOD, D, exec, pkill ${builtins.baseNameOf (lib.getExe config.programs.fuzzel.package)} || ${lib.getExe config.programs.fuzzel.package}"
+            "$MOD SHIFT, E, exec, pkill ${builtins.baseNameOf (lib.getExe config.programs.wlogout.package)} || ${lib.getExe config.programs.wlogout.package} --protocol layer-shell -b 5 -T 360 -B 360"
+            "CTRL SHIFT, Escape, exec, ${lib.getExe config.programs.foot.package} btm"
 
             # extra schtuff
-            "$MOD, N, exec, pkill hyprsunset || ${lib.getExe pkgs.hyprsunset} -t 2000"
+            "$MOD, N, exec, pkill ${builtins.baseNameOf (lib.getExe pkgs.hyprsunset)} || ${lib.getExe pkgs.hyprsunset} -t 2000"
             "$MOD, R, exec, random-wall.sh"
             "$MOD SHIFT, R, exec, cycle-wall.sh"
-            "$MOD, J, exec, ${lib.getExe pkgs.foot} wall-picker.sh"
+            "$MOD, J, exec, ${lib.getExe config.programs.foot.package} wall-picker.sh"
             "$MOD, L, exec, ${lib.getExe' pkgs.systemd "loginctl"} lock-session"
             ", XF86AudioPrev, exec, ${lib.getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif.sh)"
             ", XF86AudioPlay, exec, ${lib.getExe pkgs.mpc} toggle; (mpd-notif.sh)"
