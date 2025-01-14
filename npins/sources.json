@@ -46,9 +46,9 @@
         "repo": "mpd-discord-rpc"
       },
       "branch": "master",
-      "revision": "7fa230447bf53a8211370f439b6354e0ed4ae569",
-      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/7fa230447bf53a8211370f439b6354e0ed4ae569.tar.gz",
-      "hash": "1l1wid0dww8k0j1385pa2zccqnszn0gb7vmkqvv9b28k8iy7889a"
+      "revision": "0f77dc05944df38b4f754805371f61e63297e704",
+      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/0f77dc05944df38b4f754805371f61e63297e704.tar.gz",
+      "hash": "1jnzs3yc74y6zgb0vj4v25jq3mbh5pahf6ng564s3343vwd1jh35"
     },
     "nix-zsh-completions": {
       "type": "GitRelease",
@@ -68,8 +68,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre735699.32af3611f6f0/nixexprs.tar.xz",
-      "hash": "0d10prxqsjzgjzchqgrkrp3a885clz4z5kyvdnkxxwg6zm6h8jki"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre737947.357cd3dfdb89/nixexprs.tar.xz",
+      "hash": "1i2y5wbbvk6bll1da33if1jq4f7icqsigyd3aqgi74gg18a8hqfw"
     },
     "obs-pipewire-audio-capture": {
       "type": "Git",
