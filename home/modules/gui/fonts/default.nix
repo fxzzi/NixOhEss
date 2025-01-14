@@ -4,11 +4,9 @@
   config,
   lib,
   ...
-}:
-let
-	apple-fonts = inputs.apple-fonts.packages.${pkgs.system};
-in
-{
+}: let
+  apple-fonts = inputs.apple-fonts.packages.${pkgs.system};
+in {
   options.gui.fontConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
