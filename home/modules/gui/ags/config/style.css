@@ -56,3 +56,7 @@ button {
   background: transparent;
   margin-right: -4px;
 }
+
+.charging {
+	color: @color6;
+}
