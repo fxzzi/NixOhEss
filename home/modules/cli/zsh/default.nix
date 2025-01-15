@@ -2,7 +2,6 @@
   config,
   npins,
   lib,
-  pkgs,
   ...
 }: {
   options.cli.zsh.enable = lib.mkOption {
