@@ -35,14 +35,9 @@
     fzf
     ffmpeg
     pwvucontrol
-    qbittorrent-enhanced
-    telegram-desktop
     mate.atril
     mate.eom
-    xournalpp
     libreoffice-qt6-fresh
     npins
-    godot3
-    # godot_4
   ];
 }
