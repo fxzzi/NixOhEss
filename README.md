@@ -1,7 +1,4 @@
-<div align="center">
-    # NixOhEss - 🇵🇸
-    ### 🔷 by fazzi.
-</div>
+# NixOhEss - 🇵🇸
 
 <p align="center">
   <img src="showcase1.jpg" width="49%">
