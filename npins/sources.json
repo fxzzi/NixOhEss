@@ -83,6 +83,18 @@
       "url": "https://github.com/dimtpap/obs-pipewire-audio-capture/archive/b4ca0a80c218de2c1be86d67963569e91ad14b61.tar.gz",
       "hash": "1672h12pmqirwsb8wyixj3n2kpn1m71jn9a3fj5mxkqh81xzb1h2"
     },
+    "xone": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "dlundqvist",
+        "repo": "xone"
+      },
+      "branch": "master",
+      "revision": "6b9d59aed71f6de543c481c33df4705d4a590a31",
+      "url": "https://github.com/dlundqvist/xone/archive/6b9d59aed71f6de543c481c33df4705d4a590a31.tar.gz",
+      "hash": "03pqmk41a89kllalrh7hahh33f89y9zpvqxad7546a7lqvclz71j"
+    },
     "zsh-completions": {
       "type": "GitRelease",
       "repository": {
