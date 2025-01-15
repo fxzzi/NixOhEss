@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  user,
   ...
 }: {
   options.adb.enable = lib.mkOption {
@@ -10,5 +11,8 @@
   };
   config = lib.mkIf config.adb.enable {
     programs.adb.enable = true;
+    users.users.${user} = {
+      extraGroups = ["adbusers"];
+    };
   };
 }

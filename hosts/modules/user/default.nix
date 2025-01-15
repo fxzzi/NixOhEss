@@ -16,18 +16,18 @@
     description = "Change the users shell.";
   };
   config = lib.mkIf config.user.enable {
-    environment.shells = [pkgs.${config.user.shell}];
-    environment.pathsToLink = ["/share/zsh"];
+    environment = {
+      shells = [pkgs.${config.user.shell}];
+      pathsToLink = ["/share/zsh"];
+    };
     users.users.${user} = {
       isNormalUser = true;
       extraGroups = [
         "wheel"
-        "gamemode"
-        "networkmanager"
         "video"
-        "adbusers"
       ];
       shell = pkgs.${config.user.shell}; # Set shell to zsh
+      uid = 1000;
 
       # See: https://github.com/nix-community/home-manager/issues/108
       ignoreShellProgramCheck = true;

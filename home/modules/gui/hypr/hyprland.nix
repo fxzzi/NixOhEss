@@ -20,31 +20,27 @@
     else "slide";
   hyprFlake = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in {
-  options.gui.hypr.hyprland.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enables hyprland and its configuration.";
-  };
-  options.gui.hypr.defaultMonitor = lib.mkOption {
-    type = lib.types.str;
-    default = "DP-3";
-    description = "Sets the default monitor for many configs stemming from Hyprland.";
-  };
-  options.gui.hypr.secondaryMonitor = lib.mkOption {
-    type = lib.types.nullOr lib.types.str;
-    default = null;
-    description = "Sets the default monitor for many configs stemming from Hyprland.";
+  options.gui = {
+    hypr = {
+      hyprland.enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enables hyprland and its configuration.";
+      };
+      defaultMonitor = lib.mkOption {
+        type = lib.types.str;
+        default = "DP-1";
+        description = "Sets the default monitor for hypr*";
+      };
+      secondaryMonitor = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+        description = "Sets the secondary monitor for hypr*.";
+      };
+    };
   };
 
   config = lib.mkIf config.gui.hypr.hyprland.enable {
-    # home.packages = with pkgs; [
-    #   # deps for hyprpm, might be able to remove later?
-    #   cmake
-    #   meson
-    #   cpio
-    #   pkg-config
-    # ];
-
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
@@ -366,7 +362,7 @@ in {
       };
       extraConfig = ''
         # submaps
-        # Disables all keybinds for moonlight or vm's
+        # disables all keybinds for moonlight or vm's
         bind = $MOD SHIFT, N, submap, clean
         submap = clean
         bind = $MOD SHIFT, N, submap, reset

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  user,
   ...
 }: {
   options.gaming.gamemode.enable = lib.mkOption {
@@ -10,5 +11,8 @@
   };
   config = lib.mkIf config.gaming.gamemode.enable {
     programs.gamemode.enable = true;
+    users.users.${user} = {
+      extraGroups = ["gamemode"];
+    };
   };
 }
