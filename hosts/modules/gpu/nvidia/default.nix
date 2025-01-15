@@ -47,7 +47,7 @@
         "nvidia_modeset"
         "nvidia_uvm"
         "nvidia_drm"
-        "i2c_nvidia"
+        "i2c-nvidia_gpu"
       ];
     };
     systemd = {
