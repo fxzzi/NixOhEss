@@ -1,6 +1,6 @@
 <div align="center">
-# NixOhEss - 🇵🇸
-### 🔷 by fazzi.
+    # NixOhEss - 🇵🇸
+    ### 🔷 by fazzi.
 </div>
 
 <p align="center">
