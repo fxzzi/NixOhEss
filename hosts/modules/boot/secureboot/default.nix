@@ -16,7 +16,8 @@
       tpm2-tss
     ];
     boot = {
-      initrd.systemd.enable = true;
+      initrd.systemd.tpm2.enable = true;
+      # lanzaboote replaces systemd-boot, so disable it with mkForce here.
       loader.systemd-boot.enable = lib.mkForce false;
       lanzaboote = {
         enable = true;
