@@ -29,6 +29,7 @@ in {
         jq
         ffmpeg
         libsixel
+        wayfreeze
       ];
   };
 }
