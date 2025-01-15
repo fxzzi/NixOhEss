@@ -13,7 +13,7 @@ in {
   };
   config = lib.mkIf config.netConfig.mediamtx.enable {
     age.secrets.localip.file = ../../../../secrets/localip.age;
-    # This is super hacky. I shouldn't have to do this. I won't have to do
+    # FIXME: This is super hacky. I shouldn't have to do this. I won't have to do
     # this once / if mediamtx allows reading IPs from a path. See:
     # https://github.com/bluenviron/mediamtx/issues/4109#issuecomment-2581174785
     system.activationScripts."localip" = ''

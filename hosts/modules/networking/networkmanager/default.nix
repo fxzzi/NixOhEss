@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  user,
   ...
 }: {
   options.netConfig.networkmanager.enable = lib.mkOption {
@@ -20,6 +21,9 @@
         wifi.powersave = true;
         dns = "systemd-resolved";
       };
+    };
+    users.users.${user} = {
+      extraGroups = ["networkmanager"];
     };
   };
 }
