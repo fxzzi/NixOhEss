@@ -1,12 +1,14 @@
 # NixOhEss - 🇵🇸
 
 <p align="center">
-  <img src="showcase.jpg" alt="Rice Showcase">
+  <img src="showcase1.jpg" width="49%">
+  <img src="showcase2.jpg" width="49%">
 </p>
 
-my (might i say crap) attempt at switching to [nixOS](https://nixos.org/).
-With the power of [home-manager](https://github.com/nix-community/home-manager)
-i am finally able to manager my dotfiles and system configuration togther in one place.
+my (might i say crap) attempt at switching to [nixOS](https://nixos.org/). With
+the power of [home-manager](https://github.com/nix-community/home-manager) i am
+finally able to manager my dotfiles and system configuration togther in one
+place.
 
 ## wtf is this?
 
@@ -17,11 +19,12 @@ stupid configuration.
 
 ## fazziPC and fazziGO?
 
-yes, fazziPC is my desktop whilst fazziGO is my laptop. I'm working towards making
-my config so modular that I can use it across both of them.
+yes, fazziPC is my desktop whilst fazziGO is my laptop. I'm working towards
+making my config so modular that I can use it across both of them.
 
 I was tired of having to `git rebase` my laptop and pc dotfiles branches on my
 old dotfiles repo. This solves that :)
 
-fazziGO is configured for a single monitor gui with a few options. It also boasts
-full root disk encryption and secure boot with tpm, allowing for seamless bootup.
+fazziGO is configured for a single monitor gui with a few options. It also
+boasts full root disk encryption and secure boot with tpm, allowing for seamless
+bootup.
