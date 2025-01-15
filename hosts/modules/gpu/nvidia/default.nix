@@ -5,15 +5,21 @@
   ...
 }: {
   imports = [./nvuv];
-  options.gpu.nvidia.exposeTemp = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Exposes nvidia GPU temperature at /tmp/nvidia-temp";
-  };
-  options.gpu.nvidia.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enables the nvidia GPU configuration";
+  options = {
+    gpu = {
+      nvidia = {
+        exposeTemp = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Exposes nvidia GPU temperature at /tmp/nvidia-temp";
+        };
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Enables the nvidia GPU configuration";
+        };
+      };
+    };
   };
 
   config = lib.mkIf config.gpu.nvidia.enable {
@@ -34,7 +40,6 @@
         ];
       };
     };
-    # boot.kernelParams = ["nvidia.NVreg_UsePageAttributeTable=1" "nvidia.NVreg_EnableGpuFirmware=0"];
     boot.kernelParams = ["nvidia.NVreg_UsePageAttributeTable=1"];
     boot.initrd = {
       kernelModules = [
@@ -42,6 +47,7 @@
         "nvidia_modeset"
         "nvidia_uvm"
         "nvidia_drm"
+        "i2c_nvidia"
       ];
     };
     systemd = {
@@ -51,8 +57,8 @@
         before = ["fancontrol.service"];
         script = ''
           while :; do
-          	t="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
-          	echo "$((t * 1000))" > /tmp/nvidia-temp
+          	temp="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
+          	echo "$((temp * 1000))" > /tmp/nvidia-temp
           	sleep 5
           done
         '';

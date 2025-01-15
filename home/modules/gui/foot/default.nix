@@ -8,7 +8,6 @@
     default = false;
     description = "Enable the foot terminal and its configs";
   };
-
   config = lib.mkIf config.gui.foot.enable {
     programs.foot = {
       enable = true;
@@ -17,7 +16,6 @@
           include = "~/.cache/wallust/colors_foot.ini";
           font = "monospace:size=13";
           pad = "12x12 center";
-          line-height = "19.5";
           alpha-mode = "matching";
           transparent-fullscreen = "yes";
         };
@@ -30,6 +28,19 @@
         colors = {
           alpha = "0.75";
         };
+      };
+    };
+    # hide footclient and foot-server, they are useless
+    xdg.desktopEntries = {
+      foot-server = {
+        name = "foot-server";
+        noDisplay = true;
+        exec = "";
+      };
+      footclient = {
+        name = "footclient";
+        noDisplay = true;
+        exec = "";
       };
     };
   };

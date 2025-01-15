@@ -412,9 +412,7 @@
 
 [screenshot]
 appname = "screenshot"
-max_icon_size = 300
-icon_position = top
-alignment = center
+max_icon_size = 160
 timeout = 4
 
 [audio]
