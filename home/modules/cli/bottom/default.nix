@@ -37,6 +37,7 @@
             "/nix/store/"
           ];
         };
+        # customize the layout of bottom
         row = [
           {
             ratio = 30;
