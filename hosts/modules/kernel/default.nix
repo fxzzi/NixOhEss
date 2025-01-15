@@ -9,12 +9,15 @@
     then pkgs.linuxKernel.packages.linux_zen
     else if config.kernel.type == "latest"
     then pkgs.linuxPackages_latest
-    else throw "Unsupported kernel type. Use 'zen' or 'latest'.";
+    else if config.kernel.type == "xanmod_latest"
+    then pkgs.linuxKernel.packages.linux_xanmod_latest
+    else throw "Unsupported kernel type. Use 'zen', 'xanmod_latest' or 'latest'.";
 in {
   options.kernel.type = lib.mkOption {
     type = lib.types.enum [
       "latest"
       "zen"
+      "xanmod_latest"
     ];
     default = "latest";
     description = "Selects which kernel you would like to use: 'latest' or 'zen'.";
