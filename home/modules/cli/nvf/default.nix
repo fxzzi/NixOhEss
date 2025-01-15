@@ -5,20 +5,11 @@
     settings = {
       vim = {
         preventJunkFiles = true; # stop those weird ~ files from appearing
+        enableLuaLoader = true;
         viAlias = true;
         vimAlias = true;
         luaConfigRC = {
           basic = ''
-            -- Hide default statusline and ruler in the dashboard
-            vim.api.nvim_create_autocmd("FileType", {
-              pattern = "alpha",
-              callback = function()
-                vim.opt.laststatus = 0
-                vim.opt.ruler = false
-              end,
-              desc = "Hide statusline and ruler in alpha (dashboard)",
-            })
-
             -- Restore terminal cursor to vertical beam on exit
             vim.api.nvim_create_autocmd("ExitPre", {
               group = vim.api.nvim_create_augroup("Exit", { clear = true }),
@@ -40,7 +31,6 @@
         useSystemClipboard = true;
         lsp = {
           formatOnSave = true;
-          lightbulb.enable = true;
           trouble.enable = true;
           lspSignature.enable = true;
         };
