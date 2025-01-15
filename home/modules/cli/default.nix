@@ -6,6 +6,6 @@
     ./zsh
     ./nh
     ./android
-		./nvf
+    ./nvf
   ];
 }

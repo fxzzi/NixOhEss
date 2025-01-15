@@ -50,12 +50,11 @@
       hyprpaper.enable = true;
       xdph.enable = true;
     };
-		home.packages = with pkgs; [
+	};
+	home.packages = with pkgs; [
 			qbittorrent-enhanced
 			telegram-desktop
 		];
-  };
-
   imports = [
     ./modules
   ];

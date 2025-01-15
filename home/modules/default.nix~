@@ -23,6 +23,8 @@
       vesktop
       wget
       python3
+      fzf
+      fd
       ffmpeg
       pwvucontrol
       mate.atril
