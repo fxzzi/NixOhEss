@@ -10,15 +10,12 @@
         spellcheck = {
           enable = true;
         };
-
+        useSystemClipboard = true;
         lsp = {
           formatOnSave = true;
           lightbulb.enable = true;
           trouble.enable = true;
           lspSignature.enable = true;
-          otter-nvim.enable = true;
-          lsplines.enable = true;
-          nvim-docs-view.enable = true;
         };
 
         debugger = {
@@ -28,19 +25,15 @@
           };
         };
 
-        # This section does not include a comprehensive list of available language modules.
-        # To list all available language module options, please visit the nvf manual.
         languages = {
           enableLSP = true;
           enableFormat = true;
           enableTreesitter = true;
           enableExtraDiagnostics = true;
 
-          # Languages that will be supported in default and maximal configurations.
           nix.enable = true;
           markdown.enable = true;
 
-          # Languages that are enabled in the maximal configuration.
           bash.enable = true;
           clang.enable = true;
           css.enable = true;
@@ -51,7 +44,6 @@
         };
 
         visuals = {
-          nvim-scrollbar.enable = true;
           nvim-web-devicons.enable = true;
           nvim-cursorline.enable = true;
           cinnamon-nvim.enable = true;
@@ -59,7 +51,6 @@
 
           highlight-undo.enable = true;
           indent-blankline.enable = true;
-
         };
 
         statusline = {
@@ -83,15 +74,13 @@
 
         filetree = {
           neo-tree = {
-            enable = true;
+            enable = false;
           };
         };
 
         tabline = {
           nvimBufferline.enable = true;
         };
-
-        treesitter.context.enable = true;
 
         binds = {
           whichKey.enable = true;
@@ -106,47 +95,17 @@
           gitsigns.codeActions.enable = false; # throws an annoying debug message
         };
 
-        minimap = {
-          minimap-vim.enable = false;
-          codewindow.enable = true; # lighter, faster, and uses lua for configuration
-        };
-
         dashboard = {
-          dashboard-nvim.enable = false;
           alpha.enable = true;
         };
 
-        notify = {
-          nvim-notify.enable = true;
-        };
-
-        projects = {
-          project-nvim.enable = true;
-        };
-
         utility = {
-          ccc.enable = false;
-          vim-wakatime.enable = false;
           icon-picker.enable = true;
-          surround.enable = true;
           diffview-nvim.enable = true;
           motion = {
             hop.enable = true;
             leap.enable = true;
-            precognition.enable = true;
           };
-
-          images = {
-            image-nvim.enable = false;
-          };
-        };
-
-        notes = {
-          obsidian.enable = false; # FIXME: neovim fails to build if obsidian is enabled
-          neorg.enable = false;
-          orgmode.enable = false;
-          mind-nvim.enable = true;
-          todo-comments.enable = true;
         };
 
         terminal = {
@@ -160,36 +119,19 @@
           borders.enable = true;
           noice.enable = true;
           colorizer.enable = true;
-          modes-nvim.enable = false; # the theme looks terrible with catppuccin
           illuminate.enable = true;
           breadcrumbs = {
             enable = true;
             navbuddy.enable = true;
           };
-          smartcolumn = {
-            enable = true;
-            setupOpts.custom_colorcolumn = {
-              # this is a freeform module, it's `buftype = int;` for configuring column position
-              nix = "110";
-            };
-          };
           fastaction.enable = true;
         };
 
         assistant = {
-          chatgpt.enable = false;
           copilot = {
-            enable = false;
-            cmp.enable = false;
+            enable = true;
+            cmp.enable = true;
           };
-        };
-
-        session = {
-          nvim-session-manager.enable = false;
-        };
-
-        gestures = {
-          gesture-nvim.enable = false;
         };
 
         comments = {
