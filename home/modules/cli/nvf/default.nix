@@ -4,12 +4,10 @@
     enable = true;
     settings = {
       vim = {
+        preventJunkFiles = true; # stop those weird ~ files from appearing
         viAlias = true;
         vimAlias = true;
 
-        spellcheck = {
-          enable = true;
-        };
         useSystemClipboard = true;
         lsp = {
           formatOnSave = true;
@@ -46,7 +44,6 @@
         visuals = {
           nvim-web-devicons.enable = true;
           nvim-cursorline.enable = true;
-          cinnamon-nvim.enable = true;
           fidget-nvim.enable = true;
 
           highlight-undo.enable = true;
@@ -139,7 +136,7 @@
         };
 
         presence = {
-          neocord.enable = false;
+          neocord.enable = true;
         };
       };
     };
