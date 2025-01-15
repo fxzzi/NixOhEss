@@ -13,6 +13,8 @@
     ags.url = "github:Aylur/ags/v1"; # i still have not updated to agsv2/astal yet lol
     agenix.url = "github:ryantm/agenix";
     nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack";
+    nvf.url = "github:notashelf/nvf";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {

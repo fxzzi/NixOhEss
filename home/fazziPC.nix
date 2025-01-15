@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   scripts.enable = true;
   xdgConfig.enable = true;
   apps = {
@@ -17,7 +17,6 @@
   cli = {
     bottom.enable = true;
     fastfetch.enable = true;
-    neovim.enable = true;
     ssh.enable = true;
     zsh.enable = true;
     android.enable = true;
@@ -51,6 +50,10 @@
       hyprpaper.enable = true;
       xdph.enable = true;
     };
+		home.packages = with pkgs; [
+			qbittorrent-enhanced
+			telegram-desktop
+		];
   };
 
   imports = [
