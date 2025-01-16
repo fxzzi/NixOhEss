@@ -46,15 +46,18 @@
       secondaryMonitor = "DP-2";
       hyprland.enable = true;
       hyprlock.enable = true;
-      hypridle.enable = true;
+      hypridle = {
+        enable = true;
+        suspendTimeout = 480;
+      };
       hyprpaper.enable = true;
       xdph.enable = true;
     };
-	};
-	home.packages = with pkgs; [
-			qbittorrent-enhanced
-			telegram-desktop
-		];
+  };
+  home.packages = with pkgs; [
+    qbittorrent-enhanced
+    telegram-desktop
+  ];
   imports = [
     ./modules
   ];
