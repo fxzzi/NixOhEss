@@ -20,6 +20,7 @@
     ssh.enable = true;
     zsh.enable = true;
     android.enable = true;
+    nh.enable = true;
   };
   music = {
     extraApps.enable = true;
