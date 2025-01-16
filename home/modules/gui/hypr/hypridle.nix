@@ -1,7 +1,7 @@
 {
   config,
+  pkgs,
   lib,
-  hostName,
   ...
 }: {
   options.gui.hypr.hypridle.enable = lib.mkOption {
@@ -9,12 +9,17 @@
     default = false;
     description = "Enables hypridle and its configs.";
   };
+  options.gui.hypr.hypridle.suspendTimeout = lib.mkOption {
+    type = lib.types.int;
+    default = 360;
+    description = "Sets the suspend timeout for hypridle.";
+  };
   config = lib.mkIf config.gui.hypr.hypridle.enable {
     services.hypridle = {
       enable = true;
       settings = {
         general = {
-          lock_cmd = "pidof hyprlock || hyprlock.sh";
+          lock_cmd = "pidof ${builtins.baseNameOf (lib.getExe pkgs.hyprlock)} || (cp $(${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"} hyprpaper listloaded) /tmp/wallpaper; ${lib.getExe pkgs.hyprlock})";
           before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "hyprctl dispatch dpms on";
         };
@@ -29,10 +34,7 @@
             on-timeout = "loginctl lock-session";
           }
           {
-            timeout =
-              if hostName == "fazziPC"
-              then 480
-              else 360;
+            timeout = config.gui.hypr.hypridle.suspendTimeout;
             on-timeout = "systemctl suspend";
           }
         ];

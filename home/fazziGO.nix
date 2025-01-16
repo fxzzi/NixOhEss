@@ -40,7 +40,10 @@
       secondaryMonitor = null;
       hyprland.enable = true;
       hyprlock.enable = true;
-      hypridle.enable = true;
+      hypridle = {
+        enable = true;
+        suspendTimeout = 360;
+      };
       hyprpaper.enable = true;
       xdph.enable = true;
     };
