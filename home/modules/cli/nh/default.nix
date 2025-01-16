@@ -1,16 +1,31 @@
 {
-  pkgs,
   config,
+  lib,
   ...
 }: {
-  home.packages = with pkgs; [
-    nh
-    nvd
-    nix-output-monitor
-  ];
-  programs.zsh.shellAliases = {
-    rb = "nh os switch ${config.xdg.configHome}/nixos";
-    rbu = "nh os switch -u ${config.xdg.configHome}/nixos";
-    rbb = "nh os boot ${config.xdg.configHome}/nixos";
+  options.cli.nh.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enables nh with some shell aliases, and daily gc.";
+  };
+  config = lib.mkIf config.cli.nh.enable {
+    programs = {
+      nh = {
+        enable = true;
+        flake = "${config.xdg.configHome}/nixos";
+        clean = {
+          enable = true;
+          dates = "daily";
+          extraArgs = "--keep 5 --keep-since 3d";
+        };
+      };
+
+      zsh.shellAliases = {
+        rb = "nh os switch";
+        rbu = "nh os switch -u";
+        rbb = "nh os boot";
+        rbbu = "nh os boot -u";
+      };
+    };
   };
 }

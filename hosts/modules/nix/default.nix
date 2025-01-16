@@ -11,11 +11,6 @@ _: {
       allowed-users = ["@wheel"];
       trusted-users = ["@wheel"];
     };
-    gc = {
-      automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 7d";
-    };
   };
   nixpkgs.config.allowUnfree = true;
   documentation.nixos.enable = false;
