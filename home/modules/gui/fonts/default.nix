@@ -22,6 +22,7 @@ in {
       apple-fonts.sf-pro
       apple-fonts.ny
       icomoon-feather
+      corefonts # ms fonts.
     ];
     gtk = {
       font = {
