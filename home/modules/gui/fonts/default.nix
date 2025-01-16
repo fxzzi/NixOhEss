@@ -33,7 +33,7 @@ in {
       enable = true;
       defaultFonts = {
         serif = [
-          "New York Small"
+          "New York Medium"
         ];
         sansSerif = [
           "SF Pro Text"
@@ -41,7 +41,9 @@ in {
         monospace = [
           "SpaceMono Nerd Font"
         ];
-        emoji = ["Noto Color Emoji"];
+        emoji = [
+          "Noto Color Emoji"
+        ];
       };
     };
   };
