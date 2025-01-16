@@ -167,7 +167,7 @@ in {
           };
         };
         animations = {
-          enabled = 0; # Enable animations
+          enabled = 0;
 
           bezier = [
             "overshot, 0.05, 0.9, 0.1, 1.05"
@@ -332,6 +332,7 @@ in {
           ", XF86AudioLowerVolume, exec, audio.sh vol down 5"
           ", XF86AudioMute, exec, audio.sh vol toggle"
           ", XF86AudioMicMute, exec, audio.sh mic toggle"
+          ", F20, exec, audio.sh mic toggle"
 
           # brightness script
           ", XF86MonBrightnessUp, exec, ${brightnessScript} up 5"
