@@ -27,6 +27,7 @@ in {
     gtk = {
       font = {
         name = "SF Pro Text";
+        size = 11;
       };
     };
     fonts.fontconfig = {
@@ -36,7 +37,7 @@ in {
           "New York Medium"
         ];
         sansSerif = [
-          "SF Pro Text"
+          config.gtk.font.name
         ];
         monospace = [
           "SpaceMono Nerd Font"
