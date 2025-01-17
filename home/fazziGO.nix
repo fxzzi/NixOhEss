@@ -17,6 +17,7 @@
     bottom.enable = true;
     fastfetch.enable = true;
     ssh.enable = true;
+    git.enable = true;
     zsh.enable = true;
     android.enable = true;
     nh.enable = true;
