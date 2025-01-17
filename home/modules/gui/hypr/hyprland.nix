@@ -156,7 +156,7 @@ in {
           initial_workspace_tracking = 0;
           disable_hyprland_qtutils_check = 1;
         };
-        source = lib.mkIf config.gui.fuzzel.enable ["~/.cache/wallust/colors_hyprland.conf"];
+        source = ["~/.cache/wallust/colors_hyprland.conf"];
         decoration = {
           rounding = 0;
           layerrule = [

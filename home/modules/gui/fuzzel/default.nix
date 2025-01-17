@@ -15,12 +15,12 @@
       package = pkgs.fuzzel.override {svgBackend = "librsvg";};
       settings = {
         main = {
-          font = "monospace:size=10";
-          line-height = "18";
+          font = "SpaceMono Nerd Font:size=17";
+          line-height = "30";
           prompt = "' '";
           layer = "overlay";
           lines = "10";
-          icon-theme = config.gtk.iconTheme.name;
+          icon-theme = "Papirus-Dark";
           horizontal-pad = "10";
           vertical-pad = "10";
           inner-pad = "6";
@@ -31,12 +31,12 @@
           placeholder = "Search...";
           sort-result = "false";
           match-mode = "exact";
-          dpi-aware = true;
-          include = lib.mkIf config.gui.wallust.enable "~/.cache/wallust/colors_fuzzel.ini";
+          dpi-aware = false;
+          include = "~/.cache/wallust/colors_fuzzel.ini";
         };
         border = {
-          radius = "0";
-          width = "3";
+          radius = "6";
+          width = "2";
         };
         key-bindings = {
           prev-with-wrap = "Up";
