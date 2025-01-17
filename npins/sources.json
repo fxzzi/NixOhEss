@@ -68,8 +68,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre737947.357cd3dfdb89/nixexprs.tar.xz",
-      "hash": "1i2y5wbbvk6bll1da33if1jq4f7icqsigyd3aqgi74gg18a8hqfw"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre738722.ae06b9c2d83c/nixexprs.tar.xz",
+      "hash": "0pbsbn0q8b4ncyvx2rhzj6qd5myqpldacx0sxg54grvgda690dx5"
     },
     "obs-pipewire-audio-capture": {
       "type": "Git",
