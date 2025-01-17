@@ -6,6 +6,7 @@
 }: let
   xcursor-pro-light-hyprcursor = pkgs.stdenv.mkDerivation {
     pname = "xcursor-pro-light-hyprcursor";
+    cursorTheme = config.home.pointerCursor.name;
     version = "1.0";
 
     src = builtins.fetchTarball {
@@ -15,10 +16,10 @@
 
     phases = ["installPhase"];
     installPhase = ''
-      mkdir -p $out/share/icons/XCursor-Pro-Light/hyprcursors
+      mkdir -p $out/share/icons/"$cursorTheme"/hyprcursors
 
-      cp -a $src/hyprcursors/* $out/share/icons/XCursor-Pro-Light/hyprcursors/
-      install -m644 $src/manifest.hl $out/share/icons/XCursor-Pro-Light/manifest.hl
+      cp -a $src/hyprcursors/* $out/share/icons/"$cursorTheme"/hyprcursors/
+      install -m644 $src/manifest.hl $out/share/icons/"$cursorTheme"/manifest.hl
     '';
   };
 in {
