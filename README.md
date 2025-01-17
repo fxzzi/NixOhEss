@@ -15,7 +15,7 @@ laptop respectively.
 
 ## Structure
 
-- [`flake.nix`](./flake.nix): The flake which delcares entry points and inputs
+- [`flake.nix`](./flake.nix): The flake which declares entry points and inputs
   for my entire configuration. Basic options like the username can be found
   here.
 - [`hosts/`](./hosts/): All of the nixOS configuration is contained here.
