@@ -32,10 +32,10 @@ in {
               monitor = "${config.gui.hypr.defaultMonitor}";
               path = "/tmp/wallpaper";
               blur_size = 3;
-              blur_passes = 4; # 0 disables blurring
+              blur_passes = 3; # 0 disables blurring
               contrast = 1;
-              brightness = 0.4;
-              vibrancy = 0.4;
+              brightness = 0.5;
+              vibrancy = 0.5;
             }
           ]
           (lib.mkIf multiMonitor [
@@ -43,10 +43,10 @@ in {
               monitor = "";
               path = "/tmp/wallpaper";
               blur_size = 3;
-              blur_passes = 4; # 0 disables blurring
+              blur_passes = 3; # 0 disables blurring
               contrast = 0.9;
-              brightness = 0.15;
-              vibrancy = 0.15;
+              brightness = 0.3;
+              vibrancy = 0.3;
             }
           ])
         ];
