@@ -18,7 +18,7 @@ laptop respectively.
 - [`flake.nix`](./flake.nix): The flake which delcares entry points and inputs
   for my entire configuration. Basic options like the username can be found
   here.
-- [`hosts/`](./hosts/): All of the nixOS configuration is contained within here.
+- [`hosts/`](./hosts/): All of the nixOS configuration is contained here.
   - [`fazziPC.nix`](./hosts/fazziPC.nix): define all the options for my PC
   - [`fazziGO.nix`](./hosts/fazziGO.nix): define all the options for my laptop-
 - [`home/`](./home/): All of the home-manager configuration is contained here.
@@ -33,3 +33,8 @@ laptop respectively.
 - [raf](https://github.com/NotAShelf) for nvf and helping with a lot of stuff
 - [Nobbz](https://github.com/NobbZ) for helping a ton over discord
 - the others which i wasn't able to mention here!!
+
+## License
+
+This project is licensed under the MIT License. You are free to read the terms
+of the license here: [LICENSE](./LICENSE)
