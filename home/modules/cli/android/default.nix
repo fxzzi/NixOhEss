@@ -16,7 +16,7 @@
         payload-dumper-go
       ];
       programs.zsh.shellAliases = {
-        adb = "HOME=${config.xdg.dataHome}/android ${lib.getExe pkgs.android-tools}";
+        adb = "HOME=${config.xdg.dataHome}/android ${lib.getExe' pkgs.android-tools "adb"}";
 
         webcam1080 = "scrcpy --video-source=camera --no-audio --camera-facing=back \\
 					--v4l2-sink=/dev/video0 --camera-size=1920x1080 --video-bit-rate=6000K \\
