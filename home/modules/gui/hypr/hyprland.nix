@@ -63,11 +63,6 @@ in {
       extraPortals = with pkgs; [xdg-desktop-portal-gtk];
     };
 
-    home.pointerCursor = {
-      hyprcursor.enable = true;
-      hyprcursor.size = 24;
-    };
-
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.variables = ["--all"];
@@ -372,10 +367,10 @@ in {
         # 	"AQ_TRACE" = "1"
         # 	"HYPRLAND_TRACE" = "1"
         # ];
-        # debug = {
-        #   disable_logs = 0;
-        #   watchdog_timeout = 0;
-        # };
+        debug = {
+          disable_logs = 0;
+          watchdog_timeout = 0;
+        };
       };
       extraConfig = ''
         # submaps
