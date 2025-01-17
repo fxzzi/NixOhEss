@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options.cli.fastfetch.enable = lib.mkOption {
@@ -74,9 +75,9 @@
     };
     programs.zsh.initExtraFirst = lib.mkIf config.cli.fastfetch.zshIntegration ''
       if [ -z $WAYLAND_DISPLAY ]; then
-        fastfetch -l none
+        ${lib.getExe pkgs.fastfetch} -l none
       else
-        fastfetch
+        ${lib.getExe pkgs.fastfetch}
       fi
     '';
   };
