@@ -64,5 +64,8 @@
         execute_on_song_change = "mpd-notif.sh";
       };
     };
+    programs.zsh.shellAliases = {
+      ncm = "${lib.getExe pkgs.ncmpcpp}";
+    };
   };
 }
