@@ -88,15 +88,6 @@
             # I don't like programs.eza.enableZshIntegration's original 'll' alias
             ll = "eza -la";
 
-            g = "git";
-            ga = "git add";
-            gaa = "git add --all";
-            gb = "git branch";
-            gc = "git commit --verbose";
-            gcam = "git commit --all --message";
-            gd = "git diff";
-            gp = "git push";
-
             wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
             adb = "HOME=${config.xdg.dataHome}/android adb";
             ncm = "ncmpcpp";

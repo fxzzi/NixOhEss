@@ -40,11 +40,6 @@
         	IdentityFile ${config.xdg.dataHome}/ssh/codeberg
       '';
     };
-    programs.git = {
-      enable = true;
-      userName = "Fazzi";
-      userEmail = "faaris.ansari@proton.me";
-    };
     services.gnome-keyring = {
       enable = true;
       components = ["pkcs11" "secrets" "ssh"];

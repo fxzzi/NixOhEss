@@ -11,14 +11,16 @@
     description = "Enables the basic networkmanager configuration";
   };
   config = lib.mkIf config.netConfig.networkmanager.enable {
-    environment.systemPackages = with pkgs; [
-      networkmanagerapplet
-    ];
+    # environment.systemPackages = with pkgs; [
+    #   networkmanagerapplet
+    # ];
+    programs.nm-applet.enable = true;
     networking = {
       networkmanager = {
         enable = true;
-        # powersaving for laptop
-        wifi.powersave = true;
+        wifi = {
+          powersave = true;
+        };
         dns = "systemd-resolved";
       };
     };

@@ -34,8 +34,8 @@ in {
               blur_size = 3;
               blur_passes = 4; # 0 disables blurring
               contrast = 1;
-              brightness = 0.3;
-              vibrancy = 0.3;
+              brightness = 0.4;
+              vibrancy = 0.4;
             }
           ]
           (lib.mkIf multiMonitor [
@@ -45,8 +45,8 @@ in {
               blur_size = 3;
               blur_passes = 4; # 0 disables blurring
               contrast = 0.9;
-              brightness = 0.1;
-              vibrancy = 0.1;
+              brightness = 0.15;
+              vibrancy = 0.15;
             }
           ])
         ];
