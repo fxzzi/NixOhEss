@@ -22,10 +22,17 @@
 in {
   options.gui = {
     hypr = {
-      hyprland.enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Enables hyprland and its configuration.";
+      hyprland = {
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Enables hyprland and its configuration.";
+        };
+        autoStart = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Enables hyprland to run automatically in tty1 (zsh)";
+        };
       };
       defaultMonitor = lib.mkOption {
         type = lib.types.str;
@@ -41,6 +48,11 @@ in {
   };
 
   config = lib.mkIf config.gui.hypr.hyprland.enable {
+    programs.zsh.profileExtra = lib.mkIf config.gui.hypr.hyprland.autoStart ''
+      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+        exec Hyprland
+      fi
+    '';
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
