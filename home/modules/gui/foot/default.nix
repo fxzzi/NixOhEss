@@ -19,7 +19,8 @@
       settings = {
         main = {
           include = lib.mkIf config.gui.wallust.enable "~/.cache/wallust/colors_foot.ini";
-          font = "monospace:size=13";
+          font = "monospace:size=8";
+          dpi-aware = true;
           pad = "12x12 center";
           alpha-mode = "matching";
           transparent-fullscreen = "yes";
