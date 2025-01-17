@@ -8,6 +8,11 @@
     default = false;
     description = "Enables fastfetch, for sysinfo.";
   };
+  options.cli.fastfetch.zshIntegration = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enables fastfetch inside zshrc";
+  };
   config = lib.mkIf config.cli.fastfetch.enable {
     programs.fastfetch = {
       enable = true;
@@ -67,5 +72,12 @@
         ];
       };
     };
+    programs.zsh.initExtraFirst = lib.mkIf config.cli.fastfetch.zshIntegration ''
+      if [ -z $WAYLAND_DISPLAY ]; then
+        fastfetch -l none
+      else
+        fastfetch
+      fi
+    '';
   };
 }
