@@ -46,7 +46,10 @@
     hypr = {
       defaultMonitor = "eDP-1";
       secondaryMonitor = null;
-      hyprland.enable = true;
+      hyprland = {
+        enable = true;
+        autoStart = true;
+      };
       hyprlock.enable = true;
       hypridle = {
         enable = true;

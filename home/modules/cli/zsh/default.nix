@@ -61,11 +61,6 @@
           bindkey '^[[A' history-substring-search-up
           bindkey '^[[B' history-substring-search-down
         '';
-        profileExtra = ''
-          if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-          	exec Hyprland
-          fi
-        '';
         history = {
           path = "${config.xdg.dataHome}/zsh/zsh_history";
           ignoreAllDups = true;
