@@ -15,7 +15,10 @@
   };
   cli = {
     bottom.enable = true;
-    fastfetch.enable = true;
+    fastfetch = {
+      enable = true;
+      zshIntegration = true;
+    };
     ssh.enable = true;
     git.enable = true;
     zsh.enable = true;
@@ -34,7 +37,10 @@
     toolkitConfig.enable = true;
     wallust.enable = true;
     ags.enable = true;
-    foot.enable = true;
+    foot = {
+      enable = true;
+      zshIntegration = true;
+    };
     fuzzel.enable = true;
     wleave.enable = true;
     hypr = {

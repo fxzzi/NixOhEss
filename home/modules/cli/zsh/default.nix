@@ -61,12 +61,6 @@
             # for zsh-fzf-history-search
             bindkey '^[[A' history-substring-search-up
             bindkey '^[[B' history-substring-search-down
-
-            if [ -z $WAYLAND_DISPLAY ]; then
-              fastfetch -l none
-            else
-              fastfetch
-            fi
           '';
           profileExtra = ''
             if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
@@ -85,7 +79,6 @@
             grep = "rg";
             cat = "bat";
 
-            # I don't like programs.eza.enableZshIntegration's original 'll' alias
             ll = "eza -la";
 
             wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
