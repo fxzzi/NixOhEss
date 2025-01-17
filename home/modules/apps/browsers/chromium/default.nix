@@ -29,6 +29,7 @@
         "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
         "--enable-features=VaapiOnNvidiaGPUs"
         "--enable-features=VaapiIgnoreDriverChecks"
+        "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
       ];
     };
     # only enable the wootility app if chromium is actually enabled
