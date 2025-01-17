@@ -10,7 +10,7 @@
 This repo consists of a relatively simple configuration for my desktop and
 laptop with nixOS and home-manager.
 
-two hostnames will be found in my config, fazziPC, and fazziGO for my PC and
+two hostnames will be found in my config; fazziPC and fazziGO for my PC and
 laptop respectively.
 
 ## Structure
