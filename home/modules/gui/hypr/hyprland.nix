@@ -50,7 +50,7 @@ in {
   config = lib.mkIf config.gui.hypr.hyprland.enable {
     programs.zsh.profileExtra = lib.mkIf config.gui.hypr.hyprland.autoStart ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-        exec Hyprland
+        exec hyprland
       fi
     '';
     xdg.portal = {
