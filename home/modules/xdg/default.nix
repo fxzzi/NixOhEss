@@ -14,6 +14,7 @@
       enable = true;
       mime.enable = true;
       userDirs.enable = true;
+      configFile."mimeapps.list".force = true; # don't error when mimeapps.list is replaced, it gets replaced often
       mimeApps = {
         enable = true;
         defaultApplications = {
@@ -56,6 +57,12 @@
           "audio/flac" = "mpv.desktop";
           "audio/wav" = "mpv.desktop";
           "audio/aac" = "mpv.desktop";
+
+          "application/x-osu-beatmap-archive" = "osu!.desktop"; # .osz
+          "application/x-osu-skin-archive" = "osu!.desktop"; # .osk
+          "application/x-osu-beatmap" = "osu!.desktop"; # .osu
+          "application/x-osu-storyboard" = "osu!.desktop"; # .osb
+          "application/x-osu-replay" = "osu!.desktop"; # .osr
         };
       };
     };

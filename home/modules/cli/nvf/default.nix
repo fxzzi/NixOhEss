@@ -11,6 +11,14 @@
         vimAlias = true;
         luaConfigRC = {
           basic = ''
+            vim.api.nvim_create_autocmd("FileType", {
+              pattern = "nix",
+              callback = function(opts)
+                    local bo = vim.bo[opts.buf]
+                    bo.tabstop = 2
+                    bo.shiftwidth = 2
+              end
+             })
             -- Restore terminal cursor to vertical beam on exit
             vim.api.nvim_create_autocmd("ExitPre", {
               group = vim.api.nvim_create_augroup("Exit", { clear = true }),

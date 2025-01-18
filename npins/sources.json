@@ -83,18 +83,6 @@
       "url": "https://github.com/dimtpap/obs-pipewire-audio-capture/archive/b4ca0a80c218de2c1be86d67963569e91ad14b61.tar.gz",
       "hash": "1672h12pmqirwsb8wyixj3n2kpn1m71jn9a3fj5mxkqh81xzb1h2"
     },
-    "xone": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "dlundqvist",
-        "repo": "xone"
-      },
-      "branch": "master",
-      "revision": "6b9d59aed71f6de543c481c33df4705d4a590a31",
-      "url": "https://github.com/dlundqvist/xone/archive/6b9d59aed71f6de543c481c33df4705d4a590a31.tar.gz",
-      "hash": "03pqmk41a89kllalrh7hahh33f89y9zpvqxad7546a7lqvclz71j"
-    },
     "zsh-completions": {
       "type": "GitRelease",
       "repository": {
@@ -121,6 +109,21 @@
       "revision": "d5a9730b5b4cb0b39959f7f1044f9c52743832ba",
       "url": "https://github.com/joshskidmore/zsh-fzf-history-search/archive/d5a9730b5b4cb0b39959f7f1044f9c52743832ba.tar.gz",
       "hash": "1dm1asa4ff5r42nadmj0s6hgyk1ljrckw7val8fz2n0892b8h2mm"
+    },
+    "zsh-nix-shell": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "chisui",
+        "repo": "zsh-nix-shell"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "version": "v0.8.0",
+      "revision": "8b86281cf9e9ef9f207433dd8b36d157dd48d50a",
+      "url": "https://api.github.com/repos/chisui/zsh-nix-shell/tarball/v0.8.0",
+      "hash": "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7"
     }
   },
   "version": 3
