@@ -29,6 +29,7 @@
       mate.eom
       libreoffice-qt6-fresh
       npins
+      yt-dlp
     ];
   };
 
