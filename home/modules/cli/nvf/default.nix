@@ -5,7 +5,7 @@
     settings = {
       vim = {
         preventJunkFiles = true; # stop those weird ~ files from appearing
-        undoFile.enable = true;
+        undoFile.enable = true; # multi-session undo
         enableLuaLoader = true;
         viAlias = true;
         vimAlias = true;
@@ -120,7 +120,6 @@
           icon-picker.enable = true;
           diffview-nvim.enable = true;
           motion = {
-            hop.enable = true;
             leap.enable = true;
           };
         };
@@ -133,7 +132,6 @@
         };
 
         ui = {
-          borders.enable = true;
           noice.enable = true;
           colorizer.enable = true;
           illuminate.enable = true;
