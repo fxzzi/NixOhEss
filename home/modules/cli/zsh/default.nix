@@ -20,6 +20,11 @@
         historySubstringSearch.enable = true;
         autosuggestion.enable = true;
         initExtraFirst = ''
+          if [ -n "$IN_NIX_SHELL" ]; then
+              export PROMPT="[nix-shell] %F{yellow}%3~%f $ "
+          else
+              export PROMPT="%F{yellow}%3~%f $ "
+          fi
           # Define key bindings
           bindkey -r '\e'
           bindkey -s '^[[27;2;27~' '~'
@@ -67,7 +72,7 @@
           extended = true;
         };
         localVariables = {
-          PROMPT = "%F{yellow}%3~%f $ ";
+          # PROMPT = "%F{yellow}%3~%f $ ";
         };
         shellAliases = {
           grep = "rg";
@@ -96,6 +101,10 @@
           {
             name = "zsh-fzf-history-search";
             src = npins.zsh-fzf-history-search;
+          }
+          {
+            name = "nix-shell";
+            src = npins.zsh-nix-shell;
           }
         ];
       };

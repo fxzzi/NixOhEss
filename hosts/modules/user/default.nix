@@ -25,6 +25,7 @@
       extraGroups = [
         "wheel"
         "video"
+        "input"
       ];
       shell = pkgs.${config.user.shell}; # Set shell to zsh
       uid = 1000;
