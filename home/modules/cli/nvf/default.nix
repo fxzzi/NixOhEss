@@ -5,6 +5,7 @@
     settings = {
       vim = {
         preventJunkFiles = true; # stop those weird ~ files from appearing
+        undoFile.enable = true;
         enableLuaLoader = true;
         viAlias = true;
         vimAlias = true;
