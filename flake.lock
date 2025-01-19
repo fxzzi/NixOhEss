@@ -400,11 +400,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1737299472,
-        "narHash": "sha256-wWucqPz+r6SPpxOyjcPCpojtNqohCkkLyTCsCFwsJ0c=",
+        "lastModified": 1737310896,
+        "narHash": "sha256-SUnsf+pETM84bT1G0aPAle22Og6mZFf53rq0thVI2cg=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "8dd2cd41fb4c5a5eb6886cc190419b36084cabfa",
+        "rev": "407453166ce2a52433c7b0b4ee92a41e47ef8f6d",
         "type": "github"
       },
       "original": {
@@ -425,11 +425,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735774328,
-        "narHash": "sha256-vIRwLS9w+N99EU1aJ+XNOU6mJTxrUBa31i1r82l0V7s=",
+        "lastModified": 1737127640,
+        "narHash": "sha256-mIQ3/axCZ4g8ySwWRbW4fJcyC9v55uAii3cqlJRtW8g=",
         "owner": "hyprwm",
         "repo": "hyprland-protocols",
-        "rev": "e3b6af97ddcfaafbda8e2828c719a5af84f662cb",
+        "rev": "455c055883d9639d4fcbfcedb4c6d12ce313791e",
         "type": "github"
       },
       "original": {
@@ -932,6 +932,7 @@
         "plugin-precognition-nvim": "plugin-precognition-nvim",
         "plugin-project-nvim": "plugin-project-nvim",
         "plugin-promise-async": "plugin-promise-async",
+        "plugin-rainbow-delimiters": "plugin-rainbow-delimiters",
         "plugin-registers": "plugin-registers",
         "plugin-render-markdown-nvim": "plugin-render-markdown-nvim",
         "plugin-rose-pine": "plugin-rose-pine",
@@ -959,11 +960,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1737282111,
-        "narHash": "sha256-2x+Nt/tUpImLz77aJy4lUgtygbG9jeYMRdpcRGbq3GU=",
+        "lastModified": 1737313664,
+        "narHash": "sha256-WIVEbeD6ftppvwSxX8f0qk7HefjsqGgjx+IkSdiAmdE=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "db8a586b7ed5a59995e13e5dab63b39a204946a3",
+        "rev": "c002e8f572ad4753e6fa5411c4cf7ed5659da688",
         "type": "github"
       },
       "original": {
@@ -3241,6 +3242,22 @@
       "original": {
         "owner": "kevinhwang91",
         "repo": "promise-async",
+        "type": "github"
+      }
+    },
+    "plugin-rainbow-delimiters": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736686348,
+        "narHash": "sha256-zWHXYs3XdnoszqOFY3hA2L5mNn1a44OAeKv3lL3EMEw=",
+        "owner": "HiPhish",
+        "repo": "rainbow-delimiters.nvim",
+        "rev": "85b80abaa09cbbc039e3095b2f515b3cf8cadd11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "HiPhish",
+        "repo": "rainbow-delimiters.nvim",
         "type": "github"
       }
     },

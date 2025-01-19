@@ -1,5 +1,5 @@
 {
-  hostName,
+  osConfig,
   lib,
   ...
 }: {
@@ -14,7 +14,7 @@
       # fix java bug on tiling wm's / compositors
       _JAVA_AWT_WM_NONREPARENTING = "1";
     }
-    (lib.mkIf (hostName == "fazziPC") {
+    (lib.mkIf osConfig.gpu.nvidia.enable {
       # nvidia shenanigans
       LIBVA_DRIVER_NAME = "nvidia";
       GBM_BACKEND = "nvidia-drm";
