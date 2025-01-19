@@ -95,11 +95,6 @@ in {
         plugin.xwaylandprimary = {
           display = "${config.gui.hypr.defaultMonitor}";
         };
-        plugin.dynamic-cursors = {
-          enabled = true;
-          mode = "tilt";
-        };
-
         input = {
           repeat_rate = 55; # Set characters to repeat on hold every 55ms
           repeat_delay = 375; # Set repeat timeout to 375ms
