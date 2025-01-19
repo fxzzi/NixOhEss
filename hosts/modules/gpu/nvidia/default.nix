@@ -26,8 +26,8 @@
     services.xserver.videoDrivers = ["nvidia"];
     hardware = {
       nvidia = {
-        open = true; # Set to false until wake-up from suspend is fixed
-        modesetting.enable = true; # Enable modesetting in nvidia for nvidia-vaapi-driver
+        open = true; # toggle open kernel modules
+        modesetting.enable = true; # toggle modesetting for wayland
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         package = config.boot.kernelPackages.nvidiaPackages.beta; # Use beta drivers
         nvidiaSettings = false; # Disable nvidia-settings applet, useless on Wayland
@@ -40,15 +40,17 @@
         ];
       };
     };
-    boot.kernelParams = ["nvidia.NVreg_UsePageAttributeTable=1"];
-    boot.initrd = {
-      kernelModules = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
-        "i2c-nvidia_gpu"
-      ];
+    boot = {
+      kernelParams = ["nvidia.NVreg_UsePageAttributeTable=1"];
+      blacklistedKernelModules = ["nouveau"];
+      initrd = {
+        kernelModules = [
+          "nvidia"
+          "nvidia_modeset"
+          "nvidia_uvm"
+          "nvidia_drm"
+        ];
+      };
     };
     systemd = {
       services.nvidia-temp = lib.mkIf config.gpu.nvidia.exposeTemp {
