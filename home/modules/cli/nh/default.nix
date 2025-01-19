@@ -15,7 +15,7 @@
         flake = "${config.xdg.configHome}/nixos";
         clean = {
           enable = true;
-          dates = "hourly";
+          dates = "*-*-* 00/6:00:00";
           extraArgs = "--keep 8";
         };
       };
