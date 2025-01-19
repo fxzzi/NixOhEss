@@ -11,14 +11,6 @@
         vimAlias = true;
         luaConfigRC = {
           basic = ''
-            vim.api.nvim_create_autocmd("FileType", {
-              pattern = "nix",
-              callback = function(opts)
-                    local bo = vim.bo[opts.buf]
-                    bo.tabstop = 2
-                    bo.shiftwidth = 2
-              end
-             })
             -- Restore terminal cursor to vertical beam on exit
             vim.api.nvim_create_autocmd("ExitPre", {
               group = vim.api.nvim_create_augroup("Exit", { clear = true }),
@@ -167,4 +159,17 @@
       };
     };
   };
+  # make indents normal lmfao
+  home.file.".editorconfig".text = ''
+    root=true
+
+    [*]
+    charset=utf-8
+    end_of_line=lf
+    indent_size=2
+    indent_style=space
+    insert_final_newline=true
+    max_line_width=80
+    trim_trailing_whitespace=true
+  '';
 }
