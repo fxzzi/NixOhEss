@@ -30,6 +30,8 @@
       libreoffice-qt6-fresh
       npins
       yt-dlp
+      xournalpp
+      losslesscut-bin
     ];
   };
 
