@@ -273,7 +273,7 @@ in {
             "$MOD, F, exec, ${lib.getExe' (pkgs.xfce.thunar.override {thunarPlugins = osConfig.programs.thunar.plugins;}) "thunar"}"
             "$MOD, T, exec, ${lib.getExe config.programs.foot.package}"
             "$MOD, B, exec, ${lib.getExe config.programs.librewolf.finalPackage}"
-            "$MOD SHIFT, P, exec, ${lib.getExe config.programs.librewolf.package} --private-window"
+            "$MOD SHIFT, P, exec, ${lib.getExe config.programs.librewolf.finalPackage} --private-window"
             "$MOD, W, exec, ${lib.getExe pkgs.vesktop}"
             "$MOD, D, exec, pkill ${builtins.baseNameOf (lib.getExe config.programs.fuzzel.package)} || ${lib.getExe config.programs.fuzzel.package}"
             "$MOD SHIFT, E, exec, pkill ${builtins.baseNameOf (lib.getExe config.programs.wlogout.package)} || ${lib.getExe config.programs.wlogout.package} --protocol layer-shell -b 5 -T 360 -B 360"
