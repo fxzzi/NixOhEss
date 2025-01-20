@@ -39,7 +39,7 @@ in {
           "@localip@"
         ];
         paths = {
-          fazzi = {};
+          all_others = {};
         };
       };
     };
