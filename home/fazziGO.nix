@@ -58,6 +58,7 @@
       hyprpaper.enable = true;
       xdph.enable = true;
     };
+    dunst.enable = true;
   };
   home.packages = with pkgs; [
     godot3
