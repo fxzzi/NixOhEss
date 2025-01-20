@@ -54,7 +54,7 @@
           	<name>Edit in Terminal</name>
           	<submenu></submenu>
           	<unique-id>1715762765914315-1</unique-id>
-          	<command>${lib.getExe pkgs.foot} ${lib.getExe pkgs.neovim} %f</command>
+          	<command>${lib.getExe pkgs.foot} ${lib.getExe config.programs.nvf.finalPackage} %f</command>
           	<description></description>
           	<range>*</range>
           	<patterns>*</patterns>
