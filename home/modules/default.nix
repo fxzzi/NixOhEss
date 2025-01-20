@@ -28,6 +28,8 @@
       mate.atril
       mate.eom
       libreoffice-qt6-fresh
+      hunspell
+      hunspellDicts.en_GB-ise
       npins
       yt-dlp
       xournalpp
