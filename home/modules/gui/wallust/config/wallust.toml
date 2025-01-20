@@ -25,8 +25,8 @@ pywalfox.target = "~/.cache/wal/colors.json"
 wleave.template = "colors_wleave.css"
 wleave.target = '~/.config/wlogout/colors_wleave.css'
 
-dunst.template = "dunstrc"
-dunst.target = '~/.config/dunst/dunstrc'
+dunst.template = "99-wallust.conf"
+dunst.target = '~/.config/dunst/dunstrc.d/99-wallust.conf'
 
 startpage.template = "colors_startpage.css"
 startpage.target = '~/.cache/wallust/colors_startpage.css'
