@@ -68,6 +68,7 @@
   home.packages = with pkgs; [
     qbittorrent-enhanced
     telegram-desktop
+    losslesscut-bin
   ];
   imports = [
     ./modules

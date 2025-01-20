@@ -31,7 +31,6 @@
       npins
       yt-dlp
       xournalpp
-      losslesscut-bin
     ];
   };
 
