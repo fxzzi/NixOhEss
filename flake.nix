@@ -13,7 +13,13 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
     batmon.url = "github:notashelf/batmon";
     ags.url = "github:Aylur/ags/v1"; # still on v1 lmfao
-    agenix.url = "github:ryantm/agenix";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        darwin.follows = ""; # don't need darwin deps
+      };
+    };
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
