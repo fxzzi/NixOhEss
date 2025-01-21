@@ -23,7 +23,7 @@
     };
     # home-manager mangohud module doesn't support
     # setting presets. so, set them here
-    home.file.".config/MangoHud/presets.conf".text = ''
+    xdg.configFile."MangoHud/presets.conf".text = ''
       [preset 0]
       fps_only
       background_alpha=0
