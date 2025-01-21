@@ -75,6 +75,24 @@
         urgency_critical = {
           timeout = 6;
         };
+        screenshot = {
+          appname = "screenshot";
+          max_icon_size = 160;
+          timeout = 4;
+        };
+        audio = {
+          appname = "audio";
+          timeout = 2;
+        };
+        brightness = {
+          appname = "brightness";
+          timeout = 2;
+        };
+        mpd = {
+          appname = "mpd";
+          max_icon_size = 96;
+          timeout = 3;
+        };
       };
     };
   };
