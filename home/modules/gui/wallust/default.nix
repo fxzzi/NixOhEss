@@ -12,8 +12,7 @@
   config = lib.mkIf config.gui.wallust.enable {
     home.packages = with pkgs; [
       wallust
-      dunst
     ];
-    home.file.".config/wallust".source = "${./config}";
+    xdg.configFile."wallust".source = "${./wallust}";
   };
 }
