@@ -50,7 +50,7 @@ in {
   config = lib.mkIf config.gui.hypr.hyprland.enable {
     programs.zsh.profileExtra = lib.mkIf config.gui.hypr.hyprland.autoStart ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-        exec ${lib.getExe' config.wayland.windowManager.hyprland.package "hyprland"}
+        exec dbus-run-session -- ${lib.getExe' config.wayland.windowManager.hyprland.package "hyprland"}
       fi
     '';
     xdg.portal = {
