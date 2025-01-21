@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  osConfig,
   ...
 }: {
   options.apps.browsers.librewolf.enable = lib.mkOption {
@@ -46,9 +47,13 @@
       // Stop weirdness when relaunching browser sometimes
       pref("browser.sessionstore.resume_from_crash", false);
 
-      // Enable NVIDIA VA-API driver
+      // enable vaapi accel
       pref("media.ffmpeg.vaapi.enabled", true);
-      pref("widget.dmabuf.force-enabled", true);
+
+      ${lib.optionalString osConfig.gpu.nvidia.enable ''
+        // Enable NVIDIA VA-API driver
+        pref("widget.dmabuf.force-enabled", true);
+      ''}
 
       // Mouse behavior
       pref("middlemouse.paste", false);
@@ -79,6 +84,9 @@
 
       // disable bookmarks bar, i don't use it
       pref("browser.toolbars.bookmarks.visibility", never)
+
+      // only use fonts defined by system, not by the website
+      pref("browser.display.use_document_fonts", 0)
     '';
   };
 }
