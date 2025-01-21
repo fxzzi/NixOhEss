@@ -33,6 +33,7 @@
       npins
       yt-dlp
       xournalpp
+      stremio
     ];
   };
 
