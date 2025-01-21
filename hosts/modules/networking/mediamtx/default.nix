@@ -35,9 +35,9 @@ in {
         webrtc = true;
         webrtcAddress = ":${port}";
         webrtcLocalUDPAddress = ":${port}";
-        webrtcAdditionalHosts = [
-          "@localip@"
-        ];
+        webrtcAdditionalHosts =
+          ["@localip@"]
+          ++ config.networking.nameservers;
         paths = {
           all_others = {};
         };
