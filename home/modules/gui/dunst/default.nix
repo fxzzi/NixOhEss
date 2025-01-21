@@ -59,9 +59,7 @@
           always_run_script = true;
           title = "dunst";
           class = "dunst";
-          ignore_dbusclose = false;
           layer = "overlay";
-          force_xwayland = false;
           mouse_left_click = "close_current";
           mouse_middle_click = "do_action, close_current";
           mouse_right_click = "close_all";
