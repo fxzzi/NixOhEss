@@ -41,7 +41,12 @@
       };
     };
     boot = {
-      kernelParams = ["nvidia.NVreg_UsePageAttributeTable=1"];
+      kernelParams = lib.mkMerge [
+        ["nvidia.NVreg_UsePageAttributeTable=1"]
+        (lib.mkIf config.hardware.nvidia.powerManagement.enable [
+          "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+        ])
+      ];
       blacklistedKernelModules = ["nouveau"];
       initrd = {
         kernelModules = [
