@@ -35,7 +35,7 @@ in {
         }))
         osu-lazer-bin
         lutris
-        cemu
+        # cemu
       ]
       ++ [heroic];
   };
