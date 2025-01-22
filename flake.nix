@@ -2,6 +2,8 @@
   description = "fazzi's nixos + hm conf";
 
   inputs = {
+    # FIXME: don't use nixpkgs master, use nixos-unstable branch.
+    # can't right now due to https://github.com/NixOS/nixpkgs/pull/375835
     nixpkgs.url = "github:nixos/nixpkgs/master";
     home-manager = {
       url = "github:nix-community/home-manager";

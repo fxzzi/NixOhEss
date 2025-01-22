@@ -7,7 +7,7 @@
 this nixpkgs overlay replaces foot with my fork,
 which features a few more options for transparency
 
-See: https://codeberg.org/fazzi/foot/src/branch/transparency_yipee
+NOTE: https://codeberg.org/fazzi/foot/src/branch/transparency_yipee
 */
 {
   nixpkgs.overlays = [
