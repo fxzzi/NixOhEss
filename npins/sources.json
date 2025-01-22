@@ -19,9 +19,9 @@
         "url": "https://codeberg.org/fazzi/foot"
       },
       "branch": "transparency_yipee",
-      "revision": "3ba67de16df51db84c43f15c0c2e3589872781dd",
+      "revision": "189077fae9890aa95af12cefec565757ce555483",
       "url": null,
-      "hash": "1kl2wmcgrwnz5rk5kpd7q20k60f92rhl618iqn5wk36hci4rrplz"
+      "hash": "0q05zndhhim0b6m067vx9gwjy2xfxq68ij6wdj4vib4r90xi3i7m"
     },
     "fzf-tab": {
       "type": "GitRelease",
@@ -46,9 +46,9 @@
         "repo": "mpd-discord-rpc"
       },
       "branch": "master",
-      "revision": "0f77dc05944df38b4f754805371f61e63297e704",
-      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/0f77dc05944df38b4f754805371f61e63297e704.tar.gz",
-      "hash": "1jnzs3yc74y6zgb0vj4v25jq3mbh5pahf6ng564s3343vwd1jh35"
+      "revision": "6e58f54c826fd1880fca82de1685ee5a21c6f362",
+      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/6e58f54c826fd1880fca82de1685ee5a21c6f362.tar.gz",
+      "hash": "1rcgm49wa2dgmh5yx6z587qgbzwrp1ipjvqjc1ypqdrjbmk2lkgn"
     },
     "nix-zsh-completions": {
       "type": "GitRelease",
@@ -68,8 +68,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre738722.ae06b9c2d83c/nixexprs.tar.xz",
-      "hash": "0pbsbn0q8b4ncyvx2rhzj6qd5myqpldacx0sxg54grvgda690dx5"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre742359.5757bbb8bd7c/nixexprs.tar.xz",
+      "hash": "1gccjpbmn8ybfpwaib2dynfa66xmikhnb7m9ipqnclmlfz1f3nvf"
     },
     "obs-pipewire-audio-capture": {
       "type": "Git",
