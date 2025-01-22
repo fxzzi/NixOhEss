@@ -268,7 +268,7 @@ in {
             "$MOD, Print, exec, screenshot.sh --active"
 
             # binds for apps
-            # FIXME: find a better way to define thunar here. this sucks. but alas
+            # HACK: find a better way to define thunar here. this sucks. but alas
             # it works and doesn't make a duplicate package.
             "$MOD, F, exec, ${lib.getExe' (pkgs.xfce.thunar.override {thunarPlugins = osConfig.programs.thunar.plugins;}) "thunar"}"
             "$MOD, T, exec, ${lib.getExe config.programs.foot.package}"

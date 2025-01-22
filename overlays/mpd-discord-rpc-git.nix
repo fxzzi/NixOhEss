@@ -3,7 +3,7 @@
 This nixpkgs overlay bumps `mpd-discord-rpc` to the latest master
 for some features that haven't made it into a release yet.
 
-See: https://github.com/JakeStanger/mpd-discord-rpc/commit/fdfa3dd
+NOTE: https://github.com/JakeStanger/mpd-discord-rpc/commit/fdfa3dd
 */
 {
   nixpkgs.overlays = [

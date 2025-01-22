@@ -35,7 +35,7 @@
         };
       };
     };
-    # See: https://codeberg.org/dnkl/foot/wiki#user-content-shell-integration
+    # NOTE: https://codeberg.org/dnkl/foot/wiki#user-content-shell-integration
     programs.zsh.initExtra = lib.mkIf config.gui.foot.zshIntegration ''
       function osc7-pwd() {
           emulate -L zsh # also sets localoptions for us
