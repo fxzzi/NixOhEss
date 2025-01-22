@@ -14,7 +14,7 @@ See: https://github.com/JakeStanger/mpd-discord-rpc/commit/fdfa3dd
         cargoDeps = oldAttrs.cargoDeps.overrideAttrs (
           prev.lib.const {
             inherit src;
-            outputHash = "sha256-iU9jztJgOuuxC/7skTiKz893tm51Zj0rqlnAkLk7JAw=";
+            outputHash = "sha256-3Y+L7kKs8ycFUcpcLV4zsm4K4G78G7xFSuu1CplSxMU=";
           }
         );
       });
