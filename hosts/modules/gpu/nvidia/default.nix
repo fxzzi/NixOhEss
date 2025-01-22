@@ -40,6 +40,9 @@
         ];
       };
     };
+    environment.sessionVariables = {
+      "__EGL_VENDOR_LIBRARY_FILENAMES" = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
+    };
     boot = {
       kernelParams = lib.mkMerge [
         ["nvidia.NVreg_UsePageAttributeTable=1"]
