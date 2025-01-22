@@ -5,7 +5,7 @@
 }: {
   options.gaming.mangohud.enable = lib.mkOption {
     type = lib.types.bool;
-    default = true;
+    default = false;
     description = "Enable MangoHud and it's configurations.";
   };
   config = lib.mkIf config.gaming.mangohud.enable {
