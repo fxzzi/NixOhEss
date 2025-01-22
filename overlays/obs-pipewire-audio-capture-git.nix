@@ -4,7 +4,7 @@ this nixpkgs overlay bumps the obs-pipewire-audio-capture
 obs plugin to latest git, for the new option of
 selecting multiple audio sources for one obs source.
 
-See: https://github.com/dimtpap/obs-pipewire-audio-capture/commit/a8647b1
+NOTE: https://github.com/dimtpap/obs-pipewire-audio-capture/commit/a8647b1
 */
 {
   nixpkgs.overlays = [

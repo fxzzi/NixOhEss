@@ -1,5 +1,8 @@
 {inputs, ...}: {
   imports = [inputs.nvf.homeManagerModules.default];
+  programs.zsh.localVariables = {
+    "EDITOR" = "nvim";
+  };
   programs.nvf = {
     enable = true;
     settings = {
@@ -59,6 +62,10 @@
           ts.enable = true;
           lua.enable = true;
           python.enable = true;
+        };
+
+        notes = {
+          todo-comments.enable = true;
         };
 
         visuals = {

@@ -30,7 +30,7 @@
       shell = pkgs.${config.user.shell}; # Set shell to zsh
       uid = 1000;
 
-      # See: https://github.com/nix-community/home-manager/issues/108
+      # NOTE: https://github.com/nix-community/home-manager/issues/108
       ignoreShellProgramCheck = true;
     };
   };
