@@ -4,7 +4,9 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  hyprFlake = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
+in {
   options.wayland.hyprland.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -15,7 +17,7 @@
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        hyprFlake.xdg-desktop-portal-hyprland;
     };
   };
 }
