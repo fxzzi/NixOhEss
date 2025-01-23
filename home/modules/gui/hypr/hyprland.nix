@@ -79,6 +79,7 @@ in {
         ];
         monitor = [
           ", preferred, auto, auto"
+          "desc:Lenovo, 1920x1080@60, 0x0, 1"
           "desc:BOE, 1920x1080@60, 0x0, 1"
           "desc:GIGA-BYTE, 2560x1440@170,1920x0,1"
           "desc:Philips, 1920x1080@75,0x0,1"
