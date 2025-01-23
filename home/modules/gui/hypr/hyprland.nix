@@ -55,7 +55,6 @@ in {
     '';
     xdg.portal = {
       enable = true;
-      xdgOpenUsePortal = true;
       config.common.default = "hyprland";
       configPackages = [
         hyprFlake.xdg-desktop-portal-hyprland
