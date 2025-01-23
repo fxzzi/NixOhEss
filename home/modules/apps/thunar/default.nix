@@ -26,6 +26,19 @@
       "file:///home/${user}/Pictures/Screenshots Screenshots"
       "file:///home/${user}/.config/nixos NixOS"
     ];
+    xdg.mimeApps.defaultApplications = {
+      "inode/directory" = "thunar.desktop";
+
+      "application/zip" = "org.gnome.FileRoller.desktop";
+      "application/vnd.rar" = "org.gnome.FileRoller.desktop";
+      "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
+      "application/x-tar" = "org.gnome.FileRoller.desktop";
+      "application/gzip" = "org.gnome.FileRoller.desktop";
+      "application/x-bzip" = "org.gnome.FileRoller.desktop";
+      "application/x-bzip2" = "org.gnome.FileRoller.desktop";
+      "application/x-xz" = "org.gnome.FileRoller.desktop";
+      "application/x-rar-compressed" = "org.gnome.FileRoller.desktop";
+    };
     home.file = {
       # Thunar quick actions
       "uca.xml" = {
