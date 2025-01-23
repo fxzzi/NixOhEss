@@ -293,11 +293,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737480538,
-        "narHash": "sha256-rk/cmrvq3In0TegW9qaAxw+5YpJhRWt2p74/6JStrw0=",
+        "lastModified": 1737630279,
+        "narHash": "sha256-wJQCxyMRc4P26zDrHmZiRD5bbfcJpqPG3e2djdGG3pk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4481a16d1ac5bff4a77c608cefe08c9b9efe840d",
+        "rev": "0db5c8bfcce78583ebbde0b2abbc95ad93445f7c",
         "type": "github"
       },
       "original": {
@@ -380,11 +380,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1737556066,
-        "narHash": "sha256-7X0RvVxmqd2OxS8FsOapMvB5NEzRElT0+RmRFENL4yc=",
+        "lastModified": 1737635713,
+        "narHash": "sha256-ysxJf0Z0w7UnvJnQOYrnw9Bzm6+V8GEiXR3A2ERN/g0=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "fda5626594c3f31bbab08e877a797a623c98c450",
+        "rev": "ae4e38d9d5faddd6e1dbc1750f589ef33d5ac16c",
         "type": "github"
       },
       "original": {
@@ -634,6 +634,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-375835": {
+      "locked": {
+        "lastModified": 1737553226,
+        "narHash": "sha256-4u65ObrPTSImpZZDbTEWTfSoQqmTcAF+LDbxal8Wrwk=",
+        "owner": "fxzzi",
+        "repo": "nixpkgs",
+        "rev": "cc39de3db2a456781f1d5761d97c986f5bc20cd3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fxzzi",
+        "ref": "fancontrol-fix-path",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1735774519,
@@ -728,16 +744,16 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1737570776,
-        "narHash": "sha256-TloVnY25cRjzODbUwD/aL61e3vifRmY9vvGTDvkrdJk=",
+        "lastModified": 1737469691,
+        "narHash": "sha256-nmKOgAU48S41dTPIXAq0AHZSehWUn6ZPrUKijHAMmIk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7046248e4f0acb90b47cc4336203eb810293e147",
+        "rev": "9e4d5190a9482a1fb9d18adf0bdb83c6e506eaab",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "master",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -3697,6 +3713,7 @@
         "hyprland": "hyprland",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs_6",
+        "nixpkgs-375835": "nixpkgs-375835",
         "nvf": "nvf",
         "nvuv": "nvuv"
       }

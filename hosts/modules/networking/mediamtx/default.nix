@@ -16,11 +16,13 @@ in {
     # HACK: This is super hacky. I shouldn't have to do this. I won't have to do
     # this once / if mediamtx allows reading IPs from a path.
     # https://github.com/bluenviron/mediamtx/issues/4109#issuecomment-2581174785
-    system.activationScripts."localip" = ''
-      secret=$(cat "${config.age.secrets.localip.path}")
-      configFile=/etc/mediamtx.yaml
-      ${pkgs.gnused}/bin/sed -i -e "s#'@localip@'#$secret#g" "$configFile"
-    '';
+    system.activationScripts.localip = {
+      text = ''
+        secret=$(cat "${config.age.secrets.localip.path}")
+        configFile=/etc/mediamtx.yaml
+        ${pkgs.gnused}/bin/sed -i -e "s#'@localip@'#$secret#g" "$configFile"
+      '';
+    };
     networking.firewall = {
       allowedTCPPorts = [
         (lib.toInt port)
@@ -36,8 +38,8 @@ in {
         webrtcAddress = ":${port}";
         webrtcLocalUDPAddress = ":${port}";
         webrtcAdditionalHosts =
-          ["@localip@"]
-          ++ config.networking.nameservers;
+          ["@localip@"] # for agenix to replace after
+          ++ config.networking.nameservers; # also grab nameservers from networking config, just in case
         paths = {
           all_others = {};
         };
