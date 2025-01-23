@@ -38,6 +38,13 @@ in {
         # cemu
       ]
       ++ [heroic];
+    xdg.mimeApps.defaultApplications = {
+      "application/x-osu-beatmap-archive" = "osu!.desktop"; # .osz
+      "application/x-osu-skin-archive" = "osu!.desktop"; # .osk
+      "application/x-osu-beatmap" = "osu!.desktop"; # .osu
+      "application/x-osu-storyboard" = "osu!.desktop"; # .osb
+      "application/x-osu-replay" = "osu!.desktop"; # .osr
+    };
   };
   imports = [./mangohud];
 }

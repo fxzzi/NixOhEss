@@ -111,5 +111,16 @@
         "m" = "cycle mute";
       };
     };
+    xdg.mimeApps.defaultApplications = {
+      "video/mp4" = "mpv.desktop";
+      "video/x-matroska" = "mpv.desktop"; # MKV
+      "video/webm" = "mpv.desktop";
+      "video/ogg" = "mpv.desktop";
+      "audio/mpeg" = "mpv.desktop"; # MP3
+      "audio/ogg" = "mpv.desktop";
+      "audio/flac" = "mpv.desktop";
+      "audio/wav" = "mpv.desktop";
+      "audio/aac" = "mpv.desktop";
+    };
   };
 }
