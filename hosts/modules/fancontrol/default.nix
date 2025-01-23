@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   options.fancontrol.enable = lib.mkOption {
@@ -9,6 +10,12 @@
     default = false;
     description = "Enables fazziPC custom fanconfig.";
   };
+  imports = [
+    "${inputs.nixpkgs-375835}/nixos/modules/services/hardware/fancontrol.nix"
+  ];
+  disabledModules = [
+    "services/hardware/fancontrol.nix"
+  ];
   config = lib.mkIf config.fancontrol.enable {
     environment.systemPackages = with pkgs; [lm_sensors];
     hardware = {
