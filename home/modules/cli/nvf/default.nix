@@ -37,6 +37,7 @@
           formatOnSave = true;
           trouble.enable = true;
           lspSignature.enable = true;
+          lightbulb.enable = true;
         };
 
         debugger = {
