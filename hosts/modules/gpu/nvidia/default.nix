@@ -26,7 +26,7 @@
     services.xserver.videoDrivers = ["nvidia"];
     hardware = {
       nvidia = {
-        open = true; # toggle open kernel modules
+        open = false; # toggle open kernel modules
         modesetting.enable = true; # toggle modesetting for wayland
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         package = config.boot.kernelPackages.nvidiaPackages.beta; # Use beta drivers
