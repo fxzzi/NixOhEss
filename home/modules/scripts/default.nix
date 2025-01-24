@@ -29,7 +29,7 @@ in {
         jq
         ffmpeg
         libsixel
-        wayfreeze
+        hyprpicker
       ];
   };
 }

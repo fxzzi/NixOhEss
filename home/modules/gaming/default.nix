@@ -28,6 +28,7 @@
       # cemu
       heroic
       protonup-qt
+      nvtopPackages.nvidia
     ];
     xdg.mimeApps.defaultApplications = {
       "application/x-osu-beatmap-archive" = "osu!.desktop"; # .osz
