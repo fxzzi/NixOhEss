@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:fxzzi/nixpkgs/nvidia-570";
-    nixpkgs-375835.url = "github:fxzzi/nixpkgs/fancontrol-fix-path";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
