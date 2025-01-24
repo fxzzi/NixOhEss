@@ -13,7 +13,7 @@
       enable = true;
       settings = {
         preset = "0,1";
-        fps_limit = "167,0"; # 3 below rr or unlimited
+        fps_limit = "167,0"; # few below refresh rate (vrr) or unlimited
         vsync = 1;
         gl_vsync = 0;
         toggle_hud = "Shift_R+F12";

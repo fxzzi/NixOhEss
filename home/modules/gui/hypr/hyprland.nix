@@ -74,7 +74,7 @@ in {
           ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
           "desc:Lenovo, 1920x1080@60, 0x0, 1"
           "desc:BOE, 1920x1080@60, 0x0, 1"
-          "desc:GIGA-BYTE, 2560x1440@170,1920x0,1"
+          "desc:GIGA-BYTE, 2560x1440@170,1920x0,1, bitdepth, 10"
           "desc:Philips, 1920x1080@75,0x0,1"
         ];
         render = {
