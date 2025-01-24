@@ -50,17 +50,9 @@ in {
   config = lib.mkIf config.gui.hypr.hyprland.enable {
     programs.zsh.profileExtra = lib.mkIf config.gui.hypr.hyprland.autoStart ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-        exec dbus-run-session -- ${lib.getExe' config.wayland.windowManager.hyprland.package "hyprland"}
+        exec ${lib.getExe' config.wayland.windowManager.hyprland.package "hyprland"}
       fi
     '';
-    xdg.portal = {
-      enable = true;
-      config.common.default = "hyprland";
-      configPackages = [
-        hyprFlake.xdg-desktop-portal-hyprland
-      ];
-      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
-    };
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -69,22 +61,24 @@ in {
       systemd.enable = true;
       settings = {
         exec-once = [
-          "sleep 0.5; random-wall.sh"
+          "sleep 0.5; random-wall.sh" # HACK: sleep here, otherwise wallpaper will be set too early
           "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         ];
         exec = [
+          # NOTE: use baseNameOf here and in the rest of the config to get the name of the executable. its not needed but its the nix
+          # way i guess.
           "pgrep ${builtins.baseNameOf (lib.getExe config.programs.ags.finalPackage)} || ${lib.getExe config.programs.ags.finalPackage}"
           "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.defaultMonitor} --primary"
         ];
         monitor = [
-          ", preferred, auto, auto"
+          ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
           "desc:Lenovo, 1920x1080@60, 0x0, 1"
           "desc:BOE, 1920x1080@60, 0x0, 1"
           "desc:GIGA-BYTE, 2560x1440@170,1920x0,1"
           "desc:Philips, 1920x1080@75,0x0,1"
         ];
         render = {
-          direct_scanout = 0;
+          direct_scanout = 1;
         };
         cursor = {
           default_monitor = "${config.gui.hypr.defaultMonitor}";
@@ -247,6 +241,7 @@ in {
           # "minsize 3840 1080, class: ^(steam_app_252950)$"
           # "maxsize 3840 1080, class: ^(steam_app_252950)$"
         ];
+        # NOTE: this sets workspaces to alternate if there are 2 monitors.
         workspace = lib.mkIf multiMonitor [
           "1, monitor:${config.gui.hypr.defaultMonitor}"
           "2, monitor:${config.gui.hypr.secondaryMonitor}"
