@@ -209,6 +209,7 @@ in {
           # Window rules for games
           # Fix focus issues with cs2
           "suppressevent maximize fullscreen, class: ^(SDL Application)$"
+          "suppressevent maximize fullscreen, class: ^(cs2)$"
 
           # Set fullscreen for all steam games
           # "fullscreen, class:^(steam_app_.*)$"
@@ -222,6 +223,7 @@ in {
           # Allow games to tear
           "immediate, class:^(steam_app_.*)$"
           "immediate, class:^(SDL Application)$"
+          "immediate, class:^(cs2)$"
           "immediate, class:^(Minecraft.*)$"
           "immediate, initialTitle:^(Minecraft.*)$"
           "immediate, class:^(org-prismlauncher-EntryPoint)$"
