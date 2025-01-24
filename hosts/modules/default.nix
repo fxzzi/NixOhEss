@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./gpu
     ./scx
@@ -22,4 +22,6 @@
     ./adb
     ./security
   ];
+  hardware.sane.enable = true;
+  hardware.sane.extraBackends = [pkgs.sane-airscan];
 }
