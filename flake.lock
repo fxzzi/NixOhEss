@@ -386,11 +386,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1737679787,
-        "narHash": "sha256-fW7Mvd5/SYZbPry3fh/llFH8QfIb7ZbXTJGQpLvS04c=",
+        "lastModified": 1737725850,
+        "narHash": "sha256-vqm2y/XpCZSov2FdGGC/25VU4iCq7Aes0MIFTNkvAK4=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "4a1b960cbedb3e2893eeadecdf2b4a7314634306",
+        "rev": "57a39984dddd00fd1aca436e149b7566e5e48d95",
         "type": "github"
       },
       "original": {
@@ -667,22 +667,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-375835": {
-      "locked": {
-        "lastModified": 1737553226,
-        "narHash": "sha256-4u65ObrPTSImpZZDbTEWTfSoQqmTcAF+LDbxal8Wrwk=",
-        "owner": "fxzzi",
-        "repo": "nixpkgs",
-        "rev": "cc39de3db2a456781f1d5761d97c986f5bc20cd3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fxzzi",
-        "ref": "fancontrol-fix-path",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1733096140,
@@ -729,11 +713,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1737709207,
-        "narHash": "sha256-53+4YQe16kULj6a1b3+YvFBJ1yntDxpFBw16jrpQ8/c=",
+        "lastModified": 1737727617,
+        "narHash": "sha256-rX8OgzyXXtrYQuAlIpiNmNFmtfeXuIYRQVaGHxnBfok=",
         "owner": "fxzzi",
         "repo": "nixpkgs",
-        "rev": "3660d279912c9b2fe67486b25660d3c82018f85c",
+        "rev": "a588e70bd260e16d97a3e0372b44039dc6dd43e6",
         "type": "github"
       },
       "original": {
@@ -3684,7 +3668,6 @@
         "hyprland": "hyprland",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-375835": "nixpkgs-375835",
         "nvf": "nvf",
         "nvuv": "nvuv"
       }
