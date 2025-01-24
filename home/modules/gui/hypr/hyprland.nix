@@ -139,6 +139,7 @@ in {
           swallow_regex = "^(foot)$"; # Make foot swallow executed windows
           initial_workspace_tracking = 0;
           disable_hyprland_qtutils_check = 1;
+          vrr = 2;
         };
         source = ["~/.cache/wallust/colors_hyprland.conf"];
         decoration = {
