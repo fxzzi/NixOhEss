@@ -39,7 +39,7 @@ in {
         webrtcLocalUDPAddress = ":${port}";
         webrtcAdditionalHosts =
           ["@localip@"] # for agenix to replace after
-          ++ config.networking.nameservers; # also grab nameservers from networking config, just in case
+          ++ config.networking.nameservers;
         paths = {
           all_others = {};
         };
