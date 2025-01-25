@@ -27,7 +27,8 @@
     hardware = {
       nvidia = {
         open = false; # toggle open kernel modules
-        modesetting.enable = true; # toggle modesetting for wayland
+        gsp.enable = false;
+        # modesetting.enable = true; # toggle modesetting for wayland
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         package = config.boot.kernelPackages.nvidiaPackages.beta; # Use beta drivers
         nvidiaSettings = false; # Disable nvidia-settings applet, useless on Wayland
@@ -79,5 +80,6 @@
         };
       };
     };
+    environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json".source = ./50-limit-free-buffer-pool-in-wayland-compositors.json;
   };
 }
