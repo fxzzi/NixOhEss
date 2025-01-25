@@ -22,7 +22,6 @@
         "en-US"
       ];
     };
-
     /*
     We can't use programs.librewolf.settings here because
     of the special `newTabURL` override i have, which
@@ -51,7 +50,7 @@
       pref("media.ffmpeg.vaapi.enabled", true);
 
       ${lib.optionalString osConfig.gpu.nvidia.enable ''
-        // Enable NVIDIA VA-API driver
+        // make nvidia-vaapi-driver work
         pref("widget.dmabuf.force-enabled", true);
       ''}
 
@@ -95,6 +94,11 @@
       "x-scheme-handler/ftp" = "librewolf.desktop";
       "x-scheme-handler/http" = "librewolf.desktop";
       "x-scheme-handler/https" = "librewolf.desktop";
+    };
+    home.sessionVariables = lib.mkIf osConfig.gpu.nvidia.enable {
+      LIBVA_DRIVER_NAME = "nvidia";
+      NVD_BACKEND = "direct";
+      MOZ_DISABLE_RDD_SANDBOX = "1";
     };
   };
 }
