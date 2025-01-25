@@ -974,11 +974,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1737811068,
-        "narHash": "sha256-uSFXVEuTSAnk78RPuVAbWBIKkqq5+TGkYryCXuORYeo=",
+        "lastModified": 1737815146,
+        "narHash": "sha256-UptKVzFBLGhN25BHsyT9V78FpmWjfXM982YHz8O16T4=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "547cbd28b61b605fa7e308f0575d1f4acb7f3aac",
+        "rev": "4242640c9801d6bcd9e72ae942eb92928093b0a5",
         "type": "github"
       },
       "original": {
