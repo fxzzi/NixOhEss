@@ -70,7 +70,6 @@
     qbittorrent-enhanced
     telegram-desktop
     losslesscut-bin
-    simple-scan
   ];
   imports = [
     ./modules

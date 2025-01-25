@@ -26,8 +26,6 @@
         "wheel"
         "video"
         "input"
-        "scanner"
-        "lp"
       ];
       shell = pkgs.${config.user.shell}; # Set shell to zsh
       uid = 1000;
