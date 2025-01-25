@@ -14,8 +14,8 @@
       settings = {
         preset = "0,1";
         fps_limit = "167,0"; # few below refresh rate (vrr) or unlimited
-        vsync = 1;
-        gl_vsync = 0;
+        # vsync = 1;
+        # gl_vsync = 0;
         toggle_hud = "Shift_R+F12";
         toggle_hud_position = "Shift_R+F11";
         toggle_preset = "Shift_R+F10";

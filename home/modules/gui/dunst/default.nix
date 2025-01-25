@@ -41,24 +41,20 @@
           format = "<b>%s</b>\\n%b";
           alignment = "left";
           vertical_alignment = "center";
-          show_age_threshold = 60;
-          ellipsize = "middle";
-          ignore_newline = false;
+          show_age_threshold = 30;
+          ellipsize = "end";
           stack_duplicates = true;
-          hide_duplicate_count = false;
           show_indicators = false;
           enable_recursive_icon_lookup = true;
           icon_position = "left";
           min_icon_size = 48;
-          max_icon_size = 84;
+          max_icon_size = 96;
           icon_theme = config.services.dunst.iconTheme.name;
           sticky_history = true;
           history_length = 25;
           dmenu = "${lib.getExe config.programs.fuzzel.package} -d";
           browser = "${lib.getExe config.programs.librewolf.package}";
           always_run_script = true;
-          title = "dunst";
-          class = "dunst";
           layer = "overlay";
           mouse_left_click = "close_current";
           mouse_middle_click = "do_action, close_current";
@@ -75,8 +71,8 @@
         };
         screenshot = {
           appname = "screenshot";
-          max_icon_size = 160;
-          timeout = 4;
+          max_icon_size = 192;
+          timeout = 3;
         };
         audio = {
           appname = "audio";
