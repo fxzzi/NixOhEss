@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  pkgs,
   ...
 }: let
   multiMonitor =
@@ -16,16 +18,17 @@ in {
   config = lib.mkIf config.gui.hypr.hyprlock.enable {
     programs.hyprlock = {
       enable = true;
+      package = inputs.hyprlock.packages.${pkgs.system}.default;
       settings = {
         general = {
           hide_cursor = true;
           disable_loading_bar = true;
           immediate_render = true;
-          no_fade_in = true;
-          no_fade_out = true;
           ignore_empty_input = true;
         };
-
+        animations = {
+          enabled = false;
+        };
         background = lib.mkMerge [
           [
             {
