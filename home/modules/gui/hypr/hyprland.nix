@@ -206,6 +206,10 @@ in {
           "idleinhibit focus, class:^(atril)$"
           "idleinhibit fullscreen, class:^(.*)$"
 
+          # some apps, mostly games, are stupid and they fullscreen on the
+          # wrong monitor. so just suppress it and don't listen to them
+          "suppressevent fullscreenoutput, class:.*"
+
           # Window rules for games
           # Fix focus issues with cs2
           "suppressevent maximize fullscreen, class: ^(SDL Application)$"
