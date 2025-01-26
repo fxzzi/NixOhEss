@@ -13,7 +13,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
-    hyprsunset.url = "github:hyprwm/hyprsunset";
+    # hyprsunset.url = "github:hyprwm/hyprsunset";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";

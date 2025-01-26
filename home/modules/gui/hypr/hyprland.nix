@@ -281,7 +281,8 @@ in {
             "CTRL SHIFT, Escape, exec, ${lib.getExe config.programs.foot.package} btm"
 
             # extra schtuff
-            "$MOD, N, exec, pkill ${builtins.baseNameOf (lib.getExe inputs.hyprsunset.packages.${pkgs.system}.default)} || ${lib.getExe inputs.hyprsunset.packages.${pkgs.system}.default} -t 2000"
+            # "$MOD, N, exec, pkill ${builtins.baseNameOf (lib.getExe inputs.hyprsunset.packages.${pkgs.system}.default)} || ${lib.getExe inputs.hyprsunset.packages.${pkgs.system}.default} -t 2000"
+            "$MOD, N, exec, pkill ${builtins.baseNameOf (lib.getExe pkgs.hyprsunset)} || ${lib.getExe pkgs.hyprsunset} -t 2000"
             "$MOD, R, exec, random-wall.sh"
             "$MOD SHIFT, R, exec, cycle-wall.sh"
             "$MOD, J, exec, ${lib.getExe config.programs.foot.package} wall-picker.sh"
