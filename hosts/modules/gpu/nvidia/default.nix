@@ -45,7 +45,10 @@
     };
     boot = {
       kernelParams = lib.mkMerge [
-        ["nvidia.NVreg_UsePageAttributeTable=1"] # why this isn't default is beyond me.
+        [
+          "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
+          "nvidia_modeset.disable_vrr_memclk_switch=1"
+        ]
         (lib.mkIf config.hardware.nvidia.powerManagement.enable [
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
         ])

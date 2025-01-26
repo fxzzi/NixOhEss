@@ -11,7 +11,79 @@
     description = "Enables the librewolf browser.";
   };
   config = lib.mkIf config.apps.browsers.librewolf.enable {
-    home.packages = with pkgs; [pywalfox-native];
+    home = {
+      packages = with pkgs; [pywalfox-native];
+      /*
+      We can't use programs.librewolf.settings here because
+      of the special `newTabURL` override i have, which
+      home-manager fails to set properly.
+      the home-manager setup is pretty basic anyway, so this
+      should suffice
+      */
+      file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
+        // Set new tab page to local startpage
+        let { utils:Cu } = Components;
+
+        Cu.import("resource:///modules/AboutNewTab.jsm");
+        let newTabURL = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
+        AboutNewTab.newTabURL = newTabURL;
+
+        // Revert some security changes
+        pref("webgl.disabled", false);
+        pref("privacy.resistFingerprinting", false);
+        pref("privacy.clearOnShutdown.history", false);
+        pref("privacy.clearOnShutdown.cookies", false);
+
+        // Stop weirdness when relaunching browser sometimes
+        pref("browser.sessionstore.resume_from_crash", false);
+
+        // enable vaapi accel
+        pref("media.ffmpeg.vaapi.enabled", true);
+
+        ${lib.optionalString osConfig.gpu.nvidia.enable ''
+          // make nvidia-vaapi-driver work
+          pref("widget.dmabuf.force-enabled", true);
+        ''}
+
+        // Mouse behavior
+        pref("middlemouse.paste", false);
+        pref("general.autoScroll", true);
+
+        // Performance
+        pref("layout.frame_rate", -1);
+
+        // Smooth scrolling
+        pref("general.smoothScroll", false);
+
+        // Enable Firefox accounts
+        pref("identity.fxaccounts.enabled", true);
+
+        // Use system emoji fonts
+        pref("font.name-list.emoji", "emoji");
+        pref("gfx.font_rendering.opentype_svg.enabled", false);
+
+        // Disable audio post processing
+        pref("media.getusermedia.audio.processing.aec", 0);
+        pref("media.getusermedia.audio.processing.aec.enabled", false);
+        pref("media.getusermedia.audio.processing.agc", 0);
+        pref("media.getusermedia.audio.processing.agc.enabled", false);
+        pref("media.getusermedia.audio.processing.agc2.forced", false);
+        pref("media.getusermedia.audio.processing.noise", 0);
+        pref("media.getusermedia.audio.processing.noise.enabled", false);
+        pref("media.getusermedia.audio.processing.hpf.enabled", false);
+
+        // disable bookmarks bar, i don't use it
+        pref("browser.toolbars.bookmarks.visibility", never)
+
+        // only use fonts defined by system, not by the website
+        pref("browser.display.use_document_fonts", 0)
+      '';
+      sessionVariables = lib.mkIf osConfig.gpu.nvidia.enable {
+        LIBVA_DRIVER_NAME = "nvidia";
+        NVD_BACKEND = "direct";
+        MOZ_DISABLE_RDD_SANDBOX = "1";
+      };
+    };
     programs.librewolf = {
       enable = true;
       package = pkgs.librewolf.overrideAttrs (_old: {
@@ -22,71 +94,6 @@
         "en-US"
       ];
     };
-    /*
-    We can't use programs.librewolf.settings here because
-    of the special `newTabURL` override i have, which
-    home-manager fails to set properly.
-    the home-manager setup is pretty basic anyway, so this
-    should suffice
-    */
-    home.file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
-      // Set new tab page to local startpage
-      let { utils:Cu } = Components;
-
-      Cu.import("resource:///modules/AboutNewTab.jsm");
-      let newTabURL = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
-      AboutNewTab.newTabURL = newTabURL;
-
-      // Revert some security changes
-      pref("webgl.disabled", false);
-      pref("privacy.resistFingerprinting", false);
-      pref("privacy.clearOnShutdown.history", false);
-      pref("privacy.clearOnShutdown.cookies", false);
-
-      // Stop weirdness when relaunching browser sometimes
-      pref("browser.sessionstore.resume_from_crash", false);
-
-      // enable vaapi accel
-      pref("media.ffmpeg.vaapi.enabled", true);
-
-      ${lib.optionalString osConfig.gpu.nvidia.enable ''
-        // make nvidia-vaapi-driver work
-        pref("widget.dmabuf.force-enabled", true);
-      ''}
-
-      // Mouse behavior
-      pref("middlemouse.paste", false);
-      pref("general.autoScroll", true);
-
-      // Performance
-      pref("layout.frame_rate", -1);
-
-      // Smooth scrolling
-      pref("general.smoothScroll", false);
-
-      // Enable Firefox accounts
-      pref("identity.fxaccounts.enabled", true);
-
-      // Use system emoji fonts
-      pref("font.name-list.emoji", "emoji");
-      pref("gfx.font_rendering.opentype_svg.enabled", false);
-
-      // Disable audio post processing
-      pref("media.getusermedia.audio.processing.aec", 0);
-      pref("media.getusermedia.audio.processing.aec.enabled", false);
-      pref("media.getusermedia.audio.processing.agc", 0);
-      pref("media.getusermedia.audio.processing.agc.enabled", false);
-      pref("media.getusermedia.audio.processing.agc2.forced", false);
-      pref("media.getusermedia.audio.processing.noise", 0);
-      pref("media.getusermedia.audio.processing.noise.enabled", false);
-      pref("media.getusermedia.audio.processing.hpf.enabled", false);
-
-      // disable bookmarks bar, i don't use it
-      pref("browser.toolbars.bookmarks.visibility", never)
-
-      // only use fonts defined by system, not by the website
-      pref("browser.display.use_document_fonts", 0)
-    '';
     xdg.mimeApps.defaultApplications = {
       "application/xhtml+xml" = "librewolf.desktop";
       "text/html" = "librewolf.desktop";
@@ -94,11 +101,6 @@
       "x-scheme-handler/ftp" = "librewolf.desktop";
       "x-scheme-handler/http" = "librewolf.desktop";
       "x-scheme-handler/https" = "librewolf.desktop";
-    };
-    home.sessionVariables = lib.mkIf osConfig.gpu.nvidia.enable {
-      LIBVA_DRIVER_NAME = "nvidia";
-      NVD_BACKEND = "direct";
-      MOZ_DISABLE_RDD_SANDBOX = "1";
     };
   };
 }
