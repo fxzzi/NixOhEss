@@ -39,11 +39,9 @@ in {
         webrtc = true;
         webrtcAddress = ":${port}";
         webrtcLocalUDPAddress = ":${port}";
-        webrtcAdditionalHosts = [
-          "@localip@" # for agenix to replace after
-          "1.1.1.1"
-          "1.0.0.1"
-        ];
+        webrtcAdditionalHosts =
+          ["@localip@"] # for agenix to replace after
+          ++ config.networking.nameservers;
         paths = {
           all_others = {};
         };
