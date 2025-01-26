@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   lib,
   ...
 }: {
@@ -17,9 +18,10 @@
   config = lib.mkIf config.gui.hypr.hypridle.enable {
     services.hypridle = {
       enable = true;
+      package = inputs.hypridle.packages.${pkgs.system}.default;
       settings = {
         general = {
-          lock_cmd = "pidof ${builtins.baseNameOf (lib.getExe pkgs.hyprlock)} || (cp $(${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"} hyprpaper listloaded) /tmp/wallpaper; ${lib.getExe pkgs.hyprlock})";
+          lock_cmd = "pidof ${builtins.baseNameOf (lib.getExe inputs.hyprlock.packages.${pkgs.system}.default)} || (cp $(${lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl"} hyprpaper listloaded) /tmp/wallpaper; ${lib.getExe inputs.hyprlock.packages.${pkgs.system}.default})";
           before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "hyprctl dispatch dpms on";
         };
