@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }: let
   port = "4200";
@@ -33,13 +34,16 @@ in {
     };
     services.mediamtx = {
       enable = true;
+      package = inputs.nixpkgs-376810.legacyPackages.${pkgs.system}.mediamtx;
       settings = {
         webrtc = true;
         webrtcAddress = ":${port}";
         webrtcLocalUDPAddress = ":${port}";
-        webrtcAdditionalHosts =
-          ["@localip@"] # for agenix to replace after
-          ++ config.networking.nameservers;
+        webrtcAdditionalHosts = [
+          "@localip@" # for agenix to replace after
+          "1.1.1.1"
+          "1.0.0.1"
+        ];
         paths = {
           all_others = {};
         };

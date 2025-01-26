@@ -465,11 +465,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1737896452,
-        "narHash": "sha256-ODynzEy3QDWH+ubUsNC1eAhHj8U84c7Hew7k12cAJEI=",
+        "lastModified": 1737916715,
+        "narHash": "sha256-ESlIajmzFaMnhxHewtPfi5gUsJtWLZb9t8DXhcD9iJM=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "4abf9155ee67ee09116948b1d9efef58c08697d9",
+        "rev": "6bd6c5512e1e413013044257e54581c237ca6fa0",
         "type": "github"
       },
       "original": {
@@ -1134,6 +1134,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-376810": {
+      "locked": {
+        "lastModified": 1737842986,
+        "narHash": "sha256-6XDXp0N2c0Z8JZhfzOkxhLD+9WAYnkRm9pPBtw5FiG0=",
+        "owner": "fpletz",
+        "repo": "nixpkgs",
+        "rev": "0c9b6b37cc510e768088b5a73852e0246d8069cb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fpletz",
+        "ref": "pkgs/mediamtx-1.11.2",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -4223,6 +4239,7 @@
         "hyprsunset": "hyprsunset",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs_6",
+        "nixpkgs-376810": "nixpkgs-376810",
         "nixpkgs-olympus": "nixpkgs-olympus",
         "nixpkgs-sgdboop": "nixpkgs-sgdboop",
         "nvf": "nvf",

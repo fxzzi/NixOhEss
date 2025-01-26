@@ -78,7 +78,7 @@ in {
           "desc:Philips, 1920x1080@75,0x0,1"
         ];
         render = {
-          direct_scanout = 0;
+          direct_scanout = 1;
         };
         cursor = {
           default_monitor = "${config.gui.hypr.defaultMonitor}";
@@ -138,8 +138,7 @@ in {
           enable_swallow = 0; # Enable window swalling
           swallow_regex = "^(foot)$"; # Make foot swallow executed windows
           initial_workspace_tracking = 0;
-          disable_hyprland_qtutils_check = 1;
-          vrr = 2;
+          vrr = 2; # vrr = 1 is cooked on nvidia rn
         };
         source = ["~/.cache/wallust/colors_hyprland.conf"];
         decoration = {
