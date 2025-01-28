@@ -34,7 +34,6 @@ in {
     };
     services.mediamtx = {
       enable = true;
-      package = inputs.nixpkgs-376810.legacyPackages.${pkgs.system}.mediamtx;
       settings = {
         webrtc = true;
         webrtcAddress = ":${port}";

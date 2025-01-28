@@ -27,7 +27,7 @@
     hardware = {
       nvidia = {
         open = false; # toggle open kernel modules
-        gsp.enable = false; # toggle gsp firmware (only takes effect when open = false)
+        gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         package = config.boot.kernelPackages.nvidiaPackages.beta; # Use beta drivers
         nvidiaSettings = false; # Disable nvidia-settings applet, useless on Wayland
