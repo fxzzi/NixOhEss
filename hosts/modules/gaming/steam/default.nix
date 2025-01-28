@@ -18,5 +18,13 @@
         proton-ge-bin
       ];
     };
+    networking.firewall = {
+      allowedTCPPorts = [
+        3074
+      ];
+      allowedUDPPorts = [
+        3074
+      ];
+    };
   };
 }

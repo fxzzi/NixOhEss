@@ -5,7 +5,6 @@
     nixpkgs.url = "github:fxzzi/nixpkgs/nvidia-570";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
-    nixpkgs-376810.url = "github:fpletz/nixpkgs/pkgs/mediamtx-1.11.2";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
