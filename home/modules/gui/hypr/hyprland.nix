@@ -65,16 +65,15 @@ in {
           "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         ];
         exec = [
-          # NOTE: use baseNameOf here and in the rest of the config to get the name of the executable. its not needed but its the nix
-          # way i guess.
+          # NOTE: use baseNameOf here and in the rest of the config to get the name of the executable.
+          # its not needed but its the nix way i guess.
           "pgrep ${builtins.baseNameOf (lib.getExe config.programs.ags.finalPackage)} || ${lib.getExe config.programs.ags.finalPackage}"
           "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.defaultMonitor} --primary"
         ];
         monitor = [
           ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
           "desc:Lenovo, 1920x1080@60, 0x0, 1"
-          "desc:BOE, 1920x1080@60, 0x0, 1"
-          "desc:GIGA-BYTE, 2560x1440@170,1920x0,1, bitdepth, 10"
+          "desc:GIGA-BYTE, 2560x1440@170,1920x0,1"
           "desc:Philips, 1920x1080@75,0x0,1"
         ];
         render = {
@@ -99,7 +98,7 @@ in {
           kb_options = "fkeys:basic_13-24, caps:escape";
           # don't set tablet settings if opentabletdriver is enabled.
           tablet = lib.mkIf (! osConfig.opentabletdriver.enable) {
-            left_handed = 1;
+            left_handed = 1; # inverted tablet
             output = "${config.gui.hypr.defaultMonitor}";
           };
           touchpad = {
@@ -109,7 +108,6 @@ in {
         device = [
           {
             name = "tpps/2-elan-trackpoint";
-            accel_profile = "flat";
           }
           {
             name = "at-translated-set-2-keyboard";
@@ -180,6 +178,8 @@ in {
             "border, 1, 8, default"
             "fade, 1, 3, smoothIn"
             "fadeDim, 1, 3, smoothOut"
+            # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
+            # and it will look like windows are moving into each other across the monitors.
             "workspaces, 1, 5, default, ${wsAnim}"
           ];
         };
@@ -206,17 +206,13 @@ in {
           "idleinhibit fullscreen, class:^(.*)$"
 
           # some apps, mostly games, are stupid and they fullscreen on the
-          # wrong monitor. so just suppress it and don't listen to them
+          # wrong monitor. so just don't listen to them lol
           "suppressevent fullscreenoutput, class:.*"
 
           # Window rules for games
           # Fix focus issues with cs2
           "suppressevent maximize fullscreen, class: ^(SDL Application)$"
           "suppressevent maximize fullscreen, class: ^(cs2)$"
-
-          # Set fullscreen for all steam games
-          # "fullscreen, class:^(steam_app_.*)$"
-          # "float, class:^(SDL Application)$";
 
           # Sets fullscreen for common Minecraft windows
           "fullscreen, class:^(Minecraft.*)$"
