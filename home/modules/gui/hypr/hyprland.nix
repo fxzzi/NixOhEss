@@ -124,7 +124,7 @@ in {
         general = {
           gaps_out = 4; # Outer monitor gaps
           gaps_in = 2; # Inner window gaps
-          border_size = 3; # Set window border width
+          border_size = 2; # Set window border width
           allow_tearing = 1;
         };
         misc = {
@@ -153,15 +153,15 @@ in {
           shadow = {
             enabled = 0;
             color = "0xee1a1a1a";
-            render_power = 4;
-            range = 8;
+            render_power = 3;
+            range = 6;
           };
           blur = {
             enabled = 1;
-            size = 3;
+            size = 4;
             passes = 3;
             popups = 1;
-            brightness = 0.7;
+            brightness = 0.67;
           };
         };
         animations = {
