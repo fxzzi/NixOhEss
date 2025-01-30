@@ -13,14 +13,14 @@ in {
     description = "Enables xdph and its configs.";
   };
   config = lib.mkIf config.gui.hypr.xdph.enable {
-    xdg.portal = {
-      enable = true;
-      config.common.default = "hyprland";
-      configPackages = [
-        hyprFlake.xdg-desktop-portal-hyprland
-      ];
-      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
-    };
+    # xdg.portal = {
+    #   enable = true;
+    #   config.common.default = "hyprland";
+    #   configPackages = [
+    #     hyprFlake.xdg-desktop-portal-hyprland
+    #   ];
+    #   extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+    # };
 
     home.file."${config.xdg.configHome}/hypr/xdph.conf".text = ''
       screencopy {
