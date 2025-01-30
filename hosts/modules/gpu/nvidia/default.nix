@@ -24,18 +24,24 @@
 
   config = lib.mkIf config.gpu.nvidia.enable {
     services.xserver.videoDrivers = ["nvidia"];
+
+    specialisation."nvidia-closed".configuration = {
+      environment.etc."specialisation".text = "nvidia-closed";
+      hardware.nvidia.open = lib.mkForce false;
+    };
+
     hardware = {
       nvidia = {
-        open = false; # toggle open kernel modules
+        open = true;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
-        nvidiaSettings = false;
+        nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
           # TODO: remove this when 570 is in nixpkgs/nixos-unstable
           version = "570.86.16"; # use new 570 drivers
           sha256_64bit = "sha256-RWPqS7ZUJH9JEAWlfHLGdqrNlavhaR1xMyzs8lJhy9U=";
-          openSha256 = lib.fakeSha256;
-          useSettings = false;
+          openSha256 = "sha256-DuVNA63+pJ8IB7Tw2gM4HbwlOh1bcDg2AN2mbEU9VPE=";
+          settingsSha256 = "sha256-9rtqh64TyhDF5fFAYiWl3oDHzKJqyOW3abpcf2iNRT8=";
           usePersistenced = false;
         };
       };
