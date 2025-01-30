@@ -29,14 +29,14 @@
         open = false; # toggle open kernel modules
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
-        nvidiaSettings = false; # Disable nvidia-settings applet, useless on Wayland
+        nvidiaSettings = false;
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "570.86.15";
-          sha256_64bit = "sha256-h3CcGcdAEkMTa8Dsnn8UfGgDBwoRRJro8IGd7nlj92s=";
-          openSha256 = "sha256-WKWsG5a4eTEBQw/I0eTPPW/2H4Gqkt9b08yAF4Eq5AQ=";
-          url = "https://us.download.nvidia.com/tesla/${config.hardware.nvidia.package.version}/NVIDIA-Linux-x86_64-${config.hardware.nvidia.package.version}.run";
-          usePersistenced = false;
+          # TODO: remove this when 570 is in nixpkgs/nixos-unstable
+          version = "570.86.16"; # use new 570 drivers
+          sha256_64bit = "sha256-RWPqS7ZUJH9JEAWlfHLGdqrNlavhaR1xMyzs8lJhy9U=";
+          openSha256 = lib.fakeSha256;
           useSettings = false;
+          usePersistenced = false;
         };
       };
       graphics = {
@@ -54,6 +54,7 @@
       kernelParams = lib.mkMerge [
         [
           "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
+          "nvidia_modeset.disable_vrr_memclk_switch=1" # stop really high memclk when vrr is in use.
         ]
         (lib.mkIf config.hardware.nvidia.powerManagement.enable [
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM

@@ -59,6 +59,7 @@ in {
       systemd.variables = ["--all"];
       package = hyprFlake.hyprland;
       systemd.enable = true;
+      portalPackage = hyprFlake.xdg-desktop-portal-hyprland;
       settings = {
         exec-once = [
           "sleep 0.5; random-wall.sh" # HACK: sleep here, otherwise wallpaper will be set too early
