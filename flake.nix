@@ -65,7 +65,6 @@
         modules = [
           ./hosts
           ./overlays
-          inputs.home-manager.nixosModules.home-manager
         ];
       };
   in {
