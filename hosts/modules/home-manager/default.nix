@@ -12,6 +12,9 @@
     default = false;
     description = "Enables the home manager configurations.";
   };
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+  ];
   config = lib.mkIf config.home-manager.enable {
     home-manager = {
       useGlobalPkgs = true;
