@@ -11,10 +11,32 @@
   };
   config = lib.mkIf config.apps.discord.enable {
     home.packages = with pkgs; [
-      (discord-canary.override {
-        withOpenASAR = true;
-        withVencord = true;
-      })
+      ((discord-canary.override {
+          withOpenASAR = true;
+          withVencord = true;
+        })
+        .overrideAttrs
+        (old: {
+          nativeBuildInputs = old.nativeBuildInputs or [] ++ [pkgs.makeWrapper];
+          postInstall = ''
+            ${old.postInstall or ""}
+            wrapProgramShell $out/opt/DiscordCanary/DiscordCanary \
+              --add-flags "--disable-crash-reporter" \
+              --add-flags "--disable-smooth-scrolling" \
+              --add-flags "--wayland-text-input-version=3" \
+              --add-flags "--use-cmd-decoder=passthrough" \
+              --add-flags "--enable-gpu-rasterization" \
+              --add-flags "--enable-zero-copy" \
+              --add-flags "--ignore-gpu-blocklist" \
+              --add-flags "--enable-features=AcceleratedVideoDecodeLinuxGL" \
+              --add-flags "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL" \
+              --add-flags "--enable-features=VaapiOnNvidiaGPUs" \
+              --add-flags "--enable-features=VaapiIgnoreDriverChecks" \
+              --add-flags "--enable-features=AcceleratedVideoEncoder" \
+              --add-flags "--enable-features=AcceleratedVideoDecoder" \
+              --add-flags "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop electron from messing with my mic volume
+          '';
+        }))
     ];
   };
 }
