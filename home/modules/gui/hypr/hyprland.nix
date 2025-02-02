@@ -272,7 +272,7 @@ in {
             "$MOD, T, exec, ${lib.getExe config.programs.foot.package}"
             "$MOD, B, exec, ${lib.getExe config.programs.librewolf.finalPackage}"
             "$MOD SHIFT, P, exec, ${lib.getExe config.programs.librewolf.finalPackage} --private-window"
-            "$MOD, W, exec, ${lib.getExe pkgs.vesktop}"
+            "$MOD, W, exec, discordcanary"
             "$MOD, D, exec, pkill ${builtins.baseNameOf (lib.getExe config.programs.fuzzel.package)} || ${lib.getExe config.programs.fuzzel.package}"
             "$MOD SHIFT, E, exec, pkill ${builtins.baseNameOf (lib.getExe config.programs.wlogout.package)} || ${lib.getExe config.programs.wlogout.package} --protocol layer-shell -b 5 -T 360 -B 360"
             "CTRL SHIFT, Escape, exec, ${lib.getExe config.programs.foot.package} btm"

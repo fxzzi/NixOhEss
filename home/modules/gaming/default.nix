@@ -30,7 +30,7 @@ in {
         }))
         osu-lazer-bin
         lutris
-        # cemu
+        cemu
         heroic
         protonup-qt
         nvtopPackages.nvidia

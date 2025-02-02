@@ -5,5 +5,6 @@
     ./mpv
     ./thunar
     ./syncthing
+    ./discord
   ];
 }

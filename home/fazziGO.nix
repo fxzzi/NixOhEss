@@ -6,6 +6,7 @@
     mpv.enable = true;
     obs-studio.enable = false;
     thunar.enable = true;
+    discord.enable = true;
     browsers = {
       librewolf.enable = true;
       chromium = {
