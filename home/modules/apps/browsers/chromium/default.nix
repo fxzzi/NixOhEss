@@ -20,6 +20,7 @@
       package = pkgs.ungoogled-chromium;
       commandLineArgs = [
         "--disable-crash-reporter"
+        "--disable-smooth-scrolling"
         "--wayland-text-input-version=3"
         "--use-cmd-decoder=passthrough"
         "--enable-gpu-rasterization"
@@ -29,6 +30,8 @@
         "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
         "--enable-features=VaapiOnNvidiaGPUs"
         "--enable-features=VaapiIgnoreDriverChecks"
+        "--enable-features=AcceleratedVideoEncoder"
+        "--enable-features=AcceleratedVideoDecoder"
         "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
       ];
     };
