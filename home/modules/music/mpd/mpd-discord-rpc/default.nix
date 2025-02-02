@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  npins,
+  pkgs,
   ...
 }: {
   options.music.mpd.discord-rpc.enable = lib.mkOption {
@@ -11,6 +13,15 @@
   config = lib.mkIf config.music.mpd.discord-rpc.enable {
     services.mpd-discord-rpc = {
       enable = true;
+      package = pkgs.mpd-discord-rpc.overrideAttrs (oldAttrs: rec {
+        pname = "mpd-discord-rpc-git";
+        src = npins.mpd-discord-rpc;
+        cargoDeps = oldAttrs.cargoDeps.overrideAttrs {
+          inherit src;
+          outputHash = "sha256-3Y+L7kKs8ycFUcpcLV4zsm4K4G78G7xFSuu1CplSxMU=";
+        };
+      });
+
       settings = {
         hosts = ["localhost:6600"];
         format = {
