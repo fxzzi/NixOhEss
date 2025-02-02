@@ -20,14 +20,13 @@
       # add them here!
     ];
     packages = with pkgs; [
-      vesktop
       wget
       python3
       ffmpeg
       pwvucontrol
       mate.atril
       mate.eom
-      libreoffice-qt6-fresh
+      libreoffice
       hunspell
       hunspellDicts.en_GB-ise
       npins

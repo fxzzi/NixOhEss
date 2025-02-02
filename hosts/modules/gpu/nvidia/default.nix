@@ -25,14 +25,14 @@
   config = lib.mkIf config.gpu.nvidia.enable {
     services.xserver.videoDrivers = ["nvidia"];
 
-    specialisation."nvidia-closed".configuration = {
+    specialisation."nvidia-open".configuration = {
       environment.etc."specialisation".text = "nvidia-closed";
-      hardware.nvidia.open = lib.mkForce false;
+      hardware.nvidia.open = lib.mkForce (! config.hardware.nvidia.open);
     };
 
     hardware = {
       nvidia = {
-        open = true;
+        open = false;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = true;
