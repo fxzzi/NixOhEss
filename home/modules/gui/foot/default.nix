@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  pkgs,
+  npins,
   ...
 }: {
   options.gui.foot.enable = lib.mkOption {
@@ -16,6 +18,11 @@
   config = lib.mkIf config.gui.foot.enable {
     programs.foot = {
       enable = true;
+      package = pkgs.foot.overrideAttrs {
+        pname = "foot-transparency";
+        src = npins.foot;
+      };
+
       settings = {
         main = {
           include = "~/.cache/wallust/colors_foot.ini";
