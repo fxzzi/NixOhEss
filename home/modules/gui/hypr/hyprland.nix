@@ -84,9 +84,6 @@ in {
         opengl = {
           nvidia_anti_flicker = 0;
         };
-        plugin.xwaylandprimary = {
-          display = "${config.gui.hypr.defaultMonitor}";
-        };
         input = {
           repeat_rate = 55; # Set characters to repeat on hold every 55ms
           repeat_delay = 375; # Set repeat timeout to 375ms
@@ -107,6 +104,7 @@ in {
         device = [
           {
             name = "tpps/2-elan-trackpoint";
+            accel_profile = "adaptive";
           }
           {
             name = "at-translated-set-2-keyboard";
@@ -137,7 +135,7 @@ in {
           initial_workspace_tracking = 0;
           vrr = 2; # vrr = 1 is cooked on nvidia rn
         };
-        source = ["~/.cache/wallust/colors_hyprland.conf"];
+        source = lib.mkIf config.gui.wallust.enable ["~/.cache/wallust/colors_hyprland.conf"];
         decoration = {
           rounding = 0;
           layerrule = [

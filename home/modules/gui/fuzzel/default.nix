@@ -32,7 +32,7 @@
           sort-result = "false";
           match-mode = "exact";
           dpi-aware = false;
-          include = "~/.cache/wallust/colors_fuzzel.ini";
+          include = lib.mkIf config.gui.wallust.enable "~/.cache/wallust/colors_fuzzel.ini";
         };
         border = {
           radius = "6";
