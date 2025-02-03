@@ -21,5 +21,7 @@
     ./home-manager
     ./adb
     ./security
+    ./scanning
+    ./printing
   ];
 }
