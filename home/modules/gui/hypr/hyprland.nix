@@ -1,6 +1,5 @@
 {
   lib,
-  inputs,
   pkgs,
   config,
   osConfig,
@@ -18,7 +17,6 @@
     if multiMonitor
     then "slidevert"
     else "slide";
-  hyprFlake = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in {
   options.gui = {
     hypr = {
@@ -56,10 +54,10 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.variables = ["--all"];
-      package = hyprFlake.hyprland;
       systemd.enable = true;
-      portalPackage = hyprFlake.xdg-desktop-portal-hyprland;
+      systemd.variables = ["--all"];
+      # use package from nixos hyprland module
+      inherit (osConfig.programs.hyprland) package portalPackage;
       settings = {
         exec-once = [
           "sleep 0.5; random-wall.sh" # HACK: sleep here, otherwise wallpaper will be set too early
