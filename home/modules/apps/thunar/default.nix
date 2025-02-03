@@ -63,7 +63,7 @@
         <name>Edit in Terminal</name>
         <submenu></submenu>
         <unique-id>1715762765914315-1</unique-id>
-        <command>${lib.getExe pkgs.foot} ${lib.getExe config.programs.nvf.finalPackage} %f</command>
+        <command>${lib.getExe config.programs.foot.package} ${lib.getExe config.programs.nvf.finalPackage} %f</command>
         <description></description>
         <range>*</range>
         <patterns>*</patterns>
@@ -75,7 +75,7 @@
         <name>Launch Terminal here</name>
         <submenu></submenu>
         <unique-id>1715763119333224-2</unique-id>
-        <command>${lib.getExe pkgs.foot} -D %f</command>
+        <command>${lib.getExe config.programs.foot.package} -D %f</command>
         <description></description>
         <range>*</range>
         <patterns>*</patterns>
@@ -86,7 +86,7 @@
         <name>Edit as root</name>
         <submenu></submenu>
         <unique-id>1716201472079277-1</unique-id>
-        <command>${lib.getExe pkgs.foot} ${lib.getExe' pkgs.sudo "sudoedit"} %f</command>
+        <command>${lib.getExe config.programs.foot.package} ${lib.getExe' pkgs.sudo "sudoedit"} %f</command>
         <description></description>
         <range>*</range>
         <patterns>*</patterns>
