@@ -1,6 +1,8 @@
 {
   hostName,
   lib,
+  user,
+  pkgs,
   ...
 }: {
   networking.hostName = hostName;
