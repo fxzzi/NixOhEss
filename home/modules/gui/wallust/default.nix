@@ -19,7 +19,7 @@
       check_contrast = true;
       backend = "wal";
       color_space = "lch";
-      templates = lib.filterAttrs (_: v: v != null) {
+      templates = {
         fuzzel =
           if config.gui.fuzzel.enable
           then {
