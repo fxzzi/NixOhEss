@@ -1,4 +1,4 @@
-staticwall="$HOME/.local/state/wallpaper"
+STATICWALL="$XDG_STATE_HOME/wallpaper"
 
 if [ -z "$1" ]; then
   echo "add wallpaper as arg"
@@ -7,7 +7,8 @@ fi
 
 wallust run "$1" &
 
-ln -sf "$1" "$staticwall"
+ln -sf "$1" "$STATICWALL"
+
 hyprctl hyprpaper reload ,"$1"
 
 # while wallust is still running, wait
