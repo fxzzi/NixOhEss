@@ -6,7 +6,6 @@
   ...
 }: let
   nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
-  nixpkgs-sgdboop = inputs.nixpkgs-sgdboop.legacyPackages.${pkgs.system};
 in {
   options.gaming.enable = lib.mkOption {
     type = lib.types.bool;
@@ -37,7 +36,6 @@ in {
       ]
       ++ [
         nixpkgs-olympus.olympus
-        nixpkgs-sgdboop.sgdboop
       ];
     xdg.mimeApps.defaultApplications = {
       "application/x-osu-beatmap-archive" = "osu!.desktop"; # .osz
