@@ -65,7 +65,7 @@
       };
     };
     programs.zsh.shellAliases = {
-      ncm = "${lib.getExe pkgs.ncmpcpp}";
+      ncm = "${lib.getExe config.programs.ncmpcpp.package}";
     };
   };
 }
