@@ -1070,22 +1070,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-sgdboop": {
-      "locked": {
-        "lastModified": 1726424843,
-        "narHash": "sha256-2jE0ewMBtDQDeiTZoSugFubjTYJgLhdeFPmHzR5CI4M=",
-        "owner": "Saturn745",
-        "repo": "nixpkgs",
-        "rev": "2a4a651d79cf3dd21bc3c49f106d2066891ff587",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Saturn745",
-        "ref": "sgdboop-init",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -4128,7 +4112,6 @@
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-olympus": "nixpkgs-olympus",
-        "nixpkgs-sgdboop": "nixpkgs-sgdboop",
         "nvf": "nvf",
         "nvuv": "nvuv"
       }
