@@ -21,9 +21,7 @@
           postInstall = ''
             ${old.postInstall or ""}
             wrapProgramShell $out/opt/DiscordCanary/DiscordCanary \
-              --add-flags "--disable-crash-reporter" \
               --add-flags "--disable-smooth-scrolling" \
-              --add-flags "--wayland-text-input-version=3" \
               --add-flags "--use-cmd-decoder=passthrough" \
               --add-flags "--enable-gpu-rasterization" \
               --add-flags "--enable-zero-copy" \
@@ -34,7 +32,8 @@
               --add-flags "--enable-features=VaapiIgnoreDriverChecks" \
               --add-flags "--enable-features=AcceleratedVideoEncoder" \
               --add-flags "--enable-features=AcceleratedVideoDecoder" \
-              --add-flags "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop electron from messing with my mic volume
+              --add-flags "--enable-features=WaylandLinuxDrmSyncobj" \
+              --add-flags "--disable-features=WebRtcAllowInputVolumeAdjustment"
           '';
         }))
     ];
