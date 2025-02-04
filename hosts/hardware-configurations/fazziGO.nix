@@ -10,43 +10,47 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "sdhci_pci"
+      ];
+      kernelModules = [];
 
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "xhci_pci"
-    "sdhci_pci"
-  ];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/fef8f90b-499b-4089-8eea-c4ecbf1cc8a8";
-    fsType = "btrfs";
-    options = ["noatime,ssd,discard=async,subvol=@"];
+      luks.devices."root".device = "/dev/disk/by-uuid/a6911461-bfed-4c54-bff4-f92b98fc8a90";
+    };
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
   };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/fef8f90b-499b-4089-8eea-c4ecbf1cc8a8";
+      fsType = "btrfs";
+      options = ["noatime,ssd,discard=async,subvol=@"];
+    };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/a6911461-bfed-4c54-bff4-f92b98fc8a90";
+    "/home" = {
+      device = "/dev/disk/by-uuid/fef8f90b-499b-4089-8eea-c4ecbf1cc8a8";
+      fsType = "btrfs";
+      options = ["noatime,ssd,discard=async,subvol=@home"];
+    };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/fef8f90b-499b-4089-8eea-c4ecbf1cc8a8";
-    fsType = "btrfs";
-    options = ["noatime,ssd,discard=async,subvol=@home"];
-  };
+    "/nix" = {
+      device = "/dev/disk/by-uuid/fef8f90b-499b-4089-8eea-c4ecbf1cc8a8";
+      fsType = "btrfs";
+      options = ["noatime,ssd,discard=async,subvol=@nix"];
+    };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/fef8f90b-499b-4089-8eea-c4ecbf1cc8a8";
-    fsType = "btrfs";
-    options = ["noatime,ssd,discard=async,subvol=@nix"];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/36DB-E3AD";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
+    "/boot" = {
+      device = "/dev/disk/by-uuid/36DB-E3AD";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
+    };
   };
 
   swapDevices = [];

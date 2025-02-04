@@ -1,8 +1,6 @@
 {
   hostName,
   lib,
-  user,
-  pkgs,
   ...
 }: {
   networking.hostName = hostName;
@@ -19,4 +17,5 @@
   # also dont install any of the default packages.
   programs.nano.enable = lib.mkDefault false;
   environment.defaultPackages = lib.mkDefault [];
+  hardware.enableRedistributableFirmware = true;
 }

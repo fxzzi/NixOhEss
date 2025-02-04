@@ -9,48 +9,50 @@
   ...
 }: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
-
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "xhci_pci"
-    "ahci"
-    "usbhid"
-  ];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
-    fsType = "btrfs";
-    options = ["noatime,ssd,discard=async,subvol=@"];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
-    fsType = "btrfs";
-    options = ["noatime,ssd,discard=async,subvol=@home"];
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
-    fsType = "btrfs";
-    options = ["noatime,ssd,discard=async,subvol=@nix"];
-  };
-
-  fileSystems."/home/${user}/games" = {
-    device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
-    fsType = "btrfs";
-    options = ["noatime,ssd,discard=async,subvol=@games"];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/8026-A204";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
+  boot = {
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usbhid"
     ];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
+  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
+      fsType = "btrfs";
+      options = ["noatime,ssd,discard=async,subvol=@"];
+    };
+
+    "/home" = {
+      device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
+      fsType = "btrfs";
+      options = ["noatime,ssd,discard=async,subvol=@home"];
+    };
+
+    "/nix" = {
+      device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
+      fsType = "btrfs";
+      options = ["noatime,ssd,discard=async,subvol=@nix"];
+    };
+
+    "/home/${user}/games" = {
+      device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
+      fsType = "btrfs";
+      options = ["noatime,ssd,discard=async,subvol=@games"];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/8026-A204";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
+    };
   };
 
   swapDevices = [];
