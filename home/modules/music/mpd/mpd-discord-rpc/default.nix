@@ -18,7 +18,7 @@
         src = npins.mpd-discord-rpc;
         cargoDeps = oldAttrs.cargoDeps.overrideAttrs {
           inherit src;
-          outputHash = "sha256-3Y+L7kKs8ycFUcpcLV4zsm4K4G78G7xFSuu1CplSxMU=";
+          outputHash = "sha256-uDru6npxi+NU/KzCa8uoGqvLrJwMB+PGWl7rneyubCY=";
         };
       });
 

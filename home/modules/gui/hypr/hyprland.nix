@@ -48,7 +48,7 @@ in {
   config = lib.mkIf config.gui.hypr.hyprland.enable {
     programs.zsh.profileExtra = lib.mkIf config.gui.hypr.hyprland.autoStart ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-        exec ${lib.getExe' config.wayland.windowManager.hyprland.package "Hyprland"}
+        exec ${lib.getExe' osConfig.programs.hyprland.package "Hyprland"}
       fi
     '';
 
@@ -56,8 +56,9 @@ in {
       enable = true;
       systemd.enable = true;
       systemd.variables = ["--all"];
-      # use package from nixos hyprland module
-      inherit (osConfig.programs.hyprland) package portalPackage;
+      # use the package and portalPackage defined in the nixos hyprland module
+      package = null;
+      portalPackage = null;
       settings = {
         exec-once = [
           "sleep 0.5; random-wall.sh" # HACK: sleep here, otherwise wallpaper will be set too early
