@@ -19,9 +19,7 @@
       enable = true;
       package = pkgs.ungoogled-chromium;
       commandLineArgs = [
-        "--disable-crash-reporter"
         "--disable-smooth-scrolling"
-        "--wayland-text-input-version=3"
         "--use-cmd-decoder=passthrough"
         "--enable-gpu-rasterization"
         "--enable-zero-copy"
@@ -32,6 +30,7 @@
         "--enable-features=VaapiIgnoreDriverChecks"
         "--enable-features=AcceleratedVideoEncoder"
         "--enable-features=AcceleratedVideoDecoder"
+        "--enable-features=WaylandLinuxDrmSyncobj" # enable explicit sync support
         "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
       ];
     };
