@@ -41,6 +41,7 @@ in {
         ];
         monospace = [
           "SpaceMono Nerd Font"
+          "icomoon-feather"
         ];
         emoji = [
           "Noto Color Emoji"

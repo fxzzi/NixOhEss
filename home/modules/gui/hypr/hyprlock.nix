@@ -33,7 +33,7 @@ in {
           [
             {
               monitor = "${config.gui.hypr.defaultMonitor}";
-              path = "/tmp/wallpaper";
+              path = "${config.xdg.stateHome}/wallpaper";
               blur_size = 3;
               blur_passes = 3; # 0 disables blurring
               contrast = 1;
@@ -44,7 +44,7 @@ in {
           (lib.mkIf multiMonitor [
             {
               monitor = "";
-              path = "/tmp/wallpaper";
+              path = "${config.xdg.stateHome}/wallpaper";
               blur_size = 3;
               blur_passes = 3; # 0 disables blurring
               contrast = 0.9;
@@ -65,8 +65,8 @@ in {
             outer_color = "0xff1a1b26";
             inner_color = "0xff1a1b26";
             font_color = "0xffc8d3f6";
-            placeholder_text = ''<span font="SpaceMono Nerd Font"><i>Password...</i></span>''; # Text rendered when empty
-            fail_text = ''<span font="SpaceMono Nerd Font"><i>Incorrect.</i></span>'';
+            placeholder_text = ''<span font="${builtins.head config.fonts.fontconfig.defaultFonts.monospace}"><i>Password...</i></span>''; # Text rendered when empty
+            fail_text = ''<span font="${builtins.head config.fonts.fontconfig.defaultFonts.monospace}"><i>Incorrect.</i></span>'';
             hide_input = false;
             position = "0, 120";
             halign = "center";
@@ -80,7 +80,7 @@ in {
             text = ''cmd[update:1000] echo "$(date +"%H:%M:%S")"'';
             color = "0xffc8d3f5";
             font_size = 72;
-            font_family = "SpaceMono Nerd Font Bold";
+            font_family = "${builtins.head config.fonts.fontconfig.defaultFonts.monospace} Bold";
             shadow_passes = 2;
             shadow_size = 2;
             position = "0, 40";
@@ -92,7 +92,7 @@ in {
             text = ''cmd[update:18000000] echo "$(date +'%A, %-d %B')"'';
             color = "0xffc8d3f5";
             font_size = 24;
-            font_family = "SpaceMono Nerd Font Bold";
+            font_family = "${builtins.head config.fonts.fontconfig.defaultFonts.monospace} Bold";
             shadow_passes = 2;
             shadow_size = 2;
             position = "0, -40";
