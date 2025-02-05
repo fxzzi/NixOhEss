@@ -1,17 +1,5 @@
 {
   "pins": {
-    "Vesktop": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "ading2210",
-        "repo": "Vesktop"
-      },
-      "branch": "main",
-      "revision": "85ec62942669843873fdfa2b32315f551b1f9706",
-      "url": "https://github.com/ading2210/Vesktop/archive/85ec62942669843873fdfa2b32315f551b1f9706.tar.gz",
-      "hash": "1jslzs4ikdki79nxq3qkly2v9s9pv9f0iqf6ywh33vdqsi3qqbxg"
-    },
     "foot": {
       "type": "Git",
       "repository": {
@@ -68,8 +56,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre747523.95ea544c84eb/nixexprs.tar.xz",
-      "hash": "057d08rf9zqxr0ljhb27654a3wdlp6n128y347bjxv0jp995y6dc"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre747829.5b2753b0356d/nixexprs.tar.xz",
+      "hash": "0drdyii30wnfab9nfg3rxh72k3v6f8xinsnhni7gvqhbxcwqgfx5"
     },
     "obs-pipewire-audio-capture": {
       "type": "Git",

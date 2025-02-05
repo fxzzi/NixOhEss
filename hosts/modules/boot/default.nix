@@ -19,7 +19,7 @@
     boot = {
       initrd.systemd.enable = true;
       loader = {
-        timeout = 3; # Timeout before launching default entry
+        timeout = 0; # hide boot menu, show if spamming space
         systemd-boot = {
           enable = true; # Enable systemd-boot
           editor = false; # Disable editor for security
