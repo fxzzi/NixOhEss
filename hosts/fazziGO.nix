@@ -32,7 +32,7 @@ _: {
     wootingRules.enable = true;
   };
   printing.enable = true;
-  scanning.enable = true;
+  scanning.enable = false;
   security.enable = true;
   user = {
     enable = true;

@@ -3,6 +3,7 @@
   pkgs,
   inputs,
   lib,
+  osConfig,
   ...
 }: {
   options.gui.hypr.hypridle.enable = lib.mkOption {
@@ -21,15 +22,15 @@
       package = inputs.hypridle.packages.${pkgs.system}.default;
       settings = {
         general = {
-          lock_cmd = "${lib.getExe inputs.hyprlock.packages.${pkgs.system}.default}";
+          lock_cmd = "${lib.getExe config.programs.hyprlock.package}";
           before_sleep_cmd = "loginctl lock-session";
-          after_sleep_cmd = "hyprctl dispatch dpms on";
+          after_sleep_cmd = "${lib.getExe' osConfig.programs.hyprland.package "hyprctl"} dispatch dpms on";
         };
         listener = [
           {
             timeout = 300;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
+            on-timeout = "${lib.getExe' osConfig.programs.hyprland.package "hyprctl"} dispatch dpms off";
+            on-resume = "${lib.getExe' osConfig.programs.hyprland.package "hyprctl"} dispatch dpms on";
           }
           {
             timeout = 330;
