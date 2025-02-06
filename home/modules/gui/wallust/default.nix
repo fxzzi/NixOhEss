@@ -9,6 +9,9 @@
     default = false;
     description = "Enables wallust and its configs.";
   };
+  imports = [
+    ./integrations.nix
+  ];
   config = lib.mkIf config.gui.wallust.enable {
     home.packages = with pkgs; [
       wallust

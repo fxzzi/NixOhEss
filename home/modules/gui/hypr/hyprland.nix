@@ -23,7 +23,7 @@ in {
       hyprland = {
         enable = lib.mkOption {
           type = lib.types.bool;
-          default = false;
+          default = osConfig.wayland.hyprland.enable;
           description = "Enables hyprland and its configuration.";
         };
         autoStart = lib.mkOption {
@@ -79,7 +79,7 @@ in {
         render = {
           direct_scanout = 0;
         };
-        cursor = {
+        cursor = lib.mkIf multiMonitor {
           default_monitor = "${config.gui.hypr.defaultMonitor}";
         };
         opengl = {
@@ -136,7 +136,6 @@ in {
           initial_workspace_tracking = 0;
           vrr = 2; # vrr = 1 is cooked on nvidia rn
         };
-        source = lib.mkIf config.gui.wallust.enable ["~/.cache/wallust/colors_hyprland.conf"];
         decoration = {
           rounding = 0;
           layerrule = [
