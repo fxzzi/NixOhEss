@@ -63,7 +63,6 @@
         };
         modules = [
           ./hosts
-          ./overlays
         ];
       };
   in {
