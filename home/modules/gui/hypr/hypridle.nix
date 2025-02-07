@@ -5,7 +5,12 @@
   lib,
   osConfig,
   ...
-}: {
+}: let
+  pkg =
+    if osConfig.wayland.hyprland.useGit
+    then inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}
+    else pkgs;
+in {
   options.gui.hypr.hypridle.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -19,7 +24,7 @@
   config = lib.mkIf config.gui.hypr.hypridle.enable {
     services.hypridle = {
       enable = true;
-      package = inputs.hypridle.packages.${pkgs.system}.default;
+      package = pkg.hypridle;
       settings = {
         general = {
           lock_cmd = "${lib.getExe config.programs.hyprlock.package}";

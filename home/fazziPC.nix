@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  osConfig,
+  ...
+}: {
   scripts.enable = true;
   xdgConfig.enable = true;
   apps = {
