@@ -39,7 +39,10 @@ _: {
     shell = "zsh";
   };
   wayland = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      useGit = false; # don't use unstable git packages for hypr*
+    };
     thunar.enable = true;
   };
   gpu = {

@@ -49,7 +49,10 @@ _: {
     shell = "zsh";
   };
   wayland = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      useGit = true;
+    };
     thunar.enable = true;
   };
   gaming = {
