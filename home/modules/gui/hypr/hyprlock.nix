@@ -3,12 +3,17 @@
   config,
   inputs,
   pkgs,
+  osConfig,
   ...
 }: let
   multiMonitor =
     if config.gui.hypr.secondaryMonitor != null
     then true
     else false;
+  pkg =
+    if osConfig.wayland.hyprland.useGit
+    then inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}
+    else pkgs;
 in {
   options.gui.hypr.hyprlock.enable = lib.mkOption {
     type = lib.types.bool;
@@ -18,7 +23,7 @@ in {
   config = lib.mkIf config.gui.hypr.hyprlock.enable {
     programs.hyprlock = {
       enable = true;
-      package = inputs.hyprlock.packages.${pkgs.system}.default;
+      package = pkg.hyprlock;
       settings = {
         general = {
           hide_cursor = true;
