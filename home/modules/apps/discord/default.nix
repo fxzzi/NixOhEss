@@ -32,7 +32,6 @@
               --add-flags "--enable-features=VaapiIgnoreDriverChecks" \
               --add-flags "--enable-features=AcceleratedVideoEncoder" \
               --add-flags "--enable-features=AcceleratedVideoDecoder" \
-              --add-flags "--enable-features=WaylandLinuxDrmSyncobj" \
               --add-flags "--disable-features=WebRtcAllowInputVolumeAdjustment"
           '';
         }))
