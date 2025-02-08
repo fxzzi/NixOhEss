@@ -62,6 +62,7 @@
             ;
         };
         modules = [
+          ./overlays/basedpyright-fix.nix
           ./hosts
         ];
       };

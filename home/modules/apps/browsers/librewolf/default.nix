@@ -4,7 +4,9 @@
   lib,
   osConfig,
   ...
-}: {
+}: let
+  newTabPage = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
+in {
   options.apps.browsers.librewolf.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -23,10 +25,11 @@
       file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
         // Set new tab page to local startpage
         let { utils:Cu } = Components;
-
         Cu.import("resource:///modules/AboutNewTab.jsm");
-        let newTabURL = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
-        AboutNewTab.newTabURL = newTabURL;
+        AboutNewTab.newTabURL = "${newTabPage}";
+
+        pref("browser.startup.homepage", "${newTabPage}");
+        pref("services.sync.prefs.sync.browser.startup.homepage", false);
 
         // Revert some security changes
         pref("webgl.disabled", false);
