@@ -3,6 +3,7 @@
   pkgs,
   config,
   osConfig,
+  inputs,
   ...
 }: let
   multiMonitor =
@@ -17,6 +18,10 @@
     if multiMonitor
     then "slidevert"
     else "slide";
+  hyprsunsetPkg =
+    if osConfig.wayland.hyprland.useGit
+    then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
+    else pkgs;
 in {
   options.gui = {
     hypr = {
@@ -274,14 +279,13 @@ in {
             "CTRL SHIFT, Escape, exec, ${lib.getExe config.programs.foot.package} btm"
 
             # extra schtuff
-            # "$MOD, N, exec, pkill ${builtins.baseNameOf (lib.getExe inputs.hyprsunset.packages.${pkgs.system}.default)} || ${lib.getExe inputs.hyprsunset.packages.${pkgs.system}.default} -t 2000"
-            "$MOD, N, exec, pkill ${builtins.baseNameOf (lib.getExe pkgs.hyprsunset)} || ${lib.getExe pkgs.hyprsunset} -t 2000"
+            "$MOD, N, exec, pkill ${builtins.baseNameOf (lib.getExe hyprsunsetPkg.hyprsunset)} || ${lib.getExe hyprsunsetPkg.hyprsunset} -t 2000"
             "$MOD, R, exec, random-wall.sh"
             "$MOD SHIFT, R, exec, cycle-wall.sh"
             "$MOD, J, exec, ${lib.getExe config.programs.foot.package} wall-picker.sh"
             "$MOD, L, exec, ${lib.getExe' pkgs.systemd "loginctl"} lock-session"
             ", XF86AudioPrev, exec, ${lib.getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif.sh)"
-            ", XF86AudioPlay, exec, ${lib.getExe pkgs.mpc} toggle; (mpd-notif.sh)"
+            ", XF86AudioPlay, exec, ${lib.getExe pkgs.mpc} toggle"
             ", XF86AudioNext, exec, ${lib.getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif.sh)"
 
             # passthrough binds for obs
