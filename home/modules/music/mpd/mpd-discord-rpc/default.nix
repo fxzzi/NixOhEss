@@ -13,14 +13,14 @@
   config = lib.mkIf config.music.mpd.discord-rpc.enable {
     services.mpd-discord-rpc = {
       enable = true;
-      package = pkgs.mpd-discord-rpc.overrideAttrs (oldAttrs: rec {
-        pname = "mpd-discord-rpc-git";
-        src = npins.mpd-discord-rpc;
-        cargoDeps = oldAttrs.cargoDeps.overrideAttrs {
-          inherit src;
-          outputHash = "sha256-uDru6npxi+NU/KzCa8uoGqvLrJwMB+PGWl7rneyubCY=";
-        };
-      });
+      # package = pkgs.mpd-discord-rpc.overrideAttrs (oldAttrs: rec {
+      #   pname = "mpd-discord-rpc-git";
+      #   src = npins.mpd-discord-rpc;
+      #   cargoDeps = oldAttrs.cargoDeps.overrideAttrs {
+      #     inherit src;
+      #     outputHash = "sha256-uDru6npxi+NU/KzCa8uoGqvLrJwMB+PGWl7rneyubCY=";
+      #   };
+      # });
 
       settings = {
         hosts = ["localhost:6600"];
