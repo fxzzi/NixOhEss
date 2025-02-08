@@ -2,7 +2,7 @@
   description = "fazzi's nixos + hm conf";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -11,7 +11,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
-    # hyprsunset.url = "github:hyprwm/hyprsunset";
+    hyprsunset.url = "github:outfoxxed/hyprsunset/ctm-blocked";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";
@@ -62,7 +62,7 @@
             ;
         };
         modules = [
-          ./overlays/basedpyright-fix.nix
+          # ./overlays/basedpyright-fix.nix
           ./hosts
         ];
       };
