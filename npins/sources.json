@@ -1,5 +1,20 @@
 {
   "pins": {
+    "MangoHud": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "flightlessmango",
+        "repo": "MangoHud"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "version": "v0.7.2",
+      "revision": "7b80f733b635d20317f9f7eb9b9cb526ce174a84",
+      "url": "https://api.github.com/repos/flightlessmango/MangoHud/tarball/v0.7.2",
+      "hash": "128774dba4yfhrxgwqfw48b3j7v1xhxjaq1cj7vwirjl1rwljkqw"
+    },
     "foot": {
       "type": "Git",
       "repository": {
@@ -7,9 +22,9 @@
         "url": "https://codeberg.org/fazzi/foot"
       },
       "branch": "transparency_yipee",
-      "revision": "189077fae9890aa95af12cefec565757ce555483",
+      "revision": "fac79ddba7e8b37cdc16ba6bb517457be0ba9e2d",
       "url": null,
-      "hash": "0q05zndhhim0b6m067vx9gwjy2xfxq68ij6wdj4vib4r90xi3i7m"
+      "hash": "1j40ix706szchcs0k4wz9nrg8qfklwfwc1bx109mnv2ywx3s6i8k"
     },
     "fzf-tab": {
       "type": "GitRelease",
@@ -56,8 +71,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre750459.e8d0b02af095/nixexprs.tar.xz",
-      "hash": "0nfs7xgzyhbmq916s2y39lzw1xf3n4vbrynxf5c7pcismic6s8nn"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre750627.fa35a3c8e17a/nixexprs.tar.xz",
+      "hash": "1hv473h2qw52qn98vvyfnzhwrihfimk3qvhw8iazp7l51wfs2da5"
     },
     "obs-pipewire-audio-capture": {
       "type": "Git",
