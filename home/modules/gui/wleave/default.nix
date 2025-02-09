@@ -49,7 +49,7 @@
         @import url("./colors_wleave.css");
 
         window {
-        	font-family: SpaceMono Nerd Font;
+        	font-family: monospace;
         	font-size: 20pt;
         	color: #c0caf5;
         	/* text */
