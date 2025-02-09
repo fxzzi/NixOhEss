@@ -18,6 +18,10 @@
       url = "github:Lyndeno/apple-fonts.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ioshelfka = {
+      url = "github:NotAShelf/Ioshelfka";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nvuv = {
       url = "gitlab:fazzi/nvuv";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -500,11 +500,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1739048455,
-        "narHash": "sha256-hn3GGgilLPezJlIm82SZYN7jpIgbjVBELsGORIoYx+0=",
+        "lastModified": 1739123889,
+        "narHash": "sha256-TinJJD88Y2EY0eoThanqN8Zr8I25JVhr1CeRS2LUeOc=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "8e10ddb592977ef2e1836e75b0e5550ba8fb56f0",
+        "rev": "f261fb6fe028a1427cfd672eee6e7d5705cd696f",
         "type": "github"
       },
       "original": {
@@ -782,11 +782,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1739048842,
-        "narHash": "sha256-wk+Ogv1Z3UQCGR2XnFoCB+x6T1nUhbB+cx48x+1ZBbM=",
+        "lastModified": 1739122763,
+        "narHash": "sha256-2z7IZwYw4Vkkc+UQUH91j85qQlnvtiNYeFwWkaty3uM=",
         "owner": "hyprwm",
         "repo": "hyprlock",
-        "rev": "ad7600dca950f6129252db7f0223f2939995b18e",
+        "rev": "a27585b383cc6eb7760dc66d3c2313b4173e5a43",
         "type": "github"
       },
       "original": {
@@ -805,11 +805,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1738183278,
-        "narHash": "sha256-cPrYNR4XrLczIVjOMD/34Ca16cClSiCCdnYOyX8ae+8=",
+        "lastModified": 1739122850,
+        "narHash": "sha256-AcxjGOlsD27INeDQqVPIgMp95bQsdOm07yr99po/960=",
         "owner": "hyprwm",
         "repo": "hyprpaper",
-        "rev": "f827dc31978a8b99ec08755b61b094e817c16fc4",
+        "rev": "7e18ebc843ee4ccf2632091d55c73428b339265b",
         "type": "github"
       },
       "original": {
@@ -1091,6 +1091,43 @@
         "type": "github"
       }
     },
+    "iosevka-upstream": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737190003,
+        "narHash": "sha256-kB4CsC/hHstajLcVYBxO7RD0lsZymrxlUha4cRtQ7Ak=",
+        "owner": "be5invis",
+        "repo": "Iosevka",
+        "rev": "a5d26cb87836c7245dcae2c741663017245cdd18",
+        "type": "github"
+      },
+      "original": {
+        "owner": "be5invis",
+        "repo": "Iosevka",
+        "type": "github"
+      }
+    },
+    "ioshelfka": {
+      "inputs": {
+        "iosevka-upstream": "iosevka-upstream",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737896851,
+        "narHash": "sha256-grVnIBwoWv29q8ayes9dl3aNEV7CVph4GGRx4DudfMM=",
+        "owner": "NotAShelf",
+        "repo": "Ioshelfka",
+        "rev": "9124d3d2b2057014f99df42dc9807f7627d425a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "Ioshelfka",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -1144,7 +1181,7 @@
         "narHash": "sha256-YMLrcBpf0TR5r/eaqm8lxzFPap2TxCor0ZGcK3a7+b8=",
         "rev": "b90bf629bbd835e61f1317b99e12f8c831017006",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/b90bf629bbd835e61f1317b99e12f8c831017006.tar.gz"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/b90bf629bbd835e61f1317b99e12f8c831017006.tar.gz?rev=b90bf629bbd835e61f1317b99e12f8c831017006"
       },
       "original": {
         "type": "tarball",
@@ -1565,11 +1602,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739099431,
-        "narHash": "sha256-w0YLWdjb4uxZRpWNwsbxoS5ADC2mQ/RIrsNj8cW1BGA=",
+        "lastModified": 1739100409,
+        "narHash": "sha256-6ID+7BoF4g7Wkh1/DgcQ8MxSTrruhjculYufZWmWzk8=",
         "owner": "fazzi",
         "repo": "nvuv",
-        "rev": "342a7eccc0812d0e856a7670dd7553c638c1353b",
+        "rev": "13b6216bb5ecd0905c1019c3da2bb21fa16e17f8",
         "type": "gitlab"
       },
       "original": {
@@ -4342,6 +4379,7 @@
         "hyprlock": "hyprlock",
         "hyprpaper": "hyprpaper",
         "hyprsunset": "hyprsunset",
+        "ioshelfka": "ioshelfka",
         "lanzaboote": "lanzaboote",
         "lix-module": "lix-module",
         "nixpkgs": "nixpkgs_6",

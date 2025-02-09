@@ -6,6 +6,7 @@
   ...
 }: let
   apple-fonts = inputs.apple-fonts.packages.${pkgs.system};
+  ioshelfka = inputs.ioshelfka.packages.${pkgs.system};
 in {
   options.gui.fontConfig.enable = lib.mkOption {
     type = lib.types.bool;
@@ -14,7 +15,8 @@ in {
   };
   config = lib.mkIf config.gui.fontConfig.enable {
     home.packages = with pkgs; [
-      nerd-fonts.space-mono
+      # nerd-fonts.space-mono
+      ioshelfka.ioshelfka-term-nerd
       noto-fonts # Google Noto Fonts
       noto-fonts-emoji # Emoji Font
       noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
@@ -40,7 +42,7 @@ in {
           config.gtk.font.name
         ];
         monospace = [
-          "SpaceMono Nerd Font"
+          "IoshelfkaTerm Nerd Font"
           "icomoon-feather"
         ];
         emoji = [
