@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
-    nixpkgs-proton-ge.url = "github:Gliczy/nixpkgs/ge-proton9-24";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,10 +48,6 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
@@ -71,7 +66,6 @@
             ;
         };
         modules = [
-          inputs.lix-module.nixosModules.default
           ./overlays/basedpyright-fix.nix # fix some issue on nixos-unstable
           ./hosts
         ];
