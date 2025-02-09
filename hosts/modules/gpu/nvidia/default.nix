@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   imports = [./nvuv];
@@ -67,13 +68,7 @@
         description = "NVidia GPU temperature monitoring"; # exposes gpu temperature at /tmp/nvidia-temp for monitoring
         wantedBy = ["multi-user.target"];
         before = ["fancontrol.service"];
-        script = ''
-          while :; do
-          	temp="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
-          	echo "$((temp * 1000))" > /tmp/nvidia-temp
-          	sleep 5 # loop every x seconds
-          done
-        '';
+        script = "${lib.getExe inputs.nvuv.packages.${pkgs.system}.nvtemp}";
         serviceConfig = {
           Type = "simple";
           Restart = "always";
@@ -81,7 +76,5 @@
         };
       };
     };
-    # maybe fix high vram usage on Hyprland?
-    environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json".source = ./50-limit-free-buffer-pool-in-wayland-compositors.json;
   };
 }
