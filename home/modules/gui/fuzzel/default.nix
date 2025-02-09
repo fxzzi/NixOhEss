@@ -15,7 +15,7 @@
       package = pkgs.fuzzel.override {svgBackend = "librsvg";};
       settings = {
         main = {
-          font = "SpaceMono Nerd Font:size=17";
+          font = "monospace:size=17";
           line-height = "30";
           prompt = "' '";
           layer = "overlay";
