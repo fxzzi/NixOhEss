@@ -45,6 +45,10 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
@@ -63,6 +67,7 @@
             ;
         };
         modules = [
+          inputs.lix-module.nixosModules.default
           ./overlays/basedpyright-fix.nix # fix some issue on nixos-unstable
           ./hosts
         ];
