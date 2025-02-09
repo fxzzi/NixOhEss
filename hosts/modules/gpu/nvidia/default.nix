@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }: {
   imports = [./nvuv];
@@ -68,7 +67,13 @@
         description = "NVidia GPU temperature monitoring"; # exposes gpu temperature at /tmp/nvidia-temp for monitoring
         wantedBy = ["multi-user.target"];
         before = ["fancontrol.service"];
-        script = "${lib.getExe inputs.nvuv.packages.${pkgs.system}.nvtemp}";
+        script = ''
+          while :; do
+          	temp="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
+          	echo "$((temp * 1000))" > /tmp/nvidia-temp
+          	sleep 5
+          done
+        '';
         serviceConfig = {
           Type = "simple";
           Restart = "always";
