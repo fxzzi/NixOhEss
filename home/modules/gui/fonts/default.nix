@@ -6,7 +6,6 @@
   ...
 }: let
   apple-fonts = inputs.apple-fonts.packages.${pkgs.system};
-  ioshelfka = inputs.ioshelfka.packages.${pkgs.system};
 in {
   options.gui.fontConfig.enable = lib.mkOption {
     type = lib.types.bool;
@@ -15,8 +14,7 @@ in {
   };
   config = lib.mkIf config.gui.fontConfig.enable {
     home.packages = with pkgs; [
-      # nerd-fonts.space-mono
-      ioshelfka.ioshelfka-term-nerd
+      nerd-fonts.space-mono
       noto-fonts # Google Noto Fonts
       noto-fonts-emoji # Emoji Font
       noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
@@ -35,14 +33,18 @@ in {
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [
-          "New York Medium"
-        ];
-        sansSerif = [
-          config.gtk.font.name
-        ];
+        serif =
+          [
+            "New York Medium"
+          ]
+          ++ config.fonts.fontconfig.defaultFonts.emoji;
+        sansSerif =
+          [
+            config.gtk.font.name
+          ]
+          ++ config.fonts.fontconfig.defaultFonts.emoji;
         monospace = [
-          "IoshelfkaTerm Nerd Font"
+          "SpaceMono Nerd Font"
           "icomoon-feather"
         ];
         emoji = [
