@@ -1,6 +1,8 @@
 {
   config,
   lib,
+  pkgs,
+  npins,
   ...
 }: {
   options.gaming.mangohud.enable = lib.mkOption {
@@ -11,6 +13,9 @@
   config = lib.mkIf config.gaming.mangohud.enable {
     programs.mangohud = {
       enable = true;
+      package = pkgs.mangohud.overrideAttrs {
+        src = npins.MangoHud;
+      };
       settings = {
         preset = "0,1";
         fps_limit = "167,0"; # few below refresh rate (vrr) or unlimited

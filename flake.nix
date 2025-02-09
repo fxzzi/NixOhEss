@@ -2,8 +2,9 @@
   description = "fazzi's nixos + hm conf";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
+    nixpkgs-proton-ge.url = "github:Gliczy/nixpkgs/ge-proton9-24";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,7 +63,7 @@
             ;
         };
         modules = [
-          # ./overlays/basedpyright-fix.nix
+          ./overlays/basedpyright-fix.nix # fix some issue on nixos-unstable
           ./hosts
         ];
       };
