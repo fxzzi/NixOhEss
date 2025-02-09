@@ -22,17 +22,8 @@
             ${old.postInstall or ""}
             wrapProgramShell $out/opt/DiscordCanary/DiscordCanary \
               --add-flags "--disable-smooth-scrolling" \
-              --add-flags "--use-cmd-decoder=passthrough" \
-              --add-flags "--enable-gpu-rasterization" \
-              --add-flags "--enable-zero-copy" \
-              --add-flags "--ignore-gpu-blocklist" \
-              --add-flags "--enable-features=AcceleratedVideoDecodeLinuxGL" \
-              --add-flags "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL" \
-              --add-flags "--enable-features=VaapiOnNvidiaGPUs" \
-              --add-flags "--enable-features=VaapiIgnoreDriverChecks" \
-              --add-flags "--enable-features=AcceleratedVideoEncoder" \
-              --add-flags "--enable-features=AcceleratedVideoDecoder" \
-              --add-flags "--disable-features=WebRtcAllowInputVolumeAdjustment"
+              --add-flags "--disable-features=WebRtcAllowInputVolumeAdjustment" \
+              --add-flags "--disable-gpu-compositing"
           '';
         }))
     ];

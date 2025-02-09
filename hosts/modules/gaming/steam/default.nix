@@ -2,8 +2,11 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
-}: {
+}: let
+  nixpkgs-proton-ge = inputs.nixpkgs-proton-ge.legacyPackages.${pkgs.system};
+in {
   options.gaming.steam.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -14,16 +17,8 @@
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-      extraCompatPackages = with pkgs; [
-        proton-ge-bin
-      ];
-    };
-    networking.firewall = {
-      allowedTCPPorts = [
-        3074
-      ];
-      allowedUDPPorts = [
-        3074
+      extraCompatPackages = [
+        nixpkgs-proton-ge.proton-ge-bin
       ];
     };
   };
