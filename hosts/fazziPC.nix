@@ -1,6 +1,6 @@
 _: {
   kernel = {
-    type = "xanmod_latest";
+    type = "zen";
     higherMaxMapCount = true;
     zenpower.enable = true;
     xone.enable = true;
