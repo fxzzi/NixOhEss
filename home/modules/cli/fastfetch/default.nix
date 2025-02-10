@@ -22,7 +22,7 @@
           "source" = "${./azzi.sixel}";
           "type" = "raw";
           "height" = 9;
-          "width" = 16;
+          "width" = 17;
           "padding" = {
             "top" = 1;
             "left" = 1;
