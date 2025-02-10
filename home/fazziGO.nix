@@ -10,7 +10,7 @@
     browsers = {
       librewolf.enable = true;
       chromium = {
-        enable = false;
+        enable = true;
       };
     };
   };
