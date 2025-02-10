@@ -25,10 +25,11 @@
   config = lib.mkIf config.gpu.nvidia.enable {
     services.xserver.videoDrivers = ["nvidia"];
 
-    specialisation."nvidia-open".configuration = {
-      environment.etc."specialisation".text = "nvidia-closed";
-      hardware.nvidia.open = lib.mkForce (! config.hardware.nvidia.open);
-    };
+    # seperate specialisation with nvidia-open drivers
+    # specialisation."nvidia-open".configuration = {
+    #   environment.etc."specialisation".text = "nvidia-closed";
+    #   hardware.nvidia.open = lib.mkForce (! config.hardware.nvidia.open);
+    # };
 
     hardware = {
       nvidia = {
@@ -60,7 +61,8 @@
         ])
       ];
       blacklistedKernelModules = ["nouveau"];
-      initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
+      # FIXME: no idea why this does not work >:(
+      # initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
     };
     systemd = {
       services.nvidia-temp = lib.mkIf config.gpu.nvidia.exposeTemp {
