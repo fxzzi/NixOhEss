@@ -62,7 +62,6 @@
             ;
         };
         modules = [
-          ./overlays/basedpyright-fix.nix # fix some issue on nixos-unstable
           ./hosts
         ];
       };
