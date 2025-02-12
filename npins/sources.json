@@ -10,10 +10,10 @@
       "pre_releases": false,
       "version_upper_bound": null,
       "release_prefix": null,
-      "version": "v0.7.2",
-      "revision": "7b80f733b635d20317f9f7eb9b9cb526ce174a84",
-      "url": "https://api.github.com/repos/flightlessmango/MangoHud/tarball/v0.7.2",
-      "hash": "128774dba4yfhrxgwqfw48b3j7v1xhxjaq1cj7vwirjl1rwljkqw"
+      "version": "v0.8.0",
+      "revision": "f77864d5ee59a82c33220267bf47fe0b82eafdad",
+      "url": "https://api.github.com/repos/flightlessmango/MangoHud/tarball/v0.8.0",
+      "hash": "12249f9z9dndczi1hxdw1y8lr8djplywi7zpc5lxq572x8rp7nz4"
     },
     "foot": {
       "type": "Git",
@@ -49,9 +49,9 @@
         "repo": "mpd-discord-rpc"
       },
       "branch": "master",
-      "revision": "53ae7097ffba5a159d9b4f20d6a1756dba2b8bc8",
-      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/53ae7097ffba5a159d9b4f20d6a1756dba2b8bc8.tar.gz",
-      "hash": "0qkv952xmss7vqpjhvr26fr8djz0y03s399lj1lq9v2ja932yf1y"
+      "revision": "95ca5e0b0e082925f6c90e5be4333ec0bb99c1a4",
+      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/95ca5e0b0e082925f6c90e5be4333ec0bb99c1a4.tar.gz",
+      "hash": "125kl2lx1l7f79dx9nq0b5nrvp8bn74idpd31sykz24ld3dvmx7m"
     },
     "nix-zsh-completions": {
       "type": "GitRelease",
@@ -71,8 +71,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre750627.fa35a3c8e17a/nixexprs.tar.xz",
-      "hash": "1hv473h2qw52qn98vvyfnzhwrihfimk3qvhw8iazp7l51wfs2da5"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre751383.b2243f41e860/nixexprs.tar.xz",
+      "hash": "1j7j5dg1hwy7r8c61ghxshiq0k5cq0852b5730h0w5knmhlfj2a4"
     },
     "obs-pipewire-audio-capture": {
       "type": "Git",
