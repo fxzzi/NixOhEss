@@ -1,20 +1,5 @@
 {
   "pins": {
-    "MangoHud": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "flightlessmango",
-        "repo": "MangoHud"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "version": "v0.8.0",
-      "revision": "f77864d5ee59a82c33220267bf47fe0b82eafdad",
-      "url": "https://api.github.com/repos/flightlessmango/MangoHud/tarball/v0.8.0",
-      "hash": "12249f9z9dndczi1hxdw1y8lr8djplywi7zpc5lxq572x8rp7nz4"
-    },
     "foot": {
       "type": "Git",
       "repository": {

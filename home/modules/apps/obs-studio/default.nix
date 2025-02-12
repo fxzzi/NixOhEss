@@ -18,6 +18,7 @@
         (obs-pipewire-audio-capture.overrideAttrs
           {
             pname = "obs-studio-plugins.obs-pipewire-audio-capture-git";
+            version = "0-unstable";
             src = npins.obs-pipewire-audio-capture;
             cmakeFlags = [
               "-DCMAKE_INSTALL_LIBDIR=./lib"

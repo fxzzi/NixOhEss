@@ -16,10 +16,11 @@
       package = pkgs.mpd-discord-rpc.overrideAttrs (
         finalAttrs: _: {
           src = npins.mpd-discord-rpc;
+          version = "0-unstable";
 
           cargoDeps = pkgs.rustPackages.rustPlatform.fetchCargoVendor {
             inherit (finalAttrs) src;
-            hash = "sha256-rXiE6iYHP+m6y80glaRhQZx3xp4U8fgZIVpp/OttVks=";
+            hash = "sha256-HPb2pLuGM/qFhNYsMznw6XQ0ckNHyUG6TIeIBQkn5UA=";
           };
         }
       );
