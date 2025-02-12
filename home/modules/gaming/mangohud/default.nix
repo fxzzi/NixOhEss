@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  nixpkgs-mangohud = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
+  nixpkgs-mangohud = inputs.nixpkgs-mangohud.legacyPackages.${pkgs.system};
 in {
   options.gaming.mangohud.enable = lib.mkOption {
     type = lib.types.bool;
