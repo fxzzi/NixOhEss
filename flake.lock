@@ -1152,22 +1152,6 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/5487e69da40cbd611ab2cadee0b4637225f7cfae.tar.gz"
       }
     },
-    "nixpkgs-mangohud": {
-      "locked": {
-        "lastModified": 1739378262,
-        "narHash": "sha256-6uhdbzx2M3gjHnvlgIYplqSctEGLDsTIORLlhE9Y2p0=",
-        "owner": "kira-bruneau",
-        "repo": "nixpkgs",
-        "rev": "b25b77a07c549b8b70dbeab2df2fd4e8d4b3edf4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kira-bruneau",
-        "ref": "mangohud",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-olympus": {
       "locked": {
         "lastModified": 1738969182,
@@ -1266,16 +1250,16 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1739214665,
-        "narHash": "sha256-26L8VAu3/1YRxS8MHgBOyOM8xALdo6N0I04PgorE7UM=",
+        "lastModified": 1739419412,
+        "narHash": "sha256-NCWZQg4DbYVFWg+MOFrxWRaVsLA7yvRWAf6o0xPR1hI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "64e75cd44acf21c7933d61d7721e812eac1b5a0a",
+        "rev": "2d55b4c1531187926c2a423f6940b3b1301399b5",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -1418,7 +1402,6 @@
         "hyprsunset": "hyprsunset",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs_6",
-        "nixpkgs-mangohud": "nixpkgs-mangohud",
         "nixpkgs-olympus": "nixpkgs-olympus",
         "nvf": "nvf",
         "nvuv": "nvuv"
