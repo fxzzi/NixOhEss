@@ -4,9 +4,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  nixpkgs-mangohud = inputs.nixpkgs-mangohud.legacyPackages.${pkgs.system};
-in {
+}: {
   options.gaming.mangohud.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -15,7 +13,6 @@ in {
   config = lib.mkIf config.gaming.mangohud.enable {
     programs.mangohud = {
       enable = true;
-      package = nixpkgs-mangohud.mangohud;
       settings = {
         preset = "0,1";
         fps_limit = "167,0"; # few below refresh rate (vrr) or unlimited
