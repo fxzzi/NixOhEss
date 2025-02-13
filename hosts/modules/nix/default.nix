@@ -1,5 +1,6 @@
-_: {
+{pkgs, ...}: {
   nix = {
+    package = pkgs.lix; # sure. use lix
     settings = {
       experimental-features = [
         "nix-command"
@@ -12,6 +13,6 @@ _: {
       trusted-users = ["@wheel"];
     };
   };
-  nixpkgs.config.allowUnfree = true;
-  documentation.nixos.enable = false;
+  nixpkgs.config.allowUnfree = true; # not too fussed as long as app works on linux tbh
+  documentation.nixos.enable = false; # remove useless docs .desktop
 }
