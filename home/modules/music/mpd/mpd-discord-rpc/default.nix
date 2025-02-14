@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  npins,
+  inputs,
   pkgs,
   ...
 }: {
@@ -13,18 +13,7 @@
   config = lib.mkIf config.music.mpd.discord-rpc.enable {
     services.mpd-discord-rpc = {
       enable = true;
-      package = pkgs.mpd-discord-rpc.overrideAttrs (
-        finalAttrs: _: {
-          src = npins.mpd-discord-rpc;
-          version = "0-unstable";
-
-          cargoDeps = pkgs.rustPackages.rustPlatform.fetchCargoVendor {
-            inherit (finalAttrs) src;
-            hash = "sha256-HPb2pLuGM/qFhNYsMznw6XQ0ckNHyUG6TIeIBQkn5UA=";
-          };
-        }
-      );
-
+      package = inputs.nixpkgs-master.legacyPackages.${pkgs.system}.mpd-discord-rpc;
       settings = {
         hosts = ["localhost:6600"];
         format = {
