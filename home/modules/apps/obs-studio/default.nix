@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  npins,
+  inputs,
   ...
 }: {
   options.apps.obs-studio.enable = lib.mkOption {
@@ -13,18 +13,9 @@
   config = lib.mkIf config.apps.obs-studio.enable {
     programs.obs-studio = {
       enable = true;
-      plugins = with pkgs.obs-studio-plugins; [
-        obs-vkcapture
-        (obs-pipewire-audio-capture.overrideAttrs
-          {
-            pname = "obs-studio-plugins.obs-pipewire-audio-capture-git";
-            version = "0-unstable";
-            src = npins.obs-pipewire-audio-capture;
-            cmakeFlags = [
-              "-DCMAKE_INSTALL_LIBDIR=./lib"
-              "-DCMAKE_INSTALL_DATADIR=./usr"
-            ];
-          })
+      plugins = [
+        pkgs.obs-studio-plugins.obs-vkcapture
+        inputs.nixpkgs-master.legacyPackages.${pkgs.system}.obs-studio-plugins.obs-pipewire-audio-capture
       ];
     };
   };

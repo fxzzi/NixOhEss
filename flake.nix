@@ -2,7 +2,8 @@
   description = "fazzi's nixos + hm conf";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     home-manager = {
       url = "github:nix-community/home-manager";

@@ -13,6 +13,7 @@
       enable = true;
       userName = "Fazzi";
       userEmail = "faaris<dot>ansari<at>proton<dot>me";
+      signing.format = "ssh";
     };
     programs.zsh.shellAliases = {
       g = "git";
