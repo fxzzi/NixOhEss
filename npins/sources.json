@@ -11,107 +11,11 @@
       "url": null,
       "hash": "1j40ix706szchcs0k4wz9nrg8qfklwfwc1bx109mnv2ywx3s6i8k"
     },
-    "fzf-tab": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Aloxaf",
-        "repo": "fzf-tab"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "version": "v1.1.2",
-      "revision": "c7fb028ec0bbc1056c51508602dbd61b0f475ac3",
-      "url": "https://api.github.com/repos/Aloxaf/fzf-tab/tarball/v1.1.2",
-      "hash": "061jjpgghn8d5q2m2cd2qdjwbz38qrcarldj16xvxbid4c137zs2"
-    },
-    "mpd-discord-rpc": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "JakeStanger",
-        "repo": "mpd-discord-rpc"
-      },
-      "branch": "master",
-      "revision": "95ca5e0b0e082925f6c90e5be4333ec0bb99c1a4",
-      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/95ca5e0b0e082925f6c90e5be4333ec0bb99c1a4.tar.gz",
-      "hash": "125kl2lx1l7f79dx9nq0b5nrvp8bn74idpd31sykz24ld3dvmx7m"
-    },
-    "nix-zsh-completions": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "nix-community",
-        "repo": "nix-zsh-completions"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "version": "0.5.1",
-      "revision": "6e782b97091b07eb849b58953eb200ccc56ef833",
-      "url": "https://api.github.com/repos/nix-community/nix-zsh-completions/tarball/0.5.1",
-      "hash": "0pzqng23z21h5w9b3mv53b1jaivdjvq7pm2bfsh0m2pah5rwq1kf"
-    },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre752648.2d55b4c15311/nixexprs.tar.xz",
-      "hash": "1lm9drw48rlkca9m8hnibnwppfz14rqp2m40pl58cc2d7mcjhadh"
-    },
-    "obs-pipewire-audio-capture": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "dimtpap",
-        "repo": "obs-pipewire-audio-capture"
-      },
-      "branch": "main",
-      "revision": "b4ca0a80c218de2c1be86d67963569e91ad14b61",
-      "url": "https://github.com/dimtpap/obs-pipewire-audio-capture/archive/b4ca0a80c218de2c1be86d67963569e91ad14b61.tar.gz",
-      "hash": "1672h12pmqirwsb8wyixj3n2kpn1m71jn9a3fj5mxkqh81xzb1h2"
-    },
-    "zsh-completions": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "zsh-users",
-        "repo": "zsh-completions"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "version": "0.35.0",
-      "revision": "67921bc12502c1e7b0f156533fbac2cb51f6943d",
-      "url": "https://api.github.com/repos/zsh-users/zsh-completions/tarball/0.35.0",
-      "hash": "164jw74qlrpl6lawa4wjyhn2d04zw36ac0jsg4r6ql8769kfal8q"
-    },
-    "zsh-fzf-history-search": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "joshskidmore",
-        "repo": "zsh-fzf-history-search"
-      },
-      "branch": "master",
-      "revision": "d5a9730b5b4cb0b39959f7f1044f9c52743832ba",
-      "url": "https://github.com/joshskidmore/zsh-fzf-history-search/archive/d5a9730b5b4cb0b39959f7f1044f9c52743832ba.tar.gz",
-      "hash": "1dm1asa4ff5r42nadmj0s6hgyk1ljrckw7val8fz2n0892b8h2mm"
-    },
-    "zsh-nix-shell": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "chisui",
-        "repo": "zsh-nix-shell"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "version": "v0.8.0",
-      "revision": "8b86281cf9e9ef9f207433dd8b36d157dd48d50a",
-      "url": "https://api.github.com/repos/chisui/zsh-nix-shell/tarball/v0.8.0",
-      "hash": "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre752767.1128e89fd5e1/nixexprs.tar.xz",
+      "hash": "0gv3g4rdys58r451w8klnb8r7mz10l35b4sr2iwiklvli4n0kilf"
     }
   },
   "version": 3

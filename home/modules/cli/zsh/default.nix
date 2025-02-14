@@ -2,6 +2,7 @@
   config,
   npins,
   lib,
+  pkgs,
   ...
 }: {
   options.cli.zsh.enable = lib.mkOption {
@@ -88,23 +89,23 @@
         plugins = [
           {
             name = "zsh-completions";
-            src = npins.zsh-completions;
+            src = pkgs.zsh-completions;
           }
           {
             name = "nix-zsh-completions";
-            src = npins.nix-zsh-completions;
+            src = pkgs.nix-zsh-completions;
           }
           {
             name = "fzf-tab";
-            src = npins.fzf-tab;
+            src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
           }
           {
             name = "zsh-fzf-history-search";
-            src = npins.zsh-fzf-history-search;
+            src = pkgs.zsh-fzf-history-search;
           }
           {
             name = "nix-shell";
-            src = npins.zsh-nix-shell;
+            src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
           }
         ];
       };
