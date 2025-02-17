@@ -30,6 +30,7 @@ _: {
   opentabletdriver.enable = false;
   services = {
     wootingRules.enable = true;
+    scyroxRules.enable = true;
   };
   printing.enable = true;
   scanning.enable = false;
