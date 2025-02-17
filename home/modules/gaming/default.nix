@@ -31,7 +31,8 @@ in {
         lutris
         cemu
         heroic
-        protonup-qt
+        # protonup-qt
+        protonplus
         nvtopPackages.nvidia
       ]
       ++ [

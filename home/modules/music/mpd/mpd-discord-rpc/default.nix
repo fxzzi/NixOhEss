@@ -1,8 +1,6 @@
 {
   lib,
   config,
-  inputs,
-  pkgs,
   ...
 }: {
   options.music.mpd.discord-rpc.enable = lib.mkOption {
@@ -13,7 +11,6 @@
   config = lib.mkIf config.music.mpd.discord-rpc.enable {
     services.mpd-discord-rpc = {
       enable = true;
-      package = inputs.nixpkgs-master.legacyPackages.${pkgs.system}.mpd-discord-rpc;
       settings = {
         hosts = ["localhost:6600"];
         format = {
