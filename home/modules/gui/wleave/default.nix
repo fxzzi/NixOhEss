@@ -79,43 +79,43 @@
         }
 
         #lock {
-        	background-image: image(url("${./icons/lock.png}"));
+        	background-image: image(url("${./icons/lock.png}");
         }
 
         #lock:focus {
-        	background-image: image(url("${./icons/lock-hover.png}"));
+        	background-image: image(url("${./icons/lock-hover.png}");
         }
 
         #logout {
-        	background-image: image(url("${./icons/logout.png}"));
+        	background-image: image(url("${./icons/logout.png}");
         }
 
         #logout:focus {
-        	background-image: image(url("${./icons/logout-hover.png}"));
+        	background-image: url("${./icons/logout-hover.png}");
         }
 
         #suspend {
-        	background-image: image(url("${./icons/sleep.png}"));
+        	background-image: url("${./icons/sleep.png}");
         }
 
         #suspend:focus {
-        	background-image: image(url("${./icons/sleep-hover.png}"));
+        	background-image: url("${./icons/sleep-hover.png}");
         }
 
         #shutdown {
-        	background-image: image(url("${./icons/power.png}"));
+        	background-image: url("${./icons/power.png}");
         }
 
         #shutdown:focus {
-        	background-image: image(url("${./icons/power-hover.png}"));
+        	background-image: url("${./icons/power-hover.png}");
         }
 
         #reboot {
-        	background-image: image(url("${./icons/restart.png}"));
+        	background-image: url("${./icons/restart.png}");
         }
 
         #reboot:focus {
-        	background-image: image(url("${./icons/restart-hover.png}"));
+        	background-image: url("${./icons/restart-hover.png}");
         }
       '';
     };
