@@ -53,7 +53,7 @@
           sticky_history = true;
           history_length = 25;
           dmenu = "${lib.getExe config.programs.fuzzel.package} -d";
-          browser = "${lib.getExe config.programs.librewolf.package}";
+          browser = "${lib.getExe config.programs.librewolf.finalPackage}";
           always_run_script = true;
           layer = "overlay";
           mouse_left_click = "close_current";
