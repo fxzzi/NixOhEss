@@ -15,42 +15,40 @@
       enable = true;
     };
     xdg.configFile = {
-      "wleave/layout.json".text = ''
-        {
-          "buttons": [
-            {
-              "label": "shutdown",
-              "action": "systemctl poweroff",
-              "text": "Shutdown",
-              "keybind": "s"
-            },
-            {
-              "label": "reboot",
-              "action": "systemctl reboot",
-              "text": "Reboot",
-              "keybind": "r"
-            },
-            {
-              "label": "lock",
-              "action": "loginctl lock-session",
-              "text": "Lock",
-              "keybind": "l"
-            },
-            {
-              "label": "suspend",
-              "action": "systemctl suspend",
-              "text": "Suspend",
-              "keybind": "u"
-            },
-            {
-              "label": "logout",
-              "action": "loginctl terminate-user ''''",
-              "text": "Logout",
-              "keybind": "e"
-            }
-          ]
-        }
-      '';
+      "wleave/layout.json".source = (pkgs.formats.json {}).generate "wleave-layout" {
+        buttons = [
+          {
+            label = "shutdown";
+            action = "systemctl poweroff";
+            text = "Shutdown";
+            keybind = "s";
+          }
+          {
+            label = "reboot";
+            action = "systemctl reboot";
+            text = "Reboot";
+            keybind = "r";
+          }
+          {
+            label = "lock";
+            action = "loginctl lock-session";
+            text = "Lock";
+            keybind = "l";
+          }
+          {
+            label = "suspend";
+            action = "systemctl suspend";
+            text = "Suspend";
+            keybind = "u";
+          }
+          {
+            label = "logout";
+            action = "loginctl terminate-user ''";
+            text = "Logout";
+            keybind = "e";
+          }
+        ];
+      };
       "wleave/style.css".text = ''
         @import url("./colors_wleave.css");
 
