@@ -5,13 +5,14 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
+    nixpkgs-obs-nvenc.url = "github:VeilSilence/nixpkgs/obs-nvenc";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
     hyprlock.url = "github:hyprwm/hyprlock";
-    hypridle.url = "github:hyprwm/hypridle";
+    hypridle.url = "github:PaideiaDilemma/hypridle/fix-inhibit-and-process-stuff";
     hyprsunset.url = "github:outfoxxed/hyprsunset/ctm-blocked";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     apple-fonts = {

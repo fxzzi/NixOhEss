@@ -30,7 +30,6 @@ in {
           lock_cmd = "${lib.getExe config.programs.hyprlock.package}";
           before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "${lib.getExe' osConfig.programs.hyprland.package "hyprctl"} dispatch dpms on";
-          inhibit_sleep = false; # FIXME: remove when the delayed sleep issue is fixed
         };
         listener = [
           {
