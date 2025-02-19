@@ -23,6 +23,7 @@
   };
 
   config = lib.mkIf config.gpu.nvidia.enable {
+    nixpkgs.config.cudaSupport = true; # enable cuda support in packages which need it
     services.xserver.videoDrivers = ["nvidia"];
 
     # seperate specialisation with nvidia-open drivers

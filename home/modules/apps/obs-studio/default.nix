@@ -3,6 +3,7 @@
   lib,
   config,
   inputs,
+  osConfig,
   ...
 }: {
   options.apps.obs-studio.enable = lib.mkOption {
@@ -15,7 +16,7 @@
       enable = true;
       # FIXME: remove when https://github.com/NixOS/nixpkgs/pull/383402 is merged
       package = inputs.nixpkgs-obs-nvenc.legacyPackages.${pkgs.system}.obs-studio.override {
-        cudaSupport = true;
+        inherit (osConfig.nixpkgs.config) cudaSupport;
       };
       plugins = with pkgs.obs-studio-plugins; [
         obs-vkcapture
