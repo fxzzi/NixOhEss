@@ -62,7 +62,7 @@
           if config.gui.wleave.enable
           then {
             template = "colors_wleave.css";
-            target = "~/.config/wlogout/colors_wleave.css";
+            target = "~/.config/wleave/colors_wleave.css";
           }
           else null;
         dunst =
