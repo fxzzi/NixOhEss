@@ -13,39 +13,45 @@
     programs.wlogout = {
       package = pkgs.wleave;
       enable = true;
-      layout = [
+    };
+    xdg.configFile = {
+      "wleave/layout.json".text = ''
         {
-          label = "shutdown";
-          action = "systemctl poweroff";
-          text = "Shutdown";
-          keybind = "s";
+          "buttons": [
+            {
+              "label": "shutdown",
+              "action": "systemctl poweroff",
+              "text": "Shutdown",
+              "keybind": "s"
+            },
+            {
+              "label": "reboot",
+              "action": "systemctl reboot",
+              "text": "Reboot",
+              "keybind": "r"
+            },
+            {
+              "label": "lock",
+              "action": "loginctl lock-session",
+              "text": "Lock",
+              "keybind": "l"
+            },
+            {
+              "label": "suspend",
+              "action": "systemctl suspend",
+              "text": "Suspend",
+              "keybind": "u"
+            },
+            {
+              "label": "logout",
+              "action": "loginctl terminate-user ''''",
+              "text": "Logout",
+              "keybind": "e"
+            }
+          ]
         }
-        {
-          label = "reboot";
-          action = "systemctl reboot";
-          text = "Reboot";
-          keybind = "r";
-        }
-        {
-          label = "lock";
-          action = "loginctl lock-session";
-          text = "Lock";
-          keybind = "l";
-        }
-        {
-          label = "suspend";
-          action = "systemctl suspend";
-          text = "Suspend";
-          keybind = "u";
-        }
-        {
-          label = "logout";
-          action = "loginctl terminate-user ''";
-          text = "Logout";
-          keybind = "e";
-        }
-      ];
-      style = ''
+      '';
+      "wleave/style.css".text = ''
         @import url("./colors_wleave.css");
 
         window {
@@ -79,15 +85,15 @@
         }
 
         #lock {
-        	background-image: image(url("${./icons/lock.png}");
+        	background-image: url("${./icons/lock.png}");
         }
 
         #lock:focus {
-        	background-image: image(url("${./icons/lock-hover.png}");
+        	background-image: url("${./icons/lock-hover.png}");
         }
 
         #logout {
-        	background-image: image(url("${./icons/logout.png}");
+        	background-image: url("${./icons/logout.png}");
         }
 
         #logout:focus {
