@@ -28,7 +28,6 @@ in {
         general = {
           hide_cursor = true;
           disable_loading_bar = true;
-          immediate_render = true;
           ignore_empty_input = true;
         };
         animations = {
