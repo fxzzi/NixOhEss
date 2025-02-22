@@ -10,9 +10,6 @@
     description = "Enables the basic networkmanager configuration";
   };
   config = lib.mkIf config.netConfig.networkmanager.enable {
-    # environment.systemPackages = with pkgs; [
-    #   networkmanagerapplet
-    # ];
     programs.nm-applet.enable = true;
     networking = {
       networkmanager = {

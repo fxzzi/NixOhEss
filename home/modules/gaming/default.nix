@@ -3,9 +3,16 @@
   lib,
   pkgs,
   inputs,
+  osConfig,
   ...
 }: let
   nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
+  gpuType =
+    if osConfig.gpu.nvidia.enable
+    then "nvidia"
+    else if osConfig.gpu.amd.enable
+    then "amd"
+    else "unknown"; # Fallback in case neither is enabled
 in {
   options.gaming.enable = lib.mkOption {
     type = lib.types.bool;
@@ -33,7 +40,7 @@ in {
         heroic
         # protonup-qt
         protonplus
-        nvtopPackages.nvidia
+        nvtopPackages.${gpuType}
       ]
       ++ [
         nixpkgs-olympus.olympus

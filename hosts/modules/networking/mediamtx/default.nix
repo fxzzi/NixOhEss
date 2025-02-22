@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }: let
   port = "4200";
@@ -40,7 +39,8 @@ in {
         webrtcLocalUDPAddress = ":${port}";
         webrtcAdditionalHosts =
           ["@localip@"] # for agenix to replace after
-          ++ config.networking.nameservers; # also add dns servers to be safe
+          ++ config.networking.nameservers
+          ++ lib.optional config.netConfig.desktopFixedIP.enable "192.168.0.46";
         paths = {
           all_others = {};
         };
