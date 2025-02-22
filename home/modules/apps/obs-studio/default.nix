@@ -14,8 +14,8 @@
   config = lib.mkIf config.apps.obs-studio.enable {
     programs.obs-studio = {
       enable = true;
-      # FIXME: remove when https://github.com/NixOS/nixpkgs/pull/383402 is merged
-      package = inputs.nixpkgs-obs-nvenc.legacyPackages.${pkgs.system}.obs-studio.override {
+      # FIXME: remove when https://github.com/NixOS/nixpkgs/pull/383402 is in nixos-unstable
+      package = inputs.nixpkgs-master.legacyPackages.${pkgs.system}.obs-studio.override {
         inherit (osConfig.nixpkgs.config) cudaSupport;
       };
       plugins = with pkgs.obs-studio-plugins; [
