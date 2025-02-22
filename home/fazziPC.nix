@@ -12,6 +12,7 @@
       chromium = {
         enable = true;
         wootility.enable = true;
+        scyrox-s-center.enable = true;
       };
     };
   };
