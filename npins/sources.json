@@ -7,15 +7,15 @@
         "url": "https://codeberg.org/fazzi/foot"
       },
       "branch": "transparency_yipee",
-      "revision": "fac79ddba7e8b37cdc16ba6bb517457be0ba9e2d",
+      "revision": "f632c0d4d8cec300c45c726794200f4a02c07775",
       "url": null,
-      "hash": "1j40ix706szchcs0k4wz9nrg8qfklwfwc1bx109mnv2ywx3s6i8k"
+      "hash": "1scrcdxlglfx7m0xpsrh7imcjxnbz9l9wa424h1mkzqqr1ydsl05"
     },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre752767.1128e89fd5e1/nixexprs.tar.xz",
-      "hash": "0gv3g4rdys58r451w8klnb8r7mz10l35b4sr2iwiklvli4n0kilf"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre755883.dad564433178/nixexprs.tar.xz",
+      "hash": "13b4ywwnid3pqy1fzlf5hz165xzrwrd80diyiy2mdvarwphs18wp"
     }
   },
   "version": 3
