@@ -16,9 +16,11 @@
         "1.1.1.1"
         "1.0.0.1"
       ]; # Use cloudflare DNS
-      firewall.enable = true;
+      firewall = {
+        enable = true;
+        allowedTCPPorts = [6881]; # qbittorrent
+      };
     };
-
     services.resolved = {
       enable = true;
       dnsovertls = "true";
