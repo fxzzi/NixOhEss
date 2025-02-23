@@ -18,7 +18,8 @@
       ]; # Use cloudflare DNS
       firewall = {
         enable = true;
-        allowedTCPPorts = [6881]; # qbittorrent
+        allowedTCPPorts = [6881 2234]; # qbittorrent and soulseek
+        allowedUDPPorts = [6881 2234];
       };
     };
     services.resolved = {

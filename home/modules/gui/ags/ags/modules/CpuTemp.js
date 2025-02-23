@@ -4,12 +4,18 @@ const GLib = imports.gi.GLib;
 let tempFilePath;
 
 function determineTempFilePath() {
-  const thinkpadPath = "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon6/temp1_input";
-  const fallbackPath = "/sys/class/hwmon/hwmon2/temp1_input";
+  const thinkpadPath =
+    "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon6/temp1_input";
+  const fallbackPath = "/sys/class/hwmon/hwmon3/temp1_input";
 
   // Check if ThinkPad-specific path exists and is readable.
   try {
-    if (GLib.file_test(thinkpadPath, GLib.FileTest.EXISTS | GLib.FileTest.IS_REGULAR)) {
+    if (
+      GLib.file_test(
+        thinkpadPath,
+        GLib.FileTest.EXISTS | GLib.FileTest.IS_REGULAR,
+      )
+    ) {
       return thinkpadPath;
     }
   } catch (error) {
@@ -34,7 +40,12 @@ const cpuTemp = Variable("", {
 
         return temp ? `${temp.toFixed(0)}°C` : "N/A";
       } catch (error) {
-        console.error("Error reading CPU temperature from", tempFilePath, ":", error);
+        console.error(
+          "Error reading CPU temperature from",
+          tempFilePath,
+          ":",
+          error,
+        );
         return "N/A";
       }
     },

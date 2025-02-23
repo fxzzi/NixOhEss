@@ -78,8 +78,9 @@ in {
         monitor = [
           ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
           "desc:Lenovo, 1920x1080@60, 0x0, 1"
-          "desc:GIGA-BYTE, 2560x1440@170,1920x0,1"
-          "desc:Philips, 1920x1080@75,0x0,1"
+          "desc:GIGA-BYTE, 2560x1440@170,1920x0, 1"
+          # calculate offset by doing (1440-1080)/2
+          "desc:Philips, 1920x1080@75,0x180, 1"
         ];
         render = {
           direct_scanout = 1;
@@ -238,9 +239,6 @@ in {
           # Fix everest (celeste) splash screen
           "float, class:^(EverestSplash-linux)$"
 
-          # Make bakkesmod float, and only main rocket league window fullscreen
-          "fullscreen, class:^(steam_app_252950)$, title:^(Rocket League (64-bit, DX11, Cooked))$"
-
           # Make Rocket League fill both monitors for split screen
           # "minsize 3840 1080, class: ^(steam_app_252950)$"
           # "maxsize 3840 1080, class: ^(steam_app_252950)$"
@@ -310,8 +308,8 @@ in {
             "$MOD SHIFT, right, movewindow, r"
             "$MOD SHIFT, up, movewindow, u"
             "$MOD SHIFT, down, movewindow, d"
-            # navigate through workspaces on mouse
 
+            # navigate through workspaces on mouse
             "$MOD, mouse_down, workspace, e+1"
             "$MOD, mouse_up, workspace, e-1"
           ]
@@ -361,10 +359,10 @@ in {
         # 	"AQ_TRACE" = "1"
         # 	"HYPRLAND_TRACE" = "1"
         # ];
-        debug = {
-          disable_logs = 0;
-          watchdog_timeout = 0;
-        };
+        # debug = {
+        #   disable_logs = 0;
+        #   watchdog_timeout = 0;
+        # };
       };
       extraConfig = ''
         # submaps
