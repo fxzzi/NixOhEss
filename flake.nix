@@ -5,11 +5,15 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:gulafaran/Hyprland/eventfd";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:PaideiaDilemma/hypridle/fix-inhibit-and-process-stuff";
     hyprsunset.url = "github:outfoxxed/hyprsunset/ctm-blocked";
@@ -64,6 +68,7 @@
         };
         modules = [
           ./hosts
+          inputs.chaotic.nixosModules.default
         ];
       };
   in {
