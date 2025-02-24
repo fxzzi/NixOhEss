@@ -7,6 +7,7 @@
   ...
 }: let
   nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
+  nix-gaming = inputs.nix-gaming.packages.${pkgs.system};
   gpuType =
     if osConfig.gpu.nvidia.enable
     then "nvidia"
@@ -42,12 +43,22 @@ in {
       nvtopPackages.${gpuType}
       nixpkgs-olympus.olympus
     ];
-    xdg.mimeApps.defaultApplications = {
-      "application/x-osu-beatmap-archive" = "osu!.desktop"; # .osz
-      "application/x-osu-skin-archive" = "osu!.desktop"; # .osk
-      "application/x-osu-beatmap" = "osu!.desktop"; # .osu
-      "application/x-osu-storyboard" = "osu!.desktop"; # .osb
-      "application/x-osu-replay" = "osu!.desktop"; # .osr
+    xdg = {
+      dataFile = {
+        "lutris/runners/wine/wine-tkg" = {
+          source = nix-gaming.wine-tkg;
+        };
+        "lutris/runners/wine/wine-ge" = {
+          source = nix-gaming.wine-ge;
+        };
+      };
+      mimeApps.defaultApplications = {
+        "application/x-osu-beatmap-archive" = "osu!.desktop"; # .osz
+        "application/x-osu-skin-archive" = "osu!.desktop"; # .osk
+        "application/x-osu-beatmap" = "osu!.desktop"; # .osu
+        "application/x-osu-storyboard" = "osu!.desktop"; # .osb
+        "application/x-osu-replay" = "osu!.desktop"; # .osr
+      };
     };
   };
   imports = [./mangohud];
