@@ -34,7 +34,6 @@ in {
         # NOTE: https://github.com/ValveSoftware/gamescope/issues/1622#issuecomment-2508182530
         NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
       }))
-      osu-lazer-bin
       lutris
       cemu
       heroic
@@ -42,6 +41,7 @@ in {
       protonplus
       nvtopPackages.${gpuType}
       nixpkgs-olympus.olympus
+      nix-gaming.osu-lazer-bin
     ];
     xdg = {
       dataFile = {
