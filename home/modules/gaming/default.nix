@@ -37,7 +37,6 @@ in {
       lutris
       cemu
       heroic
-      # protonup-qt
       protonplus
       nvtopPackages.${gpuType}
       nixpkgs-olympus.olympus
