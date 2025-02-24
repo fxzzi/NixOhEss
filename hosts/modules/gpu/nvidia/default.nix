@@ -26,12 +26,6 @@
     nixpkgs.config.cudaSupport = true; # enable cuda support in packages which need it
     services.xserver.videoDrivers = ["nvidia"];
 
-    # seperate specialisation with nvidia-open drivers
-    # specialisation."nvidia-open".configuration = {
-    #   environment.etc."specialisation".text = "nvidia-closed";
-    #   hardware.nvidia.open = lib.mkForce (! config.hardware.nvidia.open);
-    # };
-
     hardware = {
       nvidia = {
         open = false;
@@ -49,6 +43,7 @@
       };
     };
     environment.sessionVariables = {
+      # fix hw acceleration and native wayland on losslesscut
       "__EGL_VENDOR_LIBRARY_FILENAMES" = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
     };
     boot = {
