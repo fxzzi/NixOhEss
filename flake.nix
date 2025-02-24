@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "git+file:///home/faaris/.local/packages/nixpkgs/";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     nix-gaming.url = "github:fufexan/nix-gaming";
