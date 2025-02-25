@@ -14,10 +14,13 @@
     description = "enables the basic font configurations.";
   };
   config = lib.mkIf config.fontConfig.enable {
-    fonts.fontconfig = {
-      subpixel.rgba = config.fontConfig.subpixelLayout;
-      # fixes emojis on browser
-      useEmbeddedBitmaps = true;
+    fonts = {
+      enableDefaultPackages = false;
+      fontconfig = {
+        subpixel.rgba = config.fontConfig.subpixelLayout;
+        # fixes emojis on browser
+        useEmbeddedBitmaps = true;
+      };
     };
   };
 }
