@@ -57,8 +57,6 @@
         ])
       ];
       blacklistedKernelModules = ["nouveau"];
-      # FIXME: no idea why this does not work >:(
-      # initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
     };
     systemd = {
       services.nvidia-temp = lib.mkIf config.gpu.nvidia.exposeTemp {
