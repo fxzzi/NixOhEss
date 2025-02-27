@@ -3,8 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "git+file:///home/faaris/.local/packages/nixpkgs/";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     nix-gaming.url = "github:fufexan/nix-gaming";
     chaotic = {
@@ -15,7 +13,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:gulafaran/Hyprland/eventfd";
+    # hyprland.url = "github:gulafaran/Hyprland/eventfd";
+    hyprland.url = "github:hyprwm/Hyprland";
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:PaideiaDilemma/hypridle/fix-inhibit-and-process-stuff";
     hyprsunset.url = "github:outfoxxed/hyprsunset/ctm-blocked";
