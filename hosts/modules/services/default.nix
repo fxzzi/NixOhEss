@@ -17,13 +17,15 @@
     };
   };
   config = {
-    services.udev = {
-      packages = lib.mkIf config.services.wootingRules.enable [pkgs.wooting-udev-rules];
-      extraRules = lib.mkIf config.services.scyroxRules.enable ''
-        # scyrox vendor id
-        SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3554", TAG+="uaccess"
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="3554", TAG+="uaccess"
-      '';
+    services = {
+      udev = {
+        packages = lib.mkIf config.services.wootingRules.enable [pkgs.wooting-udev-rules];
+        extraRules = lib.mkIf config.services.scyroxRules.enable ''
+          # scyrox vendor id
+          SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3554", TAG+="uaccess"
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="3554", TAG+="uaccess"
+        '';
+      };
     };
   };
 }

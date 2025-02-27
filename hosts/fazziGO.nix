@@ -1,4 +1,4 @@
-_: {
+{
   programs.light.enable = true;
   kernel = {
     type = "latest";
@@ -28,10 +28,6 @@ _: {
     networkmanager.enable = true;
   };
   opentabletdriver.enable = false;
-  services = {
-    wootingRules.enable = true;
-    scyroxRules.enable = true;
-  };
   printing.enable = true;
   scanning.enable = false;
   security.enable = true;
