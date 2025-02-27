@@ -10,12 +10,6 @@
       "revision": "f632c0d4d8cec300c45c726794200f4a02c07775",
       "url": null,
       "hash": "1scrcdxlglfx7m0xpsrh7imcjxnbz9l9wa424h1mkzqqr1ydsl05"
-    },
-    "nixpkgs": {
-      "type": "Channel",
-      "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre755883.dad564433178/nixexprs.tar.xz",
-      "hash": "13b4ywwnid3pqy1fzlf5hz165xzrwrd80diyiy2mdvarwphs18wp"
     }
   },
   "version": 3
