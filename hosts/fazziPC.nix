@@ -1,4 +1,4 @@
-_: {
+{
   kernel = {
     type = "zen";
     higherMaxMapCount = true;
