@@ -22,8 +22,7 @@
             ${old.postInstall or ""}
             wrapProgramShell $out/opt/DiscordCanary/DiscordCanary \
               --add-flags "--disable-smooth-scrolling" \
-              --add-flags "--disable-features=WebRtcAllowInputVolumeAdjustment" \
-              --add-flags "--disable-gpu-compositing"
+              --add-flags "--disable-features=WebRtcAllowInputVolumeAdjustment"
           '';
         }))
     ];
