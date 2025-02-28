@@ -13,12 +13,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hyprland.url = "github:gulafaran/Hyprland/eventfd";
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:gulafaran/Hyprland/eventfd";
     hyprlock.url = "github:hyprwm/hyprlock";
-    hypridle.url = "github:PaideiaDilemma/hypridle/fix-inhibit-and-process-stuff";
-    hyprsunset.url = "github:outfoxxed/hyprsunset/ctm-blocked";
+    hypridle.url = "github:hyprwm/hypridle";
     hyprpaper.url = "github:hyprwm/hyprpaper";
+    hyprsunset.url = "github:outfoxxed/hyprsunset/ctm-blocked";
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";
       inputs.nixpkgs.follows = "nixpkgs";
