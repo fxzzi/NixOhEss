@@ -53,5 +53,7 @@ in {
       };
     };
   };
-  imports = [./mangohud];
+  imports = [
+    ./mangohud
+  ];
 }
