@@ -1,0 +1,25 @@
+{
+  "rules": [
+    {
+      "pattern": {
+        "feature": "procname",
+        "matches": ".Hyprland-wrapped"
+      },
+      "profile": "No VidMem Reuse"
+    },
+    {
+      "pattern": {
+        "feature": "procname",
+        "matches": ".DiscordCanary-wrapped"
+      },
+      "profile": "No VidMem Reuse"
+    },
+    {
+      "pattern": {
+        "feature": "procname",
+        "matches": ".librewolf-wrapped"
+      },
+      "profile": "No VidMem Reuse"
+    }
+  ]
+}
