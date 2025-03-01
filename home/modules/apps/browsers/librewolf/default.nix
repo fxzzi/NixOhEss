@@ -52,6 +52,9 @@ in {
         pref("middlemouse.paste", false);
         pref("general.autoScroll", true);
 
+        // disable touchpad overscroll
+        pref("apz.overscroll.enabled", false);
+
         // Performance
         pref("layout.frame_rate", -1);
 
