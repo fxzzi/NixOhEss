@@ -13,7 +13,7 @@
     then "nvidia"
     else if osConfig.gpu.amd.enable
     then "amd"
-    else "unknown"; # Fallback in case neither is enabled
+    else "full"; # Fallback in case neither is enabled
 in {
   options.gaming.enable = lib.mkOption {
     type = lib.types.bool;
@@ -37,7 +37,6 @@ in {
       lutris
       cemu
       heroic
-      protonplus
       nvtopPackages.${gpuType}
       nixpkgs-olympus.olympus
       nix-gaming.osu-lazer-bin
