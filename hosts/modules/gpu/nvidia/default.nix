@@ -28,10 +28,10 @@
 
     hardware = {
       nvidia = {
-        open = true;
+        open = false;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
-        nvidiaSettings = false; # useless on wayland still
+        nvidiaSettings = true; # useless on wayland still
         # package = config.boot.kernelPackages.nvidiaPackages.beta;
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
           version = "570.124.04";
@@ -50,9 +50,13 @@
         ];
       };
     };
-    environment.sessionVariables = {
-      # fix hw acceleration and native wayland on losslesscut
-      "__EGL_VENDOR_LIBRARY_FILENAMES" = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
+    environment = {
+      sessionVariables = {
+        # fix hw acceleration and native wayland on losslesscut
+        "__EGL_VENDOR_LIBRARY_FILENAMES" = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
+      };
+      # fix high vram usage on discordcanary and hyprland. match with the wrapper procnames
+      etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool.json".source = ./50-limit-free-buffer-pool.json;
     };
     boot = {
       kernelParams = lib.mkMerge [
