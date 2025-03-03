@@ -20,7 +20,7 @@
       enable = true;
       package = pkgs.foot.overrideAttrs {
         pname = "foot-transparency";
-        version = "0-unstable";
+        version = "0-unstable-${npins.foot.revision}";
         src = npins.foot;
       };
 

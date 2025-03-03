@@ -232,6 +232,7 @@ in {
           "immediate, class:^(osu!)$"
           "immediate, class: ^(.*.exe)$"
           "immediate, class: ^(hl2_linux)$"
+          "immediate, class: ^(cstrike_linux64)$"
           "immediate, class: ^(gamescope)$"
           "immediate, class: ^(Celeste)$"
           "immediate, class: ^(info.cemu.Cemu)$"

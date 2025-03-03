@@ -20,6 +20,13 @@
         "matches": ".librewolf-wrapped"
       },
       "profile": "No VidMem Reuse"
+    },
+    {
+      "pattern": {
+        "feature": "procname",
+        "matches": "librewolf"
+      },
+      "profile": "No VidMem Reuse"
     }
   ]
 }
