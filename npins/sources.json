@@ -10,6 +10,18 @@
       "revision": "f632c0d4d8cec300c45c726794200f4a02c07775",
       "url": null,
       "hash": "1scrcdxlglfx7m0xpsrh7imcjxnbz9l9wa424h1mkzqqr1ydsl05"
+    },
+    "xpad-noone": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "medusalix",
+        "repo": "xpad-noone"
+      },
+      "branch": "master",
+      "revision": "6970c40930bedd8b58d0764894e0d5f04813b7c5",
+      "url": "https://github.com/medusalix/xpad-noone/archive/6970c40930bedd8b58d0764894e0d5f04813b7c5.tar.gz",
+      "hash": "0b32kk9c2qx6wyimks4hfgijlpynd7fzw18mbn9a6abhkrdrf9iw"
     }
   },
   "version": 3
