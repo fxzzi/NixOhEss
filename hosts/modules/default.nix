@@ -10,7 +10,7 @@
     ./gaming
     ./kernel
     ./wayland
-    ./services
+    ./hardware
     ./fancontrol
     ./networking
     ./boot

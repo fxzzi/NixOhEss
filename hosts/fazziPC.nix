@@ -38,7 +38,7 @@
   };
   opentabletdriver.enable = true;
   fancontrol.enable = true;
-  services = {
+  hardware = {
     wootingRules.enable = true;
     scyroxRules.enable = true;
   };
