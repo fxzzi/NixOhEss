@@ -1,6 +1,6 @@
 {
   kernel = {
-    type = "zen";
+    type = "xanmod_latest";
     higherMaxMapCount = true;
     zenpower.enable = true;
     xone.enable = true;
@@ -23,7 +23,6 @@
   };
   scx = {
     enable = true;
-    # scheduler = "scx_lavd";
     scheduler = "scx_bpfland";
   };
   cachix.enable = true;
