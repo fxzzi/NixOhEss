@@ -31,9 +31,11 @@
         "nowatchdog"
         "mitigations=off"
         "fbcon=font:TER16x32"
-      ]; # disable watchdog and mitigations (not needed on personal systems)
-      tmp.useTmpfs = true; # /tmp is not on tmpfs by default (why??)
-      tmp.tmpfsSize = "75%";
+      ];
+      tmp = {
+        useTmpfs = true; # /tmp is not on tmpfs by default (why??)
+        tmpfsSize = "50%";
+      };
       extraModprobeConfig = ''
         blacklist sp5100_tco
       '';
@@ -54,7 +56,7 @@
     # Set a percentage of RAM to zstd compressed swap
     zramSwap = {
       enable = true;
-      memoryPercent = 75;
+      memoryPercent = 50;
     };
   };
 }
