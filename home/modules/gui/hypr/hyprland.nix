@@ -29,6 +29,7 @@ in {
         enable = lib.mkOption {
           type = lib.types.bool;
           default = osConfig.wayland.hyprland.enable;
+          defaultText = "osConfig.wayland.hyprland.enable";
           description = "Enables hyprland and its configuration.";
         };
         autoStart = lib.mkOption {
@@ -111,7 +112,7 @@ in {
         device = [
           {
             name = "tpps/2-elan-trackpoint";
-            accel_profile = "adaptive";
+            accel_profile = "flat";
           }
           {
             name = "at-translated-set-2-keyboard";
