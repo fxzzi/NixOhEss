@@ -3,12 +3,12 @@
   config,
   ...
 }: {
-  options.music.mpd.discord-rpc.enable = lib.mkOption {
+  options.cfg.music.mpd.discord-rpc.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the mpd rich presence service.";
   };
-  config = lib.mkIf config.music.mpd.discord-rpc.enable {
+  config = lib.mkIf config.cfg.music.mpd.discord-rpc.enable {
     services.mpd-discord-rpc = {
       enable = true;
       settings = {

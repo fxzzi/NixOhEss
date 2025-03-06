@@ -7,7 +7,7 @@
   config,
   ...
 }: {
-  options.home-manager.enable = lib.mkOption {
+  options.cfg.home-manager.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the home manager configurations.";
@@ -15,7 +15,7 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
-  config = lib.mkIf config.home-manager.enable {
+  config = lib.mkIf config.cfg.home-manager.enable {
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;

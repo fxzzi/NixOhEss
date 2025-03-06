@@ -4,17 +4,17 @@
   pkgs,
   ...
 }: {
-  options.cli.fastfetch.enable = lib.mkOption {
+  options.cfg.cli.fastfetch.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables fastfetch, for sysinfo.";
   };
-  options.cli.fastfetch.zshIntegration = lib.mkOption {
+  options.cfg.cli.fastfetch.zshIntegration = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables fastfetch inside zshrc";
   };
-  config = lib.mkIf config.cli.fastfetch.enable {
+  config = lib.mkIf config.cfg.cli.fastfetch.enable {
     programs.fastfetch = {
       enable = true;
       settings = {
@@ -73,7 +73,7 @@
         ];
       };
     };
-    programs.zsh.initExtraFirst = lib.mkIf config.cli.fastfetch.zshIntegration ''
+    programs.zsh.initExtraFirst = lib.mkIf config.cfg.cli.fastfetch.zshIntegration ''
       if [ -n "$IN_NIX_SHELL" ]; then
         # Do nothing if inside a Nix shell
         :

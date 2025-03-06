@@ -3,12 +3,12 @@
   config,
   ...
 }: {
-  options.netConfig.enable = lib.mkOption {
+  options.cfg.netConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables basic network configuration, like enabling resolved and cloudflare DNS.";
   };
-  config = lib.mkIf config.netConfig.enable {
+  config = lib.mkIf config.cfg.netConfig.enable {
     networking = {
       useDHCP = false;
       dhcpcd.enable = false;

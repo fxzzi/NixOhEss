@@ -19,9 +19,9 @@
                 "plugin" = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
                 "label" = "noise_suppressor_mono";
                 "control" = {
-                  "VAD Threshold (%)" = config.audio.pipewire.rnnoise.vadThreshold;
-                  "VAD Grace Period (ms)" = config.audio.pipewire.rnnoise.vadGracePeriod;
-                  "Retroactive VAD Grace (ms)" = config.audio.pipewire.rnnoise.retroactiveVadGrace;
+                  "VAD Threshold (%)" = config.cfg.audio.pipewire.rnnoise.vadThreshold;
+                  "VAD Grace Period (ms)" = config.cfg.audio.pipewire.rnnoise.vadGracePeriod;
+                  "Retroactive VAD Grace (ms)" = config.cfg.audio.pipewire.rnnoise.retroactiveVadGrace;
                 };
               }
             ];
@@ -43,28 +43,28 @@
     ];
   };
 in {
-  options.audio.pipewire.rnnoise.enable = lib.mkOption {
+  options.cfg.audio.pipewire.rnnoise.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the rnnoise pipewire plugin for mic noise suppression.";
   };
-  options.audio.pipewire.rnnoise.vadThreshold = lib.mkOption {
+  options.cfg.audio.pipewire.rnnoise.vadThreshold = lib.mkOption {
     type = lib.types.int;
     default = 50;
     description = "Set the rnnoise VAD threshold (%)";
   };
-  options.audio.pipewire.rnnoise.vadGracePeriod = lib.mkOption {
+  options.cfg.audio.pipewire.rnnoise.vadGracePeriod = lib.mkOption {
     type = lib.types.int;
     default = 20;
     description = "Set the rnnoise VAD grace period in milliseconds.";
   };
-  options.audio.pipewire.rnnoise.retroactiveVadGrace = lib.mkOption {
+  options.cfg.audio.pipewire.rnnoise.retroactiveVadGrace = lib.mkOption {
     type = lib.types.int;
     default = 0;
     description = "Set the rnnoise retroactive VAD grace period in milliseconds.";
   };
   config = {
-    services.pipewire = lib.mkIf config.audio.pipewire.rnnoise.enable {
+    services.pipewire = lib.mkIf config.cfg.audio.pipewire.rnnoise.enable {
       extraConfig.pipewire."99-input-denoising" = pw_rnnoise_config; # Add rnnoise-plugin filters
     };
   };

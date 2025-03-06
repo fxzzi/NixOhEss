@@ -3,12 +3,12 @@
   lib,
   ...
 }: {
-  options.cli.nh.enable = lib.mkOption {
+  options.cfg.cli.nh.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables nh with some shell aliases, and daily gc.";
   };
-  config = lib.mkIf config.cli.nh.enable {
+  config = lib.mkIf config.cfg.cli.nh.enable {
     programs = {
       nh = {
         enable = true;

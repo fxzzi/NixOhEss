@@ -4,12 +4,12 @@
   lib,
   ...
 }: {
-  options.gui.wleave.enable = lib.mkOption {
+  options.cfg.gui.wleave.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables wleave and its configs.";
   };
-  config = lib.mkIf config.gui.wleave.enable {
+  config = lib.mkIf config.cfg.gui.wleave.enable {
     programs.wlogout = {
       package = pkgs.wleave;
       enable = true;

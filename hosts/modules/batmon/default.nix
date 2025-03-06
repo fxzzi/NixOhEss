@@ -4,12 +4,12 @@
   config,
   ...
 }: {
-  options.batmon.enable = lib.mkOption {
+  options.cfg.batmon.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables batmon to manage power profiles on laptops.";
   };
-  config = lib.mkIf config.batmon.enable {
+  config = lib.mkIf config.cfg.batmon.enable {
     services.power-profiles-daemon.enable = true;
     services.upower = {
       enable = true;

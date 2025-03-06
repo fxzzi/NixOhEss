@@ -6,12 +6,12 @@
 }: let
   port = "4200";
 in {
-  options.netConfig.mediamtx.enable = lib.mkOption {
+  options.cfg.netConfig.mediamtx.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the mediamtx service for local webRTC streaming.";
   };
-  config = lib.mkIf config.netConfig.mediamtx.enable {
+  config = lib.mkIf config.cfg.netConfig.mediamtx.enable {
     age.secrets.localip.file = ../../../../secrets/localip.age;
     # HACK: This is super hacky. I shouldn't have to do this. I won't have to do
     # this once / if mediamtx allows reading IPs from a path.
@@ -40,7 +40,7 @@ in {
         webrtcAdditionalHosts =
           ["@localip@"] # for agenix to replace after
           ++ config.networking.nameservers
-          ++ lib.optional config.netConfig.desktopFixedIP.enable "192.168.0.46";
+          ++ lib.optional config.cfg.netConfig.desktopFixedIP.enable "192.168.0.46";
         paths = {
           all_others = {};
         };

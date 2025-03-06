@@ -7,12 +7,12 @@
 }: let
   apple-fonts = inputs.apple-fonts.packages.${pkgs.system};
 in {
-  options.gui.fontConfig.enable = lib.mkOption {
+  options.cfg.gui.fontConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables font configurations";
   };
-  config = lib.mkIf config.gui.fontConfig.enable {
+  config = lib.mkIf config.cfg.gui.fontConfig.enable {
     home.packages = with pkgs; [
       nerd-fonts.space-mono
       noto-fonts # Google Noto Fonts

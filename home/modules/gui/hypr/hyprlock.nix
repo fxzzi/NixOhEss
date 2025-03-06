@@ -7,20 +7,20 @@
   ...
 }: let
   multiMonitor =
-    if config.gui.hypr.secondaryMonitor != null
+    if config.cfg.gui.hypr.secondaryMonitor != null
     then true
     else false;
   pkg =
-    if osConfig.wayland.hyprland.useGit
+    if osConfig.cfg.wayland.hyprland.useGit
     then inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
 in {
-  options.gui.hypr.hyprlock.enable = lib.mkOption {
+  options.cfg.gui.hypr.hyprlock.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable hyprlock";
   };
-  config = lib.mkIf config.gui.hypr.hyprlock.enable {
+  config = lib.mkIf config.cfg.gui.hypr.hyprlock.enable {
     programs.hyprlock = {
       enable = true;
       package = pkg.hyprlock;
@@ -36,7 +36,7 @@ in {
         background = lib.mkMerge [
           [
             {
-              monitor = "${config.gui.hypr.defaultMonitor}";
+              monitor = "${config.cfg.gui.hypr.defaultMonitor}";
               path = "${config.xdg.stateHome}/wallpaper";
               blur_size = 3;
               blur_passes = 3; # 0 disables blurring
@@ -60,7 +60,7 @@ in {
 
         input-field = [
           {
-            monitor = "${config.gui.hypr.defaultMonitor}";
+            monitor = "${config.cfg.gui.hypr.defaultMonitor}";
             size = "350, 45";
             outline_thickness = 2;
             dots_size = 0.25; # Scale of input-field height, 0.2 - 0.8
@@ -80,7 +80,7 @@ in {
 
         label = [
           {
-            monitor = "${config.gui.hypr.defaultMonitor}";
+            monitor = "${config.cfg.gui.hypr.defaultMonitor}";
             text = ''cmd[update:1000] echo "$(date +"%H:%M:%S")"'';
             color = "0xffc8d3f5";
             font_size = 72;
@@ -92,7 +92,7 @@ in {
             valign = "center";
           }
           {
-            monitor = "${config.gui.hypr.defaultMonitor}";
+            monitor = "${config.cfg.gui.hypr.defaultMonitor}";
             text = ''cmd[update:18000000] echo "$(date +'%A, %-d %B')"'';
             color = "0xffc8d3f5";
             font_size = 24;
@@ -104,7 +104,7 @@ in {
             valign = "center";
           }
           {
-            monitor = "${config.gui.hypr.defaultMonitor}";
+            monitor = "${config.cfg.gui.hypr.defaultMonitor}";
             text = "";
             color = "0xffc8d3f5";
             font_size = 36;

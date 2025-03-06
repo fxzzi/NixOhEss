@@ -5,12 +5,12 @@
   lib,
   ...
 }: {
-  options.scanning.enable = lib.mkOption {
+  options.cfg.scanning.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables sane and airscan for using scanners";
   };
-  config = lib.mkIf config.scanning.enable {
+  config = lib.mkIf config.cfg.scanning.enable {
     hardware = {
       sane.enable = true;
       sane.extraBackends = [pkgs.sane-airscan];
