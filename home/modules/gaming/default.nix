@@ -7,6 +7,7 @@
   ...
 }: let
   nixpkgs-olympus = inputs.nixpkgs-olympus.legacyPackages.${pkgs.system};
+  nixpkgs-sgdboop = inputs.nixpkgs-sgdboop.legacyPackages.${pkgs.system};
   nix-gaming = inputs.nix-gaming.packages.${pkgs.system};
   gpuType =
     if osConfig.gpu.nvidia.enable
@@ -39,6 +40,7 @@ in {
       heroic
       nvtopPackages.${gpuType}
       nixpkgs-olympus.olympus
+      nixpkgs-sgdboop.sgdboop
       nix-gaming.osu-lazer-bin
     ];
     xdg = {
