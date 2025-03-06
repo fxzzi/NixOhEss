@@ -43,11 +43,8 @@ in {
     ];
     xdg = {
       dataFile = {
-        "lutris/runners/wine/wine-tkg" = {
-          source = nix-gaming.wine-tkg;
-        };
-        "lutris/runners/wine/wine-ge" = {
-          source = nix-gaming.wine-ge;
+        "lutris/runners/wine/proton-ge" = {
+          source = pkgs.proton-ge-bin;
         };
       };
     };
