@@ -2,8 +2,9 @@
   description = "fazzi's nixos + hm conf";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
+    nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
     nix-gaming.url = "github:fufexan/nix-gaming";
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
