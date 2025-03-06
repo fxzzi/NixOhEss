@@ -3,12 +3,12 @@
   config,
   ...
 }: {
-  options.apps.mpv.enable = lib.mkOption {
+  options.cfg.apps.mpv.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables mpv.";
   };
-  config = lib.mkIf config.apps.mpv.enable {
+  config = lib.mkIf config.cfg.apps.mpv.enable {
     programs.mpv = {
       enable = true;
       config = {

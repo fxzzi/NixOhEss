@@ -3,12 +3,12 @@
   lib,
   ...
 }: {
-  options.cli.ssh.enable = lib.mkOption {
+  options.cfg.cli.ssh.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables my ssh configurations.";
   };
-  config = lib.mkIf config.cli.ssh.enable {
+  config = lib.mkIf config.cfg.cli.ssh.enable {
     programs.ssh = {
       enable = true;
       addKeysToAgent = "yes";

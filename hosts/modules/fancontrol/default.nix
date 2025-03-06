@@ -4,12 +4,12 @@
   lib,
   ...
 }: {
-  options.fancontrol.enable = lib.mkOption {
+  options.cfg.fancontrol.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables fazziPC custom fanconfig.";
   };
-  config = lib.mkIf config.fancontrol.enable {
+  config = lib.mkIf config.cfg.fancontrol.enable {
     environment.systemPackages = with pkgs; [lm_sensors];
     hardware = {
       fancontrol = {

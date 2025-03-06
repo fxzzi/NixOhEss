@@ -4,12 +4,12 @@
   pkgs,
   ...
 }: {
-  options.wayland.thunar.enable = lib.mkOption {
+  options.cfg.wayland.thunar.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the thunar file manager and some plugins for it.";
   };
-  config = lib.mkIf config.wayland.thunar.enable {
+  config = lib.mkIf config.cfg.wayland.thunar.enable {
     programs.thunar = {
       enable = true;
       plugins = with pkgs.xfce; [

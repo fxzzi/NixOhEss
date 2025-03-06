@@ -5,14 +5,14 @@
   pkgs,
   ...
 }: {
-  options.cli.zsh.enable = lib.mkOption {
+  options.cfg.cli.zsh.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the zsh shell.";
   };
   config = {
     programs = {
-      zsh = lib.mkIf config.cli.zsh.enable {
+      zsh = lib.mkIf config.cfg.cli.zsh.enable {
         enable = true;
         dotDir = ".config/zsh";
         autocd = true;

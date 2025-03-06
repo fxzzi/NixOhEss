@@ -23,7 +23,7 @@
     '';
   };
 in {
-  config = lib.mkIf config.gui.hypr.hyprland.enable {
+  config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
     home = {
       pointerCursor = {
         hyprcursor.enable = true;

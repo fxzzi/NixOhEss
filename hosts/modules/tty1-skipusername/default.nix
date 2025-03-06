@@ -5,12 +5,12 @@
   user,
   ...
 }: {
-  options.tty1-skipusername = lib.mkOption {
+  options.cfg.tty1-skipusername = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Overrides getty@tty1 to autologin.";
   };
-  config = lib.mkIf config.tty1-skipusername {
+  config = lib.mkIf config.cfg.tty1-skipusername {
     # Skip username only for tty1
     systemd.services."getty@tty1" = {
       overrideStrategy = "asDropin";

@@ -5,17 +5,17 @@
   npins,
   ...
 }: {
-  options.gui.foot.enable = lib.mkOption {
+  options.cfg.gui.foot.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable the foot terminal and its configs";
   };
-  options.gui.foot.zshIntegration = lib.mkOption {
+  options.cfg.gui.foot.zshIntegration = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable the foot terminal and its configs";
   };
-  config = lib.mkIf config.gui.foot.enable {
+  config = lib.mkIf config.cfg.gui.foot.enable {
     programs.foot = {
       enable = true;
       package = pkgs.foot.overrideAttrs {
@@ -43,7 +43,7 @@
       };
     };
     # NOTE: https://codeberg.org/dnkl/foot/wiki#user-content-shell-integration
-    programs.zsh.initExtra = lib.mkIf config.gui.foot.zshIntegration ''
+    programs.zsh.initExtra = lib.mkIf config.cfg.gui.foot.zshIntegration ''
       function osc7-pwd() {
           emulate -L zsh # also sets localoptions for us
           setopt extendedglob

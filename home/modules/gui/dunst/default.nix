@@ -3,13 +3,13 @@
   config,
   ...
 }: {
-  options.gui.dunst.enable = lib.mkOption {
+  options.cfg.gui.dunst.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the dunst daemon.";
   };
   config = {
-    services.dunst = lib.mkIf config.gui.dunst.enable {
+    services.dunst = lib.mkIf config.cfg.gui.dunst.enable {
       enable = true;
       iconTheme = {
         inherit (config.gtk.iconTheme) name;

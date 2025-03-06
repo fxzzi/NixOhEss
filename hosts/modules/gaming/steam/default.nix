@@ -4,12 +4,12 @@
   pkgs,
   ...
 }: {
-  options.gaming.steam.enable = lib.mkOption {
+  options.cfg.gaming.steam.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables steam.";
   };
-  config = lib.mkIf config.gaming.steam.enable {
+  config = lib.mkIf config.cfg.gaming.steam.enable {
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play

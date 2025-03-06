@@ -5,12 +5,12 @@
   config,
   ...
 }: {
-  options.secureboot.enable = lib.mkOption {
+  options.cfg.secureboot.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables secure boot and tpm2 unlock with sbctl and lanzaboote";
   };
-  config = lib.mkIf config.secureboot.enable {
+  config = lib.mkIf config.cfg.secureboot.enable {
     environment.systemPackages = with pkgs; [
       sbctl
       tpm2-tss

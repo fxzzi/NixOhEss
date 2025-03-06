@@ -5,12 +5,12 @@
   user,
   ...
 }: {
-  options.apps.thunar.enable = lib.mkOption {
+  options.cfg.apps.thunar.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the thunar file manager";
   };
-  config = lib.mkIf config.apps.thunar.enable {
+  config = lib.mkIf config.cfg.apps.thunar.enable {
     # add some packages for file-roller to work
     home.packages = with pkgs; [
       p7zip

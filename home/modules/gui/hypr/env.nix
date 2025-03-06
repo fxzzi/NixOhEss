@@ -14,7 +14,7 @@
       # fix java bug on tiling wm's / compositors
       _JAVA_AWT_WM_NONREPARENTING = "1";
     }
-    (lib.mkIf osConfig.gpu.nvidia.enable {
+    (lib.mkIf osConfig.cfg.gpu.nvidia.enable {
       # nvidia shenanigans
       GBM_BACKEND = "nvidia-drm";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";

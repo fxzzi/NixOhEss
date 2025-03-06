@@ -10,19 +10,19 @@
   nixpkgs-sgdboop = inputs.nixpkgs-sgdboop.legacyPackages.${pkgs.system};
   nix-gaming = inputs.nix-gaming.packages.${pkgs.system};
   gpuType =
-    if osConfig.gpu.nvidia.enable
+    if osConfig.cfg.gpu.nvidia.enable
     then "nvidia"
-    else if osConfig.gpu.amd.enable
+    else if osConfig.cfg.gpu.amd.enable
     then "amd"
     else "full"; # Fallback in case neither is enabled
 in {
-  options.gaming.enable = lib.mkOption {
+  options.cfg.gaming.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable gaming packages and configuration.";
   };
 
-  config = lib.mkIf config.gaming.enable {
+  config = lib.mkIf config.cfg.gaming.enable {
     home.packages = with pkgs; [
       (prismlauncher.override {
         jdks = [

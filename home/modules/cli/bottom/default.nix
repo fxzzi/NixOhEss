@@ -3,12 +3,12 @@
   config,
   ...
 }: {
-  options.cli.bottom.enable = lib.mkOption {
+  options.cfg.cli.bottom.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the btm (bottom) system monitor";
   };
-  config = lib.mkIf config.cli.bottom.enable {
+  config = lib.mkIf config.cfg.cli.bottom.enable {
     programs.bottom = {
       enable = true;
       settings = {

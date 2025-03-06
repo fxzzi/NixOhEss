@@ -3,12 +3,12 @@
   lib,
   ...
 }: {
-  options.printing.enable = lib.mkOption {
+  options.cfg.printing.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables cups for printing";
   };
-  config = lib.mkIf config.printing.enable {
+  config = lib.mkIf config.cfg.printing.enable {
     services = {
       printing.enable = true;
       avahi = {

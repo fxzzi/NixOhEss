@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  options.apps.browsers.chromium = {
+  options.cfg.apps.browsers.chromium = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -21,7 +21,7 @@
       description = "Enables the Scyrox S-center desktop app through chromium.";
     };
   };
-  config = lib.mkIf config.apps.browsers.chromium.enable {
+  config = lib.mkIf config.cfg.apps.browsers.chromium.enable {
     programs.chromium = {
       enable = true;
       package = pkgs.ungoogled-chromium;
@@ -43,13 +43,13 @@
     };
     xdg.desktopEntries = {
       # only enable the wootility app if chromium is actually enabled
-      "wootility" = lib.mkIf config.apps.browsers.chromium.wootility.enable {
+      "wootility" = lib.mkIf config.cfg.apps.browsers.chromium.wootility.enable {
         name = "Wootility Web";
         exec = "${lib.getExe config.programs.chromium.package} --app=https://beta.wootility.io %U";
         terminal = false;
         icon = "${./wootility-web.png}";
       };
-      "scyrox-s-center" = lib.mkIf config.apps.browsers.chromium.scyrox-s-center.enable {
+      "scyrox-s-center" = lib.mkIf config.cfg.apps.browsers.chromium.scyrox-s-center.enable {
         name = "Scyrox S-center";
         exec = "${lib.getExe config.programs.chromium.package} --app=https://www.scyrox.net/ %U";
         terminal = false;

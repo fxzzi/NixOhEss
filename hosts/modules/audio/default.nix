@@ -3,12 +3,12 @@
   lib,
   ...
 }: {
-  options.audio.pipewire.enable = lib.mkOption {
+  options.cfg.audio.pipewire.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the PipeWire audio server";
   };
-  config = lib.mkIf config.audio.pipewire.enable {
+  config = lib.mkIf config.cfg.audio.pipewire.enable {
     services.pipewire = {
       enable = true;
       alsa.enable = true;

@@ -3,12 +3,12 @@
   lib,
   ...
 }: {
-  options.kernel.zenpower.enable = lib.mkOption {
+  options.cfg.kernel.zenpower.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables zenpower and configures kernel modules to make it work.";
   };
-  config = lib.mkIf config.kernel.zenpower.enable {
+  config = lib.mkIf config.cfg.kernel.zenpower.enable {
     boot = {
       kernelModules = ["nct6775"];
       extraModulePackages = with config.boot.kernelPackages; [zenpower]; # zenpower for ryzen sensors
