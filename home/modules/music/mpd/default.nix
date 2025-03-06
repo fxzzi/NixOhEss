@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.music.mpd.enable = lib.mkOption {
+  options.cfg.music.mpd.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the mpd music server";
@@ -11,7 +11,7 @@
   imports = [
     ./mpd-discord-rpc
   ];
-  config = lib.mkIf config.music.mpd.enable {
+  config = lib.mkIf config.cfg.music.mpd.enable {
     services = {
       mpd = {
         enable = true;

@@ -3,12 +3,12 @@
   lib,
   ...
 }: {
-  options.gaming.mangohud.enable = lib.mkOption {
+  options.cfg.gaming.mangohud.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enable MangoHud and it's configurations.";
   };
-  config = lib.mkIf config.gaming.mangohud.enable {
+  config = lib.mkIf config.cfg.gaming.mangohud.enable {
     programs.mangohud = {
       enable = true;
       settings = {

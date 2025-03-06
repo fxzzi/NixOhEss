@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [./nvuv];
-  options = {
+  options.cfg = {
     gpu = {
       nvidia = {
         exposeTemp = lib.mkOption {
@@ -22,7 +22,7 @@
     };
   };
 
-  config = lib.mkIf config.gpu.nvidia.enable {
+  config = lib.mkIf config.cfg.gpu.nvidia.enable {
     nixpkgs.config.cudaSupport = true; # enable cuda support in packages which need it
     services.xserver.videoDrivers = ["nvidia"];
 
@@ -63,7 +63,7 @@
       blacklistedKernelModules = ["nouveau"];
     };
     systemd = {
-      services.nvidia-temp = lib.mkIf config.gpu.nvidia.exposeTemp {
+      services.nvidia-temp = lib.mkIf config.cfg.gpu.nvidia.exposeTemp {
         description = "NVidia GPU temperature monitoring"; # exposes gpu temperature at /tmp/nvidia-temp for monitoring
         wantedBy = ["multi-user.target"];
         before = ["fancontrol.service"];

@@ -4,18 +4,18 @@
   config,
   ...
 }: {
-  options.bootConfig.enable = lib.mkOption {
+  options.cfg.bootConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Setup systemd boot and a few initial boot options";
   };
-  options.bootConfig.keyLayout = lib.mkOption {
+  options.cfg.bootConfig.keyLayout = lib.mkOption {
     type = lib.types.str;
     default = "us";
     description = "Sets the keyboard layout for ttys";
   };
   imports = [./secureboot];
-  config = lib.mkIf config.bootConfig.enable {
+  config = lib.mkIf config.cfg.bootConfig.enable {
     boot = {
       initrd.systemd.enable = true;
       loader = {
@@ -44,7 +44,7 @@
       earlySetup = true;
       font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
       packages = with pkgs; [terminus_font];
-      keyMap = config.bootConfig.keyLayout;
+      keyMap = config.cfg.bootConfig.keyLayout;
     };
 
     # Set your time zone.

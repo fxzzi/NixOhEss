@@ -7,7 +7,7 @@
   ...
 }: let
   multiMonitor =
-    if config.gui.hypr.secondaryMonitor != null
+    if config.cfg.gui.hypr.secondaryMonitor != null
     then true
     else false;
   brightnessScript =
@@ -19,11 +19,11 @@
     then "slidevert"
     else "slide";
   hyprsunsetPkg =
-    if osConfig.wayland.hyprland.useGit
+    if osConfig.cfg.wayland.hyprland.useGit
     then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
 in {
-  options.gui = {
+  options.cfg.gui = {
     hypr = {
       hyprland = {
         enable = lib.mkOption {
@@ -51,8 +51,8 @@ in {
     };
   };
 
-  config = lib.mkIf config.gui.hypr.hyprland.enable {
-    programs.zsh.profileExtra = lib.mkIf config.gui.hypr.hyprland.autoStart ''
+  config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
+    programs.zsh.profileExtra = lib.mkIf config.cfg.gui.hypr.hyprland.autoStart ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
         exec ${lib.getExe' osConfig.programs.hyprland.package "Hyprland"}
       fi
@@ -74,7 +74,7 @@ in {
           # NOTE: use baseNameOf here and in the rest of the config to get the name of the executable.
           # its not needed but its the nix way i guess.
           "pgrep ${builtins.baseNameOf (lib.getExe config.programs.ags.finalPackage)} || (sleep 0.5; ${lib.getExe config.programs.ags.finalPackage})"
-          "${lib.getExe pkgs.xorg.xrandr} --output ${config.gui.hypr.defaultMonitor} --primary"
+          "${lib.getExe pkgs.xorg.xrandr} --output ${config.cfg.gui.hypr.defaultMonitor} --primary"
         ];
         monitor = [
           ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
@@ -87,7 +87,7 @@ in {
           direct_scanout = 0;
         };
         cursor = lib.mkIf multiMonitor {
-          default_monitor = "${config.gui.hypr.defaultMonitor}";
+          default_monitor = "${config.cfg.gui.hypr.defaultMonitor}";
         };
         opengl = {
           nvidia_anti_flicker = 0;
@@ -101,9 +101,9 @@ in {
           # i hate caps lock, so make it escape instead.
           kb_options = "fkeys:basic_13-24, caps:escape";
           # don't set tablet settings if opentabletdriver is enabled.
-          tablet = lib.mkIf (! osConfig.opentabletdriver.enable) {
+          tablet = lib.mkIf (! osConfig.cfg.opentabletdriver.enable) {
             left_handed = 1; # inverted tablet
-            output = "${config.gui.hypr.defaultMonitor}";
+            output = "${config.cfg.gui.hypr.defaultMonitor}";
           };
           touchpad = {
             natural_scroll = true;
@@ -247,22 +247,22 @@ in {
         ];
         # NOTE: this sets workspaces to alternate if there are 2 monitors.
         workspace = lib.mkIf multiMonitor [
-          "1, monitor:${config.gui.hypr.defaultMonitor}"
-          "2, monitor:${config.gui.hypr.secondaryMonitor}"
-          "3, monitor:${config.gui.hypr.defaultMonitor}"
-          "4, monitor:${config.gui.hypr.secondaryMonitor}"
-          "5, monitor:${config.gui.hypr.defaultMonitor}"
-          "6, monitor:${config.gui.hypr.secondaryMonitor}"
-          "7, monitor:${config.gui.hypr.defaultMonitor}"
-          "8, monitor:${config.gui.hypr.secondaryMonitor}"
-          "9, monitor:${config.gui.hypr.defaultMonitor}"
-          "10, monitor:${config.gui.hypr.secondaryMonitor}"
+          "1, monitor:${config.cfg.gui.hypr.defaultMonitor}"
+          "2, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
+          "3, monitor:${config.cfg.gui.hypr.defaultMonitor}"
+          "4, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
+          "5, monitor:${config.cfg.gui.hypr.defaultMonitor}"
+          "6, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
+          "7, monitor:${config.cfg.gui.hypr.defaultMonitor}"
+          "8, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
+          "9, monitor:${config.cfg.gui.hypr.defaultMonitor}"
+          "10, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
         ];
         "$MOD" = "SUPER";
         bind =
           [
             # screenshot script
-            ",Print, exec, screenshot.sh --monitor ${config.gui.hypr.defaultMonitor}"
+            ",Print, exec, screenshot.sh --monitor ${config.cfg.gui.hypr.defaultMonitor}"
             "SHIFT, Print, exec, screenshot.sh --selection"
             "$MOD, Print, exec, screenshot.sh --active"
 

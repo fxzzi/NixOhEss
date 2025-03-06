@@ -7,16 +7,16 @@
   ...
 }: let
   pkg =
-    if osConfig.wayland.hyprland.useGit
+    if osConfig.cfg.wayland.hyprland.useGit
     then inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
 in {
-  options.gui.hypr.hyprpaper.enable = lib.mkOption {
+  options.cfg.gui.hypr.hyprpaper.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables hyprpaper and its configs.";
   };
-  config = lib.mkIf config.gui.hypr.hyprpaper.enable {
+  config = lib.mkIf config.cfg.gui.hypr.hyprpaper.enable {
     services.hyprpaper = {
       enable = true;
       package = pkg.hyprpaper;

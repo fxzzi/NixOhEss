@@ -17,12 +17,12 @@
     then "fazziPC"
     else null;
 in {
-  options.apps.syncthing.enable = lib.mkOption {
+  options.cfg.apps.syncthing.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables custom syncthing config.";
   };
-  config = lib.mkIf config.apps.syncthing.enable {
+  config = lib.mkIf config.cfg.apps.syncthing.enable {
     services.syncthing = {
       enable = true;
       settings = {

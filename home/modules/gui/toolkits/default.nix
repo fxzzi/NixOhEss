@@ -4,12 +4,12 @@
   config,
   ...
 }: {
-  options.gui.toolkitConfig.enable = lib.mkOption {
+  options.cfg.gui.toolkitConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables toolkit (qt and gtk) configurations.";
   };
-  config = lib.mkIf config.gui.toolkitConfig.enable {
+  config = lib.mkIf config.cfg.gui.toolkitConfig.enable {
     home = {
       packages = with pkgs; [
         qt6ct

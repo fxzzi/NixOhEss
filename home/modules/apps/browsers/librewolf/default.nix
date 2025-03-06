@@ -7,12 +7,12 @@
 }: let
   newTabPage = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
 in {
-  options.apps.browsers.librewolf.enable = lib.mkOption {
+  options.cfg.apps.browsers.librewolf.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the librewolf browser.";
   };
-  config = lib.mkIf config.apps.browsers.librewolf.enable {
+  config = lib.mkIf config.cfg.apps.browsers.librewolf.enable {
     home = {
       packages = with pkgs; [pywalfox-native];
       /*
@@ -43,7 +43,7 @@ in {
         // enable vaapi accel
         pref("media.ffmpeg.vaapi.enabled", true);
 
-        ${lib.optionalString osConfig.gpu.nvidia.enable ''
+        ${lib.optionalString osConfig.cfg.gpu.nvidia.enable ''
           // make nvidia-vaapi-driver work
           pref("widget.dmabuf.force-enabled", true);
         ''}
@@ -84,7 +84,7 @@ in {
         // only use fonts defined by system, not by the website
         pref("browser.display.use_document_fonts", 0)
       '';
-      sessionVariables = lib.mkIf osConfig.gpu.nvidia.enable {
+      sessionVariables = lib.mkIf osConfig.cfg.gpu.nvidia.enable {
         LIBVA_DRIVER_NAME = "nvidia";
         NVD_BACKEND = "direct";
         MOZ_DISABLE_RDD_SANDBOX = "1";

@@ -3,13 +3,13 @@
   config,
   ...
 }: {
-  options.cachix.enable = lib.mkOption {
+  options.cfg.cachix.enable = lib.mkOption {
     type = lib.types.bool;
     # idk why you would disable cachix, so put this on true by default
     default = true;
     description = "Enables some predefined cachix servers";
   };
-  config = lib.mkIf config.cachix.enable {
+  config = lib.mkIf config.cfg.cachix.enable {
     nix.settings = {
       substituters = [
         "https://hyprland.cachix.org"

@@ -4,12 +4,12 @@
   lib,
   ...
 }: {
-  options.music.ncmpcpp.enable = lib.mkOption {
+  options.cfg.music.ncmpcpp.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the ncmpcpp frontend.";
   };
-  config = lib.mkIf config.music.ncmpcpp.enable {
+  config = lib.mkIf config.cfg.music.ncmpcpp.enable {
     home.packages = with pkgs; [libnotify];
     programs.ncmpcpp = {
       enable = true;

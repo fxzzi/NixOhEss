@@ -4,12 +4,12 @@
   config,
   ...
 }: {
-  options.apps.discord.enable = lib.mkOption {
+  options.cfg.apps.discord.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables discord and some client mods.";
   };
-  config = lib.mkIf config.apps.discord.enable {
+  config = lib.mkIf config.cfg.apps.discord.enable {
     home.packages = with pkgs; [
       ((discord-canary.override {
           withOpenASAR = true;

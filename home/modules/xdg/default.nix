@@ -3,12 +3,12 @@
   config,
   ...
 }: {
-  options.xdgConfig.enable = lib.mkOption {
+  options.cfg.xdgConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables the xdg config and customisation.";
   };
-  config = lib.mkIf config.xdgConfig.enable {
+  config = lib.mkIf config.cfg.xdgConfig.enable {
     home.preferXdgDirectories = true;
     xdg = {
       enable = true;

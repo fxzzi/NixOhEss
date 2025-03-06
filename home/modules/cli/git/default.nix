@@ -3,12 +3,12 @@
   lib,
   ...
 }: {
-  options.cli.git.enable = lib.mkOption {
+  options.cfg.cli.git.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables my git configurations.";
   };
-  config = lib.mkIf config.cli.git.enable {
+  config = lib.mkIf config.cfg.cli.git.enable {
     programs.git = {
       enable = true;
       userName = "Fazzi";
