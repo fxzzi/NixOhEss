@@ -31,7 +31,7 @@ in {
           temurin-jre-bin-21
         ];
       })
-      (gamescope_git.overrideAttrs (_: {
+      (gamescope.overrideAttrs (_: {
         # NOTE: https://github.com/ValveSoftware/gamescope/issues/1622#issuecomment-2508182530
         NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
       }))

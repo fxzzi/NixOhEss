@@ -84,7 +84,7 @@ in {
           "desc:Philips, 1920x1080@75,0x180, 1"
         ];
         render = {
-          direct_scanout = 0;
+          direct_scanout = 1;
         };
         cursor = lib.mkIf multiMonitor {
           default_monitor = "${config.cfg.gui.hypr.defaultMonitor}";
