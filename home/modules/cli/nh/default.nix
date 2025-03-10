@@ -6,18 +6,13 @@
   options.cfg.cli.nh.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
-    description = "Enables nh with some shell aliases, and daily gc.";
+    description = "Enables nh with some shell aliases.";
   };
   config = lib.mkIf config.cfg.cli.nh.enable {
     programs = {
       nh = {
         enable = true;
         flake = "${config.xdg.configHome}/nixos";
-        clean = {
-          enable = true;
-          dates = "*-*-* 00/6:00:00"; # run every 6 hr
-          extraArgs = "--keep 8";
-        };
       };
 
       zsh.shellAliases = {
