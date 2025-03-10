@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   cfg = {
     scripts.enable = true;
     xdgConfig.enable = true;
@@ -65,6 +69,8 @@
   };
   home.packages = with pkgs; [
     godot3
+    steam-run
+    inputs.nixpkgs-olympus.legacyPackages.${pkgs.system}.olympus
   ];
 
   imports = [
