@@ -45,8 +45,8 @@ in {
     ];
     xdg = {
       dataFile = {
-        "lutris/runners/wine/proton-ge" = {
-          source = pkgs.proton-ge-bin;
+        "lutris/runners/proton/GE-Proton" = {
+          source = pkgs.proton-ge-bin.steamcompattool;
         };
       };
     };
