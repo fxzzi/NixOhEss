@@ -6,10 +6,6 @@
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
     nix-gaming.url = "github:fufexan/nix-gaming";
-    chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -70,7 +66,6 @@
         };
         modules = [
           ./hosts
-          inputs.chaotic.nixosModules.default
         ];
       };
   in {
