@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  home.stateVersion = "25.05";
   cfg = {
     scripts.enable = true;
     xdgConfig.enable = true;

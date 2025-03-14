@@ -1,4 +1,5 @@
 {
+  system.stateVersion = "25.05";
   cfg = {
     kernel = {
       type = "xanmod_latest";

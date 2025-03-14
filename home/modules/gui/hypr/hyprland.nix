@@ -22,6 +22,7 @@
     if osConfig.cfg.wayland.hyprland.useGit
     then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
+  toggleProc = pkg: "pkill ${builtins.baseNameOf (lib.getExe pkg)} || ${lib.getExe pkg}";
 in {
   options.cfg.gui = {
     hypr = {
@@ -274,12 +275,12 @@ in {
             "$MOD, B, exec, ${lib.getExe config.programs.librewolf.finalPackage}"
             "$MOD SHIFT, P, exec, ${lib.getExe config.programs.librewolf.finalPackage} --private-window"
             "$MOD, W, exec, vesktop"
-            "$MOD, D, exec, pkill ${builtins.baseNameOf (lib.getExe config.programs.fuzzel.package)} || ${lib.getExe config.programs.fuzzel.package}"
-            "$MOD SHIFT, E, exec, pkill ${builtins.baseNameOf (lib.getExe config.programs.wlogout.package)} || ${lib.getExe config.programs.wlogout.package} --protocol layer-shell -b 5 -T 360 -B 360"
+            "$MOD, D, exec, ${toggleProc config.programs.fuzzel.package}"
+            "$MOD SHIFT, E, exec, ${toggleProc config.programs.wlogout.package} --protocol layer-shell -b 5 -T 360 -B 360"
             "CTRL SHIFT, Escape, exec, ${lib.getExe config.programs.foot.package} btm"
 
             # extra schtuff
-            "$MOD, N, exec, pkill ${builtins.baseNameOf (lib.getExe hyprsunsetPkg.hyprsunset)} || ${lib.getExe hyprsunsetPkg.hyprsunset} -t 2000"
+            "$MOD, N, exec, ${toggleProc hyprsunsetPkg.hyprsunset} -t 2000"
             "$MOD, R, exec, random-wall.sh"
             "$MOD SHIFT, R, exec, cycle-wall.sh"
             "$MOD, J, exec, ${lib.getExe config.programs.foot.package} wall-picker.sh"
