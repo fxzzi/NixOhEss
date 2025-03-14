@@ -14,6 +14,7 @@
       enable = true;
       mime.enable = true;
       userDirs.enable = true;
+      portal.xdgOpenUsePortal = true;
       configFile."mimeapps.list".force = true; # don't error when mimeapps.list is replaced, it gets replaced often
       mimeApps = {
         enable = true;
