@@ -6,6 +6,7 @@
 }: let
   electronVer = "35.0.1";
   electronPkg = pkgs.electron-bin.overrideAttrs {
+    pname = "electron_35-bin";
     version = electronVer;
     src = pkgs.fetchurl {
       url = "https://github.com/electron/electron/releases/download/v${electronVer}/electron-v${electronVer}-linux-x64.zip";
