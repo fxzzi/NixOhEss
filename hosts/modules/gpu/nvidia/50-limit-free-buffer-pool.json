@@ -10,7 +10,7 @@
     {
       "pattern": {
         "feature": "procname",
-        "matches": ".DiscordCanary-wrapped"
+        "matches": "electron"
       },
       "profile": "No VidMem Reuse"
     },
