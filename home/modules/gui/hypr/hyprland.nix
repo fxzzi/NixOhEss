@@ -72,8 +72,6 @@ in {
           "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         ];
         exec = [
-          # NOTE: use baseNameOf here and in the rest of the config to get the name of the executable.
-          # its not needed but its the nix way i guess.
           "pgrep ${builtins.baseNameOf (lib.getExe config.programs.ags.finalPackage)} || (sleep 0.5; ${lib.getExe config.programs.ags.finalPackage})"
           "${lib.getExe pkgs.xorg.xrandr} --output ${config.cfg.gui.hypr.defaultMonitor} --primary"
         ];

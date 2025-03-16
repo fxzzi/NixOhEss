@@ -16,6 +16,24 @@
   };
   imports = [./secureboot];
   config = lib.mkIf config.cfg.bootConfig.enable {
+    console = {
+      earlySetup = true;
+      font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
+      packages = with pkgs; [terminus_font];
+      keyMap = config.cfg.bootConfig.keyLayout;
+    };
+
+    # Set your time zone.
+    time.timeZone = "Europe/London";
+
+    # Select internationalisation properties.
+    i18n.defaultLocale = "en_GB.UTF-8";
+
+    # Set a percentage of RAM to zstd compressed swap
+    zramSwap = {
+      enable = true;
+      memoryPercent = 50;
+    };
     boot = {
       initrd.systemd.enable = true;
       loader = {
@@ -39,31 +57,13 @@
       extraModprobeConfig = ''
         blacklist sp5100_tco
       '';
-    };
-    console = {
-      earlySetup = true;
-      font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
-      packages = with pkgs; [terminus_font];
-      keyMap = config.cfg.bootConfig.keyLayout;
-    };
-
-    # Set your time zone.
-    time.timeZone = "Europe/London";
-
-    # Select internationalisation properties.
-    i18n.defaultLocale = "en_GB.UTF-8";
-
-    # Set a percentage of RAM to zstd compressed swap
-    zramSwap = {
-      enable = true;
-      memoryPercent = 50;
-    };
-    # NOTE: https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
-    boot.kernel.sysctl = {
-      "vm.swappiness" = 180;
-      "vm.watermark_boost_factor" = 0;
-      "vm.watermark_scale_factor" = 125;
-      "vm.page-cluster" = 0;
+      # NOTE: https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
+      kernel.sysctl = {
+        "vm.swappiness" = 180;
+        "vm.watermark_boost_factor" = 0;
+        "vm.watermark_scale_factor" = 125;
+        "vm.page-cluster" = 0;
+      };
     };
   };
 }
