@@ -12,8 +12,7 @@
       wget
       python3
       ffmpeg
-      # pwvucontrol
-      lxqt.pavucontrol-qt
+      pwvucontrol
       mate.atril
       mate.eom
       libreoffice
