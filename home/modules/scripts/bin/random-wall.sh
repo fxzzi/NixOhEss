@@ -1,4 +1,4 @@
-WALLPAPER_DIR="$HOME/walls/images/"
+WALLPAPER_DIR="$HOME/walls"
 CURRENT_WALL=$(hyprctl hyprpaper listloaded)
 
 # Get a random wallpaper that is not the current one
@@ -6,4 +6,3 @@ WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" 
 
 # Apply the selected wallpaper
 wallust.sh "$WALLPAPER"
-

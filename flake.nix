@@ -64,6 +64,14 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    walls = {
+      url = "gitlab:fazzi/walls";
+      flake = false;
+    };
+    startpage = {
+      url = "gitlab:fazzi/startpage";
+      flake = false;
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: let

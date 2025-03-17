@@ -1,4 +1,4 @@
-{...}: {
+{inputs, ...}: {
   imports = [
     ./ags
     ./fonts
@@ -10,4 +10,7 @@
     ./wleave
     ./dunst
   ];
+  config = {
+    home.file."walls".source = "${inputs.walls}/images"; # wallpapers
+  };
 }

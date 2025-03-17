@@ -3,9 +3,10 @@
   config,
   lib,
   osConfig,
+  inputs,
   ...
 }: let
-  newTabPage = "file://${config.home.homeDirectory}/.local/packages/startpage/fazzi/index.html";
+  newTabPage = "file://${config.xdg.dataHome}/startpage/fazzi/index.html";
 in {
   options.cfg.apps.browsers.librewolf.enable = lib.mkOption {
     type = lib.types.bool;
@@ -13,6 +14,7 @@ in {
     description = "Enables the librewolf browser.";
   };
   config = lib.mkIf config.cfg.apps.browsers.librewolf.enable {
+    xdg.dataFile."startpage".source = inputs.startpage; # startpage
     home = {
       packages = with pkgs; [pywalfox-native];
       /*
