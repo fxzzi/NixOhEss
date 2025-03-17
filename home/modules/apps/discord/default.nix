@@ -23,6 +23,8 @@ in {
     home.packages = with pkgs; [
       ((vesktop.override {
           electron = electronPkg;
+          withTTS = false;
+          withMiddleClickScroll = true;
         })
         .overrideAttrs
         (old: {
