@@ -1395,7 +1395,9 @@
         "nixpkgs-olympus": "nixpkgs-olympus",
         "nixpkgs-sgdboop": "nixpkgs-sgdboop",
         "nvf": "nvf",
-        "nvuv": "nvuv"
+        "nvuv": "nvuv",
+        "startpage": "startpage",
+        "walls": "walls"
       }
     },
     "rust-overlay": {
@@ -1523,6 +1525,22 @@
       "original": {
         "type": "file",
         "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg"
+      }
+    },
+    "startpage": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739447856,
+        "narHash": "sha256-xBLPsGAvJlPnaT0Goxmf2wlMU2JZprcnYadlSKbxNTA=",
+        "owner": "fazzi",
+        "repo": "startpage",
+        "rev": "0d6065906ae44a239fee69637288a66282857df1",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "fazzi",
+        "repo": "startpage",
+        "type": "gitlab"
       }
     },
     "systems": {
@@ -1658,6 +1676,22 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "walls": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742168804,
+        "narHash": "sha256-5yaHguRvcPbF+FGAZR9rBDk85GFWCEnHnhEguSXmWoY=",
+        "owner": "fazzi",
+        "repo": "walls",
+        "rev": "af5f3ecbefa9c330fb2556b03ec2080125e36eea",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "fazzi",
+        "repo": "walls",
+        "type": "gitlab"
       }
     },
     "xdph": {

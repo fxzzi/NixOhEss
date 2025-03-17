@@ -3,7 +3,7 @@
 # this is a script to set a wallpaper for hyprpaper on a single monitor setup
 # ipc must be turned on inside hyprpaper.conf
 
-bgdir="$HOME/walls/images" # the directory where all wallpapers are stored
+bgdir="$HOME/walls/" # the directory where all wallpapers are stored
 
 # check if sixel is installed, if not - exit
 if ! command -v img2sixel >/dev/null 2>&1; then
