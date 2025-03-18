@@ -23,6 +23,8 @@
     then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
   toggleProc = pkg: "pkill ${builtins.baseNameOf (lib.getExe pkg)} || ${lib.getExe pkg}";
+  runProc = pkg: "${lib.getExe' osConfig.programs.uwsm.package "uwsm-app"} -- ${pkg}";
+  runTerm = cmd: "${lib.getExe' osConfig.programs.uwsm.package "uwsm-app"} -T ${cmd}";
 in {
   options.cfg.gui = {
     hypr = {
@@ -55,7 +57,7 @@ in {
   config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
     programs.zsh.profileExtra = lib.mkIf config.cfg.gui.hypr.hyprland.autoStart ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-        exec ${lib.getExe' osConfig.programs.hyprland.package "Hyprland"}
+        exec ${lib.getExe' osConfig.programs.uwsm.package "uwsm"} start -- hyprland-uwsm.desktop
       fi
     '';
 
@@ -68,12 +70,12 @@ in {
       portalPackage = null;
       settings = {
         exec-once = [
-          "sleep 0.5; random-wall.sh" # HACK: sleep here, otherwise wallpaper will be set too early
-          "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
+          "sleep 0.5; ${runProc "random-wall.sh"}" # HACK: sleep here, otherwise wallpaper will be set too early
+          "${runProc "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"}"
         ];
         exec = [
-          "pgrep ${builtins.baseNameOf (lib.getExe config.programs.ags.finalPackage)} || (sleep 0.5; ${lib.getExe config.programs.ags.finalPackage})"
-          "${lib.getExe pkgs.xorg.xrandr} --output ${config.cfg.gui.hypr.defaultMonitor} --primary"
+          "pgrep ${builtins.baseNameOf (lib.getExe config.programs.ags.finalPackage)} || (sleep 0.5; ${runProc "${lib.getExe config.programs.ags.finalPackage}"})"
+          "${runProc "${lib.getExe pkgs.xorg.xrandr} -- --output ${config.cfg.gui.hypr.defaultMonitor} --primary"}"
         ];
         monitor = [
           ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
@@ -254,31 +256,29 @@ in {
         bind =
           [
             # screenshot script
-            ",Print, exec, screenshot.sh --monitor ${config.cfg.gui.hypr.defaultMonitor}"
-            "SHIFT, Print, exec, screenshot.sh --selection"
-            "$MOD, Print, exec, screenshot.sh --active"
+            ",Print, exec, ${runProc "screenshot.sh --monitor ${config.cfg.gui.hypr.defaultMonitor}"}"
+            "SHIFT, Print, exec, ${runProc "screenshot.sh --selection"}"
+            "$MOD, Print, exec, ${runProc "screenshot.sh --active"}"
 
-            # binds for apps
-            # HACK: find a better way to define thunar here. this sucks. but alas
-            # it works and doesn't make a duplicate package.
-            "$MOD, F, exec, ${lib.getExe' (pkgs.xfce.thunar.override {thunarPlugins = osConfig.programs.thunar.plugins;}) "thunar"}"
-            "$MOD, T, exec, ${lib.getExe config.programs.foot.package}"
-            "$MOD, B, exec, ${lib.getExe config.programs.librewolf.finalPackage}"
-            "$MOD SHIFT, P, exec, ${lib.getExe config.programs.librewolf.finalPackage} --private-window"
-            "$MOD, W, exec, vesktop"
-            "$MOD, D, exec, ${toggleProc config.programs.fuzzel.package}"
-            "$MOD SHIFT, E, exec, ${toggleProc config.programs.wlogout.package} --protocol layer-shell -b 5 -T 360 -B 360"
-            "CTRL SHIFT, Escape, exec, ${lib.getExe config.programs.foot.package} btm"
+            # binds for apps, using uwsm-app
+            "$MOD, F, exec, ${runProc "thunar.desktop"}"
+            "$MOD, T, exec, ${runTerm ""}"
+            "$MOD, B, exec, ${runProc "librewolf.desktop"}"
+            "$MOD SHIFT, P, exec, ${runProc "librewolf.desktop:new-private-window"}"
+            "$MOD, W, exec, ${runProc "vesktop.desktop"}"
+            "$MOD, D, exec, ${runProc "${toggleProc config.programs.fuzzel.package}"}"
+            "$MOD SHIFT, E, exec, ${runProc "${toggleProc config.programs.wlogout.package} --protocol layer-shell -b 5 -T 360 -B 360"}"
+            "CTRL SHIFT, Escape, exec, ${runTerm "btm"}"
 
             # extra schtuff
-            "$MOD, N, exec, ${toggleProc hyprsunsetPkg.hyprsunset} -t 2000"
-            "$MOD, R, exec, random-wall.sh"
-            "$MOD SHIFT, R, exec, cycle-wall.sh"
-            "$MOD, J, exec, ${lib.getExe config.programs.foot.package} wall-picker.sh"
-            "$MOD, L, exec, ${lib.getExe' pkgs.systemd "loginctl"} lock-session"
-            ", XF86AudioPrev, exec, ${lib.getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif.sh)"
-            ", XF86AudioPlay, exec, ${lib.getExe pkgs.mpc} toggle"
-            ", XF86AudioNext, exec, ${lib.getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif.sh)"
+            "$MOD, N, exec, ${runProc "${toggleProc hyprsunsetPkg.hyprsunset} -t 2000"}"
+            "$MOD, R, exec, ${runProc "random-wall.sh"}"
+            "$MOD SHIFT, R, exec, ${runProc "cycle-wall.sh"}"
+            "$MOD, J, exec, ${runTerm "wall-picker.sh"}"
+            "$MOD, L, exec, ${runProc "${lib.getExe' pkgs.systemd "loginctl"} lock-session"}"
+            ", XF86AudioPrev, exec, ${runProc "${lib.getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif.sh)"}"
+            ", XF86AudioPlay, exec, ${runProc "${lib.getExe pkgs.mpc} toggle"}"
+            ", XF86AudioNext, exec, ${runProc "${lib.getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif.sh)"}"
 
             # passthrough binds for obs
             "Alt, M, pass,^(com.obsproject.Studio)$"
@@ -325,15 +325,15 @@ in {
 
         binde = [
           # volume script
-          ", XF86AudioRaiseVolume, exec, audio.sh vol up 5"
-          ", XF86AudioLowerVolume, exec, audio.sh vol down 5"
-          ", XF86AudioMute, exec, audio.sh vol toggle"
-          ", XF86AudioMicMute, exec, audio.sh mic toggle"
-          ", F20, exec, audio.sh mic toggle"
+          ", XF86AudioRaiseVolume, exec, ${runProc "audio.sh vol up 5"}"
+          ", XF86AudioLowerVolume, exec, ${runProc "audio.sh vol down 5"}"
+          ", XF86AudioMute, exec, ${runProc "audio.sh vol toggle"}"
+          ", XF86AudioMicMute, exec, ${runProc "audio.sh mic toggle"}"
+          ", F20, exec, ${runProc "audio.sh mic toggle"}"
 
           # brightness script
-          ", XF86MonBrightnessUp, exec, ${brightnessScript} up 5"
-          ", XF86MonBrightnessDown, exec, ${brightnessScript} down 5"
+          ", XF86MonBrightnessUp, exec, ${runProc "${brightnessScript} up 5"}"
+          ", XF86MonBrightnessDown, exec, ${runProc "${brightnessScript} down 5"}"
 
           # resize
           "$MOD CTRL, left, resizeactive, -10 0"
