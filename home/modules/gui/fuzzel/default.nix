@@ -32,6 +32,7 @@
           sort-result = "false";
           match-mode = "exact";
           dpi-aware = false;
+          launch-prefix = "uwsm-app -- ";
         };
         border = {
           radius = "6";
