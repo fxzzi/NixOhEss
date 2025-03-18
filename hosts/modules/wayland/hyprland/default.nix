@@ -21,10 +21,12 @@ in {
     description = "Makes hm and nix use hypr* packages from flakes instead of nixpkgs";
   };
   config = lib.mkIf config.cfg.wayland.hyprland.enable {
+    programs.uwsm.enable = true;
     programs.hyprland = {
       enable = true;
       package = pkg.hyprland;
       portalPackage = pkg.xdg-desktop-portal-hyprland;
+      withUWSM = true;
     };
   };
 }
