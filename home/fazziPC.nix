@@ -39,8 +39,19 @@
       };
     };
     gaming = {
-      enable = true;
+      prismlauncher.enable = true;
+      lutris.enable = true;
+      celeste = {
+        enable = true;
+        modding.enable = true;
+      };
       mangohud.enable = true;
+      gamescope.enable = true;
+      cemu.enable = true;
+      heroic.enable = true;
+      nvtop.enable = true;
+      sgdboop.enable = false;
+      osu-lazer.enable = true;
     };
     gui = {
       fontConfig.enable = true;
