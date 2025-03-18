@@ -39,6 +39,7 @@
       };
     };
     gaming = {
+      proton-ge.enable = true;
       prismlauncher.enable = true;
       lutris.enable = true;
       celeste = {

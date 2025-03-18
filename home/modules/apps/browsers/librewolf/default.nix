@@ -26,9 +26,10 @@ in {
       */
       file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
         // Set new tab page to local startpage
-        let { utils:Cu } = Components;
-        Cu.import("resource:///modules/AboutNewTab.jsm");
-        AboutNewTab.newTabURL = "${newTabPage}";
+        // this doesn't work anymore for some reason
+        //let { utils:Cu } = Components;
+        //Cu.import("resource:///modules/AboutNewTab.jsm");
+        //AboutNewTab.newTabURL = "${newTabPage}";
 
         pref("browser.startup.homepage", "${newTabPage}");
         pref("services.sync.prefs.sync.browser.startup.homepage", false);
@@ -81,7 +82,7 @@ in {
         pref("media.getusermedia.audio.processing.hpf.enabled", false);
 
         // disable bookmarks bar, i don't use it
-        pref("browser.toolbars.bookmarks.visibility", never)
+        pref("browser.toolbars.bookmarks.visibility", "never")
 
         // only use fonts defined by system, not by the website
         pref("browser.display.use_document_fonts", 0)
