@@ -39,6 +39,13 @@
         enable = true;
       };
     };
+    gaming = {
+      celeste = {
+        enable = true;
+        modding.enable = true;
+      };
+      nvtop.enable = true;
+    };
     gui = {
       fontConfig.enable = true;
       toolkitConfig.enable = true;
@@ -70,8 +77,6 @@
   };
   home.packages = with pkgs; [
     godot3
-    steam-run
-    inputs.nixpkgs-olympus.legacyPackages.${pkgs.system}.olympus
   ];
 
   imports = [
