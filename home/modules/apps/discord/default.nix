@@ -4,13 +4,13 @@
   config,
   ...
 }: let
-  electronVer = "36.0.0-alpha.2";
+  electronVer = "36.0.0-alpha.3";
   electronPkg = pkgs.electron-bin.overrideAttrs {
     pname = "electron_36-bin";
     version = electronVer;
     src = pkgs.fetchurl {
       url = "https://github.com/electron/electron/releases/download/v${electronVer}/electron-v${electronVer}-linux-x64.zip";
-      sha256 = "sha256-h/nff4pv5bAtb2wnJFYtgAlq+GdXTMDmU6xTjvKRnh4=";
+      sha256 = "sha256-2ucWrTIxJv+TfFgcLwfGF/r2St6cXZZMrbtOdSZS5l0=";
     };
   };
 in {
