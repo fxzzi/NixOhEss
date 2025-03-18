@@ -191,26 +191,19 @@ in {
           preserve_split = 1;
         };
         windowrule = [
-          "float, file_progress"
-          "float, confirm"
-          "float, dialog"
-          "float, download"
-          "float, notification"
-          "float, error"
-          "float, splash"
-          "float, confirmreset"
-          "float, title:Open File"
-          "float, title:branchdialog"
-        ];
-        windowrulev2 = [
           # pause hypridle for certain apps
           "idleinhibit focus, class:^(mpv)$"
           "idleinhibit focus, class:^(atril)$"
-          "idleinhibit fullscreen, class:^(.*)$"
 
           # some apps, mostly games, are stupid and they fullscreen on the
           # wrong monitor. so just don't listen to them lol
           "suppressevent fullscreenoutput, class:.*"
+
+          # Ignore maximize requests from apps. You'll probably like this.
+          "suppressevent maximize, class:.*"
+
+          # Fix some dragging issues with XWayland
+          "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 
           # Window rules for games
           # Fix focus issues with cs2
@@ -223,16 +216,16 @@ in {
           "fullscreen, class:^(org-prismlauncher-EntryPoint)$"
 
           # Allow games to tear
-          "immediate, class:^(steam_app_.*)$"
-          "immediate, class:^(SDL Application)$"
-          "immediate, class:^(cs2)$"
-          "immediate, class:^(Minecraft.*)$"
-          "immediate, initialTitle:^(Minecraft.*)$"
-          "immediate, class:^(org-prismlauncher-EntryPoint)$"
+          "immediate, class:^(steam_app_.*)$" # all steam games
+          "immediate, class:^(SDL Application)$" # cs2 native wayland
+          "immediate, class:^(cs2)$" # cs2
+          "immediate, class:^(Minecraft.*)$" # modern minecraft
+          "immediate, initialTitle:^(Minecraft.*)$" # 1.8.9 for some reason
+          "immediate, class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
           "immediate, class:^(osu!)$"
-          "immediate, class: ^(.*.exe)$"
-          "immediate, class: ^(hl2_linux)$"
-          "immediate, class: ^(cstrike_linux64)$"
+          "immediate, class: ^(.*.exe)$" # all exe's
+          "immediate, class: ^(hl2_linux)$" # half life 2
+          "immediate, class: ^(cstrike_linux64)$" # cs source
           "immediate, class: ^(gamescope)$"
           "immediate, class: ^(Celeste)$"
           "immediate, class: ^(info.cemu.Cemu)$"
@@ -360,10 +353,10 @@ in {
         # 	"AQ_TRACE" = "1"
         # 	"HYPRLAND_TRACE" = "1"
         # ];
-        # debug = {
-        #   disable_logs = 0;
-        #   watchdog_timeout = 0;
-        # };
+        debug = {
+          disable_logs = 0;
+          # watchdog_timeout = 0;
+        };
       };
       extraConfig = ''
         # submaps
