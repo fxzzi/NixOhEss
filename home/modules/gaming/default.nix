@@ -16,6 +16,11 @@
     else "full"; # Fallback in case neither is enabled
 in {
   options.cfg.gaming = {
+    proton-ge.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable proton-ge for Lutris / Heroic if enabled";
+    };
     gamescope.enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -26,25 +31,16 @@ in {
       default = false;
       description = "Enables the cemu emulator.";
     };
-
-    heroic.enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enables the heroic games launcher.";
-    };
-
     nvtop.enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
       description = "Enables the nvtop gpu monitor";
     };
-
     sgdboop.enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
       description = "Enables steamgriddb sgdboop.";
     };
-
     osu-lazer.enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -60,7 +56,6 @@ in {
           NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
         })))
       (lib.mkIf config.cfg.gaming.cemu.enable cemu)
-      (lib.mkIf config.cfg.gaming.heroic.enable heroic)
       (lib.mkIf config.cfg.gaming.nvtop.enable nvtopPackages.${gpuType})
       (lib.mkIf config.cfg.gaming.sgdboop.enable nixpkgs-sgdboop.sgdboop)
       (lib.mkIf config.cfg.gaming.osu-lazer.enable nix-gaming.osu-lazer-bin)
@@ -70,6 +65,7 @@ in {
     ./mangohud
     ./prismlauncher
     ./lutris
+    ./heroic
     ./celeste
   ];
 }

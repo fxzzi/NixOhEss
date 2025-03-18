@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   home.stateVersion = "25.05";
   cfg = {
     scripts.enable = true;
@@ -40,6 +36,7 @@
       };
     };
     gaming = {
+      proton-ge.enable = false;
       celeste = {
         enable = true;
         modding.enable = true;
