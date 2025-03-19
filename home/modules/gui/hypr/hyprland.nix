@@ -57,7 +57,7 @@ in {
 
   config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
     programs.zsh.profileExtra = lib.mkIf config.cfg.gui.hypr.hyprland.autoStart ''
-      if ${uwsm} check may-start && ${uwsm} select; then
+      if ${uwsm} check may-start; then
        exec ${uwsm} start hyprland-uwsm.desktop
       fi
     '';
