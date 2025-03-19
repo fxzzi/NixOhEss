@@ -11,7 +11,7 @@
 
     src = builtins.fetchTarball {
       url = "https://github.com/4lrick/XCursor-Pro-Hyprcursor/releases/download/V1.0/XCursor-Pro-Light-Hyprcursor.tar.xz";
-      sha256 = "sha256:05ckr0l47p1kg9zaavy88nhzx3cg2k3q2gj329bywdp6hs25r6f3";
+      sha256 = "05ckr0l47p1kg9zaavy88nhzx3cg2k3q2gj329bywdp6hs25r6f3";
     };
 
     phases = ["installPhase"];

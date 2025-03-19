@@ -48,11 +48,11 @@
       };
       mangohud.enable = true;
       gamescope.enable = true;
-      cemu.enable = true;
+      cemu.enable = false;
       heroic.enable = true;
       nvtop.enable = true;
       sgdboop.enable = false;
-      osu-lazer.enable = true;
+      osu-lazer.enable = false;
     };
     gui = {
       fontConfig.enable = true;
