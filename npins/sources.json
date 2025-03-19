@@ -1,5 +1,17 @@
 {
   "pins": {
+    "app2unit": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Vladimir-csp",
+        "repo": "app2unit"
+      },
+      "branch": "master",
+      "revision": "b9c13a696f5af7518550cad8184fe817650f520d",
+      "url": "https://github.com/Vladimir-csp/app2unit/archive/b9c13a696f5af7518550cad8184fe817650f520d.tar.gz",
+      "hash": "07y7s96d28lh1hbl7vz71hhrw9hq0qgfkfgx00qcz5vgl34bxzay"
+    },
     "foot": {
       "type": "Git",
       "repository": {
@@ -10,6 +22,18 @@
       "revision": "f632c0d4d8cec300c45c726794200f4a02c07775",
       "url": null,
       "hash": "1scrcdxlglfx7m0xpsrh7imcjxnbz9l9wa424h1mkzqqr1ydsl05"
+    },
+    "xdg-terminal-exec": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Vladimir-csp",
+        "repo": "xdg-terminal-exec"
+      },
+      "branch": "master",
+      "revision": "9357b7d093f98e0b5c7aec18f2fc9eea0ae90aab",
+      "url": "https://github.com/Vladimir-csp/xdg-terminal-exec/archive/9357b7d093f98e0b5c7aec18f2fc9eea0ae90aab.tar.gz",
+      "hash": "07sy7rfzvhh8idslz6cbyxzwhrp5vq5ghhapbgpix93qz76dl3wq"
     },
     "xpad-noone": {
       "type": "Git",
