@@ -56,6 +56,7 @@
         enable = true;
         useGit = true;
       };
+      uwsm.enable = true;
       thunar.enable = true;
     };
     gaming = {
