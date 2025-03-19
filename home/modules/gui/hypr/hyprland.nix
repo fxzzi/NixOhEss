@@ -22,10 +22,10 @@
     if osConfig.cfg.wayland.hyprland.useGit
     then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
+  uwsm = lib.getExe' osConfig.programs.uwsm.package "uwsm";
   runProc = pkg: "app2unit -- ${pkg}";
   runTerm = cmd: "app2unit -T ${cmd}";
   toggleProc = pkg: "pkill ${builtins.baseNameOf (lib.getExe pkg)} || ${runProc "${lib.getExe pkg}"}";
-  uwsm = lib.getExe' osConfig.programs.uwsm.package "uwsm";
 in {
   options.cfg.gui = {
     hypr = {
@@ -100,7 +100,7 @@ in {
           follow_mouse = 2; # Follow mouse clicks for window focus
           accel_profile = "flat";
           float_switch_override_focus = 0; # Stop floating windows from stealing focus
-          # i hate caps lock, so make it escape instead.
+          # i hate caps lock, so make it escape instead. also reset f13-f24 to their expected keysyms.
           kb_options = "fkeys:basic_13-24, caps:escape";
           # don't set tablet settings if opentabletdriver is enabled.
           tablet = lib.mkIf (! osConfig.cfg.opentabletdriver.enable) {
