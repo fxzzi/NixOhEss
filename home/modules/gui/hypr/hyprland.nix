@@ -22,9 +22,10 @@
     if osConfig.cfg.wayland.hyprland.useGit
     then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
-  toggleProc = pkg: "pkill ${builtins.baseNameOf (lib.getExe pkg)} || ${lib.getExe pkg}";
   runProc = pkg: "app2unit -- ${pkg}";
   runTerm = cmd: "app2unit -T ${cmd}";
+  toggleProc = pkg: "pkill ${builtins.baseNameOf (lib.getExe pkg)} || ${runProc "${lib.getExe pkg}"}";
+  uwsm = lib.getExe' osConfig.programs.uwsm.package "uwsm";
 in {
   options.cfg.gui = {
     hypr = {
@@ -56,8 +57,8 @@ in {
 
   config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
     programs.zsh.profileExtra = lib.mkIf config.cfg.gui.hypr.hyprland.autoStart ''
-      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-        exec ${lib.getExe' osConfig.programs.uwsm.package "uwsm"} start -- hyprland-uwsm.desktop
+      if ${uwsm} check may-start && ${uwsm} select; then
+       exec ${uwsm} start hyprland-uwsm.desktop
       fi
     '';
 
@@ -266,12 +267,12 @@ in {
             "$MOD, B, exec, ${runProc "librewolf.desktop"}"
             "$MOD SHIFT, P, exec, ${runProc "librewolf.desktop:new-private-window"}"
             "$MOD, W, exec, ${runProc "vesktop.desktop"}"
-            "$MOD, D, exec, ${runProc "${toggleProc config.programs.fuzzel.package}"}"
-            "$MOD SHIFT, E, exec, ${runProc "${toggleProc config.programs.wlogout.package} --protocol layer-shell -b 5 -T 360 -B 360"}"
+            "$MOD, D, exec, ${toggleProc config.programs.fuzzel.package}"
+            "$MOD SHIFT, E, exec, ${toggleProc config.programs.wlogout.package} --protocol layer-shell -b 5 -T 360 -B 360 -k"
             "CTRL SHIFT, Escape, exec, ${runTerm "btm"}"
 
             # extra schtuff
-            "$MOD, N, exec, ${runProc "${toggleProc hyprsunsetPkg.hyprsunset} -t 2000"}"
+            "$MOD, N, exec, ${toggleProc hyprsunsetPkg.hyprsunset} -t 2000"
             "$MOD, R, exec, ${runProc "random-wall.sh"}"
             "$MOD SHIFT, R, exec, ${runProc "cycle-wall.sh"}"
             "$MOD, J, exec, ${runTerm "wall-picker.sh"}"
