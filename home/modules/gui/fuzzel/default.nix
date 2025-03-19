@@ -32,7 +32,7 @@
           sort-result = "false";
           match-mode = "exact";
           dpi-aware = false;
-          launch-prefix = "uwsm-app -- ";
+          launch-prefix = "app2unit --fuzzel-compat --";
         };
         border = {
           radius = "6";
