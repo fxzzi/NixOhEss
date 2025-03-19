@@ -2,5 +2,6 @@
   imports = [
     ./thunar
     ./hyprland
+    ./uwsm
   ];
 }
