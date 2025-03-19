@@ -13,7 +13,7 @@
   options.cfg.gui.foot.zshIntegration = lib.mkOption {
     type = lib.types.bool;
     default = false;
-    description = "Enable the foot terminal and its configs";
+    description = "Enables zsh integration for foot - Ctrl Shift N to spawn term etc.";
   };
   config = lib.mkIf config.cfg.gui.foot.enable {
     programs.foot = {
@@ -40,7 +40,7 @@
           pad = "12x12 center";
           alpha-mode = "matching";
           transparent-fullscreen = "yes";
-          gamma-correct-blending= "no"; # fix weird colours in fullscreen
+          gamma-correct-blending = "no"; # fix weird colours in fullscreen
         };
         cursor = {
           style = "beam";
