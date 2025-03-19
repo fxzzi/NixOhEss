@@ -12,6 +12,20 @@
       "url": "https://github.com/Vladimir-csp/app2unit/archive/b9c13a696f5af7518550cad8184fe817650f520d.tar.gz",
       "hash": "07y7s96d28lh1hbl7vz71hhrw9hq0qgfkfgx00qcz5vgl34bxzay"
     },
+    "fcft": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "Git",
+        "url": "https://codeberg.org/dnkl/fcft.git"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "version": "3.3.1",
+      "revision": "29bd17824b11c004a3cf2c2d4fe35a44770f73d8",
+      "url": null,
+      "hash": "08fr6zcqk4qp1k3r0di6v60qfyd3q5k9jnxzlsx2p1lh0nils0xa"
+    },
     "foot": {
       "type": "Git",
       "repository": {
@@ -19,9 +33,9 @@
         "url": "https://codeberg.org/fazzi/foot"
       },
       "branch": "transparency_yipee",
-      "revision": "f632c0d4d8cec300c45c726794200f4a02c07775",
+      "revision": "0d44e225b47184e5153d832b92ddcb8e04208a1a",
       "url": null,
-      "hash": "1scrcdxlglfx7m0xpsrh7imcjxnbz9l9wa424h1mkzqqr1ydsl05"
+      "hash": "0n40ip4p7ylsv1zq2ianap1x5kjn1cfqpnpwk62mil1y1hl7d4vk"
     },
     "xdg-terminal-exec": {
       "type": "Git",
