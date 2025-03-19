@@ -3,7 +3,6 @@
   config,
   pkgs,
   inputs,
-  npins,
   ...
 }: let
   pkg =
@@ -22,20 +21,11 @@ in {
     description = "Makes hm and nix use hypr* packages from flakes instead of nixpkgs";
   };
   config = lib.mkIf config.cfg.wayland.hyprland.enable {
-    programs.uwsm.enable = true;
     programs.hyprland = {
       enable = true;
       package = pkg.hyprland;
       portalPackage = pkg.xdg-desktop-portal-hyprland;
-      withUWSM = true;
+      withUWSM = config.cfg.wayland.uwsm.enable;
     };
-    environment.systemPackages = [
-      (pkgs.callPackage ./app2unit.nix {
-        inherit npins;
-      })
-      (pkgs.callPackage ./xdg-terminal-exec.nix {
-        inherit npins;
-      })
-    ];
   };
 }

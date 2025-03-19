@@ -41,6 +41,7 @@
         enable = true;
         useGit = false; # don't use unstable git packages for hypr*
       };
+      uwsm.enable = true;
       thunar.enable = true;
     };
     gpu = {
