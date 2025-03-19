@@ -23,8 +23,8 @@
     then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
   toggleProc = pkg: "pkill ${builtins.baseNameOf (lib.getExe pkg)} || ${lib.getExe pkg}";
-  runProc = pkg: "${lib.getExe' osConfig.programs.uwsm.package "uwsm-app"} -- ${pkg}";
-  runTerm = cmd: "${lib.getExe' osConfig.programs.uwsm.package "uwsm-app"} -T ${cmd}";
+  runProc = pkg: "app2unit -- ${pkg}";
+  runTerm = cmd: "app2unit -T ${cmd}";
 in {
   options.cfg.gui = {
     hypr = {
@@ -71,11 +71,11 @@ in {
       settings = {
         exec-once = [
           "sleep 0.5; ${runProc "random-wall.sh"}" # HACK: sleep here, otherwise wallpaper will be set too early
-          "${runProc "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"}"
+          "${runProc "${pkgs.mate.mate-polkit}/etc/xdg/autostart/polkit-mate-authentication-agent-1.desktop"}"
         ];
         exec = [
           "pgrep ${builtins.baseNameOf (lib.getExe config.programs.ags.finalPackage)} || (sleep 0.5; ${runProc "${lib.getExe config.programs.ags.finalPackage}"})"
-          "${runProc "${lib.getExe pkgs.xorg.xrandr} -- --output ${config.cfg.gui.hypr.defaultMonitor} --primary"}"
+          "${runProc "${lib.getExe pkgs.xorg.xrandr} --output ${config.cfg.gui.hypr.defaultMonitor} --primary"}"
         ];
         monitor = [
           ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
@@ -262,7 +262,7 @@ in {
 
             # binds for apps, using uwsm-app
             "$MOD, F, exec, ${runProc "thunar.desktop"}"
-            "$MOD, T, exec, ${runTerm ""}"
+            "$MOD, T, exec, ${runProc "foot.desktop"}"
             "$MOD, B, exec, ${runProc "librewolf.desktop"}"
             "$MOD SHIFT, P, exec, ${runProc "librewolf.desktop:new-private-window"}"
             "$MOD, W, exec, ${runProc "vesktop.desktop"}"

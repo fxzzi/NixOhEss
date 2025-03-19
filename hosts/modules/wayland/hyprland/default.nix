@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  npins,
   ...
 }: let
   pkg =
@@ -28,5 +29,13 @@ in {
       portalPackage = pkg.xdg-desktop-portal-hyprland;
       withUWSM = true;
     };
+    environment.systemPackages = [
+      (pkgs.callPackage ./app2unit.nix {
+        inherit npins;
+      })
+      (pkgs.callPackage ./xdg-terminal-exec.nix {
+        inherit npins;
+      })
+    ];
   };
 }
