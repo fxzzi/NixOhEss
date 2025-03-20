@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options.cfg.gui.dunst.enable = lib.mkOption {
@@ -11,6 +12,16 @@
   config = {
     services.dunst = lib.mkIf config.cfg.gui.dunst.enable {
       enable = true;
+      package = pkgs.dunst.overrideAttrs {
+        patches = [
+          (pkgs.fetchpatch {
+            # patch to fix `dunstctl reload` on native wayland dunst
+            name = "1458.patch";
+            url = "https://github.com/dunst-project/dunst/pull/1458.patch";
+            sha256 = "sha256-uLY0atUjHRy7hCkAoEkWRk5kl8VvO6nygwuK5aqaG5c=";
+          })
+        ];
+      };
       iconTheme = {
         inherit (config.gtk.iconTheme) name;
         inherit (config.gtk.iconTheme) package;
