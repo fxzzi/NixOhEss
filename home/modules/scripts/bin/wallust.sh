@@ -17,9 +17,5 @@ while pgrep -x wallust >/dev/null; do
 done
 
 # Restart dunst and update pywalfox
-# killing dunst is kinda L. we would want to instead
-# use the kind of new `dunstctl reload`. but we can't
-# since it doesn't work correctly on wayland native.
-# NOTE: https://github.com/dunst-project/dunst/pull/1350#issuecomment-2375288395
-pkill dunst &
+dunstctl reload &
 pywalfox --browser librewolf update
