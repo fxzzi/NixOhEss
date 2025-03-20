@@ -23,9 +23,21 @@
     then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
   uwsm = lib.getExe' osConfig.programs.uwsm.package "uwsm";
-  runProc = pkg: "app2unit -- ${pkg}";
-  runTerm = cmd: "app2unit -T ${cmd}";
-  toggleProc = pkg: "pkill ${builtins.baseNameOf (lib.getExe pkg)} || ${runProc "${lib.getExe pkg}"}";
+  uwsmEnabled = osConfig.cfg.wayland.uwsm.enable;
+  runProc = pkg:
+    if uwsmEnabled
+    then "app2unit -- ${pkg}"
+    else lib.getExe pkg;
+  runTerm = cmd:
+    if uwsmEnabled
+    then "app2unit -T ${cmd}"
+    else cmd;
+  toggleProc = pkg: let
+    exe = lib.getExe pkg;
+  in
+    if uwsmEnabled
+    then "pkill ${builtins.baseNameOf exe} || ${runProc exe}"
+    else "pkill ${builtins.baseNameOf exe} || ${exe}";
 in {
   options.cfg.gui = {
     hypr = {
@@ -57,9 +69,16 @@ in {
 
   config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
     programs.zsh.profileExtra = lib.mkIf config.cfg.gui.hypr.hyprland.autoStart ''
-      if ${uwsm} check may-start; then
-       exec ${uwsm} start hyprland-uwsm.desktop
-      fi
+      ${lib.optionalString uwsmEnabled ''
+        if ${uwsm} check may-start; then
+         exec ${uwsm} start hyprland-uwsm.desktop
+        fi
+      ''}
+      ${lib.optionalString (! uwsmEnabled) ''
+        if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+          exec ${lib.getExe' osConfig.programs.hyprland.package "Hyprland"}
+        fi
+      ''}
     '';
 
     wayland.windowManager.hyprland = {
