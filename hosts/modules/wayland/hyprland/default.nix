@@ -12,11 +12,13 @@
   patches =
     if config.cfg.wayland.hyprland.useGit
     then [
-      (pkgs.fetchpatch
-        {
-          url = "https://github.com/hyprwm/Hyprland/pull/9678.patch";
-          sha256 = "sha256-krpzC8AkzL5JyV0xXxQzG4cXazK6cP9422mnYa6c33s=";
-        })
+      # NOTE: add patches to hyprland here!
+
+      # (pkgs.fetchpatch
+      #   {
+      #     url = "https://github.com/hyprwm/Hyprland/pull/9678.patch";
+      #     sha256 = "sha256-krpzC8AkzL5JyV0xXxQzG4cXazK6cP9422mnYa6c33s=";
+      #   })
     ]
     else [];
 in {
