@@ -6,7 +6,7 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "xdg-terminal-exec";
-  version = "0-unstable-${npins.xdg-terminal-exec.revision}";
+  version = "${npins.xdg-terminal-exec.version}";
 
   src = npins.xdg-terminal-exec;
 

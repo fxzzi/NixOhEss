@@ -30,7 +30,7 @@
       "type": "Git",
       "repository": {
         "type": "Git",
-        "url": "https://codeberg.org/fazzi/foot"
+        "url": "https://codeberg.org/fazzi/foot.git"
       },
       "branch": "transparency_yipee",
       "revision": "0d44e225b47184e5153d832b92ddcb8e04208a1a",
@@ -38,15 +38,18 @@
       "hash": "0n40ip4p7ylsv1zq2ianap1x5kjn1cfqpnpwk62mil1y1hl7d4vk"
     },
     "xdg-terminal-exec": {
-      "type": "Git",
+      "type": "GitRelease",
       "repository": {
         "type": "GitHub",
         "owner": "Vladimir-csp",
         "repo": "xdg-terminal-exec"
       },
-      "branch": "master",
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "version": "v0.12.3",
       "revision": "9357b7d093f98e0b5c7aec18f2fc9eea0ae90aab",
-      "url": "https://github.com/Vladimir-csp/xdg-terminal-exec/archive/9357b7d093f98e0b5c7aec18f2fc9eea0ae90aab.tar.gz",
+      "url": "https://api.github.com/repos/Vladimir-csp/xdg-terminal-exec/tarball/v0.12.3",
       "hash": "07sy7rfzvhh8idslz6cbyxzwhrp5vq5ghhapbgpix93qz76dl3wq"
     },
     "xpad-noone": {
