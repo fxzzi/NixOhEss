@@ -12,13 +12,18 @@
   };
   config = lib.mkIf config.cfg.wayland.uwsm.enable {
     programs.uwsm.enable = true;
-    environment.systemPackages = [
-      (pkgs.callPackage ./app2unit.nix {
-        inherit npins;
-      })
-      (pkgs.callPackage ./xdg-terminal-exec.nix {
-        inherit npins;
-      })
-    ];
+    environment = {
+      systemPackages = [
+        (pkgs.callPackage ./app2unit.nix {
+          inherit npins;
+        })
+        (pkgs.callPackage ./xdg-terminal-exec.nix {
+          inherit npins;
+        })
+      ];
+      # uwsm integration
+      sessionVariables.APP2UNIT_SLICES = "a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice";
+      sessionVariables.APP2UNIT_TYPE = "scope";
+    };
   };
 }

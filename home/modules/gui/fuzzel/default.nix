@@ -2,8 +2,14 @@
   pkgs,
   lib,
   config,
+  osConfig,
   ...
-}: {
+}: let
+  terminal =
+    if osConfig.cfg.wayland.uwsm.enable
+    then "xdg-terminal-exec"
+    else "foot -e";
+in {
   options.cfg.gui.fuzzel.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -26,13 +32,13 @@
           inner-pad = "6";
           filter-desktop = true;
           image-size-ratio = "0.5";
-          terminal = "foot -e";
+          inherit terminal;
           fields = "name,exec";
           placeholder = "Search...";
           sort-result = "false";
           match-mode = "exact";
           dpi-aware = false;
-          launch-prefix = "app2unit --fuzzel-compat --";
+          launch-prefix = lib.mkIf osConfig.cfg.wayland.uwsm.enable "app2unit --fuzzel-compat --";
         };
         border = {
           radius = "6";
