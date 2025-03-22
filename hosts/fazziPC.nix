@@ -38,7 +38,7 @@
       mediamtx.enable = true;
       networkmanager.enable = false;
     };
-    opentabletdriver.enable = false;
+    opentabletdriver.enable = true;
     fancontrol.enable = true;
     hardware = {
       wootingRules.enable = true;
