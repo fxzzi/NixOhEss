@@ -33,10 +33,6 @@
       url = "github:outfoxxed/hyprsunset/ctm-blocked";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    apple-fonts = {
-      url = "github:Lyndeno/apple-fonts.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nvuv = {
       url = "gitlab:fazzi/nvuv";
       inputs.nixpkgs.follows = "nixpkgs";
