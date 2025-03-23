@@ -14,19 +14,20 @@ in {
   };
   config = lib.mkIf config.cfg.gui.fontConfig.enable {
     home.packages = with pkgs; [
-      nerd-fonts.space-mono
+      # nerd-fonts.space-mono
       noto-fonts # Google Noto Fonts
       noto-fonts-emoji # Emoji Font
       noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
       # also grab apple fonts from flake
-      apple-fonts.sf-pro
-      apple-fonts.ny
+      # apple-fonts.sf-pro
+      # apple-fonts.ny
       icomoon-feather
-      corefonts # ms fonts.
+      # corefonts # ms fonts.
+      (pkgs.callPackage ./ioshelfka-term-nerd.nix {})
     ];
     gtk = {
       font = {
-        name = "SF Pro Text";
+        name = "Noto Sans";
         size = 11;
       };
     };
@@ -35,7 +36,7 @@ in {
       defaultFonts = {
         serif =
           [
-            "New York Medium"
+            "Noto Serif"
           ]
           ++ config.fonts.fontconfig.defaultFonts.emoji;
         sansSerif =
@@ -44,7 +45,7 @@ in {
           ]
           ++ config.fonts.fontconfig.defaultFonts.emoji;
         monospace = [
-          "SpaceMono Nerd Font"
+          "Ioshelfka Term"
           "icomoon-feather"
         ];
         emoji = [
