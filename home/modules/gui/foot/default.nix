@@ -18,29 +18,17 @@
   config = lib.mkIf config.cfg.gui.foot.enable {
     programs.foot = {
       enable = true;
-
-      package = pkgs.foot.overrideAttrs (oldAttrs: {
+      package = pkgs.foot.overrideAttrs {
         pname = "foot-transparency";
         version = "0-unstable-${npins.foot.revision}";
         src = npins.foot;
-
-        buildInputs =
-          (builtins.filter (pkg: pkg.pname or "" != "fcft") (oldAttrs.buildInputs or []))
-          ++ [
-            (pkgs.fcft.overrideAttrs {
-              inherit (npins.fcft) version;
-              src = npins.fcft;
-            })
-          ];
-      });
-
+      };
       settings = {
         main = {
           font = "monospace:size=13";
           pad = "12x12 center";
           alpha-mode = "matching";
           transparent-fullscreen = "yes";
-          gamma-correct-blending = "no"; # fix weird colours in fullscreen
         };
         cursor = {
           style = "beam";
