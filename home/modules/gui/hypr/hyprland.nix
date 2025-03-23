@@ -198,14 +198,14 @@ in {
             "smoothIn, 0.25, 1, 0.5, 1"
           ];
           animation = [
-            "windows, 1, 4, overshot, gnomed"
-            "windowsMove, 1, 3, default, gnomed"
+            "windows, 1, 4, overshot"
+            "windowsMove, 1, 3, default"
             "border, 1, 8, default"
             "fade, 1, 3, smoothIn"
             "fadeDim, 1, 3, smoothOut"
             # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
             # and it will look like windows are moving into each other across the monitors.
-            "workspaces, 1, 5, default, ${wsAnim}, gnomed"
+            "workspaces, 1, 5, default, ${wsAnim}"
           ];
         };
         dwindle = {

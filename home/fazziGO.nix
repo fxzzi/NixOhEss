@@ -74,6 +74,7 @@
   };
   home.packages = with pkgs; [
     godot3
+    telegram-desktop
   ];
 
   imports = [
