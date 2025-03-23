@@ -32,14 +32,7 @@
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        # package = config.boot.kernelPackages.nvidiaPackages.beta;
-        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "570.133.07"; # use new 570 drivers
-          sha256_64bit = "sha256-LUPmTFgb5e9VTemIixqpADfvbUX1QoTT2dztwI3E3CY=";
-          openSha256 = "sha256-9l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-          settingsSha256 = "";
-          usePersistenced = false;
-        };
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
       };
       graphics = {
         enable = true;
