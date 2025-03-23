@@ -40,7 +40,7 @@
           ]
           ++ config.fonts.fontconfig.defaultFonts.emoji;
         monospace = [
-          "Ioshelfka Term"
+          "IoshelfkaTerm Nerd Font"
           "icomoon-feather"
         ];
         emoji = [
