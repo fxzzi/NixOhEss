@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: {
   options.cfg.gui.toolkitConfig.enable = lib.mkOption {
@@ -10,6 +11,11 @@
     description = "Enables toolkit (qt and gtk) configurations.";
   };
   config = lib.mkIf config.cfg.gui.toolkitConfig.enable {
+    xdg.dataFile = {
+      "themes/tokyonight" = {
+        source = "${inputs.tokyo-night-linux}/usr/share/themes/TokyoNight";
+      };
+    };
     home = {
       packages = with pkgs; [
         qt6ct
