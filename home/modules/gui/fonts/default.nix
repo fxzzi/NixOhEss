@@ -1,12 +1,9 @@
 {
-  inputs,
   pkgs,
   config,
   lib,
   ...
-}: let
-  apple-fonts = inputs.apple-fonts.packages.${pkgs.system};
-in {
+}: {
   options.cfg.gui.fontConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -14,20 +11,17 @@ in {
   };
   config = lib.mkIf config.cfg.gui.fontConfig.enable {
     home.packages = with pkgs; [
-      # nerd-fonts.space-mono
+      inter
       noto-fonts # Google Noto Fonts
       noto-fonts-emoji # Emoji Font
       noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
-      # also grab apple fonts from flake
-      # apple-fonts.sf-pro
-      # apple-fonts.ny
       icomoon-feather
       # corefonts # ms fonts.
       (pkgs.callPackage ./ioshelfka-term-nerd.nix {})
     ];
     gtk = {
       font = {
-        name = "Noto Sans";
+        name = "Inter Variable";
         size = 11;
       };
     };
@@ -42,6 +36,7 @@ in {
         sansSerif =
           [
             config.gtk.font.name
+            "Noto Sans"
           ]
           ++ config.fonts.fontconfig.defaultFonts.emoji;
         monospace = [
