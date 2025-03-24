@@ -27,17 +27,23 @@
   runProc = pkg:
     if uwsmEnabled
     then "app2unit -- ${pkg}"
-    else lib.getExe pkg;
+    else "${lib.getExe pkg}";
   runTerm = cmd:
     if uwsmEnabled
     then "app2unit -T ${cmd}"
-    else cmd;
+    else "${cmd}";
   toggleProc = pkg: let
     exe = lib.getExe pkg;
   in
     if uwsmEnabled
     then "pkill ${builtins.baseNameOf exe} || ${runProc exe}"
     else "pkill ${builtins.baseNameOf exe} || ${exe}";
+  checkThenRunProc = pkg: let
+    exe = lib.getExe pkg;
+  in
+    if uwsmEnabled
+    then "pgrep ${builtins.baseNameOf exe} || ${runProc exe}"
+    else "pgrep ${builtins.baseNameOf exe} || ${exe}";
 in {
   options.cfg.gui = {
     hypr = {
@@ -94,7 +100,7 @@ in {
           "${runProc "${pkgs.mate.mate-polkit}/etc/xdg/autostart/polkit-mate-authentication-agent-1.desktop"}"
         ];
         exec = [
-          "pgrep ${builtins.baseNameOf (lib.getExe config.programs.ags.finalPackage)} || (sleep 0.5; ${runProc "${lib.getExe config.programs.ags.finalPackage}"})"
+          "sleep 0.5; ${checkThenRunProc config.programs.ags.finalPackage}"
           "${runProc "${lib.getExe pkgs.xorg.xrandr} --output ${config.cfg.gui.hypr.defaultMonitor} --primary"}"
         ];
         monitor = [
