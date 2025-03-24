@@ -8,5 +8,6 @@
     ./nh
     ./android
     ./nvf
+    ./nvtop
   ];
 }
