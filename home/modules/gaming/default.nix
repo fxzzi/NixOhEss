@@ -3,16 +3,9 @@
   lib,
   pkgs,
   inputs,
-  osConfig,
   ...
 }: let
   nixpkgs-sgdboop = inputs.nixpkgs-sgdboop.legacyPackages.${pkgs.system};
-  gpuType =
-    if osConfig.cfg.gpu.nvidia.enable
-    then "nvidia"
-    else if osConfig.cfg.gpu.amdgpu.enable
-    then "amd"
-    else "full"; # Fallback in case neither is enabled
 in {
   options.cfg.gaming = {
     proton-ge.enable = lib.mkOption {
@@ -55,7 +48,6 @@ in {
           NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
         }))
       (lib.mkIf config.cfg.gaming.cemu.enable cemu)
-      (lib.mkIf config.cfg.gaming.nvtop.enable nvtopPackages.${gpuType})
       (lib.mkIf config.cfg.gaming.sgdboop.enable nixpkgs-sgdboop.sgdboop)
       (lib.mkIf config.cfg.gaming.osu-lazer.enable osu-lazer-bin)
     ];
