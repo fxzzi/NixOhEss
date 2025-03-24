@@ -4,12 +4,12 @@
   fetchzip,
 }:
 stdenv.mkDerivation rec {
-  pname = "ioshelfka-term-nerd";
+  pname = "ioshelfka-term";
   version = "0.1.3";
 
   src = fetchzip {
-    url = "https://github.com/NotAShelf/Ioshelfka/releases/download/v${version}/IoshelfkaTermNerd.zip";
-    sha256 = "sha256-002uoBL93A0sWyzxxFqeUbSOyDzuHeDddXEqfyYMTls=";
+    url = "https://github.com/NotAShelf/Ioshelfka/releases/download/v${version}/IoshelfkaTerm.zip";
+    sha256 = "sha256-4lgchtKzv+P8ZSX4AGdc9pdGaUt4aU+mGm+QmwoJ4qE=";
   };
 
   installPhase = ''

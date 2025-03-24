@@ -69,8 +69,8 @@ in {
             outer_color = "0xff1a1b26";
             inner_color = "0xff1a1b26";
             font_color = "0xffc8d3f6";
-            placeholder_text = ''<span font="${builtins.head config.fonts.fontconfig.defaultFonts.monospace}"><i>Password...</i></span>''; # Text rendered when empty
-            fail_text = ''<span font="${builtins.head config.fonts.fontconfig.defaultFonts.monospace}"><i>Incorrect.</i></span>'';
+            placeholder_text = ''<span font="monospace"><i>Password...</i></span>''; # Text rendered when empty
+            fail_text = ''<span font="monospace"><i>Incorrect.</i></span>'';
             hide_input = false;
             position = "0, 120";
             halign = "center";
@@ -84,7 +84,7 @@ in {
             text = ''cmd[update:1000] echo "$(date +"%H:%M:%S")"'';
             color = "0xffc8d3f5";
             font_size = 72;
-            font_family = "${builtins.head config.fonts.fontconfig.defaultFonts.monospace} Bold";
+            font_family = "monospace Bold";
             shadow_passes = 2;
             shadow_size = 2;
             position = "0, 40";
@@ -96,7 +96,7 @@ in {
             text = ''cmd[update:18000000] echo "$(date +'%A, %-d %B')"'';
             color = "0xffc8d3f5";
             font_size = 24;
-            font_family = "${builtins.head config.fonts.fontconfig.defaultFonts.monospace} Bold";
+            font_family = "monospace Bold";
             shadow_passes = 2;
             shadow_size = 2;
             position = "0, -40";
@@ -105,10 +105,10 @@ in {
           }
           {
             monitor = "${config.cfg.gui.hypr.defaultMonitor}";
-            text = "";
+            text = "󰌾";
             color = "0xffc8d3f5";
             font_size = 36;
-            font_family = "icomoon-feather";
+            font_family = "monospace";
             shadow_passes = 2;
             shadow_size = 2;
             position = "0, 40";
