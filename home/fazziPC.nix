@@ -29,6 +29,7 @@
       zsh.enable = true;
       android.enable = true;
       nh.enable = true;
+      nvtop.enable = true;
     };
     music = {
       extraApps.enable = true;
@@ -50,7 +51,6 @@
       gamescope.enable = true;
       cemu.enable = false;
       heroic.enable = true;
-      nvtop.enable = true;
       sgdboop.enable = false;
       osu-lazer.enable = false;
     };

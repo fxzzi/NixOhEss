@@ -5,10 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
-    nix-gaming = {
-      url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

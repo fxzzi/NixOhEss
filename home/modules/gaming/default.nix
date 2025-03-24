@@ -7,7 +7,6 @@
   ...
 }: let
   nixpkgs-sgdboop = inputs.nixpkgs-sgdboop.legacyPackages.${pkgs.system};
-  nix-gaming = inputs.nix-gaming.packages.${pkgs.system};
   gpuType =
     if osConfig.cfg.gpu.nvidia.enable
     then "nvidia"
@@ -51,14 +50,14 @@ in {
   config = {
     home.packages = with pkgs; [
       (lib.mkIf config.cfg.gaming.gamescope.enable
-        (gamescope.overrideAttrs (_: {
+        (gamescope.overrideAttrs {
           # NOTE: https://github.com/ValveSoftware/gamescope/issues/1622#issuecomment-2508182530
           NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
-        })))
+        }))
       (lib.mkIf config.cfg.gaming.cemu.enable cemu)
       (lib.mkIf config.cfg.gaming.nvtop.enable nvtopPackages.${gpuType})
       (lib.mkIf config.cfg.gaming.sgdboop.enable nixpkgs-sgdboop.sgdboop)
-      (lib.mkIf config.cfg.gaming.osu-lazer.enable nix-gaming.osu-lazer-bin)
+      (lib.mkIf config.cfg.gaming.osu-lazer.enable osu-lazer-bin)
     ];
   };
   imports = [

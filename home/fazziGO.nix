@@ -27,6 +27,7 @@
       zsh.enable = true;
       android.enable = true;
       nh.enable = true;
+      nvtop.enable = true;
     };
     music = {
       extraApps.enable = false;
@@ -41,7 +42,6 @@
         enable = true;
         modding.enable = true;
       };
-      nvtop.enable = true;
     };
     gui = {
       fontConfig.enable = true;
