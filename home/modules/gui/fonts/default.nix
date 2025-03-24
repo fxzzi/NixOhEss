@@ -11,13 +11,13 @@
   };
   config = lib.mkIf config.cfg.gui.fontConfig.enable {
     home.packages = with pkgs; [
-      inter
+      inter # UI font
+      nerd-fonts.symbols-only # symbols for terminal, bar, lock, etc
       noto-fonts # Google Noto Fonts
       noto-fonts-emoji # Emoji Font
       noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
-      icomoon-feather
-      # corefonts # ms fonts.
-      (pkgs.callPackage ./ioshelfka-term-nerd.nix {})
+      corefonts # ms fonts.
+      (pkgs.callPackage ./ioshelfka-term.nix {}) # custom iosevka build
     ];
     gtk = {
       font = {
@@ -28,20 +28,15 @@
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        serif =
-          [
-            "Noto Serif"
-          ]
-          ++ config.fonts.fontconfig.defaultFonts.emoji;
-        sansSerif =
-          [
-            config.gtk.font.name
-            "Noto Sans"
-          ]
-          ++ config.fonts.fontconfig.defaultFonts.emoji;
+        serif = [
+          "Noto Serif"
+        ];
+        sansSerif = [
+          config.gtk.font.name
+        ];
         monospace = [
-          "IoshelfkaTerm Nerd Font"
-          "icomoon-feather"
+          "Ioshelfka Term"
+          "Symbols Nerd Font"
         ];
         emoji = [
           "Noto Color Emoji"

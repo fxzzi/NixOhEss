@@ -11,6 +11,7 @@
     description = "Enables toolkit (qt and gtk) configurations.";
   };
   config = lib.mkIf config.cfg.gui.toolkitConfig.enable {
+    # source gtk theme from tokyo-night-linux github
     xdg.dataFile = {
       "themes/tokyonight" = {
         source = "${inputs.tokyo-night-linux}/usr/share/themes/TokyoNight";
