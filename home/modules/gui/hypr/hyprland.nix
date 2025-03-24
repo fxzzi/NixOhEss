@@ -222,6 +222,7 @@ in {
           # pause hypridle for certain apps
           "idleinhibit focus, class:^(mpv)$"
           "idleinhibit focus, class:^(atril)$"
+          "idleinhibit fullscreen, class:^(foot)$"
 
           # some apps, mostly games, are stupid and they fullscreen on the
           # wrong monitor. so just don't listen to them lol
