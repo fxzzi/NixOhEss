@@ -779,16 +779,15 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1742113798,
-        "narHash": "sha256-3Obuc4xwORUPnDEaOhdXdkIPbzIVIGTZxO/5dSCTrYA=",
-        "owner": "outfoxxed",
+        "lastModified": 1742816163,
+        "narHash": "sha256-EIJka3UtSEtmkDBjYiGeR/hO6s6R4x3K+rbUlc9KPBE=",
+        "owner": "hyprwm",
         "repo": "hyprsunset",
-        "rev": "215510e45724ab1ddbc1f78a6d4aa570788fff92",
+        "rev": "7b7339f0deef23ec23a723651528cb8ae56c11d9",
         "type": "github"
       },
       "original": {
-        "owner": "outfoxxed",
-        "ref": "ctm-blocked",
+        "owner": "hyprwm",
         "repo": "hyprsunset",
         "type": "github"
       }
