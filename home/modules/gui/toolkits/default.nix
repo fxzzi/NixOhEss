@@ -22,6 +22,7 @@
         qt6ct
       ];
       pointerCursor = {
+        dotIcons.enable = false; # stop creation of .icons dir
         gtk.enable = true;
         name = "XCursor-Pro-Light";
         size = 24;

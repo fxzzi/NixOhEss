@@ -31,7 +31,7 @@
         "modules" = [
           {
             "type" = "title";
-            "key" = " hs";
+            "key" = " hs";
             "keyColor" = "green";
             "format" = "{1}@{2}";
           }

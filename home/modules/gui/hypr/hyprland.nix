@@ -287,7 +287,7 @@ in {
             "SHIFT, Print, exec, ${runProc "screenshot.sh --selection"}"
             "$MOD, Print, exec, ${runProc "screenshot.sh --active"}"
 
-            # binds for apps, using uwsm-app
+            # binds for apps
             "$MOD, F, exec, ${runProc "thunar.desktop"}"
             "$MOD, T, exec, ${runProc "foot.desktop"}"
             "$MOD, B, exec, ${runProc "librewolf.desktop"}"
