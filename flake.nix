@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprsunset = {
-      url = "github:outfoxxed/hyprsunset/ctm-blocked";
+      url = "github:hyprwm/hyprsunset";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvuv = {
