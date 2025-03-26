@@ -10,6 +10,7 @@
     description = "Enables discord and some client mods.";
   };
   config = lib.mkIf config.cfg.apps.discord.enable {
+    xdg.configFile."vesktop/settings/quickCss.css".source = ./quickCss.css;
     home.packages = with pkgs; [
       ((vesktop.override {
           electron = electron_35;
