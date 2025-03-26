@@ -11,15 +11,27 @@
     then inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
 in {
-  options.cfg.gui.hypr.hypridle.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enables hypridle and its configs.";
-  };
-  options.cfg.gui.hypr.hypridle.suspendTimeout = lib.mkOption {
-    type = lib.types.int;
-    default = 360;
-    description = "Sets the suspend timeout for hypridle.";
+  options.cfg.gui.hypr.hypridle = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enables hypridle and its configs.";
+    };
+    dpmsTimeout = lib.mkOption {
+      type = lib.types.int;
+      default = 300;
+      description = "Sets the time in seconds for your screen to turn off when idle.";
+    };
+    lockTimeout = lib.mkOption {
+      type = lib.types.int;
+      default = 330;
+      description = "Sets the time in seconds for the PC to automatically lock when idle.";
+    };
+    suspendTimeout = lib.mkOption {
+      type = lib.types.int;
+      default = 360;
+      description = "Sets the time in seconds for the PC to automatically sleep when idle.";
+    };
   };
   config = lib.mkIf config.cfg.gui.hypr.hypridle.enable {
     services.hypridle = {

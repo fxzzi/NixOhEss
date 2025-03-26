@@ -64,6 +64,8 @@
         hyprlock.enable = true;
         hypridle = {
           enable = true;
+          dpmsTimeout = 300;
+          lockTimeout = 330;
           suspendTimeout = 360;
         };
         hyprpaper.enable = true;
