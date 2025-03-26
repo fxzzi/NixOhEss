@@ -1,5 +1,10 @@
 {
   system.stateVersion = "25.05";
+  systemd.services.nix-daemon.serviceConfig = {
+    MemoryHigh = "6G";
+    MemoryMax = "8G";
+  };
+  programs.light.enable = true;
   cfg = {
     kernel = {
       type = "latest";
@@ -53,5 +58,4 @@
     home-manager.enable = true;
     adb.enable = true;
   };
-  programs.light.enable = true;
 }

@@ -1,5 +1,9 @@
 {
   system.stateVersion = "25.05";
+  systemd.services.nix-daemon.serviceConfig = {
+    MemoryHigh = "16G";
+    MemoryMax = "24G";
+  };
   cfg = {
     kernel = {
       type = "xanmod_latest";

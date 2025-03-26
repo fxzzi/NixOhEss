@@ -65,9 +65,5 @@
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  systemd.services.nix-daemon.serviceConfig = {
-    MemoryHigh = "16G";
-    MemoryMax = "24G";
-  };
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
