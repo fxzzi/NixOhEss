@@ -112,7 +112,6 @@ in {
         ];
         render = {
           direct_scanout = 1;
-          cm_enabled = 1;
         };
         cursor = lib.mkIf multiMonitor {
           default_monitor = "${config.cfg.gui.hypr.defaultMonitor}";
