@@ -56,6 +56,10 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ioshelfka = {
+      url = "github:notashelf/ioshelfka";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     tokyo-night-linux = {
       url = "github:stronk-dev/Tokyo-Night-Linux";
       flake = false;
