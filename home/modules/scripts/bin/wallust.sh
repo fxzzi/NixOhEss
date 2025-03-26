@@ -5,17 +5,18 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-wallust run "$1" &
-
+# link new wall to static location
 ln -sf "$1" "$STATICWALL"
 
+# set new wallpaper
 hyprctl hyprpaper reload ,"$1"
 
-# while wallust is still running, wait
-while pgrep -x wallust >/dev/null; do
-  sleep 0.5
-done
+# generate colours and configs with colours
+wallust run "$1"
 
-# Restart dunst and update pywalfox
+# avoid potential race conditions
+sleep 0.5
+
+# restart dunst and update pywalfox
 dunstctl reload &
 pywalfox --browser librewolf update
