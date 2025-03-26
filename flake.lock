@@ -274,11 +274,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742957044,
-        "narHash": "sha256-gwW0tBIA77g6qq45y220drTy0DmThF3fJMwVFUtYV9c=",
+        "lastModified": 1742996658,
+        "narHash": "sha256-snxgTLVq6ooaD3W3mPHu7LVWpoZKczhxHAUZy2ea4oA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "ce287a5cd3ef78203bc78021447f937a988d9f6f",
+        "rev": "693840c01b9bef9e54100239cef937e53d4661bf",
         "type": "github"
       },
       "original": {
@@ -446,11 +446,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1742952129,
-        "narHash": "sha256-gNprNetigjuKqlV0EaoEN/XHNhfGM1tRmYO88Ov77vg=",
+        "lastModified": 1742999299,
+        "narHash": "sha256-VBgIaFie03r5r6Y7ohiPRM/N3XJc8qJEuht83Zyt/DM=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "3fc3521a97eba0fa67da80f17ae7872b1073f08d",
+        "rev": "1c2b9a9ce3a58c76632834774a4716af1de45fe6",
         "type": "github"
       },
       "original": {
@@ -1042,6 +1042,43 @@
         "type": "github"
       }
     },
+    "iosevka-upstream": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737190003,
+        "narHash": "sha256-kB4CsC/hHstajLcVYBxO7RD0lsZymrxlUha4cRtQ7Ak=",
+        "owner": "be5invis",
+        "repo": "Iosevka",
+        "rev": "a5d26cb87836c7245dcae2c741663017245cdd18",
+        "type": "github"
+      },
+      "original": {
+        "owner": "be5invis",
+        "repo": "Iosevka",
+        "type": "github"
+      }
+    },
+    "ioshelfka": {
+      "inputs": {
+        "iosevka-upstream": "iosevka-upstream",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737896851,
+        "narHash": "sha256-grVnIBwoWv29q8ayes9dl3aNEV7CVph4GGRx4DudfMM=",
+        "owner": "notashelf",
+        "repo": "ioshelfka",
+        "rev": "9124d3d2b2057014f99df42dc9807f7627d425a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "notashelf",
+        "repo": "ioshelfka",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -1276,6 +1313,7 @@
         "hyprlock": "hyprlock",
         "hyprpaper": "hyprpaper",
         "hyprsunset": "hyprsunset",
+        "ioshelfka": "ioshelfka",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
         "nixpkgs-olympus": "nixpkgs-olympus",
