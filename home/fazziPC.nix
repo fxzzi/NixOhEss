@@ -44,7 +44,7 @@
       prismlauncher.enable = true;
       lutris.enable = true;
       celeste = {
-        enable = true;
+        enable = false; # i launch through lutris anyway
         path = "games/Lutris/celeste";
         modding.enable = true;
       };
