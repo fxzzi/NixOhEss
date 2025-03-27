@@ -2,11 +2,8 @@
   pkgs,
   config,
   lib,
-  inputs,
   ...
-}: let
-  ioshelfka = inputs.ioshelfka.packages.${pkgs.system};
-in {
+}: {
   options.cfg.gui.fontConfig.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -20,7 +17,7 @@ in {
       noto-fonts-emoji # Emoji Font
       noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
       corefonts # ms fonts.
-      ioshelfka.ioshelfka-term
+      (pkgs.callPackage ./ioshelfka-term.nix {}) # custom iosevka build
     ];
     gtk = {
       font = {
