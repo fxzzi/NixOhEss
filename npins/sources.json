@@ -8,6 +8,7 @@
         "repo": "app2unit"
       },
       "branch": "master",
+      "submodules": false,
       "revision": "b9c13a696f5af7518550cad8184fe817650f520d",
       "url": "https://github.com/Vladimir-csp/app2unit/archive/b9c13a696f5af7518550cad8184fe817650f520d.tar.gz",
       "hash": "07y7s96d28lh1hbl7vz71hhrw9hq0qgfkfgx00qcz5vgl34bxzay"
@@ -21,6 +22,7 @@
       "pre_releases": false,
       "version_upper_bound": null,
       "release_prefix": null,
+      "submodules": false,
       "version": "3.3.1",
       "revision": "29bd17824b11c004a3cf2c2d4fe35a44770f73d8",
       "url": null,
@@ -33,6 +35,7 @@
         "url": "https://codeberg.org/fazzi/foot.git"
       },
       "branch": "transparency_yipee",
+      "submodules": false,
       "revision": "0d44e225b47184e5153d832b92ddcb8e04208a1a",
       "url": null,
       "hash": "0n40ip4p7ylsv1zq2ianap1x5kjn1cfqpnpwk62mil1y1hl7d4vk"
@@ -47,6 +50,7 @@
       "pre_releases": false,
       "version_upper_bound": null,
       "release_prefix": null,
+      "submodules": false,
       "version": "v0.12.3",
       "revision": "9357b7d093f98e0b5c7aec18f2fc9eea0ae90aab",
       "url": "https://api.github.com/repos/Vladimir-csp/xdg-terminal-exec/tarball/v0.12.3",
@@ -60,10 +64,11 @@
         "repo": "xpad-noone"
       },
       "branch": "master",
+      "submodules": false,
       "revision": "6970c40930bedd8b58d0764894e0d5f04813b7c5",
       "url": "https://github.com/medusalix/xpad-noone/archive/6970c40930bedd8b58d0764894e0d5f04813b7c5.tar.gz",
       "hash": "0b32kk9c2qx6wyimks4hfgijlpynd7fzw18mbn9a6abhkrdrf9iw"
     }
   },
-  "version": 3
+  "version": 5
 }
