@@ -1,7 +1,26 @@
 /* Hide nitro begging */
 @import url("https://allpurposem.at/disblock/DisblockOrigin.theme.css");
+
 /* Hide the Visual Refresh title bar */
 @import url("https://raw.githubusercontent.com/surgedevs/visual-refresh-compact-title-bar/refs/heads/main/hidden.css");
+
+/* Align the chat box with the user panel and move stuff above it */
+.visual-refresh {
+  form > div[class^="channelBottomBarArea_"] {
+    --custom-chat-input-margin-bottom: 6px;
+    --custom-channel-textarea-text-area-height: 52px;
+  }
+}
+
+/* Make the slowmode text smaller */
+.cooldownText_b21699 {
+  font-size: 12px;
+}
+
+/* Hide the slowmode icon */
+.slowModeIcon_b21699 {
+  display: none;
+}
 
 /* Use system fonts for UI */
 :root {
@@ -14,14 +33,6 @@
 /* Hide "Now Playing" section on friends list */
 div[class^="nowPlayingColumn_"] {
   display: none !important;
-}
-
-.visual-refresh {
-  /* Aligned chat box and user box */
-  form > div[class^="channelBottomBarArea_"] {
-    --custom-chat-input-margin-bottom: 6px;
-    --custom-channel-textarea-text-area-height: 52px;
-  }
 }
 
 /* Make "Read All" vencord button text smaller */
