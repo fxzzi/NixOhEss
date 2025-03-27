@@ -34,7 +34,7 @@ in {
       name = "Celeste";
       comment = "Run Celeste";
       exec = "env FNA3D_FORCE_DRIVER=Vulkan SDL_VIDEODRIVER=wayland ${lib.getExe pkgs.steam-run} ${config.home.homeDirectory}/${config.cfg.gaming.celeste.path}/Celeste";
-      icon = "${config.home.homeDirectory}/${config.cfg.gaming.celeste.path}/Celeste.png";
+      icon = "celeste";
       terminal = false;
       type = "Application";
       categories = ["Game"];
