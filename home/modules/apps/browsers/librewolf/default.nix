@@ -26,66 +26,13 @@ in {
       */
       file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
         // Set new tab page to local startpage
-        // this doesn't work anymore for some reason
-        //let { utils:Cu } = Components;
-        //Cu.import("resource:///modules/AboutNewTab.jsm");
-        //AboutNewTab.newTabURL = "${newTabPage}";
+        let { utils:Cu } = Components;
+        Cu.import("resource:///modules/AboutNewTab.jsm");
+        AboutNewTab.newTabURL = "${newTabPage}";
 
         pref("browser.startup.homepage", "${newTabPage}");
         pref("services.sync.prefs.sync.browser.startup.homepage", false);
 
-        // Revert some security changes
-        pref("webgl.disabled", false);
-        pref("privacy.resistFingerprinting", false);
-        pref("privacy.clearOnShutdown.history", false);
-        pref("privacy.clearOnShutdown.cookies", false);
-
-        // Stop weirdness when relaunching browser sometimes
-        pref("browser.sessionstore.resume_from_crash", false);
-
-        // enable vaapi accel
-        pref("media.ffmpeg.vaapi.enabled", true);
-
-        ${lib.optionalString osConfig.cfg.gpu.nvidia.enable ''
-          // make nvidia-vaapi-driver work
-          pref("widget.dmabuf.force-enabled", true);
-        ''}
-
-        // Mouse behavior
-        pref("middlemouse.paste", false);
-        pref("general.autoScroll", true);
-
-        // disable touchpad overscroll
-        pref("apz.overscroll.enabled", false);
-
-        // Performance
-        pref("layout.frame_rate", -1);
-
-        // Smooth scrolling
-        pref("general.smoothScroll", false);
-
-        // Enable Firefox accounts
-        pref("identity.fxaccounts.enabled", true);
-
-        // Use system emoji fonts
-        pref("font.name-list.emoji", "emoji");
-        pref("gfx.font_rendering.opentype_svg.enabled", false);
-
-        // Disable audio post processing
-        pref("media.getusermedia.audio.processing.aec", 0);
-        pref("media.getusermedia.audio.processing.aec.enabled", false);
-        pref("media.getusermedia.audio.processing.agc", 0);
-        pref("media.getusermedia.audio.processing.agc.enabled", false);
-        pref("media.getusermedia.audio.processing.agc2.forced", false);
-        pref("media.getusermedia.audio.processing.noise", 0);
-        pref("media.getusermedia.audio.processing.noise.enabled", false);
-        pref("media.getusermedia.audio.processing.hpf.enabled", false);
-
-        // disable bookmarks bar, i don't use it
-        pref("browser.toolbars.bookmarks.visibility", "never")
-
-        // only use fonts defined by system, not by the website
-        pref("browser.display.use_document_fonts", 0)
       '';
       sessionVariables = lib.mkIf osConfig.cfg.gpu.nvidia.enable {
         LIBVA_DRIVER_NAME = "nvidia";
@@ -95,9 +42,10 @@ in {
     };
     programs.librewolf = {
       enable = true;
-      package = pkgs.librewolf.overrideAttrs (_old: {
-        extraNativeMessagingHosts = with pkgs; [pywalfox-native];
-      });
+      # package = pkgs.librewolf.overrideAttrs (_old: {
+      #   extraNativeMessagingHosts = with pkgs; [pywalfox-native];
+      # });
+      package = inputs.nixpkgs-old.legacyPackages.${pkgs.system}.librewolf;
       languagePacks = [
         "en-GB"
         "en-US"

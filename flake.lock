@@ -1139,6 +1139,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-old": {
+      "locked": {
+        "lastModified": 1741022905,
+        "narHash": "sha256-iHPrrcLG0ot4Z5TGXAPjmKwU8y2EbF9wD0OewKBFwJk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2313e1d57e1b8a379f8eb69acea50faae5c6f1ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2313e1d57e1b8a379f8eb69acea50faae5c6f1ab",
+        "type": "github"
+      }
+    },
     "nixpkgs-olympus": {
       "locked": {
         "lastModified": 1738969182,
@@ -1278,6 +1294,7 @@
         "hyprsunset": "hyprsunset",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-old": "nixpkgs-old",
         "nixpkgs-olympus": "nixpkgs-olympus",
         "nixpkgs-sgdboop": "nixpkgs-sgdboop",
         "nvf": "nvf",
