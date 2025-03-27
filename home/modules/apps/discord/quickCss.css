@@ -1,11 +1,14 @@
 /* Hide nitro begging */
 @import url("https://allpurposem.at/disblock/DisblockOrigin.theme.css");
+/* Hide the Visual Refresh title bar */
+@import url("https://raw.githubusercontent.com/surgedevs/visual-refresh-compact-title-bar/refs/heads/main/hidden.css");
 
 /* Use system fonts for UI */
 :root {
   --font-primary: sans-serif !important;
   --font-display: sans-serif !important;
   --font-code: monospace !important;
+  --vr-header-snippet-server-padding: 8px !important;
 }
 
 /* Hide "Now Playing" section on friends list */
@@ -14,19 +17,6 @@ div[class^="nowPlayingColumn_"] {
 }
 
 .visual-refresh {
-  /* Hide the Visual Refresh title bar */
-  --custom-app-top-bar-height: 0 !important;
-
-  div[class^="base_"] {
-    & > div[class^="bar_"] {
-      display: none;
-    }
-  }
-
-  ul[data-list-id="guildsnav"] > div[class^="itemsContainer_"] {
-    margin-top: 8px;
-  }
-
   /* Aligned chat box and user box */
   form > div[class^="channelBottomBarArea_"] {
     --custom-chat-input-margin-bottom: 6px;
