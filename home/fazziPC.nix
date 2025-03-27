@@ -45,6 +45,7 @@
       lutris.enable = true;
       celeste = {
         enable = true;
+        path = "games/Lutris/celeste";
         modding.enable = true;
       };
       mangohud.enable = true;
