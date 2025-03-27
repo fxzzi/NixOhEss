@@ -40,6 +40,7 @@
       proton-ge.enable = false;
       celeste = {
         enable = true;
+        path = "games/Celeste";
         modding.enable = true;
       };
     };
