@@ -25,12 +25,12 @@ in {
     };
   };
 
-  config = lib.mkIf config.cfg.gaming.celeste.enable {
+  config =  {
     home.packages = with pkgs; [
       (lib.mkIf config.cfg.gaming.celeste.modding.enable nixpkgs-olympus.olympus)
     ];
 
-    xdg.desktopEntries.celeste = {
+    xdg.desktopEntries.celeste = lib.mkIf config.cfg.gaming.celeste.enable {
       name = "Celeste";
       comment = "Run Celeste";
       exec = "env FNA3D_FORCE_DRIVER=Vulkan SDL_VIDEODRIVER=wayland ${lib.getExe pkgs.steam-run} ${config.home.homeDirectory}/${config.cfg.gaming.celeste.path}/Celeste";
