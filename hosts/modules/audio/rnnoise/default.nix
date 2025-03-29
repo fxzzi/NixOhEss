@@ -27,15 +27,13 @@
             ];
           };
           "capture.props" = {
-            "node.name" = "effect_input.rnnoise";
+            "node.name" = "capture.rnnoise_source";
             "node.passive" = true;
-            "audio.channels" = 1;
             "audio.rate" = 48000;
           };
           "playback.props" = {
-            "node.name" = "effect_output.rnnoise";
+            "node.name" = "rnnoise_source";
             "media.class" = "Audio/Source";
-            "audio.channels" = 1;
             "audio.rate" = 48000;
           };
         };
@@ -43,25 +41,27 @@
     ];
   };
 in {
-  options.cfg.audio.pipewire.rnnoise.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enables the rnnoise pipewire plugin for mic noise suppression.";
-  };
-  options.cfg.audio.pipewire.rnnoise.vadThreshold = lib.mkOption {
-    type = lib.types.int;
-    default = 50;
-    description = "Set the rnnoise VAD threshold (%)";
-  };
-  options.cfg.audio.pipewire.rnnoise.vadGracePeriod = lib.mkOption {
-    type = lib.types.int;
-    default = 20;
-    description = "Set the rnnoise VAD grace period in milliseconds.";
-  };
-  options.cfg.audio.pipewire.rnnoise.retroactiveVadGrace = lib.mkOption {
-    type = lib.types.int;
-    default = 0;
-    description = "Set the rnnoise retroactive VAD grace period in milliseconds.";
+  options.cfg.audio.pipewire.rnnoise = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enables the rnnoise pipewire plugin for mic noise suppression.";
+    };
+    vadThreshold = lib.mkOption {
+      type = lib.types.int;
+      default = 50;
+      description = "Set the rnnoise VAD threshold (%)";
+    };
+    vadGracePeriod = lib.mkOption {
+      type = lib.types.int;
+      default = 20;
+      description = "Set the rnnoise VAD grace period in milliseconds.";
+    };
+    retroactiveVadGrace = lib.mkOption {
+      type = lib.types.int;
+      default = 0;
+      description = "Set the rnnoise retroactive VAD grace period in milliseconds.";
+    };
   };
   config = {
     services.pipewire = lib.mkIf config.cfg.audio.pipewire.rnnoise.enable {
