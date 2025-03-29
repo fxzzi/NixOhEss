@@ -11,13 +11,9 @@
   };
   config = lib.mkIf config.cfg.kernel.xone.enable {
     hardware.xone.enable = true;
+    # lets assume you want xbox360 controllers to still work.
+    hardware.xpad-noone.enable = true;
     boot = {
-      extraModulePackages = [
-        # also install xpad-noone, for xbox 360 wired controllers
-        (config.boot.kernelPackages.callPackage ./xpad-noone.nix {
-          inherit npins;
-        })
-      ];
       kernelModules = ["xpad"];
     };
   };

@@ -55,19 +55,6 @@
       "revision": "9357b7d093f98e0b5c7aec18f2fc9eea0ae90aab",
       "url": "https://api.github.com/repos/Vladimir-csp/xdg-terminal-exec/tarball/v0.12.3",
       "hash": "07sy7rfzvhh8idslz6cbyxzwhrp5vq5ghhapbgpix93qz76dl3wq"
-    },
-    "xpad-noone": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "medusalix",
-        "repo": "xpad-noone"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "6970c40930bedd8b58d0764894e0d5f04813b7c5",
-      "url": "https://github.com/medusalix/xpad-noone/archive/6970c40930bedd8b58d0764894e0d5f04813b7c5.tar.gz",
-      "hash": "0b32kk9c2qx6wyimks4hfgijlpynd7fzw18mbn9a6abhkrdrf9iw"
     }
   },
   "version": 5
