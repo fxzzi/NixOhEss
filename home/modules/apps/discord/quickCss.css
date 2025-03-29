@@ -4,7 +4,10 @@
 /* Hide the Visual Refresh title bar */
 @import url("https://raw.githubusercontent.com/surgedevs/visual-refresh-compact-title-bar/refs/heads/main/hidden.css");
 
-/* Align the chat box with the user panel and move stuff above it */
+/* Make the ClientTheme plugin work on Visual Refresh */
+@import url("https://nspc911.github.io/themes/vencord/VisualRefreshClientTheme.theme.css");
+
+/* Align the chat box with the user panel */
 .visual-refresh {
   form > div[class^="channelBottomBarArea_"] {
     --custom-chat-input-margin-bottom: 6px;
