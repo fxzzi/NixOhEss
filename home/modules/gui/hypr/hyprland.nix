@@ -112,6 +112,7 @@ in {
         ];
         render = {
           direct_scanout = 1;
+          cm_enabled = 0; # fix weird transparency in foot
         };
         cursor = lib.mkIf multiMonitor {
           default_monitor = "${config.cfg.gui.hypr.defaultMonitor}";
