@@ -13,6 +13,7 @@
     home.packages = with pkgs; [
       nicotine-plus
       picard
+      rsgain
     ];
   };
   imports = [

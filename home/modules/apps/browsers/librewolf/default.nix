@@ -23,6 +23,9 @@ in {
       home-manager fails to set properly.
       the home-manager setup is pretty basic anyway, so this
       should suffice
+
+      FIXME: Setting new tab page is currently broken, for more
+      info see: https://codeberg.org/librewolf/issues/issues/2313
       */
       file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
         // Set new tab page to local startpage
