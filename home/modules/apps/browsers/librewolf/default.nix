@@ -8,13 +8,22 @@
 }: let
   newTabPage = "file://${config.xdg.dataHome}/startpage/fazzi/index.html";
 in {
-  options.cfg.apps.browsers.librewolf.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enables the librewolf browser.";
+  options.cfg.apps.browsers.librewolf = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enables the librewolf browser.";
+    };
+    startpage.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enables the custom startpage for librewolf.";
+    };
   };
   config = lib.mkIf config.cfg.apps.browsers.librewolf.enable {
-    xdg.dataFile."startpage".source = inputs.startpage; # startpage
+    xdg.dataFile."startpage" = lib.mkIf config.cfg.apps.browsers.librewolf.startpage.enable {
+      source = inputs.startpage; # startpage
+    };
     home = {
       packages = with pkgs; [pywalfox-native];
       /*
@@ -28,14 +37,17 @@ in {
       info see: https://codeberg.org/librewolf/issues/issues/2313
       */
       file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
-        // Set new tab page to local startpage
-        // this doesn't work anymore for some reason
-        //let { utils:Cu } = Components;
-        //Cu.import("resource:///modules/AboutNewTab.jsm");
-        //AboutNewTab.newTabURL = "${newTabPage}";
+        ${lib.optionalString config.cfg.apps.browsers.librewolf.startpage.enable ''
+          // Set new tab page to local startpage
+          // let { utils:Cu } = Components;
+          // Cu.import("resource:///modules/AboutNewTab.jsm");
+          // AboutNewTab.newTabURL = "${newTabPage}";
 
-        pref("browser.startup.homepage", "${newTabPage}");
-        pref("services.sync.prefs.sync.browser.startup.homepage", false);
+          pref("browser.startup.homepage", "${newTabPage}");
+
+          pref("services.sync.prefs.sync.browser.startup.homepage", false);
+        ''}
+
 
         // Revert some security changes
         pref("webgl.disabled", false);
