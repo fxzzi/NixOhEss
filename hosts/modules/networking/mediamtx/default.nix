@@ -5,6 +5,7 @@
   ...
 }: let
   port = "4200";
+  localips = builtins.map (item: item.address) config.networking.interfaces.enp6s0.ipv4.addresses;
 in {
   options.cfg.netConfig.mediamtx.enable = lib.mkOption {
     type = lib.types.bool;
@@ -40,7 +41,7 @@ in {
         webrtcAdditionalHosts =
           ["@localip@"] # for agenix to replace after
           ++ config.networking.nameservers
-          ++ lib.optional config.cfg.netConfig.desktopFixedIP.enable "192.168.0.46";
+          ++ localips;
         paths = {
           all_others = {};
         };
