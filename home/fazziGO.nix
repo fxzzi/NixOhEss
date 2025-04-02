@@ -10,7 +10,10 @@
       thunar.enable = true;
       discord.enable = true;
       browsers = {
-        librewolf.enable = true;
+        librewolf = {
+          enable = true;
+          startpage.enable = true;
+        };
         chromium = {
           enable = true;
         };

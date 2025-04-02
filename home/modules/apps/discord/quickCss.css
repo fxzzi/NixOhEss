@@ -4,9 +4,6 @@
 /* Hide the Visual Refresh title bar */
 @import url("https://raw.githubusercontent.com/surgedevs/visual-refresh-compact-title-bar/refs/heads/main/hidden.css");
 
-/* Make the ClientTheme plugin work on Visual Refresh */
-@import url("https://nspc911.github.io/themes/vencord/VisualRefreshClientTheme.theme.css");
-
 /* Align the chat box with the user panel */
 .visual-refresh {
   form > div[class^="channelBottomBarArea_"] {
@@ -30,6 +27,7 @@
   --font-primary: sans-serif !important;
   --font-display: sans-serif !important;
   --font-code: monospace !important;
+  /* Make the sidebar line up correctly with disabled title bar */
   --vr-header-snippet-server-padding: 8px !important;
 }
 
