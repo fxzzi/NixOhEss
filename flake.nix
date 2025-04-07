@@ -10,6 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
+      # url = "github:hyprwm/Hyprland";
       url = "github:ikalco/Hyprland/properly_release_rendered_buffers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -65,14 +66,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ags = {
-      url = "github:Aylur/ags/v1";
+      url = "github:Aylur/ags/v1"; # still on v1 lmfao
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        darwin.follows = ""; # optional: might want to remove or use "nixpkgs" here
+        darwin.follows = ""; # don't need darwin deps
       };
     };
     nvf = {
@@ -95,11 +96,11 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     npins = import ./npins;
-    system = "x86_64-linux";
 
     nixosCommonSystem = {
       hostName,
       user,
+      system,
     }:
       nixpkgs.lib.nixosSystem {
         inherit system;
@@ -120,16 +121,19 @@
       fazziPC = nixosCommonSystem {
         hostName = "fazziPC";
         user = "faaris";
+        system = "x86_64-linux";
       };
 
       fazziGO = nixosCommonSystem {
         hostName = "fazziGO";
         user = "faaris";
+        system = "x86_64-linux";
       };
 
       kunzozPC = nixosCommonSystem {
         hostName = "kunzozPC";
         user = "kunzoz";
+        system = "x86_64-linux";
       };
     };
   };
