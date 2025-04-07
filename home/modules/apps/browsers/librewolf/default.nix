@@ -39,9 +39,9 @@ in {
       file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
         ${lib.optionalString config.cfg.apps.browsers.librewolf.startpage.enable ''
           // Set new tab page to local startpage
-          // let { utils:Cu } = Components;
-          // Cu.import("resource:///modules/AboutNewTab.jsm");
-          // AboutNewTab.newTabURL = "${newTabPage}";
+          let { utils:Cu } = Components;
+          Cu.import("resource:///modules/AboutNewTab.jsm");
+          AboutNewTab.newTabURL = "${newTabPage}";
 
           pref("browser.startup.homepage", "${newTabPage}");
 

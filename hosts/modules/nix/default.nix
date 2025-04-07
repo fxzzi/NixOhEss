@@ -1,5 +1,6 @@
-{
+{pkgs, ...}: {
   nix = {
+    package = pkgs.lix; # sure. use lix
     settings = {
       experimental-features = [
         "nix-command"
