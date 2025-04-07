@@ -20,7 +20,7 @@ case $1 in
   grim -t png -l 1 -o "$2" "$path"
   ;;
 --selection)
-  hyprpicker -zrq &
+  wayfreeze --hide-cursor &
   PID=$!
   sleep .1
   grim -t png -l 1 -g "$(slurp)" "$path"
