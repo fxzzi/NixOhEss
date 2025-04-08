@@ -39,9 +39,9 @@ in {
       file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
         ${lib.optionalString config.cfg.apps.browsers.librewolf.startpage.enable ''
           // Set new tab page to local startpage
-          let { utils:Cu } = Components;
-          Cu.import("resource:///modules/AboutNewTab.jsm");
-          AboutNewTab.newTabURL = "${newTabPage}";
+          // let { utils:Cu } = Components;
+          // Cu.import("resource:///modules/AboutNewTab.jsm");
+          // AboutNewTab.newTabURL = "${newTabPage}";
 
           pref("browser.startup.homepage", "${newTabPage}");
 
@@ -97,10 +97,13 @@ in {
         pref("media.getusermedia.audio.processing.hpf.enabled", false);
 
         // disable bookmarks bar, i don't use it
-        pref("browser.toolbars.bookmarks.visibility", "never")
+        pref("browser.toolbars.bookmarks.visibility", "never");
 
         // only use fonts defined by system, not by the website
-        pref("browser.display.use_document_fonts", 0)
+        pref("browser.display.use_document_fonts", 0);
+
+        // hides the X button which is useless on tiling compositors and WMs
+        pref("browser.tabs.inTitlebar", 0);
       '';
       sessionVariables = lib.mkIf osConfig.cfg.gpu.nvidia.enable {
         LIBVA_DRIVER_NAME = "nvidia";

@@ -67,10 +67,10 @@
       hypr = {
         defaultMonitor = "DP-3";
         secondaryMonitor = null;
+        animations.enable = true;
         hyprland = {
           enable = true;
           autoStart = true;
-          animations.enable = true;
         };
         hyprlock.enable = true;
         hypridle = {
