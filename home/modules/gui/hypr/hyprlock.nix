@@ -27,11 +27,15 @@ in {
       settings = {
         general = {
           hide_cursor = true;
-          disable_loading_bar = true;
           ignore_empty_input = true;
+          immediate_render = !config.cfg.gui.hypr.animations.enable;
         };
         animations = {
-          enabled = false;
+          enabled = config.cfg.gui.hypr.animations.enable;
+          animation = [
+            "fadeIn, 1, 4"
+            "fadeOut, 1, 4"
+          ];
         };
         background = lib.mkMerge [
           [
