@@ -24,6 +24,7 @@
       fastfetch = {
         enable = true;
         zshIntegration = true;
+        icon = "kunzoz";
       };
       ssh.enable = true;
       git.enable = true;

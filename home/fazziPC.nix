@@ -26,6 +26,7 @@
       fastfetch = {
         enable = true;
         zshIntegration = true;
+        icon = "azzi";
       };
       ssh.enable = true;
       git.enable = true;
