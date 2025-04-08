@@ -55,7 +55,7 @@
       gamescope.enable = true;
       cemu.enable = false;
       heroic.enable = true;
-      sgdboop.enable = false;
+      sgdboop.enable = true;
       osu-lazer.enable = false;
     };
     gui = {

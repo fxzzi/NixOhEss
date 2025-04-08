@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  osConfig,
   ...
 }: {
   options.cfg.apps.browsers.chromium = {
@@ -25,21 +26,24 @@
     programs.chromium = {
       enable = true;
       package = pkgs.ungoogled-chromium;
-      commandLineArgs = [
-        "--disable-smooth-scrolling"
-        "--use-cmd-decoder=passthrough"
-        "--enable-gpu-rasterization"
-        "--enable-zero-copy"
-        "--ignore-gpu-blocklist"
-        "--enable-features=AcceleratedVideoDecodeLinuxGL"
-        "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
-        "--enable-features=VaapiOnNvidiaGPUs"
-        "--enable-features=VaapiIgnoreDriverChecks"
-        "--enable-features=AcceleratedVideoEncoder"
-        "--enable-features=AcceleratedVideoDecoder"
-        "--enable-features=WaylandLinuxDrmSyncobj" # enable explicit sync support
-        "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
-      ];
+      commandLineArgs =
+        [
+          "--disable-smooth-scrolling"
+          "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
+        ]
+        ++ lib.optionals osConfig.cfg.gpu.nvidia.enable [
+          "--enable-features=WaylandLinuxDrmSyncobj"
+          "--use-cmd-decoder=passthrough"
+          "--enable-gpu-rasterization"
+          "--enable-zero-copy"
+          "--ignore-gpu-blocklist"
+          "--enable-features=AcceleratedVideoDecodeLinuxGL"
+          "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
+          "--enable-features=VaapiOnNvidiaGPUs"
+          "--enable-features=VaapiIgnoreDriverChecks"
+          "--enable-features=AcceleratedVideoEncoder"
+          "--enable-features=AcceleratedVideoDecoder"
+        ];
     };
     xdg.desktopEntries = {
       # only enable the wootility app if chromium is actually enabled
