@@ -27,7 +27,11 @@
         icon = "kunzoz";
       };
       ssh.enable = true;
-      git.enable = true;
+      git = {
+        enable = true;
+        name = "Kunooz";
+        email = "syedkunooz@gmail.com";
+      };
       zsh.enable = true;
       android.enable = false;
       nh.enable = true;

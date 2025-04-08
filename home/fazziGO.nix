@@ -27,7 +27,11 @@
         icon = "azzi-laptop";
       };
       ssh.enable = true;
-      git.enable = true;
+      git = {
+        enable = true;
+        name = "Fazzi";
+        email = "faaris.ansari@proton.me";
+      };
       zsh.enable = true;
       android.enable = true;
       nh.enable = true;
