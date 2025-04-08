@@ -5,10 +5,17 @@
   user,
   ...
 }: {
-  options.cfg.apps.thunar.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enables the thunar file manager";
+  options.cfg.apps.thunar = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enables the thunar file manager";
+    };
+    collegeBookmarks.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enables my college bookmarks.";
+    };
   };
   config = lib.mkIf config.cfg.apps.thunar.enable {
     # add some packages for file-roller to work
@@ -17,15 +24,20 @@
       unar
     ];
     # bookmarks for the side pane
-    gtk.gtk3.bookmarks = [
-      "file:///home/${user}/Downloads Downloads"
-      "file:///home/${user}/Videos Videos"
-      "file:///home/${user}/Documents/College/CompSci CompSci"
-      "file:///home/${user}/Documents/College/Maths Maths"
-      "file:///home/${user}/Documents/College/Physics Physics"
-      "file:///home/${user}/Pictures/Screenshots Screenshots"
-      "file:///home/${user}/.config/nixos NixOS"
-    ];
+    gtk.gtk3.bookmarks =
+      [
+        "file:///home/${user}/Downloads Downloads"
+        "file:///home/${user}/Videos Videos"
+      ]
+      ++ lib.optionals config.cfg.apps.thunar.collegeBookmarks.enable [
+        "file:///home/${user}/Documents/College/CompSci CompSci"
+        "file:///home/${user}/Documents/College/Maths Maths"
+        "file:///home/${user}/Documents/College/Physics Physics"
+      ]
+      ++ [
+        "file:///home/${user}/Pictures/Screenshots Screenshots"
+        "file:///home/${user}/.config/nixos NixOS"
+      ];
     xdg.mimeApps.defaultApplications = {
       "inode/directory" = "thunar.desktop";
 
