@@ -10,8 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      # url = "github:hyprwm/Hyprland";
-      url = "github:ikalco/Hyprland/properly_release_rendered_buffers";
+      url = "github:hyprwm/Hyprland";
+      # url = "github:ikalco/Hyprland/properly_release_rendered_buffers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
