@@ -4,15 +4,25 @@
   config,
   ...
 }: {
-  options.cfg.bootConfig.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Setup systemd boot and a few initial boot options";
-  };
-  options.cfg.bootConfig.keyLayout = lib.mkOption {
-    type = lib.types.str;
-    default = "us";
-    description = "Sets the keyboard layout for ttys";
+  options.cfg.bootConfig = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Setup systemd boot and a few initial boot options";
+    };
+    keyLayout = lib.mkOption {
+      type = lib.types.str;
+      default = "us";
+      description = "Sets the keyboard layout for ttys";
+    };
+    timeout = lib.mkOption {
+      type = lib.types.int;
+      default = 5;
+      description = ''
+        Sets the timeout for the boot menu to automatically continue.
+        If set to 0, the boot menu will be hidden unless space is spammed during boot.
+      '';
+    };
   };
   imports = [./secureboot];
   config = lib.mkIf config.cfg.bootConfig.enable {
@@ -37,7 +47,7 @@
     boot = {
       initrd.systemd.enable = true;
       loader = {
-        timeout = 0; # hide boot menu, show if spamming space
+        inherit (config.cfg.bootConfig) timeout;
         systemd-boot = {
           enable = true; # Enable systemd-boot
           editor = false; # Disable editor for security

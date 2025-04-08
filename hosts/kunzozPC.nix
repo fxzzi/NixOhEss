@@ -16,6 +16,7 @@
     bootConfig = {
       enable = true;
       keyLayout = "us";
+      timeout = 5;
     };
     audio = {
       pipewire = {
