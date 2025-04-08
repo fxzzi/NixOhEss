@@ -286,6 +286,7 @@ in {
             # screenshot script
             ",Print, exec, ${runProc "screenshot.sh --monitor ${config.cfg.gui.hypr.defaultMonitor}"}"
             "SHIFT, Print, exec, ${runProc "screenshot.sh --selection"}"
+            "$MOD SHIFT, S, exec, ${runProc "screenshot.sh --selection"}"
             "$MOD, Print, exec, ${runProc "screenshot.sh --active"}"
 
             # binds for apps
