@@ -7,7 +7,10 @@
       syncthing.enable = true;
       mpv.enable = true;
       obs-studio.enable = false;
-      thunar.enable = true;
+      thunar = {
+        enable = true;
+        collegeBookmarks.enable = true;
+      };
       discord.enable = true;
       browsers = {
         librewolf = {
