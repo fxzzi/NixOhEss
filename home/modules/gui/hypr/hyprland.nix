@@ -59,11 +59,6 @@ in {
           default = false;
           description = "Enables hyprland to run automatically in tty1 (zsh)";
         };
-        animations.enable = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Enables animations in Hyprland.";
-        };
       };
       defaultMonitor = lib.mkOption {
         type = lib.types.str;
@@ -74,6 +69,11 @@ in {
         type = lib.types.nullOr lib.types.str;
         default = null;
         description = "Sets the secondary monitor for hypr*.";
+      };
+      animations.enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enables animations for hypr*.";
       };
     };
   };
@@ -206,7 +206,7 @@ in {
           };
         };
         animations = {
-          enabled = config.cfg.gui.hypr.hyprland.animations.enable;
+          enabled = config.cfg.gui.hypr.animations.enable;
 
           bezier = [
             "overshot, 0.05, 0.9, 0.1, 1.05"

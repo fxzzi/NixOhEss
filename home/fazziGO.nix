@@ -66,10 +66,10 @@
       hypr = {
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
+        animations.enable = false;
         hyprland = {
           enable = true;
           autoStart = true;
-          animations.enable = false;
         };
         hyprlock.enable = true;
         hypridle = {
