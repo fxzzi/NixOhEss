@@ -29,7 +29,11 @@
         icon = "azzi";
       };
       ssh.enable = true;
-      git.enable = true;
+      git = {
+        enable = true;
+        name = "Fazzi";
+        email = "faaris<dot>ansari<at>proton<dot>me";
+      };
       zsh.enable = true;
       android.enable = true;
       nh.enable = true;
