@@ -3,23 +3,37 @@
   config,
   pkgs,
   ...
-}: {
-  options.cfg.cli.fastfetch.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enables fastfetch, for sysinfo.";
-  };
-  options.cfg.cli.fastfetch.zshIntegration = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enables fastfetch inside zshrc";
+}: let
+  icon = ./${config.cfg.cli.fastfetch.icon}.sixel;
+in {
+  options = {
+    cfg.cli.fastfetch = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enables fastfetch, for sysinfo.";
+      };
+      zshIntegration = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enables fastfetch inside zshrc";
+      };
+      icon = lib.mkOption {
+        type = lib.types.enum [
+          "azzi"
+          "kunzoz"
+        ];
+        default = "azzi";
+        description = "Configures which icon you would like to display on fastfetch.";
+      };
+    };
   };
   config = lib.mkIf config.cfg.cli.fastfetch.enable {
     programs.fastfetch = {
       enable = true;
       settings = {
         "logo" = {
-          "source" = "${./azzi.sixel}";
+          "source" = "${icon}";
           "type" = "raw";
           "height" = 9;
           "width" = 16;
