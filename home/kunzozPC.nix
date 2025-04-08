@@ -54,7 +54,10 @@
       osu-lazer.enable = false;
     };
     gui = {
-      fontConfig.enable = true;
+      fontConfig = {
+        enable = true;
+        apple-fonts.enable = true;
+      };
       toolkitConfig.enable = true;
       wallust.enable = true;
       ags.enable = true;

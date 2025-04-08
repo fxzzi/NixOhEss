@@ -53,7 +53,10 @@
       };
     };
     gui = {
-      fontConfig.enable = true;
+      fontConfig = {
+        enable = true;
+        apple-fonts.enable = false;
+      };
       toolkitConfig.enable = true;
       wallust.enable = true;
       ags.enable = true;
