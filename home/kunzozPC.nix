@@ -61,7 +61,7 @@
       fuzzel.enable = true;
       wleave.enable = true;
       hypr = {
-        defaultMonitor = "DP-1";
+        defaultMonitor = "DP-3";
         secondaryMonitor = null;
         hyprland = {
           enable = true;
