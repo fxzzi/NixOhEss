@@ -21,6 +21,7 @@ in {
       icon = lib.mkOption {
         type = lib.types.enum [
           "azzi"
+          "azzi-laptop"
           "kunzoz"
         ];
         default = "azzi";
