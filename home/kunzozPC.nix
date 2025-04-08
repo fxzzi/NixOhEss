@@ -14,7 +14,8 @@
           startpage.enable = false;
         };
         chromium = {
-          enable = false;
+          enable = true;
+          via.enable = true;
         };
       };
     };

@@ -21,6 +21,11 @@
       default = false;
       description = "Enables the Scyrox S-center desktop app through chromium.";
     };
+    via.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enables the VIA webapp .desktop file for configuring keyboards. ";
+    };
   };
   config = lib.mkIf config.cfg.apps.browsers.chromium.enable {
     programs.chromium = {
@@ -46,10 +51,9 @@
         ];
     };
     xdg.desktopEntries = {
-      # only enable the wootility app if chromium is actually enabled
       "wootility" = lib.mkIf config.cfg.apps.browsers.chromium.wootility.enable {
         name = "Wootility Web";
-        exec = "${lib.getExe config.programs.chromium.package} --app=https://beta.wootility.io %U";
+        exec = "${lib.getExe config.programs.chromium.package} --app=https://beta.wootility.io/ %U";
         terminal = false;
         icon = "${./wootility-web.png}";
       };
@@ -58,6 +62,12 @@
         exec = "${lib.getExe config.programs.chromium.package} --app=https://www.scyrox.net/ %U";
         terminal = false;
         icon = "${./scyrox-s-center.png}";
+      };
+      "via" = lib.mkIf config.cfg.apps.browsers.chromium.via.enable {
+        name = "VIA";
+        exec = "${lib.getExe config.programs.chromium.package} --app=https://usevia.app/ %U";
+        terminal = false;
+        icon = "${./via.svg}";
       };
     };
   };

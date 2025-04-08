@@ -42,6 +42,9 @@
       networkmanager.enable = true;
     };
     opentabletdriver.enable = false;
+    hardware = {
+      viaRules.enable = true; # keyboard configuration
+    };
     printing.enable = false;
     scanning.enable = false;
     security.enable = true;
