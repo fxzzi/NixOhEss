@@ -1,8 +1,9 @@
 {
   system.stateVersion = "25.05";
+  # its a laptop with 16gb, i don't want to kill it.
   systemd.services.nix-daemon.serviceConfig = {
-    MemoryHigh = "6G";
-    MemoryMax = "8G";
+    MemoryHigh = "8G";
+    MemoryMax = "10G";
   };
   programs.light.enable = true;
   cfg = {
