@@ -35,6 +35,7 @@
             "node.name" = "rnnoise_source";
             "media.class" = "Audio/Source";
             "audio.rate" = 48000;
+            "audio.channels" = 1;
           };
         };
       }
