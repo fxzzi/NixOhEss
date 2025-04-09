@@ -175,10 +175,7 @@ in {
           enable_swallow = 0; # Enable window swalling
           swallow_regex = "^(foot)$"; # Make foot swallow executed windows
           initial_workspace_tracking = 0;
-          vrr =
-            if osConfig.cfg.gpu.nvidia.enable
-            then 2
-            else 1;
+          vrr = 2; # avoid flickering with vrr = 1
         };
         decoration = {
           rounding = 0;
