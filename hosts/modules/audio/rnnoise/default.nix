@@ -26,10 +26,8 @@
               }
             ];
           };
-          "audio.position" = [
-            "FL"
-            "FR"
-          ];
+          "audio.rate" = 48000;
+          "audio.position" = ["FL"];
           "capture.props" = {
             "node.name" = "capture.rnnoise_source";
             "node.passive" = true;
@@ -38,7 +36,6 @@
           "playback.props" = {
             "node.name" = "rnnoise_source";
             "media.class" = "Audio/Source";
-            "audio.rate" = 48000;
           };
         };
       }
