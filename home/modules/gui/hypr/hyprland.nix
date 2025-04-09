@@ -316,9 +316,8 @@ in {
             ", XF86AudioNext, exec, ${runProc "${lib.getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif.sh)"}"
 
             # passthrough binds for obs
-            "Alt, M, pass,^(com.obsproject.Studio)$"
-            "Alt, N, pass,^(com.obsproject.Studio)$"
-            "Control_L, grave, pass, ^(com.obsproject.Studio)$"
+            "Control_L, grave, pass, class:^(com.obsproject.Studio)$"
+            "Control_L SHIFT, grave, pass, class:^(com.obsproject.Studio)$"
 
             # window management
             "$MOD, Q, killactive"
