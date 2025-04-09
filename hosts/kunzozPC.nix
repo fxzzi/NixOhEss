@@ -17,6 +17,7 @@
       enable = true;
       keyLayout = "us";
       timeout = 30;
+      greetd.enable = true;
     };
     audio = {
       pipewire = {
@@ -68,7 +69,7 @@
     gpu = {
       amdgpu.enable = true;
     };
-    tty1-skipusername = true;
+    tty1-skipusername = false; # since we are using greetd
     home-manager.enable = true;
     adb.enable = false;
   };

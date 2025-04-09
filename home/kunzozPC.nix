@@ -73,7 +73,7 @@
         animations.enable = true;
         hyprland = {
           enable = true;
-          autoStart = true;
+          autoStart = false;
         };
         hyprlock.enable = true;
         hypridle = {

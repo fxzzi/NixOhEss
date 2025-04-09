@@ -24,7 +24,10 @@
       '';
     };
   };
-  imports = [./secureboot];
+  imports = [
+    ./secureboot
+    ./greetd
+  ];
   config = lib.mkIf config.cfg.bootConfig.enable {
     console = {
       earlySetup = true;
