@@ -58,7 +58,10 @@
         enable = true;
         apple-fonts.enable = true;
       };
-      toolkitConfig.enable = true;
+      toolkitConfig = {
+        enable = true;
+        cursorTheme = "Posy_Cursor";
+      };
       wallust.enable = true;
       ags.enable = true;
       foot = {

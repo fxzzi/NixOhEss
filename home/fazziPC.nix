@@ -71,7 +71,10 @@
         enable = true;
         apple-fonts.enable = false;
       };
-      toolkitConfig.enable = true;
+      toolkitConfig = {
+        enable = true;
+        cursorTheme = "XCursor-Pro-Light";
+      };
       wallust.enable = true;
       ags.enable = true;
       foot = {

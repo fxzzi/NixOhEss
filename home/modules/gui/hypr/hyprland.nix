@@ -392,7 +392,7 @@ in {
         # 	"HYPRLAND_TRACE" = "1"
         # ];
         debug = {
-          # disable_logs = 0;
+          disable_logs = 0;
           # watchdog_timeout = 0;
         };
       };
