@@ -11,7 +11,7 @@
     };
     hyprland = {
       # url = "github:hyprwm/Hyprland";
-      url = "github:ikalco/Hyprland/wait_for_dmabuf_readiness";
+      url = "github:ikalco/Hyprland/properly_release_rendered_buffers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
