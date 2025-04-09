@@ -11,11 +11,9 @@ in {
       pointerCursor = {
         hyprcursor.enable = true;
         hyprcursor.size =
-          if cursor == "XCursor-Pro-Light"
-          then 24
-          else if cursor == "Posy_Cursor"
-          then 21
-          else throw "Invalid cursor theme: ${cursor}";
+          if cursor == "Posy_Cursor"
+          then 21 # posy hyprcursor is weird and is wrongly sized.
+          else 24;
       };
       packages = [
         (pkgs.callPackage ./${cursor}.nix {
