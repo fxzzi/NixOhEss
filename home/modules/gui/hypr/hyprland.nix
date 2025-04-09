@@ -318,6 +318,7 @@ in {
             # passthrough binds for obs
             "Alt, M, pass,^(com.obsproject.Studio)$"
             "Alt, N, pass,^(com.obsproject.Studio)$"
+            "Control_L, grave, pass, ^(com.obsproject.Studio)$"
 
             # window management
             "$MOD, Q, killactive"
