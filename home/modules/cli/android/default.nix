@@ -11,14 +11,14 @@
   };
   config =
     lib.mkIf config.cfg.cli.android.enable {
+      systemd.user.sessionVariables = {
+        ANDROID_HOME = "${config.xdg.dataHome}/android"; # Android SDK home
+      };
       home = {
         packages = with pkgs; [
           scrcpy
           payload-dumper-go
         ];
-        sessionVariables = {
-          ANDROID_HOME = "${config.xdg.dataHome}/android"; # Android SDK home
-        };
       };
       programs.zsh.shellAliases = {
         adb = "HOME=${config.xdg.dataHome}/android ${lib.getExe' pkgs.android-tools "adb"}";
