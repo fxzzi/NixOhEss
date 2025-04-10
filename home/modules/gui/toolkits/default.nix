@@ -52,6 +52,19 @@ in {
       enable = true;
       platformTheme.name = "qt6ct";
     };
+    xdg.configFile."qt6ct/qt6ct.conf".text = lib.generators.toINI {} {
+      Appearance = {
+        icon_theme = config.gtk.iconTheme.name;
+        custom_palette = true;
+        color_scheme_path = "${./qt6ct-tokyonight.conf}";
+        standard_dialogs = "xdgdesktopportal";
+        style = "Fusion";
+      };
+      Fonts = {
+        fixed = ''"monospace,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"'';
+        general = ''"sans-serif,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"'';
+      };
+    };
     gtk = {
       enable = true;
       gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
