@@ -21,7 +21,7 @@
         rbb = "nh os boot";
         rbbu = "nh os boot -u";
 
-        crb = "git -C $FLAKE reset --hard origin/HEAD && git -C $FLAKE pull && rb";
+        crb = "git -C $FLAKE fetch origin && git -C $FLAKE reset --hard origin/main && rb";
       };
     };
   };
