@@ -27,6 +27,10 @@ in {
         source = "${inputs.tokyo-night-linux}/usr/share/themes/TokyoNight";
       };
     };
+    systemd.user.sessionVariables = {
+      # so that it uses dark theme on gtk4 apps
+      GTK_THEME = "${config.gtk.theme.name}:dark";
+    };
     home = {
       packages = with pkgs; [
         qt6ct
@@ -42,10 +46,6 @@ in {
           else if cursor == "Posy_Cursor"
           then pkgs.posy-cursors
           else throw "Invalid cursor theme: ${cursor}";
-      };
-      sessionVariables = {
-        # so that it uses dark theme on gtk4 apps
-        GTK_THEME = "${config.gtk.theme.name}:dark";
       };
     };
     qt = {

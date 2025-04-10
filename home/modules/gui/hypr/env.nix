@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  home.sessionVariables = lib.mkMerge [
+  systemd.user.sessionVariables = lib.mkMerge [
     {
       # run electron, gtk, qt apps in wayland native
       NIXOS_OZONE_WL = "1";

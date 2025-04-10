@@ -105,11 +105,11 @@ in {
         // hides the X button which is useless on tiling compositors and WMs
         pref("browser.tabs.inTitlebar", 0);
       '';
-      sessionVariables = lib.mkIf osConfig.cfg.gpu.nvidia.enable {
-        LIBVA_DRIVER_NAME = "nvidia";
-        NVD_BACKEND = "direct";
-        MOZ_DISABLE_RDD_SANDBOX = "1";
-      };
+    };
+    systemd.user.sessionVariables = lib.mkIf osConfig.cfg.gpu.nvidia.enable {
+      LIBVA_DRIVER_NAME = "nvidia";
+      NVD_BACKEND = "direct";
+      MOZ_DISABLE_RDD_SANDBOX = "1";
     };
     programs.librewolf = {
       enable = true;
