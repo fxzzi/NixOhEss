@@ -39,7 +39,7 @@ div[class^="nowPlayingColumn_"] {
 
 /* Make "Read All" vencord button text smaller */
 button.vc-ranb-button {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: normal;
 }
 
