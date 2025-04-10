@@ -24,9 +24,10 @@
 
 /* Use system fonts for UI */
 :root {
-  --font-primary: sans-serif !important;
-  --font-display: sans-serif !important;
-  --font-code: monospace !important;
+  --font-primary: "sans-serif" !important;
+  --font-display: "sans-serif" !important;
+  --font-headline: "sans-serif" !important;
+  --font-code: "monospace" !important;
   /* Make the sidebar line up correctly with disabled title bar */
   --vr-header-snippet-server-padding: 8px !important;
 }
@@ -39,6 +40,7 @@ div[class^="nowPlayingColumn_"] {
 /* Make "Read All" vencord button text smaller */
 button.vc-ranb-button {
   font-size: 13px;
+  font-weight: normal;
 }
 
 /* Hide "Discover" icon in channel list */
