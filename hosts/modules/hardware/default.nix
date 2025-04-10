@@ -41,8 +41,9 @@
 
         ${lib.optionalString config.cfg.hardware.viaRules.enable ''
           # RDR (SK) vendor id
-          SUBSYSTEM=="hidraw", ATTRS{idVendor}=="320f", MODE="0666", TAG+="uaccess", TAG+="udev-acl"
-          SUBSYSTEM=="usb", ATTRS{idVendor}=="320f", MODE="0666",  TAG+="uaccess", TAG+="udev-acl"
+          # SUBSYSTEM=="hidraw", ATTRS{idVendor}=="320f", MODE="0666", TAG+="uaccess", TAG+="udev-acl"
+          # SUBSYSTEM=="usb", ATTRS{idVendor}=="320f", MODE="0666",  TAG+="uaccess", TAG+="udev-acl"
+          KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
         ''}
       '';
     };
