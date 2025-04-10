@@ -3,14 +3,22 @@
   lib,
   ...
 }: {
-  options.cfg.gaming.mangohud.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enable MangoHud and it's configurations.";
+  options.cfg.gaming.mangohud = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable MangoHud and it's configurations.";
+    };
+    enableSessionWide = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable MangoHud for all Vulkan apps.";
+    };
   };
   config = lib.mkIf config.cfg.gaming.mangohud.enable {
     programs.mangohud = {
       enable = true;
+      inherit (config.cfg.gaming.mangohud) enableSessionWide;
       settings = {
         preset = "0,1";
         fps_limit = "167,0"; # few below refresh rate (vrr) or unlimited
