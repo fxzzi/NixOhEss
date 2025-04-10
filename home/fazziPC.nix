@@ -112,6 +112,7 @@
     telegram-desktop
     godot3
     losslesscut-bin
+    qpwgraph
   ];
   imports = [
     ./modules
