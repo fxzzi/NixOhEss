@@ -32,10 +32,18 @@
         ])
       ];
 
-      extraRules = lib.mkIf config.cfg.hardware.scyroxRules.enable ''
-        # scyrox vendor id
-        SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3554", TAG+="uaccess"
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="3554", TAG+="uaccess"
+      extraRules = ''
+        ${lib.optionalString config.cfg.hardware.scyroxRules.enable ''
+          # Compx (Scyrox) vendor id
+          SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3554", TAG+="uaccess"
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="3554", TAG+="uaccess"
+        ''}
+
+        ${lib.optionalString config.cfg.hardware.viaRules.enable ''
+          # RDR (SK) vendor id
+          SUBSYSTEM=="hidraw", ATTRS{idVendor}=="320f", TAG+="uaccess"
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="320f", TAG+="uaccess"
+        ''}
       '';
     };
   };
