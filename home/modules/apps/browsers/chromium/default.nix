@@ -53,19 +53,19 @@
     xdg.desktopEntries = {
       "wootility" = lib.mkIf config.cfg.apps.browsers.chromium.wootility.enable {
         name = "Wootility Web";
-        exec = "${lib.getExe config.programs.chromium.package} --app=https://beta.wootility.io/ %U";
+        exec = "chromium --app=https://beta.wootility.io/ %U";
         terminal = false;
         icon = "${./wootility-web.png}";
       };
       "scyrox-s-center" = lib.mkIf config.cfg.apps.browsers.chromium.scyrox-s-center.enable {
         name = "Scyrox S-center";
-        exec = "${lib.getExe config.programs.chromium.package} --app=https://www.scyrox.net/ %U";
+        exec = "chromium --app=https://www.scyrox.net/ %U";
         terminal = false;
         icon = "${./scyrox-s-center.png}";
       };
       "via" = lib.mkIf config.cfg.apps.browsers.chromium.via.enable {
         name = "VIA";
-        exec = "${lib.getExe config.programs.chromium.package} --app=https://usevia.app/ %U";
+        exec = "chromium --app=https://usevia.app/ %U";
         terminal = false;
         icon = "${./via.svg}";
       };
