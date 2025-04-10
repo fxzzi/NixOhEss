@@ -47,7 +47,7 @@
     hardware = {
       viaRules.enable = true; # keyboard configuration
     };
-    printing.enable = false;
+    printing.enable = true;
     scanning.enable = false;
     security.enable = true;
     user = {
