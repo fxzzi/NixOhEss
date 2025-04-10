@@ -242,9 +242,6 @@ in {
           # Fix some dragging issues with XWayland
           "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 
-          # make via pwa tile
-          "tile, class:^(chrome-usevia.app.*)$"
-
           # Window rules for games
           # Fix focus issues with cs2
           "suppressevent maximize fullscreen, class: ^(SDL Application)$"
