@@ -48,6 +48,7 @@
     hardware = {
       wootingRules.enable = true;
       scyroxRules.enable = true;
+      viaRules.enable = true;
     };
     printing.enable = true;
     scanning.enable = false;

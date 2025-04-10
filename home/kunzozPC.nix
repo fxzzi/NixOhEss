@@ -15,7 +15,6 @@
         };
         chromium = {
           enable = true;
-          via.enable = true;
         };
       };
     };
