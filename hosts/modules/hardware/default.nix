@@ -23,10 +23,6 @@
   };
 
   config = {
-    environment.systemPackages = lib.mkIf config.cfg.hardware.viaRules.enable [
-      pkgs.via
-    ];
-
     services.udev = {
       packages = lib.mkMerge [
         (lib.mkIf config.cfg.hardware.wootingRules.enable [pkgs.wooting-udev-rules])
