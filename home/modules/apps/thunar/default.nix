@@ -3,6 +3,7 @@
   pkgs,
   config,
   user,
+  hostName,
   ...
 }: {
   options.cfg.apps.thunar = {
@@ -37,6 +38,11 @@
       ++ [
         "file:///home/${user}/Pictures/Screenshots Screenshots"
         "file:///home/${user}/.config/nixos NixOS"
+      ]
+      # If on kunzozPC, also add bookmarks to the windows drives.
+      ++ lib.optionals (hostName == "kunzozPC") [
+        "file:///mnt/windows-kunzoz Windoes"
+        "file:///mnt/windows-dad Job"
       ];
     xdg.mimeApps.defaultApplications = {
       "inode/directory" = "thunar.desktop";
