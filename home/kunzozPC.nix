@@ -96,6 +96,8 @@
   };
   home.packages = with pkgs; [
     # if you want to add some packages, add them here
+    losslesscut-bin
+    qbittorrent-enhanced
   ];
   imports = [
     ./modules
