@@ -21,19 +21,19 @@
         vlang = "en,eng";
         vo = "gpu-next";
 
-        volume-max = 100;
-        volume = 75;
+        volume-max = 150; # allow some overamp
+        volume = 100;
 
         keep-open = true;
         pause = false;
 
-        hwdec = "nvdec";
+        hwdec = "auto";
 
         alang = "en,eng";
-        embeddedfonts = true;
+        embeddedfonts = false; # just use system fonts
         slang = "en,eng";
         sub-auto = "all";
-        sub-color = "#eaea27";
+        sub-color = "#A9B1D6";
         sub-file-paths-append = [
           "Subs/\${filename/no-ext}"
           "Subs/\${filename}"
@@ -53,11 +53,11 @@
           "subtitles"
         ];
         sub-fix-timing = false;
-        sub-font-size = 45;
-        sub-font = "Noto Sans";
+        sub-font-size = 36;
+        sub-font = "${config.gtk.font.name}";
         sub-scale-with-window = true;
 
-        cursor-autohide = 100;
+        cursor-autohide = 250;
         cursor-autohide-fs-only = true;
         msg-color = true;
         msg-module = true;
