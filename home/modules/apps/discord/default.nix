@@ -16,8 +16,15 @@
 
   joinedArgs = lib.concatStringsSep " " commandLineArgs;
 
-  font = config.fonts.fontconfig.defaultFonts;
+  # Use the below variables to create a list of fonts which can
+  # be used in vencord quickcss.
 
+  # It works by parsing the list of fonts from fontconfig and
+  # wrapping them in quotes and separating them with commas.
+  # for some reason, I couldn't just use `sans-serif` and `monospace`
+  # as it wouldn't render correctly, i.e. no bold text, text was squished.
+  # Explicity listing the fonts however seems to have worked.
+  font = config.fonts.fontconfig.defaultFonts;
   wrapFonts = fonts: lib.concatStringsSep ", " (map (f: "\"${f}\"") fonts);
 
   primaryFont = wrapFonts (font.sansSerif ++ font.emoji);
