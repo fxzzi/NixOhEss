@@ -1,24 +1,9 @@
 {
-  lib,
-  pkgs,
-  ...
-}: {
   system.stateVersion = "25.05";
   # brother has 64gb of ram for reasons beyond my understanding
   systemd.services.nix-daemon.serviceConfig = {
     MemoryHigh = "42G";
     MemoryMax = "54G";
-  };
-  systemd.services."unload-hda" = {
-    description = "Force-unload snd_hda_intel module at shutdown";
-    wantedBy = ["shutdown.target"];
-    before = ["shutdown.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = ""; # Empty because we only want ExecStop
-      ExecStop = "${lib.getExe' pkgs.kmod "rmmod"} snd_hda_intel -f";
-      RemainAfterExit = true;
-    };
   };
   cfg = {
     kernel = {
