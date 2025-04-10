@@ -44,7 +44,7 @@
       enable = true;
       components = ["pkcs11" "secrets" "ssh"];
     };
-    home.sessionVariables = {
+    systemd.user.sessionVariables = {
       SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/keyring/ssh";
     };
   };
