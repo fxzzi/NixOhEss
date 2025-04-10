@@ -46,7 +46,10 @@
         path = "games/Lutris/celeste";
         modding.enable = false;
       };
-      mangohud.enable = true;
+      mangohud = {
+        enable = true;
+        enableSessionWide = false;
+      };
       gamescope.enable = false;
       cemu.enable = false;
       heroic.enable = true;
