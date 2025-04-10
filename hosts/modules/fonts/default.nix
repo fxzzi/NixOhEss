@@ -4,7 +4,13 @@
   ...
 }: {
   options.cfg.fontConfig.subpixelLayout = lib.mkOption {
-    type = lib.types.str;
+    type = lib.types.enum [
+      "none"
+      "rgb"
+      "bgr"
+      "vrgb"
+      "vbgr"
+    ];
     default = "rgb";
     description = "Choose the subpixel layout of your main monitor.";
   };

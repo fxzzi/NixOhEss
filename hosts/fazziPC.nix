@@ -35,7 +35,7 @@
     cachix.enable = true;
     fontConfig = {
       enable = true;
-      subpixelLayout = "bgr";
+      subpixelLayout = "none";
     };
     netConfig = {
       enable = true;
