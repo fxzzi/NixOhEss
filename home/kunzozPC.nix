@@ -48,7 +48,7 @@
       };
       mangohud = {
         enable = true;
-        enableSessionWide = false;
+        enableSessionWide = true;
       };
       gamescope.enable = false;
       cemu.enable = false;

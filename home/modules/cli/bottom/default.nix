@@ -20,9 +20,9 @@
         };
         temperature.sensor_filter = {
           list = [
-            "VRM"
-            "T_Sensor"
-            "nct"
+            # "VRM"
+            # "T_Sensor"
+            # "nct"
           ];
         };
         network.interface_filter = {
