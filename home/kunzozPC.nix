@@ -57,6 +57,7 @@
       osu-lazer.enable = false;
     };
     gui = {
+      smoothScroll.enable = true;
       fontConfig = {
         enable = true;
         apple-fonts.enable = true;
