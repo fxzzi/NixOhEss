@@ -53,6 +53,7 @@
         inherit (config.cfg.bootConfig) timeout;
         systemd-boot = {
           enable = true; # Enable systemd-boot
+          configurationLimit = 5; # shouldn't really need any more than that.
           editor = false; # Disable editor for security
           consoleMode = "max"; # Set console mode to max resolution
         };
