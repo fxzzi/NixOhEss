@@ -182,9 +182,11 @@ in {
           rounding = 0;
           layerrule = [
             "blur, launcher"
+            "blur, walker"
             "blur, wleave"
             "blur, bar-.*"
             "ignorezero, launcher"
+            "ignorezero, walker"
             "ignorezero, bar-.*"
             "xray 1, wleave"
             "xray 1, bar-.*"

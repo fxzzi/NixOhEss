@@ -85,6 +85,7 @@
         zshIntegration = true;
       };
       fuzzel.enable = true;
+      walker.enable = true;
       wleave.enable = true;
       hypr = {
         defaultMonitor = "DP-3";

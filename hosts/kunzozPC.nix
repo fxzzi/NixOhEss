@@ -9,6 +9,7 @@
     kernel = {
       type = "xanmod_latest";
       higherMaxMapCount = true;
+      zenergy.enable = true; # ryzen 7000 power readings
       xone.enable = false;
       v4l2.enable = false;
     };
