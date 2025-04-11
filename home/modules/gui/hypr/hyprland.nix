@@ -27,7 +27,7 @@
   runProc = pkg:
     if uwsmEnabled
     then "app2unit -- ${pkg}"
-    else "${lib.getExe pkg}";
+    else "${pkg}";
   runTerm = cmd:
     if uwsmEnabled
     then "app2unit -T ${cmd}"
@@ -91,6 +91,7 @@ in {
         fi
       ''}
     '';
+    home.sessionVariables = config.systemd.user.sessionVariables;
 
     wayland.windowManager.hyprland = {
       enable = true;

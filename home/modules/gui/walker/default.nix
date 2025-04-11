@@ -28,6 +28,8 @@ in {
         placeholder = "Search...";
 
         hotreload_theme = true;
+
+        # ignore_mouse = true;
       };
       theme.style =
         #css
