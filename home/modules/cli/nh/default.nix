@@ -13,6 +13,11 @@
       nh = {
         enable = true;
         flake = "${config.xdg.configHome}/nixos";
+        clean = {
+          enable = true;
+          dates = "weekly";
+          extraArgs = "--keep-since 7d";
+        };
       };
 
       zsh.shellAliases = {
@@ -22,6 +27,7 @@
         rbbu = "nh os boot -u";
 
         crb = "git -C $FLAKE fetch origin && git -C $FLAKE reset --hard origin/main && rb";
+        crbb = "git -C $FLAKE fetch origin && git -C $FLAKE reset --hard origin/main && rbb";
       };
     };
   };
