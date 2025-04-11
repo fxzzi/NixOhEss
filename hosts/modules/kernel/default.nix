@@ -40,5 +40,6 @@ in {
     ./zenpower
     ./xone
     ./v4l2
+    ./zenergy
   ];
 }

@@ -8,7 +8,8 @@
     kernel = {
       type = "xanmod_latest";
       higherMaxMapCount = true;
-      zenpower.enable = true;
+      zenpower.enable = false;
+      zenergy.enable = true;
       xone.enable = true;
       v4l2.enable = true;
     };
