@@ -7,11 +7,13 @@
 }: let
   commandLineArgs =
     [
-      "--disable-smooth-scrolling"
       "--disable-features=WebRtcAllowInputVolumeAdjustment"
     ]
     ++ lib.optionals osConfig.cfg.gpu.nvidia.enable [
       "--enable-features=WaylandLinuxDrmSyncobj"
+    ]
+    ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
+      "--disable-smooth-scrolling"
     ];
 
   joinedArgs = lib.concatStringsSep " " commandLineArgs;

@@ -76,8 +76,12 @@ in {
         // Performance
         pref("layout.frame_rate", -1);
 
-        // Smooth scrolling
-        pref("general.smoothScroll", false);
+        // Disable smooth scrolling
+        pref("general.smoothScroll", ${
+          if config.cfg.gui.smoothScroll.enable
+          then "true"
+          else "false"
+        });
 
         // Enable Firefox accounts
         pref("identity.fxaccounts.enabled", true);
@@ -114,7 +118,7 @@ in {
     programs.librewolf = {
       enable = true;
       package = pkgs.librewolf.overrideAttrs (_old: {
-        extraNativeMessagingHosts = with pkgs; [pywalfox-native];
+        nativeMessagingHosts = with pkgs; [pywalfox-native];
       });
       languagePacks = [
         "en-GB"
