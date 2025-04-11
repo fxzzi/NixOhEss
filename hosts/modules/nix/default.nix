@@ -6,9 +6,9 @@
         "nix-command"
         "flakes"
       ];
-      auto-optimise-store = true;
+      auto-optimise-store = true; # save some storage space
       warn-dirty = false;
-      use-xdg-base-directories = true;
+      use-xdg-base-directories = true; # clean up ~
       allowed-users = ["@wheel"];
       trusted-users = ["@wheel"];
     };
