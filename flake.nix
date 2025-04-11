@@ -53,6 +53,14 @@
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
       };
     };
+    ags = {
+      url = "github:Aylur/ags/v1"; # still on v1 lmfao
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nvuv = {
       url = "gitlab:fazzi/nvuv";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -65,10 +73,7 @@
       url = "github:notashelf/batmon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ags = {
-      url = "github:Aylur/ags/v1"; # still on v1 lmfao
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
