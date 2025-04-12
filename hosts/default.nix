@@ -15,5 +15,6 @@
   programs.nano.enable = lib.mkDefault false;
   environment.defaultPackages = lib.mkDefault [];
 
+  # enable microcode updates n stuff
   hardware.enableRedistributableFirmware = true;
 }

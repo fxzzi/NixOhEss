@@ -24,7 +24,7 @@
     };
     services.resolved = {
       enable = true;
-      dnsovertls = "true";
+      dnsovertls = "opportunistic";
     };
   };
   imports = [

@@ -58,12 +58,11 @@ in {
         // Stop weirdness when relaunching browser sometimes
         pref("browser.sessionstore.resume_from_crash", false);
 
-        // enable vaapi accel
-        pref("media.ffmpeg.vaapi.enabled", true);
-
         ${lib.optionalString osConfig.cfg.gpu.nvidia.enable ''
           // make nvidia-vaapi-driver work
           pref("widget.dmabuf.force-enabled", true);
+          // force hw acceleration
+          pref("media.hardware-video-decoding.force-enabled", true);
         ''}
 
         // Mouse behavior

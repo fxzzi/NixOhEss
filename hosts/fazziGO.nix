@@ -33,7 +33,10 @@
     netConfig = {
       enable = true;
       mediamtx.enable = false;
-      networkmanager.enable = true;
+      networkmanager = {
+        enable = true;
+        powersaving.enable = true;
+      };
     };
     opentabletdriver.enable = false;
     printing.enable = true;
