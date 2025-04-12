@@ -8,7 +8,7 @@
   programs.light.enable = true;
   cfg = {
     kernel = {
-      type = "latest";
+      type = "lts";
       higherMaxMapCount = false;
       zenpower.enable = false;
       xone.enable = false;
