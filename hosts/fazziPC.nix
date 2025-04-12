@@ -6,7 +6,7 @@
   };
   cfg = {
     kernel = {
-      type = "xanmod_latest";
+      type = "xanmod";
       higherMaxMapCount = true;
       zenpower.enable = false;
       zenergy.enable = true;
