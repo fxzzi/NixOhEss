@@ -23,6 +23,13 @@ in {
       settings = {
         ipc = 1;
         splash = 0;
+
+        preload = [
+          "${config.xdg.stateHome}/wallpaper"
+        ];
+        wallpaper = [
+          ", ${config.xdg.stateHome}/wallpaper"
+        ];
       };
     };
   };
