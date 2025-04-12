@@ -102,7 +102,6 @@ in {
       portalPackage = null;
       settings = {
         exec-once = [
-          "sleep 0.5; ${runProc "random-wall.sh"}" # HACK: sleep here, otherwise wallpaper will be set too early
           "${runProc "${pkgs.mate.mate-polkit}/etc/xdg/autostart/polkit-mate-authentication-agent-1.desktop"}"
         ];
         exec = [
