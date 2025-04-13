@@ -8,6 +8,7 @@
       wget
       python3
       ffmpeg
+      imagemagick
       pwvucontrol
       mate.atril
       mate.eom
