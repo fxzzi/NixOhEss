@@ -6,7 +6,8 @@
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      # url = "github:nix-community/home-manager";
+      url = "github:fxzzi/home-manager/nh-remove-incorrect-warning";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
