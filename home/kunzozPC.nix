@@ -55,7 +55,7 @@
       heroic.enable = true;
       sgdboop.enable = false;
       osu-lazer.enable = false;
-      creamlinux-installer.enable = true;
+      creamlinux.enable = true;
     };
     gui = {
       smoothScroll.enable = true;
