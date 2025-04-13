@@ -3,9 +3,11 @@
   lib,
   pkgs,
   inputs,
+  system,
   ...
 }: let
   nixpkgs-sgdboop = inputs.nixpkgs-sgdboop.legacyPackages.${pkgs.system};
+  creamlinux-installer = pkgs.callPackage (inputs.creamlinux-installer + "/creamlinux.nix") {};
 in {
   options.cfg.gaming = {
     proton-ge.enable = lib.mkOption {
@@ -38,6 +40,11 @@ in {
       default = false;
       description = "Enables osu-lazer.";
     };
+    creamlinux-installer.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enables creamlinux-installer.";
+    };
   };
 
   config = {
@@ -50,6 +57,7 @@ in {
       (lib.mkIf config.cfg.gaming.cemu.enable cemu)
       (lib.mkIf config.cfg.gaming.sgdboop.enable nixpkgs-sgdboop.sgdboop)
       (lib.mkIf config.cfg.gaming.osu-lazer.enable osu-lazer-bin)
+      (lib.mkIf config.cfg.gaming.creamlinux-installer.enable creamlinux-installer)
     ];
   };
   imports = [
