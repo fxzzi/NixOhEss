@@ -33,7 +33,7 @@ in {
           filter-desktop = true;
           image-size-ratio = "0.5";
           inherit terminal;
-          fields = "name,exec";
+          fields = "name";
           placeholder = "Search...";
           sort-result = "false";
           match-mode = "exact";
