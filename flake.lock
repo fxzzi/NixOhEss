@@ -141,23 +141,6 @@
         "type": "github"
       }
     },
-    "creamlinux-installer": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1734723379,
-        "narHash": "sha256-bf09W89M0uhfAtlhv5kZuyKSWXEqCp5gjYKI5Mb/Mvw=",
-        "owner": "dixxe",
-        "repo": "creamlinux-installer",
-        "rev": "2413d5a462cf51ed5d32d94fa101695f6e748585",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dixxe",
-        "ref": "feature/nix-package",
-        "repo": "creamlinux-installer",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -984,7 +967,6 @@
         "ags": "ags",
         "apple-fonts": "apple-fonts",
         "batmon": "batmon",
-        "creamlinux-installer": "creamlinux-installer",
         "home-manager": "home-manager_2",
         "hypridle": "hypridle",
         "hyprland": "hyprland",

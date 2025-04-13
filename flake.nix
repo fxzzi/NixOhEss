@@ -102,10 +102,6 @@
       url = "gitlab:fazzi/startpage";
       flake = false;
     };
-    creamlinux-installer = {
-      url = "github:dixxe/creamlinux-installer/feature/nix-package";
-      flake = false;
-    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
