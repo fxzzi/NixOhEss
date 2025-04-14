@@ -20,11 +20,11 @@
       xournalpp
       stremio
     ];
-  };
 
-  systemd.user.sessionVariables = {
-    GNUPGHOME = "${config.xdg.dataHome}/gnupg"; # GNU Privacy Guard home
-    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java -Dawt.useSystemAAFontSettings=gasp"; # Java preferences
+    sessionVariables = {
+      GNUPGHOME = "${config.xdg.dataHome}/gnupg"; # GNU Privacy Guard home
+      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java -Dawt.useSystemAAFontSettings=gasp"; # Java preferences
+    };
   };
 
   imports = [

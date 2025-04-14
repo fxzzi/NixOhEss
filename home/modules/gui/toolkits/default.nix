@@ -27,11 +27,12 @@ in {
         source = "${inputs.tokyo-night-linux}/usr/share/themes/TokyoNight";
       };
     };
-    systemd.user.sessionVariables = {
-      # so that it uses dark theme on gtk4 apps
-      GTK_THEME = "${config.gtk.theme.name}:dark";
-    };
     home = {
+      sessionVariables = {
+        # so that it uses dark theme on gtk4 apps
+        GTK_THEME = "${config.gtk.theme.name}:dark";
+      };
+
       packages = with pkgs; [
         qt6ct
       ];
