@@ -743,11 +743,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1744146310,
-        "narHash": "sha256-O6PYxdNHCT7W7/uGY933LMJbejd4n4iaCVuq+ckzwdA=",
+        "lastModified": 1744586309,
+        "narHash": "sha256-flnTm9YP7cyM7C6ODL1X6FQIlFafXnHp0p6VxBX43ns=",
         "owner": "ikalco",
         "repo": "Hyprland",
-        "rev": "ec22e0b6160af056108cb0a08e500f0ae5de437c",
+        "rev": "2aec5cd634889bc9cd3064c56b7a2f06f73f2ac0",
         "type": "github"
       },
       "original": {
@@ -1162,11 +1162,11 @@
     },
     "mnw": {
       "locked": {
-        "lastModified": 1744497692,
-        "narHash": "sha256-ikWRNR/P/aKCCySZnUfF1W0u0t6rSoJgQgKeDdCBAK8=",
+        "lastModified": 1744592022,
+        "narHash": "sha256-QuWrCRiF3CUM99sgj3gXbIzB1IAVWS5IEfFHadbMA2g=",
         "owner": "Gerg-L",
         "repo": "mnw",
-        "rev": "c5322a2bf74c0066fd15ca35721561397a2e7eab",
+        "rev": "cf9e19413b6c2d995b55565cd99facf9c751b653",
         "type": "github"
       },
       "original": {
@@ -1478,11 +1478,11 @@
         "systems": "systems_10"
       },
       "locked": {
-        "lastModified": 1744568430,
-        "narHash": "sha256-Pnt/tWuo6dmHL1/eGl3jpvuKsawxq4ul+65vTcMOjZ0=",
+        "lastModified": 1744603659,
+        "narHash": "sha256-wvHDbY4xIiCJQryb9Oobr/uWELmpy812JSga81zsxtY=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "3b8595a263ac689db59d06734a7336b311c42032",
+        "rev": "920f3c9670b1b9a62e7911cd17720d394648858c",
         "type": "github"
       },
       "original": {

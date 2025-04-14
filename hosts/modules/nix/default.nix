@@ -22,4 +22,5 @@
   };
   nixpkgs.config.allowUnfree = true; # not too fussed as long as app works on linux tbh
   documentation.nixos.enable = false; # remove useless docs .desktop
+  system.rebuild.enableNg = true; # use python based nixos-rebuild
 }
