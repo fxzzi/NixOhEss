@@ -2534,11 +2534,11 @@
     "walls": {
       "flake": false,
       "locked": {
-        "lastModified": 1744499524,
-        "narHash": "sha256-+kC5Wi/B+4DZk1/SaKiCEIOoIbAlSps/WHevkIKEgWk=",
+        "lastModified": 1744648329,
+        "narHash": "sha256-hR3xzkcBVNtAENuicTTD4FG0m/ZUouAck0b01GNTGvo=",
         "owner": "fazzi",
         "repo": "walls",
-        "rev": "faa29ec768a6c061f902d6c8219f548a729eb0a1",
+        "rev": "f1e2aa68f06745a3d8afe0e6da5df4655c2801dd",
         "type": "gitlab"
       },
       "original": {
