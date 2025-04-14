@@ -7,7 +7,7 @@
   };
   cfg = {
     kernel = {
-      type = "xanmod";
+      type = "zen";
       higherMaxMapCount = true;
       zenergy.enable = true; # ryzen 7000 power readings
       xone.enable = false;
