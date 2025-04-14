@@ -25,7 +25,7 @@ in {
             --time \
             --remember \
             --asterisks \
-            --cmd '${cmd}'
+            --cmd 'zsh -c "${cmd}"'
           '';
           user = "greeter";
         };
