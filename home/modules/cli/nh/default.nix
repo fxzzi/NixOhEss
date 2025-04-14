@@ -21,10 +21,10 @@
       };
 
       zsh.shellAliases = {
-        rb = "nh os switch";
-        rbu = "nh os switch -u";
-        rbb = "nh os boot";
-        rbbu = "nh os boot -u";
+        rb = "nh os switch --no-nom";
+        rbu = "nh os switch -u --no-nom";
+        rbb = "nh os boot --no-nom";
+        rbbu = "nh os boot -u --no-nom";
 
         crb = "crb.sh";
       };
