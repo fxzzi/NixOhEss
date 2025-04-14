@@ -33,9 +33,8 @@ in {
           filter-desktop = true;
           image-size-ratio = "0.5";
           inherit terminal;
-          fields = "name";
+          fields = "name,exec";
           placeholder = "Search...";
-          sort-result = "false";
           match-mode = "exact";
           dpi-aware = false;
           launch-prefix = lib.mkIf osConfig.cfg.wayland.uwsm.enable "app2unit --fuzzel-compat --";
