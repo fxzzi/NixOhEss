@@ -20,7 +20,7 @@
 
     xdg.configFile."wallust/wallust.toml".source = (pkgs.formats.toml {}).generate "wallust" {
       check_contrast = true;
-      backend = "wal";
+      backend = "fastresize";
       color_space = "lch";
       templates = {
         fuzzel =
