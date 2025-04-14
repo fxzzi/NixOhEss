@@ -2114,11 +2114,11 @@
     "startpage": {
       "flake": false,
       "locked": {
-        "lastModified": 1739447856,
-        "narHash": "sha256-xBLPsGAvJlPnaT0Goxmf2wlMU2JZprcnYadlSKbxNTA=",
+        "lastModified": 1744649729,
+        "narHash": "sha256-XUAspRdkjJoo6R/GXrW1NEkzVhSNgusTNn9VA4PxcLU=",
         "owner": "fazzi",
         "repo": "startpage",
-        "rev": "0d6065906ae44a239fee69637288a66282857df1",
+        "rev": "2a159a11c88a113ae522a502c00550978fe7a9ae",
         "type": "gitlab"
       },
       "original": {
