@@ -6,7 +6,7 @@
   inputs,
   ...
 }: let
-  newTabPage = "file://${config.xdg.dataHome}/startpage/fazzi/index.html";
+  newTabPage = "${config.xdg.dataHome}/startpage/${config.cfg.apps.browsers.librewolf.startpage.user}/index.html";
 in {
   options.cfg.apps.browsers.librewolf = {
     enable = lib.mkOption {
@@ -14,10 +14,22 @@ in {
       default = false;
       description = "Enables the librewolf browser.";
     };
-    startpage.enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enables the custom startpage for librewolf.";
+    startpage = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enables the custom startpage for librewolf.";
+      };
+      user = lib.mkOption {
+        type = lib.types.enum [
+          "fazzi"
+          "sam"
+          "kunzooz"
+          "aryan"
+        ];
+        default = "fazzi";
+        description = "Selects which startpage user to use.";
+      };
     };
   };
   config = lib.mkIf config.cfg.apps.browsers.librewolf.enable {
@@ -32,19 +44,16 @@ in {
       home-manager fails to set properly.
       the home-manager setup is pretty basic anyway, so this
       should suffice
-
-      FIXME: Setting new tab page is currently broken, for more
-      info see: https://codeberg.org/librewolf/issues/issues/2313
       */
       file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
         ${lib.optionalString config.cfg.apps.browsers.librewolf.startpage.enable ''
-          // Set new tab page to local startpage
-          // let { utils:Cu } = Components;
-          // Cu.import("resource:///modules/AboutNewTab.jsm");
-          // AboutNewTab.newTabURL = "${newTabPage}";
+          // sets the new tab page to out local newtab.
+          ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "file://${newTabPage}";
 
-          pref("browser.startup.homepage", "${newTabPage}");
+          // sets our home page to the same URL.
+          pref("browser.startup.homepage", "file://${newTabPage}");
 
+          // don't firefox sync the homepage, stops it overwriting on windows.
           pref("services.sync.prefs.sync.browser.startup.homepage", false);
         ''}
 

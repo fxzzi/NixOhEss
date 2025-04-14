@@ -60,7 +60,7 @@ in {
         ];
         monospace = [
           "Ioshelfka Term"
-          "Symbols Nerd Font"
+          "Symbols Nerd Font Mono"
         ];
         emoji = [
           "Noto Color Emoji"

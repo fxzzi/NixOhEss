@@ -11,7 +11,10 @@
       browsers = {
         librewolf = {
           enable = true;
-          startpage.enable = false;
+          startpage = {
+            enable = false;
+            user = "kunzooz";
+          };
         };
         chromium = {
           enable = true;
