@@ -10,25 +10,35 @@
 This repo consists of a relatively simple configuration for my desktop and
 laptop with nixOS and home-manager.
 
-two hostnames will be found in my config; fazziPC and fazziGO for my PC and
-laptop respectively.
+Feel free to benefit from my config, but I'm by no means a 😎 Nix Pro 😎 so use
+it with a grain of salt.
+
+I do want to move to [hjem](https://github.com/feel-co/hjem) in the future but
+currently there are two blockers stopping me from using it right now:
+
+- Systemd user services
+- GTK / dconf configuration
 
 **DISCLAIMER!!** There is no guarantee that these configs will work for you.
 These are merely my personal configurations and they do NOT come with a
 warranty.
 
+## Hosts
+
+- fazziPC: My main desktop PC, running an AMD 5600x and an RTX 3070.
+- fazziGO: My Thinkpad L14 Gen 4, which sports an AMD Ryzen 5 7530U.
+- kunzozPC: My friends gaming PC, where I manage his NixOS installation.
+
 ## Structure
 
 - [`flake.nix`](./flake.nix): The flake which declares entry points and inputs
-  for my entire configuration. Basic options like the username can be found
-  here.
-- [`hosts/`](./hosts/): All of the nixOS configuration is contained here.
-  - [`fazziPC.nix`](./hosts/fazziPC.nix): define host options for my PC
-  - [`fazziGO.nix`](./hosts/fazziGO.nix): define host options for my laptop
-- [`home/`](./home/): All of the home-manager configuration is contained here.
-  - [`fazziPC.nix`](./home/fazziPC.nix): define home-manager options for my PC
-  - [`fazziGO.nix`](./home/fazziGO.nix): define home-manager options for my
-    laptop
+  for my entire configuration.
+- [`hosts/`](./hosts/): All of the NixOS related configurations appear here. A
+  seperate entrypoint for each host allows toggling of and modifications to
+  specific modules.
+- [`home/`](./home/): All of my home-manager configuration is contained here. I
+  try and do everything I can in userspace, and so the grunt of most graphical
+  modules are here.
 
 ## SPECIAL THANKS
 
