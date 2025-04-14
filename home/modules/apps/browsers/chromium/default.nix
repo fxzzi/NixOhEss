@@ -34,6 +34,7 @@
       commandLineArgs =
         [
           "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
+          "--extension-mime-request-handling=always-prompt-for-install" # allow chrome web store extension to be installed
         ]
         ++ lib.optionals osConfig.cfg.gpu.nvidia.enable [
           "--enable-features=WaylandLinuxDrmSyncobj" # fix flickering
