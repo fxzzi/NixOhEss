@@ -7,15 +7,19 @@
 }: let
   commandLineArgs =
     [
-      "--disable-features=WebRtcAllowInputVolumeAdjustment"
+      "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
     ]
     ++ lib.optionals osConfig.cfg.gpu.nvidia.enable [
-      "--enable-features=WaylandLinuxDrmSyncobj"
+      "--enable-features=WaylandLinuxDrmSyncobj" # fix flickering
+      # attempt to enable hardware acceleration
+      "--enable-features=AcceleratedVideoDecodeLinuxGL"
+      "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
+      "--enable-features=VaapiOnNvidiaGPUs"
+      "--enable-features=VaapiIgnoreDriverChecks"
     ]
     ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
       "--disable-smooth-scrolling"
     ];
-
   joinedArgs = lib.concatStringsSep " " commandLineArgs;
 
   # Use the below variables to create a list of fonts which can
