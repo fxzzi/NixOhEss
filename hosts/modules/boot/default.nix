@@ -2,8 +2,11 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
-}: {
+}: let
+  poweroff = "${inputs.efi-power.packages.${pkgs.system}.default}/poweroff.efi";
+in {
   options.cfg.bootConfig = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -56,6 +59,16 @@
           configurationLimit = 5; # shouldn't really need any more than that.
           editor = false; # Disable editor for security
           consoleMode = "max"; # Set console mode to max resolution
+          extraFiles = {
+            "efi/poweroff.efi" = poweroff;
+          };
+          extraEntries = {
+            "poweroff.conf" = ''
+              title Power Off
+              efi /efi/poweroff.efi
+              sort-key z_poweroff
+            '';
+          };
         };
         efi.canTouchEfiVariables = true;
       };

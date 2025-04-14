@@ -74,7 +74,6 @@
       url = "github:notashelf/batmon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
@@ -88,6 +87,10 @@
     };
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    efi-power = {
+      url = "github:Ichinose-Kazuki/efi-power";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tokyo-night-linux = {

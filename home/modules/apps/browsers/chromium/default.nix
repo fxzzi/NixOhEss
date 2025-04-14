@@ -38,16 +38,10 @@
         ++ lib.optionals osConfig.cfg.gpu.nvidia.enable [
           "--enable-features=WaylandLinuxDrmSyncobj" # fix flickering
           # attempt to enable hardware acceleration
-          "--use-cmd-decoder=passthrough"
-          "--enable-gpu-rasterization"
-          "--enable-zero-copy"
-          "--ignore-gpu-blocklist"
           "--enable-features=AcceleratedVideoDecodeLinuxGL"
           "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
           "--enable-features=VaapiOnNvidiaGPUs"
           "--enable-features=VaapiIgnoreDriverChecks"
-          "--enable-features=AcceleratedVideoEncoder"
-          "--enable-features=AcceleratedVideoDecoder"
         ]
         ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
           "--disable-smooth-scrolling"
