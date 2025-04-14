@@ -45,78 +45,85 @@ in {
       the home-manager setup is pretty basic anyway, so this
       should suffice
       */
-      file.".librewolf/librewolf.overrides.cfg".text = lib.mkIf config.programs.librewolf.enable ''
-        ${lib.optionalString config.cfg.apps.browsers.librewolf.startpage.enable ''
-          // sets the new tab page to out local newtab.
-          ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "file://${newTabPage}";
+      file.".librewolf/librewolf.overrides.cfg".text =
+        lib.mkIf config.programs.librewolf.enable
+        #js
+        ''
+          ${lib.optionalString config.cfg.apps.browsers.librewolf.startpage.enable #js
+            
+            ''
+              // sets the new tab page to out local newtab.
+              ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "file://${newTabPage}";
 
-          // sets our home page to the same URL.
-          pref("browser.startup.homepage", "file://${newTabPage}");
+              // sets our home page to the same URL.
+              pref("browser.startup.homepage", "file://${newTabPage}");
 
-          // don't firefox sync the homepage, stops it overwriting on windows.
-          pref("services.sync.prefs.sync.browser.startup.homepage", false);
-        ''}
+              // don't firefox sync the homepage, stops it overwriting on windows.
+              pref("services.sync.prefs.sync.browser.startup.homepage", false);
+            ''}
 
 
-        // Revert some security changes
-        pref("webgl.disabled", false);
-        pref("privacy.resistFingerprinting", false);
-        pref("privacy.clearOnShutdown.history", false);
-        pref("privacy.clearOnShutdown.cookies", false);
+          // Revert some security changes
+          pref("webgl.disabled", false);
+          pref("privacy.resistFingerprinting", false);
+          pref("privacy.clearOnShutdown.history", false);
+          pref("privacy.clearOnShutdown.cookies", false);
 
-        // Stop weirdness when relaunching browser sometimes
-        pref("browser.sessionstore.resume_from_crash", false);
+          // Stop weirdness when relaunching browser sometimes
+          pref("browser.sessionstore.resume_from_crash", false);
 
-        ${lib.optionalString osConfig.cfg.gpu.nvidia.enable ''
-          // make nvidia-vaapi-driver work
-          pref("widget.dmabuf.force-enabled", true);
-          // force hw acceleration
-          pref("media.hardware-video-decoding.force-enabled", true);
-        ''}
+          ${lib.optionalString osConfig.cfg.gpu.nvidia.enable
+            #js
+            ''
+              // make nvidia-vaapi-driver work
+              pref("widget.dmabuf.force-enabled", true);
+              // force hw acceleration
+              pref("media.hardware-video-decoding.force-enabled", true);
+            ''}
 
-        // Mouse behavior
-        pref("middlemouse.paste", false);
-        pref("general.autoScroll", true);
+          // Mouse behavior
+          pref("middlemouse.paste", false);
+          pref("general.autoScroll", true);
 
-        // disable touchpad overscroll
-        pref("apz.overscroll.enabled", false);
+          // disable touchpad overscroll
+          pref("apz.overscroll.enabled", false);
 
-        // Performance
-        pref("layout.frame_rate", -1);
+          // Performance
+          pref("layout.frame_rate", -1);
 
-        // Disable smooth scrolling
-        pref("general.smoothScroll", ${
-          if config.cfg.gui.smoothScroll.enable
-          then "true"
-          else "false"
-        });
+          // Disable smooth scrolling
+          pref("general.smoothScroll", ${
+            if config.cfg.gui.smoothScroll.enable
+            then "true"
+            else "false"
+          });
 
-        // Enable Firefox accounts
-        pref("identity.fxaccounts.enabled", true);
+          // Enable Firefox accounts
+          pref("identity.fxaccounts.enabled", true);
 
-        // Use system emoji fonts
-        pref("font.name-list.emoji", "emoji");
-        pref("gfx.font_rendering.opentype_svg.enabled", false);
+          // Use system emoji fonts
+          pref("font.name-list.emoji", "emoji");
+          pref("gfx.font_rendering.opentype_svg.enabled", false);
 
-        // Disable audio post processing
-        pref("media.getusermedia.audio.processing.aec", 0);
-        pref("media.getusermedia.audio.processing.aec.enabled", false);
-        pref("media.getusermedia.audio.processing.agc", 0);
-        pref("media.getusermedia.audio.processing.agc.enabled", false);
-        pref("media.getusermedia.audio.processing.agc2.forced", false);
-        pref("media.getusermedia.audio.processing.noise", 0);
-        pref("media.getusermedia.audio.processing.noise.enabled", false);
-        pref("media.getusermedia.audio.processing.hpf.enabled", false);
+          // Disable audio post processing
+          pref("media.getusermedia.audio.processing.aec", 0);
+          pref("media.getusermedia.audio.processing.aec.enabled", false);
+          pref("media.getusermedia.audio.processing.agc", 0);
+          pref("media.getusermedia.audio.processing.agc.enabled", false);
+          pref("media.getusermedia.audio.processing.agc2.forced", false);
+          pref("media.getusermedia.audio.processing.noise", 0);
+          pref("media.getusermedia.audio.processing.noise.enabled", false);
+          pref("media.getusermedia.audio.processing.hpf.enabled", false);
 
-        // disable bookmarks bar, i don't use it
-        pref("browser.toolbars.bookmarks.visibility", "never");
+          // disable bookmarks bar, i don't use it
+          pref("browser.toolbars.bookmarks.visibility", "never");
 
-        // only use fonts defined by system, not by the website
-        pref("browser.display.use_document_fonts", 0);
+          // only use fonts defined by system, not by the website
+          pref("browser.display.use_document_fonts", 0);
 
-        // hides the X button which is useless on tiling compositors and WMs
-        pref("browser.tabs.inTitlebar", 0);
-      '';
+          // hides the X button which is useless on tiling compositors and WMs
+          pref("browser.tabs.inTitlebar", 0);
+        '';
     };
     systemd.user.sessionVariables = lib.mkIf osConfig.cfg.gpu.nvidia.enable {
       LIBVA_DRIVER_NAME = "nvidia";
