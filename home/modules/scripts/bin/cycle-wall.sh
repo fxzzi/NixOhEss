@@ -1,4 +1,4 @@
-WALLPAPER_DIR="$HOME/walls/"
+WALLPAPER_DIR="$XDG_DATA_HOME/walls/"
 INDEX_FILE="/tmp/wallust-index"
 
 # Create index file if it doesn't exist, defaulting to -1

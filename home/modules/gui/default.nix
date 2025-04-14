@@ -24,6 +24,6 @@
     };
   };
   config = {
-    home.file."walls".source = "${inputs.walls}/images"; # wallpapers
+    xdg.dataFile."walls".source = "${inputs.walls}/images"; # wallpapers
   };
 }
