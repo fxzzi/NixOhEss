@@ -12,7 +12,7 @@
         librewolf = {
           enable = true;
           startpage = {
-            enable = false;
+            enable = true;
             user = "kunzooz";
           };
         };
