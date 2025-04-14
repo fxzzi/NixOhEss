@@ -46,7 +46,7 @@
       sessionVariables = {
         # fix hw acceleration and native wayland on losslesscut
         "__EGL_VENDOR_LIBRARY_FILENAMES" = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
-        "CUDA_CACHE_PATH" = "$XDG_CACHE_HOME/nv";
+        "CUDA_CACHE_PATH" = "${"$"}{XDG_CACHE_HOME}/nv";
       };
       # fix high vram usage on discord and hyprland. match with the wrapper procnames
       etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool.json".source = ./50-limit-free-buffer-pool.json;

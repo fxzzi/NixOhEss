@@ -11,10 +11,11 @@
   };
   config =
     lib.mkIf config.cfg.cli.android.enable {
-      systemd.user.sessionVariables = {
-        ANDROID_HOME = "${config.xdg.dataHome}/android"; # Android SDK home
-      };
       home = {
+        sessionVariables = {
+          ANDROID_HOME = "${config.xdg.dataHome}/android"; # Android SDK home
+        };
+
         packages = with pkgs; [
           scrcpy
           payload-dumper-go
