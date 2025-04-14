@@ -91,8 +91,6 @@ in {
         fi
       ''}
     '';
-    home.sessionVariables = config.systemd.user.sessionVariables;
-
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
