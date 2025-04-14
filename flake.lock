@@ -615,11 +615,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744551165,
-        "narHash": "sha256-+jqpo1YAgJT3HIfRJez7g7Vzt/T9XzGM9Tjc3SX3pk0=",
+        "lastModified": 1744674753,
+        "narHash": "sha256-i+p7/mKq2YMA1xN7HYI34E4g9vAn04W2MDEzeNWB8BA=",
         "owner": "fxzzi",
         "repo": "home-manager",
-        "rev": "7c7666a86e45218d5c335353badc6c90052ae831",
+        "rev": "2a5690b8a1aee84f71c53a61b99c428f54e2e3bc",
         "type": "github"
       },
       "original": {
