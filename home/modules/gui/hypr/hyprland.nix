@@ -101,6 +101,7 @@ in {
       settings = {
         exec-once = [
           "${runProc "${pkgs.mate.mate-polkit}/etc/xdg/autostart/polkit-mate-authentication-agent-1.desktop"}"
+          "${runProc "sleep 0.5; random-wall.sh"}"
         ];
         exec = [
           "sleep 0.5; ${checkThenRunProc config.programs.ags.finalPackage}"
