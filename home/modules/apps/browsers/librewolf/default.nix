@@ -49,10 +49,10 @@ in {
         lib.mkIf config.programs.librewolf.enable
         #js
         ''
-          ${lib.optionalString config.cfg.apps.browsers.librewolf.startpage.enable #js
-            
+          ${lib.optionalString config.cfg.apps.browsers.librewolf.startpage.enable
+            #js
             ''
-              // sets the new tab page to out local newtab.
+              // sets the new tab page to our local newtab.
               ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "file://${newTabPage}";
 
               // sets our home page to the same URL.
