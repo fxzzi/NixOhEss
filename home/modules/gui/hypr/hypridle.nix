@@ -20,17 +20,23 @@ in {
     dpmsTimeout = lib.mkOption {
       type = lib.types.int;
       default = 300;
-      description = "Sets the time in seconds for your screen to turn off when idle.";
+      description = ''
+        Sets the time in seconds for your screen to turn off when idle.
+        If you set this to 0, the screen won't turn off when idle.'';
     };
     lockTimeout = lib.mkOption {
       type = lib.types.int;
       default = 330;
-      description = "Sets the time in seconds for the PC to automatically lock when idle.";
+      description = ''
+        Sets the time in seconds for the PC to automatically lock when idle.
+        If you set this to 0, the PC won't lock when idle.'';
     };
     suspendTimeout = lib.mkOption {
       type = lib.types.int;
       default = 360;
-      description = "Sets the time in seconds for the PC to automatically sleep when idle.";
+      description = ''
+        Sets the time in seconds for the PC to automatically sleep when idle.
+        If you set this to 0, the PC won't sleep automatically when idle.'';
     };
   };
   config = lib.mkIf config.cfg.gui.hypr.hypridle.enable {
@@ -45,21 +51,26 @@ in {
           ignore_dbus_inhibit = false;
           ignore_systemd_inhibit = false;
         };
-        listener = [
-          {
-            timeout = 300;
-            on-timeout = "${lib.getExe' osConfig.programs.hyprland.package "hyprctl"} dispatch dpms off";
-            on-resume = "${lib.getExe' osConfig.programs.hyprland.package "hyprctl"} dispatch dpms on";
-          }
-          {
-            timeout = 330;
-            on-timeout = "loginctl lock-session";
-          }
-          {
-            timeout = config.cfg.gui.hypr.hypridle.suspendTimeout;
-            on-timeout = "systemctl suspend";
-          }
-        ];
+        listener =
+          lib.optionals (config.cfg.gui.hypr.hypridle.dpmsTimeout != 0) [
+            {
+              timeout = config.cfg.gui.hypr.hypridle.dpmsTimeout;
+              on-timeout = "${lib.getExe' osConfig.programs.hyprland.package "hyprctl"} dispatch dpms off";
+              on-resume = "${lib.getExe' osConfig.programs.hyprland.package "hyprctl"} dispatch dpms on";
+            }
+          ]
+          ++ lib.optionals (config.cfg.gui.hypr.hypridle.lockTimeout != 0) [
+            {
+              timeout = config.cfg.gui.hypr.hypridle.lockTimeout;
+              on-timeout = "loginctl lock-session";
+            }
+          ]
+          ++ lib.optionals (config.cfg.gui.hypr.hypridle.suspendTimeout != 0) [
+            {
+              timeout = config.cfg.gui.hypr.hypridle.suspendTimeout;
+              on-timeout = "systemctl suspend";
+            }
+          ];
       };
     };
   };
