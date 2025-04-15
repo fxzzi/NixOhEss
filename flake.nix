@@ -11,8 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      # url = "github:hyprwm/Hyprland";
-      url = "github:ikalco/Hyprland/wait_for_dmabuf_readiness";
+      url = "github:hyprwm/Hyprland";
+      # url = "github:ikalco/Hyprland/wait_for_dmabuf_readiness";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
@@ -87,10 +87,6 @@
     };
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    efi-power = {
-      url = "github:Ichinose-Kazuki/efi-power";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tokyo-night-linux = {
