@@ -15,13 +15,13 @@
       browsers = {
         librewolf = {
           enable = true;
-          startpage = {
-            enable = true;
-            user = "fazzi";
-          };
         };
         chromium = {
           enable = true;
+        };
+        startpage = {
+          enable = true;
+          user = "fazzi";
         };
       };
     };

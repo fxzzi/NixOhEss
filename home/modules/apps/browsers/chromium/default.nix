@@ -4,7 +4,9 @@
   config,
   osConfig,
   ...
-}: {
+}: let
+  newTabPage = "file://${config.xdg.dataHome}/startpage/${config.cfg.apps.browsers.startpage.user}/index.html";
+in {
   options.cfg.apps.browsers.chromium = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -46,6 +48,10 @@
         ]
         ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
           "--disable-smooth-scrolling"
+        ]
+        ++ lib.optionals config.cfg.apps.browsers.startpage.enable [
+          # override new tab page
+          "--custom-ntp=${newTabPage}"
         ];
     };
     xdg.desktopEntries = {
