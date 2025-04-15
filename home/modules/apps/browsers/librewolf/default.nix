@@ -6,7 +6,7 @@
   inputs,
   ...
 }: let
-  newTabPage = "${config.xdg.dataHome}/startpage/${config.cfg.apps.browsers.librewolf.startpage.user}/index.html";
+  newTabPage = "file://${config.xdg.dataHome}/startpage/${config.cfg.apps.browsers.startpage.user}/index.html";
 in {
   options.cfg.apps.browsers.librewolf = {
     enable = lib.mkOption {
@@ -14,26 +14,9 @@ in {
       default = false;
       description = "Enables the librewolf browser.";
     };
-    startpage = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Enables the custom startpage for librewolf.";
-      };
-      user = lib.mkOption {
-        type = lib.types.enum [
-          "fazzi"
-          "sam"
-          "kunzooz"
-          "aryan"
-        ];
-        default = "fazzi";
-        description = "Selects which startpage user to use.";
-      };
-    };
   };
   config = lib.mkIf config.cfg.apps.browsers.librewolf.enable {
-    xdg.dataFile."startpage" = lib.mkIf config.cfg.apps.browsers.librewolf.startpage.enable {
+    xdg.dataFile."startpage" = lib.mkIf config.cfg.apps.browsers.startpage.enable {
       source = inputs.startpage; # startpage
     };
     home = {
@@ -49,14 +32,14 @@ in {
         lib.mkIf config.programs.librewolf.enable
         #js
         ''
-          ${lib.optionalString config.cfg.apps.browsers.librewolf.startpage.enable
+          ${lib.optionalString config.cfg.apps.browsers.startpage.enable
             #js
             ''
               // sets the new tab page to our local newtab.
-              ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "file://${newTabPage}";
+              ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
 
               // sets our home page to the same URL.
-              pref("browser.startup.homepage", "file://${newTabPage}");
+              pref("browser.startup.homepage", "${newTabPage}");
 
               // don't firefox sync the homepage, stops it overwriting on windows.
               pref("services.sync.prefs.sync.browser.startup.homepage", false);
