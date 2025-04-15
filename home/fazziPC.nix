@@ -15,15 +15,15 @@
       browsers = {
         librewolf = {
           enable = true;
-          startpage = {
-            enable = true;
-            user = "fazzi";
-          };
         };
         chromium = {
           enable = true;
           wootility.enable = true;
           scyrox-s-center.enable = true;
+        };
+        startpage = {
+          enable = true;
+          user = "fazzi";
         };
       };
     };

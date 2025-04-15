@@ -12,6 +12,7 @@
     ++ lib.optionals osConfig.cfg.gpu.nvidia.enable [
       "--enable-features=WaylandLinuxDrmSyncobj" # fix flickering
       # attempt to enable hardware acceleration
+      # FIXME: not working on Electron yet?
       "--enable-features=AcceleratedVideoDecodeLinuxGL"
       "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
       "--enable-features=VaapiOnNvidiaGPUs"
