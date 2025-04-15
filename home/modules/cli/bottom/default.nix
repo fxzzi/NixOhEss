@@ -20,9 +20,13 @@
         };
         temperature.sensor_filter = {
           list = [
-            # "VRM"
-            # "T_Sensor"
-            # "nct"
+            # These all show up as 0 degrees.
+            "nct6775.656 (nct6798): PCH_CHIP_TEMP"
+            "nct6775.656 (nct6798): PCH_CPU_TEMP"
+            "nct6775.656 (nct6798): PCH_MCH_TEMP"
+            "nct6775.656 (nct6798): PCH_CHIP_CPU_MAX_TEMP"
+            "asus-ec-sensors (asusec): T_Sensor"
+            "asus-ec-sensors (asusec): VRM"
           ];
         };
         network.interface_filter = {
@@ -30,6 +34,7 @@
         };
         disk.mount_filter = {
           list = [
+            # A lot of these are just the main drive anyway.
             "/mnt"
             "/home"
             "/games"
