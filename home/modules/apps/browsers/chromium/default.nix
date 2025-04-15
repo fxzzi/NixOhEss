@@ -59,13 +59,13 @@ in {
         name = "Wootility Web";
         exec = "chromium --app=https://beta.wootility.io/ %U";
         terminal = false;
-        icon = "${./wootility-web.png}";
+        icon = "${./wootility-web.svg}";
       };
       "scyrox-s-center" = lib.mkIf config.cfg.apps.browsers.chromium.scyrox-s-center.enable {
         name = "Scyrox S-center";
         exec = "chromium --app=https://www.scyrox.net/ %U";
         terminal = false;
-        icon = "${./scyrox-s-center.png}";
+        icon = "${./scyrox-s-center.svg}";
       };
       "via" = lib.mkIf config.cfg.apps.browsers.chromium.via.enable {
         name = "VIA";

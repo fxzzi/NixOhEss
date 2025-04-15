@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 726.47 726.47" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<style>.cls-1 { fill: #E8EBED; stroke-width: 0px; }</style>
+</defs>
+<circle cx="363.24" cy="363.24" r="363.24" fill="#181A1B"/>
+<g transform="translate(127.77 211.26) scale(.65)">
+<path class="cls-1" d="m0 450h726.47v-450h-726.47v450zm664.71-58.823h-602.94v-332.35h602.94v332.35h-4.72e-5z"/>
+<polygon class="cls-1" points="564.46 323.53 596.43 126.47 511.15 126.47 495.64 238.23 407.34 238.23 407.34 126.47 319.11 126.47 319.11 238.23 230.83 238.23 215.32 126.47 130.04 126.47 160.09 323.53"/>
+</g>
+</svg>
