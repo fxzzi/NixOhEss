@@ -589,15 +589,16 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1744707942,
-        "narHash": "sha256-rSTFt5QOsDVc1dU3ybsXc6SBuN3fBCMbKH77kaNo45g=",
-        "owner": "hyprwm",
+        "lastModified": 1743443568,
+        "narHash": "sha256-KI2l8XaNuBsOt2n7hbKIuBkCSKWemYIUxDgaA5TMNjQ=",
+        "owner": "PaideiaDilemma",
         "repo": "hyprlock",
-        "rev": "656704aeb0b531f79ac642fa436d0540eabbd076",
+        "rev": "1f5ac6e0cead5137f9b2ce0537c325f501a76134",
         "type": "github"
       },
       "original": {
-        "owner": "hyprwm",
+        "owner": "PaideiaDilemma",
+        "ref": "screenshotfade",
         "repo": "hyprlock",
         "type": "github"
       }
