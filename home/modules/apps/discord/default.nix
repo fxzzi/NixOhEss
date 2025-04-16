@@ -38,8 +38,10 @@
 
   primaryFont = wrapFonts (font.sansSerif ++ font.emoji);
   monoFont = wrapFonts font.monospace;
+
+  # override for electron 36
   electronVer = "36.0.0-beta.6";
-  electronPkg = pkgs.electron-bin.overrideAttrs {
+  electronPkg = pkgs.electron_35-bin.overrideAttrs {
     pname = "electron_36-bin";
     version = electronVer;
     src = pkgs.fetchurl {
