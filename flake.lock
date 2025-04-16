@@ -429,16 +429,15 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1744816604,
-        "narHash": "sha256-A41aqJZIHoYoOnXQbXz/E95H9LNFQVVS2M5y68/Ps9s=",
-        "owner": "PlasmaPower",
+        "lastModified": 1744818541,
+        "narHash": "sha256-DHegSmqvGE8MsVtL8HYTEi2+fg2K5o8pUpb3mgPkyb0=",
+        "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "ec57ac1551fe3393eff6aba349430adea2d62364",
+        "rev": "3fa6320a391ed60779702e058f67649beb787962",
         "type": "github"
       },
       "original": {
-        "owner": "PlasmaPower",
-        "ref": "damage-subsurface-on-move",
+        "owner": "hyprwm",
         "repo": "Hyprland",
         "type": "github"
       }
