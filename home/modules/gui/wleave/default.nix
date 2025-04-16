@@ -2,8 +2,14 @@
   pkgs,
   config,
   lib,
+  osConfig,
   ...
-}: {
+}: let
+  logoutAction =
+    if osConfig.cfg.wayland.uwsm.enable
+    then "uwsm stop"
+    else "hyprctl dispatch exit";
+in {
   options.cfg.gui.wleave.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -43,7 +49,7 @@
           }
           {
             label = "logout";
-            action = "loginctl terminate-user ''";
+            action = "${logoutAction}";
             text = "Logout";
             keybind = "e";
           }

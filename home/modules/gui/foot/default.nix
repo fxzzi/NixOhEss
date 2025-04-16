@@ -37,7 +37,7 @@
           hide-when-typing = "yes";
         };
         colors = {
-          alpha = "0.75";
+          alpha = 0.75;
         };
       };
     };

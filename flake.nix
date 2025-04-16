@@ -10,7 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:nnyyxxxx/Hyprland/patch-1";
+      # url = "github:hyprwm/Hyprland";
       # url = "github:ikalco/Hyprland/wait_for_dmabuf_readiness";
       inputs.nixpkgs.follows = "nixpkgs";
     };
