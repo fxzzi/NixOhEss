@@ -8,6 +8,8 @@
   commandLineArgs =
     [
       "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
+      # attempt to disable noise suppression? This also disables echo cancellation too tho.
+      "--disable-features=ChromeWideEchoCancellation"
     ]
     ++ lib.optionals osConfig.cfg.gpu.nvidia.enable [
       "--enable-features=WaylandLinuxDrmSyncobj" # fix flickering
