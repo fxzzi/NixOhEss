@@ -17,7 +17,7 @@
       enable = true;
       keyLayout = "us";
       timeout = 0;
-      greetd.enable = true;
+      # greetd.enable = true;
     };
     audio = {
       pipewire = {
@@ -86,7 +86,7 @@
     };
     batmon.enable = false;
     secureboot.enable = false;
-    tty1-skipusername = false;
+    tty1-skipusername = true;
     home-manager.enable = true;
     adb.enable = true;
   };

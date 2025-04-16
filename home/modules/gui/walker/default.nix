@@ -23,7 +23,7 @@ in {
       runAsService = false;
       config = {
         inherit terminal;
-        app_launch_prefix = lib.mkIf osConfig.cfg.wayland.uwsm.enable "app2unit --";
+        app_launch_prefix = lib.mkIf osConfig.cfg.wayland.uwsm.enable "app2unit -- ";
 
         placeholder = "Search...";
 

@@ -18,6 +18,7 @@
       enable = true;
       keyLayout = "uk";
       timeout = 0;
+      greetd.enable = true;
     };
     audio = {
       pipewire = {
@@ -59,7 +60,6 @@
     };
     batmon.enable = true;
     secureboot.enable = true;
-    tty1-skipusername = true;
     home-manager.enable = true;
     adb.enable = true;
   };

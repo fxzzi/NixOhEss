@@ -14,7 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
-      url = "github:hyprwm/hyprlock";
+      # url = "github:hyprwm/hyprlock";
+      url = "github:PaideiaDilemma/hyprlock/screenshotfade";
       inputs = {
         nixpkgs.follows = "hyprland/nixpkgs";
         hyprlang.follows = "hyprland/hyprlang";
