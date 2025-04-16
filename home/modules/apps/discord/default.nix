@@ -15,10 +15,10 @@
       "--enable-features=WaylandLinuxDrmSyncobj" # fix flickering
       # attempt to enable hardware acceleration
       # FIXME: not working on Electron yet?
-      "--enable-features=AcceleratedVideoDecodeLinuxGL"
-      "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
-      "--enable-features=VaapiOnNvidiaGPUs"
-      "--enable-features=VaapiIgnoreDriverChecks"
+      # "--enable-features=AcceleratedVideoDecodeLinuxGL"
+      # "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
+      # "--enable-features=VaapiOnNvidiaGPUs"
+      # "--enable-features=VaapiIgnoreDriverChecks"
     ]
     ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
       "--disable-smooth-scrolling"
@@ -38,6 +38,15 @@
 
   primaryFont = wrapFonts (font.sansSerif ++ font.emoji);
   monoFont = wrapFonts font.monospace;
+  electronVer = "36.0.0-beta.6";
+  electronPkg = pkgs.electron-bin.overrideAttrs {
+    pname = "electron_36-bin";
+    version = electronVer;
+    src = pkgs.fetchurl {
+      url = "https://github.com/electron/electron/releases/download/v${electronVer}/electron-v${electronVer}-linux-x64.zip";
+      sha256 = "sha256-HHKIa4DYobTogRmbdw/hk4fY8+9tbyJ+IjsUknLztAE=";
+    };
+  };
 in {
   options.cfg.apps.discord.enable = lib.mkOption {
     type = lib.types.bool;
@@ -102,7 +111,7 @@ in {
 
     home.packages = with pkgs; [
       ((vesktop.override {
-          electron = electron_35;
+          electron = electronPkg;
           withTTS = false;
           withMiddleClickScroll = true;
         })
