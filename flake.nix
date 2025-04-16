@@ -10,10 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      # url = "github:nnyyxxxx/Hyprland/patch-1";
-      url = "github:PlasmaPower/Hyprland/damage-subsurface-on-move";
-      # url = "github:hyprwm/Hyprland";
-      # url = "github:ikalco/Hyprland/wait_for_dmabuf_readiness";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
