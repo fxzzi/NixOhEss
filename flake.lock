@@ -141,6 +141,27 @@
         "type": "github"
       }
     },
+    "creamlinux": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1744901658,
+        "narHash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
+        "owner": "Novattz",
+        "repo": "creamlinux-installer",
+        "rev": "17ad517a459f1a41a40bef2642ee952859147ab5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Novattz",
+        "repo": "creamlinux-installer",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -214,7 +235,7 @@
     },
     "flake-utils": {
       "inputs": {
-        "systems": "systems_8"
+        "systems": "systems_9"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -302,11 +323,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744812667,
-        "narHash": "sha256-2AJZwXMO82YGw6B/RRCPz8Wz2zSRCZIdjhdFuiw7Ymg=",
+        "lastModified": 1744833442,
+        "narHash": "sha256-BBMWW2m64Grcc5FlXz74+vdkUyCJOfUGnl+VcS/4x44=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5d48f3ded3b55ef32d5853c9022fb4df29b3fc45",
+        "rev": "c6b75d69b6994ba68ec281bd36faebcc56097800",
         "type": "github"
       },
       "original": {
@@ -395,7 +416,7 @@
           "hyprland",
           "nixpkgs"
         ],
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1743294595,
@@ -425,7 +446,7 @@
           "nixpkgs"
         ],
         "pre-commit-hooks": "pre-commit-hooks",
-        "systems": "systems_4",
+        "systems": "systems_5",
         "xdph": "xdph"
       },
       "locked": {
@@ -586,19 +607,18 @@
           "hyprland",
           "nixpkgs"
         ],
-        "systems": "systems_5"
+        "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1743443568,
-        "narHash": "sha256-KI2l8XaNuBsOt2n7hbKIuBkCSKWemYIUxDgaA5TMNjQ=",
-        "owner": "PaideiaDilemma",
+        "lastModified": 1744874332,
+        "narHash": "sha256-U+1kjI/XPqHL/DgOoKGf+SSgrzfw0tLBh7gMbF384+w=",
+        "owner": "hyprwm",
         "repo": "hyprlock",
-        "rev": "1f5ac6e0cead5137f9b2ce0537c325f501a76134",
+        "rev": "248dfb09f7eac514f76ce6fffcd580610fd79fa6",
         "type": "github"
       },
       "original": {
-        "owner": "PaideiaDilemma",
-        "ref": "screenshotfade",
+        "owner": "hyprwm",
         "repo": "hyprlock",
         "type": "github"
       }
@@ -625,7 +645,7 @@
           "hyprland",
           "nixpkgs"
         ],
-        "systems": "systems_6"
+        "systems": "systems_7"
       },
       "locked": {
         "lastModified": 1742482360,
@@ -659,7 +679,7 @@
           "hyprland",
           "nixpkgs"
         ],
-        "systems": "systems_7"
+        "systems": "systems_8"
       },
       "locked": {
         "lastModified": 1742816163,
@@ -863,7 +883,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_9"
+        "systems": "systems_10"
       },
       "locked": {
         "lastModified": 1744639354,
@@ -966,6 +986,7 @@
         "ags": "ags",
         "apple-fonts": "apple-fonts",
         "batmon": "batmon",
+        "creamlinux": "creamlinux",
         "home-manager": "home-manager_2",
         "hypridle": "hypridle",
         "hyprland": "hyprland",
@@ -1144,6 +1165,21 @@
     },
     "systems_10": {
       "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_11": {
+      "locked": {
         "lastModified": 1689347949,
         "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
         "owner": "nix-systems",
@@ -1249,16 +1285,16 @@
     },
     "systems_8": {
       "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
         "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
         "type": "github"
       },
       "original": {
         "owner": "nix-systems",
-        "repo": "default",
+        "repo": "default-linux",
         "type": "github"
       }
     },
@@ -1298,7 +1334,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_10"
+        "systems": "systems_11"
       },
       "locked": {
         "lastModified": 1744785086,
