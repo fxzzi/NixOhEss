@@ -14,8 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {
-      # url = "github:hyprwm/hyprlock";
-      url = "github:PaideiaDilemma/hyprlock/screenshotfade";
+      url = "github:hyprwm/hyprlock";
       inputs = {
         nixpkgs.follows = "hyprland/nixpkgs";
         hyprlang.follows = "hyprland/hyprlang";
@@ -86,6 +85,10 @@
     };
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    creamlinux = {
+      url = "github:Novattz/creamlinux-installer";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tokyo-night-linux = {

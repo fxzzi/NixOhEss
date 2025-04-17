@@ -2,9 +2,10 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
-  creamlinux = pkgs.callPackage (./package.nix) {};
+  creamlinux = inputs.creamlinux.packages.${pkgs.system}.default;
 in {
   options.cfg.gaming = {
     creamlinux.enable = lib.mkOption {
@@ -13,10 +14,9 @@ in {
       description = "Enables creamlinux-installer.";
     };
   };
-
-  config = {
-    home.packages = with pkgs; [
-      (lib.mkIf config.cfg.gaming.creamlinux.enable creamlinux)
+  config = lib.mkIf config.cfg.gaming.creamlinux.enable {
+    home.packages = [
+      creamlinux
     ];
   };
 }
