@@ -18,6 +18,7 @@ in {
   config = lib.mkIf config.cfg.gui.fuzzel.enable {
     programs.fuzzel = {
       enable = true;
+      # use svg backend with higher compatibility
       package = pkgs.fuzzel.override {svgBackend = "librsvg";};
       settings = {
         main = {
