@@ -27,17 +27,17 @@
         main = {
           font = "monospace:size=13";
           pad = "12x12 center";
-          alpha-mode = "matching";
-          transparent-fullscreen = "yes";
+          transparent-fullscreen = true;
         };
         cursor = {
           style = "beam";
         };
         mouse = {
-          hide-when-typing = "yes";
+          hide-when-typing = true;
         };
         colors = {
           alpha = 0.75;
+          alpha-mode = "matching";
         };
       };
     };
