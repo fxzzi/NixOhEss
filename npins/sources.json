@@ -25,6 +25,19 @@
       "url": null,
       "hash": "0n40ip4p7ylsv1zq2ianap1x5kjn1cfqpnpwk62mil1y1hl7d4vk"
     },
+    "nvidia-vaapi-driver": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "elFarto",
+        "repo": "nvidia-vaapi-driver"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "0ef97c1849fac3e07cdf39ffe4cd9aa9f352896f",
+      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/0ef97c1849fac3e07cdf39ffe4cd9aa9f352896f.tar.gz",
+      "hash": "0ga4vnbs52kygshznalmi5lig282s8fxk3cingl5fa408pmlmyml"
+    },
     "xdg-terminal-exec": {
       "type": "GitRelease",
       "repository": {
