@@ -21,7 +21,14 @@
       package = pkgs.foot.overrideAttrs {
         pname = "foot-transparency";
         version = "0-unstable-${npins.foot.revision}";
-        src = npins.foot;
+        # src = npins.foot;
+        src = pkgs.fetchFromGitea {
+          domain = "codeberg.org";
+          owner = "fazzi";
+          repo = "foot";
+          rev = npins.foot.revision;
+          sha256 = npins.foot.hash;
+        };
       };
       settings = {
         main = {

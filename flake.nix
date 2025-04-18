@@ -9,6 +9,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # reduce duplicate packages by making all hypr*
+    # inputs follow the ones from Hyprland
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -91,6 +93,7 @@
       url = "github:Novattz/creamlinux-installer";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # non-flake inputs
     tokyo-night-linux = {
       url = "github:stronk-dev/Tokyo-Night-Linux";
       flake = false;
