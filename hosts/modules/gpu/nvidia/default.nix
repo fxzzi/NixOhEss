@@ -42,13 +42,18 @@
           useSettings = false;
           usePersistenced = false;
         };
+        # FIXME: we are overriding the package below
+        videoAcceleration = false;
       };
       graphics = {
         enable = true;
         enable32Bit = true;
         extraPackages = with pkgs; [
           (nvidia-vaapi-driver.overrideAttrs
-            {src = npins.nvidia-vaapi-driver;})
+            {
+              version = "0-unstable-${npins.nvidia-vaapi-driver.revision}";
+              src = npins.nvidia-vaapi-driver;
+            })
         ];
       };
     };
