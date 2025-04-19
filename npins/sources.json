@@ -19,11 +19,11 @@
         "type": "Git",
         "url": "https://codeberg.org/fazzi/foot.git"
       },
-      "branch": "rebase-atmpt",
+      "branch": "transparency_yipee",
       "submodules": false,
-      "revision": "e2a6d861efde5c3a430b08d2ecb52e4deabea7f1",
+      "revision": "b70bc32aeb3147175f50f5257c804a9598d4cc25",
       "url": null,
-      "hash": "0f8xm90v6jicda0njdzxvdn8k801kq5hqq8y4l65j9ph9brhjgrr"
+      "hash": "1isdw31wx1cwxwgipmga8n705g9r3i9cm96017n43631hq6a5bh8"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
