@@ -58,8 +58,6 @@ in {
           ${lib.optionalString osConfig.cfg.gpu.nvidia.enable
             #js
             ''
-              // make nvidia-vaapi-driver work
-              pref("widget.dmabuf.force-enabled", true);
               // force hw acceleration
               pref("media.hardware-video-decoding.force-enabled", true);
             ''}
