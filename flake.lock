@@ -815,16 +815,17 @@
       "locked": {
         "lastModified": 1744932701,
         "narHash": "sha256-fusHbZCyv126cyArUwwKrLdCkgVAIaa/fQJYFlCEqiU=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
+        "ref": "nixos-unstable",
         "rev": "b024ced1aac25639f8ca8fdfc2f8c4fbd66c48ef",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/NixOS/nixpkgs"
       },
       "original": {
-        "owner": "nixos",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/NixOS/nixpkgs"
       }
     },
     "nixpkgs-lib": {
@@ -846,32 +847,34 @@
       "locked": {
         "lastModified": 1744547132,
         "narHash": "sha256-j06ALmRcZ1U1sOHBSe3OTrjsPd/0tyZhKChlLm8Eopw=",
-        "owner": "Petingoso",
-        "repo": "nixpkgs",
+        "ref": "olympus",
         "rev": "a0299283562206470381b62b817c217fee58bbe6",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Petingoso/nixpkgs"
       },
       "original": {
-        "owner": "Petingoso",
         "ref": "olympus",
-        "repo": "nixpkgs",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Petingoso/nixpkgs"
       }
     },
     "nixpkgs-sgdboop": {
       "locked": {
         "lastModified": 1726424843,
         "narHash": "sha256-2jE0ewMBtDQDeiTZoSugFubjTYJgLhdeFPmHzR5CI4M=",
-        "owner": "Saturn745",
-        "repo": "nixpkgs",
+        "ref": "sgdboop-init",
         "rev": "2a4a651d79cf3dd21bc3c49f106d2066891ff587",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Saturn745/nixpkgs"
       },
       "original": {
-        "owner": "Saturn745",
         "ref": "sgdboop-init",
-        "repo": "nixpkgs",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/Saturn745/nixpkgs"
       }
     },
     "nvf": {
