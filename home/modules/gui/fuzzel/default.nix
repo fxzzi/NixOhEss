@@ -3,6 +3,7 @@
   lib,
   config,
   osConfig,
+  npins,
   ...
 }: let
   terminal =
@@ -19,7 +20,14 @@ in {
     programs.fuzzel = {
       enable = true;
       # use svg backend with higher compatibility
-      package = pkgs.fuzzel.override {svgBackend = "librsvg";};
+      package =
+        (pkgs.fuzzel.override {
+          svgBackend = "librsvg";
+        })
+        .overrideAttrs {
+          src = npins.fuzzel;
+          version = "0-unstable-${npins.fuzzel.revision}";
+        };
       settings = {
         main = {
           font = "monospace:size=17";
@@ -32,7 +40,7 @@ in {
           vertical-pad = "10";
           inner-pad = "6";
           filter-desktop = true;
-          image-size-ratio = "0.5";
+          # image-size-ratio = "0.5";
           inherit terminal;
           fields = "name,exec";
           placeholder = "Search...";

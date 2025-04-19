@@ -2,9 +2,10 @@
   description = "fazzi's nixos + hm conf";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
-    nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
+    # shallow clone these so its faster to fetch.
+    nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
+    nixpkgs-olympus.url = "git+https://github.com/Petingoso/nixpkgs?shallow=1&ref=olympus";
+    nixpkgs-sgdboop.url = "git+https://github.com/Saturn745/nixpkgs?shallow=1&ref=sgdboop-init";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
