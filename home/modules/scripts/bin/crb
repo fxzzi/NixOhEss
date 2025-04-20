@@ -11,7 +11,7 @@ NEW_COMMIT=$(git -C "$FLAKE" rev-parse origin/main)
 if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
   echo "New updates found. Proceeding with reset and switch."
   git -C "$FLAKE" reset --hard origin/main
-  nh os switch --no-nom
+  nh os switch
 else
   echo "No updates found. Exiting."
   exit 0
