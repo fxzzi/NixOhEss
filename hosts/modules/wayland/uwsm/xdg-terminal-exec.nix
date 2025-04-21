@@ -14,6 +14,11 @@ stdenvNoCC.mkDerivation {
     scdoc
   ];
 
+  buildPhase = ''
+    substituteInPlace xdg-terminal-exec \
+      --replace "#!/bin/sh" "#!${lib.getExe pkgs.dash}"
+  '';
+
   installPhase = ''
     install -Dt $out/bin xdg-terminal-exec
   '';
