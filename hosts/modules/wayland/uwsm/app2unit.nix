@@ -2,12 +2,18 @@
   lib,
   stdenvNoCC,
   npins,
+  pkgs,
 }:
 stdenvNoCC.mkDerivation {
   pname = "app2unit";
   version = "0-unstable-${npins.app2unit.revision}";
 
   src = npins.app2unit;
+
+  buildPhase = ''
+    substituteInPlace app2unit \
+      --replace "#!/bin/sh" "#!${lib.getExe pkgs.dash}"
+  '';
 
   installPhase = ''
     install -Dt $out/bin app2unit
