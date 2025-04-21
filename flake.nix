@@ -112,39 +112,38 @@
   outputs = {nixpkgs, ...} @ inputs: let
     npins = import ./npins;
 
+    machines = [
+      {
+        hostName = "fazziPC";
+        user = "faaris";
+      }
+      {
+        hostName = "fazziGO";
+        user = "faaris";
+      }
+      {
+        hostName = "kunzozPC";
+        user = "kunzoz";
+      }
+    ];
+
     nixosCommonSystem = {
       hostName,
       user,
     }:
       nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit
-            inputs
-            npins
-            hostName
-            user
-            ;
+          inherit inputs npins hostName user;
         };
-        modules = [
-          ./hosts
-        ];
+        modules = [./hosts];
       };
   in {
-    nixosConfigurations = {
-      fazziPC = nixosCommonSystem {
-        hostName = "fazziPC";
-        user = "faaris";
-      };
-
-      fazziGO = nixosCommonSystem {
-        hostName = "fazziGO";
-        user = "faaris";
-      };
-
-      kunzozPC = nixosCommonSystem {
-        hostName = "kunzozPC";
-        user = "kunzoz";
-      };
-    };
+    nixosConfigurations = builtins.listToAttrs (
+      map (machine: {
+        name = machine.hostName;
+        value = nixosCommonSystem machine;
+      })
+      machines
+    );
   };
 }
