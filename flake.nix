@@ -115,10 +115,8 @@
     nixosCommonSystem = {
       hostName,
       user,
-      system,
     }:
       nixpkgs.lib.nixosSystem {
-        inherit system;
         specialArgs = {
           inherit
             inputs
@@ -136,19 +134,16 @@
       fazziPC = nixosCommonSystem {
         hostName = "fazziPC";
         user = "faaris";
-        system = "x86_64-linux";
       };
 
       fazziGO = nixosCommonSystem {
         hostName = "fazziGO";
         user = "faaris";
-        system = "x86_64-linux";
       };
 
       kunzozPC = nixosCommonSystem {
         hostName = "kunzozPC";
         user = "kunzoz";
-        system = "x86_64-linux";
       };
     };
   };
