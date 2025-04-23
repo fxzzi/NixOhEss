@@ -266,6 +266,7 @@ in {
           "immediate, class: ^(gamescope)$"
           "immediate, class: ^(Celeste)$"
           "immediate, class: ^(info.cemu.Cemu)$"
+          "immediate, class: ^(Cuphead.x86_64)$"
 
           # Fix everest (celeste) splash screen
           "float, class:^(EverestSplash-linux)$"
