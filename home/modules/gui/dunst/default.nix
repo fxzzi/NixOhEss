@@ -16,7 +16,6 @@
         patches = [
           (pkgs.fetchpatch {
             # patch to fix `dunstctl reload` on native wayland dunst
-            name = "1458.patch";
             url = "https://github.com/dunst-project/dunst/pull/1458.patch";
             sha256 = "sha256-uLY0atUjHRy7hCkAoEkWRk5kl8VvO6nygwuK5aqaG5c=";
           })
@@ -29,21 +28,21 @@
       settings = {
         global = {
           follow = "mouse";
-          width = "(256,384)";
+          width = "(256,448)";
           origin = "top-right";
           offset = "(4,4)";
           notification_limit = 0;
           progress_bar = true;
           progress_bar_height = 14;
           progress_bar_frame_width = 0;
-          progress_bar_corner_radius = 6;
+          progress_bar_corner_radius = 8;
           icon_corner_radius = 0;
           indicate_hidden = true;
-          separator_height = 3;
-          padding = 10;
-          horizontal_padding = 10;
-          text_icon_padding = 10;
-          frame_width = 3;
+          separator_height = 2;
+          padding = 8;
+          horizontal_padding = 8;
+          text_icon_padding = 8;
+          frame_width = 2;
           gap_size = 4;
           separator_color = "frame";
           sort = true;
@@ -96,6 +95,7 @@
         mpd = {
           appname = "mpd";
           max_icon_size = 96;
+          word_wrap = false;
           timeout = 3;
         };
       };
