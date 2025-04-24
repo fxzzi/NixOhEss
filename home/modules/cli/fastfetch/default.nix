@@ -88,15 +88,17 @@ in {
         ];
       };
     };
-    programs.zsh.initExtraFirst = lib.mkIf config.cfg.cli.fastfetch.zshIntegration ''
-      if [ -n "$IN_NIX_SHELL" ]; then
-        # Do nothing if inside a Nix shell
-        :
-      elif [ -z "$WAYLAND_DISPLAY" ]; then
-        ${lib.getExe pkgs.fastfetch} -l none
-      else
-        ${lib.getExe pkgs.fastfetch}
-      fi
-    '';
+    programs.zsh.initContent = lib.mkIf config.cfg.cli.fastfetch.zshIntegration (
+      lib.mkBefore ''
+        if [ -n "$IN_NIX_SHELL" ]; then
+          # Do nothing if inside a Nix shell
+          :
+        elif [ -z "$WAYLAND_DISPLAY" ]; then
+          ${lib.getExe pkgs.fastfetch} -l none
+        else
+          ${lib.getExe pkgs.fastfetch}
+        fi
+      ''
+    );
   };
 }
