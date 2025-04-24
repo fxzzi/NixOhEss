@@ -40,13 +40,13 @@
   monoFont = wrapFonts font.monospace;
 
   # override for electron 36
-  electronVer = "36.0.0-beta.7";
+  electronVer = "36.0.0-beta.8";
   electronPkg = pkgs.electron_35-bin.overrideAttrs {
     pname = "electron_36-bin";
     version = electronVer;
     src = pkgs.fetchurl {
       url = "https://github.com/electron/electron/releases/download/v${electronVer}/electron-v${electronVer}-linux-x64.zip";
-      sha256 = "sha256-lB3PzZLIY2F7J2/F3zCdPEmaDe7WmJv1YV3CytKA59s=";
+      sha256 = "sha256-FRxMeUb//vthpPbwgml0am4qBj/5PuN23ihjK3lvCyc=";
     };
   };
 in {
