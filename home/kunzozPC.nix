@@ -61,6 +61,7 @@
       creamlinux.enable = true;
     };
     gui = {
+      walls.directory = "kunzoz";
       smoothScroll.enable = true;
       fontConfig = {
         enable = true;
