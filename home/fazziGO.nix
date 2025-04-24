@@ -59,6 +59,7 @@
       };
     };
     gui = {
+      walls.directory = "kunzoz";
       fontConfig = {
         enable = true;
         apple-fonts.enable = false;
