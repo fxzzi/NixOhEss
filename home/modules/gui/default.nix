@@ -1,8 +1,16 @@
 {
   inputs,
   lib,
+  config,
   ...
-}: {
+}: let
+  inherit (config.cfg.gui) walls;
+in {
+  options.cfg.gui.walls.directory = lib.mkOption {
+    type = lib.types.str;
+    default = "images";
+    description = "Changes the directory used for the wallpapers.";
+  };
   imports = [
     ./ags
     ./fonts
@@ -24,6 +32,6 @@
     };
   };
   config = {
-    xdg.dataFile."walls".source = "${inputs.walls}/images"; # wallpapers
+    xdg.dataFile."walls".source = "${inputs.walls}/${walls.directory}"; # wallpapers
   };
 }
