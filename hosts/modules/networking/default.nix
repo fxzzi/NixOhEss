@@ -10,15 +10,22 @@
   };
   config = lib.mkIf config.cfg.netConfig.enable {
     networking = {
-      useDHCP = false;
-      dhcpcd.enable = false;
+      # may want to override if using fixed IP. See: fazziPC
+      useDHCP = lib.mkDefault true;
+      dhcpcd.enable = lib.mkDefault true;
+
+      # Use cloudflare DNS
       nameservers = [
         "1.1.1.1"
         "1.0.0.1"
-      ]; # Use cloudflare DNS
+      ];
+
       firewall = {
         enable = true;
-        allowedTCPPorts = [6881 2234]; # qbittorrent and soulseek
+        # allow ports for:
+        # - qbitorrent
+        # - soulseek / nicotine+
+        allowedTCPPorts = [6881 2234];
         allowedUDPPorts = [6881 2234];
       };
     };
@@ -28,7 +35,6 @@
     };
   };
   imports = [
-    ./desktopFixedIP
     ./mediamtx
     ./networkmanager
   ];

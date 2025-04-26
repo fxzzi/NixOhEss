@@ -4,6 +4,9 @@
     MemoryHigh = "16G";
     MemoryMax = "24G";
   };
+  imports = [
+    ./networking.nix
+  ];
   cfg = {
     kernel = {
       type = "zen";
@@ -41,7 +44,6 @@
     };
     netConfig = {
       enable = true;
-      desktopFixedIP.enable = true;
       mediamtx.enable = true;
       networkmanager.enable = false;
     };
