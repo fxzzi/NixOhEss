@@ -25,18 +25,6 @@
       "url": null,
       "hash": "0y654klnfwjrzdlxjwbd2sab8v9yq01lqcdvh866nvf8d6f61114"
     },
-    "fuzzel": {
-      "type": "Git",
-      "repository": {
-        "type": "Git",
-        "url": "https://codeberg.org/dnkl/fuzzel.git"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "b78999869367fe72970cd563d84841d0ff2b23ff",
-      "url": null,
-      "hash": "037psx1j608hkl8d3d84ybyvh8fky82i1ihkpa0xnavqagnjc0fr"
-    },
     "nvidia-vaapi-driver": {
       "type": "Git",
       "repository": {
