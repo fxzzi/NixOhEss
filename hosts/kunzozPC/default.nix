@@ -3,7 +3,7 @@
   # brother has 64gb of ram for reasons beyond my understanding
   systemd.services.nix-daemon.serviceConfig = {
     MemoryHigh = "42G";
-    MemoryMax = "54G";
+    MemoryMax = "48G";
   };
   cfg = {
     kernel = {

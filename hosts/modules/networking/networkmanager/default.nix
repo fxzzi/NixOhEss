@@ -17,8 +17,9 @@
     };
   };
   config = lib.mkIf config.cfg.netConfig.networkmanager.enable {
-    programs.nm-applet.enable = true;
+    programs.nm-applet.enable = true; # enable the nice lil applet
     networking = {
+      dhcpcd.enable = false; # networkmanager uses its own dhcp client
       networkmanager = {
         enable = true;
         wifi = {

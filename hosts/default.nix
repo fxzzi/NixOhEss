@@ -5,8 +5,8 @@
 }: {
   networking.hostName = hostName;
   imports = [
-    ./${hostName}.nix
-    ./hardware-configurations/${hostName}.nix
+    ./${hostName}
+    ./${hostName}/hardware-configuration.nix
     ./modules
   ];
 
