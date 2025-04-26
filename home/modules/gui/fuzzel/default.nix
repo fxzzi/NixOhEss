@@ -3,7 +3,6 @@
   lib,
   config,
   osConfig,
-  npins,
   ...
 }: let
   terminal =
@@ -20,14 +19,9 @@ in {
     programs.fuzzel = {
       enable = true;
       # use svg backend with higher compatibility
-      package =
-        (pkgs.fuzzel.override {
-          svgBackend = "librsvg";
-        })
-        .overrideAttrs {
-          src = npins.fuzzel;
-          version = "0-unstable-${npins.fuzzel.revision}";
-        };
+      package = pkgs.fuzzel.override {
+        svgBackend = "librsvg";
+      };
       settings = {
         main = {
           font = "monospace:size=17";
