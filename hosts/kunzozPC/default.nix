@@ -41,8 +41,6 @@
     };
     netConfig = {
       enable = true;
-      networkmanager.enable = true;
-      networkmanager.powersaving.enable = false; # don't need it on desktop
     };
     opentabletdriver.enable = false;
     hardware = {

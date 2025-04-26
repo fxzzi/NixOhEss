@@ -45,7 +45,6 @@
     netConfig = {
       enable = true;
       mediamtx.enable = true;
-      networkmanager.enable = false;
     };
     opentabletdriver.enable = true;
     fancontrol.enable = true;
