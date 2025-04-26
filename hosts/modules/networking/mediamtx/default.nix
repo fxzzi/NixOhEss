@@ -5,7 +5,11 @@
   ...
 }: let
   port = "4200";
-  localips = builtins.map (item: item.address) config.networking.interfaces.enp6s0.ipv4.addresses;
+  localips = builtins.concatLists (
+    builtins.map
+    (iface: builtins.map (addr: addr.address) iface.ipv4.addresses)
+    (builtins.attrValues config.networking.interfaces)
+  );
 in {
   options.cfg.netConfig.mediamtx.enable = lib.mkOption {
     type = lib.types.bool;
@@ -13,15 +17,15 @@ in {
     description = "Enables the mediamtx service for local webRTC streaming.";
   };
   config = lib.mkIf config.cfg.netConfig.mediamtx.enable {
-    age.secrets.localip.file = ../../../../secrets/localip.age;
+    age.secrets.publicip.file = ../../../../secrets/publicip.age;
     # HACK: This is super hacky. I shouldn't have to do this. I won't have to do
     # this once / if mediamtx allows reading IPs from a path.
     # https://github.com/bluenviron/mediamtx/issues/4109#issuecomment-2581174785
     system.activationScripts.localip = {
       text = ''
-        secret=$(cat "${config.age.secrets.localip.path}")
+        secret=$(cat "${config.age.secrets.publicip.path}")
         configFile=/etc/mediamtx.yaml
-        ${pkgs.gnused}/bin/sed -i -e "s#'@localip@'#$secret#g" "$configFile"
+        ${pkgs.gnused}/bin/sed -i -e "s#'@publicip@'#$secret#g" "$configFile"
       '';
     };
     networking.firewall = {
@@ -39,9 +43,10 @@ in {
         webrtcAddress = ":${port}";
         webrtcLocalUDPAddress = ":${port}";
         webrtcAdditionalHosts =
-          ["@localip@"] # for agenix to replace after
+          ["@publicip@"] # for agenix to replace after
           ++ config.networking.nameservers
           ++ localips;
+        # allow publishing to all paths
         paths = {
           all_others = {};
         };
