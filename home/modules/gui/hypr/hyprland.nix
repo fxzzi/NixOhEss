@@ -314,7 +314,7 @@ in {
             "$MOD, J, exec, ${runTerm "wall-picker.sh"}"
             "$MOD, L, exec, ${runProc "${lib.getExe' pkgs.systemd "loginctl"} lock-session"}"
             ", XF86AudioPrev, exec, ${runProc "${lib.getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif.sh)"}"
-            ", XF86AudioPlay, exec, ${runProc "${lib.getExe pkgs.mpc} toggle"}"
+            ", XF86AudioPlay, exec, ${runProc "${lib.getExe pkgs.mpc} toggle; mpd-notif.sh"}"
             ", XF86AudioNext, exec, ${runProc "${lib.getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif.sh)"}"
 
             # passthrough binds for obs
