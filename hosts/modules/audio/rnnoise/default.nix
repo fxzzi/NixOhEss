@@ -9,8 +9,8 @@
       {
         "name" = "libpipewire-module-filter-chain";
         "args" = {
-          "node.description" = "Noise Canceling source";
-          "media.name" = "Noise Canceling source";
+          "node.description" = "Noise Cancelling source";
+          "media.name" = "Noise Cancelling source";
           "filter.graph" = {
             "nodes" = [
               {
@@ -27,7 +27,7 @@
             ];
           };
           "audio.rate" = 48000;
-          "audio.position" = ["FL"];
+          "audio.position" = ["MONO"];
           "capture.props" = {
             "node.name" = "capture.rnnoise_source";
             "node.passive" = true;
