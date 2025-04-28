@@ -12,6 +12,7 @@
     };
     # reduce duplicate packages by making all hypr*
     # inputs follow the ones from Hyprland
+    # this works but cachix no longer applies.
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
