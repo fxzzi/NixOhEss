@@ -21,9 +21,9 @@
       },
       "branch": "transparency_yipee",
       "submodules": false,
-      "revision": "977ea280367b796961676aa5f1387ab3afd77536",
+      "revision": "a6816275e7dbdeb6498bcc47da3f28585b40c170",
       "url": null,
-      "hash": "0km1zw6dnik9x891nhb635c7q0nl50q6s8akiym4w0i9mw78wpi4"
+      "hash": "11m49gi7dp5dp8rlw55y3pj9z3gjah67ld9p1blcvaa3zsh8k54q"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
