@@ -6,8 +6,6 @@
   networking.hostName = hostName;
   imports = [
     ./${hostName}
-    ./${hostName}/hardware-configuration.nix
-    ./modules
   ];
 
   # nano is enabled by default. no.
