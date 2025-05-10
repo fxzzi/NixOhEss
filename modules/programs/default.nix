@@ -12,7 +12,8 @@
     ./ssh.nix
     ./zsh.nix
     ./theming
-    ./hypr
+    ./hyprland
+    ./hyprlock.nix
     ./wleave
     ./fuzzel.nix
     ./browsers
