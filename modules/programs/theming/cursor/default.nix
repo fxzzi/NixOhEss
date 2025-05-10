@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./hyprcursor
+    ./xcursor.nix
+  ];
+}
