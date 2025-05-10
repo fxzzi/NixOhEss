@@ -5,11 +5,11 @@
   inputs,
   ...
 }: let
-  apple-fonts = inputs.apple-fonts.packages.${pkgs.system};
+  cfg = config.cfg.gui.fontconfig;
 in {
   options.cfg.gui.fontconfig = {
     enable = lib.mkEnableOption "";
-    apple-fonts.enable = lib.mkEnableOption "apple-fonts";
+    useMonoEverywhere = lib.mkEnableOption "use mono everywhere";
     subpixelLayout = lib.mkOption {
       type = lib.types.enum [
         "rgb"
@@ -38,15 +38,15 @@ in {
         defaultFonts = {
           serif = [
             (
-              if config.cfg.gui.fontconfig.apple-fonts.enable
-              then "New York Small"
+              if cfg.useMonoEverywhere
+              then "Ioshelfka Term"
               else "Noto Serif"
             )
           ];
           sansSerif = [
             (
-              if config.cfg.gui.fontconfig.apple-fonts.enable
-              then "SF Pro Text"
+              if cfg.useMonoEverywhere
+              then "Ioshelfka Term"
               else "Inter Variable"
             )
           ];
@@ -60,22 +60,15 @@ in {
         };
       };
 
-      packages = with pkgs;
-        [
-          nerd-fonts.symbols-only # symbols for terminal, bar, lock, etc
-          noto-fonts # Google Noto Fonts
-          noto-fonts-emoji # Emoji Font
-          noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
-          corefonts # ms fonts.
-          (pkgs.callPackage ./ioshelfka-term.nix {}) # custom iosevka build
-        ]
-        ++ lib.optionals (!config.cfg.gui.fontconfig.apple-fonts.enable) [
-          inter
-        ]
-        ++ lib.optionals config.cfg.gui.fontconfig.apple-fonts.enable [
-          apple-fonts.sf-pro
-          apple-fonts.ny
-        ];
+      packages = with pkgs; [
+        nerd-fonts.symbols-only # symbols for terminal, bar, lock, etc
+        noto-fonts # Google Noto Fonts
+        noto-fonts-emoji # Emoji Font
+        noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
+        corefonts # ms fonts.
+        inter
+        (pkgs.callPackage ./ioshelfka-term.nix {}) # custom iosevka build
+      ];
     };
   };
 }

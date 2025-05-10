@@ -137,7 +137,7 @@
     fontconfig = {
       enable = true;
       subpixelLayout = "none";
-      apple-fonts.enable = false;
+      useMonoEverywhere = true;
     };
     wallust.enable = true;
     ags.enable = true;

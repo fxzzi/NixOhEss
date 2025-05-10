@@ -116,7 +116,6 @@
     fontconfig = {
       enable = true;
       subpixelLayout = "rgb";
-      apple-fonts.enable = true;
     };
     wallust.enable = true;
     ags.enable = true;
