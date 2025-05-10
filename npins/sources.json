@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "42613bd4c69cd5720114679a52b73b8b5d947678",
-      "url": "https://github.com/Vladimir-csp/app2unit/archive/42613bd4c69cd5720114679a52b73b8b5d947678.tar.gz",
-      "hash": "1xk68x80n6h533dxranvjsnzsmjncs89476252hcg03slv1vcj7d"
+      "revision": "7b9672a2dc16bdfbe7b7b7c27043529ca3bcb6ae",
+      "url": "https://github.com/Vladimir-csp/app2unit/archive/7b9672a2dc16bdfbe7b7b7c27043529ca3bcb6ae.tar.gz",
+      "hash": "03dnx5v75530fwppfgpjl6xzzmdbk73ymrlix129d9n5sqrz9wgk"
     },
     "foot": {
       "type": "Git",
@@ -21,9 +21,9 @@
       },
       "branch": "transparency_yipee",
       "submodules": false,
-      "revision": "a6816275e7dbdeb6498bcc47da3f28585b40c170",
+      "revision": "cd75128c89dc083524667d2fb1d4ca50874ace9b",
       "url": null,
-      "hash": "11m49gi7dp5dp8rlw55y3pj9z3gjah67ld9p1blcvaa3zsh8k54q"
+      "hash": "0wbrfnw7pban65rdc4lmzwkw4w1x2inmg58qnyqnc2p1xp5i3k2x"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -34,25 +34,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "c2860cc621ae1ef515c003d43315c63a41529ff4",
-      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/c2860cc621ae1ef515c003d43315c63a41529ff4.tar.gz",
-      "hash": "1c3ax8vfxzbm9067vd2canyyd30b40dhx06b0gx4hqrvi83hgkga"
-    },
-    "xdg-terminal-exec": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Vladimir-csp",
-        "repo": "xdg-terminal-exec"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v0.12.3",
-      "revision": "9357b7d093f98e0b5c7aec18f2fc9eea0ae90aab",
-      "url": "https://api.github.com/repos/Vladimir-csp/xdg-terminal-exec/tarball/v0.12.3",
-      "hash": "07sy7rfzvhh8idslz6cbyxzwhrp5vq5ghhapbgpix93qz76dl3wq"
+      "revision": "8e6a439600137d9105d238b810857e185cfe4cec",
+      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/8e6a439600137d9105d238b810857e185cfe4cec.tar.gz",
+      "hash": "0f1ni32hahs9samhrhfkwraackpx0na90491g9bl0b4cd837jy6m"
     }
   },
   "version": 5
