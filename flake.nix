@@ -1,68 +1,72 @@
 {
-  description = "fazzi's nixos + hm conf";
+  description = "fazzi's nixos + hjem conf";
 
   inputs = {
-    # shallow clone these so its faster to fetch.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
-    nixpkgs-sgdboop.url = "github:Saturn745/nixpkgs/sgdboop-init";
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    nixpkgs-sgdboop.url = "github:fxzzi/nixpkgs/sgdboop-new";
+    systems.url = "github:nix-systems/x86_64-linux";
+    hjem = {
+      # url = "github:feel-co/hjem";
+      url = "github:nydragon/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # reduce duplicate packages by making all hypr*
-    # inputs follow the ones from Hyprland
-    # this works but cachix no longer applies.
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs = {
-        nixpkgs.follows = "hyprland/nixpkgs";
+        nixpkgs.follows = "nixpkgs";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         hyprgraphics.follows = "hyprland/hyprgraphics";
+        systems.follows = "systems";
       };
     };
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs = {
-        nixpkgs.follows = "hyprland/nixpkgs";
+        nixpkgs.follows = "nixpkgs";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         hyprland-protocols.follows = "hyprland/hyprland-protocols";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
+        systems.follows = "systems";
       };
     };
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs = {
-        nixpkgs.follows = "hyprland/nixpkgs";
+        nixpkgs.follows = "nixpkgs";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         hyprgraphics.follows = "hyprland/hyprgraphics";
+        systems.follows = "systems";
       };
     };
     hyprsunset = {
       url = "github:hyprwm/hyprsunset";
       inputs = {
-        nixpkgs.follows = "hyprland/nixpkgs";
+        nixpkgs.follows = "nixpkgs";
         hyprutils.follows = "hyprland/hyprutils";
         hyprland-protocols.follows = "hyprland/hyprland-protocols";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
+        systems.follows = "systems";
       };
     };
     ags = {
       url = "github:Aylur/ags/v1"; # still on v1 lmfao
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
     nvuv = {
       url = "gitlab:fazzi/nvuv";
@@ -80,12 +84,16 @@
       url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        home-manager.follows = ""; # ew home-manager
         darwin.follows = ""; # don't need darwin deps
       };
     };
     nvf = {
       url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";
@@ -93,7 +101,10 @@
     };
     creamlinux = {
       url = "github:Novattz/creamlinux-installer";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
     # non-flake inputs
     tokyo-night-linux = {
@@ -112,21 +123,7 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     npins = import ./npins;
-
-    machines = [
-      {
-        hostName = "fazziPC";
-        user = "faaris";
-      }
-      {
-        hostName = "fazziGO";
-        user = "faaris";
-      }
-      {
-        hostName = "kunzozPC";
-        user = "kunzoz";
-      }
-    ];
+    lib' = import ./lib inputs.nixpkgs.lib;
 
     nixosCommonSystem = {
       hostName,
@@ -134,17 +131,27 @@
     }:
       nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs npins hostName user;
+          inherit inputs npins hostName user lib';
         };
-        modules = [./hosts];
+        modules = [
+          ./modules
+          ./hosts
+        ];
       };
   in {
-    nixosConfigurations = builtins.listToAttrs (
-      map (machine: {
-        name = machine.hostName;
-        value = nixosCommonSystem machine;
-      })
-      machines
-    );
+    nixosConfigurations = {
+      fazziPC = nixosCommonSystem {
+        hostName = "fazziPC";
+        user = "faaris";
+      };
+      fazziGO = nixosCommonSystem {
+        hostName = "fazziGO";
+        user = "faaris";
+      };
+      kunzozPC = nixosCommonSystem {
+        hostName = "kunzozPC";
+        user = "kunzoz";
+      };
+    };
   };
 }

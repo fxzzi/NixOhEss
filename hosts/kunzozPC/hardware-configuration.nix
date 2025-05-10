@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -12,7 +11,14 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "ahci"
+    "xhci_pci"
+    "usb_storage"
+    "usbhid"
+    "sd_mod"
+  ];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
@@ -38,19 +44,38 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/4638-FB30";
     fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
   };
 
   fileSystems."/mnt/windows-kunzoz" = {
     device = "/dev/disk/by-uuid/DC2C38A72C387F18";
     fsType = "ntfs3";
-    options = ["rw" "nosuid" "nodev" "relatime" "uid=1000" "gid=100" "iocharset=utf8"];
+    options = [
+      "rw"
+      "nosuid"
+      "nodev"
+      "relatime"
+      "uid=1000"
+      "gid=100"
+      "iocharset=utf8"
+    ];
   };
 
   fileSystems."/mnt/windows-dad" = {
     device = "/dev/disk/by-uuid/84B25357B2534CB4";
     fsType = "ntfs3";
-    options = ["rw" "nosuid" "nodev" "relatime" "uid=1000" "gid=100" "iocharset=utf8"];
+    options = [
+      "rw"
+      "nosuid"
+      "nodev"
+      "relatime"
+      "uid=1000"
+      "gid=100"
+      "iocharset=utf8"
+    ];
   };
 
   swapDevices = [];

@@ -1,0 +1,28 @@
+{
+  imports = [
+    ./fastfetch
+    ./android.nix
+    ./bash.nix
+    ./bottom.nix
+    ./git.nix
+    ./ncmpcpp.nix
+    ./nh.nix
+    ./nvf.nix
+    ./nvtop.nix
+    ./ssh.nix
+    ./zsh.nix
+    ./theming
+    ./hypr
+    ./wleave
+    ./fuzzel.nix
+    ./browsers
+    ./foot
+    ./mpv.nix
+    ./music.nix
+    ./obs-studio.nix
+    ./thunar.nix
+    ./vesktop.nix
+    ./ags
+    ./uwsm
+  ];
+}
