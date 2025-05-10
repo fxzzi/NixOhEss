@@ -1,7 +1,0 @@
-{...}: {
-  imports = [
-    ./thunar
-    ./hyprland
-    ./uwsm
-  ];
-}
