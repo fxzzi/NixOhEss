@@ -82,7 +82,7 @@
       };
       startpage = {
         enable = true;
-        user = "fazzi";
+        user = "kunzooz";
       };
     };
   };
