@@ -15,7 +15,7 @@
       (pkgs.fetchpatch
         {
           url = "https://github.com/hyprwm/Hyprland/pull/10364.patch";
-          sha256 = "sha256-lZXohmqskJmVprbvpUzfhGaAHLyxFFbklfkd2ISRcb8=";
+          sha256 = "sha256-M/T4B2sJeyLB6nKTJqouuxWzmno3lfjLpO3yNbxcvw4=";
         })
     ]
     else [];
