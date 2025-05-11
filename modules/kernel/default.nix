@@ -22,10 +22,11 @@ in {
       "latest"
       "zen"
       "xanmod"
+      "lqx"
       "lts"
     ];
     default = "latest";
-    description = "Selects which kernel you would like to use: 'latest' or 'zen'.";
+    description = "Selects which kernel to use";
   };
   config = {
     boot = {

@@ -15,6 +15,7 @@
     gtk-cursor-theme-name=${xcursor}
     gtk-cursor-theme-size=24
   '';
+  dconf = lib.getExe pkgs.dconf;
 in {
   config = {
     environment.sessionVariables = {
@@ -38,9 +39,18 @@ in {
         pkgs.${cursor}
       ];
     };
-    programs.hyprland.settings.exec = lib.mkAfter [
-      "dconf write /org/gnome/desktop/interface/cursor-theme \"'${xcursor}'\""
-      "dconf write /org/gnome/desktop/interface/cursor-size \"'24'\""
-    ];
+    systemd.user.services.dconf-xcursor = {
+      enable = true;
+      unitConfig = {
+        ConditionEnvironment = "WAYLAND_DISPLAY";
+        Description = "Set dconf cursor settings";
+        After = ["graphical-session-pre.target"];
+        PartOf = ["graphical-session.target"];
+      };
+      script = ''
+        ${dconf} write /org/gnome/desktop/interface/cursor-theme \"'${xcursor}'\"
+        ${dconf} write /org/gnome/desktop/interface/cursor-size \"'24'\"
+      '';
+    };
   };
 }
