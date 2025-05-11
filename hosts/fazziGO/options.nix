@@ -5,7 +5,7 @@
     };
     bootConfig = {
       enable = true;
-      keyLayout = "gb";
+      keyLayout = "uk";
       timeout = 0;
       greetd.enable = true;
     };
