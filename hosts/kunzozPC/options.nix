@@ -28,8 +28,8 @@
   };
   networking = {
     enable = true;
+    networkmanager.enable = true;
   };
-  # opentabletdriver.enable = true;
   hardware = {
     viaRules.enable = true;
   };
