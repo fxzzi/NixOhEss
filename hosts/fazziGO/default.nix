@@ -12,7 +12,6 @@
     packages = with pkgs; [
       qbittorrent-enhanced
       telegram-desktop
-      godot3
     ];
   };
 }
