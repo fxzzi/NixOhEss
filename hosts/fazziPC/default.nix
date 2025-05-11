@@ -14,7 +14,6 @@
   hj.packages = with pkgs; [
     qbittorrent-enhanced
     telegram-desktop
-    godot3
     losslesscut-bin
     qpwgraph
   ];
