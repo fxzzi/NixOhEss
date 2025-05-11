@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   gtkConf = ''
@@ -9,6 +10,7 @@
     gtk-icon-theme-name=Papirus-Dark
     gtk-font-name=Sans Regular 11
   '';
+  dconf = lib.getExe pkgs.dconf;
 in {
   config = {
     environment = {
@@ -23,19 +25,26 @@ in {
         ".config/gtk-4.0/settings.ini".text = gtkConf;
       };
       packages = with pkgs; [
-        (pkgs.catppuccin-papirus-folders.override
+        (catppuccin-papirus-folders.override
           {
             flavor = "macchiato";
             accent = "blue";
           })
       ];
     };
-    programs.hyprland.settings.exec = [
-      "dconf reset -f /" # bring back to a reproducible state aka empty
-
-      "dconf write /org/gnome/desktop/interface/gtk-theme \"'tokyonight'\""
-      "dconf write /org/gnome/desktop/interface/icon-theme \"'Papirus-Dark'\""
-      "dconf write /org/gnome/desktop/interface/font-name \"'Sans Regular 11'\""
-    ];
+    systemd.user.services.dconf-gtk = {
+      enable = true;
+      unitConfig = {
+        ConditionEnvironment = "WAYLAND_DISPLAY";
+        Description = "Set dconf theming settings";
+        After = ["graphical-session-pre.target"];
+        PartOf = ["graphical-session.target"];
+      };
+      script = ''
+        ${dconf} write /org/gnome/desktop/interface/gtk-theme \"'tokyonight'\"
+        ${dconf} write /org/gnome/desktop/interface/icon-theme \"'Papirus-Dark'\"
+        ${dconf} write /org/gnome/desktop/interface/font-name \"'Sans Regular 11'\"
+      '';
+    };
   };
 }

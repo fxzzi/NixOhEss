@@ -100,11 +100,16 @@ in {
           "AUTOCD"
           # match files beginning with . without explicitly specifying the dot
           "GLOBDOTS"
-          # history options, to share correctly between sessions, ignore dups and stuff
+          # history options to ignore dups and stuff
           "EXTENDED_HISTORY"
           "HIST_EXPIRE_DUPS_FIRST"
           "HIST_IGNORE_DUPS"
+          "HIST_IGNORE_ALL_DUPS"
+          "HIST_FIND_NO_DUPS"
+          "HIST_SAVE_NO_DUPS"
           "HIST_IGNORE_SPACE"
+
+          # make all opened shells share history
           "SHARE_HISTORY"
         ];
 
