@@ -6,5 +6,6 @@
     ./hyprpaper.nix
     ./xdph.nix
     ./dunst.nix
+    ./opentabletdriver.nix
   ];
 }
