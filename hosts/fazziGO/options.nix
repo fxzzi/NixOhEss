@@ -17,7 +17,10 @@
 
     networking = {
       enable = true;
-      networkmanager.enable = true;
+      networkmanager = {
+        enable = true;
+        powersaving.enable = true;
+      };
     };
     printing.enable = true;
     scanning.enable = false;
