@@ -14,5 +14,8 @@
       };
     };
     services.gnome.gnome-keyring.enable = true;
+    environment.sessionVariables = {
+      SUDO_PROMPT = "󱅞 "; # note the extra space
+    };
   };
 }
