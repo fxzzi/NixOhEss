@@ -127,7 +127,7 @@
     hypr = {
       useGit = false;
       defaultMonitor = "DP-3";
-      secondaryMonitor = "DP-2";
+      secondaryMonitor = null;
       animations.enable = true;
       hyprland = {
         enable = true;
@@ -141,6 +141,7 @@
         suspendTimeout = 1200;
       };
       hyprpaper.enable = true;
+      hyprcursor.theme = "posy-cursors";
       xdph.enable = true;
     };
     dunst.enable = true;
