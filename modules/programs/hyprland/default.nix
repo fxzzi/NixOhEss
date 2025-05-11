@@ -12,11 +12,11 @@
   patches =
     if config.cfg.gui.hypr.useGit
     then [
-      (pkgs.fetchpatch
-        {
-          url = "https://github.com/hyprwm/Hyprland/pull/10364.patch";
-          sha256 = "sha256-M/T4B2sJeyLB6nKTJqouuxWzmno3lfjLpO3yNbxcvw4=";
-        })
+      # (pkgs.fetchpatch
+      #   {
+      #     url = "https://github.com/hyprwm/Hyprland/pull/10364.patch";
+      #     sha256 = "sha256-M/T4B2sJeyLB6nKTJqouuxWzmno3lfjLpO3yNbxcvw4=";
+      #   })
     ]
     else [];
   uwsm = lib.getExe' config.programs.uwsm.package "uwsm";
