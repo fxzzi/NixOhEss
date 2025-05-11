@@ -13,9 +13,12 @@ warranty.
 
 ## Hosts
 
-- fazziPC: My main desktop PC, running an AMD 5600x and an RTX 3070.
-- fazziGO: My Thinkpad L14 Gen 4, which sports an AMD Ryzen 5 7530U.
-- kunzozPC: My friends gaming PC, where I manage his NixOS installation.
+- [fazziPC](./hosts/fazziPC): My main desktop PC, running an AMD 5600x and an
+  RTX 3070.
+- [fazziGO](./hosts/fazziGO): My Thinkpad L14 Gen 4, which sports an AMD Ryzen 5
+  7530U.
+- [kunzozPC](./hosts/kunzozPC): My friends gaming PC, where I manage his NixOS
+  installation.
 
 ## Structure
 
