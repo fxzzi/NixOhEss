@@ -15,7 +15,6 @@ in {
       enable = true;
       settings = {
         default_session = {
-          # HACK: wrap command with `zsh` to correctly source envvars
           command =
             # sh
             ''
@@ -24,7 +23,7 @@ in {
               --time \
               --remember \
               --asterisks \
-              --cmd 'zsh -l -c "${cmd}"'
+              --cmd '${cmd}'
             '';
           user = "greeter";
         };

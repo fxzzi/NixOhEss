@@ -123,7 +123,16 @@ in {
         default = null;
         description = "Sets the secondary monitor for hypr*.";
       };
-      animations.enable = lib.mkEnableOption "animations";
+      animations.enable =
+        lib.mkEnableOption "animations"
+        // {
+          default = true;
+        };
+      blur.enable =
+        lib.mkEnableOption "blur"
+        // {
+          default = true;
+        };
     };
   };
   config = {
@@ -227,7 +236,7 @@ in {
             range = 6;
           };
           blur = {
-            enabled = 1;
+            enabled = config.cfg.gui.hypr.blur.enable;
             size = 4;
             passes = 3;
             popups = 1;

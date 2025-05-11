@@ -101,6 +101,7 @@
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
         animations.enable = false;
+        blur.enable = false;
         hyprland = {
           enable = true;
         };
