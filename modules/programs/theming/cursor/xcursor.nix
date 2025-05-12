@@ -10,7 +10,13 @@
     then "Posy_Cursor"
     else if cursor == "xcursor-pro"
     then "XCursor-Pro-Light"
+    else if cursor == "bibata-hyprcursor"
+    then "Bibata-Original-Classic"
     else throw "Invalid cursor theme";
+  xcursorPkg =
+    if cursor == "bibata-hyprcursor"
+    then pkgs.bibata-cursors
+    else pkgs.${cursor};
   gtkCursorConf = ''
     gtk-cursor-theme-name=${xcursor}
     gtk-cursor-theme-size=24
@@ -22,7 +28,7 @@ in {
       XCURSOR_THEME = xcursor;
       XCURSOR_SIZE = 24;
       XCURSOR_PATH = [
-        "${pkgs.${cursor}}/share/icons"
+        "${xcursorPkg}/share/icons"
       ];
     };
     hj = {
@@ -36,7 +42,7 @@ in {
         '';
       };
       packages = [
-        pkgs.${cursor}
+        xcursorPkg
       ];
     };
     systemd.user.services.dconf-xcursor = {
