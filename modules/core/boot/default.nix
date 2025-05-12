@@ -5,7 +5,7 @@
   ...
 }: {
   options.cfg.bootConfig = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "boot";
     keyLayout = lib.mkOption {
       type = lib.types.str;
       default = "us";

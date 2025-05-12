@@ -4,7 +4,7 @@
   ...
 }: {
   options.cfg.cli.git = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "git";
     name = lib.mkOption {
       type = lib.types.str;
       default = false;

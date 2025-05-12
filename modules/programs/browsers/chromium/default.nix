@@ -50,7 +50,7 @@
   };
 in {
   options.cfg.apps.browsers.chromium = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "chromium";
     wootility.enable = lib.mkEnableOption "wootility";
     scyrox-s-center.enable = lib.mkEnableOption "scyrox-s-center";
     via.enable = lib.mkEnableOption "via";
