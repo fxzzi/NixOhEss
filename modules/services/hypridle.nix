@@ -19,7 +19,7 @@
     else pkgs;
 in {
   options.cfg.gui.hypr.hypridle = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "hypridle";
     dpmsTimeout = lib.mkOption {
       type = lib.types.int;
       default = 300;

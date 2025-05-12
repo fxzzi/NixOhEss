@@ -8,7 +8,7 @@
 in {
   options = {
     cfg.cli.fastfetch = {
-      enable = lib.mkEnableOption "";
+      enable = lib.mkEnableOption "fastfetch";
       shellIntegration = lib.mkOption {
         type = lib.types.bool;
         default = false;
