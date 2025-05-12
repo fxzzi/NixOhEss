@@ -88,7 +88,8 @@
         wayfreeze --hide-cursor &
         PID=$!
         sleep .1
-        $grimCmd -g "$(slurp)" "$path" || echo "selection cancelled"
+        # don't allow multiple slurps at once
+        pidof slurp || ($grimCmd -g "$(slurp)" "$path" || echo "selection cancelled")
         kill $PID
         ;;
       --active)
