@@ -94,6 +94,23 @@ in {
           div[class="circleIconButton__5bc7e discoveryIcon_ef3116"] {
             display: none !important;
           }
+
+          /* reduce context menu padding */
+          .scroller_c1e9c4{
+              margin: -4px;
+              &::after,.separator_c1e9c4 {
+                  margin: 1px 8px !important;
+              }
+              &::after,.wrapper_f563df {
+                  padding: 2px !important;
+              }
+              &::after,.item_c1e9c4{
+                  /* min-height is 32px as default, change value for desired look */
+                  min-height: 32;
+                  /* padding is 4px 8px as default, change value for desired look */
+                  padding: 4px 8px;
+              }
+          }
         '';
 
       packages = with pkgs; [

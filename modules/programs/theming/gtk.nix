@@ -9,6 +9,8 @@
     gtk-theme-name=tokyonight
     gtk-icon-theme-name=Papirus-Dark
     gtk-font-name=Sans Regular 11
+    gtk-application-prefer-dark-theme=true
+
   '';
   dconf = lib.getExe pkgs.dconf;
 in {
@@ -44,6 +46,7 @@ in {
         ${dconf} write /org/gnome/desktop/interface/gtk-theme \"'tokyonight'\"
         ${dconf} write /org/gnome/desktop/interface/icon-theme \"'Papirus-Dark'\"
         ${dconf} write /org/gnome/desktop/interface/font-name \"'Sans Regular 11'\"
+        ${dconf} write /org/gnome/desktop/interface/color-scheme \"'prefer-dark'\"
       '';
     };
   };
