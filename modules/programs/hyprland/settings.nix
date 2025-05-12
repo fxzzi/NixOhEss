@@ -88,17 +88,17 @@
         wayfreeze --hide-cursor &
         PID=$!
         sleep .1
-        $grimCmd -g "$(slurp)" "$path"
+        $grimCmd -g "$(slurp)" "$path" || echo "selection cancelled"
         kill $PID
         ;;
       --active)
         window_geometry=$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
 
-        $grimCmd -g "$window_geometry" "$path"
+        $grimCmd -g "$window_geometry" "$path" || echo "no active window"
         ;;
       esac
 
-      # if the screenshot was not cancelled
+      # if the screenshot was successful
       if [ -f "$path" ]; then
         canberra-gtk-play -i camera-shutter & # play shutter sound
         dunstify -i "$path" -a "screenshot" "Screenshot" "Copied to clipboard" -r 9998 &
