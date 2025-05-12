@@ -141,7 +141,6 @@
         suspendTimeout = 1200;
       };
       hyprpaper.enable = true;
-      hyprcursor.theme = "posy-cursors";
       xdph.enable = true;
     };
     dunst.enable = true;
