@@ -21,7 +21,7 @@
     ];
 in {
   options.cfg.apps.thunar = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "thunar";
     collegeBookmarks.enable = lib.mkEnableOption "collegeBookmarks";
   };
   config = lib.mkIf config.cfg.apps.thunar.enable {

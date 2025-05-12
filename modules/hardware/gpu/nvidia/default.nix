@@ -14,7 +14,7 @@
           default = false;
           description = "Exposes nvidia GPU temperature at /tmp/nvidia-temp";
         };
-        enable = lib.mkEnableOption "";
+        enable = lib.mkEnableOption "nvidia";
       };
     };
   };

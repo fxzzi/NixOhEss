@@ -4,7 +4,7 @@
     ./chromium
   ];
   options.cfg.apps.browsers.startpage = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "browsers";
     user = lib.mkOption {
       type = lib.types.enum [
         "fazzi"

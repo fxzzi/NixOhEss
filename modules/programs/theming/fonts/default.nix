@@ -8,7 +8,7 @@
   cfg = config.cfg.gui.fontconfig;
 in {
   options.cfg.gui.fontconfig = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "fonts";
     useMonoEverywhere = lib.mkEnableOption "use mono everywhere";
     subpixelLayout = lib.mkOption {
       type = lib.types.enum [

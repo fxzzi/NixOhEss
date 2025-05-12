@@ -27,7 +27,7 @@
   renderSettings = attrs: lib.strings.concatStringsSep "\n" (lib.attrsets.mapAttrsToList renderLine attrs) + "\n";
 in {
   options.cfg.gaming.mangohud = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "mangohud";
     enableSessionWide = lib.mkOption {
       type = lib.types.bool;
       default = false;

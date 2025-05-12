@@ -19,7 +19,7 @@
   };
 in {
   options.cfg.gaming.celeste = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "celeste";
     modding.enable = lib.mkEnableOption "modding";
     path = lib.mkOption {
       type = lib.types.str;

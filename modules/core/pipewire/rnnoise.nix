@@ -43,7 +43,7 @@
   };
 in {
   options.cfg.audio.pipewire.rnnoise = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "rnnoise";
     vadThreshold = lib.mkOption {
       type = lib.types.int;
       default = 50;
