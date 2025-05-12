@@ -137,7 +137,7 @@
     fontconfig = {
       enable = true;
       subpixelLayout = "none";
-      useMonoEverywhere = true;
+      useMonoEverywhere = false;
     };
     wallust.enable = true;
     ags.enable = true;
