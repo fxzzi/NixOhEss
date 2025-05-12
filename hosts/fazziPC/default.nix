@@ -16,5 +16,6 @@
     telegram-desktop
     losslesscut-bin
     qpwgraph
+    godot3
   ];
 }
