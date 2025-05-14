@@ -4,6 +4,7 @@
   config,
   inputs,
   pkgs,
+  user,
   ...
 }: let
   # toHyprlang broken for now, use toHyprconf instead
@@ -49,7 +50,7 @@ in {
               [
                 {
                   monitor = "${config.cfg.gui.hypr.defaultMonitor}";
-                  path = "${config.hj.xdg.stateDirectory}/wallpaper";
+                  path = "/home/${user}/.local/state/wallpaper";
                   blur_size = 3;
                   blur_passes = 3;
                   contrast = 1;
@@ -59,7 +60,7 @@ in {
               ]
               ++ lib.optional multiMonitor {
                 monitor = "";
-                path = "${config.hj.xdg.stateDirectory}/wallpaper";
+                path = "/home/${user}/.local/state/wallpaper";
                 blur_size = 3;
                 blur_passes = 3;
                 contrast = 0.9;

@@ -17,8 +17,5 @@
       "image/tiff" = "eom.desktop";
       "image/svg+xml" = "eom.desktop";
     };
-    hj = {
-      xdg.enable = true;
-    };
   };
 }

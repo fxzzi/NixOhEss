@@ -27,10 +27,10 @@ in {
           splash = 0;
 
           preload = [
-            "${config.hj.xdg.stateDirectory}/wallpaper"
+            "/home/${user}/.local/state/wallpaper"
           ];
           wallpaper = [
-            ", ${config.hj.xdg.stateDirectory}/wallpaper"
+            ", /home/${user}/.local/state/wallpaper"
           ];
         };
       };
