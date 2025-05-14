@@ -1,8 +1,8 @@
-{config, ...}: {
+{user, ...}: {
   config = {
     programs.bash.shellInit = ''
       # declutter ~
-      export HISTFILE="${config.hj.xdg.stateDirectory}/bash_history"
+      export HISTFILE="/home/${user}/.local/state/bash_history"
     '';
   };
 }

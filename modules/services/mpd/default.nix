@@ -17,8 +17,8 @@
       files = {
         ".config/mpd/mpd.conf".text = ''
           music_directory "/home/${user}/Music"
-          state_file "${config.hj.xdg.stateDirectory}/mpd/state"
-          sticker_file "${config.hj.xdg.stateDirectory}/mpd/sticker.sql"
+          state_file "/home/${user}/.local/state/mpd/state"
+          sticker_file "/home/${user}/.local/state/mpd/sticker.sql"
 
           bind_to_address "localhost"
 

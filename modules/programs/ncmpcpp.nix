@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  user,
   ...
 }: let
   inherit
@@ -86,7 +87,7 @@ in {
         ];
         ".config/ncmpcpp/config".text = renderSettings {
           # Directories
-          lyrics_directory = "${config.hj.xdg.dataDirectory}/ncmpcpp/lyrics/";
+          lyrics_directory = "/home/${user}/.local/share/ncmpcpp/lyrics/";
 
           # Mouse and scrolling
           mouse_support = "yes";

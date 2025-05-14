@@ -274,15 +274,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1746030182,
-        "narHash": "sha256-tJlN8nDYdRQGYMwQJHOnDmjLvjRrvV5VdA+UKNT7FYU=",
-        "owner": "nydragon",
+        "lastModified": 1747038076,
+        "narHash": "sha256-vy+My+8yRRu0OG6XBEPDR8ebfrPS4iuruyQ1ZUyHq6s=",
+        "owner": "feel-co",
         "repo": "hjem",
-        "rev": "bd2cf8e7a9ff3d0332c16594b3db5960b99ccb6f",
+        "rev": "7d674eaded6586554910e62baed5eadad6496315",
         "type": "github"
       },
       "original": {
-        "owner": "nydragon",
+        "owner": "feel-co",
         "repo": "hjem",
         "type": "github"
       }

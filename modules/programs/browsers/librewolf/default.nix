@@ -6,7 +6,7 @@
   user,
   ...
 }: let
-  newTabPage = "file://${config.hj.xdg.dataDirectory}/startpage/${config.cfg.apps.browsers.startpage.user}/index.html";
+  newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.apps.browsers.startpage.user}/index.html";
 in {
   options.cfg.apps.browsers.librewolf = {
     enable = lib.mkEnableOption "librewolf";

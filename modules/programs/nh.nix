@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  user,
   ...
 }: let
   inherit (builtins) toString;
@@ -10,7 +11,7 @@ in {
   config = lib.mkIf config.cfg.cli.nh.enable {
     programs.nh = {
       enable = true;
-      flake = "${config.hj.xdg.configDirectory}/nixos";
+      flake = "/home/${user}/.config/nixos";
       clean = {
         enable = true;
         dates = "weekly";
