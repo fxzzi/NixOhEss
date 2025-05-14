@@ -19,7 +19,7 @@
     };
     environment = {
       sessionVariables = {
-        ANDROID_HOME = "${config.hj.xdg.dataDirectory}/android"; # Android SDK home
+        ANDROID_HOME = "/home/${user}/.local/share/android"; # Android SDK home
       };
       shellAliases = {
         adb = "HOME=$ANDROID_HOME ${lib.getExe' pkgs.android-tools "adb"}";

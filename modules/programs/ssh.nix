@@ -12,27 +12,27 @@
         # GitHub
         Host github.com
         	Hostname github.com
-        	IdentityFile ${config.hj.xdg.dataDirectory}/ssh/github
+        	IdentityFile /home/${user}/.local/share/ssh/github
 
         # GitLab
         Host gitlab.com
         	Hostname gitlab.com
-        	IdentityFile ${config.hj.xdg.dataDirectory}/ssh/gitlab
+        	IdentityFile /home/${user}/.local/share/ssh/gitlab
 
         # ArchLinux GitLab
         Host https://gitlab.archlinux.org
         	Hostname https://gitlab.archlinux.org/
-        	IdentityFile ${config.hj.xdg.dataDirectory}/ssh/archlinux-gitlab
+        	IdentityFile /home/${user}/.local/share/ssh/archlinux-gitlab
 
         # AUR
         Host aur.archlinux.org
         	Hostname aur.archlinux.org
-        	IdentityFile ${config.hj.xdg.dataDirectory}/ssh/aur
+        	IdentityFile /home/${user}/.local/share/ssh/aur
 
         # Codeberg
         Host codeberg.org
         	Hostname codeberg.org
-        	IdentityFile ${config.hj.xdg.dataDirectory}/ssh/codeberg
+        	IdentityFile /home/${user}/.local/share/ssh/codeberg
       '';
     };
     systemd.user.services.gnome-keyring = {

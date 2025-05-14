@@ -17,7 +17,7 @@
     ]
     ++ [
       "file:///home/${user}/Pictures/Screenshots Screenshots"
-      "file://${config.hj.xdg.configDirectory}/nixos NixOS"
+      "file:///home/${user}/.config/nixos NixOS"
     ];
 in {
   options.cfg.apps.thunar = {

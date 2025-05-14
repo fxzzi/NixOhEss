@@ -5,7 +5,7 @@
   user,
   ...
 }: let
-  newTabPage = "file://${config.hj.xdg.dataDirectory}/startpage/${config.cfg.apps.browsers.startpage.user}/index.html";
+  newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.apps.browsers.startpage.user}/index.html";
   commandLineArgs =
     [
       "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
