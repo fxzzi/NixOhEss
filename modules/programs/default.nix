@@ -17,7 +17,7 @@
     ./wleave
     ./fuzzel.nix
     ./browsers
-    ./foot
+    ./foot.nix
     ./mpv.nix
     ./music.nix
     ./obs-studio.nix
