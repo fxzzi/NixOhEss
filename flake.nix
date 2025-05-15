@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
+    systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,6 +13,7 @@
       url = "github:hyprwm/Hyprland";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
       };
     };
     hyprlock = {
@@ -22,6 +24,7 @@
         hyprutils.follows = "hyprland/hyprutils";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         hyprgraphics.follows = "hyprland/hyprgraphics";
+        systems.follows = "systems";
       };
     };
     hypridle = {
@@ -32,6 +35,7 @@
         hyprutils.follows = "hyprland/hyprutils";
         hyprland-protocols.follows = "hyprland/hyprland-protocols";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
+        systems.follows = "systems";
       };
     };
     hyprpaper = {
@@ -42,6 +46,7 @@
         hyprutils.follows = "hyprland/hyprutils";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         hyprgraphics.follows = "hyprland/hyprgraphics";
+        systems.follows = "systems";
       };
     };
     hyprsunset = {
@@ -51,12 +56,14 @@
         hyprutils.follows = "hyprland/hyprutils";
         hyprland-protocols.follows = "hyprland/hyprland-protocols";
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
+        systems.follows = "systems";
       };
     };
     ags = {
       url = "github:Aylur/ags/v1"; # still on v1 lmfao
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
       };
     };
     nvuv = {
@@ -83,12 +90,14 @@
       url = "github:notashelf/nvf";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
       };
     };
     creamlinux = {
       url = "github:Novattz/creamlinux-installer";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
       };
     };
     # non-flake inputs
@@ -108,7 +117,7 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     npins = import ./npins;
-    lib' = import ./lib inputs.nixpkgs.lib;
+    lib' = import ./lib nixpkgs.lib;
 
     nixosCommonSystem = {
       hostName,

@@ -6,6 +6,15 @@
   ...
 }: let
   pin = npins.foot;
+  inherit (pkgs) makeDesktopItem;
+  # using this allows us to hide apps from runners like fuzzel.
+  makeHiddenDesktopItem = name: desktopName:
+    makeDesktopItem {
+      inherit name;
+      inherit desktopName;
+      exec = "";
+      noDisplay = true;
+    };
 in {
   options.cfg.gui.foot.enable = lib.mkEnableOption "foot";
   config = lib.mkIf config.cfg.gui.foot.enable {
@@ -13,7 +22,7 @@ in {
       enable = true;
       package = pkgs.foot.overrideAttrs {
         pname = "foot-transparency";
-        version = "0-unstable-${npins.foot.revision}";
+        version = "0-unstable-${pin.revision}";
         src = pkgs.fetchFromGitea {
           domain = "codeberg.org";
           owner = "fazzi";
@@ -40,6 +49,13 @@ in {
         };
         bell.system = false;
       };
+    };
+    hj = {
+      packages = [
+        # hide footclient and foot-server from runners. We don't use them.
+        (makeHiddenDesktopItem "footclient" "Foot Client")
+        (makeHiddenDesktopItem "foot-server" "Foot Server")
+      ];
     };
   };
 }
