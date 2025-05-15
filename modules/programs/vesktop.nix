@@ -52,11 +52,10 @@ in {
           @import url("https://raw.githubusercontent.com/surgedevs/visual-refresh-compact-title-bar/refs/heads/main/hidden.css");
 
           /* Align the chat box with the user panel */
-          .visual-refresh {
-            form>div[class^="channelBottomBarArea_"] {
-              --custom-chat-input-margin-bottom: 6px;
-              --custom-channel-textarea-text-area-height: 52px;
-            }
+          form>div[class^="channelBottomBarArea_"],
+          form>div>div[class^="channelBottomBarArea_"] {
+            --custom-chat-input-margin-bottom: 6px;
+            --custom-channel-textarea-text-area-height: 52px;
           }
 
           /* Make the slowmode text smaller */
@@ -111,6 +110,24 @@ in {
                   padding: 4px 8px;
               }
           }
+          /* Chatbox buttons */
+          form>div>div[class^=channelBottomBarArea_] {
+            div[class^="buttons_"]
+            {
+              /* Send gift button (both versions) */
+              > div:has(div[class*="trinketsIcon_"]), > button { display: none; }
+
+              /* GIF picker button */
+              div[class^="expression-picker-chat-input-button"]:has( + div[class^="expression-picker-chat-input-button"] div[class*="stickerButton_"]) { display: var(--display-gif-button, flex); }
+
+              /* Sticker picker button */
+              div[class^="expression-picker-chat-input-button"]:has(div[class*="stickerButton_"]) { display: var(--display-sticker-button, flex); }
+            }
+
+            /* Apps button (right) */
+            div[class^="channelAppLauncher_"] { display: var(--display-app-launcher); }
+          }
+
         '';
 
       packages = with pkgs; [
