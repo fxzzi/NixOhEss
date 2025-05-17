@@ -7,9 +7,12 @@
 This repo consists of a relatively simple multi-host configuration using nixOS
 and [hjem](https://github.com/feel-co/hjem).
 
-**DISCLAIMER!!** There is no guarantee that these configs will work for you.
-These are merely my personal configurations and they do NOT come with a
-warranty.
+> [!WARNING]
+> These configurations are highly tailored to my personal setup and may not work
+> out of the box for your system. They include host-specific settings such as
+> hardware configurations, networking details, and secrets that **will likely
+> require significant adjustments**. Use them as a reference and at your own
+> risk — **no warranty is provided**.
 
 ## Hosts
 
