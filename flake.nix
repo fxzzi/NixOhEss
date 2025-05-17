@@ -129,7 +129,7 @@
         };
         modules = [
           ./modules
-          ./hosts
+          ./hosts/${hostName}
         ];
       };
   in {

@@ -1,11 +1,13 @@
 {
   lib,
   config,
+  hostName,
   ...
 }: {
   options.cfg.networking.enable = lib.mkEnableOption "networking";
   config = lib.mkIf config.cfg.networking.enable {
     networking = {
+      inherit hostName;
       # may want to override if using fixed IP. See: fazziPC
       useDHCP = lib.mkDefault true;
       dhcpcd.enable = lib.mkDefault true;
