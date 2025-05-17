@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   imports = [
     ./fastfetch
     ./android.nix
@@ -26,4 +26,10 @@
     ./ags
     ./uwsm
   ];
+  config = {
+    # nano is enabled by default. no.
+    # also dont install any of the default packages.
+    programs.nano.enable = lib.mkDefault false;
+    environment.defaultPackages = lib.mkDefault [];
+  };
 }
