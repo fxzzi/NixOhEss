@@ -64,6 +64,7 @@
             enableExtraDiagnostics = true;
 
             nix.enable = true;
+            nix.lsp.package = pkgs.nil;
             markdown.enable = true;
 
             bash.enable = true;
