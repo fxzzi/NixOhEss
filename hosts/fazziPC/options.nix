@@ -147,7 +147,7 @@
     fuzzel.enable = true;
     wleave.enable = true;
     hypr = {
-      # useGit = true;
+      useGit = true;
       defaultMonitor = "DP-3";
       secondaryMonitor = "DP-2";
       animations.enable = true;
