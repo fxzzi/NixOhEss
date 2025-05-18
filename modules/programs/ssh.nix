@@ -43,7 +43,7 @@
       serviceConfig = {
         Type = "simple";
         Restart = "on-abort";
-        ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --components=pkcs11,secrets,ssh";
+        ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,ssh";
       };
     };
 

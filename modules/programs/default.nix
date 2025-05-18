@@ -25,6 +25,8 @@
     ./vesktop.nix
     ./ags
     ./uwsm
+    ./gnome-keyring.nix
+    ./sudo.nix
   ];
   config = {
     # nano is enabled by default. no.
