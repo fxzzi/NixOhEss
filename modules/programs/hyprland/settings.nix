@@ -143,6 +143,11 @@ in {
       ];
     };
     programs.hyprland = {
+      topPrefixes = [
+        "$"
+        "bezier"
+        "source" # add source here to make sure colours are set before the rest of the config
+      ];
       settings = {
         exec-once = [
           "${runProc "${pkgs.mate.mate-polkit}/etc/xdg/autostart/polkit-mate-authentication-agent-1.desktop"}"
