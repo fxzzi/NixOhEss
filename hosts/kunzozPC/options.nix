@@ -37,6 +37,7 @@
   scanning.enable = false;
   wayland = {
     uwsm.enable = true;
+    xembed-sni-proxy.enable = true;
   };
   gaming = {
     steam.enable = true;
