@@ -1,8 +1,6 @@
-{user, ...}: {
+{...}: {
   config = {
     security = {
-      polkit.enable = true;
-      pam.services.${user}.enableGnomeKeyring = true;
       sudo-rs = {
         enable = true;
         execWheelOnly = true;
@@ -13,7 +11,6 @@
         '';
       };
     };
-    services.gnome.gnome-keyring.enable = true;
     environment.sessionVariables = {
       SUDO_PROMPT = "󱅞 "; # note the extra space
     };
