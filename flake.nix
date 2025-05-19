@@ -94,7 +94,7 @@
       };
     };
     creamlinux = {
-      url = "github:Novattz/creamlinux-installer";
+      url = "github:Novattz/creamlinux-installer/17ad517a459f1a41a40bef2642ee952859147ab5";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";

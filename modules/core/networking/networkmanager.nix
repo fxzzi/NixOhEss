@@ -10,10 +10,6 @@
   };
   config = lib.mkIf config.cfg.networking.networkmanager.enable {
     programs.nm-applet.enable = true; # enable the nice lil applet
-    # avoid nm-applet starting too early
-    systemd.user.services.nm-applet = {
-      after = ["graphical-session.target"];
-    };
     networking = {
       dhcpcd.enable = false; # networkmanager uses its own dhcp client
       networkmanager = {
