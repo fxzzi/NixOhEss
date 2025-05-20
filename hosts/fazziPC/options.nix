@@ -149,8 +149,8 @@
     wleave.enable = true;
     hypr = {
       useGit = true;
-      defaultMonitor = "DP-3";
-      secondaryMonitor = "DP-2";
+      defaultMonitor = "DP-2";
+      secondaryMonitor = "DP-3";
       animations.enable = true;
       hyprland = {
         enable = true;
