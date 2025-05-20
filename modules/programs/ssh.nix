@@ -2,7 +2,6 @@
   config,
   lib,
   user,
-  pkgs,
   ...
 }: {
   options.cfg.cli.ssh.enable = lib.mkEnableOption "ssh";
@@ -34,21 +33,6 @@
         	Hostname codeberg.org
         	IdentityFile /home/${user}/.local/share/ssh/codeberg
       '';
-    };
-    systemd.user.services.gnome-keyring = {
-      enable = true;
-      description = "GNOME Keyring";
-      partOf = ["graphical-session-pre.target"];
-      wantedBy = ["graphical-session-pre.target"];
-      serviceConfig = {
-        Type = "simple";
-        Restart = "on-abort";
-        ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,ssh";
-      };
-    };
-
-    environment.sessionVariables = {
-      SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/keyring/ssh";
     };
   };
 }
