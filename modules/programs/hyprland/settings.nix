@@ -149,9 +149,6 @@ in {
         "source" # add source here to make sure colours are set before the rest of the config
       ];
       settings = {
-        exec-once = [
-          "${runProc "${pkgs.mate.mate-polkit}/etc/xdg/autostart/polkit-mate-authentication-agent-1.desktop"}"
-        ];
         exec = [
           "${runOnce inputs.ags.packages.${pkgs.system}.default}"
           "${runProc "${lib.getExe pkgs.xorg.xrandr} --output ${config.cfg.gui.hypr.defaultMonitor} --primary"}"
