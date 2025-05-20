@@ -8,5 +8,6 @@
     ./dunst.nix
     ./opentabletdriver.nix
     ./xembed-sni-proxy.nix
+    ./mate-polkit.nix
   ];
 }
