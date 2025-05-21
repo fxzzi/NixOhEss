@@ -851,14 +851,17 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
+        ],
+        "systems": [
+          "systems"
         ]
       },
       "locked": {
-        "lastModified": 1744187012,
-        "narHash": "sha256-HhfFPaouz6yyUOgffWarEJOFrzQ43cWzD3Hg6x5lfpU=",
+        "lastModified": 1747840982,
+        "narHash": "sha256-yoWuKGgGXBRZeovcOJalN8hcv0xkuNj98PE2p+3dO5Y=",
         "owner": "fazzi",
         "repo": "nvuv",
-        "rev": "228250addd8fc6abc555d5d736166caae483e87b",
+        "rev": "99884cb1e309d65ef48ded7259f47280e701a905",
         "type": "gitlab"
       },
       "original": {

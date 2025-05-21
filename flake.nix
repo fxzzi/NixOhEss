@@ -68,7 +68,10 @@
     };
     nvuv = {
       url = "gitlab:fazzi/nvuv";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
