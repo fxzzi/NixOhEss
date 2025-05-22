@@ -29,6 +29,8 @@ stdenv.mkDerivation rec {
 
   postInstall = ''
     rm -r "$out/share/metainfo"
+    substituteInPlace "$out/share/applications/com.steamgriddb.SGDBoop.desktop" \
+      --replace-fail "NoDisplay=false" "NoDisplay=true"
   '';
 
   nativeBuildInputs = [
