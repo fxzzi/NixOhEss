@@ -120,7 +120,7 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     npins = import ./npins;
-    lib' = import ./lib nixpkgs.lib;
+    xLib = import ./lib nixpkgs.lib;
 
     nixosCommonSystem = {
       hostName,
@@ -128,7 +128,7 @@
     }:
       nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs npins hostName user lib';
+          inherit inputs npins hostName user xLib;
         };
         modules = [
           ./modules

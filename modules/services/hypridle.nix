@@ -3,11 +3,11 @@
   pkgs,
   inputs,
   lib,
-  lib',
+  xLib,
   ...
 }: let
   # toHyprlang broken for now, use toHyprconf instead
-  inherit (lib'.generators) toHyprconf;
+  inherit (xLib.generators) toHyprconf;
 
   pkg =
     if config.cfg.gui.hypr.useGit

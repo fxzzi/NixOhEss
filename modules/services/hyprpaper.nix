@@ -1,13 +1,13 @@
 {
   lib,
-  lib',
+  xLib,
   config,
   inputs,
   pkgs,
   user,
   ...
 }: let
-  inherit (lib'.generators) toHyprlang;
+  inherit (xLib.generators) toHyprlang;
   pkg =
     if config.cfg.gui.hypr.useGit
     then inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}
