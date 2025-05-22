@@ -1,10 +1,10 @@
 {
   config,
   lib,
-  lib',
+  xLib,
   ...
 }: let
-  inherit (lib'.generators) toHyprlang;
+  inherit (xLib.generators) toHyprlang;
 in {
   options.cfg.gui.hypr.xdph.enable = lib.mkEnableOption "xdph";
   config = lib.mkIf config.cfg.gui.hypr.xdph.enable {
