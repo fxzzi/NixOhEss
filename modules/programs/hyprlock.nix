@@ -1,6 +1,6 @@
 {
   lib,
-  lib',
+  xLib,
   config,
   inputs,
   pkgs,
@@ -8,7 +8,7 @@
   ...
 }: let
   # toHyprlang broken for now, use toHyprconf instead
-  inherit (lib'.generators) toHyprconf;
+  inherit (xLib.generators) toHyprconf;
 
   multiMonitor =
     if config.cfg.gui.hypr.secondaryMonitor != null
