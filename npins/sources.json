@@ -21,9 +21,9 @@
       },
       "branch": "transparency_yipee",
       "submodules": false,
-      "revision": "cd75128c89dc083524667d2fb1d4ca50874ace9b",
+      "revision": "492b9abd2c6b7215f191fd658c3945772e0f0499",
       "url": null,
-      "hash": "0wbrfnw7pban65rdc4lmzwkw4w1x2inmg58qnyqnc2p1xp5i3k2x"
+      "hash": "08il9nb4kx5glh9lmxf70yavp7sgjcfs78hl4w1fs0kznw30ah7l"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -34,9 +34,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "55b48fe9f68012b1a77c66bfe5b66ae9cb290df1",
-      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/55b48fe9f68012b1a77c66bfe5b66ae9cb290df1.tar.gz",
-      "hash": "0kdrckic6cjzzjj1ycj7l8y6w682vpglw1j1bjz7ls261g22vd6v"
+      "revision": "effa3af05da4525d850a525ae2dedf5eb80351d7",
+      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/effa3af05da4525d850a525ae2dedf5eb80351d7.tar.gz",
+      "hash": "0khk5mv1ql6cd24bbpgs0jz3xdh9sabrmr91isbw54ffwf3r1z9m"
     }
   },
   "version": 5
