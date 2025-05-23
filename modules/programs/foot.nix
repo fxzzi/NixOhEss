@@ -35,7 +35,7 @@ in {
         main = {
           font = "monospace:size=13";
           pad = "12x12 center";
-          transparent-fullscreen = true;
+          transparent-fullscreen = true; # option added by my fork
         };
         cursor = {
           style = "beam";
@@ -47,7 +47,6 @@ in {
           alpha = 0.75;
           alpha-mode = "matching";
         };
-        bell.system = false;
       };
     };
     hj = {
