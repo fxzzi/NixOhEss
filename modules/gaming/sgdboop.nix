@@ -3,8 +3,8 @@
   stdenv,
   fetchFromGitHub,
   curl,
-  gtk3,
   pkg-config,
+  wrapGAppsHook3,
 }:
 stdenv.mkDerivation rec {
   pname = "sgdboop";
@@ -30,16 +30,16 @@ stdenv.mkDerivation rec {
   postInstall = ''
     rm -r "$out/share/metainfo"
     substituteInPlace "$out/share/applications/com.steamgriddb.SGDBoop.desktop" \
-      --replace-fail "NoDisplay=false" "NoDisplay=true"
+    --replace-fail "NoDisplay=false" "NoDisplay=true"
   '';
 
   nativeBuildInputs = [
     pkg-config
+    wrapGAppsHook3
   ];
 
   buildInputs = [
     curl
-    gtk3
   ];
 
   meta = {
