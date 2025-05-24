@@ -167,8 +167,7 @@ in {
         };
         cursor = {
           default_monitor = lib.mkIf multiMonitor "${config.cfg.gui.hypr.defaultMonitor}";
-          sync_gsettings_theme = 0;
-          enable_hyprcursor = 0;
+          sync_gsettings_theme = 0; # we handle this ourselves
         };
         opengl = {
           nvidia_anti_flicker = 0;
@@ -217,6 +216,10 @@ in {
           vrr = 2; # avoid flickering with vrr = 1
           anr_missed_pings = 3; # by default, ANR dialog shows up way too aggressively.
           middle_click_paste = 0;
+        };
+        ecosystem = {
+          no_update_news = 1;
+          no_donation_nag = 1;
         };
         layerrule = [
           "blur, launcher"
