@@ -57,7 +57,7 @@
     # gamescope.enable = true;
     # cemu.enable = false;
     heroic.enable = true;
-    # sgdboop.enable = true;
+    sgdboop.enable = true;
     creamlinux.enable = true;
   };
   gpu = {
