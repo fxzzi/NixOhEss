@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   config = {
     nix = {
       package = pkgs.lixPackageSets.latest.lix;
@@ -14,6 +18,10 @@
         trusted-users = ["@wheel"];
         build-dir = "/var/tmp";
       };
+      registry = {
+        self.flake = inputs.self;
+      };
+      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     };
     nixpkgs.config.allowUnfree = true; # not too fussed as long as app works on linux tbh
     documentation.nixos.enable = false; # remove useless docs .desktop
