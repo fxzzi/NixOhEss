@@ -354,6 +354,7 @@ in {
 
             # extra schtuff
             "$MOD, N, exec, ${toggleProc hyprsunsetPkg.hyprsunset} -t 2000"
+            "$MOD, K, exec, ${toggleProc pkgs.hyprpicker} -r -a -n"
             "$MOD, R, exec, ${runProc "random-wall.sh"}"
             "$MOD SHIFT, R, exec, ${runProc "cycle-wall.sh"}"
             "$MOD, J, exec, ${runTerm "wall-picker.sh"}"
