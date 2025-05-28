@@ -80,7 +80,6 @@
   batmon.enable = false;
   secureboot.enable = false;
   tty1-skipusername = true;
-  # home-manager.enable = true;
   adb.enable = true;
   scripts.enable = true;
   xdgConfig.enable = true;
