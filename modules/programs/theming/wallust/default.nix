@@ -18,7 +18,7 @@
 
         ".config/wallust/wallust.toml".source = (pkgs.formats.toml {}).generate "wallust" {
           check_contrast = true;
-          backend = "fastresize";
+          backend = "resized";
           color_space = "lch";
           templates = {
             fuzzel =
