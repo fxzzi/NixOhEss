@@ -37,6 +37,7 @@
 
     users.users.${user} = {
       isNormalUser = true;
+      initialPassword = "1234";
       extraGroups = [
         "wheel" # sudo
       ];
