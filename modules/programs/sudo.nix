@@ -5,9 +5,8 @@ _: {
         enable = true;
         execWheelOnly = true;
         # show asterisks when typing password
-        configFile = ''
+        extraConfig = ''
           Defaults pwfeedback
-          Defaults env_keep += "EDITOR PATH DISPLAY"
         '';
       };
     };
