@@ -6,18 +6,26 @@
   ...
 }: let
   newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.apps.browsers.startpage.user}/index.html";
+
+  disableFeatures = [
+    "WebRtcAllowInputVolumeAdjustment"
+    "ChromeWideEchoCancellation"
+  ];
+  enableFeatures =
+    []
+    ++ lib.optionals config.cfg.gpu.nvidia.enable [
+      "WaylandLinuxDrmSyncobj" # fix flickering
+      # attempt to enable hardware acceleration
+      "AcceleratedVideoDecodeLinuxGL"
+      "AcceleratedVideoDecodeLinuxZeroCopyGL"
+      "VaapiOnNvidiaGPUs"
+      "VaapiIgnoreDriverChecks"
+    ];
   commandLineArgs =
     [
-      "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
+      "--enable-features=${lib.concatStringsSep "," enableFeatures}"
+      "--disable-features=${lib.concatStringsSep "," disableFeatures}"
       "--extension-mime-request-handling=always-prompt-for-install" # allow chrome web store extension to be installed
-    ]
-    ++ lib.optionals config.cfg.gpu.nvidia.enable [
-      "--enable-features=WaylandLinuxDrmSyncobj" # fix flickering
-      # attempt to enable hardware acceleration
-      "--enable-features=AcceleratedVideoDecodeLinuxGL"
-      "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
-      "--enable-features=VaapiOnNvidiaGPUs"
-      "--enable-features=VaapiIgnoreDriverChecks"
     ]
     ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
       "--disable-smooth-scrolling"
