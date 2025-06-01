@@ -16,6 +16,19 @@
         systems.follows = "systems";
       };
     };
+    hyprland-old = {
+      url = "github:hyprwm/Hyprland/v0.48.1";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprland-protocols.follows = "hyprland/hyprland-protocols";
+        aquamarine.follows = "hyprland/aquamarine";
+      };
+    };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs = {
@@ -97,6 +110,7 @@
       };
     };
     creamlinux = {
+      # pin to older release until i have the time to update the flake
       url = "github:Novattz/creamlinux-installer/17ad517a459f1a41a40bef2642ee952859147ab5";
       inputs = {
         nixpkgs.follows = "nixpkgs";

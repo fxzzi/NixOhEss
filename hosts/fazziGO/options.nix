@@ -1,4 +1,4 @@
-{...}: {
+_: {
   cfg = {
     kernel = {
       type = "lts";
