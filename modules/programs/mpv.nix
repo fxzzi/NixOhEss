@@ -4,27 +4,39 @@
   pkgs,
   ...
 }: let
-  renderOptions = lib.generators.toKeyValue {
-    mkKeyValue =
-      (lib.generators.mkKeyValueDefault {
-        mkValueString = value: let
-          str = toString value;
-        in
-          # Handle boolean values
-          if value == true
-          then "yes"
-          else if value == false
-          then "no"
-          # Handle other cases like space, `#`, and quote
-          else if lib.hasInfix " " str || lib.hasInfix "\"" str || lib.hasPrefix "#" str
-          then "\"${str}\""
-          else str;
-      })
-      "=";
+  inherit
+    (lib)
+    generators
+    ;
+  inherit (builtins) typeOf stringLength;
+
+  yesNo = value:
+    if value
+    then "yes"
+    else "no";
+
+  renderOption = option:
+    rec {
+      int = toString option;
+      float = int;
+      bool = yesNo option;
+      string = option;
+    }
+    .${
+      typeOf option
+    };
+
+  renderOptionValue = value: let
+    rendered = renderOption value;
+    length = toString (stringLength rendered);
+  in "%${length}%${rendered}";
+
+  renderOptions = generators.toKeyValue {
+    mkKeyValue = generators.mkKeyValueDefault {mkValueString = renderOptionValue;} "=";
     listsAsDuplicateKeys = true;
   };
 
-  renderBindings = bindings: lib.concatStringsSep "\n" (lib.mapAttrsToList (key: action: "${key} ${action}") bindings);
+  renderBindings = bindings: lib.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "${name} ${value}") bindings);
 in {
   options.cfg.apps.mpv.enable = lib.mkEnableOption "mpv";
   config = lib.mkIf config.cfg.apps.mpv.enable {
@@ -40,6 +52,7 @@ in {
 
           vlang = "en,eng";
           vo = "gpu-next";
+          gpu-context = "wayland"; # waylandvk broken on nvidia
 
           volume-max = 150; # allow some overamp
           volume = 100;
