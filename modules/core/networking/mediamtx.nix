@@ -10,6 +10,10 @@
       builtins.attrValues config.networking.interfaces
     )
   );
+  # only use ipv4 addrs
+  nameservers = config.networking.nameservers;
+  isIPv4 = addr: builtins.match "^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" addr != null;
+  ipv4Only = builtins.filter isIPv4 nameservers;
 in {
   options.cfg.networking.mediamtx.enable = lib.mkEnableOption "mediamtx";
   config = lib.mkIf config.cfg.networking.mediamtx.enable {
@@ -40,7 +44,7 @@ in {
         webrtcLocalUDPAddress = ":${port}";
         webrtcAdditionalHosts =
           ["@publicip@"] # for agenix to replace after
-          ++ config.networking.nameservers
+          ++ ipv4Only
           ++ localips;
         # allow publishing to all paths
         paths = {
