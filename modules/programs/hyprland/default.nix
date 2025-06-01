@@ -3,11 +3,14 @@
   pkgs,
   config,
   inputs,
+  hostName,
   ...
 }: let
   pkg =
-    if config.cfg.gui.hypr.useGit
-    then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}
+    if hostName == "kunzozPC"
+    then inputs.hyprland-old.packages.${pkgs.system}
+    else if config.cfg.gui.hypr.useGit
+    then inputs.hyprland.packages.${pkgs.system}
     else pkgs;
   patches =
     if config.cfg.gui.hypr.useGit
