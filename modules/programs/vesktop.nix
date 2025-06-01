@@ -44,9 +44,9 @@
   primaryFont = wrapFonts (font.sansSerif ++ font.emoji);
   monoFont = wrapFonts font.monospace;
 in {
-  options.cfg.apps.discord.enable = lib.mkEnableOption "discord";
+  options.cfg.apps.vesktop.enable = lib.mkEnableOption "vesktop";
 
-  config = lib.mkIf config.cfg.apps.discord.enable {
+  config = lib.mkIf config.cfg.apps.vesktop.enable {
     hj = {
       files.".config/vesktop/settings/quickCss.css".text =
         # css

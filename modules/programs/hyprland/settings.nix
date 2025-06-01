@@ -347,7 +347,7 @@ in {
             "$MOD, T, exec, ${runProc "foot.desktop"}"
             "$MOD, B, exec, ${runProc "librewolf.desktop"}"
             "$MOD SHIFT, P, exec, ${runProc "librewolf.desktop:new-private-window"}"
-            "$MOD, W, exec, ${runProc "vesktop.desktop"}"
+            "$MOD, W, exec, ${runProc "discord-canary.desktop"}"
             "$MOD, D, exec, ${toggleProc "fuzzel"}"
             "$MOD SHIFT, E, exec, ${toggleProc pkgs.wleave} --protocol layer-shell -b 5 -T 360 -B 360 -k"
             "CTRL SHIFT, Escape, exec, ${runTerm "btm"}"
