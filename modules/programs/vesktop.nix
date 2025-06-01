@@ -4,24 +4,30 @@
   config,
   ...
 }: let
+  disableFeatures = [
+    "WebRtcAllowInputVolumeAdjustment"
+    "ChromeWideEchoCancellation"
+  ];
+  enableFeatures =
+    []
+    ++ lib.optionals config.cfg.gpu.nvidia.enable [
+      "WaylandLinuxDrmSyncobj" # fix flickering
+      # attempt to enable hardware acceleration
+      "AcceleratedVideoDecodeLinuxGL"
+      "AcceleratedVideoDecodeLinuxZeroCopyGL"
+      "VaapiOnNvidiaGPUs"
+      "VaapiIgnoreDriverChecks"
+    ];
+
   commandLineArgs =
     [
-      "--disable-features=WebRtcAllowInputVolumeAdjustment" # stop chromium from messing with my mic volume
-      # attempt to disable noise suppression? This also disables echo cancellation too tho.
-      "--disable-features=ChromeWideEchoCancellation"
-    ]
-    ++ lib.optionals config.cfg.gpu.nvidia.enable [
-      "--enable-features=WaylandLinuxDrmSyncobj" # fix flickering
-      # attempt to enable hardware acceleration
-      # FIXME: not working on Electron yet?
-      # "--enable-features=AcceleratedVideoDecodeLinuxGL"
-      # "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
-      # "--enable-features=VaapiOnNvidiaGPUs"
-      # "--enable-features=VaapiIgnoreDriverChecks"
+      "--enable-features=${lib.concatStringsSep "," enableFeatures}"
+      "--disable-features=${lib.concatStringsSep "," disableFeatures}"
     ]
     ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
       "--disable-smooth-scrolling"
     ];
+
   joinedArgs = lib.concatStringsSep " " commandLineArgs;
 
   # Use the below variables to create a list of fonts which can
@@ -101,7 +107,11 @@ in {
             postFixup = ''
               ${old.postFixup or ""}
               # add command line args like chromium
-              wrapProgramShell $out/bin/vesktop --add-flags "${joinedArgs}"
+              wrapProgramShell $out/bin/vesktop \
+              --add-flags "${joinedArgs}" \
+              --set LD_LIBRARY_PATH "${lib.makeLibraryPath [
+                pkgs.libva
+              ]}"
             '';
           })
         )
