@@ -117,7 +117,7 @@ in {
             DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
             openasar = {
               setup = true;
-              quickstart = false;
+              quickstart = true;
               css =
                 # css
                 ''
@@ -176,6 +176,7 @@ in {
             withOpenASAR = true;
             withMoonlight = cfg.moonlight.enable;
             withVencord = cfg.vencord.enable;
+            # TODO: Uncomment this when #412737 lands in nixos-unstable
             # disableUpdates = true;
           }).overrideAttrs
           (old: {
@@ -186,6 +187,7 @@ in {
               wrapProgramShell $out/bin/DiscordCanary \
               --add-flags "${joinedArgs}" \
               --set LD_LIBRARY_PATH "${lib.makeLibraryPath [
+                # make hw accel work
                 pkgs.libva
               ]}"
             '';

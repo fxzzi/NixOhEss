@@ -34,20 +34,33 @@ in {
           })
       ];
     };
-    systemd.user.services.dconf-gtk = {
-      enable = true;
-      unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY";
-        Description = "Set dconf theming settings";
-        After = ["graphical-session-pre.target"];
-        PartOf = ["graphical-session.target"];
-      };
-      script = ''
-        ${dconf} write /org/gnome/desktop/interface/gtk-theme \"'tokyonight'\"
-        ${dconf} write /org/gnome/desktop/interface/icon-theme \"'Papirus-Dark'\"
-        ${dconf} write /org/gnome/desktop/interface/font-name \"'Sans Regular 11'\"
-        ${dconf} write /org/gnome/desktop/interface/color-scheme \"'prefer-dark'\"
-      '';
-    };
+
+    programs.dconf.profiles.user.databases = [
+      {
+        settings."org/gnome/desktop/interface" = {
+          gtk-theme = "tokyonight";
+          icon-theme = "Papirus-Dark";
+          font-name = "Sans Regular 11";
+          document-font-name = "Sans Regular 11";
+          monospace-font-name = "Monospace Regular 12";
+          color-scheme = "prefer-dark";
+        };
+      }
+    ];
+    # systemd.user.services.dconf-gtk = {
+    #   enable = true;
+    #   unitConfig = {
+    #     ConditionEnvironment = "WAYLAND_DISPLAY";
+    #     Description = "Set dconf theming settings";
+    #     After = ["graphical-session-pre.target"];
+    #     PartOf = ["graphical-session.target"];
+    #   };
+    #   script = ''
+    #     ${dconf} write /org/gnome/desktop/interface/gtk-theme \"'tokyonight'\"
+    #     ${dconf} write /org/gnome/desktop/interface/icon-theme \"'Papirus-Dark'\"
+    #     ${dconf} write /org/gnome/desktop/interface/font-name \"'Sans Regular 11'\"
+    #     ${dconf} write /org/gnome/desktop/interface/color-scheme \"'prefer-dark'\"
+    #   '';
+    # };
   };
 }
