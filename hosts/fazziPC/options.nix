@@ -91,7 +91,13 @@
       enable = true;
       collegeBookmarks.enable = true;
     };
-    discord.enable = true;
+    discord = {
+      enable = true;
+      moonlight = {
+        enable = true;
+        declaredExtensions = true;
+      };
+    };
     browsers = {
       librewolf = {
         enable = true;

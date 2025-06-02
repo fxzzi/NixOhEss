@@ -48,7 +48,14 @@ _: {
         enable = true;
         collegeBookmarks.enable = true;
       };
-      discord.enable = true;
+      discord = {
+        enable = true;
+        minimizeToTray = false;
+        moonlight = {
+          enable = true;
+          declaredExtensions = true;
+        };
+      };
       browsers = {
         librewolf = {
           enable = true;
