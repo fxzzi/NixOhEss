@@ -93,11 +93,7 @@
     };
     discord = {
       enable = true;
-      moonlight = {
-        enable = true;
-        declaredExtensions = true;
-      };
-      # vencord.enable = true;
+      vencord.enable = true;
     };
     browsers = {
       librewolf = {

@@ -51,10 +51,7 @@ _: {
       discord = {
         enable = true;
         minimizeToTray = false;
-        moonlight = {
-          enable = true;
-          declaredExtensions = true;
-        };
+        vencord.enable = true;
       };
       browsers = {
         librewolf = {
