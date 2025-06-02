@@ -94,9 +94,10 @@
     discord = {
       enable = true;
       moonlight = {
-        enable = true;
+        # enable = true;
         declaredExtensions = true;
       };
+      vencord.enable = true;
     };
     browsers = {
       librewolf = {
