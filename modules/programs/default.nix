@@ -22,8 +22,7 @@
     ./music.nix
     ./obs-studio.nix
     ./thunar.nix
-    ./vesktop.nix
-    ./discord.nix
+    ./discord
     ./ags
     ./uwsm
     ./gnome-keyring.nix

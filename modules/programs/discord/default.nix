@@ -58,6 +58,10 @@ in {
     };
   };
 
+  imports = [
+    ./vesktop.nix
+  ];
+
   config = lib.mkIf cfg.enable {
     hj = {
       files = {
@@ -172,7 +176,7 @@ in {
             withOpenASAR = true;
             withMoonlight = cfg.moonlight.enable;
             withVencord = cfg.vencord.enable;
-            # disableUpdates = false;
+            disableUpdates = true;
           }).overrideAttrs
           (old: {
             nativeBuildInputs = (old.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
