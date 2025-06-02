@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
   disableFeatures = [
@@ -49,6 +50,44 @@ in {
   config = lib.mkIf config.cfg.apps.discord.enable {
     hj = {
       files = {
+        ".config/moonlight-mod/extensions".source = "${inputs.moonlight-exts}/exts";
+        ".config/moonlight-mod/canary.json".text = builtins.toJSON {
+          extensions = {
+            moonbase = true;
+            disableSentry = true;
+            noTrack = true;
+            noHideToken = true;
+            betterCodeblocks = true;
+            betterTags = true;
+            betterUploadButton = true;
+            betterEmbedsYT = true;
+            callTimer = true;
+            clearUrls = true;
+            cloneExpressions = false;
+            copyAvatarUrl = true;
+            doubleClickActions = true;
+            freeScreenShare = true;
+            freeMoji = true;
+            inviteToNowhere = true;
+            muteGuildOnJoin = true;
+            nativeFixes = {
+              enabled = true;
+              config = {
+                vaapiIgnoreDriverChecks = true;
+                linuxAutoscroll = true;
+                vulkan = true;
+              };
+            };
+            noHelp = true;
+            noRpc = true;
+            resolver = true;
+            showMediaOptions = true;
+            unindent = true;
+          };
+
+          repositories = [];
+        };
+
         ".config/discordcanary/settings.json" = {
           text = builtins.toJSON {
             SKIP_HOST_UPDATE = true;
