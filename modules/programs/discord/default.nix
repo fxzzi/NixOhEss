@@ -176,7 +176,7 @@ in {
             withOpenASAR = true;
             withMoonlight = cfg.moonlight.enable;
             withVencord = cfg.vencord.enable;
-            disableUpdates = true;
+            # disableUpdates = true;
           }).overrideAttrs
           (old: {
             nativeBuildInputs = (old.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
