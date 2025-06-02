@@ -53,7 +53,7 @@ in {
         ".config/moonlight-mod/extensions".source = "${inputs.moonlight-exts}/exts";
         ".config/moonlight-mod/canary.json".text = builtins.toJSON {
           extensions = {
-            moonbase = true;
+            moonbase = false;
             disableSentry = true;
             noTrack = true;
             noHideToken = true;
