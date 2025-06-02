@@ -45,18 +45,26 @@ in {
         xcursorPkg
       ];
     };
-    systemd.user.services.dconf-xcursor = {
-      enable = true;
-      unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY";
-        Description = "Set dconf cursor settings";
-        After = ["graphical-session-pre.target"];
-        PartOf = ["graphical-session.target"];
-      };
-      script = ''
-        ${dconf} write /org/gnome/desktop/interface/cursor-theme \"'${xcursor}'\"
-        ${dconf} write /org/gnome/desktop/interface/cursor-size \"'24'\"
-      '';
-    };
+    programs.dconf.profiles.user.databases = [
+      {
+        settings."org/gnome/desktop/interface" = {
+          cursor-theme = xcursor;
+          cursor-size = lib.gvariant.mkInt32 24;
+        };
+      }
+    ];
+    # systemd.user.services.dconf-xcursor = {
+    #   enable = true;
+    #   unitConfig = {
+    #     ConditionEnvironment = "WAYLAND_DISPLAY";
+    #     Description = "Set dconf cursor settings";
+    #     After = ["graphical-session-pre.target"];
+    #     PartOf = ["graphical-session.target"];
+    #   };
+    #   script = ''
+    #     ${dconf} write /org/gnome/desktop/interface/cursor-theme \"'${xcursor}'\"
+    #     ${dconf} write /org/gnome/desktop/interface/cursor-size \"'24'\"
+    #   '';
+    # };
   };
 }
