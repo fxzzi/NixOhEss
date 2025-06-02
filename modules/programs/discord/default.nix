@@ -52,10 +52,6 @@ in {
       lib.mkEnableOption "Minimize to tray"
       // {default = true;};
     vencord.enable = lib.mkEnableOption "Vencord for discord";
-    moonlight = {
-      enable = lib.mkEnableOption "Moonlight for discord";
-      declaredExtensions = lib.mkEnableOption "Declared extensions for moonlight";
-    };
   };
 
   imports = [
@@ -65,50 +61,6 @@ in {
   config = lib.mkIf cfg.enable {
     hj = {
       files = {
-        ".config/moonlight-mod/extensions" = {
-          enable = cfg.moonlight.enable && cfg.moonlight.declaredExtensions;
-          source = "${inputs.moonlight-exts}/exts";
-        };
-        ".config/moonlight-mod/canary.json" = {
-          enable = cfg.moonlight.enable && cfg.moonlight.declaredExtensions;
-          text = builtins.toJSON {
-            extensions = {
-              moonbase = false;
-              disableSentry = true;
-              noTrack = true;
-              noHideToken = true;
-              betterCodeblocks = true;
-              betterTags = true;
-              betterUploadButton = true;
-              betterEmbedsYT = true;
-              callTimer = true;
-              clearUrls = true;
-              cloneExpressions = false;
-              copyAvatarUrl = true;
-              doubleClickActions = true;
-              freeScreenShare = true;
-              freeMoji = true;
-              inviteToNowhere = true;
-              muteGuildOnJoin = true;
-              nativeFixes = {
-                enabled = true;
-                config = {
-                  vaapiIgnoreDriverChecks = true;
-                  linuxAutoscroll = true;
-                  vulkan = true;
-                };
-              };
-              noHelp = true;
-              noRpc = true;
-              resolver = true;
-              showMediaOptions = true;
-              unindent = true;
-            };
-
-            repositories = [];
-          };
-        };
-
         ".config/discordcanary/settings.json" = {
           text = builtins.toJSON {
             SKIP_HOST_UPDATE = true;
@@ -185,7 +137,6 @@ in {
             withTTS = false;
             enableAutoscroll = true;
             withOpenASAR = true;
-            withMoonlight = cfg.moonlight.enable;
             withVencord = cfg.vencord.enable;
             # TODO: Uncomment this when #412737 lands in nixos-unstable
             # disableUpdates = true;

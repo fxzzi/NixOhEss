@@ -130,21 +130,17 @@
       url = "gitlab:fazzi/startpage";
       flake = false;
     };
-    moonlight-exts = {
-      url = "github:moonlight-mod/extensions-dist";
-      flake = false;
-    };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
+  outputs = inputs: let
     npins = import ./npins;
-    xLib = import ./lib nixpkgs.lib;
+    xLib = import ./lib inputs.nixpkgs.lib;
 
     nixosCommonSystem = {
       hostName,
       user,
     }:
-      nixpkgs.lib.nixosSystem {
+      inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs npins hostName user xLib;
         };
