@@ -118,6 +118,7 @@ in {
             openasar = {
               setup = true;
               quickstart = true;
+              # this css is made for discord compact mode. if you're not using that, stuff won't align!!
               css =
                 # css
                 ''
@@ -125,7 +126,19 @@ in {
                   @import url("https://allpurposem.at/disblock/DisblockOrigin.theme.css");
 
                   /* Hide the Visual Refresh title bar */
-                  @import url("https://surgedevs.github.io/visual-refresh-compact-title-bar/browser.css");
+                  .visual-refresh {
+                    --custom-app-top-bar-height: 0 !important;
+
+                    div.base_c48ade {
+                      & > div.bar_c38106 {
+                        display: none;
+                      }
+                    }
+
+                    ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
+                      margin-top: 8px;
+                    }
+                  }
 
                   /* Use system fonts for UI */
                   :root {
@@ -133,8 +146,6 @@ in {
                     --font-display: ${primaryFont} !important;
                     --font-headline: ${primaryFont} !important;
                     --font-code: ${monoFont} !important;
-                    /* Make the sidebar line up correctly with disabled title bar */
-                    --vr-header-snippet-server-padding: 8px !important;
                   }
 
                   /* Align the chat box with the user panel */
