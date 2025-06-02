@@ -4,20 +4,20 @@
   pkgs,
   ...
 }: let
-  heroic = pkgs.symlinkJoin {
-    name = "heroic-wrapped";
-    paths = [pkgs.heroic];
-    nativeBuildInputs = [pkgs.makeWrapper];
-    postBuild = ''
-      wrapProgram $out/bin/heroic --add-flags "--ozone-platform=x11"
-    '';
-  };
+  # heroic = pkgs.symlinkJoin {
+  #   name = "heroic-wrapped";
+  #   paths = [pkgs.heroic];
+  #   nativeBuildInputs = [pkgs.makeWrapper];
+  #   postBuild = ''
+  #     wrapProgram $out/bin/heroic --add-flags "--ozone-platform=x11"
+  #   '';
+  # };
 in {
   options.cfg.gaming.heroic.enable = lib.mkEnableOption "heroic";
   config = lib.mkIf config.cfg.gaming.heroic.enable {
     hj = {
       packages = [
-        heroic
+        pkgs.heroic
       ];
 
       files = {
