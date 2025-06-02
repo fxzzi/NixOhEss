@@ -130,6 +130,10 @@
       url = "gitlab:fazzi/startpage";
       flake = false;
     };
+    moonlight-exts = {
+      url = "github:moonlight-mod/extensions-dist";
+      flake = false;
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: let

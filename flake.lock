@@ -934,6 +934,22 @@
         "type": "github"
       }
     },
+    "moonlight-exts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1748455126,
+        "narHash": "sha256-bQHAlt5CDybJvqR9j9IvXmz8mu6+aomLzi1LTMRAa2U=",
+        "owner": "moonlight-mod",
+        "repo": "extensions-dist",
+        "rev": "687a47068378921484fbce308b94358bc17039cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "moonlight-mod",
+        "repo": "extensions-dist",
+        "type": "github"
+      }
+    },
     "nil": {
       "inputs": {
         "flake-utils": [
@@ -1143,6 +1159,7 @@
         "hyprpaper": "hyprpaper",
         "hyprsunset": "hyprsunset",
         "lanzaboote": "lanzaboote",
+        "moonlight-exts": "moonlight-exts",
         "nixpkgs": "nixpkgs",
         "nixpkgs-olympus": "nixpkgs-olympus",
         "nvf": "nvf",
