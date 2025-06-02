@@ -5,15 +5,16 @@
   ...
 }: let
   port = "4200";
+  # get all assigned local ips
   localips = builtins.concatLists (
     builtins.map (iface: builtins.map (addr: addr.address) iface.ipv4.addresses) (
       builtins.attrValues config.networking.interfaces
     )
   );
-  # only use ipv4 addrs
+  # mediamtx doesnt support ipv6, and it fails to work if there is one present. so filter for ipv4 only
   nameservers = config.networking.nameservers;
   isIPv4 = addr: builtins.match "^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" addr != null;
-  ipv4Only = builtins.filter isIPv4 nameservers;
+  ipv4Nameservers = builtins.filter isIPv4 nameservers;
 in {
   options.cfg.networking.mediamtx.enable = lib.mkEnableOption "mediamtx";
   config = lib.mkIf config.cfg.networking.mediamtx.enable {
@@ -44,7 +45,7 @@ in {
         webrtcLocalUDPAddress = ":${port}";
         webrtcAdditionalHosts =
           ["@publicip@"] # for agenix to replace after
-          ++ ipv4Only
+          ++ ipv4Nameservers
           ++ localips;
         # allow publishing to all paths
         paths = {
