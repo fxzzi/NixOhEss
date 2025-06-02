@@ -72,7 +72,10 @@
     thunar = {
       enable = true;
     };
-    discord.enable = true;
+    discord = {
+      enable = true;
+      vencord.enable = true;
+    };
     browsers = {
       librewolf = {
         enable = true;

@@ -5,6 +5,7 @@
   inputs,
   ...
 }: let
+  cfg = config.cfg.apps.discord;
   disableFeatures = [
     "WebRtcAllowInputVolumeAdjustment"
     "ChromeWideEchoCancellation"
@@ -45,53 +46,69 @@
   primaryFont = wrapFonts (font.sansSerif ++ font.emoji);
   monoFont = wrapFonts font.monospace;
 in {
-  options.cfg.apps.discord.enable = lib.mkEnableOption "discord";
+  options.cfg.apps.discord = {
+    enable = lib.mkEnableOption "discord";
+    minimizeToTray =
+      lib.mkEnableOption "Minimize to tray"
+      // {default = true;};
+    vencord.enable = lib.mkEnableOption "Vencord for discord";
+    moonlight = {
+      enable = lib.mkEnableOption "Moonlight for discord";
+      declaredExtensions = lib.mkEnableOption "Declared extensions for moonlight";
+    };
+  };
 
-  config = lib.mkIf config.cfg.apps.discord.enable {
+  config = lib.mkIf cfg.enable {
     hj = {
       files = {
-        ".config/moonlight-mod/extensions".source = "${inputs.moonlight-exts}/exts";
-        ".config/moonlight-mod/canary.json".text = builtins.toJSON {
-          extensions = {
-            moonbase = false;
-            disableSentry = true;
-            noTrack = true;
-            noHideToken = true;
-            betterCodeblocks = true;
-            betterTags = true;
-            betterUploadButton = true;
-            betterEmbedsYT = true;
-            callTimer = true;
-            clearUrls = true;
-            cloneExpressions = false;
-            copyAvatarUrl = true;
-            doubleClickActions = true;
-            freeScreenShare = true;
-            freeMoji = true;
-            inviteToNowhere = true;
-            muteGuildOnJoin = true;
-            nativeFixes = {
-              enabled = true;
-              config = {
-                vaapiIgnoreDriverChecks = true;
-                linuxAutoscroll = true;
-                vulkan = true;
+        ".config/moonlight-mod/extensions" = {
+          enable = cfg.moonlight.enable && cfg.moonlight.declaredExtensions;
+          source = "${inputs.moonlight-exts}/exts";
+        };
+        ".config/moonlight-mod/canary.json" = {
+          enable = cfg.moonlight.enable && cfg.moonlight.declaredExtensions;
+          text = builtins.toJSON {
+            extensions = {
+              moonbase = false;
+              disableSentry = true;
+              noTrack = true;
+              noHideToken = true;
+              betterCodeblocks = true;
+              betterTags = true;
+              betterUploadButton = true;
+              betterEmbedsYT = true;
+              callTimer = true;
+              clearUrls = true;
+              cloneExpressions = false;
+              copyAvatarUrl = true;
+              doubleClickActions = true;
+              freeScreenShare = true;
+              freeMoji = true;
+              inviteToNowhere = true;
+              muteGuildOnJoin = true;
+              nativeFixes = {
+                enabled = true;
+                config = {
+                  vaapiIgnoreDriverChecks = true;
+                  linuxAutoscroll = true;
+                  vulkan = true;
+                };
               };
+              noHelp = true;
+              noRpc = true;
+              resolver = true;
+              showMediaOptions = true;
+              unindent = true;
             };
-            noHelp = true;
-            noRpc = true;
-            resolver = true;
-            showMediaOptions = true;
-            unindent = true;
-          };
 
-          repositories = [];
+            repositories = [];
+          };
         };
 
         ".config/discordcanary/settings.json" = {
           text = builtins.toJSON {
             SKIP_HOST_UPDATE = true;
-            MINIMIZE_TO_TRAY = true;
+            MINIMIZE_TO_TRAY = cfg.minimizeToTray;
             OPEN_ON_STARTUP = false;
             DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
             openasar = {
@@ -153,7 +170,8 @@ in {
             withTTS = false;
             enableAutoscroll = true;
             withOpenASAR = true;
-            withMoonlight = true;
+            withMoonlight = cfg.moonlight.enable;
+            withVencord = cfg.vencord.enable;
             # disableUpdates = false;
           }).overrideAttrs
           (old: {
