@@ -79,29 +79,34 @@ in {
 
                   /* Hide the Visual Refresh title bar */
                   .visual-refresh {
+                    /* Hide the bar itself */
                     --custom-app-top-bar-height: 0 !important;
 
-                    div.base_c48ade {
-                      & > div.bar_c38106 {
-                        display: none;
-                      }
+                    /* Title bar buttons are still visible so hide them too */
+                    div.base_c48ade > div.bar_c38106 {
+                      display: none;
                     }
 
+                    /* Bring the server list down a few pixels */
                     ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
                       margin-top: 8px;
                     }
                   }
 
-                  /* Use system fonts for UI */
                   :root {
+                    /* Use system fonts for UI */
                     --font-primary: ${primaryFont} !important;
                     --font-display: ${primaryFont} !important;
                     --font-headline: ${primaryFont} !important;
                     --font-code: ${monoFont} !important;
+
+                    /* Disblock settings */
+                    --display-clan-tags: none;
+                    --display-active-now: none;
                   }
 
                   /* Align the chat box with the user panel */
-                  form div[class^="channelBottomBarArea_"] {
+                  form div[class="channelBottomBarArea_f75fb0"] {
                     --custom-chat-input-margin-bottom: 6px;
                     --custom-channel-textarea-text-area-height: 52px;
                   }
@@ -114,11 +119,6 @@ in {
                   /* Hide the slowmode icon */
                   .slowModeIcon_b21699 {
                     display: none;
-                  }
-
-                  /* Hide "Now Playing" section on friends list */
-                  div[class^="nowPlayingColumn_"] {
-                    display: none !important;
                   }
 
                   /* Make "Read All" vencord button text smaller */
