@@ -11,27 +11,27 @@
         # GitHub
         Host github.com
         	Hostname github.com
-        	IdentityFile /home/${user}/.local/share/ssh/github
+        	IdentityFile /home/${user}/.ssh/github
 
         # GitLab
         Host gitlab.com
         	Hostname gitlab.com
-        	IdentityFile /home/${user}/.local/share/ssh/gitlab
+        	IdentityFile /home/${user}/.ssh/gitlab
 
         # ArchLinux GitLab
         Host https://gitlab.archlinux.org
         	Hostname https://gitlab.archlinux.org/
-        	IdentityFile /home/${user}/.local/share/ssh/archlinux-gitlab
+        	IdentityFile /home/${user}/.ssh/archlinux-gitlab
 
         # AUR
         Host aur.archlinux.org
         	Hostname aur.archlinux.org
-        	IdentityFile /home/${user}/.local/share/ssh/aur
+        	IdentityFile /home/${user}/.ssh/aur
 
         # Codeberg
         Host codeberg.org
         	Hostname codeberg.org
-        	IdentityFile /home/${user}/.local/share/ssh/codeberg
+        	IdentityFile /home/${user}/.ssh/codeberg
       '';
     };
   };
