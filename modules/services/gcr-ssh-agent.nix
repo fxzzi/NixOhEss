@@ -11,5 +11,9 @@
       enable = true;
       package = inputs.nixpkgs-gcr.legacyPackages.${pkgs.system}.gcr_4;
     };
+    programs = {
+      seahorse.enable = true;
+      ssh.enableAskPassword = true;
+    };
   };
 }
