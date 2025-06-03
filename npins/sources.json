@@ -1,5 +1,18 @@
 {
   "pins": {
+    "Vencord": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Vendicated",
+        "repo": "Vencord"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "eafbc0d15a89bae8af403d9aef6b10eddfa8e78a",
+      "url": "https://github.com/Vendicated/Vencord/archive/eafbc0d15a89bae8af403d9aef6b10eddfa8e78a.tar.gz",
+      "hash": "1b28gd2nzryrkz6kghyyg6lpd0y670zk7x5kiqzkww0f5bzl44np"
+    },
     "app2unit": {
       "type": "Git",
       "repository": {

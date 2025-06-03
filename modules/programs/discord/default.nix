@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  inputs,
+  npins,
   ...
 }: let
   cfg = config.cfg.apps.discord;
@@ -137,6 +137,18 @@ in {
             withTTS = false;
             enableAutoscroll = true;
             withOpenASAR = true;
+            # override Vencord to use latest master
+            vencord = pkgs.vencord.overrideAttrs {
+              src = let
+                pin = npins.Vencord;
+              in
+                fetchFromGitHub {
+                  inherit (pin.repository) owner repo;
+                  sha256 = pin.hash;
+                  rev = pin.revision;
+                };
+              version = "0-unstable-${npins.Vencord.revision}";
+            };
             withVencord = cfg.vencord.enable;
             # TODO: Uncomment this when #412737 lands in nixos-unstable
             # disableUpdates = true;
