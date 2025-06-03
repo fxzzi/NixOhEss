@@ -21,7 +21,8 @@
           wget
           ffmpeg
           imagemagick
-          pwvucontrol
+          # pwvucontrol
+          lxqt.pavucontrol-qt
           mate.atril
           mate.eom
           libreoffice

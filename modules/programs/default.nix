@@ -25,7 +25,6 @@
     ./discord
     ./ags
     ./uwsm
-    ./gnome-keyring.nix
     ./sudo.nix
   ];
   config = {
