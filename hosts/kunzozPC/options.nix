@@ -1,6 +1,6 @@
 {
   kernel = {
-    type = "zen";
+    type = "lts";
     zenergy.enable = true;
     # xone.enable = true;
     # v4l2.enable = true;
