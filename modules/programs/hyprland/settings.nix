@@ -211,7 +211,7 @@ in {
           swallow_regex = "^(foot)$"; # Make foot swallow executed windows
           initial_workspace_tracking = 0;
           vrr = 2; # avoid flickering with vrr = 1
-          # anr_missed_pings = 3; # by default, ANR dialog shows up way too aggressively.
+          anr_missed_pings = 4; # by default, ANR dialog shows up way too aggressively.
           middle_click_paste = 0;
         };
         ecosystem = {
