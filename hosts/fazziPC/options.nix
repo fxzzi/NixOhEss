@@ -62,6 +62,7 @@
     sgdboop.enable = true;
     osu-lazer.enable = false;
     creamlinux.enable = true;
+    vkbasalt.enable = true;
   };
   gpu = {
     amdgpu.enable = false;
@@ -132,7 +133,7 @@
     ncmpcpp.enable = true;
     mpd = {
       enable = true;
-      discord-rpc.enable = false;
+      discord-rpc.enable = true;
     };
   };
   gui = {

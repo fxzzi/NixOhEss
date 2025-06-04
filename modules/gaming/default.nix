@@ -4,7 +4,9 @@
   pkgs,
   user,
   ...
-}: {
+}: let
+  cfg = config.cfg.gaming;
+in {
   options.cfg.gaming = {
     proton-ge.enable = lib.mkEnableOption "proton-ge";
     gamescope.enable = lib.mkEnableOption "gamescope";
@@ -12,6 +14,7 @@
     nvtop.enable = lib.mkEnableOption "nvtop";
     sgdboop.enable = lib.mkEnableOption "sgdboop";
     osu-lazer.enable = lib.mkEnableOption "osu-lazer";
+    vkbasalt.enable = lib.mkEnableOption "vkBasalt";
   };
 
   config = {
@@ -26,15 +29,16 @@
     hj = {
       packages = with pkgs; [
         (
-          lib.mkIf config.cfg.gaming.gamescope.enable
+          lib.mkIf cfg.gamescope.enable
           (gamescope.overrideAttrs {
             # NOTE: https://github.com/ValveSoftware/gamescope/issues/1622#issuecomment-2508182530
             NIX_CFLAGS_COMPILE = ["-fno-fast-math"];
           })
         )
-        (lib.mkIf config.cfg.gaming.cemu.enable cemu)
-        (lib.mkIf config.cfg.gaming.sgdboop.enable (pkgs.callPackage ./sgdboop.nix {}))
-        (lib.mkIf config.cfg.gaming.osu-lazer.enable osu-lazer-bin)
+        (lib.mkIf cfg.cemu.enable cemu)
+        (lib.mkIf cfg.sgdboop.enable (pkgs.callPackage ./sgdboop.nix {}))
+        (lib.mkIf cfg.osu-lazer.enable osu-lazer-bin)
+        (lib.mkIf cfg.vkbasalt.enable vkbasalt)
       ];
     };
   };
