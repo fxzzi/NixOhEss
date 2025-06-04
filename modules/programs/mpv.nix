@@ -52,7 +52,7 @@ in {
 
           vlang = "en,eng";
           vo = "gpu-next";
-          gpu-context = "wayland"; # waylandvk broken on nvidia
+          # gpu-context = "wayland"; # waylandvk broken on nvidia
 
           volume-max = 150; # allow some overamp
           volume = 100;
