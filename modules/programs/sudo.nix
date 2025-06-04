@@ -8,11 +8,11 @@ _: {
         extraConfig = ''
           Defaults pwfeedback
           Defaults env_keep += "EDITOR PATH DISPLAY"
+
+          # custom sudo prompt
+          Defaults passprompt = "[sudo 󱅞 ]: "
         '';
       };
-    };
-    environment.sessionVariables = {
-      SUDO_PROMPT = "[sudo: 󱅞 ] Password: "; # note the extra space
     };
   };
 }
