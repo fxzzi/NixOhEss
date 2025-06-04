@@ -18,20 +18,6 @@
         systems.follows = "systems";
       };
     };
-    hyprland-old = {
-      url = "github:hyprwm/Hyprland/v0.48.1";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        # continue using old versions
-        # hyprlang.follows = "hyprland/hyprlang";
-        # hyprutils.follows = "hyprland/hyprutils";
-        # hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-        # hyprgraphics.follows = "hyprland/hyprgraphics";
-        # hyprland-protocols.follows = "hyprland/hyprland-protocols";
-        # aquamarine.follows = "hyprland/aquamarine";
-      };
-    };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs = {
