@@ -134,6 +134,7 @@ in {
       packages = with pkgs; [
         (
           (discord-canary.override {
+            disableUpdates = false;
             withTTS = false;
             enableAutoscroll = true;
             withOpenASAR = true;
@@ -150,8 +151,6 @@ in {
               version = "0-unstable-${npins.Vencord.revision}";
             };
             withVencord = cfg.vencord.enable;
-            # TODO: Uncomment this when #412737 lands in nixos-unstable
-            # disableUpdates = true;
           }).overrideAttrs
           (old: {
             nativeBuildInputs = (old.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
