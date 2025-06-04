@@ -416,6 +416,9 @@ in {
           ", XF86MonBrightnessUp, exec, ${runProc "${brightnessScript} up 5"}"
           ", XF86MonBrightnessDown, exec, ${runProc "${brightnessScript} down 5"}"
 
+          # can't type £ with US layout, so use wtype
+          "$MOD, comma, exec, ${runProc "${lib.getExe pkgs.wtype} £"}"
+
           # resize
           "$MOD CTRL, left, resizeactive, -10 0"
           "$MOD CTRL, right, resizeactive, 10 0"
