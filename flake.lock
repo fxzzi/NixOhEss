@@ -1082,11 +1082,11 @@
     "walls": {
       "flake": false,
       "locked": {
-        "lastModified": 1748536156,
-        "narHash": "sha256-vCfjU4aXgkK/YlHcICotJ4GdDiOHybjodokT0xUKeX8=",
+        "lastModified": 1749071734,
+        "narHash": "sha256-/DLMTGF+48EGcktxlcIKQE1AVo0EnKGBOdK+OuT3UGs=",
         "owner": "fazzi",
         "repo": "walls",
-        "rev": "a9828b4f8424cf0b70ced28ff0b0c4d3e5d7ddda",
+        "rev": "baa9bf3b739d2974c8816b699b837e8bc3b2dcfa",
         "type": "gitlab"
       },
       "original": {
