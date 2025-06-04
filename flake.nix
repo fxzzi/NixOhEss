@@ -23,12 +23,13 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprland-protocols.follows = "hyprland/hyprland-protocols";
-        aquamarine.follows = "hyprland/aquamarine";
+        # continue using old versions
+        # hyprlang.follows = "hyprland/hyprlang";
+        # hyprutils.follows = "hyprland/hyprutils";
+        # hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
+        # hyprgraphics.follows = "hyprland/hyprgraphics";
+        # hyprland-protocols.follows = "hyprland/hyprland-protocols";
+        # aquamarine.follows = "hyprland/aquamarine";
       };
     };
     hyprlock = {
