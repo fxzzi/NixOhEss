@@ -7,9 +7,10 @@
   ...
 }: let
   pkg =
-    if hostName == "kunzozPC"
-    then inputs.hyprland-old.packages.${pkgs.system}
-    else if config.cfg.gui.hypr.useGit
+    # if hostName == "kunzozPC"
+    # then inputs.hyprland-old.packages.${pkgs.system}
+    # else if config.cfg.gui.hypr.useGit
+    if config.cfg.gui.hypr.useGit
     then inputs.hyprland.packages.${pkgs.system}
     else pkgs;
   patches =
