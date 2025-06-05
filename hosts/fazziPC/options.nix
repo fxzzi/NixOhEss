@@ -54,15 +54,15 @@
     };
     mangohud = {
       enable = true;
-      enableSessionWide = false;
+      enableSessionWide = true;
     };
-    gamescope.enable = true;
+    gamescope.enable = false;
     cemu.enable = false;
     heroic.enable = true;
     sgdboop.enable = true;
     osu-lazer.enable = false;
     creamlinux.enable = true;
-    vkbasalt.enable = true;
+    vkbasalt.enable = false;
   };
   gpu = {
     amdgpu.enable = false;
@@ -141,7 +141,7 @@
     fontconfig = {
       enable = true;
       subpixelLayout = "none";
-      useMonoEverywhere = false;
+      useMonoEverywhere = true;
     };
     wallust.enable = true;
     ags.enable = true;
