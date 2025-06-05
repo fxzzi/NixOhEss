@@ -38,6 +38,19 @@
       "url": null,
       "hash": "05f2g8sm8w0rs3f93bdzxi0i4wh4j88s3gcmhq8qqmv083n72nb4"
     },
+    "mpd-discord-rpc": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "fxzzi",
+        "repo": "mpd-discord-rpc"
+      },
+      "branch": "progress-bar",
+      "submodules": false,
+      "revision": "491442cd528d889c51f255919f30d44b6bcf772f",
+      "url": "https://github.com/fxzzi/mpd-discord-rpc/archive/491442cd528d889c51f255919f30d44b6bcf772f.tar.gz",
+      "hash": "1qvfxir7hpbpyg551pm6shflgg8dcgap43h71njsjxgmgjp14qrn"
+    },
     "nvidia-vaapi-driver": {
       "type": "Git",
       "repository": {
