@@ -3,9 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # TODO: remove when https://github.com/NixOS/nixpkgs/pull/309327 gets merged
     nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
     # TODO: remove when https://github.com/NixOS/nixpkgs/pull/379731 gets merged
     nixpkgs-gcr.url = "github:nezia1/nixpkgs/replace-gnome-keyring-with-gcr";
+
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:feel-co/hjem";
@@ -99,7 +101,7 @@
       };
     };
     creamlinux = {
-      # pin to older release until i have the time to update the flake
+      # FIXME: pin to older release until i have the time to update the flake
       url = "github:Novattz/creamlinux-installer/17ad517a459f1a41a40bef2642ee952859147ab5";
       inputs = {
         nixpkgs.follows = "nixpkgs";
