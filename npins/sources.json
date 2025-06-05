@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "eafbc0d15a89bae8af403d9aef6b10eddfa8e78a",
-      "url": "https://github.com/Vendicated/Vencord/archive/eafbc0d15a89bae8af403d9aef6b10eddfa8e78a.tar.gz",
-      "hash": "1b28gd2nzryrkz6kghyyg6lpd0y670zk7x5kiqzkww0f5bzl44np"
+      "revision": "0ce7772500f97bba6c7a9954901401b8c3bb879a",
+      "url": "https://github.com/Vendicated/Vencord/archive/0ce7772500f97bba6c7a9954901401b8c3bb879a.tar.gz",
+      "hash": "1jhas0sngc41v0l59hjf2fy607g7q1m9zcvi3z6n88539pai263n"
     },
     "app2unit": {
       "type": "Git",
@@ -42,14 +42,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "fxzzi",
+        "owner": "JakeStanger",
         "repo": "mpd-discord-rpc"
       },
-      "branch": "progress-bar",
+      "branch": "master",
       "submodules": false,
-      "revision": "491442cd528d889c51f255919f30d44b6bcf772f",
-      "url": "https://github.com/fxzzi/mpd-discord-rpc/archive/491442cd528d889c51f255919f30d44b6bcf772f.tar.gz",
-      "hash": "1qvfxir7hpbpyg551pm6shflgg8dcgap43h71njsjxgmgjp14qrn"
+      "revision": "5ac72be98cb44d66cc044f8cfad457e2102d51cc",
+      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/5ac72be98cb44d66cc044f8cfad457e2102d51cc.tar.gz",
+      "hash": "1hc09amxvxf7s4l95sj7k4mw7r1afl1jf7gg2vhk9myz2z6y9q02"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
