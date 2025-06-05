@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  # NOTE: Workaround https://gitlab.freedesktop.org/drm/amd/-/issues?show=eyJpaWQiOiI0MjM4IiwiZnVsbF9wYXRoIjoiZHJtL2FtZCIsImlkIjoxMzMwODl9
+  # NOTE: Workaround https://gitlab.freedesktop.org/drm/amd/-/issues/4238
   # remove when reverted upstream.
   amdgpu-kernel-module = pkgs.callPackage ./amdgpu-kernel-module.nix {
     # Make sure the module targets the same kernel as your system is using.
