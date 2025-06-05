@@ -2,10 +2,22 @@
   lib,
   config,
   pkgs,
+  npins,
   ...
 }: let
   tomlFormat = pkgs.formats.toml {};
   fmt = cfg: tomlFormat.generate "config.toml" cfg;
+  pkg = pkgs.mpd-discord-rpc.overrideAttrs (
+    finalAttrs: _: {
+      src = npins.mpd-discord-rpc;
+
+      cargoDeps = pkgs.rustPackages.rustPlatform.fetchCargoVendor {
+        inherit (finalAttrs) src;
+
+        hash = "sha256-nrchmaE3PKwTj0cUL4SQIq6WIxUNX9BEhf2EvQuouuc=";
+      };
+    }
+  );
 in {
   options.cfg.music.mpd.discord-rpc.enable = lib.mkEnableOption "discord-rpc";
   config = lib.mkIf config.cfg.music.mpd.discord-rpc.enable {
@@ -16,10 +28,10 @@ in {
           format = {
             details = "$title";
             state = "$artist";
-            timestamp = "elapsed";
+            timestamp = "both";
             large_image = "notes";
             small_image = "";
-            large_text = "$album";
+            large_text = "";
             small_text = "";
           };
         };
@@ -38,7 +50,7 @@ in {
       serviceConfig = {
         Type = "simple";
         Restart = "on-failure";
-        ExecStart = "${lib.getExe pkgs.mpd-discord-rpc}";
+        ExecStart = "${lib.getExe pkg}";
       };
     };
   };
