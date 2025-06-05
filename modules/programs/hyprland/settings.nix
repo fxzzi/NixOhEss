@@ -18,9 +18,11 @@
     then "slidevert"
     else "slide";
   hyprsunsetPkg =
-    if config.cfg.gui.hypr.useGit
-    then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
-    else pkgs;
+    # FIXME: hyprsunset flake is broken rn
+    # if config.cfg.gui.hypr.useGit
+    # then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
+    # else pkgs;
+    pkgs;
   uwsmEnabled = config.cfg.wayland.uwsm.enable;
   runProc = pkg:
     if uwsmEnabled
