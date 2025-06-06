@@ -3,9 +3,11 @@
   lib,
   pkgs,
   user,
+  inputs,
   ...
 }: let
   cfg = config.cfg.gaming;
+  mitsuruu = inputs.mitsuruu.packages.${pkgs.system};
 in {
   options.cfg.gaming = {
     proton-ge.enable = lib.mkEnableOption "proton-ge";
@@ -15,6 +17,7 @@ in {
     sgdboop.enable = lib.mkEnableOption "sgdboop";
     osu-lazer.enable = lib.mkEnableOption "osu-lazer";
     vkbasalt.enable = lib.mkEnableOption "vkBasalt";
+    yuzu.enable = lib.mkEnableOption "yuzu";
   };
 
   config = {
@@ -39,6 +42,7 @@ in {
         (lib.mkIf cfg.sgdboop.enable (pkgs.callPackage ./sgdboop.nix {}))
         (lib.mkIf cfg.osu-lazer.enable osu-lazer-bin)
         (lib.mkIf cfg.vkbasalt.enable vkbasalt)
+        (lib.mkIf cfg.yuzu.enable mitsuruu.eden)
       ];
     };
   };
