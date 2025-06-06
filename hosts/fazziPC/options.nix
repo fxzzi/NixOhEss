@@ -63,6 +63,7 @@
     osu-lazer.enable = false;
     creamlinux.enable = true;
     vkbasalt.enable = false;
+    yuzu.enable = true;
   };
   gpu = {
     amdgpu.enable = false;
