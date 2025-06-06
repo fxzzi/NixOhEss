@@ -309,6 +309,7 @@ in {
           "immediate, class: ^(Celeste)$"
           "immediate, class: ^(info.cemu.Cemu)$"
           "immediate, class: ^(Cuphead.x86_64)$"
+          "immediate, class: ^(org.eden_emu.eden)$"
 
           # Fix everest (celeste) splash screen
           "float, class:^(EverestSplash-linux)$"
