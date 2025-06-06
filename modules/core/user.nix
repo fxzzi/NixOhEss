@@ -38,6 +38,8 @@
 
     users.users.${user} = {
       isNormalUser = true;
+      # so you can login the first time.
+      # PLEASE change this after logging in
       initialPassword = "1234";
       extraGroups = [
         "wheel" # sudo

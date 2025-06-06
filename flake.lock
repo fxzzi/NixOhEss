@@ -409,15 +409,15 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1749157378,
-        "narHash": "sha256-aOu9Z8XVJkNw67/898ThHvnwTjCr+4BZcbDYDQkgJV8=",
-        "owner": "FridayFaerie",
+        "lastModified": 1749215657,
+        "narHash": "sha256-KCYxy6Ym6bKyX3ShAr6vXksLRxUeOngwfRjrN+E7+xU=",
+        "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "2c8bf881707ac5f445c0d20035c65924ecd84398",
+        "rev": "456c820d52263579e4afdc3429fdaecab12f37a5",
         "type": "github"
       },
       "original": {
-        "owner": "FridayFaerie",
+        "owner": "hyprwm",
         "repo": "Hyprland",
         "type": "github"
       }
@@ -644,11 +644,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1746481417,
-        "narHash": "sha256-mal2vIpRz5BU/0ll6gP/N2FqjFtgFNDgMBgoI6tLWag=",
+        "lastModified": 1749186395,
+        "narHash": "sha256-4PMO6bm0hHEOzGEhXRYSCLpkGT6lGwvax8GkLo+nK5w=",
         "owner": "hyprwm",
         "repo": "hyprsunset",
-        "rev": "2a8ef76c6a77ca249e4613fefcd96bad74b5f9b2",
+        "rev": "4528cca4b2e4b44ed0a4e767a0ba493770d9d141",
         "type": "github"
       },
       "original": {
