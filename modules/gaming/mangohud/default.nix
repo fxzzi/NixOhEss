@@ -47,6 +47,7 @@ in {
           toggle_hud = "Shift_R+F12";
           toggle_hud_position = "Shift_R+F11";
           toggle_preset = "Shift_R+F10";
+          blacklist = "mpv";
         };
         ".config/MangoHud/presets.conf".text = ''
           [preset 0]

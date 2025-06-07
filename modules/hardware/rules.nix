@@ -19,11 +19,17 @@
         ])
       ];
 
-      extraRules = lib.mkIf config.cfg.hardware.scyroxRules.enable ''
-        # scyrox vendor id
-        SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3554", TAG+="uaccess"
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="3554", TAG+="uaccess"
-      '';
+      extraRules = lib.mkMerge [
+        (lib.mkIf config.cfg.hardware.scyroxRules.enable ''
+          # scyrox vendor id
+          SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3554", TAG+="uaccess"
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="3554", TAG+="uaccess"
+        '')
+        ''
+          # Disable dualsense acting as touchpad
+          ACTION=="add|change", KERNEL=="event[0-9]*", ATTRS{name}=="*Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+        ''
+      ];
     };
   };
 }
