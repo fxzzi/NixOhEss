@@ -54,10 +54,10 @@
     };
     mangohud = {
       enable = true;
-      enableSessionWide = true;
+      enableSessionWide = false;
     };
     gamescope.enable = false;
-    cemu.enable = false;
+    cemu.enable = true;
     heroic.enable = true;
     sgdboop.enable = true;
     osu-lazer.enable = false;

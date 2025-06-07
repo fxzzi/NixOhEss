@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "0ce7772500f97bba6c7a9954901401b8c3bb879a",
-      "url": "https://github.com/Vendicated/Vencord/archive/0ce7772500f97bba6c7a9954901401b8c3bb879a.tar.gz",
-      "hash": "1jhas0sngc41v0l59hjf2fy607g7q1m9zcvi3z6n88539pai263n"
+      "revision": "bb106b7c49a6f1019194738a66ee75c8584680a8",
+      "url": "https://github.com/Vendicated/Vencord/archive/bb106b7c49a6f1019194738a66ee75c8584680a8.tar.gz",
+      "hash": "0fp5x7kqyvj5kzr5k2min1sd2l46lw02hn47cih3crs3bnnzbnc3"
     },
     "app2unit": {
       "type": "Git",
