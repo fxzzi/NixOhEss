@@ -108,10 +108,6 @@
         systems.follows = "systems";
       };
     };
-    mitsuruu = {
-      url = "github:mitsuruu/nur-packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # non-flake inputs
     tokyo-night-linux = {
       url = "github:stronk-dev/Tokyo-Night-Linux";
