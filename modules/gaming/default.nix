@@ -41,7 +41,7 @@ in {
         (lib.mkIf cfg.sgdboop.enable (pkgs.callPackage ./sgdboop.nix {}))
         (lib.mkIf cfg.osu-lazer.enable osu-lazer-bin)
         (lib.mkIf cfg.vkbasalt.enable vkbasalt)
-        (lib.mkIf cfg.yuzu.enable (pkgs.callPackage ./yuzu {}).eden)
+        (lib.mkIf cfg.yuzu.enable (pkgs.callPackage ./yuzu {inherit npins;}).eden)
       ];
     };
   };
