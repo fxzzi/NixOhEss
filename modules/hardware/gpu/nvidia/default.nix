@@ -39,7 +39,7 @@
         enable32Bit = true;
         extraPackages = with pkgs; [
           (nvidia-vaapi-driver.overrideAttrs {
-            version = "0-unstable-${npins.nvidia-vaapi-driver.revision}";
+            version = "0-unstable-${builtins.substring 0 8 npins.nvidia-vaapi-driver.revision}";
             src = npins.nvidia-vaapi-driver;
           })
         ];

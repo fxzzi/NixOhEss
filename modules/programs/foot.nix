@@ -22,7 +22,7 @@ in {
       enable = true;
       package = pkgs.foot.overrideAttrs {
         pname = "foot-transparency";
-        version = "0-unstable-${pin.revision}";
+        version = "0-unstable-${builtins.substring 0 8 pin.revision}";
         src = pkgs.fetchFromGitea {
           domain = "codeberg.org";
           owner = "fazzi";

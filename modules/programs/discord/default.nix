@@ -148,7 +148,7 @@ in {
                   sha256 = pin.hash;
                   rev = pin.revision;
                 };
-              version = "0-unstable-${npins.Vencord.revision}";
+              version = "0-unstable-${builtins.substring 0 8 npins.Vencord.revision}";
             };
             withVencord = cfg.vencord.enable;
           }).overrideAttrs

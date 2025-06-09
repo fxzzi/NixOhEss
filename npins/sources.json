@@ -26,6 +26,18 @@
       "url": "https://github.com/Vladimir-csp/app2unit/archive/7b9672a2dc16bdfbe7b7b7c27043529ca3bcb6ae.tar.gz",
       "hash": "03dnx5v75530fwppfgpjl6xzzmdbk73ymrlix129d9n5sqrz9wgk"
     },
+    "eden": {
+      "type": "Git",
+      "repository": {
+        "type": "Git",
+        "url": "https://git.eden-emu.dev/eden-emu/eden"
+      },
+      "branch": "master",
+      "submodules": true,
+      "revision": "9bbf2c3df2d947b1574f51feeb63b71ededa69f5",
+      "url": null,
+      "hash": "135k62m87kzx8vjsyv26mwc25bsi56v9r4hy95lp31b3s1jzfsk3"
+    },
     "foot": {
       "type": "Git",
       "repository": {
