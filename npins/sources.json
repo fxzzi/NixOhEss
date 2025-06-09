@@ -1,30 +1,20 @@
 {
   "pins": {
     "Vencord": {
-      "type": "Git",
+      "type": "GitRelease",
       "repository": {
         "type": "GitHub",
         "owner": "Vendicated",
         "repo": "Vencord"
       },
-      "branch": "main",
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
       "submodules": false,
-      "revision": "bb106b7c49a6f1019194738a66ee75c8584680a8",
-      "url": "https://github.com/Vendicated/Vencord/archive/bb106b7c49a6f1019194738a66ee75c8584680a8.tar.gz",
-      "hash": "0fp5x7kqyvj5kzr5k2min1sd2l46lw02hn47cih3crs3bnnzbnc3"
-    },
-    "app2unit": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Vladimir-csp",
-        "repo": "app2unit"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "7b9672a2dc16bdfbe7b7b7c27043529ca3bcb6ae",
-      "url": "https://github.com/Vladimir-csp/app2unit/archive/7b9672a2dc16bdfbe7b7b7c27043529ca3bcb6ae.tar.gz",
-      "hash": "03dnx5v75530fwppfgpjl6xzzmdbk73ymrlix129d9n5sqrz9wgk"
+      "version": "v1.12.3",
+      "revision": "5f21eaabf8ecd7a7e428c77394decc4e43d30af9",
+      "url": "https://api.github.com/repos/Vendicated/Vencord/tarball/v1.12.3",
+      "hash": "1r8svva8yv96pmxz4q52y53j3n7k3ppk8kcbxs1nzm1s421mgrkw"
     },
     "eden": {
       "type": "Git",
@@ -64,16 +54,19 @@
       "hash": "1hc09amxvxf7s4l95sj7k4mw7r1afl1jf7gg2vhk9myz2z6y9q02"
     },
     "nvidia-vaapi-driver": {
-      "type": "Git",
+      "type": "GitRelease",
       "repository": {
         "type": "GitHub",
         "owner": "elFarto",
         "repo": "nvidia-vaapi-driver"
       },
-      "branch": "master",
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
       "submodules": false,
+      "version": "v0.0.14",
       "revision": "effa3af05da4525d850a525ae2dedf5eb80351d7",
-      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/effa3af05da4525d850a525ae2dedf5eb80351d7.tar.gz",
+      "url": "https://api.github.com/repos/elFarto/nvidia-vaapi-driver/tarball/v0.0.14",
       "hash": "0khk5mv1ql6cd24bbpgs0jz3xdh9sabrmr91isbw54ffwf3r1z9m"
     }
   },

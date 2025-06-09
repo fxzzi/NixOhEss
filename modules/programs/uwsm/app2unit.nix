@@ -2,13 +2,18 @@
   lib,
   stdenvNoCC,
   dash,
-  npins,
+  fetchFromGitHub,
 }:
-stdenvNoCC.mkDerivation {
+stdenvNoCC.mkDerivation rec {
   pname = "app2unit";
-  version = "0-unstable-${builtins.substring 0 8 npins.app2unit.revision}";
+  version = "0.9.0";
 
-  src = npins.app2unit;
+  src = fetchFromGitHub {
+    owner = "Vladimir-csp";
+    repo = "app2unit";
+    tag = "v${version}";
+    sha256 = "fw6Vh3Jyop95TQdOFrpspbauSfqMpd0BZkZVc1k6+K0=";
+  };
 
   installPhase = ''
     install -Dt $out/bin app2unit

@@ -18,9 +18,7 @@
     };
     environment = {
       systemPackages = [
-        (pkgs.callPackage ./app2unit.nix {
-          inherit npins;
-        })
+        (pkgs.callPackage ./app2unit.nix {})
       ];
       sessionVariables = {
         # uwsm integration

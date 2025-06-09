@@ -1,11 +1,12 @@
 {
   callPackage,
   fetchFromGitea,
+  npins,
 }: {
   eden = callPackage ./generic.nix (
     let
-      revision = "321bb5a17f17739f554078261c7f86e58e2f89bc";
-      version = "0-unstable-${builtins.substring 0 8 revision}";
+      pin = npins.eden;
+      version = "0-unstable-${builtins.substring 0 8 pin.revision}";
     in {
       forkName = "eden";
       inherit version;
@@ -13,8 +14,8 @@
         domain = "git.eden-emu.dev";
         owner = "eden-emu";
         repo = "eden";
-        rev = revision;
-        hash = "sha256-s4fZFlNc9/tyn0b+4pTEfwRTsmEzZv4C5/Lraygvk9A=";
+        rev = pin.revision;
+        sha256 = pin.hash;
         fetchSubmodules = true;
       };
       homepage = "https://git.eden-emu.dev/eden-emu/eden/releases";
