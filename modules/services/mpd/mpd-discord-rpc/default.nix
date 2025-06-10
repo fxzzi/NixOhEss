@@ -8,13 +8,12 @@
   tomlFormat = pkgs.formats.toml {};
   fmt = cfg: tomlFormat.generate "config.toml" cfg;
   pkg = pkgs.mpd-discord-rpc.overrideAttrs (
-    finalAttrs: _: {
+    finalAttrs: {
       src = npins.mpd-discord-rpc;
 
       cargoDeps = pkgs.rustPackages.rustPlatform.fetchCargoVendor {
         inherit (finalAttrs) src;
-
-        hash = "sha256-nrchmaE3PKwTj0cUL4SQIq6WIxUNX9BEhf2EvQuouuc=";
+        hash = "sha256-Q7QyJh/KOJ5drud/tPKtEzfr3q7yosW8wUCOCA8uDSs=";
       };
     }
   );
