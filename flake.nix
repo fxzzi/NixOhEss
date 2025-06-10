@@ -10,7 +10,12 @@
 
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
-      url = "github:feel-co/hjem";
+      # url = "github:feel-co/hjem";
+      url = "github:nezia1/hjem/manifest-switching";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    smfh = {
+      url = "github:Gerg-L/smfh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {

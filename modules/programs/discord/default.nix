@@ -75,7 +75,7 @@ in {
                 # css
                 ''
                   /* Hide nitro begging */
-                  @import url("https://codeberg.org/AllPurposeMat/Disblock-Origin/raw/branch/master/DisblockOrigin.theme.css");
+                  @import url("https://codeberg.org/fazzi/Disblock-Origin/raw/branch/hide-emoji-separator/DisblockOrigin.theme.css");
 
                   /* Hide the Visual Refresh title bar */
                   .visual-refresh {
@@ -103,6 +103,7 @@ in {
                     /* Disblock settings */
                     --display-clan-tags: none;
                     --display-active-now: none;
+                    --display-hover-reaction-emoji: none;
                   }
 
                   /* Align the chat box with the user panel */
@@ -123,7 +124,7 @@ in {
 
                   /* Make "Read All" vencord button text smaller */
                   button.vc-ranb-button {
-                    font-size: 11px;
+                    font-size: 11.5px;
                     font-weight: normal;
                   }
                 '';
