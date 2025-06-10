@@ -13,6 +13,7 @@
   config = {
     hjem = {
       clobberByDefault = true;
+      linker = inputs.smfh.packages.${pkgs.system}.default;
       users.${user} = {
         enable = true;
         inherit user;

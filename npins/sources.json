@@ -24,9 +24,9 @@
       },
       "branch": "master",
       "submodules": true,
-      "revision": "9bbf2c3df2d947b1574f51feeb63b71ededa69f5",
+      "revision": "c6a87a661a7fed4370d275f3e700b6234f6d03a3",
       "url": null,
-      "hash": "135k62m87kzx8vjsyv26mwc25bsi56v9r4hy95lp31b3s1jzfsk3"
+      "hash": "0aiqw7v73dmqhrcic28k7kz19bkkyvp8w46kk9ya5b2w1y0xwcnd"
     },
     "foot": {
       "type": "Git",
@@ -49,9 +49,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5ac72be98cb44d66cc044f8cfad457e2102d51cc",
-      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/5ac72be98cb44d66cc044f8cfad457e2102d51cc.tar.gz",
-      "hash": "1hc09amxvxf7s4l95sj7k4mw7r1afl1jf7gg2vhk9myz2z6y9q02"
+      "revision": "7f2fd9d66248b7e86e4a8c6e96132d21c1d5d7ac",
+      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/7f2fd9d66248b7e86e4a8c6e96132d21c1d5d7ac.tar.gz",
+      "hash": "0hxir6d2wh8qjqvicymgdrfr7k0na6fjbcn2i8xsfxk90py1xnl4"
     },
     "nvidia-vaapi-driver": {
       "type": "GitRelease",

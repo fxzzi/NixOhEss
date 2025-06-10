@@ -56,14 +56,14 @@
       enable = true;
       enableSessionWide = false;
     };
-    gamescope.enable = false;
-    cemu.enable = true;
+    gamescope.enable = true;
+    cemu.enable = false;
     heroic.enable = true;
     sgdboop.enable = true;
     osu-lazer.enable = false;
     creamlinux.enable = true;
     vkbasalt.enable = false;
-    yuzu.enable = true;
+    yuzu.enable = false;
   };
   gpu = {
     amdgpu.enable = false;
