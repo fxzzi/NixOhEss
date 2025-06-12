@@ -10,6 +10,20 @@
     {
       "pattern": {
         "feature": "procname",
+        "matches": ".Discord-wrapped"
+      },
+      "profile": "No VidMem Reuse"
+    },
+    {
+      "pattern": {
+        "feature": "procname",
+        "matches": ".DiscordCanary-wrapped"
+      },
+      "profile": "No VidMem Reuse"
+    },
+    {
+      "pattern": {
+        "feature": "procname",
         "matches": "electron"
       },
       "profile": "No VidMem Reuse"
