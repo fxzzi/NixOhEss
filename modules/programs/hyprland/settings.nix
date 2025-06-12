@@ -5,6 +5,10 @@
   inputs,
   ...
 }: let
+  pkg =
+    if config.cfg.gui.hypr.useGit
+    then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}
+    else pkgs;
   multiMonitor =
     if config.cfg.gui.hypr.secondaryMonitor != null
     then true
@@ -17,10 +21,6 @@
     if multiMonitor
     then "slidevert"
     else "slide";
-  hyprsunsetPkg =
-    if config.cfg.gui.hypr.useGit
-    then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
-    else pkgs;
   uwsmEnabled = config.cfg.wayland.uwsm.enable;
   runProc = pkg:
     if uwsmEnabled
@@ -49,6 +49,23 @@
     if uwsmEnabled
     then "pgrep ${builtins.baseNameOf exe} || ${runProc exe}"
     else "pgrep ${builtins.baseNameOf exe} || ${exe}";
+
+  sunsetScript = pkgs.writeShellApplication {
+    name = "sunset";
+    runtimeInputs = [
+      pkg.hyprland # provides hyprctl
+    ];
+    text = ''
+      currentTemp=$(hyprctl hyprsunset temperature)
+      if [ "$currentTemp" != "$1" ]; then
+        echo "Setting temperature to $1"
+        hyprctl hyprsunset temperature "$1"
+      else
+        echo "Resetting temperature"
+        hyprctl hyprsunset identity
+      fi
+    '';
+  };
 
   screenshotScript = pkgs.writeShellApplication {
     name = "screenshot";
@@ -352,7 +369,7 @@ in {
             "CTRL SHIFT, Escape, exec, ${runTerm "btm"}"
 
             # extra schtuff
-            "$MOD, N, exec, ${toggleProc hyprsunsetPkg.hyprsunset} -t 2000"
+            "$MOD, N, exec, ${runProc "${lib.getExe sunsetScript} 3000"}"
             "$MOD, K, exec, ${toggleProc pkgs.hyprpicker} -r -a -n"
             "$MOD, R, exec, ${runProc "random-wall.sh"}"
             "$MOD SHIFT, R, exec, ${runProc "cycle-wall.sh"}"

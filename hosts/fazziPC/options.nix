@@ -168,6 +168,7 @@
         suspendTimeout = 600;
       };
       hyprpaper.enable = true;
+      hyprsunset.enable = true;
       xdph.enable = true;
     };
     dunst.enable = true;
