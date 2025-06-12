@@ -6,6 +6,7 @@
     # ./gnome-keyring.nix
     ./hypridle.nix
     ./hyprpaper.nix
+    ./hyprsunset.nix
     ./xdph.nix
     ./dunst.nix
     ./opentabletdriver.nix
