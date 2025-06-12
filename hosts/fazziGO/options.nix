@@ -30,7 +30,7 @@ _: {
     gaming = {
       celeste = {
         enable = true;
-        path = "games/Lutris/celeste";
+        path = "games/Celeste";
         modding.enable = true;
       };
     };
@@ -105,6 +105,7 @@ _: {
       wleave.enable = true;
       hypr = {
         # useGit = true;
+        # defaultMonitor = "HDMI-A-1";
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
         animations.enable = false;

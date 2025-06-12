@@ -21,17 +21,21 @@
       "VaapiOnNvidiaGPUs"
       "VaapiIgnoreDriverChecks"
     ];
+
   commandLineArgs =
-    [
+    (lib.optionals (enableFeatures != []) [
       "--enable-features=${lib.concatStringsSep "," enableFeatures}"
+    ])
+    ++ (lib.optionals (disableFeatures != []) [
       "--disable-features=${lib.concatStringsSep "," disableFeatures}"
-      "--extension-mime-request-handling=always-prompt-for-install" # allow chrome web store extension to be installed
+    ])
+    ++ [
+      "--extension-mime-request-handling=always-prompt-for-install"
     ]
     ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
       "--disable-smooth-scrolling"
     ]
     ++ lib.optionals config.cfg.apps.browsers.startpage.enable [
-      # override new tab page
       "--custom-ntp=${newTabPage}"
     ];
 
