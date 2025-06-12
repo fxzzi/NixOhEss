@@ -22,10 +22,12 @@
     ];
 
   commandLineArgs =
-    [
+    (lib.optionals (enableFeatures != []) [
       "--enable-features=${lib.concatStringsSep "," enableFeatures}"
+    ])
+    ++ (lib.optionals (disableFeatures != []) [
       "--disable-features=${lib.concatStringsSep "," disableFeatures}"
-    ]
+    ])
     ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
       "--disable-smooth-scrolling"
     ];
