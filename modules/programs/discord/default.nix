@@ -77,7 +77,7 @@ in {
                 # css
                 ''
                   /* Hide nitro begging */
-                  @import url("https://codeberg.org/fazzi/Disblock-Origin/raw/branch/hide-emoji-separator/DisblockOrigin.theme.css");
+                  @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css");
 
                   /* Hide the Visual Refresh title bar */
                   .visual-refresh {
