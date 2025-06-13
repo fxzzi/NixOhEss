@@ -30,7 +30,9 @@
   config = {
     # nano is enabled by default. no.
     # also dont install any of the default packages.
+    # cmd-not-found is useless
     programs.nano.enable = lib.mkDefault false;
     environment.defaultPackages = lib.mkDefault [];
+    programs.command-not-found.enable = false;
   };
 }
