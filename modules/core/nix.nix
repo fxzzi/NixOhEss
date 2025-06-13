@@ -1,6 +1,8 @@
 {
   pkgs,
   inputs,
+  config,
+  lib,
   ...
 }: {
   config = {
@@ -18,10 +20,8 @@
         trusted-users = ["@wheel"];
         build-dir = "/var/tmp";
       };
-      registry = {
-        self.flake = inputs.self;
-      };
-      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+      registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+      nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     };
     nixpkgs.config.allowUnfree = true; # not too fussed as long as app works on linux tbh
     documentation.nixos.enable = false; # remove useless docs .desktop
