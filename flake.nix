@@ -3,19 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # TODO: remove when https://github.com/NixOS/nixpkgs/pull/309327 gets merged
-    nixpkgs-olympus.url = "github:Petingoso/nixpkgs/olympus";
-    # TODO: remove when https://github.com/NixOS/nixpkgs/pull/379731 gets merged
-    nixpkgs-gcr.url = "github:nezia1/nixpkgs/replace-gnome-keyring-with-gcr";
-
+    # sometimes I just need stuff from master
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
-      # url = "github:feel-co/hjem";
-      url = "github:nezia1/hjem/manifest-switching";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    smfh = {
-      url = "github:Gerg-L/smfh";
+      url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {

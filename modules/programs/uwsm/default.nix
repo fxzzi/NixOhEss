@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  npins,
   ...
 }: {
   options.cfg.wayland.uwsm.enable = lib.mkEnableOption "uwsm";
@@ -18,7 +17,7 @@
     };
     environment = {
       systemPackages = [
-        (pkgs.callPackage ./app2unit.nix {})
+        pkgs.app2unit
       ];
       sessionVariables = {
         # uwsm integration
