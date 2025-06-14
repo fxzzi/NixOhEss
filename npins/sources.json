@@ -1,21 +1,5 @@
 {
   "pins": {
-    "Vencord": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Vendicated",
-        "repo": "Vencord"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v1.12.3",
-      "revision": "5f21eaabf8ecd7a7e428c77394decc4e43d30af9",
-      "url": "https://api.github.com/repos/Vendicated/Vencord/tarball/v1.12.3",
-      "hash": "1r8svva8yv96pmxz4q52y53j3n7k3ppk8kcbxs1nzm1s421mgrkw"
-    },
     "eden": {
       "type": "Git",
       "repository": {
@@ -52,22 +36,6 @@
       "revision": "7f2fd9d66248b7e86e4a8c6e96132d21c1d5d7ac",
       "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/7f2fd9d66248b7e86e4a8c6e96132d21c1d5d7ac.tar.gz",
       "hash": "0hxir6d2wh8qjqvicymgdrfr7k0na6fjbcn2i8xsfxk90py1xnl4"
-    },
-    "nvidia-vaapi-driver": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "elFarto",
-        "repo": "nvidia-vaapi-driver"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v0.0.14",
-      "revision": "effa3af05da4525d850a525ae2dedf5eb80351d7",
-      "url": "https://api.github.com/repos/elFarto/nvidia-vaapi-driver/tarball/v0.0.14",
-      "hash": "0khk5mv1ql6cd24bbpgs0jz3xdh9sabrmr91isbw54ffwf3r1z9m"
     }
   },
   "version": 5
