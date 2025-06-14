@@ -11,5 +11,6 @@
     ./opentabletdriver.nix
     ./wl-clip-persist.nix
     ./mate-polkit.nix
+    ./sunshine.nix
   ];
 }

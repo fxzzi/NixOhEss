@@ -1,4 +1,5 @@
 {
+  services.sunshine.enable = true;
   kernel = {
     type = "zen";
     zenergy.enable = true;
