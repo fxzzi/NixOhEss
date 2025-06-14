@@ -252,14 +252,15 @@ in {
           rounding = 0;
 
           shadow = {
-            enabled = 0;
-            color = "0xee1a1a1a";
-            render_power = 3;
-            range = 6;
+            enabled = 1;
+            color = "0xef1a1a1a";
+            render_power = 8;
+            range = 16;
+            offset = "2, 4";
           };
           blur = {
             enabled = config.cfg.gui.hypr.blur.enable;
-            size = 4;
+            size = 3;
             passes = 3;
             popups = 1;
             brightness = 0.67;

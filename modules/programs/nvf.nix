@@ -66,8 +66,11 @@
             nix.enable = true;
             nix.lsp.package = pkgs.nil;
 
+            markdown.enable = true;
             # FIXME: re-enable when deno is fixed
-            # markdown.enable = false;
+            markdown.format.enable = true;
+            markdown.format.package = pkgs.prettierd;
+            markdown.format.type = "prettierd";
 
             bash.enable = true;
             clang.enable = true;
