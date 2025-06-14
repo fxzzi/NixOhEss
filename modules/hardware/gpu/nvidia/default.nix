@@ -1,12 +1,13 @@
 {
   config,
-  pkgs,
   lib,
-  npins,
   user,
   ...
 }: {
-  imports = [./nvuv];
+  imports = [
+    ./nvuv
+  ];
+
   options.cfg = {
     gpu = {
       nvidia = {
@@ -31,18 +32,11 @@
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
         package = config.boot.kernelPackages.nvidiaPackages.beta;
-        # FIXME: we are overriding the package below
-        videoAcceleration = false;
+        videoAcceleration = true;
       };
       graphics = {
         enable = true;
         enable32Bit = true;
-        extraPackages = with pkgs; [
-          (nvidia-vaapi-driver.overrideAttrs {
-            version = "${builtins.replaceStrings ["v"] [""] npins.nvidia-vaapi-driver.version}";
-            src = npins.nvidia-vaapi-driver;
-          })
-        ];
       };
     };
     environment = {

@@ -12,8 +12,8 @@
   ];
   config = {
     hjem = {
+      linker = inputs.hjem.packages.${pkgs.system}.smfh;
       clobberByDefault = true;
-      linker = inputs.smfh.packages.${pkgs.system}.default;
       users.${user} = {
         enable = true;
         inherit user;
