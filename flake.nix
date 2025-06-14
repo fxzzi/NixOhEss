@@ -130,7 +130,13 @@
     }:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs npins hostName user xLib;
+          inherit
+            inputs
+            npins
+            hostName
+            user
+            xLib
+            ;
         };
         modules = [
           ./modules
