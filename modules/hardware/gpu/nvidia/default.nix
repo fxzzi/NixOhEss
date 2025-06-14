@@ -50,6 +50,13 @@
         ./50-limit-free-buffer-pool.json;
     };
     boot = {
+      initrd.kernelModules = [
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
+
       kernelParams = lib.mkMerge [
         [
           "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
