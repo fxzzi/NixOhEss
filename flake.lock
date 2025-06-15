@@ -87,11 +87,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736516211,
-        "narHash": "sha256-VQVO5i1Y+hgeiy2Bxm63ZG9Bf2sANOlNu5QkAr30irg=",
+        "lastModified": 1750024828,
+        "narHash": "sha256-LqCbiuJY6sBV4cj16PI8oL68aIYsssZAsR0CkWqTqZs=",
         "owner": "notashelf",
         "repo": "batmon",
-        "rev": "8e7365b93f2d21f62ece9f80148bf3758a64a2a7",
+        "rev": "0889634e565e0a669e1a87dde7194818e5cdf8e4",
         "type": "github"
       },
       "original": {
