@@ -42,7 +42,7 @@ in {
       packages = [pkgs.mangohud];
       files = {
         ".config/MangoHud/MangoHud.conf".text = renderSettings {
-          preset = "0,1";
+          preset = "0,1,2";
           fps_limit = "167,0"; # few below refresh rate (vrr) or unlimited
           toggle_hud = "Shift_R+F12";
           toggle_hud_position = "Shift_R+F11";
@@ -72,6 +72,26 @@ in {
           cpu_text=CPU
           cpu_stats
           cpu_mhz
+          cpu_temp
+          cpu_power
+          ram
+          present_mode
+
+          [preset 2]
+          background_alpha=0.3
+          hud_no_margin
+          gpu_text=GPU
+          gpu_stats
+          gpu_core_clock
+          gpu_mem_clock
+          gpu_temp
+          gpu_power
+          vram
+          fps
+          frame_timing
+          cpu_text=CPU
+          cpu_stats
+          core_load
           cpu_temp
           cpu_power
           ram
