@@ -62,7 +62,7 @@ in {
   config = lib.mkIf cfg.enable {
     hj = {
       files = {
-        ".config/discordcanary/settings.json" = {
+        ".config/discord/settings.json" = {
           text = builtins.toJSON {
             SKIP_HOST_UPDATE = true;
             MINIMIZE_TO_TRAY = cfg.minimizeToTray;
@@ -135,7 +135,7 @@ in {
       };
       packages = with pkgs; [
         (
-          (discord-canary.override {
+          (discord.override {
             disableUpdates = false;
             withTTS = false;
             enableAutoscroll = true;
@@ -147,7 +147,7 @@ in {
             postFixup = ''
               ${old.postFixup or ""}
               # add command line args like chromium
-              wrapProgramShell $out/bin/DiscordCanary \
+              wrapProgramShell $out/bin/Discord \
               --add-flags "${joinedArgs}" \
               --set LD_LIBRARY_PATH "${lib.makeLibraryPath [
                 # make hw accel work
