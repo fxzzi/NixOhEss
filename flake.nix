@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # sometimes I just need stuff from master
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/783e6b00df20a81a114e5f6baf33bf45ccc31506";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:feel-co/hjem";

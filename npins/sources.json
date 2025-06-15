@@ -8,9 +8,10 @@
       },
       "branch": "master",
       "submodules": true,
-      "revision": "6b46aca0b71e1ffe3fa740987cff29ea098732a0",
+      "revision": "cc7f2808edfa77d34e259529d81f973e5aa1b305",
       "url": null,
-      "hash": "0c5jsnlkgk6fz4b07963a1ba251g139yg5g4mxdr5q5a92sfw0xf"
+      "hash": "1hng9ycpda50c2np1fa49wmpkk2gk3vp1l9zip9flb0722683wrk",
+      "frozen": true
     },
     "foot": {
       "type": "Git",
