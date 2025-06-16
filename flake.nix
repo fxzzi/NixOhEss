@@ -4,11 +4,15 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # sometimes I just need stuff from master
-    nixpkgs-master.url = "github:NixOS/nixpkgs/783e6b00df20a81a114e5f6baf33bf45ccc31506";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/3cbfdb57d81514cc480ab8ba193826156acdea16";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.smfh = {
+        url = "github:feel-co/smfh";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
