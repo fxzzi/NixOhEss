@@ -70,7 +70,7 @@ in {
             DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
             openasar = {
               setup = true;
-              quickstart = true;
+              quickstart = false;
               # this css is made for discord compact mode. if you're not using that, stuff won't align!!
               css =
                 # css
