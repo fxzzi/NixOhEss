@@ -4,6 +4,7 @@
   pkgs,
   user,
   npins,
+  inputs,
   ...
 }: let
   cfg = config.cfg.gaming;
@@ -38,7 +39,7 @@ in {
           })
         )
         (lib.mkIf cfg.cemu.enable cemu)
-        (lib.mkIf cfg.sgdboop.enable (pkgs.callPackage ./sgdboop.nix {}))
+        (lib.mkIf cfg.sgdboop.enable inputs.nixpkgs-master.legacyPackages.${pkgs.system}.sgdboop)
         (lib.mkIf cfg.osu-lazer.enable osu-lazer-bin)
         (lib.mkIf cfg.vkbasalt.enable vkbasalt)
         (lib.mkIf cfg.yuzu.enable (pkgs.callPackage ./yuzu {inherit npins;}).eden)
