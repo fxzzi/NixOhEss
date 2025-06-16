@@ -9,10 +9,6 @@
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.smfh = {
-        url = "github:feel-co/smfh";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
