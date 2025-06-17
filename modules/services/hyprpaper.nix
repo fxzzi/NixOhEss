@@ -2,9 +2,9 @@
   lib,
   xLib,
   config,
-  inputs,
   pkgs,
   user,
+  npins,
   ...
 }: let
   inherit (xLib.generators) toHyprlang;
@@ -13,7 +13,7 @@ in {
   config = lib.mkIf config.cfg.gui.hypr.hyprpaper.enable {
     hj = {
       files = {
-        ".local/share/walls".source = "${inputs.walls}/images"; # wallpapers
+        ".local/share/walls".source = "${npins.walls}/images"; # wallpapers
       };
 
       packages = [pkgs.hyprpaper];

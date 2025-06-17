@@ -1,17 +1,32 @@
 {
   "pins": {
-    "eden": {
+    "Tokyo-Night-Linux": {
       "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "stronk-dev",
+        "repo": "Tokyo-Night-Linux"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "d553d015a0d3c1e9e41b72aab959ad89f91b457d",
+      "url": "https://github.com/stronk-dev/Tokyo-Night-Linux/archive/d553d015a0d3c1e9e41b72aab959ad89f91b457d.tar.gz",
+      "hash": "0acwmwiifghdlgvvxl0m2gc654njg7gfdsk743s2sigv47y4dfa1"
+    },
+    "eden": {
+      "type": "GitRelease",
       "repository": {
         "type": "Git",
         "url": "https://git.eden-emu.dev/eden-emu/eden"
       },
-      "branch": "master",
+      "pre_releases": true,
+      "version_upper_bound": null,
+      "release_prefix": null,
       "submodules": true,
-      "revision": "cc7f2808edfa77d34e259529d81f973e5aa1b305",
+      "version": "0.0.2-pre-alpha",
+      "revision": "5608ab1cd485083e81cef5cd4bd5132f03d97077",
       "url": null,
-      "hash": "1hng9ycpda50c2np1fa49wmpkk2gk3vp1l9zip9flb0722683wrk",
-      "frozen": true
+      "hash": "10n9lw6sx5a5qy04jkh4dx32k6z1wyfwd0zqi8n3ym6f8cbi1zkd"
     },
     "foot": {
       "type": "Git",
@@ -36,7 +51,34 @@
       "submodules": false,
       "revision": "7f2fd9d66248b7e86e4a8c6e96132d21c1d5d7ac",
       "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/7f2fd9d66248b7e86e4a8c6e96132d21c1d5d7ac.tar.gz",
-      "hash": "0hxir6d2wh8qjqvicymgdrfr7k0na6fjbcn2i8xsfxk90py1xnl4"
+      "hash": "0hxir6d2wh8qjqvicymgdrfr7k0na6fjbcn2i8xsfxk90py1xnl4",
+      "frozen": true
+    },
+    "startpage": {
+      "type": "Git",
+      "repository": {
+        "type": "GitLab",
+        "repo_path": "fazzi/startpage",
+        "server": "https://gitlab.com/"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "2a159a11c88a113ae522a502c00550978fe7a9ae",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=2a159a11c88a113ae522a502c00550978fe7a9ae",
+      "hash": "1dbhy61h6mbz6q9yp0ld2ib36j9lnnsmxihzx4l9m3342yjjqh2x"
+    },
+    "walls": {
+      "type": "Git",
+      "repository": {
+        "type": "GitLab",
+        "repo_path": "fazzi/walls",
+        "server": "https://gitlab.com/"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "baa9bf3b739d2974c8816b699b837e8bc3b2dcfa",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=baa9bf3b739d2974c8816b699b837e8bc3b2dcfa",
+      "hash": "0sshyzj3mgnj760s3704imb40ka01b19awabf83c3qvyc56cqcpw"
     }
   },
   "version": 5
