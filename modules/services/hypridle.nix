@@ -8,15 +8,6 @@
 }: let
   # toHyprlang broken for now, use toHyprconf instead
   inherit (xLib.generators) toHyprconf;
-
-  pkg =
-    if config.cfg.gui.hypr.useGit
-    then inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}
-    else pkgs;
-  hyprlockPkg =
-    if config.cfg.gui.hypr.useGit
-    then inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}
-    else pkgs;
 in {
   options.cfg.gui.hypr.hypridle = {
     enable = lib.mkEnableOption "hypridle";
@@ -44,12 +35,12 @@ in {
   };
   config = lib.mkIf config.cfg.gui.hypr.hypridle.enable {
     hj = {
-      packages = [pkg.hypridle];
+      packages = [pkgs.hypridle];
       files = {
         ".config/hypr/hypridle.conf".text = toHyprconf {
           attrs = {
             general = {
-              lock_cmd = "${lib.getExe' pkgs.procps "pidof"} hyprlock || ${lib.getExe hyprlockPkg.hyprlock}";
+              lock_cmd = "${lib.getExe' pkgs.procps "pidof"} hyprlock || ${lib.getExe pkgs.hyprlock}";
               before_sleep_cmd = "loginctl lock-session";
               after_sleep_cmd = "hyprctl dispatch dpms on";
               ignore_dbus_inhibit = false;
@@ -91,7 +82,7 @@ in {
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${lib.getExe pkg.hypridle}";
+        ExecStart = "${lib.getExe pkgs.hypridle}";
       };
     };
   };

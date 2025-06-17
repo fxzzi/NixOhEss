@@ -1,17 +1,10 @@
 {
   lib,
-  xLib,
   config,
   inputs,
   pkgs,
-  user,
   ...
-}: let
-  pkg =
-    if config.cfg.gui.hypr.useGit
-    then inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}
-    else pkgs;
-in {
+}: {
   options.cfg.gui.hypr.hyprsunset.enable = lib.mkEnableOption "hyprsunset";
   config = lib.mkIf config.cfg.gui.hypr.hyprsunset.enable {
     hj = {
@@ -20,7 +13,7 @@ in {
       };
 
       packages = [
-        pkg.hyprsunset
+        pkgs.hyprsunset
       ];
     };
     systemd.user.services.hyprsunset = {
@@ -36,7 +29,7 @@ in {
         Type = "simple";
         Restart = "always";
         # --identity starts hyprsunset without changing temperature
-        ExecStart = "${lib.getExe pkg.hyprsunset} --identity";
+        ExecStart = "${lib.getExe pkgs.hyprsunset} --identity";
       };
     };
   };

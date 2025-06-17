@@ -6,7 +6,6 @@
   user,
   ...
 }: let
-  nixpkgs-master = inputs.nixpkgs-master.legacyPackages.${pkgs.system};
   desktopEntry = pkgs.makeDesktopItem {
     desktopName = "Celeste";
     name = "celeste";
@@ -31,7 +30,7 @@ in {
   config = {
     hj = {
       packages = [
-        (lib.mkIf config.cfg.gaming.celeste.modding.enable nixpkgs-master.olympus)
+        (lib.mkIf config.cfg.gaming.celeste.modding.enable pkgs.olympus)
         (lib.mkIf config.cfg.gaming.celeste.enable desktopEntry)
       ];
     };

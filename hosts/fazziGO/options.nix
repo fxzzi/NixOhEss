@@ -104,8 +104,6 @@ _: {
       # walker.enable = true;
       wleave.enable = true;
       hypr = {
-        # useGit = true;
-        # defaultMonitor = "HDMI-A-1";
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
         animations.enable = false;
