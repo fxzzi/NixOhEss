@@ -60,19 +60,6 @@
         systems.follows = "systems";
       };
     };
-    # non-flake inputs
-    tokyo-night-linux = {
-      url = "github:stronk-dev/Tokyo-Night-Linux";
-      flake = false;
-    };
-    walls = {
-      url = "gitlab:fazzi/walls";
-      flake = false;
-    };
-    startpage = {
-      url = "gitlab:fazzi/startpage";
-      flake = false;
-    };
   };
 
   outputs = inputs: let

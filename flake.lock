@@ -759,10 +759,7 @@
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
         "nvuv": "nvuv",
-        "startpage": "startpage",
-        "systems": "systems_4",
-        "tokyo-night-linux": "tokyo-night-linux",
-        "walls": "walls"
+        "systems": "systems_4"
       }
     },
     "rust-overlay": {
@@ -831,22 +828,6 @@
         "type": "github"
       }
     },
-    "startpage": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1744649729,
-        "narHash": "sha256-XUAspRdkjJoo6R/GXrW1NEkzVhSNgusTNn9VA4PxcLU=",
-        "owner": "fazzi",
-        "repo": "startpage",
-        "rev": "2a159a11c88a113ae522a502c00550978fe7a9ae",
-        "type": "gitlab"
-      },
-      "original": {
-        "owner": "fazzi",
-        "repo": "startpage",
-        "type": "gitlab"
-      }
-    },
     "systems": {
       "locked": {
         "lastModified": 1681028828,
@@ -905,38 +886,6 @@
         "owner": "nix-systems",
         "repo": "x86_64-linux",
         "type": "github"
-      }
-    },
-    "tokyo-night-linux": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1711974827,
-        "narHash": "sha256-QblG/CH7RS30IGfq5t550pJi2BMV0L73ow0+FyOvnCk=",
-        "owner": "stronk-dev",
-        "repo": "Tokyo-Night-Linux",
-        "rev": "d553d015a0d3c1e9e41b72aab959ad89f91b457d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "stronk-dev",
-        "repo": "Tokyo-Night-Linux",
-        "type": "github"
-      }
-    },
-    "walls": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1749071734,
-        "narHash": "sha256-/DLMTGF+48EGcktxlcIKQE1AVo0EnKGBOdK+OuT3UGs=",
-        "owner": "fazzi",
-        "repo": "walls",
-        "rev": "baa9bf3b739d2974c8816b699b837e8bc3b2dcfa",
-        "type": "gitlab"
-      },
-      "original": {
-        "owner": "fazzi",
-        "repo": "walls",
-        "type": "gitlab"
       }
     },
     "xdph": {

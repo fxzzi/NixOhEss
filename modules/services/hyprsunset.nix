@@ -8,10 +8,6 @@
   options.cfg.gui.hypr.hyprsunset.enable = lib.mkEnableOption "hyprsunset";
   config = lib.mkIf config.cfg.gui.hypr.hyprsunset.enable {
     hj = {
-      files = {
-        ".local/share/walls".source = "${inputs.walls}/images"; # wallpapers
-      };
-
       packages = [
         pkgs.hyprsunset
       ];
