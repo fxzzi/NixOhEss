@@ -14,16 +14,12 @@
     if config.cfg.gui.hypr.secondaryMonitor != null
     then true
     else false;
-  pkg =
-    if config.cfg.gui.hypr.useGit
-    then inputs.hyprlock.packages.${pkgs.system}
-    else pkgs;
 in {
   options.cfg.gui.hypr.hyprlock.enable = lib.mkEnableOption "hyprlock";
   config = lib.mkIf config.cfg.gui.hypr.hyprlock.enable {
     hj = {
       packages = [
-        pkg.hyprlock
+        pkgs.hyprlock
       ];
       files = {
         ".config/hypr/hyprlock.conf".text = toHyprconf {

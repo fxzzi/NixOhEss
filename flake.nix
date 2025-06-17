@@ -3,8 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # sometimes I just need stuff from master
-    nixpkgs-master.url = "github:NixOS/nixpkgs/3cbfdb57d81514cc480ab8ba193826156acdea16";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:feel-co/hjem";
@@ -14,49 +12,6 @@
       url = "github:hyprwm/Hyprland";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        systems.follows = "systems";
-      };
-    };
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprland-protocols.follows = "hyprland/hyprland-protocols";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-        systems.follows = "systems";
-      };
-    };
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        systems.follows = "systems";
-      };
-    };
-    hyprsunset = {
-      url = "github:hyprwm/hyprsunset";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprland-protocols.follows = "hyprland/hyprland-protocols";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         systems.follows = "systems";
       };
     };
@@ -143,20 +98,18 @@
           ./hosts/${hostName}
         ];
       };
-  in {
-    nixosConfigurations = {
-      fazziPC = nixosCommonSystem {
-        hostName = "fazziPC";
-        user = "faaris";
-      };
-      fazziGO = nixosCommonSystem {
-        hostName = "fazziGO";
-        user = "faaris";
-      };
-      kunzozPC = nixosCommonSystem {
-        hostName = "kunzozPC";
-        user = "kunzoz";
-      };
+
+    hosts = {
+      fazziPC = {user = "faaris";};
+      fazziGO = {user = "faaris";};
+      kunzozPC = {user = "kunzoz";};
     };
+  in {
+    nixosConfigurations =
+      builtins.mapAttrs (
+        hostName: config:
+          nixosCommonSystem (config // {inherit hostName;})
+      )
+      hosts;
   };
 }

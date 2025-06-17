@@ -6,19 +6,9 @@
   ...
 }: let
   pkg =
-    if config.cfg.gui.hypr.useGit
+    if config.cfg.gui.hypr.hyprland.useGit
     then inputs.hyprland.packages.${pkgs.system}
     else pkgs;
-  patches =
-    if config.cfg.gui.hypr.useGit
-    then [
-      # (pkgs.fetchpatch
-      #   {
-      #     url = "https://github.com/hyprwm/Hyprland/pull/10364.patch";
-      #     sha256 = "sha256-M/T4B2sJeyLB6nKTJqouuxWzmno3lfjLpO3yNbxcvw4=";
-      #   })
-    ]
-    else [];
   uwsm = lib.getExe' config.programs.uwsm.package "uwsm";
   uwsmEnabled = config.cfg.wayland.uwsm.enable;
   autoStartCmd =
@@ -43,11 +33,11 @@ in {
           default = false;
           description = "Enables hyprland to run automatically in tty1 (zsh)";
         };
-      };
-      useGit = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Makes nix use hypr* packages from flakes instead of nixpkgs";
+        useGit = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Use Hyprland from the flake.";
+        };
       };
     };
   };
@@ -60,9 +50,7 @@ in {
   config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
     programs.hyprland = {
       enable = true;
-      package = pkg.hyprland.overrideAttrs {
-        inherit patches;
-      };
+      package = pkg.hyprland;
       portalPackage = pkg.xdg-desktop-portal-hyprland;
       withUWSM = config.cfg.wayland.uwsm.enable;
     };

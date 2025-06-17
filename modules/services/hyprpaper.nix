@@ -8,10 +8,6 @@
   ...
 }: let
   inherit (xLib.generators) toHyprlang;
-  pkg =
-    if config.cfg.gui.hypr.useGit
-    then inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}
-    else pkgs;
 in {
   options.cfg.gui.hypr.hyprpaper.enable = lib.mkEnableOption "hyprpaper";
   config = lib.mkIf config.cfg.gui.hypr.hyprpaper.enable {
@@ -20,7 +16,7 @@ in {
         ".local/share/walls".source = "${inputs.walls}/images"; # wallpapers
       };
 
-      packages = [pkg.hyprpaper];
+      packages = [pkgs.hyprpaper];
       files = {
         ".config/hypr/hyprpaper.conf".text = toHyprlang {} {
           ipc = 1;
@@ -47,7 +43,7 @@ in {
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${lib.getExe pkg.hyprpaper}";
+        ExecStart = "${lib.getExe pkgs.hyprpaper}";
       };
     };
   };
