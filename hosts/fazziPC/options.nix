@@ -3,7 +3,7 @@
   kernel = {
     type = "zen";
     zenergy.enable = true;
-    xone.enable = true;
+    xone.enable = false;
     v4l2.enable = true;
   };
   bootConfig = {
