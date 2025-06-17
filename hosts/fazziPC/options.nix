@@ -31,7 +31,7 @@
     enable = true;
     mediamtx.enable = true;
   };
-  opentabletdriver.enable = true;
+  opentabletdriver.enable = false;
   hardware = {
     wootingRules.enable = true;
     scyroxRules.enable = true;
@@ -61,12 +61,11 @@
     heroic.enable = true;
     sgdboop.enable = true;
     osu-lazer.enable = false;
-    creamlinux.enable = true;
+    creamlinux.enable = false;
     vkbasalt.enable = false;
     yuzu.enable = true;
   };
   gpu = {
-    amdgpu.enable = false;
     nvidia = {
       enable = true;
       exposeTemp = true;
@@ -79,8 +78,6 @@
       };
     };
   };
-  batmon.enable = false;
-  secureboot.enable = false;
   tty1-skipusername = true;
   adb.enable = true;
   scripts.enable = true;
@@ -91,7 +88,7 @@
     obs-studio.enable = true;
     thunar = {
       enable = true;
-      collegeBookmarks.enable = true;
+      collegeBookmarks.enable = false;
     };
     discord = {
       enable = true;
