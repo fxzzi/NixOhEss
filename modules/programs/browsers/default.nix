@@ -1,4 +1,9 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  npins,
+  ...
+}: {
   imports = [
     ./librewolf
     ./chromium
@@ -15,5 +20,8 @@
       default = "fazzi";
       description = "Selects which startpage user to use.";
     };
+  };
+  config = lib.mkIf config.cfg.apps.browsers.startpage.enable {
+    hj.files.".local/share/startpage".source = npins.startpage; # startpage
   };
 }

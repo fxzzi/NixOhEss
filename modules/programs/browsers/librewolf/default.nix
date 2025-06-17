@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  inputs,
   user,
   ...
 }: let
@@ -20,7 +19,6 @@ in {
         })
       ];
       files = {
-        ".local/share/startpage".source = inputs.startpage; # startpage
         ".librewolf/librewolf.overrides.cfg".text =
           #js
           ''
