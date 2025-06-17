@@ -6,7 +6,7 @@
   ...
 }: let
   pkg =
-    if config.cfg.gui.hypr.useGit
+    if config.cfg.gui.hypr.hyprland.useGit
     then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
   multiMonitor =

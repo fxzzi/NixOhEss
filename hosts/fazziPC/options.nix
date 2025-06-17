@@ -152,13 +152,13 @@
     fuzzel.enable = true;
     wleave.enable = true;
     hypr = {
-      useGit = true;
       defaultMonitor = "DP-2";
       secondaryMonitor = "DP-3";
       animations.enable = true;
       hyprland = {
         enable = true;
         autoStart = true;
+        useGit = true;
       };
       hyprlock.enable = true;
       hypridle = {
