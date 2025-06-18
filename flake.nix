@@ -36,8 +36,8 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    batmon = {
-      url = "github:notashelf/batmon";
+    watt = {
+      url = "github:notashelf/watt";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {

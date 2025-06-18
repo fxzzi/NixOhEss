@@ -18,5 +18,6 @@
         ".config/ags/style.css".source = ./ags/style.css;
       };
     };
+    services.upower.enable = config.cfg.watt.enable; # enable battery module if watt is in use, its a good indicator of whether we're on a laptop.
   };
 }

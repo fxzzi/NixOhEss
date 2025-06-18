@@ -80,26 +80,6 @@
         "type": "github"
       }
     },
-    "batmon": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1750024828,
-        "narHash": "sha256-LqCbiuJY6sBV4cj16PI8oL68aIYsssZAsR0CkWqTqZs=",
-        "owner": "notashelf",
-        "repo": "batmon",
-        "rev": "0889634e565e0a669e1a87dde7194818e5cdf8e4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "notashelf",
-        "repo": "batmon",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1748970125,
@@ -751,7 +731,6 @@
       "inputs": {
         "agenix": "agenix",
         "ags": "ags",
-        "batmon": "batmon",
         "creamlinux": "creamlinux",
         "hjem": "hjem",
         "hyprland": "hyprland",
@@ -759,7 +738,8 @@
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
         "nvuv": "nvuv",
-        "systems": "systems_3"
+        "systems": "systems_3",
+        "watt": "watt"
       }
     },
     "rust-overlay": {
@@ -825,6 +805,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "x86_64-linux",
+        "type": "github"
+      }
+    },
+    "watt": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1749377316,
+        "narHash": "sha256-hw3rL4rlIlYJMTeE7DlQ3lRhQDJURAhE+PC/NT4VAAQ=",
+        "owner": "notashelf",
+        "repo": "watt",
+        "rev": "154724c7b1bd49654ea55df719e1eb3219ec2000",
+        "type": "github"
+      },
+      "original": {
+        "owner": "notashelf",
+        "repo": "watt",
         "type": "github"
       }
     },
