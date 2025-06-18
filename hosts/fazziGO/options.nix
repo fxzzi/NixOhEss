@@ -37,8 +37,8 @@ _: {
     gpu = {
       amdgpu.enable = true;
     };
-    batmon.enable = true;
     secureboot.enable = true;
+    watt.enable = true;
     adb.enable = true;
     scripts.enable = true;
     xdgConfig.enable = true;
