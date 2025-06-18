@@ -6,7 +6,10 @@
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        smfh.follows = ""; # we use smfh from nixpkgs
+      };
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
