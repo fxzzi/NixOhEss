@@ -2,7 +2,6 @@
   toINI = lib.generators.toINI {};
 in {
   imports = [
-    ./batmon.nix
     ./printing.nix
     ./rules.nix
     ./scanning.nix
