@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   system.stateVersion = "25.05";
   systemd.services.nix-daemon.serviceConfig = {
     MemoryHigh = "16G";
@@ -21,10 +17,4 @@
     losslesscut-bin
     qpwgraph
   ];
-  programs.hyprland.settings = lib.mkAfter {
-    monitor = [
-      "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001, 2560x1440@170,0x0, 1"
-      "desc:Philips, 1920x1080@75,auto-center-left, 1"
-    ];
-  };
 }
