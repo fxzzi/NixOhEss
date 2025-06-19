@@ -44,8 +44,8 @@
       url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = ""; # ew home-manager
-        darwin.follows = ""; # don't need darwin deps
+        home-manager.follows = ""; # ew, home-manager
+        darwin.follows = ""; # ew, apple
       };
     };
     nvf = {
@@ -89,6 +89,8 @@
         ];
       };
 
+    # adding a host? Add a hostname and username here
+    # then, have a gander at ./hosts
     hosts = {
       fazziPC = {user = "faaris";};
       fazziGO = {user = "faaris";};

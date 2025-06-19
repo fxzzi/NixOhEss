@@ -7,6 +7,7 @@
 }: {
   config = {
     nix = {
+      # use lix, bcuz its faster i guess
       package = pkgs.lixPackageSets.latest.lix;
       settings = {
         experimental-features = [
@@ -20,6 +21,7 @@
         trusted-users = ["@wheel"];
         build-dir = "/var/tmp";
       };
+      # make flake inputs available in the nix registry
       registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     };
