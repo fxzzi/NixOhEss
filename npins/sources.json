@@ -40,20 +40,6 @@
       "url": null,
       "hash": "05f2g8sm8w0rs3f93bdzxi0i4wh4j88s3gcmhq8qqmv083n72nb4"
     },
-    "mpd-discord-rpc": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "JakeStanger",
-        "repo": "mpd-discord-rpc"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "7f2fd9d66248b7e86e4a8c6e96132d21c1d5d7ac",
-      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/7f2fd9d66248b7e86e4a8c6e96132d21c1d5d7ac.tar.gz",
-      "hash": "0hxir6d2wh8qjqvicymgdrfr7k0na6fjbcn2i8xsfxk90py1xnl4",
-      "frozen": true
-    },
     "startpage": {
       "type": "Git",
       "repository": {

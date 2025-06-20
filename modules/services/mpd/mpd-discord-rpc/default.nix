@@ -7,16 +7,17 @@
 }: let
   tomlFormat = pkgs.formats.toml {};
   fmt = cfg: tomlFormat.generate "config.toml" cfg;
-  pkg = pkgs.mpd-discord-rpc.overrideAttrs (
-    finalAttrs: {
-      src = npins.mpd-discord-rpc;
-
-      cargoDeps = pkgs.rustPackages.rustPlatform.fetchCargoVendor {
-        inherit (finalAttrs) src;
-        hash = "sha256-Q7QyJh/KOJ5drud/tPKtEzfr3q7yosW8wUCOCA8uDSs=";
-      };
-    }
-  );
+  pkg = pkgs.mpd-discord-rpc.overrideAttrs (oldAttrs: {
+    patches =
+      oldAttrs.patches or []
+      ++ [
+        (pkgs.fetchpatch2
+          {
+            url = "https://github.com/JakeStanger/mpd-discord-rpc/pull/214.patch";
+            sha256 = "sha256-ZbmqqtQJKwBfHSDbTUag7XPkxKEYuwL5abPWLvFdJec=";
+          })
+      ];
+  });
 in {
   options.cfg.music.mpd.discord-rpc.enable = lib.mkEnableOption "discord-rpc";
   config = lib.mkIf config.cfg.music.mpd.discord-rpc.enable {
