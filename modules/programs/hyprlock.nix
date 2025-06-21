@@ -2,7 +2,6 @@
   lib,
   xLib,
   config,
-  inputs,
   pkgs,
   user,
   ...
