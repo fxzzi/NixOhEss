@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  npins,
   ...
 }: let
   tomlFormat = pkgs.formats.toml {};
