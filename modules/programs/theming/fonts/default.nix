@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  inputs,
   ...
 }: let
   cfg = config.cfg.gui.fontconfig;

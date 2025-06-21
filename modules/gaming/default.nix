@@ -4,7 +4,6 @@
   pkgs,
   user,
   npins,
-  inputs,
   ...
 }: let
   cfg = config.cfg.gaming;

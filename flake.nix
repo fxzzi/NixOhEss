@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/9e83b64f727c88a7711a2c463a7b16eedb69a84c";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:feel-co/hjem";

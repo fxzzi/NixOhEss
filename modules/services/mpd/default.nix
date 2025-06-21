@@ -4,7 +4,20 @@
   pkgs,
   user,
   ...
-}: {
+}: let
+  # NOTE: https://github.com/NixOS/nixpkgs/pull/418139
+  package = pkgs.mpd.override {
+    liburing = pkgs.liburing.overrideAttrs rec {
+      version = "2.11";
+      src = pkgs.fetchFromGitHub {
+        owner = "axboe";
+        repo = "liburing";
+        tag = "liburing-${version}";
+        hash = "sha256-V73QP89WMrL2fkPRbo/TSkfO7GeDsCudlw2Ut5baDzA=";
+      };
+    };
+  };
+in {
   options.cfg.music.mpd.enable = lib.mkEnableOption "mpd";
   imports = [
     ./mpd-discord-rpc
@@ -12,7 +25,7 @@
   config = lib.mkIf config.cfg.music.mpd.enable {
     hj = {
       packages = [
-        pkgs.mpd
+        package
       ];
       files = {
         ".config/mpd/mpd.conf".text = ''
@@ -46,7 +59,7 @@
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${lib.getExe pkgs.mpd} --no-daemon";
+        ExecStart = "${lib.getExe package} --no-daemon";
       };
     };
   };
