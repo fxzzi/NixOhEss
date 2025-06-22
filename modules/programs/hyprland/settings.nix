@@ -389,6 +389,9 @@ in {
             "Control_L, grave, pass, class:^(com.obsproject.Studio)$"
             "Control_L SHIFT, grave, pass, class:^(com.obsproject.Studio)$"
 
+            # passthrough binds for discord
+            "Control_L SHIFT, M, pass, class:^(discord)$"
+
             # window management
             "$MOD, Q, killactive"
             "$MOD, Space, fullscreen"
