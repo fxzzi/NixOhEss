@@ -185,6 +185,7 @@ in {
         cursor = {
           default_monitor = lib.mkIf multiMonitor "${config.cfg.gui.hypr.defaultMonitor}";
           sync_gsettings_theme = 0; # we handle this ourselves
+          inactive_timeout = 4; # after x seconds of inactivity, hide the cursor
         };
         opengl = {
           nvidia_anti_flicker = 0;
