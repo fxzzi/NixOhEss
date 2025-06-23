@@ -27,11 +27,13 @@ in {
         ".config/gtk-4.0/settings.ini".text = gtkConf;
       };
       packages = with pkgs; [
-        (catppuccin-papirus-folders.override
-          {
-            flavor = "macchiato";
-            accent = "blue";
-          })
+        # stupid ass thing has long rebuilds
+        # (catppuccin-papirus-folders.override
+        #   {
+        #     flavor = "macchiato";
+        #     accent = "blue";
+        #   })
+        papirus-icon-theme
       ];
     };
 

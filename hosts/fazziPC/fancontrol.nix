@@ -17,18 +17,19 @@
         #   MINPWM=hwmon2/pwm2=42 hwmon2/pwm1=42
         #   MAXPWM=hwmon2/pwm2=255 hwmon2/pwm1=255
         # '';
+
         config = ''
           INTERVAL=4
-          DEVPATH=hwmon3=devices/pci0000:00/0000:00:18.3 hwmon2=devices/platform/nct6775.656
-          DEVNAME=hwmon3=k10temp hwmon2=nct6798
-          FCTEMPS=hwmon2/pwm2=hwmon3/temp1_input hwmon2/pwm1=/tmp/nvidia-temp
-          FCFANS= hwmon2/pwm2=hwmon2/fan2_input hwmon2/pwm1=hwmon2/fan1_input
-          MINTEMP=hwmon2/pwm2=30 hwmon2/pwm1=30
-          MAXTEMP=hwmon2/pwm2=85 hwmon2/pwm1=85
-          MINSTART=hwmon2/pwm2=72 hwmon2/pwm1=72
-          MINSTOP=hwmon2/pwm2=72 hwmon2/pwm1=72
-          MINPWM=hwmon2/pwm2=72 hwmon2/pwm1=72
-          MAXPWM=hwmon2/pwm2=255 hwmon2/pwm1=255
+          DEVPATH=hwmon2=devices/pci0000:00/0000:00:18.3 hwmon3=devices/platform/nct6775.656
+          DEVNAME=hwmon2=k10temp hwmon3=nct6798
+          FCTEMPS=hwmon3/pwm2=hwmon2/temp1_input hwmon3/pwm1=/tmp/nvidia-temp
+          FCFANS=hwmon3/pwm2=hwmon3/fan2_input hwmon3/pwm1=hwmon3/fan1_input
+          MINTEMP=hwmon3/pwm2=35 hwmon3/pwm1=35
+          MAXTEMP=hwmon3/pwm2=90 hwmon3/pwm1=90
+          MINSTART=hwmon3/pwm2=56 hwmon3/pwm1=56
+          MINSTOP=hwmon3/pwm2=56 hwmon3/pwm1=56
+          MINPWM=hwmon3/pwm2=56 hwmon3/pwm1=56
+          MAXPWM=hwmon3/pwm2=255 hwmon3/pwm1=255
         '';
       };
     };
