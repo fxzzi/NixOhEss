@@ -6,17 +6,7 @@
 }: let
   tomlFormat = pkgs.formats.toml {};
   fmt = cfg: tomlFormat.generate "config.toml" cfg;
-  pkg = pkgs.mpd-discord-rpc.overrideAttrs (oldAttrs: {
-    patches =
-      oldAttrs.patches or []
-      ++ [
-        (pkgs.fetchpatch2
-          {
-            url = "https://github.com/JakeStanger/mpd-discord-rpc/pull/214.patch";
-            sha256 = "sha256-ZbmqqtQJKwBfHSDbTUag7XPkxKEYuwL5abPWLvFdJec=";
-          })
-      ];
-  });
+  pkg = pkgs.callPackage ./package.nix {};
 in {
   options.cfg.music.mpd.discord-rpc.enable = lib.mkEnableOption "discord-rpc";
   config = lib.mkIf config.cfg.music.mpd.discord-rpc.enable {
