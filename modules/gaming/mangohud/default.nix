@@ -47,15 +47,13 @@ in {
           toggle_hud = "Shift_R+F12";
           toggle_hud_position = "Shift_R+F11";
           toggle_preset = "Shift_R+F10";
-          blacklist = "mpv";
+          font_size = 19;
         };
         ".config/MangoHud/presets.conf".text = ''
           [preset 0]
           fps_only
           background_alpha=0
-
           hud_no_margin
-          font_size=20
 
           [preset 1]
           background_alpha=0.3
