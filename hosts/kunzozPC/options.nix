@@ -39,7 +39,10 @@
     uwsm.enable = true;
   };
   gaming = {
-    steam.enable = true;
+    steam = {
+      enable = true;
+      shaderThreads = 8;
+    };
     gamemode.enable = false;
     proton-ge.enable = true;
     prismlauncher.enable = true;
