@@ -316,8 +316,6 @@ in {
           "fullscreen, class:^(Minecraft.*)$"
           "fullscreen, initialTitle:^(Minecraft.*)$"
           "fullscreen, class:^(org-prismlauncher-EntryPoint)$"
-          # Fullscreen games running with proton
-          "fullscreen, class:^(steam_app_.*)$"
 
           # Allow games to tear
           "immediate, class:^(steam_app_.*)$" # all steam games
