@@ -21,8 +21,9 @@
     ];
   };
   programs.hyprland.settings = {
+    # this combo works for kunzozPC, idk y
     render.direct_scanout = lib.mkForce 0;
     general.allow_tearing = lib.mkForce 0;
-    misc.vrr = lib.mkForce 0;
+    misc.vrr = lib.mkForce 2;
   };
 }
