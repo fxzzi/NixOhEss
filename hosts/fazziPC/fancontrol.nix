@@ -4,33 +4,16 @@
     hardware = {
       fancontrol = {
         enable = true; # Enable fancontrol to control case fans depending on CPU and GPU temps
-        # config = ''
-        #   INTERVAL=4
-        #   DEVPATH=hwmon3=devices/pci0000:00/0000:00:18.3 hwmon2=devices/platform/nct6775.656
-        #   DEVNAME=hwmon3=k10temp hwmon2=nct6798
-        #   FCTEMPS=hwmon2/pwm2=hwmon3/temp1_input hwmon2/pwm1=/tmp/nvidia-temp
-        #   FCFANS= hwmon2/pwm2=hwmon2/fan2_input hwmon2/pwm1=hwmon2/fan1_input
-        #   MINTEMP=hwmon2/pwm2=40 hwmon2/pwm1=40
-        #   MAXTEMP=hwmon2/pwm2=100 hwmon2/pwm1=100
-        #   MINSTART=hwmon2/pwm2=42 hwmon2/pwm1=42
-        #   MINSTOP=hwmon2/pwm2=42 hwmon2/pwm1=42
-        #   MINPWM=hwmon2/pwm2=42 hwmon2/pwm1=42
-        #   MAXPWM=hwmon2/pwm2=255 hwmon2/pwm1=255
-        # '';
-
         config = ''
-
           INTERVAL=4
-          DEVPATH=hwmon2=devices/pci0000:00/0000:00:18.3 hwmon4=devices/platform/nct6775.656
-          DEVNAME=hwmon2=k10temp hwmon4=nct6798
-          FCTEMPS=hwmon4/pwm2=hwmon2/temp1_input hwmon4/pwm1=/tmp/nvidia-temp
-          FCFANS=hwmon4/pwm2=hwmon4/fan2_input hwmon4/pwm1=hwmon4/fan1_input
-          MINTEMP=hwmon4/pwm2=35 hwmon4/pwm1=35
-          MAXTEMP=hwmon4/pwm2=90 hwmon4/pwm1=90
-          MINSTART=hwmon4/pwm2=56 hwmon4/pwm1=56
-          MINSTOP=hwmon4/pwm2=56 hwmon4/pwm1=56
-          MINPWM=hwmon4/pwm2=56 hwmon4/pwm1=56
-          MAXPWM=hwmon4/pwm2=255 hwmon4/pwm1=255
+          FCTEMPS=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon[[:print:]]*/temp1_input /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=/tmp/nvidia-temp
+          FCFANS=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/fan2_input /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/fan1_input
+          MINTEMP=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=35 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=35
+          MAXTEMP=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=90 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=90
+          MINSTART=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=56 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=56
+          MINSTOP=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=56 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=56
+          MINPWM=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=56 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=56
+          MAXPWM=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=255 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=255
         '';
       };
     };
