@@ -9,9 +9,11 @@ NEW_COMMIT=$(git -C "$NH_FLAKE" rev-parse origin/main)
 
 # Compare commits and continue only if they differ
 if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
-  echo "New updates found. Proceeding with reset and switch."
+  echo "Updating flake..."
   git -C "$NH_FLAKE" reset --hard origin/main
+  echo "Rebuilding NixOS configuration..."
   nh os boot
+  echo "Done! Updates will take effect on next boot."
 else
   echo "No updates found. Exiting."
   exit 0
