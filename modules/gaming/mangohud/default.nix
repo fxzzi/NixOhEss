@@ -48,6 +48,9 @@ in {
           toggle_hud_position = "Shift_R+F11";
           toggle_preset = "Shift_R+F10";
           font_size = 19;
+          blacklist = [
+            "mpv"
+          ];
         };
         ".config/MangoHud/presets.conf".text = ''
           [preset 0]

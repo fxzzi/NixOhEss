@@ -57,13 +57,13 @@
         efi.canTouchEfiVariables = true;
       };
       kernelParams = [
-        "nowatchdog"
-        "mitigations=off"
-        "fbcon=font:TER16x32"
+        "nowatchdog" # unsafe!! but fine for desktops
+        "mitigations=off" # also unsafe!!
+        "fbcon=font:TER16x32" # make font size bigger
       ];
       tmp = {
         useTmpfs = true; # /tmp is not on tmpfs by default (why??)
-        tmpfsSize = "50%";
+        tmpfsSize = "50%"; # allow it to use x% of your RAM
       };
       extraModprobeConfig = ''
         blacklist sp5100_tco
