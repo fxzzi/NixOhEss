@@ -43,7 +43,7 @@
   };
   gaming = {
     steam.enable = true;
-    gamemode.enable = true;
+    gamemode.enable = false;
     proton-ge.enable = true;
     prismlauncher.enable = true;
     lutris.enable = true;
