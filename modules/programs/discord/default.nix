@@ -76,7 +76,7 @@ in {
                 # css
                 ''
                   /* Hide nitro begging */
-                  @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css");
+                  @import url("https://codeberg.org/AllPurposeMat/Disblock-Origin/raw/branch/master/DisblockOrigin.theme.css");
 
                   /* Hide the Visual Refresh title bar */
                   .visual-refresh {
