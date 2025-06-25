@@ -2,17 +2,18 @@
   description = "fazzi's nixos + hjem conf";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/83685a4ccd44d2d4c09f2e5f7773d2f3f2156121";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
-      url = "github:feel-co/hjem";
+      # url = "github:feel-co/hjem";
+      url = "github:nezia1/hjem/per-user-services";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         smfh.follows = ""; # we use smfh from nixpkgs
       };
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/5a348fb7dfaf398922c119d21acb7d7f831f8688";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
