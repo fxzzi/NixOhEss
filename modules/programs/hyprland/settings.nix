@@ -201,6 +201,7 @@ in {
           tablet = lib.optionalAttrs (!config.cfg.opentabletdriver.enable) {
             left_handed = 1; # inverted tablet
             output = "${config.cfg.gui.hypr.defaultMonitor}";
+            active_area_size = "130, 90";
           };
           touchpad = {
             natural_scroll = true;
@@ -229,6 +230,7 @@ in {
           focus_on_activate = 1; # Focuses windows which ask for activation
           enable_swallow = 1; # Enable window swalling
           swallow_regex = "^(foot)$"; # Make foot swallow executed windows
+          swallow_exception_regex = "^(foot)$"; # Make foot not swallow itself
           initial_workspace_tracking = 0;
           vrr = 1;
           anr_missed_pings = 4; # by default, ANR dialog shows up way too aggressively.
