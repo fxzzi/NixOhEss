@@ -256,10 +256,9 @@ in {
 
           shadow = {
             enabled = 1;
-            color = "0xef1a1a1a";
-            render_power = 8;
-            range = 16;
-            offset = "2, 4";
+            color = "0xdd1a1a1a";
+            render_power = 4;
+            range = 8;
           };
           blur = {
             enabled = config.cfg.gui.hypr.blur.enable;
