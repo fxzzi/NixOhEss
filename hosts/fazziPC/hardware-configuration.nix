@@ -5,7 +5,6 @@
   config,
   lib,
   modulesPath,
-  user,
   ...
 }: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
@@ -39,7 +38,7 @@
       options = ["noatime,ssd,discard=async,subvol=@nix"];
     };
 
-    "/home/${user}/games" = {
+    "/games" = {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
       options = ["noatime,ssd,discard=async,subvol=@games"];

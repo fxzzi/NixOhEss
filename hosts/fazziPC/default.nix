@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./fancontrol.nix
+    ./gtkBookmarks.nix
   ];
   cfg = import ./options.nix;
   # host specific packages

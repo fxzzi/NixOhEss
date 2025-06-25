@@ -112,7 +112,6 @@
         ;;
       --active)
         window_geometry=$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
-
         $grimCmd -g "$window_geometry" "$path" || echo "no active window"
         ;;
       esac
@@ -174,7 +173,7 @@ in {
         monitor = [
           ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
           "desc:Lenovo, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
-          "desc: BOE, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
+          "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q, 2560x1440@170,0x0, 1" # kunzozPC and fazziPC have the same monitor
           "desc:Philips, 1920x1080@75,-1920x180, 1"
         ];
@@ -228,10 +227,10 @@ in {
           disable_splash_rendering = 1; # Disable startup splashscreen
           mouse_move_focuses_monitor = 0; # Disables hover for monitor focus
           focus_on_activate = 1; # Focuses windows which ask for activation
-          enable_swallow = 0; # Enable window swalling
+          enable_swallow = 1; # Enable window swalling
           swallow_regex = "^(foot)$"; # Make foot swallow executed windows
           initial_workspace_tracking = 0;
-          vrr = 2; # avoid flickering with vrr = 1
+          vrr = 1;
           anr_missed_pings = 4; # by default, ANR dialog shows up way too aggressively.
           middle_click_paste = 0;
         };
