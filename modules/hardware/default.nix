@@ -1,6 +1,4 @@
-{lib, ...}: let
-  toINI = lib.generators.toINI {};
-in {
+{lib, ...}: {
   imports = [
     ./printing.nix
     ./rules.nix
@@ -13,12 +11,14 @@ in {
     # enable microcode updates n stuff
     hardware.enableRedistributableFirmware = true;
 
-    # turn off any debouncing built into libinput
-    environment.etc."libinput/local-overrides.quirks".text = toINI {
-      "Never Debounce" = {
-        MatchUdevType = "mouse";
-        ModelBouncingKeys = "1";
-      };
-    };
+    environment.etc."libinput/local-overrides.quirks".text = ''
+      [Disable Mouse Debouncing]
+      MatchUdevType=mouse
+      ModelBouncingKeys=1
+
+      [Disable Tablet Smoothing]
+      MatchUdevType=tablet
+      AttrTabletSmoothing=0
+    '';
   };
 }
