@@ -1,21 +1,32 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  nct_hwmon = "/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*";
+  k10temp_hwmon = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon[[:print:]]*";
+  pwm1 = "${nct_hwmon}/pwm1";
+  pwm2 = "${nct_hwmon}/pwm2";
+  fan1 = "${nct_hwmon}/fan1_input";
+  fan2 = "${nct_hwmon}/fan2_input";
+  cpu_temp = "${k10temp_hwmon}/temp1_input";
+  gpu_temp = "/tmp/nvidia-temp";
+  minTemp = 35;
+  maxTemp = 95;
+  minPwm = 48;
+  maxPwm = 255;
+in {
   config = {
     environment.systemPackages = with pkgs; [lm_sensors];
-    hardware = {
-      fancontrol = {
-        enable = true; # Enable fancontrol to control case fans depending on CPU and GPU temps
-        config = ''
-          INTERVAL=4
-          FCTEMPS=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon[[:print:]]*/temp1_input /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=/tmp/nvidia-temp
-          FCFANS=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/fan2_input /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/fan1_input
-          MINTEMP=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=35 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=35
-          MAXTEMP=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=90 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=90
-          MINSTART=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=56 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=56
-          MINSTOP=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=56 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=56
-          MINPWM=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=56 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=56
-          MAXPWM=/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm2=255 /sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*/pwm1=255
-        '';
-      };
+    hardware.fancontrol = {
+      enable = true;
+      config = ''
+        INTERVAL=4
+        FCTEMPS=${pwm2}=${cpu_temp} ${pwm1}=${gpu_temp}
+        FCFANS=${pwm2}=${fan2} ${pwm1}=${fan1}
+        MINTEMP=${pwm2}=${toString minTemp} ${pwm1}=${toString minTemp}
+        MAXTEMP=${pwm2}=${toString maxTemp} ${pwm1}=${toString maxTemp}
+        MINSTART=${pwm2}=${toString minPwm} ${pwm1}=${toString minPwm}
+        MINSTOP=${pwm2}=${toString minPwm} ${pwm1}=${toString minPwm}
+        MINPWM=${pwm2}=${toString minPwm} ${pwm1}=${toString minPwm}
+        MAXPWM=${pwm2}=${toString maxPwm} ${pwm1}=${toString maxPwm}
+      '';
     };
   };
 }
