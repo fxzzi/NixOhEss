@@ -1,14 +1,10 @@
-{
-  pkgs,
-  inputs,
-  config,
-  lib,
-  ...
-}: {
+{inputs, ...}: {
+  imports = [
+    # use determinate nix
+    inputs.determinate.nixosModules.default
+  ];
   config = {
     nix = {
-      # use lix, bcuz its faster i guess
-      package = pkgs.lixPackageSets.latest.lix;
       settings = {
         experimental-features = [
           "nix-command"
@@ -17,13 +13,13 @@
         auto-optimise-store = true; # save some storage space
         warn-dirty = false;
         use-xdg-base-directories = true; # clean up ~
+        allow-import-from-derivation = false; # don't allow IFD, they're slow asf
+        lazy-trees = true; # detsys nix only!!
+        accept-flake-config = true; # allow cachix stuff
         allowed-users = ["@wheel"];
         trusted-users = ["@wheel"];
         build-dir = "/var/tmp";
       };
-      # make flake inputs available in the nix registry
-      registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-      nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     };
     nixpkgs.config.allowUnfree = true; # not too fussed as long as app works on linux tbh
     documentation.nixos.enable = false; # remove useless docs .desktop

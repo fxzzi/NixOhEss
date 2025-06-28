@@ -158,7 +158,7 @@
       hyprland = {
         enable = true;
         autoStart = true;
-        useGit = true;
+        useGit = false;
       };
       hyprlock.enable = true;
       hypridle = {
