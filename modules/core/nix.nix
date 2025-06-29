@@ -1,14 +1,9 @@
-{
-  pkgs,
-  inputs,
-  config,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   config = {
     nix = {
       # use lix, bcuz its faster i guess
-      package = pkgs.lixPackageSets.latest.lix;
+      # FIXME: pin to 2.92 for now because bugs
+      package = pkgs.lixPackageSets.lix_2_92.lix;
       settings = {
         experimental-features = [
           "nix-command"
@@ -21,9 +16,6 @@
         trusted-users = ["@wheel"];
         build-dir = "/var/tmp";
       };
-      # make flake inputs available in the nix registry
-      registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-      nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     };
     nixpkgs.config.allowUnfree = true; # not too fussed as long as app works on linux tbh
     documentation.nixos.enable = false; # remove useless docs .desktop
