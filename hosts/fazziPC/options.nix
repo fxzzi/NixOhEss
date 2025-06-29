@@ -1,5 +1,5 @@
 {
-  services.sunshine.enable = true;
+  services.sunshine.enable = false;
   kernel = {
     type = "zen";
     zenergy.enable = true;
@@ -51,7 +51,7 @@
     prismlauncher.enable = true;
     lutris.enable = true;
     celeste = {
-      enable = false; # i launch through lutris anyway
+      enable = false; # i launch through steam anyway
       path = "games/Lutris/celeste";
       modding.enable = true;
     };
@@ -77,7 +77,7 @@
         maxClock = 1830;
         coreOffset = 205;
         memOffset = 1000;
-        powerLimit = 150;
+        powerLimit = 160;
       };
     };
   };
