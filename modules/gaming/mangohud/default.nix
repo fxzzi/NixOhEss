@@ -33,6 +33,11 @@ in {
       default = false;
       description = "Enable MangoHud for all Vulkan apps.";
     };
+    fpsLimit = lib.mkOption {
+      type = lib.types.int;
+      default = 167;
+      description = "Sets the default FPS Limit";
+    };
   };
   config = lib.mkIf config.cfg.gaming.mangohud.enable {
     environment.sessionVariables = lib.mkIf config.cfg.gaming.mangohud.enableSessionWide {
@@ -43,7 +48,7 @@ in {
       files = {
         ".config/MangoHud/MangoHud.conf".text = renderSettings {
           preset = "0,1,2";
-          fps_limit = "167,0"; # few below refresh rate (vrr) or unlimited
+          fps_limit = "${builtins.toString config.cfg.gaming.mangohud.fpsLimit},0"; # few below refresh rate (vrr) or unlimited
           toggle_hud = "Shift_R+F12";
           toggle_hud_position = "Shift_R+F11";
           toggle_preset = "Shift_R+F10";

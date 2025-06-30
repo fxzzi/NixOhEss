@@ -58,6 +58,7 @@
     mangohud = {
       enable = true;
       enableSessionWide = true;
+      fpsLimit = 171;
     };
     gamescope.enable = true;
     cemu.enable = true;

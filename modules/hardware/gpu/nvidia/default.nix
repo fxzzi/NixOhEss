@@ -32,6 +32,7 @@
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
         package = config.boot.kernelPackages.nvidiaPackages.beta;
+        # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
         #   version = "575.64";
         #   sha256_64bit = "sha256-6wG8/nOwbH0ktgg8J+ZBT2l5VC8G5lYBQhtkzMCtaLE=";
@@ -57,6 +58,7 @@
         ./50-limit-free-buffer-pool.json;
     };
     boot = {
+      # early load / early kms
       initrd.kernelModules = [
         "nvidia"
         "nvidia_modeset"
