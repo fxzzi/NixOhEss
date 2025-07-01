@@ -15,12 +15,12 @@
     if uwsmEnabled
     then ''
       if ${uwsm} check may-start; then
-      exec ${uwsm} start hyprland-uwsm.desktop
+        exec ${uwsm} start hyprland-uwsm.desktop
       fi
     ''
     else ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-      exec ${lib.getExe' config.programs.hyprland.package "Hyprland"}
+        exec ${lib.getExe' config.programs.hyprland.package "Hyprland"}
       fi
     '';
 in {
