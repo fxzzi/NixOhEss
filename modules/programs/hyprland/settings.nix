@@ -5,10 +5,6 @@
   inputs,
   ...
 }: let
-  pkg =
-    if config.cfg.gui.hypr.hyprland.useGit
-    then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}
-    else pkgs;
   multiMonitor =
     if config.cfg.gui.hypr.secondaryMonitor != null
     then true
@@ -53,7 +49,7 @@
   sunsetScript = pkgs.writeShellApplication {
     name = "sunset";
     runtimeInputs = [
-      pkg.hyprland # provides hyprctl
+      config.programs.hyprland.package # provides hyprctl
     ];
     text = ''
       if [ -e /tmp/sunsetLock ]; then
@@ -314,16 +310,16 @@ in {
           "suppressevent maximize fullscreen, class: ^(cs2)$"
 
           # Sets fullscreen for common Minecraft windows
-          "fullscreen, class:^(Minecraft.*)$"
-          "fullscreen, initialTitle:^(Minecraft.*)$"
+          "fullscreen, class:^(Minecraft\*.*)$"
+          "fullscreen, initialTitle:^(Minecraft\*.*)$"
           "fullscreen, class:^(org-prismlauncher-EntryPoint)$"
 
           # Allow games to tear
           "immediate, class:^(steam_app_.*)$" # all steam games
           "immediate, class:^(SDL Application)$" # cs2 native wayland
           "immediate, class:^(cs2)$" # cs2
-          "immediate, class:^(Minecraft.*)$" # modern minecraft
-          "immediate, initialTitle:^(Minecraft.*)$" # 1.8.9 for some reason
+          "immediate, class:^(Minecraft\*.*)$"
+          "immediate, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
           "immediate, class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
           "immediate, class:^(osu!)$"
           "immediate, class: ^(.*.exe)$" # all exe's

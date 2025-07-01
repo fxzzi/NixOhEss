@@ -1,4 +1,4 @@
-{lib, ...}: {
+{...}: {
   imports = [
     ./printing.nix
     ./rules.nix
@@ -11,6 +11,7 @@
     # enable microcode updates n stuff
     hardware.enableRedistributableFirmware = true;
 
+    # don't use ini generator, order matters here
     environment.etc."libinput/local-overrides.quirks".text = ''
       [Disable Mouse Debouncing]
       MatchUdevType=mouse
