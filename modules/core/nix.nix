@@ -2,8 +2,7 @@
   config = {
     nix = {
       # use lix, bcuz its faster i guess
-      # FIXME: pin to 2.92 for now because bugs
-      package = pkgs.lixPackageSets.lix_2_92.lix;
+      package = pkgs.lixPackageSets.latest.lix;
       settings = {
         experimental-features = [
           "nix-command"
