@@ -25,6 +25,12 @@
     else "${k}=${renderOption v}"
   );
   renderSettings = attrs: lib.strings.concatStringsSep "\n" (lib.attrsets.mapAttrsToList renderLine attrs) + "\n";
+
+  fpsLimit =
+    if config.programs.hyprland.settings.misc.vrr == 0
+    then config.cfg.gaming.mangohud.refreshRate
+    # NOTE:https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
+    else (config.cfg.gaming.mangohud.refreshRate - (config.cfg.gaming.mangohud.refreshRate * config.cfg.gaming.mangohud.refreshRate / 3600));
 in {
   options.cfg.gaming.mangohud = {
     enable = lib.mkEnableOption "mangohud";
@@ -33,10 +39,13 @@ in {
       default = false;
       description = "Enable MangoHud for all Vulkan apps.";
     };
-    fpsLimit = lib.mkOption {
+    refreshRate = lib.mkOption {
       type = lib.types.int;
-      default = 167;
-      description = "Sets the default FPS Limit";
+      default = 170;
+      description = ''
+        If VRR is disabled in Hyprland, games will be locked to this refresh rate.
+        With VRR enabled, games will be locked to a refresh rate slightly lower than this value.
+      '';
     };
   };
   config = lib.mkIf config.cfg.gaming.mangohud.enable {
@@ -48,11 +57,13 @@ in {
       files = {
         ".config/MangoHud/MangoHud.conf".text = renderSettings {
           preset = "0,1,2";
-          fps_limit = "${builtins.toString config.cfg.gaming.mangohud.fpsLimit},0"; # few below refresh rate (vrr) or unlimited
+          fps_limit = "${builtins.toString fpsLimit},0"; # few below refresh rate (vrr) or unlimited
           toggle_hud = "Shift_R+F12";
           toggle_hud_position = "Shift_R+F11";
           toggle_preset = "Shift_R+F10";
           font_size = 19;
+          vsync = 1; # disable vulkan vsync
+          gl_vsync = 0; # disable opengl vsync
           blacklist = [
             "mpv"
           ];
