@@ -1,0 +1,12 @@
+diff --git a/src/backend/main_window.ts b/src/backend/main_window.ts
+index 9a3fa84f..ee99cdf9 100644
+--- a/src/backend/main_window.ts
++++ b/src/backend/main_window.ts
+@@ -57,7 +57,6 @@ export const createMainWindow = () => {
+     ...windowProps,
+     minHeight: 345,
+     minWidth: 600,
+-    show: false,
+ 
+     webPreferences: {
+       webviewTag: true,
