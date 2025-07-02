@@ -260,11 +260,11 @@
         "smfh": []
       },
       "locked": {
-        "lastModified": 1751400038,
-        "narHash": "sha256-mx6rP0XRrIw32LOW3pEXh9J5434KPH7xSlbjvZwPke0=",
+        "lastModified": 1751420962,
+        "narHash": "sha256-ndSKdp/GG9gQcVUl97DYzUjrOzE/XhNi1iiYmycdJ7c=",
         "owner": "nezia1",
         "repo": "hjem",
-        "rev": "0ca7a732cc7c7beb78fc3a30dba3446cd0b3990c",
+        "rev": "51df970080858f67d8844f620384fb850a05572a",
         "type": "github"
       },
       "original": {
