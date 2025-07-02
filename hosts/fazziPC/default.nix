@@ -1,9 +1,5 @@
 {pkgs, ...}: {
   system.stateVersion = "25.05";
-  systemd.services.nix-daemon.serviceConfig = {
-    MemoryHigh = "16G";
-    MemoryMax = "24G";
-  };
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
