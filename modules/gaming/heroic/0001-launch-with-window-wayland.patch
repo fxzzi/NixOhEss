@@ -1,12 +1,39 @@
-diff --git a/src/backend/main_window.ts b/src/backend/main_window.ts
-index 9a3fa84f..ee99cdf9 100644
---- a/src/backend/main_window.ts
-+++ b/src/backend/main_window.ts
-@@ -57,7 +57,6 @@ export const createMainWindow = () => {
-     ...windowProps,
-     minHeight: 345,
-     minWidth: 600,
--    show: false,
- 
-     webPreferences: {
-       webviewTag: true,
+From acb67cef0962f3ea7031051af3b23fba2c78e93b Mon Sep 17 00:00:00 2001
+From: Fazzi <faaris.ansari@proton.me>
+Date: Thu, 3 Jul 2025 00:18:10 +0100
+Subject: [PATCH] fix native wayland window not opening
+
+---
+ src/backend/main.ts | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/src/backend/main.ts b/src/backend/main.ts
+index c29c194a26..735367148d 100644
+--- a/src/backend/main.ts
++++ b/src/backend/main.ts
+@@ -403,15 +403,23 @@ if (!gotTheLock) {
+     }
+
+     const headless = isCLINoGui || settings.startInTray
++
+     if (!headless) {
+-      mainWindow.once('ready-to-show', () => {
++      const isWayland = Boolean(process.env.WAYLAND_DISPLAY)
++      const showWindow = () => {
+         const props = configStore.get_nodefault('window-props')
+         mainWindow.show()
+         // Apply maximize only if we show the window
+         if (props?.maximized) {
+           mainWindow.maximize()
+         }
+-      })
++      }
++      if (isWayland) {
++        // Electron + Wayland don't send ready-to-show
++        mainWindow.webContents.once('did-finish-load', showWindow)
++      } else {
++        mainWindow.once('ready-to-show', showWindow)
++      }
+     }
+
+     // set initial zoom level after a moment, if set in sync the value stays as 1
