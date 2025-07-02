@@ -352,15 +352,16 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1751404714,
-        "narHash": "sha256-VcaGnoW8p7PrtSCHBMJbiuSQoYGq6tTx5VhvDAdojgc=",
-        "owner": "hyprwm",
+        "lastModified": 1751312077,
+        "narHash": "sha256-yeqBPTAlg1hhXqW99akZG1cv5hWShhdaFcSZ6njBOqo=",
+        "owner": "ikalco",
         "repo": "Hyprland",
-        "rev": "90c8609cbb5ae7b488d7b14b4dfb3ec9585ed2b7",
+        "rev": "42797727614fd0d1487870084cf542be3a60e380",
         "type": "github"
       },
       "original": {
-        "owner": "hyprwm",
+        "owner": "ikalco",
+        "ref": "fix_tearing_with_ds",
         "repo": "Hyprland",
         "type": "github"
       }
@@ -600,16 +601,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1751271578,
-        "narHash": "sha256-P/SQmKDu06x8yv7i0s8bvnnuJYkxVGBWLWHaU+tt4YY=",
+        "lastModified": 1751461431,
+        "narHash": "sha256-wzJps3ZoaLMYYW7tCIhw1a625/kYuJ9s0MbkCxBi3VE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3016b4b15d13f3089db8a41ef937b13a9e33a8df",
+        "rev": "12d516726903aae3c89fe2b6b65a6880c7101c25",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixos-unstable-small",
         "repo": "nixpkgs",
         "type": "github"
       }

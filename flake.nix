@@ -2,7 +2,7 @@
   description = "fazzi's nixos + hjem conf";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:nezia1/hjem/per-user-services";
@@ -12,7 +12,7 @@
       };
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:ikalco/Hyprland/fix_tearing_with_ds";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
