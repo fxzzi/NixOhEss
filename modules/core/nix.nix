@@ -1,8 +1,6 @@
 {pkgs, ...}: {
   config = {
     nix = {
-      # use lix, bcuz its faster i guess
-      package = pkgs.lixPackageSets.latest.lix;
       settings = {
         experimental-features = [
           "nix-command"
