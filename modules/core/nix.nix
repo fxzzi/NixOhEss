@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   config = {
     nix = {
+      # use lix, bcuz its faster i guess
+      package = pkgs.lixPackageSets.latest.lix;
       settings = {
         experimental-features = [
           "nix-command"
@@ -8,6 +10,8 @@
         ];
         auto-optimise-store = true; # save some storage space
         warn-dirty = false;
+        allow-import-from-derivation = false; # don't allow IFD, they're slow asf
+        accept-flake-config = true; # allow using substituters from flake.nix
         use-xdg-base-directories = true; # clean up ~
         allowed-users = ["@wheel"];
         trusted-users = ["@wheel"];
