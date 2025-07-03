@@ -2,7 +2,7 @@
   description = "fazzi's nixos + hjem conf";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:nezia1/hjem/per-user-services";
