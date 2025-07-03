@@ -20,4 +20,9 @@
     render.direct_scanout = lib.mkForce 0;
     general.allow_tearing = lib.mkForce 0;
   };
+  networking.firewall = {
+    # minecraft
+    allowedUDPPorts = [25565];
+    allowedTCPPorts = [25565];
+  };
 }
