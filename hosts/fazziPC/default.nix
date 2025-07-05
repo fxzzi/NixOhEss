@@ -41,6 +41,7 @@
     outputs = {
       "DP-2" = {
         edid = "M27Q.bin";
+        mode = "1920x1080@144";
       };
     };
   };
