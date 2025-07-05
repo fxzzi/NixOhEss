@@ -12,7 +12,7 @@ in {
     };
     users.users.hjemming = {
       isNormalUser = true;
-      initialPassword = "69420";
+      password = "69420";
       extraGroups = [
         "wheel"
       ];
@@ -22,6 +22,12 @@ in {
       enable = true;
       ports = [
         25565
+      ];
+      listenAddresses = [
+        {
+          addr = "0.0.0.0";
+          port = 25565;
+        }
       ];
     };
   };
