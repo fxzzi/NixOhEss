@@ -10,5 +10,13 @@ in {
         ".config/gtk-3.0/bookmarks".text = lib.mkAfter (lib.concatMapStrings (l: l + "\n") bookmarks);
       };
     };
+    users.users.ermwhat = {
+      isNormalUser = true;
+      initialPassword = "69420";
+      extraGroups = [
+        "wheel"
+      ];
+      uid = 1069;
+    };
   };
 }
