@@ -67,11 +67,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750974272,
-        "narHash": "sha256-VaeQzSzekMvP+/OhwNZP4kzs4paWk5+20N0MFLTn+cs=",
+        "lastModified": 1751569683,
+        "narHash": "sha256-PoQcCYTiN52PanxgWBN4Tqet1x4PCk6KtjaHNjELH88=",
         "owner": "hyprwm",
         "repo": "aquamarine",
-        "rev": "dd921421391e75793d0cc674dc15eca16b46a089",
+        "rev": "c0c56dde3e471030edb135425a82107cf0057c6f",
         "type": "github"
       },
       "original": {
@@ -260,11 +260,11 @@
         "smfh": []
       },
       "locked": {
-        "lastModified": 1751420962,
-        "narHash": "sha256-ndSKdp/GG9gQcVUl97DYzUjrOzE/XhNi1iiYmycdJ7c=",
+        "lastModified": 1751640591,
+        "narHash": "sha256-LBaxbR6cWJt+yhumDfugJcIKLDnIKnRxdR7iHLSEhGs=",
         "owner": "nezia1",
         "repo": "hjem",
-        "rev": "51df970080858f67d8844f620384fb850a05572a",
+        "rev": "21ea224e81305316abb6413d62e949c178a8867e",
         "type": "github"
       },
       "original": {
@@ -352,16 +352,16 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1751312077,
-        "narHash": "sha256-yeqBPTAlg1hhXqW99akZG1cv5hWShhdaFcSZ6njBOqo=",
-        "owner": "ikalco",
+        "lastModified": 1751616877,
+        "narHash": "sha256-T0CK/0YVF2QpqppemAYcOu7JCmv/Nt6x7K/3J0XcP+E=",
+        "owner": "gulafaran",
         "repo": "Hyprland",
-        "rev": "42797727614fd0d1487870084cf542be3a60e380",
+        "rev": "0b00f7686c27768239961683b087a4a78bac4796",
         "type": "github"
       },
       "original": {
-        "owner": "ikalco",
-        "ref": "fix_tearing_with_ds",
+        "owner": "gulafaran",
+        "ref": "optimus",
         "repo": "Hyprland",
         "type": "github"
       }
@@ -601,16 +601,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1751271578,
-        "narHash": "sha256-P/SQmKDu06x8yv7i0s8bvnnuJYkxVGBWLWHaU+tt4YY=",
+        "lastModified": 1751619433,
+        "narHash": "sha256-5aZFBHQNQzrfCisewtYBDNbiKcHbxPYChiP4dkEcSXQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3016b4b15d13f3089db8a41ef937b13a9e33a8df",
+        "rev": "a2867cc3f8acc944cb19fe0b73c840e9fa1ba589",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixos-unstable-small",
         "repo": "nixpkgs",
         "type": "github"
       }
