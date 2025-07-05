@@ -6,13 +6,6 @@
 }: {
   options.cfg.cli.ssh.enable = lib.mkEnableOption "ssh";
   config = lib.mkIf config.cfg.cli.ssh.enable {
-    services.openssh = {
-      enable = true;
-      startWhenNeeded = true;
-      ports = [
-        25565
-      ];
-    };
     programs.ssh = {
       extraConfig = ''
         # GitHub
