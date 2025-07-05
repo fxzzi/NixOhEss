@@ -1,7 +1,7 @@
 From acb67cef0962f3ea7031051af3b23fba2c78e93b Mon Sep 17 00:00:00 2001
 From: Fazzi <faaris.ansari@proton.me>
 Date: Thu, 3 Jul 2025 00:18:10 +0100
-Subject: [PATCH] fix native wayland window not opening
+Subject: [PATCH] fix native wayland window not opening.
 
 ---
  src/backend/main.ts | 12 ++++++++++--
