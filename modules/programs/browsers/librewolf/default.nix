@@ -47,6 +47,12 @@ in {
             // Stop weirdness when relaunching browser sometimes
             pref("browser.sessionstore.resume_from_crash", false);
 
+            // don't hide http or https in url bar
+            pref("browser.urlbar.trimURLs", false);
+
+            // show full url on search results pages
+            pref("browser.urlbar.showSearchTerms.enabled", false);
+
             ${
               lib.optionalString config.cfg.gpu.nvidia.enable
               #js
