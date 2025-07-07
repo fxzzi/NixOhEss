@@ -102,7 +102,7 @@ in {
                     --font-code: ${monoFont} !important;
 
                     /* Disblock settings */
-                    /* --display-clan-tags: none; */
+                    --display-clan-tags: none;
                     --display-active-now: none;
                     --display-hover-reaction-emoji: none;
                   }
