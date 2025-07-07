@@ -6,8 +6,10 @@
   ];
   hj = {
     packages = with pkgs; [
-      qbittorrent-enhanced
       telegram-desktop
     ];
   };
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-openvpn
+  ];
 }
