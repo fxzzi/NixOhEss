@@ -20,8 +20,8 @@
   ];
   networking.firewall = {
     # minecraft
-    allowedUDPPorts = [25565 25564];
-    allowedTCPPorts = [25565 25564];
+    allowedUDPPorts = [25565];
+    allowedTCPPorts = [25565];
   };
   hardware.display = {
     edid = {
