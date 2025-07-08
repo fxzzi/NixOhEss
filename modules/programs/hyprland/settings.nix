@@ -282,6 +282,7 @@ in {
         ];
         animations = {
           enabled = config.cfg.gui.hypr.animations.enable;
+          first_launch_animation = false;
         };
         dwindle = {
           pseudotile = 1;
