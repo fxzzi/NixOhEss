@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   system.stateVersion = "25.05";
   imports = [
     ./hardware-configuration.nix
@@ -46,6 +50,22 @@
       "DP-3" = {
         mode = "1920x1080@75";
       };
+    };
+  };
+  systemd.services.fbset = {
+    enable = true;
+    wantedBy = ["multi-user.target"];
+    unitConfig = {
+      Description = "Framebuffer resolution";
+      Before = "display-manager.service";
+    };
+    serviceConfig = {
+      User = "root";
+      Type = "oneshot";
+      ExecStart = "${lib.getExe pkgs.fbset} -xres 2560 -yres 1440 -match --all";
+      RemainAfterExit = "yes";
+      StandardOutput = "journal";
+      StandardError = "journal";
     };
   };
   programs.hyprland.settings = {

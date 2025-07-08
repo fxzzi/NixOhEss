@@ -13,11 +13,6 @@
     };
     services = {
       udev.packages = [pkgs.sane-airscan];
-      avahi = {
-        enable = true;
-        nssmdns = true;
-        openFirewall = true;
-      };
     };
     environment.systemPackages = [pkgs.simple-scan];
     users.users.${user}.extraGroups = [
