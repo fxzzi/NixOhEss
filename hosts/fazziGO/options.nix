@@ -106,10 +106,11 @@ _: {
       hypr = {
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
-        animations.enable = false;
+        animations.enable = true;
         blur.enable = false;
         hyprland = {
           enable = true;
+          useGit = true;
         };
         hyprlock.enable = true;
         hypridle = {
