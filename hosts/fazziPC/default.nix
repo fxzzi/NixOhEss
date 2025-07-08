@@ -52,6 +52,8 @@
       };
     };
   };
+  # sh*tty nvidia makes the tty on my 1440p monitor 1080p
+  # so just resize it to 1440p
   systemd.services.fbset = {
     enable = true;
     wantedBy = ["multi-user.target"];
