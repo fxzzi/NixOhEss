@@ -15,7 +15,8 @@
     if uwsmEnabled
     then ''
       if ${uwsm} check may-start; then
-        exec ${uwsm} start hyprland-uwsm.desktop
+        printf "\nWelcome to the fold of NixOhEss."
+        exec ${uwsm} start -F -- ${pkg.hyprland}/share/wayland-sessions/hyprland.desktop
       fi
     ''
     else ''

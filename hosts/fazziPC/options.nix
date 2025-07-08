@@ -60,7 +60,7 @@
       enableSessionWide = true;
       refreshRate = 175;
     };
-    gamescope.enable = true;
+    # gamescope.enable = true;
     cemu.enable = true;
     heroic.enable = true;
     sgdboop.enable = true;
