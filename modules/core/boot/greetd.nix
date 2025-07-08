@@ -2,12 +2,18 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }: let
-  cmd =
+  hyprland =
+    if config.cfg.gui.hypr.hyprland.useGit
+    then inputs.hyprland.packages.${pkgs.system}.hyprland
+    else pkgs.hyprland;
+  hyprland-session = "${hyprland}/share/wayland-sessions";
+  wrapper =
     if config.cfg.wayland.uwsm.enable
-    then "uwsm start hyprland-uwsm.desktop"
-    else "Hyprland";
+    then "--session-wrapper '${lib.getExe pkgs.uwsm} start -F --'"
+    else "";
 in {
   options.cfg.bootConfig.greetd.enable = lib.mkEnableOption "greetd";
   config = lib.mkIf config.cfg.bootConfig.greetd.enable {
@@ -23,7 +29,9 @@ in {
               --time \
               --remember \
               --asterisks \
-              --cmd '${cmd}'
+              ${wrapper} \
+              --sessions ${hyprland-session}
+
             '';
           user = "greeter";
         };
