@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   system.stateVersion = "25.05";
   imports = [
     ./hardware-configuration.nix
