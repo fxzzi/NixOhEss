@@ -34,7 +34,8 @@
     };
 
     # Set your time zone.
-    time.timeZone = "Europe/London";
+    time.timeZone = lib.mkDefault "Europe/London";
+    services.localtimed.enable = true;
 
     # Select internationalisation properties.
     i18n.defaultLocale = "en_GB.UTF-8";
