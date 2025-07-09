@@ -35,7 +35,10 @@
 
     # Set your time zone.
     time.timeZone = lib.mkDefault "Europe/London";
-    services.localtimed.enable = true;
+    services = {
+      geoclue2.enable = true;
+      localtimed.enable = true;
+    };
 
     # Select internationalisation properties.
     i18n.defaultLocale = "en_GB.UTF-8";

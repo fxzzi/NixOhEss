@@ -15,6 +15,7 @@
   ];
   hardware.bluetooth = {
     enable = true;
+    powerOnBoot = false; # i don't use bluetooth much so disable it by default
   };
   services.blueman.enable = true;
 }
