@@ -1,4 +1,4 @@
-_: {
+{
   cfg = {
     kernel = {
       type = "lts";
@@ -28,9 +28,9 @@ _: {
       uwsm.enable = true;
     };
     gaming = {
+      steam.enable = true;
       celeste = {
-        enable = true;
-        path = "games/Celeste";
+        enable = false;
         modding.enable = true;
       };
     };
@@ -110,7 +110,7 @@ _: {
         blur.enable = false;
         hyprland = {
           enable = true;
-          useGit = true;
+          # useGit = true;
         };
         hyprlock.enable = true;
         hypridle = {
