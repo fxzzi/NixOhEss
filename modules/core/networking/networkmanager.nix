@@ -2,6 +2,7 @@
   lib,
   config,
   user,
+  pkgs,
   ...
 }: {
   options.cfg.networking.networkmanager = {
@@ -18,6 +19,9 @@
           powersave = config.cfg.networking.networkmanager.powersaving.enable;
         };
         dns = "systemd-resolved";
+        plugins = with pkgs; [
+          networkmanager-openvpn
+        ];
       };
     };
     users.users.${user} = {
