@@ -8,6 +8,7 @@
     packages = with pkgs; [
       telegram-desktop
       qpwgraph
+      tor-browser
     ];
   };
 
