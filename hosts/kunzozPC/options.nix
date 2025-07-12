@@ -47,14 +47,10 @@
     proton-ge.enable = true;
     prismlauncher.enable = true;
     lutris.enable = true;
-    # celeste = {
-    #   enable = false; # i launch through lutris anyway
-    #   path = "games/Lutris/celeste";
-    #   modding.enable = true;
-    # };
     mangohud = {
       enable = true;
       enableSessionWide = true;
+      refreshRate = 175;
     };
     # gamescope.enable = true;
     # cemu.enable = false;
