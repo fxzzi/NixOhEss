@@ -262,16 +262,15 @@
         "smfh": []
       },
       "locked": {
-        "lastModified": 1751640591,
-        "narHash": "sha256-LBaxbR6cWJt+yhumDfugJcIKLDnIKnRxdR7iHLSEhGs=",
-        "owner": "nezia1",
+        "lastModified": 1752303056,
+        "narHash": "sha256-LzojKFWAAreWyH56aupj/MLwuPPnnyzplw/xdbavC9c=",
+        "owner": "feel-co",
         "repo": "hjem",
-        "rev": "21ea224e81305316abb6413d62e949c178a8867e",
+        "rev": "3093a74542b30f8155954d585d0ae2401e3adbe5",
         "type": "github"
       },
       "original": {
-        "owner": "nezia1",
-        "ref": "per-user-services",
+        "owner": "feel-co",
         "repo": "hjem",
         "type": "github"
       }
@@ -366,11 +365,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1752270468,
-        "narHash": "sha256-SEFxC9q+BMn1FkeaBRCDb0h7hZ2B+MSi8+u85y4rgQY=",
+        "lastModified": 1752337367,
+        "narHash": "sha256-kEumflYEdQSrZZQEr7kik2sBfFohEx0TsJB1rBVAQy4=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "6821723b4421bdf163f1a1cc6fd472516d44b1e7",
+        "rev": "d0f58baf296a2cdd5df0f82212fe17dfbef8438e",
         "type": "github"
       },
       "original": {
@@ -604,11 +603,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1752180730,
-        "narHash": "sha256-aSmib/P5DWXrpOdwFOo+lxuupUlNTGUDsLVSxJwWfUg=",
+        "lastModified": 1752417534,
+        "narHash": "sha256-06CASFKAxc81QycTSsTw26EJOKi6VgMie6wp0ZUnvqE=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "8ea010d7e3bf00c2a1f24d52da88afaed87d96f5",
+        "rev": "5e2df2dd5b83c07bad3d5e17dc056b52541ecb9c",
         "type": "github"
       },
       "original": {
