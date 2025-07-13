@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
-      url = "github:nezia1/hjem/per-user-services";
+      url = "github:feel-co/hjem";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         smfh.follows = ""; # we use smfh from nixpkgs
