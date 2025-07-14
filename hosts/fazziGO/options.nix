@@ -110,7 +110,7 @@
         blur.enable = false;
         hyprland = {
           enable = true;
-          # useGit = true;
+          useGit = true;
         };
         hyprlock.enable = true;
         hypridle = {
