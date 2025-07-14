@@ -174,10 +174,15 @@ in {
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001, 2560x1440@175, 0x0, 1" # fazziPC monitor
           "desc:Philips, 1920x1080@75,-1920x180, 1"
         ];
-        render = {
-          direct_scanout = 1;
-          cm_enabled = 0; # fix weird transparency in foot
-        };
+        render = lib.mkMerge [
+          {
+            direct_scanout = 1;
+          }
+          # FIXME: this option is only available in git for now
+          (lib.optionalAttrs config.cfg.gui.hypr.hyprland.useGit {
+            new_render_scheduling = 1;
+          })
+        ];
         cursor = {
           default_monitor = lib.mkIf multiMonitor "${config.cfg.gui.hypr.defaultMonitor}";
           sync_gsettings_theme = 0; # we handle this ourselves
