@@ -28,6 +28,7 @@
       uwsm.enable = true;
     };
     gaming = {
+      prismlauncher.enable = true;
       steam.enable = true;
       celeste = {
         enable = false;
