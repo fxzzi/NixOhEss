@@ -54,11 +54,19 @@ in {
             "keyColor" = "green";
             "format" = "{2}";
           }
+          # {
+          #   "type" = "wm";
+          #   "key" = " cm";
+          #   "keyColor" = "blue";
+          #   "format" = "{1}";
+          # }
+          # FIXME: this is a bad way to get the compositor name
+          # but fastfetch has slow wm fetching for now
           {
-            "type" = "wm";
+            "type" = "command";
             "key" = " cm";
             "keyColor" = "blue";
-            "format" = "{1}";
+            "text" = "echo \"$XDG_CURRENT_DESKTOP\"";
           }
           {
             "type" = "terminal";

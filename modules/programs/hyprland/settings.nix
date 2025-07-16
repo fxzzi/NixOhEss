@@ -169,20 +169,14 @@ in {
         monitor = [
           ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
           "desc:Lenovo, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
-          "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
-          "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543, 2560x1440@175,0x0, 1" # kunzozPC monitor
+          "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO display changes names sometimes idk why
+          "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543, 2560x1440@175, 0x0, 1" # kunzozPC monitor
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001, 2560x1440@175, 0x0, 1" # fazziPC monitor
-          "desc:Philips, 1920x1080@75,-1920x180, 1"
+          "desc:Philips, 1920x1080@75,-1920x180, 1" # place to the left of fazziPC monitor
         ];
-        render = lib.mkMerge [
-          {
-            direct_scanout = 1;
-          }
-          # FIXME: this option is only available in git for now
-          (lib.optionalAttrs config.cfg.gui.hypr.hyprland.useGit {
-            new_render_scheduling = 1;
-          })
-        ];
+        render = {
+          direct_scanout = 1;
+        };
         cursor = {
           default_monitor = lib.mkIf multiMonitor "${config.cfg.gui.hypr.defaultMonitor}";
           sync_gsettings_theme = 0; # we handle this ourselves
@@ -195,7 +189,7 @@ in {
           repeat_rate = 55; # Set characters to repeat on hold every 55ms
           repeat_delay = 375; # Set repeat timeout to 375ms
           follow_mouse = 2; # Follow mouse clicks for window focus
-          accel_profile = "flat";
+          accel_profile = "flat"; # disable all mouse accel by default
           float_switch_override_focus = 0; # Stop floating windows from stealing focus
           # i hate caps lock, so make it escape instead. also reset f13-f24 to their expected keysyms.
           kb_options = "fkeys:basic_13-24, caps:escape";
