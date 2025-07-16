@@ -17,6 +17,7 @@
     telegram-desktop
     losslesscut-bin
     qpwgraph
+    steamguard-cli
   ];
   networking.firewall = {
     # minecraft
