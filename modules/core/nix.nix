@@ -1,8 +1,17 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   config = {
     nix = {
       # use lix, bcuz its faster i guess
       package = pkgs.lixPackageSets.latest.lix;
+      # Disable channels and add the inputs to the registry
+      channel.enable = false;
+      registry = builtins.mapAttrs (_: flake: {inherit flake;}) inputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
       settings = {
         experimental-features = [
           "nix-command"
@@ -16,6 +25,9 @@
         allowed-users = ["@wheel"];
         trusted-users = ["@wheel"];
         build-dir = "/var/tmp";
+        # Disable channels and add the inputs to the registry
+        nix-path = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
+        flake-registry = "";
       };
     };
     nixpkgs.config.allowUnfree = true; # not too fussed as long as app works on linux tbh
