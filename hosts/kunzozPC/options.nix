@@ -133,7 +133,7 @@
       hyprland = {
         enable = true;
         autoStart = false;
-        # useGit = true;
+        useGit = true;
       };
       hyprlock.enable = true;
       hypridle = {

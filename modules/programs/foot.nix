@@ -34,7 +34,7 @@ in {
       settings = {
         main = {
           font = "monospace:size=13";
-          pad = "12x12 center";
+          pad = "8x8";
           transparent-fullscreen = true; # option added by my fork
         };
         cursor = {
