@@ -36,9 +36,9 @@
       },
       "branch": "transparency_yipee",
       "submodules": false,
-      "revision": "e3b2f8acf6a637aefbf436167648a4e4e8e7033c",
+      "revision": "4be02b3668cf836b9f292121aa67c525945306be",
       "url": null,
-      "hash": "14w44jlw9pq49wk0mzfh1psizx23p6f0px9fnck5xkkckdrmmqpk"
+      "hash": "0ajszg89fqzlk3fx5s2f2alc0vsndfsnsbnlwnjjf8m17bx3wfyg"
     },
     "startpage": {
       "type": "Git",
