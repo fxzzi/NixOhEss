@@ -94,7 +94,6 @@
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      # url = "github:vaxerski/Hyprland/new-rendering";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
