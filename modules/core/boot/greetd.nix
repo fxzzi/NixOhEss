@@ -2,14 +2,8 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }: let
-  hyprland =
-    if config.cfg.gui.hypr.hyprland.useGit
-    then inputs.hyprland.packages.${pkgs.system}.hyprland
-    else pkgs.hyprland;
-  hyprland-session = "${hyprland}/share/wayland-sessions";
   wrapper =
     if config.cfg.wayland.uwsm.enable
     then "--session-wrapper '${lib.getExe pkgs.uwsm} start -F --'"
@@ -30,7 +24,7 @@ in {
               --remember \
               --asterisks \
               ${wrapper} \
-              --sessions ${hyprland-session}
+              -c 'Hyprland'
 
             '';
           user = "greeter";
@@ -40,7 +34,7 @@ in {
     # this is a life saver.
     # literally no documentation about this anywhere.
     # might be good to write about this...
-    # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
+    # https://www.old.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
     systemd.services.greetd.serviceConfig = {
       Type = "idle";
       StandardInput = "tty";
