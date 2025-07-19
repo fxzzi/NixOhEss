@@ -15,9 +15,7 @@ in {
   config = lib.mkIf config.cfg.gui.fuzzel.enable {
     hj = {
       packages = [
-        (pkgs.fuzzel.override {
-          svgBackend = "librsvg";
-        })
+        pkgs.fuzzel
       ];
       files.".config/fuzzel/fuzzel.ini".text = toINI {
         main = {
