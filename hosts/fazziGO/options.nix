@@ -1,7 +1,7 @@
 {
   cfg = {
     kernel = {
-      type = "lts";
+      type = "latest";
     };
     bootConfig = {
       enable = true;
