@@ -3,6 +3,11 @@
     kernel = {
       type = "latest";
     };
+    scx = {
+      enable = true;
+      scheduler = "scx_lavd";
+      flags = ["--autopower"];
+    };
     bootConfig = {
       enable = true;
       keyLayout = "uk";
