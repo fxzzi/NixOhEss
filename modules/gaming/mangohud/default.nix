@@ -4,8 +4,6 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkOption types;
-
   renderOption = option:
     rec {
       int = toString option;
