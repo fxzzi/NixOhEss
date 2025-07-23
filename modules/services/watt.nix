@@ -1,7 +1,7 @@
 {
-  inputs,
   lib,
   config,
+  sources,
   ...
 }: {
   options.cfg.watt.enable = lib.mkEnableOption "watt";
@@ -38,5 +38,7 @@
       };
     };
   };
-  imports = [inputs.watt.nixosModules.default];
+  imports = [
+    (sources.watt + "/nix/module.nix")
+  ];
 }

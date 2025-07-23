@@ -2,13 +2,13 @@
   lib,
   pkgs,
   config,
-  inputs,
+  sources,
   ...
 }: let
-  pkg =
+  hyprlandPkg =
     if config.cfg.gui.hypr.hyprland.useGit
-    then inputs.hyprland.packages.${pkgs.system}
-    else pkgs;
+    then (pkgs.callPackage "${sources.hyprland}/nix" {})
+    else pkgs.hyprland;
   uwsm = lib.getExe' config.programs.uwsm.package "uwsm";
   uwsmEnabled = config.cfg.wayland.uwsm.enable;
   autoStartCmd =
@@ -16,7 +16,7 @@
     then ''
       if ${uwsm} check may-start; then
         printf "\nWelcome to the fold of NixOhEss."
-        exec ${uwsm} start -F -- ${pkg.hyprland}/share/wayland-sessions/hyprland.desktop
+        exec ${uwsm} start -F -- ${hyprlandPkg}/share/wayland-sessions/hyprland.desktop
       fi
     ''
     else ''
@@ -51,7 +51,7 @@ in {
   config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
     programs.hyprland = {
       enable = true;
-      package = pkg.hyprland;
+      package = hyprlandPkg;
       portalPackage = pkg.xdg-desktop-portal-hyprland;
       withUWSM = config.cfg.wayland.uwsm.enable;
     };

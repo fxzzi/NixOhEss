@@ -6,14 +6,14 @@
     ./bottom.nix
     ./git.nix
     ./ncmpcpp.nix
-    ./nh.nix
+    # ./nh.nix
     ./nvf.nix
     ./nvtop.nix
     ./ssh.nix
     ./zsh.nix
-    ./theming
-    ./hyprland
-    ./hyprlock.nix
+    # ./theming
+    # ./hyprland
+    # ./hyprlock.nix
     ./wleave
     ./fuzzel.nix
     ./browsers

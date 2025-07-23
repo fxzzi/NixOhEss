@@ -86,7 +86,7 @@
       };
       zsh.enable = true;
 
-      nh.enable = true;
+      # nh.enable = true;
     };
     music = {
       ncmpcpp.enable = true;

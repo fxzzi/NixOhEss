@@ -1,9 +1,13 @@
 {
-  inputs,
+  sources,
   pkgs,
   ...
-}: {
-  imports = [inputs.nvf.nixosModules.default];
+}: let
+  nvf = import sources.nvf;
+in {
+  imports = [
+    nvf.nixosModules.nvf
+  ];
   config = {
     environment.sessionVariables = {
       "EDITOR" = "nvim";

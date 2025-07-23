@@ -3,7 +3,6 @@
   lib,
   pkgs,
   user,
-  npins,
   ...
 }: let
   cfg = config.cfg.gaming;

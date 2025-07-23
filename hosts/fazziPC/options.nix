@@ -127,7 +127,7 @@
     };
     zsh.enable = true;
 
-    nh.enable = true;
+    # nh.enable = true;
     nvtop.enable = true;
   };
   music = {

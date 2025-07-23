@@ -5,7 +5,7 @@
     ./gaming
     ./hardware
     ./kernel
-    ./services
-    ./scripts
+    # ./services
+    # ./scripts
   ];
 }

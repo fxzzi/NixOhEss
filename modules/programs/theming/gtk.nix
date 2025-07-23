@@ -1,6 +1,6 @@
 {
   pkgs,
-  npins,
+  sources,
   lib,
   ...
 }: let
@@ -22,7 +22,7 @@ in {
     };
     hj = {
       files = {
-        ".local/share/themes/tokyonight".source = "${npins.Tokyo-Night-Linux}/usr/share/themes/TokyoNight";
+        ".local/share/themes/tokyonight".source = "${sources.Tokyo-Night-Linux}/usr/share/themes/TokyoNight";
         ".config/gtk-3.0/settings.ini".text = gtkConf;
         ".config/gtk-4.0/settings.ini".text = gtkConf;
       };

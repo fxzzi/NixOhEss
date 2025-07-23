@@ -2,10 +2,10 @@
   lib,
   config,
   pkgs,
-  npins,
+  sources,
   ...
 }: let
-  pin = npins.foot;
+  pin = sources.foot;
   inherit (pkgs) makeDesktopItem;
   # using this allows us to hide apps from runners like fuzzel.
   makeHiddenDesktopItem = name: desktopName:

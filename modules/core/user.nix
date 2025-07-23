@@ -2,11 +2,11 @@
   pkgs,
   lib,
   user,
-  inputs,
+  sources,
   ...
 }: {
   imports = [
-    inputs.hjem.nixosModules.default
+    (sources.hjem + "/modules/nixos")
     # avoid boilerplate in the configuration
     (lib.modules.mkAliasOptionModule ["hj"] ["hjem" "users" user])
   ];

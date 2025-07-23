@@ -11,7 +11,60 @@
       "submodules": false,
       "revision": "d553d015a0d3c1e9e41b72aab959ad89f91b457d",
       "url": "https://github.com/stronk-dev/Tokyo-Night-Linux/archive/d553d015a0d3c1e9e41b72aab959ad89f91b457d.tar.gz",
-      "hash": "0acwmwiifghdlgvvxl0m2gc654njg7gfdsk743s2sigv47y4dfa1"
+      "hash": "sha256-QblG/CH7RS30IGfq5t550pJi2BMV0L73ow0+FyOvnCk="
+    },
+    "agenix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ryantm",
+        "repo": "agenix"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "531beac616433bac6f9e2a19feb8e99a22a66baf",
+      "url": "https://github.com/ryantm/agenix/archive/531beac616433bac6f9e2a19feb8e99a22a66baf.tar.gz",
+      "hash": "sha256-9P1FziAwl5+3edkfFcr5HeGtQUtrSdk/MksX39GieoA="
+    },
+    "ags": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Aylur",
+        "repo": "ags"
+      },
+      "branch": "v1",
+      "submodules": false,
+      "revision": "237601999d65a4663bcbab934f4f6ce1f579d728",
+      "url": "https://github.com/Aylur/ags/archive/237601999d65a4663bcbab934f4f6ce1f579d728.tar.gz",
+      "hash": "sha256-n/VeEnc6fra2SPgm2ppzwQ52ggYDhpzmBnIBrVD/f+0="
+    },
+    "crane": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ipetkov",
+        "repo": "crane"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "544d09fecc8c2338542c57f3f742f1a0c8c71e13",
+      "url": "https://github.com/ipetkov/crane/archive/544d09fecc8c2338542c57f3f742f1a0c8c71e13.tar.gz",
+      "hash": "sha256-g5uP3jIj+STUcfTJDKYopxnSijs2agRg13H0SGL5iE4="
+    },
+    "creamlinux": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Novattz",
+        "repo": "creamlinux-installer"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "17ad517a459f1a41a40bef2642ee952859147ab5",
+      "url": "https://github.com/Novattz/creamlinux-installer/archive/17ad517a459f1a41a40bef2642ee952859147ab5.tar.gz",
+      "hash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
+      "frozen": true
     },
     "eden": {
       "type": "GitRelease",
@@ -26,7 +79,7 @@
       "version": "0.0.2-pre-alpha",
       "revision": "5608ab1cd485083e81cef5cd4bd5132f03d97077",
       "url": null,
-      "hash": "10n9lw6sx5a5qy04jkh4dx32k6z1wyfwd0zqi8n3ym6f8cbi1zkd"
+      "hash": "sha256-bf4QF0POVD8siviDxp3n4ZspRm8ETkmAx0WVrg2nyYI="
     },
     "foot": {
       "type": "Git",
@@ -38,7 +91,98 @@
       "submodules": false,
       "revision": "4be02b3668cf836b9f292121aa67c525945306be",
       "url": null,
-      "hash": "0ajszg89fqzlk3fx5s2f2alc0vsndfsnsbnlwnjjf8m17bx3wfyg"
+      "hash": "sha256-zzs++jqhIiel5dQubbVrVm/AqBJO6NLdmPRjl9D7Wio="
+    },
+    "hjem": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "feel-co",
+        "repo": "hjem"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "3093a74542b30f8155954d585d0ae2401e3adbe5",
+      "url": "https://github.com/feel-co/hjem/archive/3093a74542b30f8155954d585d0ae2401e3adbe5.tar.gz",
+      "hash": "sha256-LzojKFWAAreWyH56aupj/MLwuPPnnyzplw/xdbavC9c="
+    },
+    "hyprland": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "hyprwm",
+        "repo": "Hyprland"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "fdbbad04bbf2382e9a980418c976668fc062f195",
+      "url": "https://github.com/hyprwm/Hyprland/archive/fdbbad04bbf2382e9a980418c976668fc062f195.tar.gz",
+      "hash": "sha256-IXwbcUXRMINAcmmOoscjcElf990YSUCsPHoab0GAJ2M="
+    },
+    "lanzaboote": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Rexcrazy804",
+        "repo": "lanzaboote"
+      },
+      "branch": "npins-support",
+      "submodules": false,
+      "revision": "63b4c797fd6e370ad437ee25e30a5e5ff2c93f83",
+      "url": "https://github.com/Rexcrazy804/lanzaboote/archive/63b4c797fd6e370ad437ee25e30a5e5ff2c93f83.tar.gz",
+      "hash": "sha256-07FC3fevw8phSwfLDLWbzM9nYZr1XezfEDZIRYjtfSM="
+    },
+    "nixpkgs": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "fxzzi",
+        "repo": "nixpkgs"
+      },
+      "branch": "hypr-gcc15",
+      "submodules": false,
+      "revision": "b51891ed50db445e9b4f18d0a3ecff22e790eabb",
+      "url": "https://github.com/fxzzi/nixpkgs/archive/b51891ed50db445e9b4f18d0a3ecff22e790eabb.tar.gz",
+      "hash": "sha256-WEd7yCY3oGmi7fNxPe0hh0wjB4gJA19+5vAG0TnmtpE="
+    },
+    "nvf": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "notashelf",
+        "repo": "nvf"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "8fbecab446afe3454ecce6a4b817ec4f123a4a34",
+      "url": "https://github.com/notashelf/nvf/archive/8fbecab446afe3454ecce6a4b817ec4f123a4a34.tar.gz",
+      "hash": "sha256-daKfPQnipcRnKnXknDzv+fzNKeEY3r/10y8YMVQ10vU="
+    },
+    "nvuv": {
+      "type": "Git",
+      "repository": {
+        "type": "GitLab",
+        "repo_path": "fazzi/nvuv",
+        "server": "https://gitlab.com/"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "ac0693e3c57b3112d66fa36a0abcb5f544d2b9dd",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=ac0693e3c57b3112d66fa36a0abcb5f544d2b9dd",
+      "hash": "sha256-yV0yfrgf29p2dr8Wkpg3EPyludS+A5mbGabUS7Kpmo4="
+    },
+    "rust-overlay": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "oxalica",
+        "repo": "rust-overlay"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "8610c0f3801fc8dec7eb4b79c95fb39d16f38a80",
+      "url": "https://github.com/oxalica/rust-overlay/archive/8610c0f3801fc8dec7eb4b79c95fb39d16f38a80.tar.gz",
+      "hash": "sha256-N+8LM+zvS6cP+VG2vxgEEDCyX1T9EUq9wXTSvGwX9TM="
     },
     "startpage": {
       "type": "Git",
@@ -51,7 +195,7 @@
       "submodules": false,
       "revision": "2a159a11c88a113ae522a502c00550978fe7a9ae",
       "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=2a159a11c88a113ae522a502c00550978fe7a9ae",
-      "hash": "1dbhy61h6mbz6q9yp0ld2ib36j9lnnsmxihzx4l9m3342yjjqh2x"
+      "hash": "sha256-XUAspRdkjJoo6R/GXrW1NEkzVhSNgusTNn9VA4PxcLU="
     },
     "walls": {
       "type": "Git",
@@ -64,8 +208,21 @@
       "submodules": false,
       "revision": "b964da5d455a17ad71c1f7f50432f36f391d790f",
       "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=b964da5d455a17ad71c1f7f50432f36f391d790f",
-      "hash": "19a0rv36n72k7xfjsx1lzyawxcggikd1k7bhv7l05slg80w53qjv"
+      "hash": "sha256-W+JROECP6gLo2XCdGdqM77HOlf80dC1dP1Mca8bOQKU="
+    },
+    "watt": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "notashelf",
+        "repo": "watt"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "154724c7b1bd49654ea55df719e1eb3219ec2000",
+      "url": "https://github.com/notashelf/watt/archive/154724c7b1bd49654ea55df719e1eb3219ec2000.tar.gz",
+      "hash": "sha256-hw3rL4rlIlYJMTeE7DlQ3lRhQDJURAhE+PC/NT4VAAQ="
     }
   },
-  "version": 5
+  "version": 6
 }

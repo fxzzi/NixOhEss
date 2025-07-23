@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  npins,
+  sources,
   ...
 }: {
   imports = [
@@ -22,6 +22,6 @@
     };
   };
   config = lib.mkIf config.cfg.apps.browsers.startpage.enable {
-    hj.files.".local/share/startpage".source = npins.startpage; # startpage
+    hj.files.".local/share/startpage".source = sources.startpage; # startpage
   };
 }

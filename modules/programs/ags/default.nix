@@ -1,15 +1,15 @@
 {
-  inputs,
+  pkgs,
   lib,
   config,
-  pkgs,
+  sources,
   ...
 }: {
   options.cfg.gui.ags.enable = lib.mkEnableOption "ags";
   config = lib.mkIf config.cfg.gui.ags.enable {
     hj = {
       packages = [
-        inputs.ags.packages.${pkgs.system}.default
+        (pkgs.callPackage "${sources.ags}/nix" {})
       ];
       files = {
         ".config/ags/icons".source = ./ags/icons;

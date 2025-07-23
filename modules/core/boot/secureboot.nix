@@ -1,10 +1,15 @@
 {
-  inputs,
+  sources,
   lib,
   pkgs,
   config,
   ...
-}: {
+}: let
+  lanzaboote = import (sources.lanzaboote + "/default-npins.nix") {
+    sources = null;
+    inherit (sources) crane nixpkgs rust-overlay;
+  };
+in {
   options.cfg.secureboot.enable = lib.mkEnableOption "secureboot";
   config = lib.mkIf config.cfg.secureboot.enable {
     environment.systemPackages = with pkgs; [
@@ -21,5 +26,5 @@
       };
     };
   };
-  imports = [inputs.lanzaboote.nixosModules.lanzaboote];
+  imports = [lanzaboote.nixosModules.lanzaboote];
 }
