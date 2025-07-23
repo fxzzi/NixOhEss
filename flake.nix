@@ -2,8 +2,7 @@
   description = "fazzi's nixos + hjem conf";
 
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:fxzzi/nixpkgs/hypr-gcc15";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:feel-co/hjem";
@@ -110,7 +109,8 @@
       };
     };
     ags = {
-      url = "github:Aylur/ags/v1"; # still on v1 lmfao
+      url = "github:aylur/ags/v1";
+      # url = "github:NotAShelf/rags"; # raf's agsv1 fork
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
@@ -128,7 +128,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     watt = {
-      url = "github:notashelf/watt";
+      url = "github:NotAShelf/watt";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
@@ -140,7 +140,7 @@
       };
     };
     nvf = {
-      url = "github:notashelf/nvf";
+      url = "github:NotAShelf/nvf";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";

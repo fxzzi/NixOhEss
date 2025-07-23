@@ -35,10 +35,14 @@ and [hjem](https://github.com/feel-co/hjem).
 
 ## SPECIAL THANKS
 
-- [raf](https://github.com/NotAShelf) for nvf and helping with a lot of stuff
-- [Nobbz](https://github.com/NobbZ) for helping a ton over discord
-- [feel-co](https://github.com/feel-co) for making hjem
-- [nezia](https://github.com/nezia1) for helping with hjem :)
+- [raf](https://github.com/NotAShelf) for creating nvf, my current editor of
+  choice, among other projects like watt (power management) and rags (maintained
+  agsv1 fork)
+- [Nobbz](https://github.com/NobbZ) for providing lots of support in the nixos
+  community discord server
+- [feel-co](https://github.com/feel-co) for making hjem and maintaining such a
+  minimal but powerful piece of software
+- [nezia](https://github.com/nezia1) for helping with making hjem easy
 - the others which i wasn't able to mention here!!
 
 ## License
