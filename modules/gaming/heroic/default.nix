@@ -8,17 +8,7 @@
   config = lib.mkIf config.cfg.gaming.heroic.enable {
     hj = {
       packages = [
-        (
-          pkgs.heroic.override {
-            heroic-unwrapped = pkgs.heroic-unwrapped.overrideAttrs (oldAttrs: {
-              patches =
-                oldAttrs.patches or []
-                ++ [
-                  ./0001-launch-with-window-wayland.patch
-                ];
-            });
-          }
-        )
+        pkgs.heroic
       ];
 
       files = {
