@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  user,
   ...
 }: {
   options.cfg.bootConfig = {
@@ -31,6 +32,15 @@
       font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
       packages = with pkgs; [terminus_font];
       keyMap = config.cfg.bootConfig.keyLayout;
+    };
+
+    system.nixos.distroName = "NixOhEss";
+    environment.etc.issue = {
+      # a disgusting mess of escape codes to make it look nice. extra line on purpose for spacing.
+      source = pkgs.writeText "issue" ''
+        \e[32mWelcome to the fold of NixOhEss, \e[36m${user}\e[1;32m. \e[2m(\l)\e[0m
+
+      '';
     };
 
     # Set your time zone.
