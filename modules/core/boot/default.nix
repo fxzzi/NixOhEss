@@ -35,13 +35,14 @@
 
     # Set your time zone.
     time.timeZone = lib.mkDefault "Europe/London";
-    services = {
-      geoclue2.enable = true;
-      localtimed.enable = true;
-    };
+    # set these when travelling
+    # services = {
+    #   geoclue2.enable = true;
+    #   localtimed.enable = true;
+    # };
 
     # Select internationalisation properties.
-    i18n.defaultLocale = "en_GB.UTF-8";
+    i18n.defaultLocale = lib.mkDefault "en_GB.UTF-8";
 
     # Set a percentage of RAM to zstd compressed swap
     zramSwap = {
