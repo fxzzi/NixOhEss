@@ -15,13 +15,12 @@
     if uwsmEnabled
     then ''
       if ${uwsm} check may-start; then
-        printf "\nWelcome to the fold of NixOhEss."
-        exec ${uwsm} start -F -- ${pkg.hyprland}/share/wayland-sessions/hyprland.desktop
+        exec ${uwsm} start -F -- Hyprland
       fi
     ''
     else ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-        exec ${lib.getExe' config.programs.hyprland.package "Hyprland"}
+        exec Hyprland
       fi
     '';
 in {
