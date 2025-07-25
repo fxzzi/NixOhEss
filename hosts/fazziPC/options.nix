@@ -1,5 +1,4 @@
 {
-  services.sunshine.enable = false;
   kernel = {
     type = "zen";
     zenergy.enable = true;
@@ -122,7 +121,7 @@
     ssh.enable = true;
     git = {
       enable = true;
-      name = "Fazzi";
+      name = "fazzi";
       email = "faaris.ansari@proton.me";
     };
     zsh.enable = true;
@@ -164,9 +163,9 @@
       hyprlock.enable = true;
       hypridle = {
         enable = true;
-        dpmsTimeout = 360;
-        lockTimeout = 380;
-        suspendTimeout = 600;
+        dpmsTimeout = 390;
+        lockTimeout = 480;
+        suspendTimeout = 900;
       };
       hyprpaper.enable = true;
       hyprsunset.enable = true;

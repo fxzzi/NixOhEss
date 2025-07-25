@@ -41,7 +41,7 @@
   gaming = {
     steam = {
       enable = true;
-      shaderThreads = 8;
+      shaderThreads = 6;
     };
     gamemode.enable = false;
     proton-ge.enable = true;
@@ -105,14 +105,6 @@
     nh.enable = true;
     nvtop.enable = true;
   };
-  # music = {
-  #   extraApps.enable = true;
-  #   ncmpcpp.enable = true;
-  #   mpd = {
-  #     enable = true;
-  #     discord-rpc.enable = true;
-  #   };
-  # };
   gui = {
     smoothScroll.enable = true;
     fontconfig = {
