@@ -10,6 +10,7 @@
 in {
   options.cfg.gaming = {
     proton-ge.enable = lib.mkEnableOption "proton-ge";
+    winewayland.enable = lib.mkEnableOption "wine-wayland";
     gamescope.enable = lib.mkEnableOption "gamescope";
     cemu.enable = lib.mkEnableOption "cemu";
     nvtop.enable = lib.mkEnableOption "nvtop";
@@ -27,6 +28,16 @@ in {
         "video"
         "input"
       ];
+    };
+    boot = {
+      kernelModules = ["ntsync"];
+    };
+    services.udev.extraRules = ''
+      KERNEL=="ntsync", MODE="0644"
+    '';
+    environment.sessionVariables = {
+      "PROTON_ENABLE_WAYLAND" = lib.mkIf cfg.winewayland.enable 1;
+      "PROTON_USE_WOW64" = 1;
     };
     hj = {
       packages = with pkgs; [
