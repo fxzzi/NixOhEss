@@ -47,6 +47,7 @@
     };
     gamemode.enable = false;
     proton-ge.enable = true;
+    winewayland.enable = true;
     prismlauncher.enable = true;
     lutris.enable = true;
     celeste = {
