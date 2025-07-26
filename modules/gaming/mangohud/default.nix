@@ -91,6 +91,7 @@ in {
           cpu_power
           ram
           present_mode
+          winesync
 
           [preset 2]
           background_alpha=0.3
@@ -111,6 +112,7 @@ in {
           cpu_power
           ram
           present_mode
+          winesync
         '';
       };
     };
