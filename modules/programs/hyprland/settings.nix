@@ -175,7 +175,7 @@ in {
           "desc:Philips, 1920x1080@75,-1920x180, 1" # place to the left of fazziPC monitor
         ];
         render = {
-          direct_scanout = 1;
+          # direct_scanout = 1;
         };
         cursor = {
           default_monitor = lib.mkIf multiMonitor "${config.cfg.gui.hypr.defaultMonitor}";
@@ -228,7 +228,7 @@ in {
           swallow_regex = "^(foot)$"; # Make foot swallow executed windows
           swallow_exception_regex = "^(foot)$"; # Make foot not swallow itself
           initial_workspace_tracking = 0;
-          vrr = 1;
+          vrr = 2;
           anr_missed_pings = 4; # by default, ANR dialog shows up way too aggressively.
           middle_click_paste = 0;
         };
