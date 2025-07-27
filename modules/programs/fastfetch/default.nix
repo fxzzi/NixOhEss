@@ -28,7 +28,7 @@ in {
   config = lib.mkIf config.cfg.cli.fastfetch.enable {
     hj = {
       packages = [
-        pkgs.fastfetch
+        pkgs.fastfetchMinimal
       ];
       files.".config/fastfetch/config.jsonc".source = (pkgs.formats.json {}).generate "config.jsonc" {
         general = {
@@ -97,7 +97,7 @@ in {
       
       # sh
       ''
-        ${lib.getExe pkgs.fastfetch}
+        ${lib.getExe pkgs.fastfetchMinimal}
       ''
     );
   };
