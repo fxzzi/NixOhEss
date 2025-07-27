@@ -77,10 +77,12 @@ in {
             format = "{1}";
           }
           {
-            type = "command";
+            # days since install
+            type = "disk";
             key = "󱦟 dy";
             keyColor = "yellow";
-            text = "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days";
+            folders = "/";
+            format = "{days} days";
           }
           "break"
           {
