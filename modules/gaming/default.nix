@@ -37,6 +37,8 @@ in {
     '';
     environment.sessionVariables = {
       "PROTON_ENABLE_WAYLAND" = lib.mkIf cfg.winewayland.enable 1;
+      "WAYLANDDRV_PRIMARY_MONITOR" = lib.mkIf cfg.winewayland.enable config.cfg.gui.hypr.defaultMonitor;
+
       "PROTON_USE_WOW64" = 1;
     };
     hj = {
