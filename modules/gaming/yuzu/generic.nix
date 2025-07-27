@@ -41,6 +41,7 @@
   zstd,
   yasm,
   autoconf,
+  libva,
 }: let
   inherit
     (qt6)
@@ -98,6 +99,7 @@ in
         yasm
         autoconf
         python3
+        libva
         qttools
         wrapQtAppsHook
       ];

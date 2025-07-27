@@ -23,10 +23,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": true,
-      "version": "0.0.2-pre-alpha",
-      "revision": "5608ab1cd485083e81cef5cd4bd5132f03d97077",
+      "version": "v0.0.3-rc1",
+      "revision": "f33c1ca7c190649fbe7da00e2164a252e325a031",
       "url": null,
-      "hash": "10n9lw6sx5a5qy04jkh4dx32k6z1wyfwd0zqi8n3ym6f8cbi1zkd"
+      "hash": "0akcqm6vgv723wfhh3rlw7h7fmk0gjg1qsnniwavq62v265vgwyg"
     },
     "foot": {
       "type": "Git",
