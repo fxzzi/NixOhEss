@@ -77,4 +77,11 @@
       min_refresh_rate = 32;
     };
   };
+  services = {
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn; # mullvad gui
+      enableExcludeWrapper = false; # i do not use the wrapper
+    };
+  };
 }
