@@ -10,38 +10,24 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      extraConfig = {
-        pipewire."92-quantum" = {
-          "context.properties" = {
-            "default.clock.rate" = 48000;
-            "default.clock.allowed-rates" = [44100 48000];
-            "default.clock.quantum" = 2048;
-            "default.clock.min-quantum" = 1024;
-            "default.clock.max-quantum" = 4096;
-          };
-        };
-        pipewire-pulse."92-quantum" = {
-          "context.properties" = [
-            {
-              name = "libpipewire-module-protocol-pulse";
-              args = {};
-            }
-          ];
-          "pulse.properties" = {
-            "pulse.min.req" = "1024/48000";
-            "pulse.default.req" = "2048/48000";
-            "pulse.max.req" = "4096/48000";
-            "pulse.min.quantum" = "1024/48000";
-            "pulse.max.quantum" = "4096/48000";
-          };
-          "stream.properties" = {
-            "node.latency" = "2048/48000";
-          };
-        };
+      # NOTE: If we're using sched-ext, we shouldn't use rt in any way.
+      # see: https://github.com/sched-ext/scx/issues/2496
+      extraConfig.pipewire-pulse."91-rtkit" = lib.mkIf (!config.cfg.scx.enable) {
+        context.modules = [
+          {
+            name = "libpipewire-module-rtkit";
+            args = {
+              # make audio extremely high priority to avoid crackling
+              "nice.level" = -20;
+              "rt.prio" = 99;
+            };
+          }
+        ];
       };
     };
 
-    security.rtkit.enable = true;
+    # only enable if scx is disabled
+    security.rtkit.enable = !config.cfg.scx.enable;
   };
   imports = [./rnnoise.nix];
 }
