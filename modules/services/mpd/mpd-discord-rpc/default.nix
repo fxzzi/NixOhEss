@@ -20,7 +20,7 @@ in {
             timestamp = "both";
             large_image = "notes";
             small_image = "";
-            large_text = "";
+            large_text = "$album";
             small_text = "";
           };
         };
