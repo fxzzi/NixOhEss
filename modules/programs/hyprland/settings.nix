@@ -197,7 +197,7 @@ in {
           tablet = lib.optionalAttrs (!config.cfg.opentabletdriver.enable) {
             left_handed = 1; # inverted tablet
             output = "${config.cfg.gui.hypr.defaultMonitor}";
-            active_area_size = "130, 90";
+            # active_area_size = "130, 73";
           };
           touchpad = {
             natural_scroll = true;
@@ -306,37 +306,28 @@ in {
 
           # Window rules for games
           # Fix focus issues with cs2
-          "suppressevent maximize fullscreen, class: ^(SDL Application)$"
           "suppressevent maximize fullscreen, class: ^(cs2)$"
 
           # Sets fullscreen for common Minecraft windows
           "fullscreen, class:^(Minecraft\*.*)$"
-          "fullscreen, initialTitle:^(Minecraft\*.*)$"
+          "fullscreen, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
           "fullscreen, class:^(org-prismlauncher-EntryPoint)$"
 
           # Allow games to tear
           "immediate, class:^(steam_app_.*)$" # all steam games
-          "immediate, class:^(SDL Application)$" # cs2 native wayland
           "immediate, class:^(cs2)$" # cs2
           "immediate, class:^(Minecraft\*.*)$"
           "immediate, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
           "immediate, class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
           "immediate, class:^(osu!)$"
-          "immediate, class: ^(.*.exe)$" # all exe's
-          "immediate, class: ^(hl2_linux)$" # half life 2
-          "immediate, class: ^(cstrike_linux64)$" # cs source
-          "immediate, class: ^(gamescope)$"
-          "immediate, class: ^(Celeste)$"
-          "immediate, class: ^(info.cemu.Cemu)$"
-          "immediate, class: ^(Cuphead.x86_64)$"
-          "immediate, class: ^(org.eden_emu.eden)$"
-
-          # Fix everest (celeste) splash screen
-          "float, class:^(EverestSplash-linux)$"
-
-          # Make Rocket League fill both monitors for split screen
-          # "minsize 3840 1080, class: ^(steam_app_252950)$"
-          # "maxsize 3840 1080, class: ^(steam_app_252950)$"
+          "immediate, class:^(.*.exe)$" # all exe's
+          "immediate, class:^(hl2_linux)$" # half life 2
+          "immediate, class:^(cstrike_linux64)$" # cs source
+          "immediate, class:^(gamescope)$"
+          "immediate, class:^(Celeste)$"
+          "immediate, class:^(info.cemu.Cemu)$"
+          "immediate, class:^(Cuphead.x86_64)$"
+          "immediate, class:^(org.eden_emu.eden)$"
         ];
         # NOTE: this sets workspaces to alternate if there are 2 monitors.
         workspace = lib.optionalAttrs multiMonitor [

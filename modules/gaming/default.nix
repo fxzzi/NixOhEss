@@ -57,6 +57,10 @@ in {
         (lib.mkIf cfg.yuzu.enable (pkgs.callPackage ./yuzu {inherit npins;}).eden)
       ];
     };
+
+    # this allows us to use the builtin opentabletdriver within osu!lazer, if we have system-wide otd disabled.
+    services.udev.packages = lib.mkIf (cfg.osu-lazer.enable && !config.cfg.opentabletdriver.enable) [pkgs.opentabletdriver];
+    boot.blacklistedKernelModules = lib.mkIf (cfg.osu-lazer.enable && !config.cfg.opentabletdriver.enable) config.hardware.opentabletdriver.blacklistedKernelModules;
   };
   imports = [
     ./gamemode.nix
