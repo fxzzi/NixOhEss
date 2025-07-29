@@ -73,8 +73,9 @@
   };
   programs.hyprland.settings = {
     cursor = {
-      no_hardware_cursors = 0;
+      # no_hardware_cursors = 0;
       min_refresh_rate = 32;
+      no_break_fs_vrr = 1;
     };
   };
   services = {
