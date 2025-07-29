@@ -30,7 +30,7 @@
     enable = true;
     mediamtx.enable = true;
   };
-  opentabletdriver.enable = false;
+  # opentabletdriver.enable = true;
   hardware = {
     wootingRules.enable = true;
     scyroxRules.enable = true;
@@ -64,7 +64,7 @@
     cemu.enable = true;
     heroic.enable = true;
     sgdboop.enable = true;
-    osu-lazer.enable = false;
+    # osu-lazer.enable = true;
     creamlinux.enable = false;
     vkbasalt.enable = false;
     # yuzu.enable = true;
