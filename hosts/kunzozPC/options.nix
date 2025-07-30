@@ -2,8 +2,6 @@
   kernel = {
     type = "zen";
     zenergy.enable = true;
-    # xone.enable = true;
-    # v4l2.enable = true;
   };
   bootConfig = {
     enable = true;
@@ -43,17 +41,14 @@
       enable = true;
       shaderThreads = 6;
     };
-    gamemode.enable = false;
     proton-ge.enable = true;
     prismlauncher.enable = true;
-    lutris.enable = true;
+    # lutris.enable = true;
     mangohud = {
       enable = true;
       enableSessionWide = true;
       refreshRate = 170;
     };
-    # gamescope.enable = true;
-    # cemu.enable = false;
     heroic.enable = true;
     sgdboop.enable = true;
     creamlinux.enable = true;
