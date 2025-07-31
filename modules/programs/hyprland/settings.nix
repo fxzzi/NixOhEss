@@ -307,6 +307,8 @@ in {
           # Window rules for games
           # Fix focus issues with cs2
           "suppressevent maximize fullscreen, class: ^(cs2)$"
+          # make cs2 launch in fullscreen
+          "fullscreen, class:^(cs2)$"
 
           # Sets fullscreen for common Minecraft windows
           "fullscreen, class:^(Minecraft\*.*)$"
