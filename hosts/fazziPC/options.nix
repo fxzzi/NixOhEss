@@ -9,7 +9,7 @@
     enable = true;
     keyLayout = "us";
     timeout = 0;
-    # greetd.enable = true;
+    greetd.enable = true;
   };
   audio = {
     pipewire = {
@@ -47,7 +47,7 @@
     };
     gamemode.enable = false;
     proton-ge.enable = true;
-    winewayland.enable = true;
+    # winewayland.enable = true;
     prismlauncher.enable = true;
     lutris.enable = true;
     celeste = {
@@ -82,12 +82,12 @@
       };
     };
   };
-  tty1-skipusername = true;
+  # tty1-skipusername = true;
   adb.enable = true;
   scripts.enable = true;
   xdgConfig.enable = true;
   apps = {
-    # syncthing.enable = true;
+    syncthing.enable = true;
     mpv.enable = true;
     obs-studio.enable = true;
     thunar = {
@@ -158,7 +158,7 @@
       animations.enable = true;
       hyprland = {
         enable = true;
-        autoStart = true;
+        # autoStart = true;
         useGit = true;
       };
       hyprlock.enable = true;

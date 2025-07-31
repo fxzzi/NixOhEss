@@ -1,7 +1,7 @@
 {
   imports = [
     ./mpd
-    # ./syncthing.nix
+    ./syncthing.nix
     ./gcr-ssh-agent.nix
     ./hypridle.nix
     ./hyprpaper.nix
