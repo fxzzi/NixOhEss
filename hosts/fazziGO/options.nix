@@ -49,6 +49,7 @@
     scripts.enable = true;
     xdgConfig.enable = true;
     apps = {
+      syncthing.enable = true;
       mpv.enable = true;
       thunar = {
         enable = true;
