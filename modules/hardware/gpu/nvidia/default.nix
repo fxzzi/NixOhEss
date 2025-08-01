@@ -27,20 +27,19 @@
 
     hardware = {
       nvidia = {
-        open = true;
+        open = false;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        # package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "575.64.05";
-          sha256_64bit = "sha256-hfK1D5EiYcGRegss9+H5dDr/0Aj9wPIJ9NVWP3dNUC0=";
-          openSha256 = "sha256-mcbMVEyRxNyRrohgwWNylu45vIqF+flKHnmt47R//KU=";
-          usePersistenced = false;
-          useSettings = false;
-        };
-        videoAcceleration = true;
+        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        #   version = "575.64.05";
+        #   sha256_64bit = "sha256-hfK1D5EiYcGRegss9+H5dDr/0Aj9wPIJ9NVWP3dNUC0=";
+        #   openSha256 = "sha256-mcbMVEyRxNyRrohgwWNylu45vIqF+flKHnmt47R//KU=";
+        #   usePersistenced = false;
+        #   useSettings = false;
+        # };
       };
       graphics = {
         enable = true;
