@@ -10,6 +10,8 @@
     greetd.enable = true;
   };
   services = {
+    mate-polkit.enable = true;
+    gcr-ssh-agent.enable = true;
     pipewire = {
       enable = true;
       rnnoise = {
@@ -19,10 +21,21 @@
         retroactiveVadGrace = 0;
       };
     };
-  };
-  services.scx = {
-    enable = true;
-    scheduler = "scx_bpfland";
+
+    scx = {
+      enable = true;
+      scheduler = "scx_bpfland";
+    };
+
+    hypridle = {
+      enable = true;
+      dpmsTimeout = 600;
+      lockTimeout = 620;
+      suspendTimeout = 1200;
+    };
+    hyprpaper.enable = true;
+    xdph.enable = true;
+    dunst.enable = true;
   };
   networking = {
     enable = true;
@@ -35,6 +48,10 @@
   scanning.enable = false;
 
   programs = {
+    nvf.enable = true;
+    steam.enable = true;
+    prismlauncher.enable = true;
+    proton-ge.enable = true;
     mpv.enable = true;
     obs-studio.enable = true;
     thunar = {
@@ -81,16 +98,5 @@
       # useGit = true;
     };
     hyprlock.enable = true;
-  };
-  services = {
-    hypridle = {
-      enable = true;
-      dpmsTimeout = 600;
-      lockTimeout = 620;
-      suspendTimeout = 1200;
-    };
-    hyprpaper.enable = true;
-    xdph.enable = true;
-    dunst.enable = true;
   };
 }

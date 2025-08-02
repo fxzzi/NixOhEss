@@ -8,8 +8,11 @@
     secureboot.enable = true;
   };
   core.xdg.enable = true;
+  core.fonts.enable = true;
 
   services = {
+    mate-polkit.enable = true;
+    gcr-ssh-agent.enable = true;
     watt.enable = true;
 
     scx = {
@@ -52,9 +55,8 @@
   };
 
   programs = {
+    nvf.enable = true;
     uwsm.enable = true;
-    prismlauncher.enable = true;
-    steam.enable = true;
     adb.enable = true;
     scripts.enable = true;
     wallust.enable = true;
