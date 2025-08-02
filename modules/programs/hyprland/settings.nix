@@ -176,7 +176,9 @@ in {
         ];
         render = {
           # direct_scanout = 1;
-          # cm_enabled = 0;
+          # HACK: gamescope is broken with color-management.
+          # see: https://github.com/ValveSoftware/gamescope/issues/1825
+          cm_enabled = !config.cfg.gaming.gamescope.enable;
         };
         cursor = {
           default_monitor = lib.mkIf multiMonitor "${config.cfg.gui.hypr.defaultMonitor}";
@@ -310,6 +312,8 @@ in {
           "suppressevent maximize fullscreen, class: ^(cs2)$"
           # make cs2 launch in fullscreen
           "fullscreen, class:^(cs2)$"
+          # make tomb raider (2013) launch in fullscreen
+          "fullscreen, class:^(steam_app_203160)$"
 
           # Sets fullscreen for common Minecraft windows
           "fullscreen, class:^(Minecraft\*.*)$"
