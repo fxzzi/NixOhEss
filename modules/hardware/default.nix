@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./printing.nix
     ./rules.nix
     ./scanning.nix
     ./gpu/nvidia

@@ -17,5 +17,6 @@
     ./pipewire
     ./mediamtx.nix
     ./greetd.nix
+    ./printing.nix
   ];
 }

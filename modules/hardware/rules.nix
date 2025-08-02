@@ -4,21 +4,21 @@
   pkgs,
   ...
 }: {
-  options.cfg.hardware = {
-    wootingRules.enable = lib.mkEnableOption "wootingRules";
-    scyroxRules.enable = lib.mkEnableOption "scyroxRules";
-    viaRules.enable = lib.mkEnableOption "viaRules";
+  options.cfg.hardware.rules = {
+    wooting.enable = lib.mkEnableOption "wootingRules";
+    scyrox.enable = lib.mkEnableOption "scyroxRules";
+    via.enable = lib.mkEnableOption "viaRules";
   };
 
   config = {
     services.udev = {
       packages = [
-        (lib.mkIf config.cfg.hardware.wootingRules.enable pkgs.wooting-udev-rules)
-        (lib.mkIf config.cfg.hardware.viaRules.enable pkgs.via)
+        (lib.mkIf config.cfg.hardware.rules.wooting.enable pkgs.wooting-udev-rules)
+        (lib.mkIf config.cfg.hardware.rules.via.enable pkgs.via)
       ];
 
       extraRules = lib.mkMerge [
-        (lib.mkIf config.cfg.hardware.scyroxRules.enable ''
+        (lib.mkIf config.cfg.hardware.rules.scyrox.enable ''
           # scyrox vendor id
           SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3554", TAG+="uaccess"
           SUBSYSTEM=="usb", ATTRS{idVendor}=="3554", TAG+="uaccess"

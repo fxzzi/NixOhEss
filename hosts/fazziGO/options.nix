@@ -1,13 +1,23 @@
 {
-  core.kernel.type = "latest";
-  core.boot = {
-    enable = true;
-    keyLayout = "uk";
-    timeout = 0;
-    secureboot.enable = true;
+  core = {
+    kernel.type = "latest";
+    boot = {
+      enable = true;
+      keyLayout = "uk";
+      timeout = 0;
+      secureboot.enable = true;
+    };
+    xdg.enable = true;
+    fonts.enable = true;
+
+    networking = {
+      enable = true;
+      networkmanager = {
+        enable = true;
+        powersaving.enable = true;
+      };
+    };
   };
-  core.xdg.enable = true;
-  core.fonts.enable = true;
 
   services = {
     mate-polkit.enable = true;
@@ -40,16 +50,8 @@
     greetd.enable = true;
   };
 
-  core.networking = {
-    enable = true;
-    networkmanager = {
-      enable = true;
-      powersaving.enable = true;
-    };
-  };
-
-  printing.enable = true;
-  scanning.enable = false;
+  services.printing.enable = true;
+  hardware.scanning.enable = false;
   hardware = {
     amdgpu.enable = true;
   };

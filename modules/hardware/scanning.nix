@@ -5,8 +5,8 @@
   lib,
   ...
 }: {
-  options.cfg.scanning.enable = lib.mkEnableOption "scanning";
-  config = lib.mkIf config.cfg.scanning.enable {
+  options.cfg.hardware.scanning.enable = lib.mkEnableOption "scanning";
+  config = lib.mkIf config.cfg.hardware.scanning.enable {
     hardware = {
       sane.enable = true;
       sane.extraBackends = [pkgs.sane-airscan];

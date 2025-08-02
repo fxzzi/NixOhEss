@@ -1,12 +1,20 @@
 {
-  core.kernel = {
-    type = "zen";
-    zenergy.enable = true;
-  };
-  core.boot = {
-    enable = true;
-    keyLayout = "us";
-    timeout = 30;
+  core = {
+    kernel = {
+      type = "zen";
+      zenergy.enable = true;
+    };
+    boot = {
+      enable = true;
+      keyLayout = "us";
+      timeout = 30;
+    };
+    networking = {
+      enable = true;
+      networkmanager.enable = true;
+    };
+    xdg.enable = true;
+    fonts.enable = true;
   };
   services = {
     mate-polkit.enable = true;
@@ -36,17 +44,14 @@
     xdph.enable = true;
     dunst.enable = true;
     greetd.enable = true;
-  };
-  core.networking = {
-    enable = true;
-    networkmanager.enable = true;
+
+    printing.enable = true;
   };
   hardware = {
-    viaRules.enable = true;
-  };
-  printing.enable = true;
-  scanning.enable = false;
+    rules.via.enable = true;
 
+    scanning.enable = false;
+  };
   programs = {
     nvf.enable = true;
     steam.enable = true;
