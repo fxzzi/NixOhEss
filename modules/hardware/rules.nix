@@ -12,11 +12,9 @@
 
   config = {
     services.udev = {
-      packages = lib.mkMerge [
-        (lib.mkIf config.cfg.hardware.wootingRules.enable [pkgs.wooting-udev-rules])
-        (lib.mkIf config.cfg.hardware.viaRules.enable [
-          pkgs.via
-        ])
+      packages = [
+        (lib.mkIf config.cfg.hardware.wootingRules.enable pkgs.wooting-udev-rules)
+        (lib.mkIf config.cfg.hardware.viaRules.enable pkgs.via)
       ];
 
       extraRules = lib.mkMerge [

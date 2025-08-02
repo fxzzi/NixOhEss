@@ -3,7 +3,6 @@
     ./programs
     ./core
     ./hardware
-    ./kernel
     ./services
   ];
 }

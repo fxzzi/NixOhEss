@@ -5,8 +5,8 @@
   config,
   ...
 }: {
-  options.cfg.boot.secureboot.enable = lib.mkEnableOption "secureboot";
-  config = lib.mkIf config.cfg.boot.secureboot.enable {
+  options.cfg.core.boot.secureboot.enable = lib.mkEnableOption "secureboot";
+  config = lib.mkIf config.cfg.core.boot.secureboot.enable {
     environment.systemPackages = with pkgs; [
       sbctl
       tpm2-tss

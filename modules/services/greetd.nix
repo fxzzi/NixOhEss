@@ -9,8 +9,8 @@
     then "--session-wrapper '${lib.getExe pkgs.uwsm} start -F --'"
     else "";
 in {
-  options.cfg.boot.greetd.enable = lib.mkEnableOption "greetd";
-  config = lib.mkIf config.cfg.boot.greetd.enable {
+  options.cfg.services.greetd.enable = lib.mkEnableOption "greetd";
+  config = lib.mkIf config.cfg.services.greetd.enable {
     services.greetd = {
       enable = true;
       settings = {

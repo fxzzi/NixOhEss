@@ -16,8 +16,8 @@
   isIPv4 = addr: builtins.match "^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" addr != null;
   ipv4Nameservers = builtins.filter isIPv4 nameservers;
 in {
-  options.cfg.networking.mediamtx.enable = lib.mkEnableOption "mediamtx";
-  config = lib.mkIf config.cfg.networking.mediamtx.enable {
+  options.cfg.services.mediamtx.enable = lib.mkEnableOption "mediamtx";
+  config = lib.mkIf config.cfg.services.mediamtx.enable {
     age.secrets.publicip.file = ../../secrets/publicip.age;
     # HACK: This is super hacky. I shouldn't have to do this. I won't have to do
     # this once / if mediamtx allows reading IPs from a path.

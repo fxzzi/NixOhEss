@@ -1,17 +1,12 @@
 {
-  kernel = {
+  core.kernel = {
     type = "zen";
     zenergy.enable = true;
     xone.enable = false;
     v4l2.enable = true;
   };
-  boot = {
-    enable = true;
-    keyLayout = "us";
-    timeout = 0;
-    greetd.enable = true;
-  };
   services = {
+    mediamtx.enable = true;
     mate-polkit.enable = true;
     gcr-ssh-agent.enable = true;
     pipewire = {
@@ -42,10 +37,19 @@
     hyprsunset.enable = true;
     xdph.enable = true;
     dunst.enable = true;
+    greetd.enable = true;
   };
-  networking = {
-    enable = true;
-    mediamtx.enable = true;
+  core = {
+    boot = {
+      enable = true;
+      keyLayout = "us";
+      timeout = 0;
+    };
+    networking = {
+      enable = true;
+    };
+    xdg.enable = true;
+    fonts.enable = true;
   };
   hardware = {
     wootingRules.enable = true;
@@ -64,8 +68,6 @@
   };
   printing.enable = true;
   scanning.enable = false;
-  core.xdg.enable = true;
-  core.fonts.enable = true;
   programs = {
     proton-ge.enable = true;
     mangohud.enable = true;
@@ -129,6 +131,4 @@
     foot.enable = true;
     fuzzel.enable = true;
   };
-  # opentabletdriver.enable = true;
-  # tty1-skipusername = true;
 }

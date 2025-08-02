@@ -1,10 +1,9 @@
 {
-  kernel.type = "latest";
-  boot = {
+  core.kernel.type = "latest";
+  core.boot = {
     enable = true;
     keyLayout = "uk";
     timeout = 0;
-    greetd.enable = true;
     secureboot.enable = true;
   };
   core.xdg.enable = true;
@@ -38,9 +37,10 @@
     hyprsunset.enable = true;
     xdph.enable = true;
     dunst.enable = true;
+    greetd.enable = true;
   };
 
-  networking = {
+  core.networking = {
     enable = true;
     networkmanager = {
       enable = true;

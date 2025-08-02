@@ -1,13 +1,12 @@
 {
-  kernel = {
+  core.kernel = {
     type = "zen";
     zenergy.enable = true;
   };
-  boot = {
+  core.boot = {
     enable = true;
     keyLayout = "us";
     timeout = 30;
-    greetd.enable = true;
   };
   services = {
     mate-polkit.enable = true;
@@ -36,8 +35,9 @@
     hyprpaper.enable = true;
     xdph.enable = true;
     dunst.enable = true;
+    greetd.enable = true;
   };
-  networking = {
+  core.networking = {
     enable = true;
     networkmanager.enable = true;
   };

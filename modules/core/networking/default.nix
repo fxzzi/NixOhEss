@@ -4,8 +4,8 @@
   hostName,
   ...
 }: {
-  options.cfg.networking.enable = lib.mkEnableOption "networking";
-  config = lib.mkIf config.cfg.networking.enable {
+  options.cfg.core.networking.enable = lib.mkEnableOption "networking";
+  config = lib.mkIf config.cfg.core.networking.enable {
     networking = {
       inherit hostName;
       # may want to override if using fixed IP. See: fazziPC

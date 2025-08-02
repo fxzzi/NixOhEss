@@ -16,5 +16,6 @@
     ./scx.nix
     ./pipewire
     ./mediamtx.nix
+    ./greetd.nix
   ];
 }
