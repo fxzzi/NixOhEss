@@ -44,6 +44,8 @@
       initialPassword = "1234";
       extraGroups = [
         "wheel" # sudo
+        "video"
+        "input"
       ];
       uid = 1000;
     };

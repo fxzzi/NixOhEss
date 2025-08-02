@@ -38,8 +38,8 @@
 
   renderBindings = bindings: lib.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "${name} ${value}") bindings);
 in {
-  options.cfg.apps.mpv.enable = lib.mkEnableOption "mpv";
-  config = lib.mkIf config.cfg.apps.mpv.enable {
+  options.cfg.programs.mpv.enable = lib.mkEnableOption "mpv";
+  config = lib.mkIf config.cfg.programs.mpv.enable {
     hj = {
       packages = [pkgs.mpv];
       files = {

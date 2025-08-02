@@ -19,13 +19,21 @@
     ./browsers
     ./foot.nix
     ./mpv.nix
-    ./music.nix
     ./obs-studio.nix
     ./thunar.nix
-    ./discord
+    ./discord.nix
     ./ags
-    ./uwsm
+    ./uwsm.nix
     ./sudo.nix
+    ./heroic.nix
+    ./lutris.nix
+    ./mangohud
+    ./prismlauncher.nix
+    ./eden.nix
+    ./steam.nix
+    ./proton.nix
+    ./osu.nix
+    ./gamescope.nix
   ];
   config = {
     # nano is enabled by default. no.

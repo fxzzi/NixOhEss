@@ -7,7 +7,7 @@
   toINI = lib.generators.toINI {};
 
   terminal =
-    if config.cfg.wayland.uwsm.enable
+    if config.cfg.programs.uwsm.enable
     then "xdg-terminal-exec"
     else "foot -e";
 in {
@@ -36,7 +36,7 @@ in {
           match-mode = "exact";
           dpi-aware = false;
           launch-prefix =
-            if config.cfg.wayland.uwsm.enable
+            if config.cfg.programs.uwsm.enable
             then "app2unit --fuzzel-compat --"
             else null;
         };

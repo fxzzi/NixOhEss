@@ -5,7 +5,7 @@
   ...
 }: let
   logoutAction =
-    if config.cfg.wayland.uwsm.enable
+    if config.cfg.programs.uwsm.enable
     then "uwsm stop"
     else "hyprctl dispatch exit";
 in {

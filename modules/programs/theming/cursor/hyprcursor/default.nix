@@ -32,7 +32,7 @@ in {
       '';
     };
   };
-  config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
+  config = lib.mkIf config.cfg.programs.hyprland.enable {
     environment.sessionVariables = {
       HYPRCURSOR_THEME = hyprcursorName;
       HYPRCURSOR_SIZE =

@@ -5,10 +5,11 @@
   xLib,
   ...
 }: let
+  cfg = config.cfg.services.hypridle;
   # toHyprlang broken for now, use toHyprconf instead
   inherit (xLib.generators) toHyprconf;
 in {
-  options.cfg.gui.hypr.hypridle = {
+  options.cfg.services.hypridle = {
     enable = lib.mkEnableOption "hypridle";
     dpmsTimeout = lib.mkOption {
       type = lib.types.int;
@@ -32,7 +33,7 @@ in {
         If you set this to 0, the PC won't sleep automatically when idle.'';
     };
   };
-  config = lib.mkIf config.cfg.gui.hypr.hypridle.enable {
+  config = lib.mkIf cfg.enable {
     hj = {
       packages = [pkgs.hypridle];
       files = {
@@ -46,22 +47,22 @@ in {
               ignore_systemd_inhibit = false;
             };
             listener =
-              lib.optionals (config.cfg.gui.hypr.hypridle.dpmsTimeout != 0) [
+              lib.optionals (cfg.dpmsTimeout != 0) [
                 {
-                  timeout = config.cfg.gui.hypr.hypridle.dpmsTimeout;
+                  timeout = cfg.dpmsTimeout;
                   on-timeout = "hyprctl dispatch dpms off";
                   on-resume = "hyprctl dispatch dpms on";
                 }
               ]
-              ++ lib.optionals (config.cfg.gui.hypr.hypridle.lockTimeout != 0) [
+              ++ lib.optionals (cfg.lockTimeout != 0) [
                 {
-                  timeout = config.cfg.gui.hypr.hypridle.lockTimeout;
+                  timeout = cfg.lockTimeout;
                   on-timeout = "loginctl lock-session";
                 }
               ]
-              ++ lib.optionals (config.cfg.gui.hypr.hypridle.suspendTimeout != 0) [
+              ++ lib.optionals (cfg.suspendTimeout != 0) [
                 {
-                  timeout = config.cfg.gui.hypr.hypridle.suspendTimeout;
+                  timeout = cfg.suspendTimeout;
                   on-timeout = "systemctl suspend";
                 }
               ];

@@ -14,8 +14,8 @@
     then true
     else false;
 in {
-  options.cfg.gui.hypr.hyprlock.enable = lib.mkEnableOption "hyprlock";
-  config = lib.mkIf config.cfg.gui.hypr.hyprlock.enable {
+  options.cfg.programs.hyprlock.enable = lib.mkEnableOption "hyprlock";
+  config = lib.mkIf config.cfg.programs.hyprlock.enable {
     hj = {
       packages = [
         pkgs.hyprlock

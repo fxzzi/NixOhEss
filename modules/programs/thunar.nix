@@ -10,7 +10,7 @@
       "file:///home/${user}/Downloads Downloads"
       "file:///home/${user}/Videos Videos"
     ]
-    ++ lib.optionals config.cfg.apps.thunar.collegeBookmarks.enable [
+    ++ lib.optionals config.cfg.programs.thunar.collegeBookmarks.enable [
       "file:///home/${user}/Documents/College/CompSci CompSci"
       "file:///home/${user}/Documents/College/Maths Maths"
       "file:///home/${user}/Documents/College/Physics Physics"
@@ -20,11 +20,11 @@
       "file:///home/${user}/.config/nixos NixOS"
     ];
 in {
-  options.cfg.apps.thunar = {
+  options.cfg.programs.thunar = {
     enable = lib.mkEnableOption "thunar";
     collegeBookmarks.enable = lib.mkEnableOption "collegeBookmarks";
   };
-  config = lib.mkIf config.cfg.apps.thunar.enable {
+  config = lib.mkIf config.cfg.programs.thunar.enable {
     programs.thunar = {
       enable = true;
       plugins = with pkgs.xfce; [

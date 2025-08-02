@@ -45,7 +45,6 @@
       enable = true;
       shaderThreads = 6;
     };
-    gamemode.enable = false;
     proton-ge.enable = true;
     # winewayland.enable = true;
     prismlauncher.enable = true;
@@ -61,7 +60,6 @@
       refreshRate = 175;
     };
     # gamescope.enable = true;
-    cemu.enable = true;
     heroic.enable = true;
     sgdboop.enable = true;
     # osu-lazer.enable = true;
@@ -86,7 +84,7 @@
   adb.enable = true;
   scripts.enable = true;
   xdgConfig.enable = true;
-  apps = {
+  programs = {
     syncthing.enable = true;
     mpv.enable = true;
     obs-studio.enable = true;

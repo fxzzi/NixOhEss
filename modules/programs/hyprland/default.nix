@@ -6,11 +6,11 @@
   ...
 }: let
   pkg =
-    if config.cfg.gui.hypr.hyprland.useGit
+    if config.cfg.programs.hyprland.useGit
     then inputs.hyprland.packages.${pkgs.system}
     else pkgs;
   uwsm = lib.getExe' config.programs.uwsm.package "uwsm";
-  uwsmEnabled = config.cfg.wayland.uwsm.enable;
+  uwsmEnabled = config.cfg.programs.uwsm.enable;
   autoStartCmd =
     if uwsmEnabled
     then ''
@@ -47,13 +47,13 @@ in {
     ./settings.nix
   ];
 
-  config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
+  config = lib.mkIf config.cfg.programs.hyprland.enable {
     programs.hyprland = {
       enable = true;
       package = pkg.hyprland;
       portalPackage = pkg.xdg-desktop-portal-hyprland;
-      withUWSM = config.cfg.wayland.uwsm.enable;
+      withUWSM = config.cfg.programs.uwsm.enable;
     };
-    environment.loginShellInit = lib.mkIf config.cfg.gui.hypr.hyprland.autoStart autoStartCmd;
+    environment.loginShellInit = lib.mkIf config.cfg.programs.hyprland.autoStart autoStartCmd;
   };
 }

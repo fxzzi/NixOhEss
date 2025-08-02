@@ -4,8 +4,8 @@
   pkgs,
   ...
 }: {
-  options.cfg.wayland.uwsm.enable = lib.mkEnableOption "uwsm";
-  config = lib.mkIf config.cfg.wayland.uwsm.enable {
+  options.cfg.programs.uwsm.enable = lib.mkEnableOption "uwsm";
+  config = lib.mkIf config.cfg.programs.uwsm.enable {
     programs.uwsm.enable = true;
     xdg.terminal-exec = {
       enable = true;

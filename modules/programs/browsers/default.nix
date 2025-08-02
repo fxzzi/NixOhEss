@@ -5,10 +5,10 @@
   ...
 }: {
   imports = [
-    ./librewolf
+    ./librewolf.nix
     ./chromium
   ];
-  options.cfg.apps.browsers.startpage = {
+  options.cfg.programs.browsers.startpage = {
     enable = lib.mkEnableOption "browsers";
     user = lib.mkOption {
       type = lib.types.enum [
@@ -21,7 +21,7 @@
       description = "Selects which startpage user to use.";
     };
   };
-  config = lib.mkIf config.cfg.apps.browsers.startpage.enable {
+  config = lib.mkIf config.cfg.programs.browsers.startpage.enable {
     hj.files.".local/share/startpage".source = npins.startpage; # startpage
   };
 }

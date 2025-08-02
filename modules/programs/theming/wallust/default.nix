@@ -29,7 +29,7 @@
               }
               else null;
             hyprland =
-              if config.cfg.gui.hypr.hyprland.enable
+              if config.cfg.programs.hyprland.enable
               then {
                 template = "colors_hyprland.conf";
                 target = "~/.cache/wallust/colors_hyprland.conf";
@@ -50,7 +50,7 @@
               }
               else null;
             pywalfox =
-              if config.cfg.apps.browsers.librewolf.enable
+              if config.cfg.programs.browsers.librewolf.enable
               then {
                 template = "colors_pywalfox.json";
                 target = "~/.cache/wal/colors.json";

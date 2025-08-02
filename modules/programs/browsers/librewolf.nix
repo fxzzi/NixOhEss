@@ -5,12 +5,12 @@
   user,
   ...
 }: let
-  newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.apps.browsers.startpage.user}/index.html";
+  newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.programs.browsers.startpage.user}/index.html";
 in {
-  options.cfg.apps.browsers.librewolf = {
+  options.cfg.programs.browsers.librewolf = {
     enable = lib.mkEnableOption "librewolf";
   };
-  config = lib.mkIf config.cfg.apps.browsers.librewolf.enable {
+  config = lib.mkIf config.cfg.programs.browsers.librewolf.enable {
     hj = {
       packages = with pkgs; [
         pywalfox-native
@@ -23,7 +23,7 @@ in {
           #js
           ''
             ${
-              lib.optionalString config.cfg.apps.browsers.startpage.enable
+              lib.optionalString config.cfg.programs.browsers.startpage.enable
               #js
               ''
                 // sets the new tab page to our local newtab.

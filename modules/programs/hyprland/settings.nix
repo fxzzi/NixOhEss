@@ -17,7 +17,7 @@
     if multiMonitor
     then "slidevert"
     else "slide";
-  uwsmEnabled = config.cfg.wayland.uwsm.enable;
+  uwsmEnabled = config.cfg.programs.uwsm.enable;
   runProc = pkg:
     if uwsmEnabled
     then "app2unit -- ${pkg}"

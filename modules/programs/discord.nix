@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  cfg = config.cfg.apps.discord;
+  cfg = config.cfg.programs.discord;
   disableFeatures = [
     "WebRtcAllowInputVolumeAdjustment"
     "ChromeWideEchoCancellation"
@@ -47,17 +47,13 @@
   primaryFont = wrapFonts (font.sansSerif ++ font.emoji);
   monoFont = wrapFonts font.monospace;
 in {
-  options.cfg.apps.discord = {
+  options.cfg.programs.discord = {
     enable = lib.mkEnableOption "discord";
     minimizeToTray =
       lib.mkEnableOption "Minimize to tray"
       // {default = true;};
     vencord.enable = lib.mkEnableOption "Vencord for discord";
   };
-
-  imports = [
-    ./vesktop.nix
-  ];
 
   config = lib.mkIf cfg.enable {
     hj = {

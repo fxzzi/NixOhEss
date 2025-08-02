@@ -13,11 +13,9 @@
   config = lib.mkIf config.cfg.gaming.steam.enable {
     programs.steam = {
       enable = true;
-      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-      extraCompatPackages = with pkgs; [
-        proton-ge-bin
-      ];
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      extraCompatPackages = lib.mkIf config.cfg.programs.proton-ge.enable [pkgs.proton-ge-bin];
     };
     hj = {
       files.".local/share/Steam/steam_dev.cfg".text = ''
