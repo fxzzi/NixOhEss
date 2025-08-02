@@ -2,8 +2,8 @@
   system.stateVersion = "25.05";
   imports = [
     ./hardware-configuration.nix
-    ./options.nix
   ];
+  cfg = import ./options.nix;
   hj = {
     packages = with pkgs; [
       telegram-desktop

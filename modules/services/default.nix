@@ -15,5 +15,6 @@
     ./watt.nix
     ./scx.nix
     ./pipewire
+    ./mediamtx.nix
   ];
 }

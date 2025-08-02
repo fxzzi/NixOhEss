@@ -33,30 +33,7 @@
   };
   printing.enable = true;
   scanning.enable = false;
-  programs.uwsm.enable = true;
-  gaming = {
-    steam = {
-      enable = true;
-      shaderThreads = 6;
-    };
-    proton-ge.enable = true;
-    prismlauncher.enable = true;
-    # lutris.enable = true;
-    mangohud = {
-      enable = true;
-      enableSessionWide = true;
-      refreshRate = 170;
-    };
-    heroic.enable = true;
-    sgdboop.enable = true;
-    creamlinux.enable = true;
-  };
-  gpu = {
-    amdgpu.enable = true;
-  };
-  # adb.enable = true;
-  scripts.enable = true;
-  xdg.enable = true;
+
   programs = {
     mpv.enable = true;
     obs-studio.enable = true;
@@ -91,7 +68,6 @@
     };
     zsh.enable = true;
     nh.enable = true;
-    nvtop.enable = true;
     ags = {
       enable = true;
     };
@@ -116,10 +92,5 @@
     hyprpaper.enable = true;
     xdph.enable = true;
     dunst.enable = true;
-  };
-  programs = {
-    wallust.enable = true;
-    foot.enable = true;
-    fuzzel.enable = true;
   };
 }

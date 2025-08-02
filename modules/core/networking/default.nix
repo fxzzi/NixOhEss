@@ -41,7 +41,6 @@
     };
   };
   imports = [
-    ./mediamtx.nix
     ./networkmanager.nix
   ];
 }

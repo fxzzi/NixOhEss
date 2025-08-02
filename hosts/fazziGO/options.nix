@@ -1,22 +1,40 @@
 {
-  kernel = {
-    type = "latest";
-  };
-  services.scx = {
-    enable = true;
-    scheduler = "scx_lavd";
-    flags = ["--autopower"];
-  };
+  kernel.type = "latest";
   boot = {
     enable = true;
     keyLayout = "uk";
     timeout = 0;
     greetd.enable = true;
+    secureboot.enable = true;
   };
+  core.xdg.enable = true;
+
   services = {
+    watt.enable = true;
+
+    scx = {
+      enable = true;
+      scheduler = "scx_lavd";
+      flags = ["--autopower"];
+    };
     pipewire = {
       enable = true;
     };
+    syncthing.enable = true;
+    mpd = {
+      enable = true;
+      discord-rpc.enable = false;
+    };
+    hypridle = {
+      enable = true;
+      dpmsTimeout = 300;
+      lockTimeout = 360;
+      suspendTimeout = 420;
+    };
+    hyprpaper.enable = true;
+    hyprsunset.enable = true;
+    xdph.enable = true;
+    dunst.enable = true;
   };
 
   networking = {
@@ -26,26 +44,22 @@
       powersaving.enable = true;
     };
   };
+
   printing.enable = true;
   scanning.enable = false;
-  programs.uwsm.enable = true;
-  gaming = {
-    prismlauncher.enable = true;
-    steam.enable = true;
-    celeste = {
-      enable = false;
-      modding.enable = true;
-    };
-  };
   hardware = {
     amdgpu.enable = true;
   };
-  secureboot.enable = true;
-  services.watt.enable = true;
-  programs.adb.enable = true;
-  scripts.enable = true;
-  xdg.enable = true;
+
   programs = {
+    uwsm.enable = true;
+    prismlauncher.enable = true;
+    steam.enable = true;
+    adb.enable = true;
+    scripts.enable = true;
+    wallust.enable = true;
+    foot.enable = true;
+    fuzzel.enable = true;
     mpv.enable = true;
     thunar = {
       enable = true;
@@ -92,28 +106,5 @@
       # useGit = true;
     };
     hyprlock.enable = true;
-  };
-  services = {
-    syncthing.enable = true;
-    mpd = {
-      enable = true;
-      discord-rpc.enable = false;
-    };
-    hypridle = {
-      enable = true;
-      dpmsTimeout = 300;
-      lockTimeout = 360;
-      suspendTimeout = 420;
-    };
-    hyprpaper.enable = true;
-    hyprsunset.enable = true;
-    xdph.enable = true;
-    dunst.enable = true;
-  };
-  programs = {
-    wallust.enable = true;
-    foot.enable = true;
-    fuzzel.enable = true;
-    # walker.enable = true;
   };
 }

@@ -1,8 +1,6 @@
 {lib, ...}: {
   imports = [
     ./cursor
-    ./qt
-    ./gtk.nix
   ];
 
   options.cfg.gui.smoothScroll = {

@@ -38,7 +38,7 @@
     environment.etc.issue = {
       # a disgusting mess of escape codes to make it look nice. extra line on purpose for spacing.
       source = pkgs.writeText "issue" ''
-        \e[32mWelcome to the fold of NixOhEss, \e[36m${user}\e[1;32m. \e[2m(\l)\e[0m
+        \e[32mWelcome to the fold of ${config.system.nixos.distroName}, \e[36m${user}\e[1;32m. \e[2m(\l)\e[0m
 
       '';
     };

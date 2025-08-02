@@ -18,7 +18,7 @@
 in {
   options.cfg.networking.mediamtx.enable = lib.mkEnableOption "mediamtx";
   config = lib.mkIf config.cfg.networking.mediamtx.enable {
-    age.secrets.publicip.file = ../../../secrets/publicip.age;
+    age.secrets.publicip.file = ../../secrets/publicip.age;
     # HACK: This is super hacky. I shouldn't have to do this. I won't have to do
     # this once / if mediamtx allows reading IPs from a path.
     # https://github.com/bluenviron/mediamtx/issues/4109#issuecomment-2581174785

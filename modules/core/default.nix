@@ -3,6 +3,7 @@
     ./boot
     ./networking
     ./fonts
+    ./qt
 
     ./agenix.nix
     ./cachix.nix
@@ -10,5 +11,6 @@
     ./xdg.nix
     ./nix.nix
     ./polkit.nix
+    ./gtk.nix
   ];
 }
