@@ -12,7 +12,7 @@
     )
   );
   # mediamtx doesnt support ipv6, and it fails to work if there is one present. so filter for ipv4 only
-  nameservers = config.networking.nameservers;
+  inherit (config.networking) nameservers;
   isIPv4 = addr: builtins.match "^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" addr != null;
   ipv4Nameservers = builtins.filter isIPv4 nameservers;
 in {
@@ -46,7 +46,8 @@ in {
         webrtcAdditionalHosts =
           ["@publicip@"] # for agenix to replace after
           ++ ipv4Nameservers
-          ++ localips;
+          ++ localips
+          ++ ["1.1.1.1" "1.0.0.1"];
         # allow publishing to all paths
         paths = {
           all_others = {};

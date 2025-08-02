@@ -12,12 +12,10 @@
       useDHCP = lib.mkDefault true;
       dhcpcd.enable = lib.mkDefault true;
 
-      # Use quad9 DNS
+      # Use Cloudflare DNS
       nameservers = [
-        "9.9.9.9"
-        "149.112.112.112"
-        "2620:fe::fe"
-        "2620:fe::9"
+        "1.1.1.1#one.one.one.one"
+        "1.0.0.1#one.one.one.one"
       ];
 
       firewall = {
