@@ -71,8 +71,8 @@
     };
   };
 in {
-  options.cfg.cli.zsh.enable = lib.mkEnableOption "zsh";
-  config = lib.mkIf config.cfg.cli.zsh.enable {
+  options.cfg.programs.zsh.enable = lib.mkEnableOption "zsh";
+  config = lib.mkIf config.cfg.programs.zsh.enable {
     users.users.${user} = {
       shell = pkgs.zsh; # Set shell to zsh
     };

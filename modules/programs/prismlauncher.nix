@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: {
-  options.cfg.gaming.prismlauncher.enable = lib.mkEnableOption "prismlauncher";
+  options.cfg.programs.prismlauncher.enable = lib.mkEnableOption "prismlauncher";
 
-  config = lib.mkIf config.cfg.gaming.prismlauncher.enable {
+  config = lib.mkIf config.cfg.programs.prismlauncher.enable {
     hj = {
       packages = with pkgs; [
         (prismlauncher.override {

@@ -4,8 +4,8 @@
   config,
   ...
 }: {
-  options.cfg.watt.enable = lib.mkEnableOption "watt";
-  config = lib.mkIf config.cfg.watt.enable {
+  options.cfg.services.watt.enable = lib.mkEnableOption "watt";
+  config = lib.mkIf config.cfg.services.watt.enable {
     services = {
       power-profiles-daemon.enable = lib.mkForce false;
       watt = {

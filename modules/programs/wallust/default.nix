@@ -4,11 +4,11 @@
   config,
   ...
 }: {
-  options.cfg.gui.wallust.enable = lib.mkEnableOption "wallust";
+  options.cfg.programs.wallust.enable = lib.mkEnableOption "wallust";
   imports = [
     ./integrations.nix
   ];
-  config = lib.mkIf config.cfg.gui.wallust.enable {
+  config = lib.mkIf config.cfg.programs.wallust.enable {
     hj = {
       packages = with pkgs; [
         wallust
@@ -22,7 +22,7 @@
           color_space = "lch";
           templates = {
             fuzzel =
-              if config.cfg.gui.fuzzel.enable
+              if config.cfg.programs.fuzzel.enable
               then {
                 template = "colors_fuzzel.ini";
                 target = "~/.cache/wallust/colors_fuzzel.ini";
@@ -36,35 +36,35 @@
               }
               else null;
             ags =
-              if config.cfg.gui.ags.enable
+              if config.cfg.programs.ags.enable
               then {
                 template = "colors_ags.css";
                 target = "~/.config/ags/colors_ags.css";
               }
               else null;
             foot =
-              if config.cfg.gui.foot.enable
+              if config.cfg.programs.foot.enable
               then {
                 template = "colors_foot.ini";
                 target = "~/.cache/wallust/colors_foot.ini";
               }
               else null;
             pywalfox =
-              if config.cfg.programs.browsers.librewolf.enable
+              if config.cfg.programs.librewolf.enable
               then {
                 template = "colors_pywalfox.json";
                 target = "~/.cache/wal/colors.json";
               }
               else null;
             wleave =
-              if config.cfg.gui.wleave.enable
+              if config.cfg.programs.wleave.enable
               then {
                 template = "colors_wleave.css";
                 target = "~/.config/wleave/colors_wleave.css";
               }
               else null;
             dunst =
-              if config.cfg.gui.dunst.enable
+              if config.cfg.services.dunst.enable
               then {
                 template = "99-wallust.conf";
                 target = "~/.config/dunst/dunstrc.d/99-wallust.conf";

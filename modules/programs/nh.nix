@@ -7,8 +7,8 @@
   inherit (builtins) toString;
   keepCount = toString config.boot.loader.systemd-boot.configurationLimit;
 in {
-  options.cfg.cli.nh.enable = lib.mkEnableOption "nh";
-  config = lib.mkIf config.cfg.cli.nh.enable {
+  options.cfg.programs.nh.enable = lib.mkEnableOption "nh";
+  config = lib.mkIf config.cfg.programs.nh.enable {
     programs.nh = {
       enable = true;
       flake = "/home/${user}/.config/nixos";

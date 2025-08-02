@@ -9,8 +9,8 @@
 }: let
   inherit (xLib.generators) toHyprlang;
 in {
-  options.cfg.gui.hypr.hyprpaper.enable = lib.mkEnableOption "hyprpaper";
-  config = lib.mkIf config.cfg.gui.hypr.hyprpaper.enable {
+  options.cfg.services.hyprpaper.enable = lib.mkEnableOption "hyprpaper";
+  config = lib.mkIf config.cfg.services.hyprpaper.enable {
     hj = {
       files = {
         ".local/share/walls".source = "${npins.walls}/images"; # wallpapers

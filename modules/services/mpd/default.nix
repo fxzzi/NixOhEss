@@ -5,11 +5,11 @@
   user,
   ...
 }: {
-  options.cfg.music.mpd.enable = lib.mkEnableOption "mpd";
+  options.cfg.services.mpd.enable = lib.mkEnableOption "mpd";
   imports = [
     ./mpd-discord-rpc
   ];
-  config = lib.mkIf config.cfg.music.mpd.enable {
+  config = lib.mkIf config.cfg.services.mpd.enable {
     hj = {
       packages = [
         pkgs.mpd

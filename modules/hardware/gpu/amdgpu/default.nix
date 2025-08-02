@@ -3,8 +3,8 @@
   config,
   ...
 }: {
-  options.cfg.gpu.amdgpu.enable = lib.mkEnableOption "amdgpu";
-  config = lib.mkIf config.cfg.gpu.amdgpu.enable {
+  options.cfg.hardware.amdgpu.enable = lib.mkEnableOption "amdgpu";
+  config = lib.mkIf config.cfg.hardware.amdgpu.enable {
     # early load / early kms
     boot.initrd.kernelModules = ["amdgpu"];
     hardware.graphics = {

@@ -5,12 +5,12 @@
   user,
   ...
 }: let
-  newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.programs.browsers.startpage.user}/index.html";
+  newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
 in {
-  options.cfg.programs.browsers.librewolf = {
+  options.cfg.programs.librewolf = {
     enable = lib.mkEnableOption "librewolf";
   };
-  config = lib.mkIf config.cfg.programs.browsers.librewolf.enable {
+  config = lib.mkIf config.cfg.programs.librewolf.enable {
     hj = {
       packages = with pkgs; [
         pywalfox-native
@@ -23,7 +23,7 @@ in {
           #js
           ''
             ${
-              lib.optionalString config.cfg.programs.browsers.startpage.enable
+              lib.optionalString config.cfg.programs.startpage.enable
               #js
               ''
                 // sets the new tab page to our local newtab.
@@ -54,7 +54,7 @@ in {
             pref("browser.urlbar.showSearchTerms.enabled", false);
 
             ${
-              lib.optionalString config.cfg.gpu.nvidia.enable
+              lib.optionalString config.cfg.hardware.nvidia.enable
               #js
               ''
                 // force hw acceleration
@@ -107,7 +107,7 @@ in {
           '';
       };
     };
-    environment.sessionVariables = lib.mkIf config.cfg.gpu.nvidia.enable {
+    environment.sessionVariables = lib.mkIf config.cfg.hardware.nvidia.enable {
       LIBVA_DRIVER_NAME = "nvidia";
       NVD_BACKEND = "direct";
       MOZ_DISABLE_RDD_SANDBOX = "1";

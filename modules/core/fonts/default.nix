@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.cfg.gui.fontconfig;
+  cfg = config.cfg.core.fonts;
 in {
-  options.cfg.gui.fontconfig = {
+  options.cfg.core.fonts = {
     enable = lib.mkEnableOption "fonts";
     useMonoEverywhere = lib.mkEnableOption "use mono everywhere";
     subpixelLayout = lib.mkOption {
@@ -25,11 +25,11 @@ in {
       '';
     };
   };
-  config = lib.mkIf config.cfg.gui.fontconfig.enable {
+  config = lib.mkIf config.cfg.core.fonts.enable {
     fonts = {
       enableDefaultPackages = false;
       fontconfig = {
-        subpixel.rgba = config.cfg.gui.fontconfig.subpixelLayout;
+        subpixel.rgba = config.cfg.core.fonts.subpixelLayout;
         # fixes emojis on browser
         useEmbeddedBitmaps = true;
 

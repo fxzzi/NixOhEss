@@ -24,20 +24,18 @@
       fi
     '';
 in {
-  options.cfg.gui = {
-    hypr = {
-      hyprland = {
-        enable = lib.mkEnableOption "Hyprland";
-        autoStart = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Enables hyprland to run automatically in tty1 (zsh)";
-        };
-        useGit = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Use Hyprland from the flake.";
-        };
+  options.cfg.programs = {
+    hyprland = {
+      enable = lib.mkEnableOption "Hyprland";
+      autoStart = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enables hyprland to run automatically in tty1 (zsh)";
+      };
+      useGit = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Use Hyprland from the flake.";
       };
     };
   };

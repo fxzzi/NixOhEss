@@ -5,8 +5,8 @@
   hostName,
   ...
 }: {
-  options.cfg.apps.syncthing.enable = lib.mkEnableOption "syncthing";
-  config = lib.mkIf config.cfg.apps.syncthing.enable {
+  options.cfg.services.syncthing.enable = lib.mkEnableOption "syncthing";
+  config = lib.mkIf config.cfg.services.syncthing.enable {
     services.syncthing = {
       enable = true;
       # avoid using slow relays

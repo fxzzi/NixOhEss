@@ -3,13 +3,13 @@
     type = "zen";
     zenergy.enable = true;
   };
-  bootConfig = {
+  boot = {
     enable = true;
     keyLayout = "us";
     timeout = 30;
     greetd.enable = true;
   };
-  audio = {
+  services = {
     pipewire = {
       enable = true;
       rnnoise = {
@@ -20,7 +20,7 @@
       };
     };
   };
-  scx = {
+  services.scx = {
     enable = true;
     scheduler = "scx_bpfland";
   };
@@ -33,9 +33,7 @@
   };
   printing.enable = true;
   scanning.enable = false;
-  wayland = {
-    uwsm.enable = true;
-  };
+  programs.uwsm.enable = true;
   gaming = {
     steam = {
       enable = true;
@@ -58,8 +56,8 @@
   };
   # adb.enable = true;
   scripts.enable = true;
-  xdgConfig.enable = true;
-  apps = {
+  xdg.enable = true;
+  programs = {
     mpv.enable = true;
     obs-studio.enable = true;
     thunar = {
@@ -69,21 +67,17 @@
       enable = true;
       vencord.enable = true;
     };
-    browsers = {
-      librewolf = {
-        enable = true;
-      };
-      chromium = {
-        enable = true;
-        via.enable = true;
-      };
-      startpage = {
-        enable = true;
-        user = "kunzooz";
-      };
+    librewolf = {
+      enable = true;
     };
-  };
-  cli = {
+    chromium = {
+      enable = true;
+      via.enable = true;
+    };
+    startpage = {
+      enable = true;
+      user = "kunzooz";
+    };
     fastfetch = {
       enable = true;
       shellIntegration = true;
@@ -96,42 +90,36 @@
       email = "syedkunooz@gmail.com";
     };
     zsh.enable = true;
-
     nh.enable = true;
     nvtop.enable = true;
-  };
-  gui = {
-    smoothScroll.enable = true;
-    fontconfig = {
-      enable = true;
-      subpixelLayout = "rgb";
-    };
-    wallust.enable = true;
-    ags.enable = true;
-    foot = {
+    ags = {
       enable = true;
     };
-    fuzzel.enable = true;
     wleave.enable = true;
-    hypr = {
+    hyprland = {
+      enable = true;
       defaultMonitor = "DP-3";
       secondaryMonitor = null;
       animations.enable = true;
-      hyprland = {
-        enable = true;
-        autoStart = false;
-        # useGit = true;
-      };
-      hyprlock.enable = true;
-      hypridle = {
-        enable = true;
-        dpmsTimeout = 600;
-        lockTimeout = 620;
-        suspendTimeout = 1200;
-      };
-      hyprpaper.enable = true;
-      xdph.enable = true;
+      autoStart = false;
+      # useGit = true;
     };
+    hyprlock.enable = true;
+  };
+  services = {
+    hypridle = {
+      enable = true;
+      dpmsTimeout = 600;
+      lockTimeout = 620;
+      suspendTimeout = 1200;
+    };
+    hyprpaper.enable = true;
+    xdph.enable = true;
     dunst.enable = true;
+  };
+  programs = {
+    wallust.enable = true;
+    foot.enable = true;
+    fuzzel.enable = true;
   };
 }

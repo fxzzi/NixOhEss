@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  cursor = config.cfg.gui.hypr.hyprcursor.theme;
+  cursor = config.cfg.programs.hyprland.hyprcursor.theme;
   xcursor =
     if cursor == "posy-cursors"
     then "Posy_Cursor"

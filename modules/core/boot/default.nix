@@ -5,7 +5,7 @@
   user,
   ...
 }: {
-  options.cfg.bootConfig = {
+  options.cfg.boot = {
     enable = lib.mkEnableOption "boot";
     keyLayout = lib.mkOption {
       type = lib.types.str;
@@ -26,12 +26,12 @@
     ./greetd.nix
     ./tty1SkipUsername.nix
   ];
-  config = lib.mkIf config.cfg.bootConfig.enable {
+  config = lib.mkIf config.cfg.boot.enable {
     console = {
       earlySetup = true;
       font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
       packages = with pkgs; [terminus_font];
-      keyMap = config.cfg.bootConfig.keyLayout;
+      keyMap = config.cfg.boot.keyLayout;
     };
 
     system.nixos.distroName = "NixOhEss";
@@ -62,7 +62,7 @@
     boot = {
       initrd.systemd.enable = true;
       loader = {
-        inherit (config.cfg.bootConfig) timeout;
+        inherit (config.cfg.boot) timeout;
         systemd-boot = {
           enable = true; # Enable systemd-boot
           configurationLimit = 5; # shouldn't really need any more than that.

@@ -4,13 +4,13 @@
   pkgs,
   ...
 }: {
-  options.cfg.gaming.steam.enable = lib.mkEnableOption "steam";
-  options.cfg.gaming.steam.shaderThreads = lib.mkOption {
+  options.cfg.programs.steam.enable = lib.mkEnableOption "steam";
+  options.cfg.programs.steam.shaderThreads = lib.mkOption {
     type = lib.types.int;
     default = 1;
     description = "Number of threads to use for shader processing in Steam.";
   };
-  config = lib.mkIf config.cfg.gaming.steam.enable {
+  config = lib.mkIf config.cfg.programs.steam.enable {
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -19,7 +19,7 @@
     };
     hj = {
       files.".local/share/Steam/steam_dev.cfg".text = ''
-        unShaderBackgroundProcessingThreads ${toString config.cfg.gaming.steam.shaderThreads}
+        unShaderBackgroundProcessingThreads ${toString config.cfg.programs.steam.shaderThreads}
       '';
     };
   };

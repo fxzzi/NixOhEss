@@ -17,7 +17,7 @@
 
         # HYPRLAND_TRACE = "1";
       }
-      (lib.mkIf config.cfg.gpu.nvidia.enable {
+      (lib.mkIf config.cfg.hardware.nvidia.enable {
         # nvidia shenanigans
         GBM_BACKEND = "nvidia-drm";
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
@@ -33,7 +33,7 @@
         # NOTE: https://download.nvidia.com/XFree86/Linux-x86_64/575.51.02/README/openglenvvariables.html
         __GL_YIELD = "USLEEP";
 
-        # shader caches are getting larger - don't clean them up
+        # shaders are getting bigger by the year - don't clean them up
         __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
       })
     ];

@@ -5,6 +5,5 @@
     ./hardware
     ./kernel
     ./services
-    ./scripts
   ];
 }

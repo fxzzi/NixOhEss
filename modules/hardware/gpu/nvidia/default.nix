@@ -8,20 +8,16 @@
     ./nvuv
   ];
 
-  options.cfg = {
-    gpu = {
-      nvidia = {
-        exposeTemp = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Exposes nvidia GPU temperature at /tmp/nvidia-temp";
-        };
-        enable = lib.mkEnableOption "nvidia";
-      };
+  options.cfg.hardware.nvidia = {
+    exposeTemp = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Exposes nvidia GPU temperature at /tmp/nvidia-temp";
     };
+    enable = lib.mkEnableOption "nvidia";
   };
 
-  config = lib.mkIf config.cfg.gpu.nvidia.enable {
+  config = lib.mkIf config.cfg.hardware.nvidia.enable {
     nixpkgs.config.cudaSupport = true; # enable cuda support in packages which need it
     services.xserver.videoDrivers = ["nvidia"];
 
@@ -79,13 +75,13 @@
       blacklistedKernelModules = ["nouveau"];
     };
     systemd = {
-      services.nvidia-temp = lib.mkIf config.cfg.gpu.nvidia.exposeTemp {
-        description = "NVidia GPU temperature monitoring"; # exposes gpu temperature at /tmp/nvidia-temp for monitoring
+      services.nvidia-temp = lib.mkIf config.cfg.hardware.nvidia.exposeTemp {
+        description = "NVidia GPU temperature monitoring"; # exposes.hardware temperature at /tmp/nvidia-temp for monitoring
         wantedBy = ["multi-user.target"];
         before = ["fancontrol.service"];
         script = ''
           while :; do
-          	temp="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
+          	temp="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query.hardware=temperature.gpu --format=csv,noheader,nounits)"
           	echo "$((temp * 1000))" > /tmp/nvidia-temp
           	sleep 5
           done

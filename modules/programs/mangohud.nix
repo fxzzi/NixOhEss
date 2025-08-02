@@ -4,6 +4,7 @@
   pkgs,
   ...
 }: let
+  cfg = config.cfg.programs.mangohud;
   renderOption = option:
     rec {
       int = toString option;
@@ -24,13 +25,15 @@
   );
   renderSettings = attrs: lib.strings.concatStringsSep "\n" (lib.attrsets.mapAttrsToList renderLine attrs) + "\n";
 
-  fpsLimit =
+  fpsLimit = let
+    rr = cfg.refreshRate;
+  in
     if config.programs.hyprland.settings.misc.vrr == 0
-    then config.cfg.gaming.mangohud.refreshRate
+    then rr
     # NOTE:https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
-    else (config.cfg.gaming.mangohud.refreshRate - (config.cfg.gaming.mangohud.refreshRate * config.cfg.gaming.mangohud.refreshRate / 3600));
+    else (rr - (rr * rr / 3600));
 in {
-  options.cfg.gaming.mangohud = {
+  options.cfg.programs.mangohud = {
     enable = lib.mkEnableOption "mangohud";
     enableSessionWide = lib.mkOption {
       type = lib.types.bool;
@@ -46,8 +49,8 @@ in {
       '';
     };
   };
-  config = lib.mkIf config.cfg.gaming.mangohud.enable {
-    environment.sessionVariables = lib.mkIf config.cfg.gaming.mangohud.enableSessionWide {
+  config = lib.mkIf cfg.enable {
+    environment.sessionVariables = lib.mkIf cfg.enableSessionWide {
       "MANGOHUD" = "1";
     };
     hj = {
@@ -91,7 +94,6 @@ in {
           cpu_power
           ram
           present_mode
-          winesync
 
           [preset 2]
           background_alpha=0.3
@@ -112,7 +114,6 @@ in {
           cpu_power
           ram
           present_mode
-          winesync
         '';
       };
     };

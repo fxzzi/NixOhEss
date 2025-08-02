@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.cfg.programs.proton;
+  cfg = config.cfg.programs.proton-ge;
 in {
   options.cfg.programs.proton-ge = {
     enable = mkEnableOption "proton-ge";

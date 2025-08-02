@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: {
-  options.cfg.wayland.wl-clip-persist.enable =
+  options.cfg.services.wl-clip-persist.enable =
     lib.mkEnableOption "wl-clip-persist"
     // {default = true;};
-  config = lib.mkIf config.cfg.wayland.wl-clip-persist.enable {
+  config = lib.mkIf config.cfg.services.wl-clip-persist.enable {
     systemd.user.services.wl-clip-persist = {
       enable = true;
       after = ["graphical-session.target"];

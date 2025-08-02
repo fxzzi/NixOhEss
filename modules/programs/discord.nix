@@ -11,7 +11,7 @@
   ];
   enableFeatures =
     []
-    ++ lib.optionals config.cfg.gpu.nvidia.enable [
+    ++ lib.optionals config.cfg.hardware.nvidia.enable [
       "WaylandLinuxDrmSyncobj" # fix flickering
       # attempt to enable hardware acceleration
       "AcceleratedVideoDecodeLinuxGL"

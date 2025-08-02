@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  cursor = config.cfg.gui.hypr.hyprcursor.theme;
+  cursor = config.cfg.programs.hyprland.hyprcursor.theme;
   hyprcursorPkg =
     if cursor == "posy-cursors"
     then ./posy-cursors-hyprcursor.nix
@@ -19,7 +19,7 @@
     else cursor;
 in {
   options = {
-    cfg.gui.hypr.hyprcursor.theme = lib.mkOption {
+    cfg.programs.hyprland.hyprcursor.theme = lib.mkOption {
       type = lib.types.enum [
         "posy-cursors"
         "xcursor-pro"

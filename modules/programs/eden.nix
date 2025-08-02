@@ -37,7 +37,7 @@
     '';
   };
 in {
-  options.programs.eden.enable = pkgs.lib.mkEnableOption "Eden Emulator";
+  options.cfg.programs.eden.enable = pkgs.lib.mkEnableOption "Eden Emulator";
   config = mkIf cfg.enable {
     hj.packages = [eden];
   };

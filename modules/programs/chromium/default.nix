@@ -5,7 +5,7 @@
   user,
   ...
 }: let
-  newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.programs.browsers.startpage.user}/index.html";
+  newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
 
   disableFeatures = [
     "WebRtcAllowInputVolumeAdjustment"
@@ -13,7 +13,7 @@
   ];
   enableFeatures =
     []
-    ++ lib.optionals config.cfg.gpu.nvidia.enable [
+    ++ lib.optionals config.cfg.hardware.nvidia.enable [
       "WaylandLinuxDrmSyncobj" # fix flickering
       # attempt to enable hardware acceleration
       "AcceleratedVideoDecodeLinuxGL"
@@ -35,7 +35,7 @@
     ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
       "--disable-smooth-scrolling"
     ]
-    ++ lib.optionals config.cfg.programs.browsers.startpage.enable [
+    ++ lib.optionals config.cfg.programs.startpage.enable [
       "--custom-ntp=${newTabPage}"
     ];
 
@@ -61,21 +61,21 @@
     icon = "${./via.svg}";
   };
 in {
-  options.cfg.programs.browsers.chromium = {
+  options.cfg.programs.chromium = {
     enable = lib.mkEnableOption "chromium";
     wootility.enable = lib.mkEnableOption "wootility";
     scyrox-s-center.enable = lib.mkEnableOption "scyrox-s-center";
     via.enable = lib.mkEnableOption "via";
   };
-  config = lib.mkIf config.cfg.programs.browsers.chromium.enable {
+  config = lib.mkIf config.cfg.programs.chromium.enable {
     hj = {
       packages = [
         (pkgs.ungoogled-chromium.override {
           inherit commandLineArgs;
         })
-        (lib.mkIf config.cfg.programs.browsers.chromium.wootility.enable wootility)
-        (lib.mkIf config.cfg.programs.browsers.chromium.scyrox-s-center.enable scyrox-s-center)
-        (lib.mkIf config.cfg.programs.browsers.chromium.via.enable via)
+        (lib.mkIf config.cfg.programs.chromium.wootility.enable wootility)
+        (lib.mkIf config.cfg.programs.chromium.scyrox-s-center.enable scyrox-s-center)
+        (lib.mkIf config.cfg.programs.chromium.via.enable via)
       ];
     };
   };

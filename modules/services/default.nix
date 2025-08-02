@@ -13,5 +13,7 @@
     ./mate-polkit.nix
     ./sunshine.nix
     ./watt.nix
+    ./scx.nix
+    ./pipewire
   ];
 }

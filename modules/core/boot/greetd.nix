@@ -5,12 +5,12 @@
   ...
 }: let
   wrapper =
-    if config.cfg.wayland.uwsm.enable
+    if config.cfg.programs.uwsm.enable
     then "--session-wrapper '${lib.getExe pkgs.uwsm} start -F --'"
     else "";
 in {
-  options.cfg.bootConfig.greetd.enable = lib.mkEnableOption "greetd";
-  config = lib.mkIf config.cfg.bootConfig.greetd.enable {
+  options.cfg.boot.greetd.enable = lib.mkEnableOption "greetd";
+  config = lib.mkIf config.cfg.boot.greetd.enable {
     services.greetd = {
       enable = true;
       settings = {

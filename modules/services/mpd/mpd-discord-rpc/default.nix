@@ -8,8 +8,8 @@
   fmt = cfg: tomlFormat.generate "config.toml" cfg;
   pkg = pkgs.mpd-discord-rpc;
 in {
-  options.cfg.music.mpd.discord-rpc.enable = lib.mkEnableOption "discord-rpc";
-  config = lib.mkIf config.cfg.music.mpd.discord-rpc.enable {
+  options.cfg.services.mpd.discord-rpc.enable = lib.mkEnableOption "discord-rpc";
+  config = lib.mkIf config.cfg.services.mpd.discord-rpc.enable {
     hj = {
       files = {
         ".config/discord-rpc/config.toml".source = fmt {

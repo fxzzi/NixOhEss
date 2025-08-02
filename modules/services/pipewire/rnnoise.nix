@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  ...
+  ... 
 }: let
   pw_rnnoise_config = {
     "context.modules" = [
@@ -19,9 +19,9 @@
                 "plugin" = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
                 "label" = "noise_suppressor_mono";
                 "control" = {
-                  "VAD Threshold (%)" = config.cfg.audio.pipewire.rnnoise.vadThreshold;
-                  "VAD Grace Period (ms)" = config.cfg.audio.pipewire.rnnoise.vadGracePeriod;
-                  "Retroactive VAD Grace (ms)" = config.cfg.audio.pipewire.rnnoise.retroactiveVadGrace;
+                  "VAD Threshold (%)" = config.cfg.services.pipewire.rnnoise.vadThreshold;
+                  "VAD Grace Period (ms)" = config.cfg.services.pipewire.rnnoise.vadGracePeriod;
+                  "Retroactive VAD Grace (ms)" = config.cfg.services.pipewire.rnnoise.retroactiveVadGrace;
                 };
               }
             ];
@@ -44,7 +44,7 @@
     ];
   };
 in {
-  options.cfg.audio.pipewire.rnnoise = {
+  options.cfg.services.pipewire.rnnoise = {
     enable = lib.mkEnableOption "rnnoise";
     vadThreshold = lib.mkOption {
       type = lib.types.int;
@@ -63,7 +63,7 @@ in {
     };
   };
   config = {
-    services.pipewire = lib.mkIf config.cfg.audio.pipewire.rnnoise.enable {
+    services.pipewire = lib.mkIf config.cfg.services.pipewire.rnnoise.enable {
       extraConfig.pipewire."99-input-denoising" = pw_rnnoise_config; # Add rnnoise-plugin filters
     };
   };

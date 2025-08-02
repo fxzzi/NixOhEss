@@ -9,8 +9,8 @@
     then "uwsm stop"
     else "hyprctl dispatch exit";
 in {
-  options.cfg.gui.wleave.enable = lib.mkEnableOption "wleave";
-  config = lib.mkIf config.cfg.gui.wleave.enable {
+  options.cfg.programs.wleave.enable = lib.mkEnableOption "wleave";
+  config = lib.mkIf config.cfg.programs.wleave.enable {
     hj = {
       packages = [
         pkgs.wleave

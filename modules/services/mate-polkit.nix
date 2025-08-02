@@ -1,5 +1,11 @@
-{pkgs, ...}: {
-  config = {
+{
+  lib,
+  config,
+  pkgs,
+  ... 
+}: {
+  options.cfg.services.mate-polkit.enable = lib.mkEnableOption "mate-polkit";
+  config = lib.mkIf config.cfg.services.mate-polkit.enable {
     systemd.user.services.mate-polkit = {
       enable = true;
       description = "Mate Polkit";

@@ -6,7 +6,7 @@
   ...
 }: let
   multiMonitor =
-    if config.cfg.gui.hypr.secondaryMonitor != null
+    if config.cfg.programs.hyprland.secondaryMonitor != null
     then true
     else false;
   brightnessScript =
@@ -125,8 +125,8 @@
     '';
   };
 in {
-  options.cfg.gui = {
-    hypr = {
+  options.cfg.programs = {
+    hyprland = {
       defaultMonitor = lib.mkOption {
         type = lib.types.str;
         default = "DP-1";
@@ -164,7 +164,7 @@ in {
       settings = {
         exec = [
           "${runOnce inputs.ags.packages.${pkgs.system}.default}"
-          "${runProc "${lib.getExe pkgs.xorg.xrandr} --output ${config.cfg.gui.hypr.defaultMonitor} --primary"}"
+          "${runProc "${lib.getExe pkgs.xorg.xrandr} --output ${config.cfg.programs.hyprland.defaultMonitor} --primary"}"
         ];
         monitor = [
           ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
@@ -178,10 +178,10 @@ in {
           # direct_scanout = 1;
           # HACK: gamescope is broken with color-management.
           # see: https://github.com/ValveSoftware/gamescope/issues/1825
-          cm_enabled = !config.cfg.gaming.gamescope.enable;
+          cm_enabled = !config.cfg.programs.gamescope.enable;
         };
         cursor = {
-          default_monitor = lib.mkIf multiMonitor "${config.cfg.gui.hypr.defaultMonitor}";
+          default_monitor = lib.mkIf multiMonitor "${config.cfg.programs.hyprland.defaultMonitor}";
           sync_gsettings_theme = 0; # we handle this ourselves
           inactive_timeout = 4; # after x seconds of inactivity, hide the cursor
         };
@@ -197,9 +197,9 @@ in {
           # i hate caps lock, so make it escape instead. also reset f13-f24 to their expected keysyms.
           kb_options = "fkeys:basic_13-24, caps:escape";
           # don't set tablet settings if opentabletdriver is enabled.
-          tablet = lib.optionalAttrs (!config.cfg.opentabletdriver.enable) {
+          tablet = lib.optionalAttrs (!config.cfg.services.opentabletdriver.enable) {
             left_handed = 1; # inverted tablet
-            output = "${config.cfg.gui.hypr.defaultMonitor}";
+            output = "${config.cfg.programs.hyprland.defaultMonitor}";
             # active_area_size = "130, 73";
           };
           touchpad = {
@@ -260,7 +260,7 @@ in {
             range = 8;
           };
           blur = {
-            enabled = config.cfg.gui.hypr.blur.enable;
+            enabled = config.cfg.programs.hyprland.blur.enable;
             size = 3;
             passes = 3;
             popups = 1;
@@ -283,7 +283,7 @@ in {
           "workspaces, 1, 5, default, ${wsAnim}"
         ];
         animations = {
-          enabled = config.cfg.gui.hypr.animations.enable;
+          enabled = config.cfg.programs.hyprland.animations.enable;
           first_launch_animation = false;
         };
         dwindle = {
@@ -338,22 +338,22 @@ in {
         ];
         # NOTE: this sets workspaces to alternate if there are 2 monitors.
         workspace = lib.optionalAttrs multiMonitor [
-          "1, monitor:${config.cfg.gui.hypr.defaultMonitor}"
-          "2, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
-          "3, monitor:${config.cfg.gui.hypr.defaultMonitor}"
-          "4, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
-          "5, monitor:${config.cfg.gui.hypr.defaultMonitor}"
-          "6, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
-          "7, monitor:${config.cfg.gui.hypr.defaultMonitor}"
-          "8, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
-          "9, monitor:${config.cfg.gui.hypr.defaultMonitor}"
-          "10, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
+          "1, monitor:${config.cfg.programs.hyprland.defaultMonitor}"
+          "2, monitor:${config.cfg.programs.hyprland.secondaryMonitor}"
+          "3, monitor:${config.cfg.programs.hyprland.defaultMonitor}"
+          "4, monitor:${config.cfg.programs.hyprland.secondaryMonitor}"
+          "5, monitor:${config.cfg.programs.hyprland.defaultMonitor}"
+          "6, monitor:${config.cfg.programs.hyprland.secondaryMonitor}"
+          "7, monitor:${config.cfg.programs.hyprland.defaultMonitor}"
+          "8, monitor:${config.cfg.programs.hyprland.secondaryMonitor}"
+          "9, monitor:${config.cfg.programs.hyprland.defaultMonitor}"
+          "10, monitor:${config.cfg.programs.hyprland.secondaryMonitor}"
         ];
         "$MOD" = "SUPER";
         bind =
           [
             # screenshot script
-            ",Print, exec, ${runProc "${lib.getExe screenshotScript} --monitor ${config.cfg.gui.hypr.defaultMonitor}"}"
+            ",Print, exec, ${runProc "${lib.getExe screenshotScript} --monitor ${config.cfg.programs.hyprland.defaultMonitor}"}"
             "SHIFT, Print, exec, ${runProc "${lib.getExe screenshotScript} --selection"}"
             "$MOD SHIFT, S, exec, ${runProc "${lib.getExe screenshotScript} --selection"}"
             "$MOD, Print, exec, ${runProc "${lib.getExe screenshotScript} --active"}"

@@ -11,8 +11,8 @@
     then "xdg-terminal-exec"
     else "foot -e";
 in {
-  options.cfg.gui.fuzzel.enable = lib.mkEnableOption "fuzzel";
-  config = lib.mkIf config.cfg.gui.fuzzel.enable {
+  options.cfg.programs.fuzzel.enable = lib.mkEnableOption "fuzzel";
+  config = lib.mkIf config.cfg.programs.fuzzel.enable {
     hj = {
       packages = [
         pkgs.fuzzel

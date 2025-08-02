@@ -4,8 +4,8 @@
   pkgs,
   ...
 }: {
-  options.cfg.gui.hypr.hyprsunset.enable = lib.mkEnableOption "hyprsunset";
-  config = lib.mkIf config.cfg.gui.hypr.hyprsunset.enable {
+  options.cfg.services.hyprsunset.enable = lib.mkEnableOption "hyprsunset";
+  config = lib.mkIf config.cfg.services.hyprsunset.enable {
     hj = {
       packages = [
         pkgs.hyprsunset

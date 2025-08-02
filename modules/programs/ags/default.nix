@@ -5,8 +5,8 @@
   pkgs,
   ...
 }: {
-  options.cfg.gui.ags.enable = lib.mkEnableOption "ags";
-  config = lib.mkIf config.cfg.gui.ags.enable {
+  options.cfg.programs.ags.enable = lib.mkEnableOption "ags";
+  config = lib.mkIf config.cfg.programs.ags.enable {
     hj = {
       packages = [
         inputs.ags.packages.${pkgs.system}.default
@@ -18,6 +18,6 @@
         ".config/ags/style.css".source = ./ags/style.css;
       };
     };
-    services.upower.enable = config.cfg.watt.enable; # enable battery module if watt is in use, its a good indicator of whether we're on a laptop.
+    services.upower.enable = config.cfg.services.watt.enable; # enable battery module if watt is in use, its a good indicator of whether we're on a laptop.
   };
 }

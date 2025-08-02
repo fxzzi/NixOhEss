@@ -5,8 +5,8 @@
   pkgs,
   ...
 }: {
-  options.cfg.adb.enable = lib.mkEnableOption "adb";
-  config = lib.mkIf config.cfg.adb.enable {
+  options.cfg.programs.adb.enable = lib.mkEnableOption "adb";
+  config = lib.mkIf config.cfg.programs.adb.enable {
     programs.adb.enable = true;
     users.users.${user} = {
       extraGroups = ["adbusers"];

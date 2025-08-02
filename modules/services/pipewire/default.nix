@@ -1,10 +1,10 @@
 {
   config,
   lib,
-  ...
+  ... 
 }: {
-  options.cfg.audio.pipewire.enable = lib.mkEnableOption "pipewire";
-  config = lib.mkIf config.cfg.audio.pipewire.enable {
+  options.cfg.services.pipewire.enable = lib.mkEnableOption "pipewire";
+  config = lib.mkIf config.cfg.services.pipewire.enable {
     services.pipewire = {
       enable = true;
       alsa.enable = true;
@@ -12,7 +12,7 @@
       pulse.enable = true;
       # NOTE: If we're using sched-ext, we shouldn't use rt in any way.
       # see: https://github.com/sched-ext/scx/issues/2496
-      extraConfig.pipewire-pulse."91-rtkit" = lib.mkIf (!config.cfg.scx.enable) {
+      extraConfig.pipewire-pulse."91-rtkit" = lib.mkIf (!config.cfg.services.scx.enable) {
         context.modules = [
           {
             name = "libpipewire-module-rtkit";
@@ -27,7 +27,7 @@
     };
 
     # only enable if scx is disabled
-    security.rtkit.enable = !config.cfg.scx.enable;
+    security.rtkit.enable = !config.cfg.services.scx.enable;
   };
   imports = [./rnnoise.nix];
 }

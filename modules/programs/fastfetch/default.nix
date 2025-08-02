@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: let
-  icon = ./sixels/${config.cfg.cli.fastfetch.icon}.sixel;
+  icon = ./sixels/${config.cfg.programs.fastfetch.icon}.sixel;
 in {
   options = {
-    cfg.cli.fastfetch = {
+    cfg.programs.fastfetch = {
       enable = lib.mkEnableOption "fastfetch";
       shellIntegration = lib.mkOption {
         type = lib.types.bool;
@@ -25,7 +25,7 @@ in {
       };
     };
   };
-  config = lib.mkIf config.cfg.cli.fastfetch.enable {
+  config = lib.mkIf config.cfg.programs.fastfetch.enable {
     hj = {
       packages = [
         pkgs.fastfetchMinimal
@@ -92,7 +92,7 @@ in {
         ];
       };
     };
-    environment.interactiveShellInit = lib.mkIf config.cfg.cli.fastfetch.shellIntegration (
+    environment.interactiveShellInit = lib.mkIf config.cfg.programs.fastfetch.shellIntegration (
       lib.mkBefore # put at the start of the file.
       
       # sh

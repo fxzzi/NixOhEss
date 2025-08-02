@@ -4,9 +4,11 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  cfg = config.cfg.hardware.nvidia.nvuv;
+in {
   options.cfg = {
-    gpu = {
+    hardware = {
       nvidia = {
         nvuv = {
           enable = lib.mkEnableOption "nvidia";
@@ -35,17 +37,17 @@
     };
   };
 
-  config = lib.mkIf config.cfg.gpu.nvidia.nvuv.enable {
+  config = lib.mkIf cfg.enable {
     systemd.services.nvuv = {
       description = "NVidia Undervolting script";
       wantedBy = ["multi-user.target"];
       serviceConfig = {
         ExecStart = ''
           ${lib.getExe inputs.nvuv.packages.${pkgs.system}.nvuv} \
-          ${builtins.toString config.cfg.gpu.nvidia.nvuv.maxClock} \
-          ${builtins.toString config.cfg.gpu.nvidia.nvuv.coreOffset} \
-          ${builtins.toString config.cfg.gpu.nvidia.nvuv.memOffset} \
-          ${builtins.toString config.cfg.gpu.nvidia.nvuv.powerLimit}
+          ${builtins.toString cfg.maxClock} \
+          ${builtins.toString cfg.coreOffset} \
+          ${builtins.toString cfg.memOffset} \
+          ${builtins.toString cfg.powerLimit}
         '';
       };
     };

@@ -12,12 +12,12 @@
     )
     shellScripts;
 in {
-  options.cfg.scripts.enable = lib.mkOption {
+  options.cfg.programs.scripts.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
     description = "Enables user scripts.";
   };
-  config = lib.mkIf config.cfg.scripts.enable {
+  config = lib.mkIf config.cfg.programs.scripts.enable {
     hj.packages = with pkgs;
       scriptPackages
       ++ [

@@ -4,8 +4,8 @@
   pkgs,
   ...
 }: {
-  options.cfg.gaming.lutris.enable = lib.mkEnableOption "lutris";
-  config = lib.mkIf config.cfg.gaming.lutris.enable {
+  options.cfg.programs.lutris.enable = lib.mkEnableOption "lutris";
+  config = lib.mkIf config.cfg.programs.lutris.enable {
     hj = {
       packages = with pkgs; [
         lutris

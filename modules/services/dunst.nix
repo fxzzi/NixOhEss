@@ -15,8 +15,8 @@
     ];
   };
 in {
-  options.cfg.gui.dunst.enable = lib.mkEnableOption "dunst";
-  config = lib.mkIf config.cfg.gui.dunst.enable {
+  options.cfg.services.dunst.enable = lib.mkEnableOption "dunst";
+  config = lib.mkIf config.cfg.services.dunst.enable {
     hj = {
       packages = [
         pkg

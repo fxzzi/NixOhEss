@@ -16,8 +16,8 @@
       noDisplay = true;
     };
 in {
-  options.cfg.gui.foot.enable = lib.mkEnableOption "foot";
-  config = lib.mkIf config.cfg.gui.foot.enable {
+  options.cfg.programs.foot.enable = lib.mkEnableOption "foot";
+  config = lib.mkIf config.cfg.programs.foot.enable {
     programs.foot = {
       enable = true;
       package = pkgs.foot.overrideAttrs {

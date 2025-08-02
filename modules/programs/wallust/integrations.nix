@@ -5,7 +5,7 @@
 }: let
   toINI = lib.generators.toINI {};
 in {
-  config = lib.mkIf config.cfg.gui.wallust.enable {
+  config = lib.mkIf config.cfg.programs.wallust.enable {
     programs.foot.settings.main.include = lib.mkForce "~/.cache/wallust/colors_foot.ini";
     programs.hyprland.settings.source = [
       "~/.cache/wallust/colors_hyprland.conf"

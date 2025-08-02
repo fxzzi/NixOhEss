@@ -4,8 +4,8 @@
   user,
   ...
 }: {
-  options.cfg.cli.ssh.enable = lib.mkEnableOption "ssh";
-  config = lib.mkIf config.cfg.cli.ssh.enable {
+  options.cfg.programs.ssh.enable = lib.mkEnableOption "ssh";
+  config = lib.mkIf config.cfg.programs.ssh.enable {
     programs.ssh = {
       extraConfig = ''
         # GitHub

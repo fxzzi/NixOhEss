@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.cfg.cli.git = {
+  options.cfg.programs.git = {
     enable = lib.mkEnableOption "git";
     name = lib.mkOption {
       type = lib.types.str;
@@ -16,7 +16,7 @@
       description = "Sets your email for git.";
     };
   };
-  config = lib.mkIf config.cfg.cli.git.enable {
+  config = lib.mkIf config.cfg.programs.git.enable {
     environment.shellAliases = {
       g = "git";
       ga = "git add";
@@ -31,8 +31,8 @@
       enable = true;
       config = {
         user = {
-          inherit (config.cfg.cli.git) name;
-          inherit (config.cfg.cli.git) email;
+          inherit (config.cfg.programs.git) name;
+          inherit (config.cfg.programs.git) email;
         };
         signing = {
           format = "ssh";

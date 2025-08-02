@@ -2,7 +2,7 @@
   imports = [
     ./boot
     ./networking
-    ./pipewire
+    ./fonts
 
     ./agenix.nix
     ./cachix.nix

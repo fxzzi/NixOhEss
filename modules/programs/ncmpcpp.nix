@@ -59,8 +59,8 @@
     '';
   };
 in {
-  options.cfg.music.ncmpcpp.enable = lib.mkEnableOption "ncmpcpp";
-  config = lib.mkIf config.cfg.music.ncmpcpp.enable {
+  options.cfg.programs.ncmpcpp.enable = lib.mkEnableOption "ncmpcpp";
+  config = lib.mkIf config.cfg.programs.ncmpcpp.enable {
     hj = {
       packages = with pkgs; [
         ncmpcpp

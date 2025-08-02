@@ -8,7 +8,6 @@
     ./ncmpcpp.nix
     ./nh.nix
     ./nvf.nix
-    ./nvtop.nix
     ./ssh.nix
     ./zsh.nix
     ./theming
@@ -16,7 +15,9 @@
     ./hyprlock.nix
     ./wleave
     ./fuzzel.nix
-    ./browsers
+    ./librewolf.nix
+    ./chromium
+    ./startpage.nix
     ./foot.nix
     ./mpv.nix
     ./obs-studio.nix
@@ -27,13 +28,15 @@
     ./sudo.nix
     ./heroic.nix
     ./lutris.nix
-    ./mangohud
+    ./mangohud.nix
     ./prismlauncher.nix
     ./eden.nix
     ./steam.nix
     ./proton.nix
     ./osu.nix
     ./gamescope.nix
+    ./scripts
+    ./wallust
   ];
   config = {
     # nano is enabled by default. no.

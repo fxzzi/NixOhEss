@@ -3,8 +3,8 @@
   config,
   ...
 }: {
-  options.cfg.xdgConfig.enable = lib.mkEnableOption "xdgConfig";
-  config = lib.mkIf config.cfg.xdgConfig.enable {
+  options.cfg.core.xdg.enable = lib.mkEnableOption "xdgConfig";
+  config = lib.mkIf config.cfg.core.xdg.enable {
     xdg.mime.defaultApplications = {
       "application/pdf" = "atril.desktop";
 

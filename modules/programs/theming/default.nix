@@ -1,9 +1,7 @@
 {lib, ...}: {
   imports = [
     ./cursor
-    ./fonts
     ./qt
-    ./wallust
     ./gtk.nix
   ];
 
