@@ -4,21 +4,23 @@
   lib,
   ...
 }: let
+  inherit (lib) mkOption types;
+  cfg = config.cfg.core.kernel;
   kernelType =
-    if config.cfg.core.kernel.type == "latest"
+    if cfg.type == "latest"
     then pkgs.linuxPackages_latest
-    else if config.cfg.core.kernel.type == "lts"
+    else if cfg.type == "lts"
     then pkgs.linuxPackages
-    else if config.cfg.core.kernel.type == "zen"
+    else if cfg.type == "zen"
     then pkgs.linuxKernel.packages.linux_zen
-    else if config.cfg.core.kernel.type == "xanmod"
+    else if cfg.type == "xanmod"
     then pkgs.linuxKernel.packages.linux_xanmod_latest
-    else if config.cfg.core.kernel.type == "lqx"
+    else if cfg.type == "lqx"
     then pkgs.linuxKernel.packages.linux_lqx
     else throw "Unsupported kernel type.";
 in {
-  options.cfg.core.kernel.type = lib.mkOption {
-    type = lib.types.enum [
+  options.cfg.core.kernel.type = mkOption {
+    type = types.enum [
       "latest"
       "zen"
       "xanmod"

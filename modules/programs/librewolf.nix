@@ -5,12 +5,14 @@
   user,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf optionalString;
+  cfg = config.cfg.programs.librewolf;
   newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
 in {
   options.cfg.programs.librewolf = {
-    enable = lib.mkEnableOption "librewolf";
+    enable = mkEnableOption "librewolf";
   };
-  config = lib.mkIf config.cfg.programs.librewolf.enable {
+  config = mkIf cfg.enable {
     hj = {
       packages = with pkgs; [
         pywalfox-native
@@ -22,9 +24,8 @@ in {
         ".librewolf/librewolf.overrides.cfg".text =
           #js
           ''
-            ${
-              lib.optionalString config.cfg.programs.startpage.enable
-              #js
+            ${optionalString config.cfg.programs.startpage.enable #js
+              
               ''
                 // sets the new tab page to our local newtab.
                 ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
@@ -34,9 +35,7 @@ in {
 
                 // don't firefox sync the homepage, stops it overwriting on windows.
                 pref("services.sync.prefs.sync.browser.startup.homepage", false);
-              ''
-            }
-
+              ''}
 
             // Revert some security changes
             pref("webgl.disabled", false);
@@ -53,14 +52,12 @@ in {
             // show full url on search results pages
             pref("browser.urlbar.showSearchTerms.enabled", false);
 
-            ${
-              lib.optionalString config.cfg.hardware.nvidia.enable
-              #js
+            ${optionalString config.cfg.hardware.nvidia.enable #js
+              
               ''
                 // force hw acceleration
                 pref("media.hardware-video-decoding.force-enabled", true);
-              ''
-            }
+              ''}
 
             // Mouse behavior
             pref("middlemouse.paste", false);
@@ -107,7 +104,7 @@ in {
           '';
       };
     };
-    environment.sessionVariables = lib.mkIf config.cfg.hardware.nvidia.enable {
+    environment.sessionVariables = mkIf config.cfg.hardware.nvidia.enable {
       LIBVA_DRIVER_NAME = "nvidia";
       NVD_BACKEND = "direct";
       MOZ_DISABLE_RDD_SANDBOX = "1";

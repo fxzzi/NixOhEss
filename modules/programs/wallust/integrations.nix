@@ -3,10 +3,12 @@
   config,
   ...
 }: let
+  inherit (lib) mkIf mkForce;
   toINI = lib.generators.toINI {};
+  cfg = config.cfg.programs.wallust;
 in {
-  config = lib.mkIf config.cfg.programs.wallust.enable {
-    programs.foot.settings.main.include = lib.mkForce "~/.cache/wallust/colors_foot.ini";
+  config = mkIf cfg.enable {
+    programs.foot.settings.main.include = mkForce "~/.cache/wallust/colors_foot.ini";
     programs.hyprland.settings.source = [
       "~/.cache/wallust/colors_hyprland.conf"
     ];

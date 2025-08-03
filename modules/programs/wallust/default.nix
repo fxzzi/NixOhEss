@@ -3,12 +3,15 @@
   lib,
   config,
   ...
-}: {
-  options.cfg.programs.wallust.enable = lib.mkEnableOption "wallust";
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.programs.wallust;
+in {
+  options.cfg.programs.wallust.enable = mkEnableOption "wallust";
   imports = [
     ./integrations.nix
   ];
-  config = lib.mkIf config.cfg.programs.wallust.enable {
+  config = mkIf cfg.enable {
     hj = {
       packages = with pkgs; [
         wallust

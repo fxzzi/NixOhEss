@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkEnableOption;
   inherit (pkgs) fetchurl stdenv;
   cfg = config.cfg.programs.eden;
   eden = stdenv.mkDerivation rec {
@@ -37,7 +37,7 @@
     '';
   };
 in {
-  options.cfg.programs.eden.enable = pkgs.lib.mkEnableOption "Eden Emulator";
+  options.cfg.programs.eden.enable = mkEnableOption "Eden Emulator";
   config = mkIf cfg.enable {
     hj.packages = [eden];
   };

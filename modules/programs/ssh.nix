@@ -3,9 +3,12 @@
   lib,
   user,
   ...
-}: {
-  options.cfg.programs.ssh.enable = lib.mkEnableOption "ssh";
-  config = lib.mkIf config.cfg.programs.ssh.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.programs.ssh;
+in {
+  options.cfg.programs.ssh.enable = mkEnableOption "ssh";
+  config = mkIf cfg.enable {
     programs.ssh = {
       extraConfig = ''
         # GitHub

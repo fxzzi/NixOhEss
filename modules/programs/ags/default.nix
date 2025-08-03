@@ -3,9 +3,12 @@
   config,
   pkgs,
   ...
-}: {
-  options.cfg.programs.ags.enable = lib.mkEnableOption "ags";
-  config = lib.mkIf config.cfg.programs.ags.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.programs.ags;
+in {
+  options.cfg.programs.ags.enable = mkEnableOption "ags";
+  config = mkIf cfg.enable {
     # this package isn't included in the buildInputs by default for some reason.
     nixpkgs.overlays = [
       (_: prev: {

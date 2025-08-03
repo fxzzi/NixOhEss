@@ -2,9 +2,12 @@
   config,
   lib,
   ...
-}: {
-  options.cfg.services.pipewire.enable = lib.mkEnableOption "pipewire";
-  config = lib.mkIf config.cfg.services.pipewire.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.services.pipewire;
+in {
+  options.cfg.services.pipewire.enable = mkEnableOption "pipewire";
+  config = mkIf cfg.enable {
     services.pipewire = {
       enable = true;
       alsa.enable = true;
@@ -12,7 +15,7 @@
       pulse.enable = true;
       # NOTE: If we're using sched-ext, we shouldn't use rt in any way.
       # see: https://github.com/sched-ext/scx/issues/2496
-      extraConfig.pipewire-pulse."91-rtkit" = lib.mkIf (!config.cfg.services.scx.enable) {
+      extraConfig.pipewire-pulse."91-rtkit" = mkIf (!config.cfg.services.scx.enable) {
         context.modules = [
           {
             name = "libpipewire-module-rtkit";

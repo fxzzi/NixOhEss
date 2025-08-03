@@ -5,6 +5,8 @@
   user,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf concatMapStrings getExe';
+  cfg = config.cfg.programs.thunar;
   bookmarks =
     [
       "file:///home/${user}/Downloads Downloads"
@@ -16,10 +18,10 @@
     ];
 in {
   options.cfg.programs.thunar = {
-    enable = lib.mkEnableOption "thunar";
-    collegeBookmarks.enable = lib.mkEnableOption "collegeBookmarks";
+    enable = mkEnableOption "thunar";
+    collegeBookmarks.enable = mkEnableOption "collegeBookmarks";
   };
-  config = lib.mkIf config.cfg.programs.thunar.enable {
+  config = mkIf cfg.enable {
     programs.thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
@@ -41,7 +43,7 @@ in {
         unar
       ];
       files = {
-        ".config/gtk-3.0/bookmarks".text = lib.concatMapStrings (l: l + "\n") bookmarks;
+        ".config/gtk-3.0/bookmarks".text = concatMapStrings (l: l + "\n") bookmarks;
         ".config/Thunar/uca.xml".text = ''
           <?xml version="1.0" encoding="UTF-8"?>
           <actions>
@@ -50,7 +52,7 @@ in {
             <name>Copy File / Folder Path</name>
             <submenu></submenu>
             <unique-id>1653335357081852-1</unique-id>
-            <command>echo -n &apos;&quot;%f&quot;&apos; | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}</command>
+            <command>echo -n &apos;"%f"&apos; | ${getExe' pkgs.wl-clipboard "wl-copy"}</command>
             <description></description>
             <range></range>
             <patterns>*</patterns>
@@ -89,7 +91,7 @@ in {
             <name>Edit as root</name>
             <submenu></submenu>
             <unique-id>1716201472079277-1</unique-id>
-            <command>foot ${lib.getExe' pkgs.sudo "sudoedit"} %f</command>
+            <command>foot ${getExe' pkgs.sudo "sudoedit"} %f</command>
             <description></description>
             <range>*</range>
             <patterns>*</patterns>

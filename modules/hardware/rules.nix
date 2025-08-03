@@ -3,22 +3,25 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  inherit (lib) mkEnableOption mkIf mkMerge;
+  cfg = config.cfg.hardware.rules;
+in {
   options.cfg.hardware.rules = {
-    wooting.enable = lib.mkEnableOption "wootingRules";
-    scyrox.enable = lib.mkEnableOption "scyroxRules";
-    via.enable = lib.mkEnableOption "viaRules";
+    wooting.enable = mkEnableOption "wootingRules";
+    scyrox.enable = mkEnableOption "scyroxRules";
+    via.enable = mkEnableOption "viaRules";
   };
 
   config = {
     services.udev = {
       packages = [
-        (lib.mkIf config.cfg.hardware.rules.wooting.enable pkgs.wooting-udev-rules)
-        (lib.mkIf config.cfg.hardware.rules.via.enable pkgs.via)
+        (mkIf cfg.wooting.enable pkgs.wooting-udev-rules)
+        (mkIf cfg.via.enable pkgs.via)
       ];
 
-      extraRules = lib.mkMerge [
-        (lib.mkIf config.cfg.hardware.rules.scyrox.enable ''
+      extraRules = mkMerge [
+        (mkIf cfg.scyrox.enable ''
           # scyrox vendor id
           SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3554", TAG+="uaccess"
           SUBSYSTEM=="usb", ATTRS{idVendor}=="3554", TAG+="uaccess"

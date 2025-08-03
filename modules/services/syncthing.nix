@@ -4,9 +4,12 @@
   user,
   hostName,
   ...
-}: {
-  options.cfg.services.syncthing.enable = lib.mkEnableOption "syncthing";
-  config = lib.mkIf config.cfg.services.syncthing.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.services.syncthing;
+in {
+  options.cfg.services.syncthing.enable = mkEnableOption "syncthing";
+  config = mkIf cfg.enable {
     services.syncthing = {
       enable = true;
       # avoid using slow relays

@@ -4,13 +4,14 @@
   lib,
   ...
 }: let
+  inherit (lib) mkEnableOption mkOption types mkIf;
   cfg = config.cfg.core.fonts;
 in {
   options.cfg.core.fonts = {
-    enable = lib.mkEnableOption "fonts";
-    useMonoEverywhere = lib.mkEnableOption "use mono everywhere";
-    subpixelLayout = lib.mkOption {
-      type = lib.types.enum [
+    enable = mkEnableOption "fonts";
+    useMonoEverywhere = mkEnableOption "use mono everywhere";
+    subpixelLayout = mkOption {
+      type = types.enum [
         "rgb"
         "bgr"
         "vrgb"
@@ -25,11 +26,11 @@ in {
       '';
     };
   };
-  config = lib.mkIf config.cfg.core.fonts.enable {
+  config = mkIf cfg.enable {
     fonts = {
       enableDefaultPackages = false;
       fontconfig = {
-        subpixel.rgba = config.cfg.core.fonts.subpixelLayout;
+        subpixel.rgba = cfg.subpixelLayout;
         # fixes emojis on browser
         useEmbeddedBitmaps = true;
 

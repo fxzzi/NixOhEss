@@ -3,16 +3,19 @@
   lib,
   pkgs,
   ...
-}: {
-  options.cfg.programs.lutris.enable = lib.mkEnableOption "lutris";
-  config = lib.mkIf config.cfg.programs.lutris.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.programs.lutris;
+in {
+  options.cfg.programs.lutris.enable = mkEnableOption "lutris";
+  config = mkIf cfg.enable {
     hj = {
       packages = with pkgs; [
         lutris
       ];
 
       files = {
-        ".local/share/lutris/runners/proton/GE-Proton" = lib.mkIf config.cfg.programs.proton-ge.enable {
+        ".local/share/lutris/runners/proton/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
           source = pkgs.proton-ge-bin.steamcompattool;
         };
       };

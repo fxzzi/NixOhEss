@@ -4,13 +4,15 @@
   pkgs,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf getExe;
+  cfg = config.cfg.services.greetd;
   wrapper =
     if config.cfg.programs.uwsm.enable
-    then "--session-wrapper '${lib.getExe pkgs.uwsm} start -F --'"
+    then "--session-wrapper '${getExe pkgs.uwsm} start -F --'"
     else "";
 in {
-  options.cfg.services.greetd.enable = lib.mkEnableOption "greetd";
-  config = lib.mkIf config.cfg.services.greetd.enable {
+  options.cfg.services.greetd.enable = mkEnableOption "greetd";
+  config = mkIf cfg.enable {
     services.greetd = {
       enable = true;
       settings = {

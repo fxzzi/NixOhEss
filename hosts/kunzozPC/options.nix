@@ -56,7 +56,10 @@
     nvf.enable = true;
     steam.enable = true;
     prismlauncher.enable = true;
-    proton-ge.enable = true;
+    proton-ge = {
+      enable = true;
+      ntsync = true;
+    };
     mpv.enable = true;
     obs-studio.enable = true;
     thunar = {

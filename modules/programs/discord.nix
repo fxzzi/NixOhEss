@@ -4,6 +4,7 @@
   config,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf makeLibraryPath concatStringsSep optionals;
   cfg = config.cfg.programs.discord;
   disableFeatures = [
     "WebRtcAllowInputVolumeAdjustment"
@@ -11,7 +12,7 @@
   ];
   enableFeatures =
     []
-    ++ lib.optionals config.cfg.hardware.nvidia.enable [
+    ++ optionals config.cfg.hardware.nvidia.enable [
       "WaylandLinuxDrmSyncobj" # fix flickering
       # attempt to enable hardware acceleration
       "AcceleratedVideoDecodeLinuxGL"
@@ -21,17 +22,17 @@
     ];
 
   commandLineArgs =
-    (lib.optionals (enableFeatures != []) [
-      "--enable-features=${lib.concatStringsSep "," enableFeatures}"
+    (optionals (enableFeatures != []) [
+      "--enable-features=${concatStringsSep "," enableFeatures}"
     ])
-    ++ (lib.optionals (disableFeatures != []) [
-      "--disable-features=${lib.concatStringsSep "," disableFeatures}"
+    ++ (optionals (disableFeatures != []) [
+      "--disable-features=${concatStringsSep "," disableFeatures}"
     ])
-    ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
+    ++ optionals (!config.cfg.gui.smoothScroll.enable) [
       "--disable-smooth-scrolling"
     ];
 
-  joinedArgs = lib.concatStringsSep " " commandLineArgs;
+  joinedArgs = concatStringsSep " " commandLineArgs;
 
   # Use the below variables to create a list of fonts which can
   # be used in openasar quickcss.
@@ -42,20 +43,20 @@
   # as it wouldn't render correctly, i.e. no bold text, text was squished.
   # Explicity listing the fonts however seems to have worked.
   font = config.fonts.fontconfig.defaultFonts;
-  wrapFonts = fonts: lib.concatStringsSep ", " (map (f: "\"${f}\"") fonts);
+  wrapFonts = fonts: concatStringsSep ", " (map (f: "\"${f}\"") fonts);
 
   primaryFont = wrapFonts (font.sansSerif ++ font.emoji);
   monoFont = wrapFonts font.monospace;
 in {
   options.cfg.programs.discord = {
-    enable = lib.mkEnableOption "discord";
+    enable = mkEnableOption "discord";
     minimizeToTray =
-      lib.mkEnableOption "Minimize to tray"
+      mkEnableOption "Minimize to tray"
       // {default = true;};
-    vencord.enable = lib.mkEnableOption "Vencord for discord";
+    vencord.enable = mkEnableOption "Vencord for discord";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     hj = {
       files = {
         ".config/discord/settings.json" = {
@@ -145,7 +146,7 @@ in {
               # add command line args like chromium
               wrapProgramShell $out/bin/Discord \
               --add-flags "${joinedArgs}" \
-              --set LD_LIBRARY_PATH "${lib.makeLibraryPath [
+              --set LD_LIBRARY_PATH "${makeLibraryPath [
                 # make hw accel work
                 pkgs.libva
               ]}"

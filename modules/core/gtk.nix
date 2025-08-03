@@ -1,9 +1,10 @@
 {
   pkgs,
   npins,
-  lib,
   ...
 }: let
+  pin = npins.Tokyo-Night-Linux;
+
   gtkConf = ''
     [Settings]
     gtk-theme-name=tokyonight
@@ -12,7 +13,6 @@
     gtk-application-prefer-dark-theme=true
 
   '';
-  dconf = lib.getExe pkgs.dconf;
 in {
   config = {
     environment = {
@@ -22,18 +22,12 @@ in {
     };
     hj = {
       files = {
-        ".local/share/themes/tokyonight".source = "${npins.Tokyo-Night-Linux}/usr/share/themes/TokyoNight";
+        ".local/share/themes/tokyonight".source = "${pin}/usr/share/themes/TokyoNight";
         ".config/gtk-3.0/settings.ini".text = gtkConf;
         ".config/gtk-4.0/settings.ini".text = gtkConf;
       };
-      packages = with pkgs; [
-        # stupid ass thing has long rebuilds
-        # (catppuccin-papirus-folders.override
-        #   {
-        #     flavor = "macchiato";
-        #     accent = "blue";
-        #   })
-        papirus-icon-theme
+      packages = [
+        pkgs.papirus-icon-theme
       ];
     };
 

@@ -3,16 +3,19 @@
   lib,
   pkgs,
   ...
-}: {
-  options.cfg.programs.heroic.enable = lib.mkEnableOption "heroic";
-  config = lib.mkIf config.cfg.programs.heroic.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.programs.heroic;
+in {
+  options.cfg.programs.heroic.enable = mkEnableOption "heroic";
+  config = mkIf cfg.enable {
     hj = {
       packages = [
         pkgs.heroic
       ];
 
       files = {
-        ".config/heroic/tools/proton/GE-Proton" = lib.mkIf config.cfg.programs.proton-ge.enable {
+        ".config/heroic/tools/proton/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
           source = pkgs.proton-ge-bin.steamcompattool;
         };
       };

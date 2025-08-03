@@ -4,20 +4,19 @@
   pkgs,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf toInt;
+  inherit (builtins) concatLists map attrValues match filter;
+  cfg = config.cfg.services.mediamtx;
   port = "4200";
   # get all assigned local ips
-  localips = builtins.concatLists (
-    builtins.map (iface: builtins.map (addr: addr.address) iface.ipv4.addresses) (
-      builtins.attrValues config.networking.interfaces
-    )
-  );
+  localips = concatLists (map (iface: map (addr: addr.address) iface.ipv4.addresses) (attrValues config.networking.interfaces));
   # mediamtx doesnt support ipv6, and it fails to work if there is one present. so filter for ipv4 only
   inherit (config.networking) nameservers;
-  isIPv4 = addr: builtins.match "^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" addr != null;
-  ipv4Nameservers = builtins.filter isIPv4 nameservers;
+  isIPv4 = addr: match "^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" addr != null;
+  ipv4Nameservers = filter isIPv4 nameservers;
 in {
-  options.cfg.services.mediamtx.enable = lib.mkEnableOption "mediamtx";
-  config = lib.mkIf config.cfg.services.mediamtx.enable {
+  options.cfg.services.mediamtx.enable = mkEnableOption "mediamtx";
+  config = mkIf cfg.enable {
     age.secrets.publicip.file = ../../secrets/publicip.age;
     # HACK: This is super hacky. I shouldn't have to do this. I won't have to do
     # this once / if mediamtx allows reading IPs from a path.
@@ -31,10 +30,10 @@ in {
     };
     networking.firewall = {
       allowedTCPPorts = [
-        (lib.toInt port)
+        (toInt port)
       ];
       allowedUDPPorts = [
-        (lib.toInt port)
+        (toInt port)
       ];
     };
     services.mediamtx = {
@@ -43,11 +42,7 @@ in {
         webrtc = true;
         webrtcAddress = ":${port}";
         webrtcLocalUDPAddress = ":${port}";
-        webrtcAdditionalHosts =
-          ["@publicip@"] # for agenix to replace after
-          ++ ipv4Nameservers
-          ++ localips
-          ++ ["1.1.1.1" "1.0.0.1"];
+        webrtcAdditionalHosts = ["@publicip@"] ++ ipv4Nameservers ++ localips ++ ["1.1.1.1" "1.0.0.1"]; # for agenix to replace after
         # allow publishing to all paths
         paths = {
           all_others = {};

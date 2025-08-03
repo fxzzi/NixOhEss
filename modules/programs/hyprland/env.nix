@@ -2,9 +2,12 @@
   lib,
   config,
   ...
-}: {
+}: let
+  inherit (lib) mkMerge mkIf;
+  cfg = config.cfg.hardware.nvidia;
+in {
   config = {
-    environment.sessionVariables = lib.mkMerge [
+    environment.sessionVariables = mkMerge [
       {
         # run electron, gtk, qt apps in wayland native
         NIXOS_OZONE_WL = "1";
@@ -17,7 +20,7 @@
 
         # HYPRLAND_TRACE = "1";
       }
-      (lib.mkIf config.cfg.hardware.nvidia.enable {
+      (mkIf cfg.enable {
         # nvidia shenanigans
         GBM_BACKEND = "nvidia-drm";
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";

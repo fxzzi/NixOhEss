@@ -1,8 +1,11 @@
 {
+  config,
   pkgs,
   lib,
   ...
-}: {
+}: let
+  toINI = lib.generators.toINI {};
+in {
   config = {
     environment = {
       sessionVariables = {
@@ -11,7 +14,7 @@
     };
     hj = {
       files = {
-        ".config/qt6ct/qt6ct.conf".text = lib.generators.toINI {} {
+        ".config/qt6ct/qt6ct.conf".text = toINI {
           Appearance = {
             icon_theme = "Papirus-Dark";
             custom_palette = true;

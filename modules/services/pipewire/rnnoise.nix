@@ -4,6 +4,8 @@
   lib,
   ...
 }: let
+  inherit (lib) mkEnableOption mkOption types mkIf;
+  cfg = config.cfg.services.pipewire.rnnoise;
   pw_rnnoise_config = {
     "context.modules" = [
       {
@@ -19,9 +21,9 @@
                 "plugin" = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
                 "label" = "noise_suppressor_mono";
                 "control" = {
-                  "VAD Threshold (%)" = config.cfg.services.pipewire.rnnoise.vadThreshold;
-                  "VAD Grace Period (ms)" = config.cfg.services.pipewire.rnnoise.vadGracePeriod;
-                  "Retroactive VAD Grace (ms)" = config.cfg.services.pipewire.rnnoise.retroactiveVadGrace;
+                  "VAD Threshold (%)" = cfg.vadThreshold;
+                  "VAD Grace Period (ms)" = cfg.vadGracePeriod;
+                  "Retroactive VAD Grace (ms)" = cfg.retroactiveVadGrace;
                 };
               }
             ];
@@ -45,25 +47,25 @@
   };
 in {
   options.cfg.services.pipewire.rnnoise = {
-    enable = lib.mkEnableOption "rnnoise";
-    vadThreshold = lib.mkOption {
-      type = lib.types.int;
+    enable = mkEnableOption "rnnoise";
+    vadThreshold = mkOption {
+      type = types.int;
       default = 50;
       description = "Set the rnnoise VAD threshold (%)";
     };
-    vadGracePeriod = lib.mkOption {
-      type = lib.types.int;
+    vadGracePeriod = mkOption {
+      type = types.int;
       default = 20;
       description = "Set the rnnoise VAD grace period in milliseconds.";
     };
-    retroactiveVadGrace = lib.mkOption {
-      type = lib.types.int;
+    retroactiveVadGrace = mkOption {
+      type = types.int;
       default = 0;
       description = "Set the rnnoise retroactive VAD grace period in milliseconds.";
     };
   };
   config = {
-    services.pipewire = lib.mkIf config.cfg.services.pipewire.rnnoise.enable {
+    services.pipewire = mkIf cfg.enable {
       extraConfig.pipewire."99-input-denoising" = pw_rnnoise_config; # Add rnnoise-plugin filters
     };
   };

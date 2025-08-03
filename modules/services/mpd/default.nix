@@ -4,12 +4,15 @@
   pkgs,
   user,
   ...
-}: {
-  options.cfg.services.mpd.enable = lib.mkEnableOption "mpd";
+}: let
+  inherit (lib) mkEnableOption mkIf getExe;
+  cfg = config.cfg.services.mpd;
+in {
+  options.cfg.services.mpd.enable = mkEnableOption "mpd";
   imports = [
     ./mpd-discord-rpc
   ];
-  config = lib.mkIf config.cfg.services.mpd.enable {
+  config = mkIf cfg.enable {
     hj = {
       packages = [
         pkgs.mpd
@@ -46,7 +49,7 @@
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${lib.getExe pkgs.mpd} --no-daemon";
+        ExecStart = "${getExe pkgs.mpd} --no-daemon";
       };
     };
   };

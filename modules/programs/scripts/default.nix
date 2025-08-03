@@ -4,20 +4,19 @@
   config,
   ...
 }: let
+  inherit (lib) mkOption types mkIf;
+  inherit (builtins) attrNames readDir map readFile;
+  cfg = config.cfg.programs.scripts;
   binDir = ./bin;
-  shellScripts = builtins.attrNames (builtins.readDir binDir); # List of script names in ./bin
-  scriptPackages =
-    builtins.map (
-      name: pkgs.writeShellScriptBin name (builtins.readFile "${binDir}/${name}")
-    )
-    shellScripts;
+  shellScripts = attrNames (readDir binDir); # List of script names in ./bin
+  scriptPackages = map (name: pkgs.writeShellScriptBin name (readFile "${binDir}/${name}")) shellScripts;
 in {
-  options.cfg.programs.scripts.enable = lib.mkOption {
-    type = lib.types.bool;
+  options.cfg.programs.scripts.enable = mkOption {
+    type = types.bool;
     default = false;
     description = "Enables user scripts.";
   };
-  config = lib.mkIf config.cfg.programs.scripts.enable {
+  config = mkIf cfg.enable {
     hj.packages = with pkgs;
       scriptPackages
       ++ [

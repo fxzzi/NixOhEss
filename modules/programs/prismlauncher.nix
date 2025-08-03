@@ -3,10 +3,13 @@
   lib,
   pkgs,
   ...
-}: {
-  options.cfg.programs.prismlauncher.enable = lib.mkEnableOption "prismlauncher";
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.programs.prismlauncher;
+in {
+  options.cfg.programs.prismlauncher.enable = mkEnableOption "prismlauncher";
 
-  config = lib.mkIf config.cfg.programs.prismlauncher.enable {
+  config = mkIf cfg.enable {
     hj = {
       packages = with pkgs; [
         (prismlauncher.override {

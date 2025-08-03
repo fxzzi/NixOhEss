@@ -1,4 +1,6 @@
-{lib, ...}: {
+{lib, ...}: let
+  inherit (lib) mkDefault;
+in {
   imports = [
     ./fastfetch
     ./android.nix
@@ -42,8 +44,8 @@
     # nano is enabled by default. no.
     # also dont install any of the default packages.
     # cmd-not-found is useless
-    programs.nano.enable = lib.mkDefault false;
-    environment.defaultPackages = lib.mkDefault [];
+    programs.nano.enable = mkDefault false;
+    environment.defaultPackages = mkDefault [];
     programs.command-not-found.enable = false;
   };
 }

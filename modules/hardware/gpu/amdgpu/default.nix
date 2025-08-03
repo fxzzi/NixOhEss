@@ -2,9 +2,12 @@
   lib,
   config,
   ...
-}: {
-  options.cfg.hardware.amdgpu.enable = lib.mkEnableOption "amdgpu";
-  config = lib.mkIf config.cfg.hardware.amdgpu.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.hardware.amdgpu;
+in {
+  options.cfg.hardware.amdgpu.enable = mkEnableOption "amdgpu";
+  config = mkIf cfg.enable {
     # early load / early kms
     boot.initrd.kernelModules = ["amdgpu"];
     hardware.graphics = {

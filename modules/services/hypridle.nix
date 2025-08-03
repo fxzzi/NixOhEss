@@ -5,62 +5,62 @@
   xLib,
   ...
 }: let
-  cfg = config.cfg.services.hypridle;
-  # toHyprlang broken for now, use toHyprconf instead
+  inherit (lib) mkEnableOption mkIf mkOption types optionals getExe getExe';
   inherit (xLib.generators) toHyprconf;
+  cfg = config.cfg.services.hypridle;
 in {
   options.cfg.services.hypridle = {
-    enable = lib.mkEnableOption "hypridle";
-    dpmsTimeout = lib.mkOption {
-      type = lib.types.int;
+    enable = mkEnableOption "hypridle";
+    dpmsTimeout = mkOption {
+      type = types.int;
       default = 300;
       description = ''
         Sets the time in seconds for your screen to turn off when idle.
         If you set this to 0, the screen won't turn off when idle.'';
     };
-    lockTimeout = lib.mkOption {
-      type = lib.types.int;
+    lockTimeout = mkOption {
+      type = types.int;
       default = 330;
       description = ''
         Sets the time in seconds for the PC to automatically lock when idle.
         If you set this to 0, the PC won't lock when idle.'';
     };
-    suspendTimeout = lib.mkOption {
-      type = lib.types.int;
+    suspendTimeout = mkOption {
+      type = types.int;
       default = 360;
       description = ''
         Sets the time in seconds for the PC to automatically sleep when idle.
         If you set this to 0, the PC won't sleep automatically when idle.'';
     };
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     hj = {
       packages = [pkgs.hypridle];
       files = {
         ".config/hypr/hypridle.conf".text = toHyprconf {
           attrs = {
             general = {
-              lock_cmd = "${lib.getExe' pkgs.procps "pidof"} hyprlock || ${lib.getExe pkgs.hyprlock}";
+              lock_cmd = "${getExe' pkgs.procps "pidof"} hyprlock || ${getExe pkgs.hyprlock}";
               before_sleep_cmd = "loginctl lock-session";
               after_sleep_cmd = "hyprctl dispatch dpms on";
               ignore_dbus_inhibit = false;
               ignore_systemd_inhibit = false;
             };
             listener =
-              lib.optionals (cfg.dpmsTimeout != 0) [
+              optionals (cfg.dpmsTimeout != 0) [
                 {
                   timeout = cfg.dpmsTimeout;
                   on-timeout = "hyprctl dispatch dpms off";
                   on-resume = "hyprctl dispatch dpms on";
                 }
               ]
-              ++ lib.optionals (cfg.lockTimeout != 0) [
+              ++ optionals (cfg.lockTimeout != 0) [
                 {
                   timeout = cfg.lockTimeout;
                   on-timeout = "loginctl lock-session";
                 }
               ]
-              ++ lib.optionals (cfg.suspendTimeout != 0) [
+              ++ optionals (cfg.suspendTimeout != 0) [
                 {
                   timeout = cfg.suspendTimeout;
                   on-timeout = "systemctl suspend";
@@ -82,7 +82,7 @@ in {
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${lib.getExe pkgs.hypridle}";
+        ExecStart = "${getExe pkgs.hypridle}";
       };
     };
   };

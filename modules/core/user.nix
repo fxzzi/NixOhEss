@@ -3,12 +3,16 @@
   lib,
   user,
   inputs,
+  config,
   ...
-}: {
+}: let
+  inherit (lib.modules) mkAliasOptionModule;
+  inherit (inputs) hjem;
+in {
   imports = [
-    inputs.hjem.nixosModules.default
+    hjem.nixosModules.default
     # avoid boilerplate in the configuration
-    (lib.modules.mkAliasOptionModule ["hj"] ["hjem" "users" user])
+    (mkAliasOptionModule ["hj"] ["hjem" "users" user])
   ];
   config = {
     hjem = {

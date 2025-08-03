@@ -1,9 +1,11 @@
-{lib, ...}: {
+{lib, ...}: let
+  inherit (lib) mkEnableOption;
+in {
   imports = [
     ./cursor
   ];
 
   options.cfg.gui.smoothScroll = {
-    enable = lib.mkEnableOption "smooth scrolling";
+    enable = mkEnableOption "smooth scrolling";
   };
 }

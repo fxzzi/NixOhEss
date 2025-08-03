@@ -3,22 +3,21 @@
   config,
   pkgs,
   ...
-}: {
-  options.cfg.programs.uwsm.enable = lib.mkEnableOption "uwsm";
-  config = lib.mkIf config.cfg.programs.uwsm.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.programs.uwsm;
+in {
+  options.cfg.programs.uwsm.enable = mkEnableOption "uwsm";
+  config = mkIf cfg.enable {
     programs.uwsm.enable = true;
     xdg.terminal-exec = {
       enable = true;
       settings = {
-        Hyprland = [
-          "foot.desktop"
-        ];
+        Hyprland = ["foot.desktop"];
       };
     };
     environment = {
-      systemPackages = [
-        pkgs.app2unit
-      ];
+      systemPackages = [pkgs.app2unit];
       sessionVariables = {
         UWSM_SILENT_START = 1;
         # uwsm integration

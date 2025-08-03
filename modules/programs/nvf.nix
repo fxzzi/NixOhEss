@@ -5,9 +5,10 @@
   lib,
   ...
 }: let
+  inherit (lib) mkEnableOption;
   cfg = config.cfg.programs.nvf;
 in {
-  options.cfg.programs.nvf.enable = lib.mkEnableOption "nvf";
+  options.cfg.programs.nvf.enable = mkEnableOption "nvf";
   imports = [inputs.nvf.nixosModules.default];
   config = lib.mkIf cfg.enable {
     environment.sessionVariables = {

@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: {
+}: let
+  cfg = config.cfg.services.sunshine;
+in {
   options.cfg.services.sunshine.enable = lib.mkEnableOption "sunshine";
-  config = lib.mkIf config.cfg.services.sunshine.enable {
+  config = lib.mkIf cfg.enable {
     services.sunshine = {
       enable = true;
       capSysAdmin = true;

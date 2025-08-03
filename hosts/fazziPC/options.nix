@@ -73,7 +73,10 @@
   };
   hardware.scanning.enable = false;
   programs = {
-    proton-ge.enable = true;
+    proton-ge = {
+      enable = true;
+      ntsync = true;
+    };
     mangohud.enable = true;
     nvf.enable = true;
     steam.enable = true;

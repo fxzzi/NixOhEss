@@ -2,9 +2,12 @@
   config,
   lib,
   ...
-}: {
-  options.cfg.services.printing.enable = lib.mkEnableOption "printing";
-  config = lib.mkIf config.cfg.services.printing.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.services.printing;
+in {
+  options.cfg.services.printing.enable = mkEnableOption "printing";
+  config = mkIf cfg.enable {
     services = {
       printing.enable = true;
     };

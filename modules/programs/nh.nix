@@ -4,11 +4,13 @@
   user,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf;
   inherit (builtins) toString;
+  cfg = config.cfg.programs.nh;
   keepCount = toString config.boot.loader.systemd-boot.configurationLimit;
 in {
-  options.cfg.programs.nh.enable = lib.mkEnableOption "nh";
-  config = lib.mkIf config.cfg.programs.nh.enable {
+  options.cfg.programs.nh.enable = mkEnableOption "nh";
+  config = mkIf cfg.enable {
     programs.nh = {
       enable = true;
       flake = "/home/${user}/.config/nixos";

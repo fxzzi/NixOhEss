@@ -5,6 +5,8 @@
   user,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf optionals concatStringsSep;
+  cfg = config.cfg.programs.chromium;
   newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
 
   disableFeatures = [
@@ -13,7 +15,7 @@
   ];
   enableFeatures =
     []
-    ++ lib.optionals config.cfg.hardware.nvidia.enable [
+    ++ optionals config.cfg.hardware.nvidia.enable [
       "WaylandLinuxDrmSyncobj" # fix flickering
       # attempt to enable hardware acceleration
       "AcceleratedVideoDecodeLinuxGL"
@@ -23,19 +25,19 @@
     ];
 
   commandLineArgs =
-    (lib.optionals (enableFeatures != []) [
-      "--enable-features=${lib.concatStringsSep "," enableFeatures}"
+    (optionals (enableFeatures != []) [
+      "--enable-features=${concatStringsSep "," enableFeatures}"
     ])
-    ++ (lib.optionals (disableFeatures != []) [
-      "--disable-features=${lib.concatStringsSep "," disableFeatures}"
+    ++ (optionals (disableFeatures != []) [
+      "--disable-features=${concatStringsSep "," disableFeatures}"
     ])
     ++ [
       "--extension-mime-request-handling=always-prompt-for-install"
     ]
-    ++ lib.optionals (!config.cfg.gui.smoothScroll.enable) [
+    ++ optionals (!config.cfg.gui.smoothScroll.enable) [
       "--disable-smooth-scrolling"
     ]
-    ++ lib.optionals config.cfg.programs.startpage.enable [
+    ++ optionals config.cfg.programs.startpage.enable [
       "--custom-ntp=${newTabPage}"
     ];
 
@@ -62,20 +64,20 @@
   };
 in {
   options.cfg.programs.chromium = {
-    enable = lib.mkEnableOption "chromium";
-    wootility.enable = lib.mkEnableOption "wootility";
-    scyrox-s-center.enable = lib.mkEnableOption "scyrox-s-center";
-    via.enable = lib.mkEnableOption "via";
+    enable = mkEnableOption "chromium";
+    wootility.enable = mkEnableOption "wootility";
+    scyrox-s-center.enable = mkEnableOption "scyrox-s-center";
+    via.enable = mkEnableOption "via";
   };
-  config = lib.mkIf config.cfg.programs.chromium.enable {
+  config = mkIf cfg.enable {
     hj = {
       packages = [
         (pkgs.ungoogled-chromium.override {
           inherit commandLineArgs;
         })
-        (lib.mkIf config.cfg.programs.chromium.wootility.enable wootility)
-        (lib.mkIf config.cfg.programs.chromium.scyrox-s-center.enable scyrox-s-center)
-        (lib.mkIf config.cfg.programs.chromium.via.enable via)
+        (mkIf cfg.wootility.enable wootility)
+        (mkIf cfg.scyrox-s-center.enable scyrox-s-center)
+        (mkIf cfg.via.enable via)
       ];
     };
   };

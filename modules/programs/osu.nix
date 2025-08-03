@@ -5,9 +5,9 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.programs.osu;
+  cfg = config.cfg.programs.osu;
 in {
-  options.programs.osu.enable = mkEnableOption "osu!";
+  options.cfg.programs.osu.enable = mkEnableOption "osu!";
 
   config = mkIf cfg.enable {
     environment.systemPackages = [pkgs.osu-lazer-bin];

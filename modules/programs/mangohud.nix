@@ -4,7 +4,10 @@
   pkgs,
   ...
 }: let
+  inherit (lib) mkEnableOption mkOption types mkIf concatStringsSep lists attrsets strings isBool;
+  inherit (builtins) toString typeOf;
   cfg = config.cfg.programs.mangohud;
+
   renderOption = option:
     rec {
       int = toString option;
@@ -12,18 +15,18 @@
       path = int;
       bool = "0"; # "on/off" opts are disabled with `=0`
       string = option;
-      list = lib.concatStringsSep "," (lib.lists.forEach option toString);
+      list = concatStringsSep "," (lists.forEach option toString);
     }
     .${
-      builtins.typeOf option
+      typeOf option
     };
 
   renderLine = k: v: (
-    if lib.isBool v && v
+    if isBool v && v
     then k
     else "${k}=${renderOption v}"
   );
-  renderSettings = attrs: lib.strings.concatStringsSep "\n" (lib.attrsets.mapAttrsToList renderLine attrs) + "\n";
+  renderSettings = attrs: strings.concatStringsSep "\n" (attrsets.mapAttrsToList renderLine attrs) + "\n";
 
   fpsLimit = let
     rr = cfg.refreshRate;
@@ -34,14 +37,14 @@
     else (rr - (rr * rr / 3600));
 in {
   options.cfg.programs.mangohud = {
-    enable = lib.mkEnableOption "mangohud";
-    enableSessionWide = lib.mkOption {
-      type = lib.types.bool;
+    enable = mkEnableOption "mangohud";
+    enableSessionWide = mkOption {
+      type = types.bool;
       default = false;
       description = "Enable MangoHud for all Vulkan apps.";
     };
-    refreshRate = lib.mkOption {
-      type = lib.types.int;
+    refreshRate = mkOption {
+      type = types.int;
       default = 170;
       description = ''
         If VRR is disabled in Hyprland, games will be locked to this refresh rate.
@@ -49,8 +52,8 @@ in {
       '';
     };
   };
-  config = lib.mkIf cfg.enable {
-    environment.sessionVariables = lib.mkIf cfg.enableSessionWide {
+  config = mkIf cfg.enable {
+    environment.sessionVariables = mkIf cfg.enableSessionWide {
       "MANGOHUD" = "1";
     };
     hj = {
@@ -58,7 +61,7 @@ in {
       files = {
         ".config/MangoHud/MangoHud.conf".text = renderSettings {
           preset = "0,1,2";
-          fps_limit = "${builtins.toString fpsLimit},0"; # few below refresh rate (vrr) or unlimited
+          fps_limit = "${toString fpsLimit},0"; # few below refresh rate (vrr) or unlimited
           toggle_hud = "Shift_R+F12";
           toggle_hud_position = "Shift_R+F11";
           toggle_preset = "Shift_R+F10";

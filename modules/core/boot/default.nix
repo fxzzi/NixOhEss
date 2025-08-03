@@ -4,16 +4,19 @@
   config,
   user,
   ...
-}: {
+}: let
+  inherit (lib) mkEnableOption mkOption types mkIf mkDefault;
+  cfg = config.cfg.core.boot;
+in {
   options.cfg.core.boot = {
-    enable = lib.mkEnableOption "boot";
-    keyLayout = lib.mkOption {
-      type = lib.types.str;
+    enable = mkEnableOption "boot";
+    keyLayout = mkOption {
+      type = types.str;
       default = "us";
       description = "Sets the keyboard layout for ttys";
     };
-    timeout = lib.mkOption {
-      type = lib.types.int;
+    timeout = mkOption {
+      type = types.int;
       default = 5;
       description = ''
         Sets the timeout for the boot menu to automatically continue.
@@ -24,12 +27,12 @@
   imports = [
     ./secureboot.nix
   ];
-  config = lib.mkIf config.cfg.core.boot.enable {
+  config = mkIf cfg.enable {
     console = {
       earlySetup = true;
       font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
       packages = with pkgs; [terminus_font];
-      keyMap = config.cfg.core.boot.keyLayout;
+      keyMap = cfg.keyLayout;
     };
 
     system.nixos.distroName = "NixOhEss";
@@ -42,7 +45,7 @@
     };
 
     # Set your time zone.
-    time.timeZone = lib.mkDefault "Europe/London";
+    time.timeZone = mkDefault "Europe/London";
     # set these when travelling
     # services = {
     #   geoclue2.enable = true;
@@ -50,7 +53,7 @@
     # };
 
     # Select internationalisation properties.
-    i18n.defaultLocale = lib.mkDefault "en_GB.UTF-8";
+    i18n.defaultLocale = mkDefault "en_GB.UTF-8";
 
     # Set a percentage of RAM to zstd compressed swap
     zramSwap = {
@@ -60,7 +63,7 @@
     boot = {
       initrd.systemd.enable = true;
       loader = {
-        inherit (config.cfg.core.boot) timeout;
+        inherit (cfg) timeout;
         systemd-boot = {
           enable = true; # Enable systemd-boot
           configurationLimit = 5; # shouldn't really need any more than that.

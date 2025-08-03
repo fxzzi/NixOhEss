@@ -6,16 +6,17 @@
   user,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf optional;
   # toHyprlang broken for now, use toHyprconf instead
   inherit (xLib.generators) toHyprconf;
-
+  cfg = config.cfg.programs.hyprlock;
   multiMonitor =
     if config.cfg.programs.hyprland.secondaryMonitor != null
     then true
     else false;
 in {
-  options.cfg.programs.hyprlock.enable = lib.mkEnableOption "hyprlock";
-  config = lib.mkIf config.cfg.programs.hyprlock.enable {
+  options.cfg.programs.hyprlock.enable = mkEnableOption "hyprlock";
+  config = mkIf cfg.enable {
     hj = {
       packages = [
         pkgs.hyprlock
@@ -53,7 +54,7 @@ in {
                   vibrancy = 0.5;
                 }
               ]
-              ++ lib.optional multiMonitor {
+              ++ optional multiMonitor {
                 monitor = "";
                 path = "/home/${user}/.local/state/wallpaper";
                 blur_size = 3;

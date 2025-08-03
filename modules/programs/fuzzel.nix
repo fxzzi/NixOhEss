@@ -4,15 +4,17 @@
   config,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf;
   toINI = lib.generators.toINI {};
+  cfg = config.cfg.programs.fuzzel;
 
   terminal =
     if config.cfg.programs.uwsm.enable
     then "xdg-terminal-exec"
     else "foot -e";
 in {
-  options.cfg.programs.fuzzel.enable = lib.mkEnableOption "fuzzel";
-  config = lib.mkIf config.cfg.programs.fuzzel.enable {
+  options.cfg.programs.fuzzel.enable = mkEnableOption "fuzzel";
+  config = mkIf cfg.enable {
     hj = {
       packages = [
         pkgs.fuzzel

@@ -5,17 +5,15 @@
   user,
   ...
 }: let
-  inherit
-    (lib)
-    concatStringsSep
-    ;
+  inherit (lib) concatStringsSep mapAttrsToList isList mkEnableOption getExe;
+  inherit (builtins) typeOf toString;
 
-  renderSettings = settings: concatStringsSep "\n" (lib.mapAttrsToList renderSetting settings);
+  renderSettings = settings: concatStringsSep "\n" (mapAttrsToList renderSetting settings);
 
   renderSetting = name: value: "${name}=${renderValue value}";
 
   renderValue = option:
-    {
+    rec {
       int = toString option;
       bool =
         if option
@@ -24,7 +22,7 @@
       string = option;
     }
     .${
-      builtins.typeOf option
+      typeOf option
     };
 
   renderBindings = bindings: concatStringsSep "\n" (map renderBinding bindings);
@@ -36,7 +34,7 @@
     concatStringsSep "\n  " ([''def_key "${key}"''] ++ maybeWrapList command);
 
   maybeWrapList = xs:
-    if lib.isList xs
+    if isList xs
     then xs
     else [xs];
 
@@ -59,7 +57,7 @@
     '';
   };
 in {
-  options.cfg.programs.ncmpcpp.enable = lib.mkEnableOption "ncmpcpp";
+  options.cfg.programs.ncmpcpp.enable = mkEnableOption "ncmpcpp";
   config = lib.mkIf config.cfg.programs.ncmpcpp.enable {
     hj = {
       packages = with pkgs; [
@@ -115,12 +113,12 @@ in {
           playlist_disable_highlight_delay = 1;
 
           # Notifications
-          execute_on_song_change = "${lib.getExe notifScript}";
+          execute_on_song_change = "${getExe notifScript}";
         };
       };
     };
     environment.shellAliases = {
-      ncm = "${lib.getExe pkgs.ncmpcpp}";
+      ncm = "${getExe pkgs.ncmpcpp}";
     };
   };
 }

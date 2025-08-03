@@ -4,11 +4,12 @@
   pkgs,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.gamescope;
 in {
-  options.cfg.programs.gamescope.enable = lib.mkEnableOption "gamescope";
+  options.cfg.programs.gamescope.enable = mkEnableOption "gamescope";
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.gamescope = {
       enable = true;
       package = pkgs.gamescope.overrideAttrs {

@@ -3,9 +3,12 @@
   config,
   pkgs,
   ...
-}: {
-  options.cfg.services.mate-polkit.enable = lib.mkEnableOption "mate-polkit";
-  config = lib.mkIf config.cfg.services.mate-polkit.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.services.mate-polkit;
+in {
+  options.cfg.services.mate-polkit.enable = mkEnableOption "mate-polkit";
+  config = mkIf cfg.enable {
     security.polkit.enable = true;
     systemd.user.services.mate-polkit = {
       enable = true;

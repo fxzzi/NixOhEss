@@ -4,19 +4,22 @@
   user,
   pkgs,
   ...
-}: {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.core.networking.networkmanager;
+in {
   options.cfg.core.networking.networkmanager = {
-    enable = lib.mkEnableOption "NetworkManager";
-    powersaving.enable = lib.mkEnableOption "powersaving";
+    enable = mkEnableOption "NetworkManager";
+    powersaving.enable = mkEnableOption "powersaving";
   };
-  config = lib.mkIf config.cfg.core.networking.networkmanager.enable {
+  config = mkIf cfg.enable {
     programs.nm-applet.enable = true; # enable the nice lil applet
     networking = {
       dhcpcd.enable = false; # networkmanager uses its own dhcp client
       networkmanager = {
         enable = true;
         wifi = {
-          powersave = config.cfg.core.networking.networkmanager.powersaving.enable;
+          powersave = cfg.powersaving.enable;
         };
         dns = "systemd-resolved";
         plugins = with pkgs; [
