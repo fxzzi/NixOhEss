@@ -50,10 +50,15 @@
   };
   hardware = {
     rules.via.enable = true;
-
+    amdgpu.enable = true;
     scanning.enable = false;
   };
   programs = {
+    wallust.enable = true;
+    fuzzel.enable = true;
+    scripts.enable = true;
+    foot.enable = true;
+    uwsm.enable = true;
     nvf.enable = true;
     steam.enable = true;
     prismlauncher.enable = true;
@@ -63,9 +68,7 @@
     };
     mpv.enable = true;
     obs-studio.enable = true;
-    thunar = {
-      enable = true;
-    };
+    thunar.enable = true;
     discord = {
       enable = true;
       vencord.enable = true;
