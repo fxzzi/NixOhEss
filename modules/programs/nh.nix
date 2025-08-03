@@ -1,17 +1,18 @@
 {
   config,
   lib,
-  user,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf;
   inherit (builtins) toString;
+  cfg = config.cfg.programs.nh;
   keepCount = toString config.boot.loader.systemd-boot.configurationLimit;
 in {
-  options.cfg.cli.nh.enable = lib.mkEnableOption "nh";
-  config = lib.mkIf config.cfg.cli.nh.enable {
+  options.cfg.programs.nh.enable = mkEnableOption "nh";
+  config = mkIf cfg.enable {
     programs.nh = {
       enable = true;
-      flake = "/home/${user}/.config/nixos";
+      flake = "/home/${config.cfg.core.username}/.config/nixos";
       clean = {
         enable = true;
         dates = "weekly";

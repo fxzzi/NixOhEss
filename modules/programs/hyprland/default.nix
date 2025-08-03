@@ -5,12 +5,14 @@
   inputs,
   ...
 }: let
+  inherit (lib) mkEnableOption mkOption types mkIf getExe';
+  cfg = config.cfg.programs.hyprland;
   pkg =
-    if config.cfg.gui.hypr.hyprland.useGit
+    if cfg.useGit
     then inputs.hyprland.packages.${pkgs.system}
     else pkgs;
-  uwsm = lib.getExe' config.programs.uwsm.package "uwsm";
-  uwsmEnabled = config.cfg.wayland.uwsm.enable;
+  uwsm = getExe' config.programs.uwsm.package "uwsm";
+  uwsmEnabled = config.cfg.programs.uwsm.enable;
   autoStartCmd =
     if uwsmEnabled
     then ''
@@ -24,20 +26,18 @@
       fi
     '';
 in {
-  options.cfg.gui = {
-    hypr = {
-      hyprland = {
-        enable = lib.mkEnableOption "Hyprland";
-        autoStart = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Enables hyprland to run automatically in tty1 (zsh)";
-        };
-        useGit = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Use Hyprland from the flake.";
-        };
+  options.cfg.programs = {
+    hyprland = {
+      enable = mkEnableOption "Hyprland";
+      autoStart = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enables hyprland to run automatically in tty1 (zsh)";
+      };
+      useGit = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Use Hyprland from the flake.";
       };
     };
   };
@@ -47,13 +47,13 @@ in {
     ./settings.nix
   ];
 
-  config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
+  config = mkIf cfg.enable {
     programs.hyprland = {
       enable = true;
       package = pkg.hyprland;
       portalPackage = pkg.xdg-desktop-portal-hyprland;
-      withUWSM = config.cfg.wayland.uwsm.enable;
+      withUWSM = config.cfg.programs.uwsm.enable;
     };
-    environment.loginShellInit = lib.mkIf config.cfg.gui.hypr.hyprland.autoStart autoStartCmd;
+    environment.loginShellInit = mkIf cfg.autoStart autoStartCmd;
   };
 }
