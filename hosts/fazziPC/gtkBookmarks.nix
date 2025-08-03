@@ -1,11 +1,11 @@
 {
   lib,
-  user,
+  config,
   ...
 }: let
   bookmarks = [
     "file:///games Games"
-    "file:///home/${user}/.local/torrents Torrents"
+    "file:///home/${config.cfg.core.username}/.local/torrents Torrents"
   ];
 in {
   config = {

@@ -3,11 +3,12 @@
   config,
   pkgs,
   ...
-}: {
-  options.cfg.wayland.wl-clip-persist.enable =
-    lib.mkEnableOption "wl-clip-persist"
-    // {default = true;};
-  config = lib.mkIf config.cfg.wayland.wl-clip-persist.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf getExe;
+  cfg = config.cfg.services.wl-clip-persist;
+in {
+  options.cfg.services.wl-clip-persist.enable = mkEnableOption "wl-clip-persist" // {default = true;};
+  config = mkIf cfg.enable {
     systemd.user.services.wl-clip-persist = {
       enable = true;
       after = ["graphical-session.target"];
@@ -17,7 +18,7 @@
         ConditionEnvironment = "WAYLAND_DISPLAY"; # Only start if WAYLAND_DISPLAY env var is set
       };
       serviceConfig = {
-        ExecStart = "${lib.getExe pkgs.wl-clip-persist} --clipboard regular";
+        ExecStart = "${getExe pkgs.wl-clip-persist} --clipboard regular";
         Restart = "on-abort";
       };
     };

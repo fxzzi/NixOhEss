@@ -3,14 +3,17 @@
   config,
   hostName,
   ...
-}: {
-  options.cfg.networking.enable = lib.mkEnableOption "networking";
-  config = lib.mkIf config.cfg.networking.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf mkDefault;
+  cfg = config.cfg.core.networking;
+in {
+  options.cfg.core.networking.enable = mkEnableOption "networking";
+  config = mkIf cfg.enable {
     networking = {
       inherit hostName;
       # may want to override if using fixed IP. See: fazziPC
-      useDHCP = lib.mkDefault true;
-      dhcpcd.enable = lib.mkDefault true;
+      useDHCP = mkDefault true;
+      dhcpcd.enable = mkDefault true;
 
       # Use Cloudflare DNS
       nameservers = [
@@ -41,7 +44,6 @@
     };
   };
   imports = [
-    ./mediamtx.nix
     ./networkmanager.nix
   ];
 }

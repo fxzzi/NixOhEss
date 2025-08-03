@@ -1,5 +1,15 @@
-{pkgs, ...}: {
-  config = {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.services.mate-polkit;
+in {
+  options.cfg.services.mate-polkit.enable = mkEnableOption "mate-polkit";
+  config = mkIf cfg.enable {
+    security.polkit.enable = true;
     systemd.user.services.mate-polkit = {
       enable = true;
       description = "Mate Polkit";

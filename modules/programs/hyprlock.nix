@@ -1,21 +1,21 @@
 {
   lib,
   xLib,
-  config,
   pkgs,
-  user,
+  config,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf optional;
   # toHyprlang broken for now, use toHyprconf instead
   inherit (xLib.generators) toHyprconf;
-
+  cfg = config.cfg.programs.hyprlock;
   multiMonitor =
-    if config.cfg.gui.hypr.secondaryMonitor != null
+    if config.cfg.programs.hyprland.secondaryMonitor != null
     then true
     else false;
 in {
-  options.cfg.gui.hypr.hyprlock.enable = lib.mkEnableOption "hyprlock";
-  config = lib.mkIf config.cfg.gui.hypr.hyprlock.enable {
+  options.cfg.programs.hyprlock.enable = mkEnableOption "hyprlock";
+  config = mkIf cfg.enable {
     hj = {
       packages = [
         pkgs.hyprlock
@@ -27,14 +27,14 @@ in {
             general = {
               hide_cursor = true;
               ignore_empty_input = true;
-              immediate_render = !config.cfg.gui.hypr.animations.enable;
+              immediate_render = !config.cfg.programs.hyprland.animations.enable;
             };
             bezier = [
               "easeOut, 0.61, 1, 0.88, 1"
               "easeIn, 0.12, 0, 0.39, 0"
             ];
             animations = {
-              enabled = config.cfg.gui.hypr.animations.enable;
+              enabled = config.cfg.programs.hyprland.animations.enable;
 
               animation = [
                 "fadeIn, 1, 3, easeIn"
@@ -44,8 +44,8 @@ in {
             background =
               [
                 {
-                  monitor = "${config.cfg.gui.hypr.defaultMonitor}";
-                  path = "/home/${user}/.local/state/wallpaper";
+                  monitor = "${config.cfg.programs.hyprland.defaultMonitor}";
+                  path = "/home/${config.cfg.core.username}/.local/state/wallpaper";
                   blur_size = 3;
                   blur_passes = 3;
                   contrast = 1;
@@ -53,9 +53,9 @@ in {
                   vibrancy = 0.5;
                 }
               ]
-              ++ lib.optional multiMonitor {
+              ++ optional multiMonitor {
                 monitor = "";
-                path = "/home/${user}/.local/state/wallpaper";
+                path = "/home/${config.cfg.core.username}/.local/state/wallpaper";
                 blur_size = 3;
                 blur_passes = 3;
                 contrast = 0.9;
@@ -64,7 +64,7 @@ in {
               };
             input-field = [
               {
-                monitor = "${config.cfg.gui.hypr.defaultMonitor}";
+                monitor = "${config.cfg.programs.hyprland.defaultMonitor}";
                 size = "350, 45";
                 outline_thickness = 2;
                 dots_size = 0.25; # Scale of input-field height, 0.2 - 0.8
@@ -84,7 +84,7 @@ in {
 
             label = [
               {
-                monitor = "${config.cfg.gui.hypr.defaultMonitor}";
+                monitor = "${config.cfg.programs.hyprland.defaultMonitor}";
                 text = ''cmd[update:1000] echo "$(date +"%H:%M:%S")"'';
                 color = "0xffc8d3f5";
                 font_size = 72;
@@ -96,7 +96,7 @@ in {
                 valign = "center";
               }
               {
-                monitor = "${config.cfg.gui.hypr.defaultMonitor}";
+                monitor = "${config.cfg.programs.hyprland.defaultMonitor}";
                 text = ''cmd[update:18000000] echo "$(date +'%A, %-d %B')"'';
                 color = "0xffc8d3f5";
                 font_size = 24;
@@ -108,7 +108,7 @@ in {
                 valign = "center";
               }
               {
-                monitor = "${config.cfg.gui.hypr.defaultMonitor}";
+                monitor = "${config.cfg.programs.hyprland.defaultMonitor}";
                 text = "󰌾";
                 color = "0xffc8d3f5";
                 font_size = 36;
