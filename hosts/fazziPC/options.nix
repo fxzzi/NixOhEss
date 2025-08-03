@@ -1,5 +1,6 @@
 {
   core = {
+    username = "faaris";
     kernel = {
       type = "zen";
       zenergy.enable = true;

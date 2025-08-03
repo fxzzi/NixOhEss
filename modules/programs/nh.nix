@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -13,7 +12,7 @@ in {
   config = mkIf cfg.enable {
     programs.nh = {
       enable = true;
-      flake = "/home/${user}/.config/nixos";
+      flake = "/home/${config.cfg.core.username}/.config/nixos";
       clean = {
         enable = true;
         dates = "weekly";

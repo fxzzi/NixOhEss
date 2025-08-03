@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  user,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf mkDefault;
@@ -39,7 +38,7 @@ in {
     environment.etc.issue = {
       # a disgusting mess of escape codes to make it look nice. extra line on purpose for spacing.
       source = pkgs.writeText "issue" ''
-        \e[32mWelcome to the fold of ${config.system.nixos.distroName}, \e[36m${user}\e[1;32m. \e[2m(\l)\e[0m
+        \e[32mWelcome to the fold of ${config.system.nixos.distroName}, \e[36m${config.cfg.core.username}\e[1;32m. \e[2m(\l)\e[0m
 
       '';
     };

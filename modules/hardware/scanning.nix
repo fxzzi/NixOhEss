@@ -1,6 +1,5 @@
 {
   pkgs,
-  user,
   config,
   lib,
   ...
@@ -18,7 +17,7 @@ in {
       udev.packages = [pkgs.sane-airscan];
     };
     environment.systemPackages = [pkgs.simple-scan];
-    users.users.${user}.extraGroups = [
+    users.users.${config.cfg.core.username}.extraGroups = [
       "scanner"
       "lp"
     ];

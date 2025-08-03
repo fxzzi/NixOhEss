@@ -1,5 +1,6 @@
 {
   core = {
+    username = "faaris";
     kernel.type = "latest";
     boot = {
       enable = true;

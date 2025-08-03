@@ -1,9 +1,8 @@
 {
   lib,
   xLib,
-  config,
   pkgs,
-  user,
+  config,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf optional;
@@ -46,7 +45,7 @@ in {
               [
                 {
                   monitor = "${config.cfg.programs.hyprland.defaultMonitor}";
-                  path = "/home/${user}/.local/state/wallpaper";
+                  path = "/home/${config.cfg.core.username}/.local/state/wallpaper";
                   blur_size = 3;
                   blur_passes = 3;
                   contrast = 1;
@@ -56,7 +55,7 @@ in {
               ]
               ++ optional multiMonitor {
                 monitor = "";
-                path = "/home/${user}/.local/state/wallpaper";
+                path = "/home/${config.cfg.core.username}/.local/state/wallpaper";
                 blur_size = 3;
                 blur_passes = 3;
                 contrast = 0.9;

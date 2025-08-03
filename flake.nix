@@ -5,26 +5,23 @@
     npins = import ./npins;
     xLib = import ./lib inputs.nixpkgs.lib;
 
-    mkSystem = hostName: {user}:
+    mkSystem = hostName: _:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs npins xLib hostName user;
+          inherit inputs npins xLib hostName;
         };
         modules = [
           ./modules
           ./hosts/${hostName}
         ];
       };
-
-    # adding a host? Add a hostname and username here
-    # then, have a gander at ./hosts
-    hosts = {
-      fazziPC.user = "faaris";
-      fazziGO.user = "faaris";
-      kunzozPC.user = "kunzoz";
-    };
+    hosts = ["fazziPC" "fazziGO" "kunzozPC"];
   in {
-    nixosConfigurations = builtins.mapAttrs mkSystem hosts;
+    nixosConfigurations = builtins.listToAttrs (map (host: {
+        name = host;
+        value = mkSystem host {};
+      })
+      hosts);
   };
 
   inputs = {

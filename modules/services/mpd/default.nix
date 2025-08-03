@@ -1,8 +1,7 @@
 {
-  config,
   lib,
   pkgs,
-  user,
+  config,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
@@ -19,9 +18,9 @@ in {
       ];
       files = {
         ".config/mpd/mpd.conf".text = ''
-          music_directory "/home/${user}/Music"
-          state_file "/home/${user}/.local/state/mpd/state"
-          sticker_file "/home/${user}/.local/state/mpd/sticker.sql"
+          music_directory "/home/${config.cfg.core.username}/Music"
+          state_file "/home/${config.cfg.core.username}/.local/state/mpd/state"
+          sticker_file "/home/${config.cfg.core.username}/.local/state/mpd/sticker.sql"
 
           bind_to_address "localhost"
 

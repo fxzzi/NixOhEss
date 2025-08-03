@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -14,27 +13,27 @@ in {
         # GitHub
         Host github.com
         	Hostname github.com
-        	IdentityFile /home/${user}/.ssh/github
+        	IdentityFile /home/${config.cfg.core.username}/.ssh/github
 
         # GitLab
         Host gitlab.com
         	Hostname gitlab.com
-        	IdentityFile /home/${user}/.ssh/gitlab
+        	IdentityFile /home/${config.cfg.core.username}/.ssh/gitlab
 
         # ArchLinux GitLab
         Host https://gitlab.archlinux.org
         	Hostname https://gitlab.archlinux.org/
-        	IdentityFile /home/${user}/.ssh/archlinux-gitlab
+        	IdentityFile /home/${config.cfg.core.username}/.ssh/archlinux-gitlab
 
         # AUR
         Host aur.archlinux.org
         	Hostname aur.archlinux.org
-        	IdentityFile /home/${user}/.ssh/aur
+        	IdentityFile /home/${config.cfg.core.username}/.ssh/aur
 
         # Codeberg
         Host codeberg.org
         	Hostname codeberg.org
-        	IdentityFile /home/${user}/.ssh/codeberg
+        	IdentityFile /home/${config.cfg.core.username}/.ssh/codeberg
       '';
     };
   };

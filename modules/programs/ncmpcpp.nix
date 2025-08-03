@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  user,
   ...
 }: let
   inherit (lib) concatStringsSep mapAttrsToList isList mkEnableOption getExe;
@@ -85,7 +84,7 @@ in {
         ];
         ".config/ncmpcpp/config".text = renderSettings {
           # Directories
-          lyrics_directory = "/home/${user}/.local/share/ncmpcpp/lyrics/";
+          lyrics_directory = "/home/${config.cfg.core.username}/.local/share/ncmpcpp/lyrics/";
 
           # Mouse and scrolling
           mouse_support = "yes";

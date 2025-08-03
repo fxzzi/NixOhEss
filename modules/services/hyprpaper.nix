@@ -1,9 +1,8 @@
 {
   lib,
   xLib,
-  config,
   pkgs,
-  user,
+  config,
   npins,
   ...
 }: let

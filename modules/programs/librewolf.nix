@@ -2,12 +2,11 @@
   pkgs,
   config,
   lib,
-  user,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf optionalString;
   cfg = config.cfg.programs.librewolf;
-  newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
+  newTabPage = "file:///home/${config.cfg.core.username}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
 in {
   options.cfg.programs.librewolf = {
     enable = mkEnableOption "librewolf";

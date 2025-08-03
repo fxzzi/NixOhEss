@@ -2,19 +2,18 @@
   lib,
   pkgs,
   config,
-  user,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf concatMapStrings getExe';
   cfg = config.cfg.programs.thunar;
   bookmarks =
     [
-      "file:///home/${user}/Downloads Downloads"
-      "file:///home/${user}/Videos Videos"
+      "file:///home/${config.cfg.core.username}/Downloads Downloads"
+      "file:///home/${config.cfg.core.username}/Videos Videos"
     ]
     ++ [
-      "file:///home/${user}/Pictures/Screenshots Screenshots"
-      "file:///home/${user}/.config/nixos NixOS"
+      "file:///home/${config.cfg.core.username}/Pictures/Screenshots Screenshots"
+      "file:///home/${config.cfg.core.username}/.config/nixos NixOS"
     ];
 in {
   options.cfg.programs.thunar = {

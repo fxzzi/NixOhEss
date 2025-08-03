@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  user,
   hostName,
   ...
 }: let
@@ -14,9 +13,9 @@ in {
       enable = true;
       # avoid using slow relays
       openDefaultPorts = true;
-      dataDir = "/home/${user}";
+      dataDir = "/home/${config.cfg.core.username}";
       group = "users";
-      inherit user;
+      user = config.cfg.core.username;
       settings = {
         devices = {
           "fazziPC".id = "XLI5OMS-7DDAHH3-N4WSXUV-T7VDUT2-BOB6G6V-7C44VO6-EDFGUA2-KOLUEQT";

@@ -1,32 +1,36 @@
 {
   pkgs,
   lib,
-  user,
   inputs,
   config,
   ...
 }: let
+  inherit (lib) mkOption types;
   inherit (lib.modules) mkAliasOptionModule;
   inherit (inputs) hjem;
+  inherit (config.cfg.core) username;
 in {
+  options.cfg.core.username = mkOption {
+    type = types.str;
+    default = "user";
+    description = "Sets the username for the system.";
+  };
   imports = [
     hjem.nixosModules.default
     # avoid boilerplate in the configuration
-    (mkAliasOptionModule ["hj"] ["hjem" "users" user])
+    (mkAliasOptionModule ["hj"] ["hjem" "users" username])
   ];
   config = {
     hjem = {
       linker = pkgs.smfh;
       clobberByDefault = true;
-      users.${user} = {
+      users.${username} = {
         enable = true;
-        inherit user;
         # These are available no matter the host.
         packages = with pkgs; [
           wget
           ffmpeg
           imagemagick
-          # pwvucontrol
           lxqt.pavucontrol-qt
           mate.atril
           mate.eom
@@ -34,14 +38,11 @@ in {
           hunspell
           hunspellDicts.en_GB-ise
           npins
-          yt-dlp
-          xournalpp
-          stremio
         ];
       };
     };
 
-    users.users.${user} = {
+    users.users.${username} = {
       isNormalUser = true;
       # so you can login the first time.
       # PLEASE change this after logging in

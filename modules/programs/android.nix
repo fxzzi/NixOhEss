@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   pkgs,
   ...
 }: let
@@ -11,7 +10,7 @@ in {
   options.cfg.programs.adb.enable = mkEnableOption "adb";
   config = mkIf cfg.enable {
     programs.adb.enable = true;
-    users.users.${user} = {
+    users.users.${config.cfg.core.username} = {
       extraGroups = ["adbusers"];
     };
     hj = {

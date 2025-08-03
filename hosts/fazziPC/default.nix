@@ -25,6 +25,8 @@
     sgdboop
     cemu
     nvtopPackages.nvidia
+    stremio
+    yt-dlp
   ];
   networking.firewall = {
     # minecraft

@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  user,
   pkgs,
   ...
 }: let
@@ -27,7 +26,7 @@ in {
         ];
       };
     };
-    users.users.${user} = {
+    users.users.${config.cfg.core.username} = {
       extraGroups = ["networkmanager"];
     };
   };

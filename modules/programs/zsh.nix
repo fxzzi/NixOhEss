@@ -1,8 +1,7 @@
 {
-  config,
   lib,
   pkgs,
-  user,
+  config,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
@@ -75,7 +74,7 @@
 in {
   options.cfg.programs.zsh.enable = mkEnableOption "zsh";
   config = mkIf cfg.enable {
-    users.users.${user} = {
+    users.users.${config.cfg.core.username} = {
       shell = pkgs.zsh; # Set shell to zsh
     };
     hj = {

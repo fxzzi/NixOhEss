@@ -2,12 +2,11 @@
   lib,
   pkgs,
   config,
-  user,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf optionals concatStringsSep;
   cfg = config.cfg.programs.chromium;
-  newTabPage = "file:///home/${user}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
+  newTabPage = "file:///home/${config.cfg.core.username}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
 
   disableFeatures = [
     "WebRtcAllowInputVolumeAdjustment"

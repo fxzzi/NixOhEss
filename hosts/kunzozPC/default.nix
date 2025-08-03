@@ -15,6 +15,7 @@
       losslesscut-bin
       qbittorrent-enhanced
       nvtopPackages.amd
+      stremio
       inputs.creamlinux.packages.${pkgs.system}.default
     ];
   };
