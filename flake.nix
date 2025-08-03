@@ -5,7 +5,7 @@
     npins = import ./npins;
     xLib = import ./lib inputs.nixpkgs.lib;
 
-    mkSystem = hostName: _:
+    mkSystem = hostName:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs npins xLib hostName;
@@ -17,11 +17,7 @@
       };
     hosts = ["fazziPC" "fazziGO" "kunzozPC"];
   in {
-    nixosConfigurations = builtins.listToAttrs (map (host: {
-        name = host;
-        value = mkSystem host {};
-      })
-      hosts);
+    nixosConfigurations = inputs.nixpkgs.lib.genAttrs hosts mkSystem;
   };
 
   inputs = {
