@@ -60,6 +60,7 @@
       refreshRate = 170;
     };
     heroic.enable = true;
+    lutris.enable = true;
     wallust.enable = true;
     fuzzel.enable = true;
     scripts.enable = true;
