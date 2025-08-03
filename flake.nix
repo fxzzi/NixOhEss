@@ -24,7 +24,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
-      url = "github:feel-co/hjem";
+      # url = "github:feel-co/hjem";
+      # FIXME: go back to feel-co/hjem when below is fixed
+      # https://github.com/feel-co/hjem/issues/46
+      url = "github:fxzzi/hjem/local-fs";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         smfh.follows = ""; # we use smfh from nixpkgs
