@@ -1,16 +1,17 @@
 {
   lib,
   xLib,
-  config,
   pkgs,
-  user,
+  config,
   npins,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf getExe;
   inherit (xLib.generators) toHyprlang;
+  cfg = config.cfg.services.hyprpaper;
 in {
-  options.cfg.gui.hypr.hyprpaper.enable = lib.mkEnableOption "hyprpaper";
-  config = lib.mkIf config.cfg.gui.hypr.hyprpaper.enable {
+  options.cfg.services.hyprpaper.enable = mkEnableOption "hyprpaper";
+  config = mkIf cfg.enable {
     hj = {
       files = {
         ".local/share/walls".source = "${npins.walls}/images"; # wallpapers
@@ -22,12 +23,8 @@ in {
           ipc = 1;
           splash = 0;
 
-          preload = [
-            "/home/${user}/.local/state/wallpaper"
-          ];
-          wallpaper = [
-            ", /home/${user}/.local/state/wallpaper"
-          ];
+          preload = ["~/.local/state/wallpaper"];
+          wallpaper = [",~/.local/state/wallpaper"];
         };
       };
     };
@@ -43,7 +40,7 @@ in {
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${lib.getExe pkgs.hyprpaper}";
+        ExecStart = "${getExe pkgs.hyprpaper}";
       };
     };
   };

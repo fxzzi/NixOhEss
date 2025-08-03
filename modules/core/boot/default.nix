@@ -2,18 +2,20 @@
   pkgs,
   lib,
   config,
-  user,
   ...
-}: {
-  options.cfg.bootConfig = {
-    enable = lib.mkEnableOption "boot";
-    keyLayout = lib.mkOption {
-      type = lib.types.str;
+}: let
+  inherit (lib) mkEnableOption mkOption types mkIf mkDefault;
+  cfg = config.cfg.core.boot;
+in {
+  options.cfg.core.boot = {
+    enable = mkEnableOption "boot";
+    keyLayout = mkOption {
+      type = types.str;
       default = "us";
       description = "Sets the keyboard layout for ttys";
     };
-    timeout = lib.mkOption {
-      type = lib.types.int;
+    timeout = mkOption {
+      type = types.int;
       default = 5;
       description = ''
         Sets the timeout for the boot menu to automatically continue.
@@ -23,28 +25,26 @@
   };
   imports = [
     ./secureboot.nix
-    ./greetd.nix
-    ./tty1SkipUsername.nix
   ];
-  config = lib.mkIf config.cfg.bootConfig.enable {
+  config = mkIf cfg.enable {
     console = {
       earlySetup = true;
       font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
       packages = with pkgs; [terminus_font];
-      keyMap = config.cfg.bootConfig.keyLayout;
+      keyMap = cfg.keyLayout;
     };
 
     system.nixos.distroName = "NixOhEss";
     environment.etc.issue = {
       # a disgusting mess of escape codes to make it look nice. extra line on purpose for spacing.
       source = pkgs.writeText "issue" ''
-        \e[32mWelcome to the fold of NixOhEss, \e[36m${user}\e[1;32m. \e[2m(\l)\e[0m
+        \e[32mWelcome to the fold of ${config.system.nixos.distroName}, \e[36m${config.cfg.core.username}\e[1;32m. \e[2m(\l)\e[0m
 
       '';
     };
 
     # Set your time zone.
-    time.timeZone = lib.mkDefault "Europe/London";
+    time.timeZone = mkDefault "Europe/London";
     # set these when travelling
     # services = {
     #   geoclue2.enable = true;
@@ -52,7 +52,7 @@
     # };
 
     # Select internationalisation properties.
-    i18n.defaultLocale = lib.mkDefault "en_GB.UTF-8";
+    i18n.defaultLocale = mkDefault "en_GB.UTF-8";
 
     # Set a percentage of RAM to zstd compressed swap
     zramSwap = {
@@ -62,7 +62,7 @@
     boot = {
       initrd.systemd.enable = true;
       loader = {
-        inherit (config.cfg.bootConfig) timeout;
+        inherit (cfg) timeout;
         systemd-boot = {
           enable = true; # Enable systemd-boot
           configurationLimit = 5; # shouldn't really need any more than that.

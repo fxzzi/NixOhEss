@@ -1,13 +1,14 @@
 {
-  config,
   lib,
   pkgs,
-  user,
+  config,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf getExe;
   inherit (builtins) filter;
   inherit (lib.attrsets) mapAttrsToList hasAttr;
   inherit (lib.strings) concatStringsSep optionalString;
+  cfg = config.cfg.programs.zsh;
 
   mkPlugins = plugins:
     concatStringsSep "\n" (
@@ -71,9 +72,9 @@
     };
   };
 in {
-  options.cfg.cli.zsh.enable = lib.mkEnableOption "zsh";
-  config = lib.mkIf config.cfg.cli.zsh.enable {
-    users.users.${user} = {
+  options.cfg.programs.zsh.enable = mkEnableOption "zsh";
+  config = mkIf cfg.enable {
+    users.users.${config.cfg.core.username} = {
       shell = pkgs.zsh; # Set shell to zsh
     };
     hj = {
@@ -119,7 +120,7 @@ in {
             function precmd() {
               local indicators=""
               [[ -n $IN_NIX_SHELL ]] && indicators+="%F{blue} %f "
-              PROMPT="$indicators%F{yellow}%3~%f $ "
+              PROMPT="$indicators%F{yellow}%3~%f "
             }
           '';
 
@@ -157,27 +158,28 @@ in {
               wl-copy $link
             }
 
+
             ${mkPlugins plugins}
 
             # these keybinds have to be set after the plugin
             bindkey "^[[A" history-substring-search-up
-            bindkey "^[[B" history-substring-search-down
+            bindkey "^[[B" history-substring-substring-search-down
             bindkey "^[OA" history-substring-search-up
             bindkey "^[OB" history-substring-search-down
           '';
         histFile = "$HOME/.local/share/zsh/zsh_history";
         histSize = 10000;
         shellAliases = {
-          grep = "${lib.getExe pkgs.ripgrep}";
-          cat = "${lib.getExe pkgs.bat}";
+          grep = "${getExe pkgs.ripgrep}";
+          cat = "${getExe pkgs.bat}";
 
-          ls = "${lib.getExe pkgs.eza} --icons --group-directories-first";
+          ls = "${getExe pkgs.eza} --icons --group-directories-first";
           la = "ls -a";
           ll = "ls -lah";
 
-          lt = "${lib.getExe pkgs.eza} --icons --tree";
+          lt = "${getExe pkgs.eza} --icons --tree";
 
-          wget = "wget --hsts-file=/home/${user}/.local/share/wget-hsts";
+          wget = "wget --hsts-file=$HOME/.local/share/wget-hsts";
 
           die = "pkill -9";
           sudo = "sudo ";

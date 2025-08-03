@@ -4,13 +4,15 @@
   lib,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.programs.wleave;
   logoutAction =
-    if config.cfg.wayland.uwsm.enable
+    if config.cfg.programs.uwsm.enable
     then "uwsm stop"
     else "hyprctl dispatch exit";
 in {
-  options.cfg.gui.wleave.enable = lib.mkEnableOption "wleave";
-  config = lib.mkIf config.cfg.gui.wleave.enable {
+  options.cfg.programs.wleave.enable = mkEnableOption "wleave";
+  config = mkIf cfg.enable {
     hj = {
       packages = [
         pkgs.wleave

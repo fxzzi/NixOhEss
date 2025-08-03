@@ -3,9 +3,12 @@
   config,
   pkgs,
   ...
-}: {
-  options.cfg.gui.hypr.hyprsunset.enable = lib.mkEnableOption "hyprsunset";
-  config = lib.mkIf config.cfg.gui.hypr.hyprsunset.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf getExe;
+  cfg = config.cfg.services.hyprsunset;
+in {
+  options.cfg.services.hyprsunset.enable = mkEnableOption "hyprsunset";
+  config = mkIf cfg.enable {
     hj = {
       packages = [
         pkgs.hyprsunset
@@ -24,7 +27,7 @@
         Type = "simple";
         Restart = "always";
         # --identity starts hyprsunset without changing temperature
-        ExecStart = "${lib.getExe pkgs.hyprsunset} --identity";
+        ExecStart = "${getExe pkgs.hyprsunset} --identity";
       };
     };
   };
