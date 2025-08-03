@@ -68,7 +68,8 @@
     hyprsunset.enable = true;
     xdph.enable = true;
     dunst.enable = true;
-    greetd.enable = true;
+    # greetd.enable = true;
+    getty-tty1.onlyPassword = true;
 
     printing.enable = true;
   };
@@ -138,6 +139,7 @@
       secondaryMonitor = "DP-3";
       animations.enable = true;
       useGit = true;
+      autoStart = true;
     };
     hyprlock.enable = true;
     wallust.enable = true;
