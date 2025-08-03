@@ -41,7 +41,7 @@ in {
           attrs = {
             general = {
               lock_cmd = "${getExe' pkgs.procps "pidof"} hyprlock || ${getExe pkgs.hyprlock}";
-              before_sleep_cmd = "loginctl lock-session";
+              before_sleep_cmd = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
               after_sleep_cmd = "hyprctl dispatch dpms on";
               ignore_dbus_inhibit = false;
               ignore_systemd_inhibit = false;
