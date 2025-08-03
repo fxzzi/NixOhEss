@@ -2,13 +2,12 @@
   lib,
   pkgs,
   config,
-  inputs,
   ...
 }: let
-  multiMonitor =
-    if config.cfg.gui.hypr.secondaryMonitor != null
-    then true
-    else false;
+  inherit (lib) mkOption types mkEnableOption getExe getExe' optionalAttrs mkIf;
+  inherit (builtins) isString baseNameOf concatLists genList toString;
+  cfg = config.cfg.programs.hyprland;
+  multiMonitor = cfg.secondaryMonitor != null;
   brightnessScript =
     if multiMonitor
     then "brightness.sh"
@@ -17,7 +16,7 @@
     if multiMonitor
     then "slidevert"
     else "slide";
-  uwsmEnabled = config.cfg.wayland.uwsm.enable;
+  uwsmEnabled = config.cfg.programs.uwsm.enable;
   runProc = pkg:
     if uwsmEnabled
     then "app2unit -- ${pkg}"
@@ -28,23 +27,23 @@
     else "${cmd}";
   toggleProc = pkg: let
     exe =
-      if builtins.isString pkg
+      if isString pkg
       then pkg
-      else lib.getExe pkg;
+      else getExe pkg;
     binaryName =
-      if builtins.isString pkg
+      if isString pkg
       then exe
-      else builtins.baseNameOf exe;
+      else baseNameOf exe;
   in
     if uwsmEnabled
     then "pkill ${binaryName} || ${runProc exe}"
     else "pkill ${binaryName} || ${exe}";
   runOnce = pkg: let
-    exe = lib.getExe pkg;
+    exe = getExe pkg;
   in
     if uwsmEnabled
-    then "pgrep ${builtins.baseNameOf exe} || ${runProc exe}"
-    else "pgrep ${builtins.baseNameOf exe} || ${exe}";
+    then "pgrep ${baseNameOf exe} || ${runProc exe}"
+    else "pgrep ${baseNameOf exe} || ${exe}";
 
   sunsetScript = pkgs.writeShellApplication {
     name = "sunset";
@@ -125,28 +124,20 @@
     '';
   };
 in {
-  options.cfg.gui = {
-    hypr = {
-      defaultMonitor = lib.mkOption {
-        type = lib.types.str;
+  options.cfg.programs = {
+    hyprland = {
+      defaultMonitor = mkOption {
+        type = types.str;
         default = "DP-1";
         description = "Sets the default monitor for hypr*";
       };
-      secondaryMonitor = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
+      secondaryMonitor = mkOption {
+        type = types.nullOr types.str;
         default = null;
         description = "Sets the secondary monitor for hypr*.";
       };
-      animations.enable =
-        lib.mkEnableOption "animations"
-        // {
-          default = true;
-        };
-      blur.enable =
-        lib.mkEnableOption "blur"
-        // {
-          default = true;
-        };
+      animations.enable = mkEnableOption "animations" // {default = true;};
+      blur.enable = mkEnableOption "blur" // {default = true;};
     };
   };
   config = {
@@ -163,8 +154,8 @@ in {
       ];
       settings = {
         exec = [
-          "${runOnce inputs.ags.packages.${pkgs.system}.default}"
-          "${runProc "${lib.getExe pkgs.xorg.xrandr} --output ${config.cfg.gui.hypr.defaultMonitor} --primary"}"
+          "${runOnce pkgs.ags_1}"
+          "${runProc "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"}"
         ];
         monitor = [
           ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
@@ -178,10 +169,10 @@ in {
           # direct_scanout = 1;
           # HACK: gamescope is broken with color-management.
           # see: https://github.com/ValveSoftware/gamescope/issues/1825
-          cm_enabled = !config.cfg.gaming.gamescope.enable;
+          cm_enabled = !config.cfg.programs.gamescope.enable;
         };
         cursor = {
-          default_monitor = lib.mkIf multiMonitor "${config.cfg.gui.hypr.defaultMonitor}";
+          default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
           sync_gsettings_theme = 0; # we handle this ourselves
           inactive_timeout = 4; # after x seconds of inactivity, hide the cursor
         };
@@ -197,9 +188,9 @@ in {
           # i hate caps lock, so make it escape instead. also reset f13-f24 to their expected keysyms.
           kb_options = "fkeys:basic_13-24, caps:escape";
           # don't set tablet settings if opentabletdriver is enabled.
-          tablet = lib.optionalAttrs (!config.cfg.opentabletdriver.enable) {
+          tablet = optionalAttrs (!config.cfg.services.opentabletdriver.enable) {
             left_handed = 1; # inverted tablet
-            output = "${config.cfg.gui.hypr.defaultMonitor}";
+            output = "${cfg.defaultMonitor}";
             # active_area_size = "130, 73";
           };
           touchpad = {
@@ -260,7 +251,7 @@ in {
             range = 8;
           };
           blur = {
-            enabled = config.cfg.gui.hypr.blur.enable;
+            enabled = cfg.blur.enable;
             size = 3;
             passes = 3;
             popups = 1;
@@ -283,7 +274,7 @@ in {
           "workspaces, 1, 5, default, ${wsAnim}"
         ];
         animations = {
-          enabled = config.cfg.gui.hypr.animations.enable;
+          enabled = cfg.animations.enable;
           first_launch_animation = false;
         };
         dwindle = {
@@ -337,26 +328,26 @@ in {
           "immediate, class:^(org.eden_emu.eden)$"
         ];
         # NOTE: this sets workspaces to alternate if there are 2 monitors.
-        workspace = lib.optionalAttrs multiMonitor [
-          "1, monitor:${config.cfg.gui.hypr.defaultMonitor}"
-          "2, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
-          "3, monitor:${config.cfg.gui.hypr.defaultMonitor}"
-          "4, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
-          "5, monitor:${config.cfg.gui.hypr.defaultMonitor}"
-          "6, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
-          "7, monitor:${config.cfg.gui.hypr.defaultMonitor}"
-          "8, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
-          "9, monitor:${config.cfg.gui.hypr.defaultMonitor}"
-          "10, monitor:${config.cfg.gui.hypr.secondaryMonitor}"
+        workspace = optionalAttrs multiMonitor [
+          "1, monitor:${cfg.defaultMonitor}"
+          "2, monitor:${cfg.secondaryMonitor}"
+          "3, monitor:${cfg.defaultMonitor}"
+          "4, monitor:${cfg.secondaryMonitor}"
+          "5, monitor:${cfg.defaultMonitor}"
+          "6, monitor:${cfg.secondaryMonitor}"
+          "7, monitor:${cfg.defaultMonitor}"
+          "8, monitor:${cfg.secondaryMonitor}"
+          "9, monitor:${cfg.defaultMonitor}"
+          "10, monitor:${cfg.secondaryMonitor}"
         ];
         "$MOD" = "SUPER";
         bind =
           [
             # screenshot script
-            ",Print, exec, ${runProc "${lib.getExe screenshotScript} --monitor ${config.cfg.gui.hypr.defaultMonitor}"}"
-            "SHIFT, Print, exec, ${runProc "${lib.getExe screenshotScript} --selection"}"
-            "$MOD SHIFT, S, exec, ${runProc "${lib.getExe screenshotScript} --selection"}"
-            "$MOD, Print, exec, ${runProc "${lib.getExe screenshotScript} --active"}"
+            ",Print, exec, ${runProc "${getExe screenshotScript} --monitor ${cfg.defaultMonitor}"}"
+            "SHIFT, Print, exec, ${runProc "${getExe screenshotScript} --selection"}"
+            "$MOD SHIFT, S, exec, ${runProc "${getExe screenshotScript} --selection"}"
+            "$MOD, Print, exec, ${runProc "${getExe screenshotScript} --active"}"
 
             # binds for apps
             "$MOD, F, exec, ${runProc "thunar.desktop"}"
@@ -369,15 +360,15 @@ in {
             "CTRL SHIFT, Escape, exec, ${runTerm "btm"}"
 
             # extra schtuff
-            "$MOD, N, exec, ${runProc "${lib.getExe sunsetScript} 3000"}"
+            "$MOD, N, exec, ${runProc "${getExe sunsetScript} 3000"}"
             "$MOD, K, exec, ${toggleProc pkgs.hyprpicker} -r -a -n"
             "$MOD, R, exec, ${runProc "random-wall.sh"}"
             "$MOD SHIFT, R, exec, ${runProc "cycle-wall.sh"}"
             "$MOD, J, exec, ${runTerm "wall-picker.sh"}"
-            "$MOD, L, exec, ${runProc "${lib.getExe' pkgs.systemd "loginctl"} lock-session"}"
-            ", XF86AudioPrev, exec, ${runProc "${lib.getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif)"}"
-            ", XF86AudioPlay, exec, ${runProc "${lib.getExe pkgs.mpc} toggle; mpd-notif"}"
-            ", XF86AudioNext, exec, ${runProc "${lib.getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif)"}"
+            "$MOD, L, exec, ${runProc "${getExe' pkgs.systemd "loginctl"} lock-session"}"
+            ", XF86AudioPrev, exec, ${runProc "${getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif)"}"
+            ", XF86AudioPlay, exec, ${runProc "${getExe pkgs.mpc} toggle; mpd-notif"}"
+            ", XF86AudioNext, exec, ${runProc "${getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif)"}"
 
             # passthrough binds for obs
             "Control_L, grave, pass, class:^(com.obsproject.Studio)$"
@@ -409,20 +400,17 @@ in {
             "$MOD, mouse_down, workspace, e+1"
             "$MOD, mouse_up, workspace, e-1"
           ]
-          ++ (
-            # workspaces
+          ++ ( # workspaces
             # binds $MOD + [shift +] {1..10} to [move to] workspace {1..10}
-            builtins.concatLists (builtins.genList (
-                x: let
-                  ws = let
-                    c = (x + 1) / 10;
-                  in
-                    builtins.toString (x + 1 - (c * 10));
-                in [
-                  "$MOD, ${ws}, workspace, ${toString (x + 1)}"
-                  "$MOD SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-                ]
-              )
+            concatLists (genList (x: let
+                ws = let
+                  c = (x + 1) / 10;
+                in
+                  toString (x + 1 - (c * 10));
+              in [
+                "$MOD, ${ws}, workspace, ${toString (x + 1)}"
+                "$MOD SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+              ])
               10)
           );
 
@@ -439,7 +427,7 @@ in {
           ", XF86MonBrightnessDown, exec, ${runProc "${brightnessScript} down 5"}"
 
           # can't type £ with US layout, so use wtype
-          "$MOD, comma, exec, ${runProc "${lib.getExe pkgs.wtype} £"}"
+          "$MOD, comma, exec, ${runProc "${getExe pkgs.wtype} £"}"
 
           # resize
           "$MOD CTRL, left, resizeactive, -10 0"

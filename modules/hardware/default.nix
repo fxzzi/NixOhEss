@@ -1,10 +1,9 @@
 {...}: {
   imports = [
-    ./printing.nix
     ./rules.nix
     ./scanning.nix
-    ./scx.nix
-    ./gpu
+    ./gpu/nvidia
+    ./gpu/amdgpu
   ];
 
   config = {

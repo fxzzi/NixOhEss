@@ -18,6 +18,15 @@
     losslesscut-bin
     qpwgraph
     steamguard-cli
+    picard
+    rsgain
+    olympus
+    nicotine-plus
+    sgdboop
+    cemu
+    nvtopPackages.nvidia
+    stremio
+    yt-dlp
   ];
   networking.firewall = {
     # minecraft

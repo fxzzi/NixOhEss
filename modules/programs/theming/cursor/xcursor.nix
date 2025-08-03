@@ -4,7 +4,9 @@
   lib,
   ...
 }: let
-  cursor = config.cfg.gui.hypr.hyprcursor.theme;
+  inherit (lib) getExe mkAfter gvariant;
+  cfg = config.cfg.programs.hyprland.hyprcursor;
+  cursor = cfg.theme;
   xcursor =
     if cursor == "posy-cursors"
     then "Posy_Cursor"
@@ -21,7 +23,7 @@
     gtk-cursor-theme-name=${xcursor}
     gtk-cursor-theme-size=24
   '';
-  dconf = lib.getExe pkgs.dconf;
+  dconf = getExe pkgs.dconf;
 in {
   config = {
     environment.sessionVariables = {
@@ -33,9 +35,9 @@ in {
     };
     hj = {
       files = {
-        # lib.mkAfter places the text at the end of the file.
-        ".config/gtk-3.0/settings.ini".text = lib.mkAfter gtkCursorConf;
-        ".config/gtk-4.0/settings.ini".text = lib.mkAfter gtkCursorConf;
+        # mkAfter places the text at the end of the file.
+        ".config/gtk-3.0/settings.ini".text = mkAfter gtkCursorConf;
+        ".config/gtk-4.0/settings.ini".text = mkAfter gtkCursorConf;
         ".local/share/icons/default/index.theme".text = ''
           [Icon Theme]
           Inherits=${xcursor}
@@ -51,7 +53,7 @@ in {
         settings = {
           "org/gnome/desktop/interface" = {
             cursor-theme = xcursor;
-            cursor-size = lib.gvariant.mkInt32 24;
+            cursor-size = gvariant.mkInt32 24;
           };
         };
       }

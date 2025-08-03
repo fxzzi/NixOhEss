@@ -1,19 +1,21 @@
 {
   lib,
   config,
-  user,
   hostName,
   ...
-}: {
-  options.cfg.apps.syncthing.enable = lib.mkEnableOption "syncthing";
-  config = lib.mkIf config.cfg.apps.syncthing.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.services.syncthing;
+in {
+  options.cfg.services.syncthing.enable = mkEnableOption "syncthing";
+  config = mkIf cfg.enable {
     services.syncthing = {
       enable = true;
       # avoid using slow relays
       openDefaultPorts = true;
-      dataDir = "/home/${user}";
+      dataDir = "/home/${config.cfg.core.username}";
       group = "users";
-      inherit user;
+      user = config.cfg.core.username;
       settings = {
         devices = {
           "fazziPC".id = "XLI5OMS-7DDAHH3-N4WSXUV-T7VDUT2-BOB6G6V-7C44VO6-EDFGUA2-KOLUEQT";

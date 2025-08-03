@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -13,6 +14,10 @@
     packages = with pkgs; [
       losslesscut-bin
       qbittorrent-enhanced
+      nvtopPackages.amd
+      stremio
+      sgdboop
+      inputs.creamlinux.packages.${pkgs.system}.default
     ];
   };
   programs.hyprland.settings = {

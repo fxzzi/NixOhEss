@@ -1,24 +1,26 @@
 {
-  config,
   lib,
   pkgs,
-  user,
+  config,
   ...
-}: {
-  options.cfg.music.mpd.enable = lib.mkEnableOption "mpd";
+}: let
+  inherit (lib) mkEnableOption mkIf getExe;
+  cfg = config.cfg.services.mpd;
+in {
+  options.cfg.services.mpd.enable = mkEnableOption "mpd";
   imports = [
     ./mpd-discord-rpc
   ];
-  config = lib.mkIf config.cfg.music.mpd.enable {
+  config = mkIf cfg.enable {
     hj = {
       packages = [
         pkgs.mpd
       ];
       files = {
         ".config/mpd/mpd.conf".text = ''
-          music_directory "/home/${user}/Music"
-          state_file "/home/${user}/.local/state/mpd/state"
-          sticker_file "/home/${user}/.local/state/mpd/sticker.sql"
+          music_directory "/home/${config.cfg.core.username}/Music"
+          state_file "/home/${config.cfg.core.username}/.local/state/mpd/state"
+          sticker_file "/home/${config.cfg.core.username}/.local/state/mpd/sticker.sql"
 
           bind_to_address "localhost"
 
@@ -46,7 +48,7 @@
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${lib.getExe pkgs.mpd} --no-daemon";
+        ExecStart = "${getExe pkgs.mpd} --no-daemon";
       };
     };
   };
