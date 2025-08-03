@@ -2,9 +2,12 @@
   lib,
   config,
   ...
-}: {
+}: let
+  inherit (lib) mkMerge mkIf;
+  cfg = config.cfg.hardware.nvidia;
+in {
   config = {
-    environment.sessionVariables = lib.mkMerge [
+    environment.sessionVariables = mkMerge [
       {
         # run electron, gtk, qt apps in wayland native
         NIXOS_OZONE_WL = "1";
@@ -17,7 +20,7 @@
 
         # HYPRLAND_TRACE = "1";
       }
-      (lib.mkIf config.cfg.gpu.nvidia.enable {
+      (mkIf cfg.enable {
         # nvidia shenanigans
         GBM_BACKEND = "nvidia-drm";
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
@@ -33,7 +36,7 @@
         # NOTE: https://download.nvidia.com/XFree86/Linux-x86_64/575.51.02/README/openglenvvariables.html
         __GL_YIELD = "USLEEP";
 
-        # shader caches are getting larger - don't clean them up
+        # shaders are getting bigger by the year - don't clean them up
         __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
       })
     ];

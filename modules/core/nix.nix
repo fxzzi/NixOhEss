@@ -2,16 +2,20 @@
   lib,
   pkgs,
   inputs,
+  config,
   ...
-}: {
+}: let
+  inherit (lib) mapAttrsToList;
+  inherit (builtins) mapAttrs;
+in {
   config = {
     nix = {
       # use lix, bcuz its faster i guess
       package = pkgs.lixPackageSets.latest.lix;
       # Disable channels and add the inputs to the registry
       channel.enable = false;
-      registry = builtins.mapAttrs (_: flake: {inherit flake;}) inputs;
-      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
+      registry = mapAttrs (_: flake: {inherit flake;}) inputs;
+      nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
       settings = {
         experimental-features = [
           "nix-command"
@@ -26,7 +30,7 @@
         trusted-users = ["@wheel"];
         build-dir = "/var/tmp";
         # Disable channels and add the inputs to the registry
-        nix-path = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
+        nix-path = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
         flake-registry = "";
       };
     };

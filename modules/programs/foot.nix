@@ -5,6 +5,9 @@
   npins,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf;
+  inherit (builtins) substring;
+  cfg = config.cfg.programs.foot;
   pin = npins.foot;
   inherit (pkgs) makeDesktopItem;
   # using this allows us to hide apps from runners like fuzzel.
@@ -16,13 +19,13 @@
       noDisplay = true;
     };
 in {
-  options.cfg.gui.foot.enable = lib.mkEnableOption "foot";
-  config = lib.mkIf config.cfg.gui.foot.enable {
+  options.cfg.programs.foot.enable = mkEnableOption "foot";
+  config = mkIf cfg.enable {
     programs.foot = {
       enable = true;
       package = pkgs.foot.overrideAttrs {
         pname = "foot-transparency";
-        version = "0-unstable-${builtins.substring 0 8 pin.revision}";
+        version = "0-unstable-${substring 0 8 pin.revision}";
         src = pkgs.fetchFromGitea {
           domain = "codeberg.org";
           owner = "fazzi";

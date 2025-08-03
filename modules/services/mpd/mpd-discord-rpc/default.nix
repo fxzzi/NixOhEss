@@ -4,12 +4,14 @@
   pkgs,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf getExe;
+  cfg = config.cfg.services.mpd.discord-rpc;
   tomlFormat = pkgs.formats.toml {};
   fmt = cfg: tomlFormat.generate "config.toml" cfg;
   pkg = pkgs.mpd-discord-rpc;
 in {
-  options.cfg.music.mpd.discord-rpc.enable = lib.mkEnableOption "discord-rpc";
-  config = lib.mkIf config.cfg.music.mpd.discord-rpc.enable {
+  options.cfg.services.mpd.discord-rpc.enable = mkEnableOption "discord-rpc";
+  config = mkIf cfg.enable {
     hj = {
       files = {
         ".config/discord-rpc/config.toml".source = fmt {
@@ -30,16 +32,12 @@ in {
       enable = true;
       description = "Discord Rich Presence for MPD";
       documentation = ["https://github.com/JakeStanger/mpd-discord-rpc"];
-      wantedBy = [
-        "mpd.service"
-      ];
-      requires = [
-        "mpd.service"
-      ];
+      wantedBy = ["mpd.service"];
+      requires = ["mpd.service"];
       serviceConfig = {
         Type = "simple";
         Restart = "on-failure";
-        ExecStart = "${lib.getExe pkg}";
+        ExecStart = "${getExe pkg}";
       };
     };
   };

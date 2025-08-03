@@ -4,10 +4,12 @@
   xLib,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf;
   inherit (xLib.generators) toHyprlang;
+  cfg = config.cfg.services.xdph;
 in {
-  options.cfg.gui.hypr.xdph.enable = lib.mkEnableOption "xdph";
-  config = lib.mkIf config.cfg.gui.hypr.xdph.enable {
+  options.cfg.services.xdph.enable = mkEnableOption "xdph";
+  config = mkIf cfg.enable {
     hj = {
       files = {
         ".config/hypr/xdph.conf".text = toHyprlang {} {

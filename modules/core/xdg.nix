@@ -2,9 +2,12 @@
   lib,
   config,
   ...
-}: {
-  options.cfg.xdgConfig.enable = lib.mkEnableOption "xdgConfig";
-  config = lib.mkIf config.cfg.xdgConfig.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.core.xdg;
+in {
+  options.cfg.core.xdg.enable = mkEnableOption "xdgConfig";
+  config = mkIf cfg.enable {
     xdg.mime.defaultApplications = {
       "application/pdf" = "atril.desktop";
 

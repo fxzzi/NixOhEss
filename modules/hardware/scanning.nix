@@ -1,12 +1,14 @@
 {
   pkgs,
-  user,
   config,
   lib,
   ...
-}: {
-  options.cfg.scanning.enable = lib.mkEnableOption "scanning";
-  config = lib.mkIf config.cfg.scanning.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.hardware.scanning;
+in {
+  options.cfg.hardware.scanning.enable = mkEnableOption "scanning";
+  config = mkIf cfg.enable {
     hardware = {
       sane.enable = true;
       sane.extraBackends = [pkgs.sane-airscan];
@@ -15,7 +17,7 @@
       udev.packages = [pkgs.sane-airscan];
     };
     environment.systemPackages = [pkgs.simple-scan];
-    users.users.${user}.extraGroups = [
+    users.users.${config.cfg.core.username}.extraGroups = [
       "scanner"
       "lp"
     ];

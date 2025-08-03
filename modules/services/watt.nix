@@ -3,11 +3,14 @@
   lib,
   config,
   ...
-}: {
-  options.cfg.watt.enable = lib.mkEnableOption "watt";
-  config = lib.mkIf config.cfg.watt.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf mkForce;
+  cfg = config.cfg.services.watt;
+in {
+  options.cfg.services.watt.enable = mkEnableOption "watt";
+  config = mkIf cfg.enable {
     services = {
-      power-profiles-daemon.enable = lib.mkForce false;
+      power-profiles-daemon.enable = mkForce false;
       watt = {
         enable = true;
         settings = {

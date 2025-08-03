@@ -4,18 +4,20 @@
   pkgs,
   ...
 }: let
-  icon = ./sixels/${config.cfg.cli.fastfetch.icon}.sixel;
+  inherit (lib) mkEnableOption mkOption types mkIf mkBefore getExe;
+  cfg = config.cfg.programs.fastfetch;
+  icon = ./sixels/${cfg.icon}.sixel;
 in {
   options = {
-    cfg.cli.fastfetch = {
-      enable = lib.mkEnableOption "fastfetch";
-      shellIntegration = lib.mkOption {
-        type = lib.types.bool;
+    cfg.programs.fastfetch = {
+      enable = mkEnableOption "fastfetch";
+      shellIntegration = mkOption {
+        type = types.bool;
         default = false;
         description = "Makes fastfetch run on shell startup";
       };
-      icon = lib.mkOption {
-        type = lib.types.enum [
+      icon = mkOption {
+        type = types.enum [
           "azzi"
           "azzi-laptop"
           "kunzoz"
@@ -25,11 +27,9 @@ in {
       };
     };
   };
-  config = lib.mkIf config.cfg.cli.fastfetch.enable {
+  config = mkIf cfg.enable {
     hj = {
-      packages = [
-        pkgs.fastfetchMinimal
-      ];
+      packages = [pkgs.fastfetchMinimal];
       files.".config/fastfetch/config.jsonc".source = (pkgs.formats.json {}).generate "config.jsonc" {
         general = {
           # detecting hyprland version on NixOS is slow.
@@ -92,13 +92,11 @@ in {
         ];
       };
     };
-    environment.interactiveShellInit = lib.mkIf config.cfg.cli.fastfetch.shellIntegration (
-      lib.mkBefore # put at the start of the file.
+    environment.interactiveShellInit = mkIf cfg.shellIntegration (mkBefore # put at the start of the file.
       
       # sh
       ''
-        ${lib.getExe pkgs.fastfetchMinimal}
-      ''
-    );
+        ${getExe pkgs.fastfetchMinimal}
+      '');
   };
 }
