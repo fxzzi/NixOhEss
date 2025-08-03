@@ -1,6 +1,6 @@
 # 🇵🇸 NixOhEss 🇵🇸
 
-![NixOhEss Screenshot](showcase.jpg)
+![NixOhEss Screenshot](showcase.webp)
 
 ## Overview
 
