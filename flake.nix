@@ -37,17 +37,8 @@
         smfh.follows = ""; # we use smfh from nixpkgs
       };
     };
-
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-    ags = {
-      url = "github:aylur/ags/v1";
-      # url = "github:NotAShelf/rags"; # raf's agsv1 fork
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";

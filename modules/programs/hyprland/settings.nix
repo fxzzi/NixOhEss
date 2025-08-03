@@ -163,7 +163,7 @@ in {
       ];
       settings = {
         exec = [
-          "${runOnce inputs.ags.packages.${pkgs.system}.default}"
+          "${runOnce pkgs.ags_1}"
           "${runProc "${lib.getExe pkgs.xorg.xrandr} --output ${config.cfg.programs.hyprland.defaultMonitor} --primary"}"
         ];
         monitor = [
