@@ -16,6 +16,7 @@
       qbittorrent-enhanced
       nvtopPackages.amd
       stremio
+      sgdboop
       inputs.creamlinux.packages.${pkgs.system}.default
     ];
   };
