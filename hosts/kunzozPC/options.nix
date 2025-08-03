@@ -116,7 +116,6 @@
       defaultMonitor = "DP-3";
       secondaryMonitor = null;
       animations.enable = true;
-      autoStart = false;
       # useGit = true;
     };
     hyprlock.enable = true;

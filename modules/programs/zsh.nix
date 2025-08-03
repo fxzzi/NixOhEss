@@ -120,7 +120,7 @@ in {
             function precmd() {
               local indicators=""
               [[ -n $IN_NIX_SHELL ]] && indicators+="%F{blue} %f "
-              PROMPT="$indicators%F{yellow}%3~%f "
+              PROMPT="$indicators%F{yellow}%3~%f $ "
             }
           '';
 
