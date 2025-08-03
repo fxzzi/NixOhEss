@@ -73,7 +73,7 @@
   };
   hardware.scanning.enable = false;
   programs = {
-    eden.enable = true;
+    # eden.enable = true;
     proton-ge = {
       enable = true;
       ntsync = true;

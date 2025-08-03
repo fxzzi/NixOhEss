@@ -180,7 +180,7 @@ in {
 
           lt = "${getExe pkgs.eza} --icons --tree";
 
-          wget = "wget --hsts-file=/home/${user}/.local/share/wget-hsts";
+          wget = "wget --hsts-file=$HOME/.local/share/wget-hsts";
 
           die = "pkill -9";
           sudo = "sudo ";

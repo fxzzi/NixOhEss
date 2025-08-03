@@ -22,7 +22,7 @@ in {
     };
     environment = {
       sessionVariables = {
-        ANDROID_HOME = "/home/${user}/.local/share/android"; # Android SDK home
+        ANDROID_HOME = "$HOME/.local/share/android"; # Android SDK home
       };
       shellAliases = {
         adb = "HOME=$ANDROID_HOME ${getExe' pkgs.android-tools "adb"}";

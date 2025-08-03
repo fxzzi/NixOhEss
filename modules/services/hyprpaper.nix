@@ -24,8 +24,8 @@ in {
           ipc = 1;
           splash = 0;
 
-          preload = ["/home/${user}/.local/state/wallpaper"];
-          wallpaper = [", /home/${user}/.local/state/wallpaper"];
+          preload = ["~/.local/state/wallpaper"];
+          wallpaper = [",~/.local/state/wallpaper"];
         };
       };
     };
