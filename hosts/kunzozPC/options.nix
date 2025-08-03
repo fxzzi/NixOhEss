@@ -54,6 +54,11 @@
     scanning.enable = false;
   };
   programs = {
+    mangohud = {
+      enable = true;
+      enableSessionWide = true;
+      refreshRate = 170;
+    };
     heroic.enable = true;
     wallust.enable = true;
     fuzzel.enable = true;
@@ -61,7 +66,10 @@
     foot.enable = true;
     uwsm.enable = true;
     nvf.enable = true;
-    steam.enable = true;
+    steam = {
+      enable = true;
+      shaderThreads = 6;
+    };
     prismlauncher.enable = true;
     proton-ge = {
       enable = true;

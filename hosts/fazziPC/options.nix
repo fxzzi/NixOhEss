@@ -79,7 +79,12 @@
       enable = true;
       ntsync = true;
     };
-    mangohud.enable = true;
+    mangohud = {
+      enable = true;
+      enableSessionWide = true;
+      refreshRate = 175;
+    };
+
     nvf.enable = true;
     steam.enable = true;
     prismlauncher.enable = true;
