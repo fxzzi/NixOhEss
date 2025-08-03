@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  ... 
+  ...
 }: {
   options.cfg.services.pipewire.enable = lib.mkEnableOption "pipewire";
   config = lib.mkIf config.cfg.services.pipewire.enable {

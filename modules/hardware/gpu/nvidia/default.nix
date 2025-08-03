@@ -9,11 +9,7 @@
   ];
 
   options.cfg.hardware.nvidia = {
-    exposeTemp = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Exposes nvidia GPU temperature at /tmp/nvidia-temp";
-    };
+    exposeTemp = lib.mkEnableOption "nvidia-temp";
     enable = lib.mkEnableOption "nvidia";
   };
 
@@ -81,7 +77,7 @@
         before = ["fancontrol.service"];
         script = ''
           while :; do
-          	temp="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query.hardware=temperature.gpu --format=csv,noheader,nounits)"
+          	temp="$(${lib.getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
           	echo "$((temp * 1000))" > /tmp/nvidia-temp
           	sleep 5
           done

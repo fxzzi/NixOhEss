@@ -2,7 +2,7 @@
   lib,
   config,
   npins,
-  ... 
+  ...
 }: {
   options.cfg.programs.startpage = {
     enable = lib.mkEnableOption "startpage";

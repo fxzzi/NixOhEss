@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  ... 
+  ...
 }: let
   pw_rnnoise_config = {
     "context.modules" = [

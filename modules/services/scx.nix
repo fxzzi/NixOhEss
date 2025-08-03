@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  ... 
+  ...
 }: {
   options.cfg.services.scx.enable = lib.mkEnableOption "scx";
   options.cfg.services.scx.scheduler = lib.mkOption {

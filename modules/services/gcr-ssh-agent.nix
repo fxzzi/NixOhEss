@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  ... 
+  ...
 }: {
   options.cfg.services.gcr-ssh-agent.enable = lib.mkEnableOption "gcr-ssh-agent";
   config = lib.mkIf config.cfg.services.gcr-ssh-agent.enable {
