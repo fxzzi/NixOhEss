@@ -21,16 +21,19 @@ in {
       };
     };
     hj = {
-      files = {
-        ".local/share/themes/tokyonight".source = "${pin}/usr/share/themes/TokyoNight";
-        ".config/gtk-3.0/settings.ini".text = gtkConf;
-        ".config/gtk-4.0/settings.ini".text = gtkConf;
+      xdg = {
+        data.files."themes/tokyonight".source = "${pin}/usr/share/themes/TokyoNight";
+        config = {
+          files = {
+            "gtk-3.0/settings.ini".text = gtkConf;
+            "gtk-4.0/settings.ini".text = gtkConf;
+          };
+        };
       };
       packages = [
         pkgs.papirus-icon-theme
       ];
     };
-
     programs.dconf.profiles.user.databases = [
       {
         lockAll = true;

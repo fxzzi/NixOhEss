@@ -16,10 +16,9 @@ in {
       packages = with pkgs; [
         wallust
       ];
-      files = {
-        ".config/wallust/templates".source = ./templates;
-
-        ".config/wallust/wallust.toml".source = (pkgs.formats.toml {}).generate "wallust" {
+      xdg.config.files = {
+        "wallust/templates".source = ./templates;
+        "wallust/wallust.toml".source = (pkgs.formats.toml {}).generate "wallust" {
           check_contrast = true;
           backend = "resized";
           color_space = "lch";

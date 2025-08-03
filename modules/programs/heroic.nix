@@ -14,10 +14,8 @@ in {
         pkgs.heroic
       ];
 
-      files = {
-        ".config/heroic/tools/proton/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
-          source = pkgs.proton-ge-bin.steamcompattool;
-        };
+      xdg.config.files."heroic/tools/proton/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
+        source = pkgs.proton-ge-bin.steamcompattool;
       };
     };
   };

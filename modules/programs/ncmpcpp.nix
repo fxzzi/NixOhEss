@@ -63,8 +63,8 @@ in {
         ncmpcpp
         notifScript
       ];
-      files = {
-        ".config/ncmpcpp/bindings".text = renderBindings [
+      xdg.config.files = {
+        "ncmpcpp/bindings".text = renderBindings [
           {
             key = "+";
             command = "volume_up";
@@ -82,7 +82,7 @@ in {
             command = "volume_down";
           }
         ];
-        ".config/ncmpcpp/config".text = renderSettings {
+        "ncmpcpp/config".text = renderSettings {
           # Directories
           lyrics_directory = "/home/${config.cfg.core.username}/.local/share/ncmpcpp/lyrics/";
 

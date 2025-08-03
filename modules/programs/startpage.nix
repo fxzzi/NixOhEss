@@ -21,6 +21,6 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
-    hj.files.".local/share/startpage".source = npins.startpage; # startpage
+    hj.xdg.data.files."startpage".source = npins.startpage; # startpage
   };
 }

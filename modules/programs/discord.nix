@@ -58,75 +58,73 @@ in {
 
   config = mkIf cfg.enable {
     hj = {
-      files = {
-        ".config/discord/settings.json" = {
-          text = builtins.toJSON {
-            SKIP_HOST_UPDATE = true;
-            MINIMIZE_TO_TRAY = cfg.minimizeToTray;
-            OPEN_ON_STARTUP = false;
-            DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
-            openasar = {
-              setup = true;
-              quickstart = false;
-              # this css is made for discord compact mode. if you're not using that, stuff won't align!!
-              css =
-                # css
-                ''
-                  /* Hide nitro begging */
-                  @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css");
+      xdg.config.files."discord/settings.json" = {
+        text = builtins.toJSON {
+          SKIP_HOST_UPDATE = true;
+          MINIMIZE_TO_TRAY = cfg.minimizeToTray;
+          OPEN_ON_STARTUP = false;
+          DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
+          openasar = {
+            setup = true;
+            quickstart = false;
+            # this css is made for discord compact mode. if you're not using that, stuff won't align!!
+            css =
+              # css
+              ''
+                /* Hide nitro begging */
+                @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css");
 
-                  /* Hide the Visual Refresh title bar */
-                  .visual-refresh {
-                    /* Hide the bar itself */
-                    --custom-app-top-bar-height: 0 !important;
+                /* Hide the Visual Refresh title bar */
+                .visual-refresh {
+                  /* Hide the bar itself */
+                  --custom-app-top-bar-height: 0 !important;
 
-                    /* Title bar buttons are still visible so hide them too */
-                    div.base_c48ade > div.bar_c38106 {
-                      display: none;
-                    }
-
-                    /* Bring the server list down a few pixels */
-                    ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
-                      margin-top: 8px;
-                    }
-                  }
-
-                  :root {
-                    /* Use system fonts for UI */
-                    --font-primary: ${primaryFont} !important;
-                    --font-display: ${primaryFont} !important;
-                    --font-headline: ${primaryFont} !important;
-                    --font-code: ${monoFont} !important;
-
-                    /* Disblock settings */
-                    --display-clan-tags: none;
-                    --display-active-now: none;
-                    --display-hover-reaction-emoji: none;
-                  }
-
-                  /* Align the chat box with the user panel */
-                  form div[class="channelBottomBarArea_f75fb0"] {
-                    --custom-chat-input-margin-bottom: 6px;
-                    --custom-channel-textarea-text-area-height: 52px;
-                  }
-
-                  /* Make the slowmode text smaller */
-                  .cooldownText_b21699 {
-                    font-size: 12px;
-                  }
-
-                  /* Hide the slowmode icon */
-                  .slowModeIcon_b21699 {
+                  /* Title bar buttons are still visible so hide them too */
+                  div.base_c48ade > div.bar_c38106 {
                     display: none;
                   }
 
-                  /* Make "Read All" vencord button text smaller */
-                  button.vc-ranb-button {
-                    font-size: 11.5px;
-                    font-weight: normal;
+                  /* Bring the server list down a few pixels */
+                  ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
+                    margin-top: 8px;
                   }
-                '';
-            };
+                }
+
+                :root {
+                  /* Use system fonts for UI */
+                  --font-primary: ${primaryFont} !important;
+                  --font-display: ${primaryFont} !important;
+                  --font-headline: ${primaryFont} !important;
+                  --font-code: ${monoFont} !important;
+
+                  /* Disblock settings */
+                  --display-clan-tags: none;
+                  --display-active-now: none;
+                  --display-hover-reaction-emoji: none;
+                }
+
+                /* Align the chat box with the user panel */
+                form div[class="channelBottomBarArea_f75fb0"] {
+                  --custom-chat-input-margin-bottom: 6px;
+                  --custom-channel-textarea-text-area-height: 52px;
+                }
+
+                /* Make the slowmode text smaller */
+                .cooldownText_b21699 {
+                  font-size: 12px;
+                }
+
+                /* Hide the slowmode icon */
+                .slowModeIcon_b21699 {
+                  display: none;
+                }
+
+                /* Make "Read All" vencord button text smaller */
+                button.vc-ranb-button {
+                  font-size: 11.5px;
+                  font-weight: normal;
+                }
+              '';
           };
         };
       };

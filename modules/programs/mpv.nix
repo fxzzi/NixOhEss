@@ -39,8 +39,8 @@ in {
   config = mkIf config.cfg.programs.mpv.enable {
     hj = {
       packages = [pkgs.mpv];
-      files = {
-        ".config/mpv/mpv.conf".text = renderOptions {
+      xdg.config.files = {
+        "mpv/mpv.conf".text = renderOptions {
           save-position-on-quit = true;
           force-seekable = true;
 
@@ -93,7 +93,7 @@ in {
           msg-module = true;
           term-osd-bar = true;
         };
-        ".config/mpv/input.conf".text = renderBindings {
+        "mpv/input.conf".text = renderBindings {
           "MOUSE_BTN0" = "show-progress";
           "MOUSE_BTN0_DBL" = "cycle fullscreen";
           "MOUSE_BTN2" = "cycle pause";
