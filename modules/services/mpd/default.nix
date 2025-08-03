@@ -16,24 +16,22 @@ in {
       packages = [
         pkgs.mpd
       ];
-      files = {
-        ".config/mpd/mpd.conf".text = ''
-          music_directory "/home/${config.cfg.core.username}/Music"
-          state_file "/home/${config.cfg.core.username}/.local/state/mpd/state"
-          sticker_file "/home/${config.cfg.core.username}/.local/state/mpd/sticker.sql"
+      xdg.config.files."mpd/mpd.conf".text = ''
+        music_directory "/home/${config.cfg.core.username}/Music"
+        state_file "/home/${config.cfg.core.username}/.local/state/mpd/state"
+        sticker_file "/home/${config.cfg.core.username}/.local/state/mpd/sticker.sql"
 
-          bind_to_address "localhost"
+        bind_to_address "localhost"
 
-          audio_output {
-          type "pipewire"
-          name "PipeWire Sound Server"
-          }
+        audio_output {
+        type "pipewire"
+        name "PipeWire Sound Server"
+        }
 
-          replaygain "track"
-          replaygain_preamp "4.8"
-          restore_paused "yes"
-        '';
-      };
+        replaygain "track"
+        replaygain_preamp "4.8"
+        restore_paused "yes"
+      '';
     };
     systemd.user.services.mpd = {
       enable = true;

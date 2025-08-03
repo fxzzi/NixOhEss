@@ -13,19 +13,15 @@ in {
   options.cfg.services.hyprpaper.enable = mkEnableOption "hyprpaper";
   config = mkIf cfg.enable {
     hj = {
-      files = {
-        ".local/share/walls".source = "${npins.walls}/images"; # wallpapers
-      };
+      xdg.data.files."walls".source = "${npins.walls}/images"; # wallpapers
 
       packages = [pkgs.hyprpaper];
-      files = {
-        ".config/hypr/hyprpaper.conf".text = toHyprlang {} {
-          ipc = 1;
-          splash = 0;
+      xdg.config.files."hypr/hyprpaper.conf".text = toHyprlang {} {
+        ipc = 1;
+        splash = 0;
 
-          preload = ["~/.local/state/wallpaper"];
-          wallpaper = [",~/.local/state/wallpaper"];
-        };
+        preload = ["~/.local/state/wallpaper"];
+        wallpaper = [",~/.local/state/wallpaper"];
       };
     };
     systemd.user.services.hyprpaper = {

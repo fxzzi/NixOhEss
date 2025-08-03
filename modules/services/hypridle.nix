@@ -36,37 +36,35 @@ in {
   config = mkIf cfg.enable {
     hj = {
       packages = [pkgs.hypridle];
-      files = {
-        ".config/hypr/hypridle.conf".text = toHyprconf {
-          attrs = {
-            general = {
-              lock_cmd = "${getExe' pkgs.procps "pidof"} hyprlock || ${getExe pkgs.hyprlock}";
-              before_sleep_cmd = "${getExe' pkgs.systemd "loginctl"} lock-session";
-              after_sleep_cmd = "hyprctl dispatch dpms on";
-              ignore_dbus_inhibit = false;
-              ignore_systemd_inhibit = false;
-            };
-            listener =
-              optionals (cfg.dpmsTimeout != 0) [
-                {
-                  timeout = cfg.dpmsTimeout;
-                  on-timeout = "hyprctl dispatch dpms off";
-                  on-resume = "hyprctl dispatch dpms on";
-                }
-              ]
-              ++ optionals (cfg.lockTimeout != 0) [
-                {
-                  timeout = cfg.lockTimeout;
-                  on-timeout = "loginctl lock-session";
-                }
-              ]
-              ++ optionals (cfg.suspendTimeout != 0) [
-                {
-                  timeout = cfg.suspendTimeout;
-                  on-timeout = "systemctl suspend";
-                }
-              ];
+      xdg.config.files."hypr/hypridle.conf".text = toHyprconf {
+        attrs = {
+          general = {
+            lock_cmd = "${getExe' pkgs.procps "pidof"} hyprlock || ${getExe pkgs.hyprlock}";
+            before_sleep_cmd = "${getExe' pkgs.systemd "loginctl"} lock-session";
+            after_sleep_cmd = "hyprctl dispatch dpms on";
+            ignore_dbus_inhibit = false;
+            ignore_systemd_inhibit = false;
           };
+          listener =
+            optionals (cfg.dpmsTimeout != 0) [
+              {
+                timeout = cfg.dpmsTimeout;
+                on-timeout = "hyprctl dispatch dpms off";
+                on-resume = "hyprctl dispatch dpms on";
+              }
+            ]
+            ++ optionals (cfg.lockTimeout != 0) [
+              {
+                timeout = cfg.lockTimeout;
+                on-timeout = "loginctl lock-session";
+              }
+            ]
+            ++ optionals (cfg.suspendTimeout != 0) [
+              {
+                timeout = cfg.suspendTimeout;
+                on-timeout = "systemctl suspend";
+              }
+            ];
         };
       };
     };

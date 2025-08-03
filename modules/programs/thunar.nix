@@ -41,9 +41,9 @@ in {
         p7zip
         unar
       ];
-      files = {
-        ".config/gtk-3.0/bookmarks".text = concatMapStrings (l: l + "\n") bookmarks;
-        ".config/Thunar/uca.xml".text = ''
+      xdg.config.files = {
+        "gtk-3.0/bookmarks".text = concatMapStrings (l: l + "\n") bookmarks;
+        "Thunar/uca.xml".text = ''
           <?xml version="1.0" encoding="UTF-8"?>
           <actions>
           <action>

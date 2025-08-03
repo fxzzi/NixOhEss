@@ -13,18 +13,16 @@ in {
   options.cfg.services.mpd.discord-rpc.enable = mkEnableOption "discord-rpc";
   config = mkIf cfg.enable {
     hj = {
-      files = {
-        ".config/discord-rpc/config.toml".source = fmt {
-          hosts = ["localhost:6600"];
-          format = {
-            details = "$title";
-            state = "$artist";
-            timestamp = "both";
-            large_image = "notes";
-            small_image = "";
-            large_text = "$album";
-            small_text = "";
-          };
+      xdg.config.files."discord-rpc/config.toml".source = fmt {
+        hosts = ["localhost:6600"];
+        format = {
+          details = "$title";
+          state = "$artist";
+          timestamp = "both";
+          large_image = "notes";
+          small_image = "";
+          large_text = "$album";
+          small_text = "";
         };
       };
     };
