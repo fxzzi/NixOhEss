@@ -1,14 +1,16 @@
 {
   config,
   lib,
-  user,
   pkgs,
   ...
-}: {
-  options.cfg.adb.enable = lib.mkEnableOption "adb";
-  config = lib.mkIf config.cfg.adb.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf getExe';
+  cfg = config.cfg.programs.adb;
+in {
+  options.cfg.programs.adb.enable = mkEnableOption "adb";
+  config = mkIf cfg.enable {
     programs.adb.enable = true;
-    users.users.${user} = {
+    users.users.${config.cfg.core.username} = {
       extraGroups = ["adbusers"];
     };
     hj = {
@@ -19,10 +21,10 @@
     };
     environment = {
       sessionVariables = {
-        ANDROID_HOME = "/home/${user}/.local/share/android"; # Android SDK home
+        ANDROID_HOME = "$HOME/.local/share/android"; # Android SDK home
       };
       shellAliases = {
-        adb = "HOME=$ANDROID_HOME ${lib.getExe' pkgs.android-tools "adb"}";
+        adb = "HOME=$ANDROID_HOME ${getExe' pkgs.android-tools "adb"}";
 
         webcam1080 = ''
           scrcpy --video-source=camera --no-audio --camera-facing=back \

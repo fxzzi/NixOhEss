@@ -2,21 +2,24 @@
   config,
   lib,
   ...
-}: {
-  options.cfg.cli.git = {
-    enable = lib.mkEnableOption "git";
-    name = lib.mkOption {
-      type = lib.types.str;
+}: let
+  inherit (lib) mkEnableOption mkOption types mkIf;
+  cfg = config.cfg.programs.git;
+in {
+  options.cfg.programs.git = {
+    enable = mkEnableOption "git";
+    name = mkOption {
+      type = types.str;
       default = false;
       description = "Sets your username for git.";
     };
-    email = lib.mkOption {
-      type = lib.types.str;
+    email = mkOption {
+      type = types.str;
       default = false;
       description = "Sets your email for git.";
     };
   };
-  config = lib.mkIf config.cfg.cli.git.enable {
+  config = mkIf cfg.enable {
     environment.shellAliases = {
       g = "git";
       ga = "git add";
@@ -31,8 +34,7 @@
       enable = true;
       config = {
         user = {
-          inherit (config.cfg.cli.git) name;
-          inherit (config.cfg.cli.git) email;
+          inherit (cfg) name email;
         };
         signing = {
           format = "ssh";

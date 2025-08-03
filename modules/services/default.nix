@@ -13,5 +13,10 @@
     ./mate-polkit.nix
     ./sunshine.nix
     ./watt.nix
+    ./scx.nix
+    ./pipewire
+    ./mediamtx.nix
+    ./greetd.nix
+    ./printing.nix
   ];
 }

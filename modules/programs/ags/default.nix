@@ -1,15 +1,25 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
   ...
-}: {
-  options.cfg.gui.ags.enable = lib.mkEnableOption "ags";
-  config = lib.mkIf config.cfg.gui.ags.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.programs.ags;
+in {
+  options.cfg.programs.ags.enable = mkEnableOption "ags";
+  config = mkIf cfg.enable {
+    # this package isn't included in the buildInputs by default for some reason.
+    nixpkgs.overlays = [
+      (_: prev: {
+        ags_1 = prev.ags_1.overrideAttrs (old: {
+          buildInputs = old.buildInputs ++ [prev.libdbusmenu-gtk3];
+        });
+      })
+    ];
     hj = {
       packages = [
-        inputs.ags.packages.${pkgs.system}.default
+        pkgs.ags_1
       ];
       files = {
         ".config/ags/icons".source = ./ags/icons;
@@ -18,6 +28,6 @@
         ".config/ags/style.css".source = ./ags/style.css;
       };
     };
-    services.upower.enable = config.cfg.watt.enable; # enable battery module if watt is in use, its a good indicator of whether we're on a laptop.
+    services.upower.enable = config.cfg.services.watt.enable; # enable battery module if watt is in use, its a good indicator of whether we're on a laptop.
   };
 }

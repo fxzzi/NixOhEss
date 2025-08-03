@@ -4,7 +4,9 @@
   config,
   ...
 }: let
-  cursor = config.cfg.gui.hypr.hyprcursor.theme;
+  inherit (lib) mkOption types mkIf;
+  cfg = config.cfg.programs.hyprland.hyprcursor;
+  cursor = cfg.theme;
   hyprcursorPkg =
     if cursor == "posy-cursors"
     then ./posy-cursors-hyprcursor.nix
@@ -19,8 +21,8 @@
     else cursor;
 in {
   options = {
-    cfg.gui.hypr.hyprcursor.theme = lib.mkOption {
-      type = lib.types.enum [
+    cfg.programs.hyprland.hyprcursor.theme = mkOption {
+      type = types.enum [
         "posy-cursors"
         "xcursor-pro"
         "bibata-hyprcursor"
@@ -32,7 +34,7 @@ in {
       '';
     };
   };
-  config = lib.mkIf config.cfg.gui.hypr.hyprland.enable {
+  config = mkIf config.cfg.programs.hyprland.enable {
     environment.sessionVariables = {
       HYPRCURSOR_THEME = hyprcursorName;
       HYPRCURSOR_SIZE =

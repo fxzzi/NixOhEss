@@ -5,40 +5,23 @@
     npins = import ./npins;
     xLib = import ./lib inputs.nixpkgs.lib;
 
-    nixosCommonSystem = {
-      hostName,
-      user,
-    }:
+    mkSystem = hostName: _:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit
-            inputs
-            npins
-            hostName
-            user
-            xLib
-            ;
+          inherit inputs npins xLib hostName;
         };
         modules = [
           ./modules
           ./hosts/${hostName}
         ];
       };
-
-    # adding a host? Add a hostname and username here
-    # then, have a gander at ./hosts
-    hosts = {
-      fazziPC.user = "faaris";
-      fazziGO.user = "faaris";
-      kunzozPC.user = "kunzoz";
-    };
+    hosts = ["fazziPC" "fazziGO" "kunzozPC"];
   in {
-    nixosConfigurations =
-      builtins.mapAttrs (
-        hostName: config:
-          nixosCommonSystem (config // {inherit hostName;})
-      )
-      hosts;
+    nixosConfigurations = builtins.listToAttrs (map (host: {
+        name = host;
+        value = mkSystem host {};
+      })
+      hosts);
   };
 
   inputs = {
@@ -51,26 +34,8 @@
         smfh.follows = ""; # we use smfh from nixpkgs
       };
     };
-
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        aquamarine.follows = "aquamarine";
-        hyprcursor.follows = "hyprcursor";
-        hyprgraphics.follows = "hyprgraphics";
-        hyprland-protocols.follows = "hyprland-protocols";
-        hyprland-qtutils.follows = "hyprland-qtutils";
-        hyprlang.follows = "hyprlang";
-        hyprutils.follows = "hyprutils";
-        hyprwayland-scanner.follows = "hyprwayland-scanner";
-        xdph.follows = "xdph";
-      };
-    };
-    ags = {
-      url = "github:aylur/ags/v1";
-      # url = "github:NotAShelf/rags"; # raf's agsv1 fork
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
@@ -112,89 +77,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-      };
-    };
-
-    # hyprland deps
-    aquamarine = {
-      url = "github:hyprwm/aquamarine";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        hyprutils.follows = "hyprutils";
-        hyprwayland-scanner.follows = "hyprwayland-scanner";
-      };
-    };
-
-    hyprcursor = {
-      url = "github:hyprwm/hyprcursor";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        hyprlang.follows = "hyprlang";
-      };
-    };
-
-    hyprgraphics = {
-      url = "github:hyprwm/hyprgraphics";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        hyprutils.follows = "hyprutils";
-      };
-    };
-
-    hyprland-protocols = {
-      url = "github:hyprwm/hyprland-protocols";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
-    hyprland-qtutils = {
-      url = "github:hyprwm/hyprland-qtutils";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        hyprlang.follows = "hyprlang";
-      };
-    };
-
-    hyprlang = {
-      url = "github:hyprwm/hyprlang";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        hyprutils.follows = "hyprutils";
-      };
-    };
-
-    hyprutils = {
-      url = "github:hyprwm/hyprutils";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
-    hyprwayland-scanner = {
-      url = "github:hyprwm/hyprwayland-scanner";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
-    xdph = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        hyprland-protocols.follows = "hyprland-protocols";
-        hyprlang.follows = "hyprlang";
-        hyprutils.follows = "hyprutils";
-        hyprwayland-scanner.follows = "hyprwayland-scanner";
       };
     };
   };

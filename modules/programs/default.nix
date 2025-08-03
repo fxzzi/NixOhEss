@@ -1,4 +1,6 @@
-{lib, ...}: {
+{lib, ...}: let
+  inherit (lib) mkDefault;
+in {
   imports = [
     ./fastfetch
     ./android.nix
@@ -8,7 +10,6 @@
     ./ncmpcpp.nix
     ./nh.nix
     ./nvf.nix
-    ./nvtop.nix
     ./ssh.nix
     ./zsh.nix
     ./theming
@@ -16,23 +17,35 @@
     ./hyprlock.nix
     ./wleave
     ./fuzzel.nix
-    ./browsers
+    ./librewolf.nix
+    ./chromium
+    ./startpage.nix
     ./foot.nix
     ./mpv.nix
-    ./music.nix
     ./obs-studio.nix
     ./thunar.nix
-    ./discord
+    ./discord.nix
     ./ags
-    ./uwsm
+    ./uwsm.nix
     ./sudo.nix
+    ./heroic.nix
+    ./lutris.nix
+    ./mangohud.nix
+    ./prismlauncher.nix
+    ./eden.nix
+    ./steam.nix
+    ./proton.nix
+    ./osu.nix
+    ./gamescope.nix
+    ./scripts
+    ./wallust
   ];
   config = {
     # nano is enabled by default. no.
     # also dont install any of the default packages.
     # cmd-not-found is useless
-    programs.nano.enable = lib.mkDefault false;
-    environment.defaultPackages = lib.mkDefault [];
+    programs.nano.enable = mkDefault false;
+    environment.defaultPackages = mkDefault [];
     programs.command-not-found.enable = false;
   };
 }

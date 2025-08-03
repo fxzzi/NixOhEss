@@ -2,9 +2,12 @@
   lib,
   config,
   ...
-}: {
-  options.cfg.opentabletdriver.enable = lib.mkEnableOption "opentabletdriver";
-  config = lib.mkIf config.cfg.opentabletdriver.enable {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.services.opentabletdriver;
+in {
+  options.cfg.services.opentabletdriver.enable = mkEnableOption "opentabletdriver";
+  config = mkIf cfg.enable {
     hardware.opentabletdriver = {
       enable = true;
       daemon.enable = true;
