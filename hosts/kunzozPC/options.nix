@@ -54,6 +54,7 @@
     scanning.enable = false;
   };
   programs = {
+    heroic.enable = true;
     wallust.enable = true;
     fuzzel.enable = true;
     scripts.enable = true;
