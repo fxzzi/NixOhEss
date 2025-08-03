@@ -17,8 +17,8 @@ in {
       packages = [
         pkgs.wleave
       ];
-      files = {
-        ".config/wleave/layout.json".source = (pkgs.formats.json {}).generate "wleave-layout" {
+      xdg.config.files = {
+        "wleave/layout.json".source = (pkgs.formats.json {}).generate "wleave-layout" {
           buttons = [
             {
               label = "shutdown";
@@ -52,7 +52,7 @@ in {
             }
           ];
         };
-        ".config/wleave/style.css".text =
+        "wleave/style.css".text =
           # css
           ''
             @import url("./colors_wleave.css");

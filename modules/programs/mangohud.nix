@@ -58,8 +58,8 @@ in {
     };
     hj = {
       packages = [pkgs.mangohud];
-      files = {
-        ".config/MangoHud/MangoHud.conf".text = renderSettings {
+      xdg.config.files = {
+        "MangoHud/MangoHud.conf".text = renderSettings {
           preset = "0,1,2";
           fps_limit = "${toString fpsLimit},0"; # few below refresh rate (vrr) or unlimited
           toggle_hud = "Shift_R+F12";
@@ -72,7 +72,7 @@ in {
             "mpv"
           ];
         };
-        ".config/MangoHud/presets.conf".text = ''
+        "MangoHud/presets.conf".text = ''
           [preset 0]
           fps_only
           background_alpha=0

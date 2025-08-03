@@ -14,10 +14,8 @@ in {
         lutris
       ];
 
-      files = {
-        ".local/share/lutris/runners/proton/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
-          source = pkgs.proton-ge-bin.steamcompattool;
-        };
+      xdg.data.files."lutris/runners/proton/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
+        source = pkgs.proton-ge-bin.steamcompattool;
       };
     };
   };

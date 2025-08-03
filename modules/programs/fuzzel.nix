@@ -19,7 +19,7 @@ in {
       packages = [
         pkgs.fuzzel
       ];
-      files.".config/fuzzel/fuzzel.ini".text = toINI {
+      xdg.config.files."fuzzel/fuzzel.ini".text = toINI {
         main = {
           font = "monospace:size=17";
           line-height = "30";

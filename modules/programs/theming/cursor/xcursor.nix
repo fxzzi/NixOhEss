@@ -34,11 +34,14 @@ in {
       ];
     };
     hj = {
-      files = {
-        # mkAfter places the text at the end of the file.
-        ".config/gtk-3.0/settings.ini".text = mkAfter gtkCursorConf;
-        ".config/gtk-4.0/settings.ini".text = mkAfter gtkCursorConf;
-        ".local/share/icons/default/index.theme".text = ''
+      xdg = {
+        config = {
+          files = {
+            "gtk-3.0/settings.ini".text = mkAfter gtkCursorConf;
+            "gtk-4.0/settings.ini".text = mkAfter gtkCursorConf;
+          };
+        };
+        data.files."icons/default/index.theme".text = ''
           [Icon Theme]
           Inherits=${xcursor}
         '';

@@ -30,7 +30,7 @@ in {
   config = mkIf cfg.enable {
     hj = {
       packages = [pkgs.fastfetchMinimal];
-      files.".config/fastfetch/config.jsonc".source = (pkgs.formats.json {}).generate "config.jsonc" {
+      xdg.config.files."fastfetch/config.jsonc".source = (pkgs.formats.json {}).generate "config.jsonc" {
         general = {
           # detecting hyprland version on NixOS is slow.
           detectVersion = false;

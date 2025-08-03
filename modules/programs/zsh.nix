@@ -84,10 +84,7 @@ in {
         bat
         eza
       ];
-      files = {
-        # empty .zshrc to stop the zsh-newuser stuff
-        ".config/zsh/.zshrc".text = "# this is an empty file :D";
-      };
+      xdg.config.files."zsh/.zshrc".text = "# this is an empty file :D";
     };
     # de-clutter $HOME
     environment.sessionVariables = {

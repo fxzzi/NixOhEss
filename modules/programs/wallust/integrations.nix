@@ -13,10 +13,8 @@ in {
       "~/.cache/wallust/colors_hyprland.conf"
     ];
     hj = {
-      files = {
-        ".config/fuzzel/fuzzel.ini".text = toINI {
-          main.include = "~/.cache/wallust/colors_fuzzel.ini";
-        };
+      xdg.config.files."fuzzel/fuzzel.ini".text = toINI {
+        main.include = "~/.cache/wallust/colors_fuzzel.ini";
       };
     };
   };
