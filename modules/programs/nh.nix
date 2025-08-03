@@ -27,6 +27,13 @@ in {
       rbu = "nh os switch -u";
       rbb = "nh os boot";
       rbbu = "nh os boot -u";
+      evaltime = ''
+        time nix eval \
+          ''${NH_FLAKE}#nixosConfigurations.''${HOST}.config.system.build.toplevel \
+          --substituters " " \
+          --option eval-cache false \
+          --raw --read-only
+      '';
     };
   };
 }
