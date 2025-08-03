@@ -13,21 +13,6 @@
       "url": "https://github.com/stronk-dev/Tokyo-Night-Linux/archive/d553d015a0d3c1e9e41b72aab959ad89f91b457d.tar.gz",
       "hash": "0acwmwiifghdlgvvxl0m2gc654njg7gfdsk743s2sigv47y4dfa1"
     },
-    "eden": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "Git",
-        "url": "https://git.eden-emu.dev/eden-emu/eden"
-      },
-      "pre_releases": true,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": true,
-      "version": "v0.0.3-rc1",
-      "revision": "f33c1ca7c190649fbe7da00e2164a252e325a031",
-      "url": null,
-      "hash": "0akcqm6vgv723wfhh3rlw7h7fmk0gjg1qsnniwavq62v265vgwyg"
-    },
     "foot": {
       "type": "Git",
       "repository": {
