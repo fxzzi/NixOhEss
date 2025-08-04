@@ -28,7 +28,7 @@ in {
             label = "Music";
             path = "~/Music";
             # fazziPC is the main device, so send music to others and don't receive
-            # the other devices can send and receieve between each other though.
+            # the other devices can send and receive between each other though.
             type =
               if hostName == "fazziPC"
               then "sendonly"
