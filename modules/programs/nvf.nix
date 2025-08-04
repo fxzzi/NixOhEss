@@ -187,7 +187,7 @@ in {
     };
     # make indents normal lmfao
     hj = {
-      xdg.config.files.".editorconfig".source = (pkgs.formats.ini {}).generate ".editorconfig" {
+      files.".editorconfig".source = (pkgs.formats.ini {}).generate ".editorconfig" {
         "*" = {
           charset = "utf-8";
           end_of_line = "lf";
