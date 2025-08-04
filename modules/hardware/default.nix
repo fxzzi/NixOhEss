@@ -2,8 +2,8 @@
   imports = [
     ./rules.nix
     ./scanning.nix
-    ./gpu/nvidia
-    ./gpu/amdgpu
+    ./amdgpu.nix
+    ./nvidia
   ];
 
   config = {

@@ -121,6 +121,5 @@
       };
       hyprlock.enable = true;
     };
-    gui.smoothScroll.enable = true;
   };
 }
