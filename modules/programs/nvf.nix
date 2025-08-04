@@ -70,11 +70,7 @@ in {
             enableExtraDiagnostics = true;
 
             nix.enable = true;
-            # avoid having to build nil from source
-            nix.lsp.package = pkgs.nil;
-
             markdown.enable = true;
-
             bash.enable = true;
             clang.enable = true;
             css.enable = true;
@@ -112,8 +108,14 @@ in {
           };
 
           autopairs.nvim-autopairs.enable = true;
-
-          autocomplete.nvim-cmp.enable = true;
+          autocomplete.nvim-cmp = {
+            enable = true;
+            sources = {
+              buffer = "[Buffer]";
+              nvim-cmp = null;
+              path = "[Path]";
+            };
+          };
           snippets.luasnip.enable = true;
 
           filetree = {
@@ -137,10 +139,6 @@ in {
             enable = true;
             gitsigns.enable = true;
             gitsigns.codeActions.enable = false; # throws an annoying debug message
-          };
-
-          dashboard = {
-            # alpha.enable = true;
           };
 
           utility = {
