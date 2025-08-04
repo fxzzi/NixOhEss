@@ -26,7 +26,7 @@ in {
     # tearing and ds don't work on kunzozPC
     render.direct_scanout = mkForce 0;
     general.allow_tearing = mkForce 0;
-    misc.vrr = mkForce 2;
+    # misc.vrr = mkForce 2;
   };
 
   hardware.display = {
