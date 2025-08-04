@@ -46,7 +46,7 @@ in {
     users.users.${username} = {
       isNormalUser = true;
       # so you can login the first time.
-      # PLEASE change this after logging in
+      # PLEASE change this after logging in :prayge:
       initialPassword = "1234";
       extraGroups = [
         "wheel" # sudo
