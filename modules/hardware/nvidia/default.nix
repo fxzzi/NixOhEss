@@ -21,7 +21,7 @@ in {
 
     hardware = {
       nvidia = {
-        open = false;
+        open = true;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
@@ -30,7 +30,7 @@ in {
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
           version = "580.65.06";
           sha256_64bit = "sha256-BLEIZ69YXnZc+/3POe1fS9ESN1vrqwFy6qGHxqpQJP8=";
-          openSha256 = lib.fakeSha256;
+          openSha256 = "sha256-BKe6LQ1ZSrHUOSoV6UCksUE0+TIa0WcCHZv4lagfIgA=";
           usePersistenced = false;
           useSettings = false;
         };
