@@ -3,7 +3,9 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  inherit (lib) mkForce;
+in {
   system.stateVersion = "25.05";
   imports = [
     ./hardware-configuration.nix
@@ -22,8 +24,9 @@
   };
   programs.hyprland.settings = {
     # tearing and ds don't work on kunzozPC
-    render.direct_scanout = lib.mkForce 0;
-    general.allow_tearing = lib.mkForce 0;
+    render.direct_scanout = mkForce 0;
+    general.allow_tearing = mkForce 0;
+    misc.vrr = mkForce 2;
   };
 
   hardware.display = {

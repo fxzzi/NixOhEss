@@ -25,15 +25,15 @@ in {
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        #   version = "575.64.05";
-        #   sha256_64bit = "sha256-hfK1D5EiYcGRegss9+H5dDr/0Aj9wPIJ9NVWP3dNUC0=";
-        #   openSha256 = "sha256-mcbMVEyRxNyRrohgwWNylu45vIqF+flKHnmt47R//KU=";
-        #   usePersistenced = false;
-        #   useSettings = false;
-        # };
+        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          version = "580.65.06";
+          sha256_64bit = "sha256-BLEIZ69YXnZc+/3POe1fS9ESN1vrqwFy6qGHxqpQJP8=";
+          openSha256 = lib.fakeSha256;
+          usePersistenced = false;
+          useSettings = false;
+        };
       };
       graphics = {
         enable = true;
@@ -74,8 +74,8 @@ in {
         [
           "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
           "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
-          "nvidia.NVreg_RegistryDwords=RMIntrLockingMode=1" # enable low-latency mode
-          # "nvidia_modeset.disable_vrr_memclk_switch=1" # stop really high memclk when vrr is in use.
+          "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
+          "nvidia_modeset.disable_vrr_memclk_switch=1" # stop really high memclk when vrr is in use.
         ]
         (mkIf config.hardware.nvidia.powerManagement.enable [
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
