@@ -89,7 +89,10 @@
       };
 
       nvf.enable = true;
-      steam.enable = true;
+      steam = {
+        enable = true;
+        shaderThreads = 6;
+      };
       prismlauncher.enable = true;
       lutris.enable = true;
       heroic.enable = true;
