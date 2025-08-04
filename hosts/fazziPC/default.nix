@@ -9,8 +9,8 @@
     ./networking.nix
     ./fancontrol.nix
     ./gtkBookmarks.nix
+    ./options.nix
   ];
-  cfg = import ./options.nix;
   # host specific packages
   hj.packages = with pkgs; [
     qbittorrent-enhanced

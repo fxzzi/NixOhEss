@@ -8,8 +8,8 @@
   imports = [
     ./hardware-configuration.nix
     ./gtkBookmarks.nix
+    ./options.nix
   ];
-  cfg = import ./options.nix;
   hj = {
     packages = with pkgs; [
       losslesscut-bin
