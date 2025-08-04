@@ -69,7 +69,7 @@ in {
 
           // Disable smooth scrolling
           pref("general.smoothScroll", ${
-            if config.cfg.gui.smoothScroll.enable
+            if config.cfg.programs.smoothScroll.enable
             then "true"
             else "false"
           });

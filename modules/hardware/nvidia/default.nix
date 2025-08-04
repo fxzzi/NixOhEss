@@ -42,6 +42,17 @@ in {
     };
     environment = {
       sessionVariables = {
+        # nvidia shenanigans
+        GBM_BACKEND = "nvidia-drm";
+        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+
+        # disable vsync
+        __GL_SYNC_TO_VBLANK = "0";
+        # enable gsync / vrr support
+        __GL_VRR_ALLOWED = "1";
+
+        # lowest frame buffering -> lower latency
+        __GL_MaxFramesAllowed = "1";
         # fix hw acceleration and native wayland on losslesscut
         "__EGL_VENDOR_LIBRARY_FILENAMES" = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
         "CUDA_CACHE_PATH" = "$HOME/.cache/nv";

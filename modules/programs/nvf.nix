@@ -70,6 +70,7 @@ in {
             enableExtraDiagnostics = true;
 
             nix.enable = true;
+            # avoid having to build nil from source
             nix.lsp.package = pkgs.nil;
 
             markdown.enable = true;

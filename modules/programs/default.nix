@@ -1,5 +1,5 @@
 {lib, ...}: let
-  inherit (lib) mkDefault;
+  inherit (lib) mkDefault mkEnableOption;
 in {
   imports = [
     ./fastfetch
@@ -12,7 +12,6 @@ in {
     ./nvf.nix
     ./ssh.nix
     ./zsh.nix
-    ./theming
     ./hyprland
     ./hyprlock.nix
     ./wleave
@@ -40,6 +39,9 @@ in {
     ./scripts
     ./wallust
   ];
+  options.cfg.programs.smoothScroll = {
+    enable = mkEnableOption "smooth scrolling" // {default = true;};
+  };
   config = {
     # nano is enabled by default. no.
     # also dont install any of the default packages.

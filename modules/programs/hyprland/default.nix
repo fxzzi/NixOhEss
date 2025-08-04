@@ -45,6 +45,7 @@ in {
     inputs.hyprland.nixosModules.default
     ./env.nix
     ./settings.nix
+    ./cursor.nix
   ];
 
   config = mkIf cfg.enable {
