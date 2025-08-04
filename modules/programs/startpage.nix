@@ -4,7 +4,7 @@
   npins,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types;
+  inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.cfg.programs.startpage;
 in {
   options.cfg.programs.startpage = {
@@ -20,7 +20,7 @@ in {
       description = "Selects which startpage user to use.";
     };
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     hj.xdg.data.files."startpage".source = npins.startpage; # startpage
   };
 }

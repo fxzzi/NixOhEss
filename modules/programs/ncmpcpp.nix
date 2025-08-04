@@ -4,8 +4,9 @@
   lib,
   ...
 }: let
-  inherit (lib) concatStringsSep mapAttrsToList isList mkEnableOption getExe;
+  inherit (lib) concatStringsSep mapAttrsToList isList mkEnableOption getExe mkIf;
   inherit (builtins) typeOf toString;
+  cfg = config.cfg.programs.ncmpcpp;
 
   renderSettings = settings: concatStringsSep "\n" (mapAttrsToList renderSetting settings);
 
@@ -57,7 +58,7 @@
   };
 in {
   options.cfg.programs.ncmpcpp.enable = mkEnableOption "ncmpcpp";
-  config = lib.mkIf config.cfg.programs.ncmpcpp.enable {
+  config = mkIf cfg.enable {
     hj = {
       packages = with pkgs; [
         ncmpcpp
@@ -84,7 +85,7 @@ in {
         ];
         "ncmpcpp/config".text = renderSettings {
           # Directories
-          lyrics_directory = "/home/${config.cfg.core.username}/.local/share/ncmpcpp/lyrics/";
+          lyrics_directory = "~/.local/share/ncmpcpp/lyrics/";
 
           # Mouse and scrolling
           mouse_support = "yes";
