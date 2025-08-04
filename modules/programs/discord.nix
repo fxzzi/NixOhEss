@@ -28,7 +28,7 @@
     ++ (optionals (disableFeatures != []) [
       "--disable-features=${concatStringsSep "," disableFeatures}"
     ])
-    ++ optionals (!config.cfg.gui.smoothScroll.enable) [
+    ++ optionals (!config.cfg.programs.smoothScroll.enable) [
       "--disable-smooth-scrolling"
     ];
 

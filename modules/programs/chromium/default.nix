@@ -33,7 +33,7 @@
     ++ [
       "--extension-mime-request-handling=always-prompt-for-install"
     ]
-    ++ optionals (!config.cfg.gui.smoothScroll.enable) [
+    ++ optionals (!config.cfg.programs.smoothScroll.enable) [
       "--disable-smooth-scrolling"
     ]
     ++ optionals config.cfg.programs.startpage.enable [

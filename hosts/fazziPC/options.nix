@@ -76,6 +76,7 @@
     };
     hardware.scanning.enable = false;
     programs = {
+      smoothScroll.enable = false;
       # eden.enable = true;
       proton-ge = {
         enable = true;
