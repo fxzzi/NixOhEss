@@ -9,10 +9,10 @@
 in {
   options.cfg.programs.ags.enable = mkEnableOption "ags";
   config = mkIf cfg.enable {
-    # this package isn't included in the buildInputs by default for some reason.
     nixpkgs.overlays = [
       (_: prev: {
         ags_1 = prev.ags_1.overrideAttrs (old: {
+          # this package isn't included in the buildInputs by default for some reason.
           buildInputs = old.buildInputs ++ [prev.libdbusmenu-gtk3];
         });
       })
