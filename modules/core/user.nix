@@ -7,7 +7,6 @@
 }: let
   inherit (lib) mkOption types;
   inherit (lib.modules) mkAliasOptionModule;
-  inherit (inputs) hjem;
   inherit (config.cfg.core) username;
 in {
   options.cfg.core.username = mkOption {
@@ -16,8 +15,10 @@ in {
     description = "Sets the username for the system.";
   };
   imports = [
-    hjem.nixosModules.default
-    # avoid boilerplate in the configuration
+    inputs.hjem.nixosModules.default
+    # Allow using `hj` in configuration to
+    # easily configure hjem in any file.
+    # This pretty much makes or breaks my config.
     (mkAliasOptionModule ["hj"] ["hjem" "users" username])
   ];
   config = {

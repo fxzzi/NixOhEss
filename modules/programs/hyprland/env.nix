@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkMerge mkIf;
-  cfg = config.cfg.hardware.nvidia;
+  nvidia = config.cfg.hardware.nvidia;
 in {
   config = {
     environment.sessionVariables = mkMerge [
@@ -20,7 +20,7 @@ in {
 
         # HYPRLAND_TRACE = "1";
       }
-      (mkIf cfg.enable {
+      (mkIf nvidia.enable {
         # nvidia shenanigans
         GBM_BACKEND = "nvidia-drm";
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
@@ -34,10 +34,7 @@ in {
         __GL_MaxFramesAllowed = "1";
 
         # NOTE: https://download.nvidia.com/XFree86/Linux-x86_64/575.51.02/README/openglenvvariables.html
-        __GL_YIELD = "USLEEP";
-
-        # shaders are getting bigger by the year - don't clean them up
-        __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
+        # __GL_YIELD = "USLEEP";
       })
     ];
   };

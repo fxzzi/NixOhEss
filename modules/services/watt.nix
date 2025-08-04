@@ -16,6 +16,7 @@ in {
         settings = {
           # use powersaving on battery and performance on charger
           charger = {
+            # when using amd-pstate the governor should always be "powersave"
             governor = "powersave";
             epp = "performance";
             epb = "balance_performance";
@@ -31,7 +32,7 @@ in {
           };
 
           daemon = {
-            poll_interval_sec = 4;
+            poll_interval_sec = 5;
             adaptive_interval = true;
             min_poll_interval_sec = 1;
             max_poll_interval_sec = 30;
