@@ -6,7 +6,6 @@
 }: let
   inherit (lib) mkIf gvariant;
   cfg = config.programs.hyprland;
-  toINI = lib.generators.toINI {};
 in {
   config = mkIf cfg.enable {
     environment.sessionVariables = {
@@ -21,8 +20,11 @@ in {
       xdg = {
         # idk why some files read from here, but if you're ever having
         # problems with cursor themes not working on some apps, try this.
-        data.files."icons/default/index.theme".text = toINI {
-          "Icon Theme".Inherits = "Bibata-Original-Classic";
+        data.files."icons/default/index.theme" = {
+          generator = lib.generators.toINI {};
+          value = {
+            "Icon Theme".Inherits = "Bibata-Original-Classic";
+          };
         };
       };
       packages = [
