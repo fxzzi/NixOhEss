@@ -4,32 +4,12 @@
   ...
 }: let
   pin = npins.Tokyo-Night-Linux;
-
-  gtkConf = ''
-    [Settings]
-    gtk-theme-name=tokyonight
-    gtk-icon-theme-name=Papirus-Dark
-    gtk-font-name=Sans Regular 11
-    gtk-application-prefer-dark-theme=true
-
-  '';
 in {
   config = {
-    environment = {
-      sessionVariables = {
-        GTK_THEME = "tokyonight:dark";
-      };
-    };
+    # GTK4 apps seem to need this `:dark` part to actually use dark theme
+    environment.sessionVariables.GTK_THEME = "tokyonight:dark";
     hj = {
-      xdg = {
-        data.files."themes/tokyonight".source = "${pin}/usr/share/themes/TokyoNight";
-        config = {
-          files = {
-            "gtk-3.0/settings.ini".text = gtkConf;
-            "gtk-4.0/settings.ini".text = gtkConf;
-          };
-        };
-      };
+      xdg.data.files."themes/tokyonight".source = "${pin}/usr/share/themes/TokyoNight";
       packages = [
         pkgs.papirus-icon-theme
       ];
