@@ -31,7 +31,7 @@
   fpsLimit = let
     rr = cfg.refreshRate;
   in
-    if config.programs.hyprland.settings.misc.vrr == 0
+    if config.hj.xdg.config.files."hypr/hyprland.conf".value.misc.vrr == 0
     then rr
     # NOTE:https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
     else (rr - (rr * rr / 3600));

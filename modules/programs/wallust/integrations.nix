@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  xLib,
   ...
 }: let
   inherit (lib) mkIf mkForce;
@@ -8,12 +9,13 @@
 in {
   config = mkIf cfg.enable {
     programs.foot.settings.main.include = mkForce "~/.cache/wallust/colors_foot.ini";
-    programs.hyprland.settings.source = [
-      "~/.cache/wallust/colors_hyprland.conf"
-    ];
     hj = {
+      xdg.config.files."hypr/hyprland.conf" = {
+        value.source = [
+          "~/.cache/wallust/colors_hyprland.conf"
+        ];
+      };
       xdg.config.files."fuzzel/fuzzel.ini" = {
-        generator = lib.generators.toINI {};
         value = {
           main.include = "~/.cache/wallust/colors_fuzzel.ini";
         };

@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  xLib,
   ...
 }: let
   inherit (lib) mkOption types mkEnableOption getExe getExe' optionalAttrs mkIf;
@@ -145,307 +146,309 @@ in {
       packages = [
         screenshotScript
       ];
-    };
-    programs.hyprland = {
-      topPrefixes = [
-        "$"
-        "bezier"
-        "source" # add source here to make sure colours are set before the rest of the config
-      ];
-      settings = {
-        exec = [
-          "${runOnce pkgs.ags_1}"
-          "${runProc "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"}"
-        ];
-        monitor = [
-          ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
-          "desc:Lenovo, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
-          "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO display changes names sometimes idk why
-          "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543, 2560x1440@170, 0x0, 1" # kunzozPC monitor
-          "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001, 2560x1440@175, 0x0, 1" # fazziPC monitor
-          "desc:Philips, 1920x1080@75,-1920x180, 1" # place to the left of fazziPC monitor
-        ];
-        render = {
-          # direct_scanout = 1;
-          # HACK: gamescope is broken with color-management.
-          # see: https://github.com/ValveSoftware/gamescope/issues/1825
-          cm_enabled = !config.cfg.programs.gamescope.enable;
+      xdg.config.files."hypr/hyprland.conf" = {
+        generator = xLib.generators.toHyprlang {
+          topCommandsPrefixes = [
+            "$"
+            "bezier"
+            "source"
+          ];
         };
-        cursor = {
-          default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
-          sync_gsettings_theme = 0; # we handle this ourselves
-          inactive_timeout = 4; # after x seconds of inactivity, hide the cursor
-        };
-        opengl = {
-          nvidia_anti_flicker = 0;
-        };
-        input = {
-          repeat_rate = 55; # Set characters to repeat on hold every 55ms
-          repeat_delay = 375; # Set repeat timeout to 375ms
-          follow_mouse = 2; # Follow mouse clicks for window focus
-          accel_profile = "flat"; # disable all mouse accel by default
-          float_switch_override_focus = 0; # Stop floating windows from stealing focus
-          # i hate caps lock, so make it escape instead. also reset f13-f24 to their expected keysyms.
-          kb_options = "fkeys:basic_13-24, caps:escape";
-          # don't set tablet settings if opentabletdriver is enabled.
-          tablet = optionalAttrs (!config.cfg.services.opentabletdriver.enable) {
-            left_handed = 1; # inverted tablet
-            output = "${cfg.defaultMonitor}";
-            # active_area_size = "130, 73";
+        value = {
+          exec = [
+            "${runOnce pkgs.ags_1}"
+            "${runProc "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"}"
+          ];
+          monitor = [
+            ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
+            "desc:Lenovo, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
+            "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO display changes names sometimes idk why
+            "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543, 2560x1440@170, 0x0, 1" # kunzozPC monitor
+            "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001, 2560x1440@175, 0x0, 1" # fazziPC monitor
+            "desc:Philips, 1920x1080@75,-1920x180, 1" # place to the left of fazziPC monitor
+          ];
+          render = {
+            # direct_scanout = 1;
+            # HACK: gamescope is broken with color-management.
+            # see: https://github.com/ValveSoftware/gamescope/issues/1825
+            cm_enabled = !config.cfg.programs.gamescope.enable;
           };
-          touchpad = {
-            natural_scroll = true;
+          cursor = {
+            default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
+            sync_gsettings_theme = 0; # we handle this ourselves
+            inactive_timeout = 4; # after x seconds of inactivity, hide the cursor
           };
-        };
-        "device[at-translated-set-2-keyboard]" = {
-          kb_layout = "gb";
-        };
-        "device[elan0680:00-04f3:320a-touchpad]" = {
-          accel_profile = "adaptive";
-        };
-        gestures = {
-          workspace_swipe = true;
-        };
-        general = {
-          gaps_out = 4; # Outer monitor gaps
-          gaps_in = 2; # Inner window gaps
-          border_size = 2; # Set window border width
-          allow_tearing = 1;
-        };
-        misc = {
-          new_window_takes_over_fullscreen = 2; # Leave fullscreen on new window
-          disable_hyprland_logo = 1; # Disable hyprland wallpapers etc
-          disable_splash_rendering = 1; # Disable startup splashscreen
-          mouse_move_focuses_monitor = 0; # Disables hover for monitor focus
-          focus_on_activate = 1; # Focuses windows which ask for activation
-          enable_swallow = 1; # Enable window swalling
-          swallow_regex = "^(foot)$"; # Make foot swallow executed windows
-          swallow_exception_regex = "^(foot)$"; # Make foot not swallow itself
-          initial_workspace_tracking = 0;
-          vrr = 2;
-          anr_missed_pings = 4; # by default, ANR dialog shows up way too aggressively.
-          middle_click_paste = 0;
-        };
-        ecosystem = {
-          no_update_news = 1;
-          no_donation_nag = 1;
-        };
-        layerrule = [
-          "blur, launcher"
-          "blur, walker"
-          "blur, wleave"
-          "blur, bar-.*"
-          "ignorezero, launcher"
-          "ignorezero, walker"
-          "ignorezero, bar-.*"
-          "xray 1, wleave"
-          "xray 1, bar-.*"
-        ];
-        decoration = {
-          rounding = 0;
-
-          shadow = {
-            enabled = 1;
-            color = "0xdd1a1a1a";
-            render_power = 4;
-            range = 8;
+          opengl = {
+            nvidia_anti_flicker = 0;
           };
-          blur = {
-            enabled = cfg.blur.enable;
-            size = 3;
-            passes = 3;
-            popups = 1;
-            brightness = 0.67;
+          input = {
+            repeat_rate = 55; # Set characters to repeat on hold every 55ms
+            repeat_delay = 375; # Set repeat timeout to 375ms
+            follow_mouse = 2; # Follow mouse clicks for window focus
+            accel_profile = "flat"; # disable all mouse accel by default
+            float_switch_override_focus = 0; # Stop floating windows from stealing focus
+            # i hate caps lock, so make it escape instead. also reset f13-f24 to their expected keysyms.
+            kb_options = "fkeys:basic_13-24, caps:escape";
+            # don't set tablet settings if opentabletdriver is enabled.
+            tablet = optionalAttrs (!config.cfg.services.opentabletdriver.enable) {
+              left_handed = 1; # inverted tablet
+              output = "${cfg.defaultMonitor}";
+              # active_area_size = "130, 73";
+            };
+            touchpad = {
+              natural_scroll = true;
+            };
           };
-        };
-        bezier = [
-          "overshot, 0.05, 0.9, 0.1, 1.05"
-          "smoothOut, 0.36, 0, 0.66, -0.56"
-          "smoothIn, 0.25, 1, 0.5, 1"
-        ];
-        animation = [
-          "windows, 1, 4, overshot"
-          "windowsMove, 1, 3, default"
-          "border, 1, 8, default"
-          "fade, 1, 3, smoothIn"
-          "fadeDim, 1, 3, smoothOut"
-          # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
-          # and it will look like windows are moving into each other across the monitors.
-          "workspaces, 1, 5, default, ${wsAnim}"
-        ];
-        animations = {
-          enabled = cfg.animations.enable;
-          first_launch_animation = false;
-        };
-        dwindle = {
-          pseudotile = 1;
-          preserve_split = 1;
-        };
-        windowrule = [
-          # pause hypridle for certain apps
-          "idleinhibit focus, class:^(mpv)$"
-          "idleinhibit focus, class:^(atril)$"
-          "idleinhibit fullscreen, class:^(foot)$"
-          "idleinhibit fullscreen, class:^(steam_app_.*)$"
+          "device[at-translated-set-2-keyboard]" = {
+            kb_layout = "gb";
+          };
+          "device[elan0680:00-04f3:320a-touchpad]" = {
+            accel_profile = "adaptive";
+          };
+          gestures = {
+            workspace_swipe = true;
+          };
+          general = {
+            gaps_out = 4; # Outer monitor gaps
+            gaps_in = 2; # Inner window gaps
+            border_size = 2; # Set window border width
+            allow_tearing = 1;
+          };
+          misc = {
+            new_window_takes_over_fullscreen = 2; # Leave fullscreen on new window
+            disable_hyprland_logo = 1; # Disable hyprland wallpapers etc
+            disable_splash_rendering = 1; # Disable startup splashscreen
+            mouse_move_focuses_monitor = 0; # Disables hover for monitor focus
+            focus_on_activate = 1; # Focuses windows which ask for activation
+            enable_swallow = 1; # Enable window swalling
+            swallow_regex = "^(foot)$"; # Make foot swallow executed windows
+            swallow_exception_regex = "^(foot)$"; # Make foot not swallow itself
+            initial_workspace_tracking = 0;
+            vrr = 2;
+            anr_missed_pings = 4; # by default, ANR dialog shows up way too aggressively.
+            middle_click_paste = 0;
+          };
+          ecosystem = {
+            no_update_news = 1;
+            no_donation_nag = 1;
+          };
+          layerrule = [
+            "blur, launcher"
+            "blur, walker"
+            "blur, wleave"
+            "blur, bar-.*"
+            "ignorezero, launcher"
+            "ignorezero, walker"
+            "ignorezero, bar-.*"
+            "xray 1, wleave"
+            "xray 1, bar-.*"
+          ];
+          decoration = {
+            rounding = 0;
 
-          # some apps, mostly games, are stupid and they fullscreen on the
-          # wrong monitor. so just don't listen to them lol
-          "suppressevent fullscreenoutput, class:.*"
+            shadow = {
+              enabled = 1;
+              color = "0xdd1a1a1a";
+              render_power = 4;
+              range = 8;
+            };
+            blur = {
+              enabled = cfg.blur.enable;
+              size = 3;
+              passes = 3;
+              popups = 1;
+              brightness = 0.67;
+            };
+          };
+          bezier = [
+            "overshot, 0.05, 0.9, 0.1, 1.05"
+            "smoothOut, 0.36, 0, 0.66, -0.56"
+            "smoothIn, 0.25, 1, 0.5, 1"
+          ];
+          animation = [
+            "windows, 1, 4, overshot"
+            "windowsMove, 1, 3, default"
+            "border, 1, 8, default"
+            "fade, 1, 3, smoothIn"
+            "fadeDim, 1, 3, smoothOut"
+            # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
+            # and it will look like windows are moving into each other across the monitors.
+            "workspaces, 1, 5, default, ${wsAnim}"
+          ];
+          animations = {
+            enabled = cfg.animations.enable;
+            first_launch_animation = false;
+          };
+          dwindle = {
+            pseudotile = 1;
+            preserve_split = 1;
+          };
+          windowrule = [
+            # pause hypridle for certain apps
+            "idleinhibit focus, class:^(mpv)$"
+            "idleinhibit focus, class:^(atril)$"
+            "idleinhibit fullscreen, class:^(foot)$"
+            "idleinhibit fullscreen, class:^(steam_app_.*)$"
 
-          # Ignore maximize requests from apps. You'll probably like this.
-          "suppressevent maximize, class:.*"
+            # some apps, mostly games, are stupid and they fullscreen on the
+            # wrong monitor. so just don't listen to them lol
+            "suppressevent fullscreenoutput, class:.*"
 
-          # Fix some dragging issues with XWayland
-          "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+            # Ignore maximize requests from apps. You'll probably like this.
+            "suppressevent maximize, class:.*"
 
-          # Window rules for games
-          # Fix focus issues with cs2
-          "suppressevent maximize fullscreen, class: ^(cs2)$"
-          # make cs2 launch in fullscreen
-          "fullscreen, class:^(cs2)$"
-          # make tomb raider (2013) launch in fullscreen
-          "fullscreen, class:^(steam_app_203160)$"
+            # Fix some dragging issues with XWayland
+            "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 
-          # Sets fullscreen for common Minecraft windows
-          "fullscreen, class:^(Minecraft\*.*)$"
-          "fullscreen, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
-          "fullscreen, class:^(org-prismlauncher-EntryPoint)$"
+            # Window rules for games
+            # Fix focus issues with cs2
+            "suppressevent maximize fullscreen, class: ^(cs2)$"
+            # make cs2 launch in fullscreen
+            "fullscreen, class:^(cs2)$"
+            # make tomb raider (2013) launch in fullscreen
+            "fullscreen, class:^(steam_app_203160)$"
 
-          # Allow games to tear
-          "immediate, class:^(steam_app_.*)$" # all steam games
-          "immediate, class:^(cs2)$" # cs2
-          "immediate, class:^(Minecraft\*.*)$"
-          "immediate, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
-          "immediate, class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
-          "immediate, class:^(osu!)$"
-          "immediate, class:^(.*.exe)$" # all exe's
-          "immediate, class:^(hl2_linux)$" # half life 2
-          "immediate, class:^(cstrike_linux64)$" # cs source
-          "immediate, class:^(gamescope)$"
-          "immediate, class:^(Celeste)$"
-          "immediate, class:^(info.cemu.Cemu)$"
-          "immediate, class:^(Cuphead.x86_64)$"
-          "immediate, class:^(org.eden_emu.eden)$"
-        ];
-        # NOTE: this sets workspaces to alternate if there are 2 monitors.
-        workspace = optionalAttrs multiMonitor [
-          "1, monitor:${cfg.defaultMonitor}"
-          "2, monitor:${cfg.secondaryMonitor}"
-          "3, monitor:${cfg.defaultMonitor}"
-          "4, monitor:${cfg.secondaryMonitor}"
-          "5, monitor:${cfg.defaultMonitor}"
-          "6, monitor:${cfg.secondaryMonitor}"
-          "7, monitor:${cfg.defaultMonitor}"
-          "8, monitor:${cfg.secondaryMonitor}"
-          "9, monitor:${cfg.defaultMonitor}"
-          "10, monitor:${cfg.secondaryMonitor}"
-        ];
-        "$MOD" = "SUPER";
-        bind =
-          [
-            # screenshot script
-            ",Print, exec, ${runProc "${getExe screenshotScript} --monitor ${cfg.defaultMonitor}"}"
-            "SHIFT, Print, exec, ${runProc "${getExe screenshotScript} --selection"}"
-            "$MOD SHIFT, S, exec, ${runProc "${getExe screenshotScript} --selection"}"
-            "$MOD, Print, exec, ${runProc "${getExe screenshotScript} --active"}"
+            # Sets fullscreen for common Minecraft windows
+            "fullscreen, class:^(Minecraft\*.*)$"
+            "fullscreen, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
+            "fullscreen, class:^(org-prismlauncher-EntryPoint)$"
 
-            # binds for apps
-            "$MOD, F, exec, ${runProc "thunar.desktop"}"
-            "$MOD, T, exec, ${runProc "foot.desktop"}"
-            "$MOD, B, exec, ${runProc "librewolf.desktop"}"
-            "$MOD SHIFT, P, exec, ${runProc "librewolf.desktop:new-private-window"}"
-            "$MOD, W, exec, ${runProc "discord.desktop"}"
-            "$MOD, D, exec, ${toggleProc "fuzzel"}"
-            "$MOD SHIFT, E, exec, ${toggleProc pkgs.wleave} --protocol layer-shell -b 5 -T 360 -B 360 -k"
-            "CTRL SHIFT, Escape, exec, ${runTerm "btm"}"
+            # Allow games to tear
+            "immediate, class:^(steam_app_.*)$" # all steam games
+            "immediate, class:^(cs2)$" # cs2
+            "immediate, class:^(Minecraft\*.*)$"
+            "immediate, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
+            "immediate, class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
+            "immediate, class:^(osu!)$"
+            "immediate, class:^(.*.exe)$" # all exe's
+            "immediate, class:^(hl2_linux)$" # half life 2
+            "immediate, class:^(cstrike_linux64)$" # cs source
+            "immediate, class:^(gamescope)$"
+            "immediate, class:^(Celeste)$"
+            "immediate, class:^(info.cemu.Cemu)$"
+            "immediate, class:^(Cuphead.x86_64)$"
+            "immediate, class:^(org.eden_emu.eden)$"
+          ];
+          # NOTE: this sets workspaces to alternate if there are 2 monitors.
+          workspace = optionalAttrs multiMonitor [
+            "1, monitor:${cfg.defaultMonitor}"
+            "2, monitor:${cfg.secondaryMonitor}"
+            "3, monitor:${cfg.defaultMonitor}"
+            "4, monitor:${cfg.secondaryMonitor}"
+            "5, monitor:${cfg.defaultMonitor}"
+            "6, monitor:${cfg.secondaryMonitor}"
+            "7, monitor:${cfg.defaultMonitor}"
+            "8, monitor:${cfg.secondaryMonitor}"
+            "9, monitor:${cfg.defaultMonitor}"
+            "10, monitor:${cfg.secondaryMonitor}"
+          ];
+          "$MOD" = "SUPER";
+          bind =
+            [
+              # screenshot script
+              ",Print, exec, ${runProc "${getExe screenshotScript} --monitor ${cfg.defaultMonitor}"}"
+              "SHIFT, Print, exec, ${runProc "${getExe screenshotScript} --selection"}"
+              "$MOD SHIFT, S, exec, ${runProc "${getExe screenshotScript} --selection"}"
+              "$MOD, Print, exec, ${runProc "${getExe screenshotScript} --active"}"
 
-            # extra schtuff
-            "$MOD, N, exec, ${runProc "${getExe sunsetScript} 3000"}"
-            "$MOD, K, exec, ${toggleProc pkgs.hyprpicker} -r -a -n"
-            "$MOD, R, exec, ${runProc "random-wall.sh"}"
-            "$MOD SHIFT, R, exec, ${runProc "cycle-wall.sh"}"
-            "$MOD, J, exec, ${runTerm "wall-picker.sh"}"
-            "$MOD, L, exec, ${runProc "${getExe' pkgs.systemd "loginctl"} lock-session"}"
-            ", XF86AudioPrev, exec, ${runProc "${getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif)"}"
-            ", XF86AudioPlay, exec, ${runProc "${getExe pkgs.mpc} toggle; mpd-notif"}"
-            ", XF86AudioNext, exec, ${runProc "${getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif)"}"
+              # binds for apps
+              "$MOD, F, exec, ${runProc "thunar.desktop"}"
+              "$MOD, T, exec, ${runProc "foot.desktop"}"
+              "$MOD, B, exec, ${runProc "librewolf.desktop"}"
+              "$MOD SHIFT, P, exec, ${runProc "librewolf.desktop:new-private-window"}"
+              "$MOD, W, exec, ${runProc "discord.desktop"}"
+              "$MOD, D, exec, ${toggleProc "fuzzel"}"
+              "$MOD SHIFT, E, exec, ${toggleProc pkgs.wleave} --protocol layer-shell -b 5 -T 360 -B 360 -k"
+              "CTRL SHIFT, Escape, exec, ${runTerm "btm"}"
 
-            # passthrough binds for obs
-            "Control_L, grave, pass, class:^(com.obsproject.Studio)$"
-            "Control_L SHIFT, grave, pass, class:^(com.obsproject.Studio)$"
+              # extra schtuff
+              "$MOD, N, exec, ${runProc "${getExe sunsetScript} 3000"}"
+              "$MOD, K, exec, ${toggleProc pkgs.hyprpicker} -r -a -n"
+              "$MOD, R, exec, ${runProc "random-wall.sh"}"
+              "$MOD SHIFT, R, exec, ${runProc "cycle-wall.sh"}"
+              "$MOD, J, exec, ${runTerm "wall-picker.sh"}"
+              "$MOD, L, exec, ${runProc "${getExe' pkgs.systemd "loginctl"} lock-session"}"
+              ", XF86AudioPrev, exec, ${runProc "${getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif)"}"
+              ", XF86AudioPlay, exec, ${runProc "${getExe pkgs.mpc} toggle; mpd-notif"}"
+              ", XF86AudioNext, exec, ${runProc "${getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif)"}"
 
-            # passthrough binds for discord
-            "Control_L SHIFT, M, pass, class:^(discord)$"
+              # passthrough binds for obs
+              "Control_L, grave, pass, class:^(com.obsproject.Studio)$"
+              "Control_L SHIFT, grave, pass, class:^(com.obsproject.Studio)$"
 
-            # window management
-            "$MOD, Q, killactive"
-            "$MOD, Space, fullscreen"
-            "$MOD, Tab, togglefloating"
-            "$MOD, P, pseudo # dwindle"
-            "$MOD, S, togglesplit # dwindle"
+              # passthrough binds for discord
+              "Control_L SHIFT, M, pass, class:^(discord)$"
 
-            # focus
-            "$MOD, left, movefocus, l"
-            "$MOD, right, movefocus, r"
-            "$MOD, up, movefocus, u"
-            "$MOD, down, movefocus, d"
+              # window management
+              "$MOD, Q, killactive"
+              "$MOD, Space, fullscreen"
+              "$MOD, Tab, togglefloating"
+              "$MOD, P, pseudo # dwindle"
+              "$MOD, S, togglesplit # dwindle"
 
-            # move
-            "$MOD SHIFT, left, movewindow, l"
-            "$MOD SHIFT, right, movewindow, r"
-            "$MOD SHIFT, up, movewindow, u"
-            "$MOD SHIFT, down, movewindow, d"
+              # focus
+              "$MOD, left, movefocus, l"
+              "$MOD, right, movefocus, r"
+              "$MOD, up, movefocus, u"
+              "$MOD, down, movefocus, d"
 
-            # navigate through workspaces on mouse
-            "$MOD, mouse_down, workspace, e+1"
-            "$MOD, mouse_up, workspace, e-1"
-          ]
-          ++ ( # workspaces
-            # binds $MOD + [shift +] {1..10} to [move to] workspace {1..10}
-            concatLists (genList (x: let
-                ws = let
-                  c = (x + 1) / 10;
-                in
-                  toString (x + 1 - (c * 10));
-              in [
-                "$MOD, ${ws}, workspace, ${toString (x + 1)}"
-                "$MOD SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-              ])
-              10)
-          );
+              # move
+              "$MOD SHIFT, left, movewindow, l"
+              "$MOD SHIFT, right, movewindow, r"
+              "$MOD SHIFT, up, movewindow, u"
+              "$MOD SHIFT, down, movewindow, d"
 
-        binde = [
-          # volume script
-          ", XF86AudioRaiseVolume, exec, ${runProc "audio.sh vol up 5"}"
-          ", XF86AudioLowerVolume, exec, ${runProc "audio.sh vol down 5"}"
-          ", XF86AudioMute, exec, ${runProc "audio.sh vol toggle"}"
-          ", XF86AudioMicMute, exec, ${runProc "audio.sh mic toggle"}"
-          ", F20, exec, ${runProc "audio.sh mic toggle"}"
+              # navigate through workspaces on mouse
+              "$MOD, mouse_down, workspace, e+1"
+              "$MOD, mouse_up, workspace, e-1"
+            ]
+            ++ ( # workspaces
+              # binds $MOD + [shift +] {1..10} to [move to] workspace {1..10}
+              concatLists (genList (x: let
+                  ws = let
+                    c = (x + 1) / 10;
+                  in
+                    toString (x + 1 - (c * 10));
+                in [
+                  "$MOD, ${ws}, workspace, ${toString (x + 1)}"
+                  "$MOD SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                ])
+                10)
+            );
 
-          # brightness script
-          ", XF86MonBrightnessUp, exec, ${runProc "${brightnessScript} up 5"}"
-          ", XF86MonBrightnessDown, exec, ${runProc "${brightnessScript} down 5"}"
+          binde = [
+            # volume script
+            ", XF86AudioRaiseVolume, exec, ${runProc "audio.sh vol up 5"}"
+            ", XF86AudioLowerVolume, exec, ${runProc "audio.sh vol down 5"}"
+            ", XF86AudioMute, exec, ${runProc "audio.sh vol toggle"}"
+            ", XF86AudioMicMute, exec, ${runProc "audio.sh mic toggle"}"
+            ", F20, exec, ${runProc "audio.sh mic toggle"}"
 
-          # can't type £ with US layout, so use wtype
-          "$MOD, comma, exec, ${runProc "${getExe pkgs.wtype} £"}"
+            # brightness script
+            ", XF86MonBrightnessUp, exec, ${runProc "${brightnessScript} up 5"}"
+            ", XF86MonBrightnessDown, exec, ${runProc "${brightnessScript} down 5"}"
 
-          # resize
-          "$MOD CTRL, left, resizeactive, -10 0"
-          "$MOD CTRL, right, resizeactive, 10 0"
-          "$MOD CTRL, up, resizeactive, 0 -10"
-          "$MOD CTRL, down, resizeactive, 0 10"
-        ];
+            # can't type £ with US layout, so use wtype
+            "$MOD, comma, exec, ${runProc "${getExe pkgs.wtype} £"}"
 
-        # mouse bindings
-        bindm = [
-          "$MOD, mouse:272, movewindow" # left click
-          "$MOD, mouse:273, resizewindow" # right click
-        ];
+            # resize
+            "$MOD CTRL, left, resizeactive, -10 0"
+            "$MOD CTRL, right, resizeactive, 10 0"
+            "$MOD CTRL, up, resizeactive, 0 -10"
+            "$MOD CTRL, down, resizeactive, 0 10"
+          ];
 
-        # use when bug reporting
-        debug = {
-          # disable_logs = 0;
-          # watchdog_timeout = 0;
+          # mouse bindings
+          bindm = [
+            "$MOD, mouse:272, movewindow" # left click
+            "$MOD, mouse:273, resizewindow" # right click
+          ];
+
+          # use when bug reporting
+          debug = {
+            # disable_logs = 0;
+            # watchdog_timeout = 0;
+          };
         };
       };
     };

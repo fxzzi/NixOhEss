@@ -2,10 +2,9 @@
   pkgs,
   lib,
   inputs,
+  xLib,
   ...
-}: let
-  inherit (lib) mkForce;
-in {
+}: {
   system.stateVersion = "25.05";
   imports = [
     ./hardware-configuration.nix
@@ -21,12 +20,14 @@ in {
       sgdboop
       inputs.creamlinux.packages.${pkgs.system}.default
     ];
-  };
-  programs.hyprland.settings = {
-    # tearing and ds don't work on kunzozPC
-    render.direct_scanout = mkForce 0;
-    general.allow_tearing = mkForce 0;
-    # misc.vrr = mkForce 2;
+    xdg.config.files."hypr/hyprland.conf" = {
+      value = {
+        # tearing and ds don't work on kunzozPC
+        render.direct_scanout = 0;
+        general.allow_tearing = 0;
+        # misc.vrr = 2;
+      };
+    };
   };
 
   hardware.display = {
