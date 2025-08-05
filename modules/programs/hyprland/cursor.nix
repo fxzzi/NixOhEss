@@ -4,12 +4,9 @@
   config,
   ...
 }: let
-  inherit (lib) mkIf mkAfter gvariant;
+  inherit (lib) mkIf gvariant;
   cfg = config.programs.hyprland;
-  gtkCursorConf = ''
-    gtk-cursor-theme-name=Bibata-Original-Classic
-    gtk-cursor-theme-size=24
-  '';
+  toINI = lib.generators.toINI {};
 in {
   config = mkIf cfg.enable {
     environment.sessionVariables = {
@@ -17,19 +14,16 @@ in {
       HYPRCURSOR_SIZE = 24;
       XCURSOR_THEME = "Bibata-Original-Classic";
       XCURSOR_SIZE = "24";
-      # as a list to append instead of overwrite to the env var.
+      # as a list makes this append to instead of overwrite.
       XCURSOR_PATH = ["${pkgs.bibata-cursors}/share/icons"];
     };
     hj = {
       xdg = {
-        config.files = {
-          "gtk-3.0/settings.ini".text = mkAfter gtkCursorConf;
-          "gtk-4.0/settings.ini".text = mkAfter gtkCursorConf;
+        # idk why some files read from here, but if you're ever having
+        # problems with cursor themes not working on some apps, try this.
+        data.files."icons/default/index.theme".text = toINI {
+          "Icon Theme".Inherits = "Bibata-Original-Classic";
         };
-        data.files."icons/default/index.theme".text = ''
-          [Icon Theme]
-          Inherits=Bibata-Original-Classic
-        '';
       };
       packages = [
         (pkgs.callPackage ./bibata-hyprcursor {})
