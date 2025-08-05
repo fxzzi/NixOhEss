@@ -3,8 +3,8 @@
     ./boot
     ./networking
     ./fonts
-    ./qt
 
+    ./qt.nix
     ./agenix.nix
     ./cachix.nix
     ./user.nix
