@@ -30,66 +30,69 @@ in {
   config = mkIf cfg.enable {
     hj = {
       packages = [pkgs.fastfetchMinimal];
-      xdg.config.files."fastfetch/config.jsonc".source = (pkgs.formats.json {}).generate "config.jsonc" {
-        general = {
-          # detecting hyprland version on NixOS is slow.
-          detectVersion = false;
-        };
-        logo = {
-          source = "${icon}";
-          type = "raw";
-          height = 9;
-          width = 16;
-          padding = {
-            top = 1;
-            left = 1;
+      xdg.config.files."fastfetch/config.jsonc" = {
+        generator = (pkgs.formats.json {}).generate "config.jsonc";
+        value = {
+          general = {
+            # detecting hyprland version on NixOS is slow.
+            detectVersion = false;
           };
+          logo = {
+            source = "${icon}";
+            type = "raw";
+            height = 9;
+            width = 16;
+            padding = {
+              top = 1;
+              left = 1;
+            };
+          };
+          modules = [
+            {
+              type = "title";
+              key = " hs";
+              keyColor = "green";
+              format = "{1}@{2}";
+            }
+            {
+              type = "os";
+              key = " os";
+              keyColor = "green";
+              format = "{2}";
+            }
+            {
+              type = "wm";
+              key = " cm";
+              keyColor = "blue";
+              format = "{1}";
+            }
+            {
+              type = "terminal";
+              key = " tr";
+              keyColor = "blue";
+              format = "{0}";
+            }
+            {
+              type = "memory";
+              key = "󰍛 mm";
+              keyColor = "yellow";
+              format = "{1}";
+            }
+            {
+              # days since install
+              type = "disk";
+              key = "󱦟 dy";
+              keyColor = "yellow";
+              folders = "/";
+              format = "{days} days";
+            }
+            "break"
+            {
+              type = "custom";
+              format = "{#90}󰊠 {#31}󰊠 {#32}󰊠 {#33}󰊠 {#34}󰊠 {#35}󰊠 {#36}󰊠 {#37}󰊠";
+            }
+          ];
         };
-        modules = [
-          {
-            type = "title";
-            key = " hs";
-            keyColor = "green";
-            format = "{1}@{2}";
-          }
-          {
-            type = "os";
-            key = " os";
-            keyColor = "green";
-            format = "{2}";
-          }
-          {
-            type = "wm";
-            key = " cm";
-            keyColor = "blue";
-            format = "{1}";
-          }
-          {
-            type = "terminal";
-            key = " tr";
-            keyColor = "blue";
-            format = "{0}";
-          }
-          {
-            type = "memory";
-            key = "󰍛 mm";
-            keyColor = "yellow";
-            format = "{1}";
-          }
-          {
-            # days since install
-            type = "disk";
-            key = "󱦟 dy";
-            keyColor = "yellow";
-            folders = "/";
-            format = "{days} days";
-          }
-          "break"
-          {
-            type = "custom";
-            format = "{#90}󰊠 {#31}󰊠 {#32}󰊠 {#33}󰊠 {#34}󰊠 {#35}󰊠 {#36}󰊠 {#37}󰊠";
-          }
-        ];
       };
     };
     environment.interactiveShellInit = mkIf cfg.shellIntegration (mkBefore # put at the start of the file.

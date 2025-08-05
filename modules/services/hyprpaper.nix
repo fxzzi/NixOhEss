@@ -7,7 +7,6 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
-  inherit (xLib.generators) toHyprlang;
   cfg = config.cfg.services.hyprpaper;
 in {
   options.cfg.services.hyprpaper.enable = mkEnableOption "hyprpaper";
@@ -16,12 +15,15 @@ in {
       xdg.data.files."walls".source = "${npins.walls}/images"; # wallpapers
 
       packages = [pkgs.hyprpaper];
-      xdg.config.files."hypr/hyprpaper.conf".text = toHyprlang {} {
-        ipc = 1;
-        splash = 0;
+      xdg.config.files."hypr/hyprpaper.conf" = {
+        generator = xLib.generators.toHyprlang {};
+        value = {
+          ipc = 1;
+          splash = 0;
 
-        preload = ["~/.local/state/wallpaper"];
-        wallpaper = [",~/.local/state/wallpaper"];
+          preload = ["~/.local/state/wallpaper"];
+          wallpaper = [",~/.local/state/wallpaper"];
+        };
       };
     };
     systemd.user.services.hyprpaper = {

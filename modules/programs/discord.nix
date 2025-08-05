@@ -59,7 +59,8 @@ in {
   config = mkIf cfg.enable {
     hj = {
       xdg.config.files."discord/settings.json" = {
-        text = builtins.toJSON {
+        generator = (pkgs.formats.json {}).generate "discord-settings";
+        value = {
           SKIP_HOST_UPDATE = true;
           MINIMIZE_TO_TRAY = cfg.minimizeToTray;
           OPEN_ON_STARTUP = false;
