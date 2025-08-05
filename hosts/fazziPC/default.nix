@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  xLib,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -12,22 +13,33 @@
     ./options.nix
   ];
   # host specific packages
-  hj.packages = with pkgs; [
-    qbittorrent-enhanced
-    telegram-desktop
-    losslesscut-bin
-    qpwgraph
-    steamguard-cli
-    picard
-    rsgain
-    olympus
-    nicotine-plus
-    sgdboop
-    cemu
-    nvtopPackages.nvidia
-    stremio
-    yt-dlp
-  ];
+  hj = {
+    packages = with pkgs; [
+      qbittorrent-enhanced
+      telegram-desktop
+      losslesscut-bin
+      qpwgraph
+      steamguard-cli
+      picard
+      rsgain
+      olympus
+      nicotine-plus
+      sgdboop
+      cemu
+      nvtopPackages.nvidia
+      stremio
+      yt-dlp
+    ];
+    xdg.config.files."hypr/hyprland.conf" = {
+      value = {
+        cursor = {
+          # no_hardware_cursors = 0;
+          min_refresh_rate = 32;
+          no_break_fs_vrr = 1;
+        };
+      };
+    };
+  };
   networking.firewall = {
     # minecraft
     allowedUDPPorts = [25565];
@@ -78,13 +90,6 @@
       RemainAfterExit = "yes";
       StandardOutput = "journal";
       StandardError = "journal";
-    };
-  };
-  programs.hyprland.settings = {
-    cursor = {
-      # no_hardware_cursors = 0;
-      min_refresh_rate = 32;
-      no_break_fs_vrr = 1;
     };
   };
   services = {
