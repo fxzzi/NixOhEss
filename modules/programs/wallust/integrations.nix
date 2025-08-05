@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  xLib,
   ...
 }: let
   inherit (lib) mkIf mkForce;
