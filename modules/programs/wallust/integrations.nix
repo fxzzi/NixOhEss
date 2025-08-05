@@ -4,7 +4,6 @@
   ...
 }: let
   inherit (lib) mkIf mkForce;
-  toINI = lib.generators.toINI {};
   cfg = config.cfg.programs.wallust;
 in {
   config = mkIf cfg.enable {
@@ -13,8 +12,11 @@ in {
       "~/.cache/wallust/colors_hyprland.conf"
     ];
     hj = {
-      xdg.config.files."fuzzel/fuzzel.ini".text = toINI {
-        main.include = "~/.cache/wallust/colors_fuzzel.ini";
+      xdg.config.files."fuzzel/fuzzel.ini" = {
+        generator = lib.generators.toINI {};
+        value = {
+          main.include = "~/.cache/wallust/colors_fuzzel.ini";
+        };
       };
     };
   };

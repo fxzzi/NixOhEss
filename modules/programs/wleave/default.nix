@@ -18,39 +18,42 @@ in {
         pkgs.wleave
       ];
       xdg.config.files = {
-        "wleave/layout.json".source = (pkgs.formats.json {}).generate "wleave-layout" {
-          buttons = [
-            {
-              label = "shutdown";
-              action = "systemctl poweroff";
-              text = "Shutdown";
-              keybind = "s";
-            }
-            {
-              label = "reboot";
-              action = "systemctl reboot";
-              text = "Reboot";
-              keybind = "r";
-            }
-            {
-              label = "lock";
-              action = "loginctl lock-session";
-              text = "Lock";
-              keybind = "l";
-            }
-            {
-              label = "suspend";
-              action = "systemctl suspend";
-              text = "Suspend";
-              keybind = "u";
-            }
-            {
-              label = "logout";
-              action = "${logoutAction}";
-              text = "Logout";
-              keybind = "e";
-            }
-          ];
+        "wleave/layout.json" = {
+          generator = (pkgs.formats.json {}).generate "wleave-layout";
+          value = {
+            buttons = [
+              {
+                label = "shutdown";
+                action = "systemctl poweroff";
+                text = "Shutdown";
+                keybind = "s";
+              }
+              {
+                label = "reboot";
+                action = "systemctl reboot";
+                text = "Reboot";
+                keybind = "r";
+              }
+              {
+                label = "lock";
+                action = "loginctl lock-session";
+                text = "Lock";
+                keybind = "l";
+              }
+              {
+                label = "suspend";
+                action = "systemctl suspend";
+                text = "Suspend";
+                keybind = "u";
+              }
+              {
+                label = "logout";
+                action = "${logoutAction}";
+                text = "Logout";
+                keybind = "e";
+              }
+            ];
+          };
         };
         "wleave/style.css".text =
           # css

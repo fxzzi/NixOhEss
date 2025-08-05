@@ -186,15 +186,18 @@ in {
     };
     # make indents normal lmfao
     hj = {
-      files.".editorconfig".source = (pkgs.formats.ini {}).generate ".editorconfig" {
-        "*" = {
-          charset = "utf-8";
-          end_of_line = "lf";
-          indent_size = 2;
-          indent_style = "space";
-          insert_final_newline = true;
-          max_line_width = 80;
-          trim_trailing_whitespace = true;
+      files.".editorconfig" = {
+        generator = (pkgs.formats.ini {}).generate ".editorconfig";
+        value = {
+          "*" = {
+            charset = "utf-8";
+            end_of_line = "lf";
+            indent_size = 2;
+            indent_style = "space";
+            insert_final_newline = true;
+            max_line_width = 80;
+            trim_trailing_whitespace = true;
+          };
         };
       };
     };

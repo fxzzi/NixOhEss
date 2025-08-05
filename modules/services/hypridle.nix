@@ -6,7 +6,6 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf mkOption types optionals getExe getExe';
-  inherit (xLib.generators) toHyprconf;
   cfg = config.cfg.services.hypridle;
 in {
   options.cfg.services.hypridle = {
@@ -36,35 +35,38 @@ in {
   config = mkIf cfg.enable {
     hj = {
       packages = [pkgs.hypridle];
-      xdg.config.files."hypr/hypridle.conf".text = toHyprconf {
-        attrs = {
-          general = {
-            lock_cmd = "${getExe' pkgs.procps "pidof"} hyprlock || ${getExe pkgs.hyprlock}";
-            before_sleep_cmd = "${getExe' pkgs.systemd "loginctl"} lock-session";
-            after_sleep_cmd = "hyprctl dispatch dpms on";
-            ignore_dbus_inhibit = false;
-            ignore_systemd_inhibit = false;
+      xdg.config.files."hypr/hypridle.conf" = {
+        generator = xLib.generators.toHyprconf;
+        value = {
+          attrs = {
+            general = {
+              lock_cmd = "${getExe' pkgs.procps "pidof"} hyprlock || ${getExe pkgs.hyprlock}";
+              before_sleep_cmd = "${getExe' pkgs.systemd "loginctl"} lock-session";
+              after_sleep_cmd = "hyprctl dispatch dpms on";
+              ignore_dbus_inhibit = false;
+              ignore_systemd_inhibit = false;
+            };
+            listener =
+              optionals (cfg.dpmsTimeout != 0) [
+                {
+                  timeout = cfg.dpmsTimeout;
+                  on-timeout = "hyprctl dispatch dpms off";
+                  on-resume = "hyprctl dispatch dpms on";
+                }
+              ]
+              ++ optionals (cfg.lockTimeout != 0) [
+                {
+                  timeout = cfg.lockTimeout;
+                  on-timeout = "loginctl lock-session";
+                }
+              ]
+              ++ optionals (cfg.suspendTimeout != 0) [
+                {
+                  timeout = cfg.suspendTimeout;
+                  on-timeout = "systemctl suspend";
+                }
+              ];
           };
-          listener =
-            optionals (cfg.dpmsTimeout != 0) [
-              {
-                timeout = cfg.dpmsTimeout;
-                on-timeout = "hyprctl dispatch dpms off";
-                on-resume = "hyprctl dispatch dpms on";
-              }
-            ]
-            ++ optionals (cfg.lockTimeout != 0) [
-              {
-                timeout = cfg.lockTimeout;
-                on-timeout = "loginctl lock-session";
-              }
-            ]
-            ++ optionals (cfg.suspendTimeout != 0) [
-              {
-                timeout = cfg.suspendTimeout;
-                on-timeout = "systemctl suspend";
-              }
-            ];
         };
       };
     };
@@ -85,3 +87,4 @@ in {
     };
   };
 }
+
