@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf getExe;
+  inherit (lib) mkEnableOption mkIf getExe mkBefore;
   inherit (builtins) filter;
   inherit (lib.attrsets) mapAttrsToList hasAttr;
   inherit (lib.strings) concatStringsSep optionalString;
@@ -84,11 +84,11 @@ in {
         bat
         eza
       ];
-      xdg.config.files."zsh/.zshrc".text = "# this is an empty file :D";
+      xdg.config.files."zsh/.zshrc".text = mkBefore "# this is a comment :P";
     };
     # de-clutter $HOME
     environment.sessionVariables = {
-      ZDOTDIR = "\"$HOME\"/.config/zsh";
+      ZDOTDIR = "$HOME/.config/zsh";
     };
     programs = {
       zsh = {
