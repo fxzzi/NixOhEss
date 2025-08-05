@@ -42,7 +42,6 @@ in {
     };
   };
   imports = [
-    inputs.hyprland.nixosModules.default
     ./env.nix
     ./settings.nix
     ./cursor.nix
