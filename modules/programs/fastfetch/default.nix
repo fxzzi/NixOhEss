@@ -31,7 +31,7 @@ in {
     hj = {
       packages = [pkgs.fastfetchMinimal];
       xdg.config.files."fastfetch/config.jsonc" = {
-        generator = (pkgs.formats.json {}).generate "config.jsonc";
+        generator = lib.generators.toJSON {};
         value = {
           general = {
             # detecting hyprland version on NixOS is slow.
