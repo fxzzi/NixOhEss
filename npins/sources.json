@@ -1,18 +1,5 @@
 {
   "pins": {
-    "Tokyo-Night-Linux": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "stronk-dev",
-        "repo": "Tokyo-Night-Linux"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "d553d015a0d3c1e9e41b72aab959ad89f91b457d",
-      "url": "https://github.com/stronk-dev/Tokyo-Night-Linux/archive/d553d015a0d3c1e9e41b72aab959ad89f91b457d.tar.gz",
-      "hash": "0acwmwiifghdlgvvxl0m2gc654njg7gfdsk743s2sigv47y4dfa1"
-    },
     "foot": {
       "type": "Git",
       "repository": {
@@ -34,9 +21,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "2a159a11c88a113ae522a502c00550978fe7a9ae",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=2a159a11c88a113ae522a502c00550978fe7a9ae",
-      "hash": "1dbhy61h6mbz6q9yp0ld2ib36j9lnnsmxihzx4l9m3342yjjqh2x"
+      "revision": "0583d1f1bcbd077a69b143b56ecdbf532c1dfeac",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=0583d1f1bcbd077a69b143b56ecdbf532c1dfeac",
+      "hash": "02c2gr5iqbvbbv1g5sh5pqjzdr2ypxm9zlpwa2mfximfj61grsj4"
     },
     "walls": {
       "type": "Git",
