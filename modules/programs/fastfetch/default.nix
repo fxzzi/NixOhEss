@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf mkBefore getExe;
+  inherit (lib) mkEnableOption mkOption types mkIf getExe;
   cfg = config.cfg.programs.fastfetch;
   icon = ./sixels/${cfg.icon}.sixel;
 in {
@@ -95,11 +95,8 @@ in {
         };
       };
     };
-    environment.interactiveShellInit = mkIf cfg.shellIntegration (mkBefore # put at the start of the file.
-      
-      # sh
-      ''
-        ${getExe pkgs.fastfetchMinimal}
-      '');
+    hj.xdg.config.files."zsh/.zshrc".text = mkIf cfg.shellIntegration ''
+      ${getExe pkgs.fastfetchMinimal}
+    '';
   };
 }

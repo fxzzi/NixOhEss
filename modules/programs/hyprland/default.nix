@@ -54,6 +54,6 @@ in {
       portalPackage = pkg.xdg-desktop-portal-hyprland;
       withUWSM = config.cfg.programs.uwsm.enable;
     };
-    environment.loginShellInit = mkIf cfg.autoStart autoStartCmd;
+    hj.xdg.config.files."zsh/.zprofile".text = mkIf cfg.autoStart autoStartCmd;
   };
 }
