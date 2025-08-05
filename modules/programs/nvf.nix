@@ -187,7 +187,7 @@ in {
     # make indents normal lmfao
     hj = {
       files.".editorconfig" = {
-        generator = (pkgs.formats.ini {}).generate ".editorconfig";
+        generator = lib.generators.toINI {};
         value = {
           "*" = {
             charset = "utf-8";

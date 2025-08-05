@@ -19,7 +19,7 @@ in {
       ];
       xdg.config.files = {
         "wleave/layout.json" = {
-          generator = (pkgs.formats.json {}).generate "wleave-layout";
+          generator = lib.generators.toJSON {};
           value = {
             buttons = [
               {
