@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  xLib,
   ...
 }: {
   system.stateVersion = "25.05";
