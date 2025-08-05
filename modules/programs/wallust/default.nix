@@ -19,7 +19,7 @@ in {
       xdg.config.files = {
         "wallust/templates".source = ./templates;
         "wallust/wallust.toml" = {
-          generator = (pkgs.formats.toml {}).generate "wallust";
+          generator = (pkgs.formats.toml {}).generate "wallust.toml";
           value = {
             check_contrast = true;
             backend = "resized";
