@@ -11,7 +11,7 @@
 in {
   options.cfg.core.username = mkOption {
     type = types.str;
-    default = "user";
+    default = "faaris";
     description = "Sets the username for the system.";
   };
   imports = [
