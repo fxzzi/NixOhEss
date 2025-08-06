@@ -21,6 +21,7 @@
     };
 
     services = {
+      mullvad.enable = true;
       mate-polkit.enable = true;
       gcr-ssh-agent.enable = true;
       watt.enable = true;

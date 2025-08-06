@@ -15,21 +15,9 @@
           shadow.enabled = 0;
           blur.enabled = 0;
         };
+        # helps on laptops
         render.new_render_scheduling = true;
       };
-    };
-  };
-
-  # hardware.bluetooth = {
-  #   enable = true;
-  #   powerOnBoot = false; # i don't use bluetooth much so disable it by default
-  # };
-  services = {
-    # blueman.enable = true;
-    mullvad-vpn = {
-      enable = true;
-      package = pkgs.mullvad-vpn; # mullvad gui
-      enableExcludeWrapper = false; # i do not use the wrapper
     };
   };
 }

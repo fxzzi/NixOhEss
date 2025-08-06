@@ -12,6 +12,11 @@
           }
         ];
       };
+      firewall = {
+        # minecraft
+        allowedUDPPorts = [25565];
+        allowedTCPPorts = [25565];
+      };
     };
   };
 }
