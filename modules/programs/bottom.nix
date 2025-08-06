@@ -2,7 +2,13 @@
   config = {
     hj = {
       packages = with pkgs; [
-        bottom
+        (symlinkJoin {
+          inherit (pkgs.bottom) name pname version meta;
+          paths = [pkgs.bottom];
+          postBuild = ''
+            unlink $out/share/applications/bottom.desktop
+          '';
+        })
       ];
       xdg.config.files."bottom/bottom.toml" = {
         generator = (pkgs.formats.toml {}).generate "bottom.toml";

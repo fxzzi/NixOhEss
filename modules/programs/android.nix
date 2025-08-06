@@ -15,7 +15,14 @@ in {
     };
     hj = {
       packages = with pkgs; [
-        scrcpy
+        (symlinkJoin {
+          inherit (pkgs.scrcpy) name pname version meta;
+          paths = [pkgs.scrcpy];
+          postBuild = ''
+            unlink $out/share/applications/scrcpy.desktop
+            unlink $out/share/applications/scrcpy-console.desktop
+          '';
+        })
         payload-dumper-go
       ];
     };
