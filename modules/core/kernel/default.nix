@@ -40,7 +40,6 @@ in {
     };
   };
   imports = [
-    ./xone.nix
     ./v4l2.nix
     ./zenergy.nix
   ];
