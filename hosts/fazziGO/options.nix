@@ -59,7 +59,6 @@
     };
 
     programs = {
-      obs-studio.enable = true;
       smoothScroll.enable = false;
       nvf.enable = true;
       uwsm.enable = true;
