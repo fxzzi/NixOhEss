@@ -1,12 +1,20 @@
 {
   npins,
+  inputs,
   config,
   lib,
   ...
 }: let
   inherit (lib) mkEnableOption;
   cfg = config.cfg.programs.nvf;
-  nvf = import npins.nvf;
+  compat = import npins.flake-compat;
+  nvf =
+    (compat.load {
+      src = npins.nvf;
+      replacements = {
+        nixpkgs = compat.load {src = inputs.nixpkgs;};
+      };
+    }).outputs;
 in {
   options.cfg.programs.nvf.enable = mkEnableOption "nvf";
   imports = [nvf.nixosModules.default];
