@@ -1,14 +1,15 @@
 {
-  inputs,
+  npins,
   config,
   lib,
   ...
 }: let
   inherit (lib) mkEnableOption;
   cfg = config.cfg.programs.nvf;
+  nvf = import npins.nvf;
 in {
   options.cfg.programs.nvf.enable = mkEnableOption "nvf";
-  imports = [inputs.nvf.nixosModules.default];
+  imports = [nvf.nixosModules.default];
   config = lib.mkIf cfg.enable {
     environment.sessionVariables = {
       "EDITOR" = "nvim";

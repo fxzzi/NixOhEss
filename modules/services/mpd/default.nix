@@ -17,9 +17,9 @@ in {
         pkgs.mpd
       ];
       xdg.config.files."mpd/mpd.conf".text = ''
-        music_directory "/home/${config.cfg.core.username}/Music"
-        state_file "/home/${config.cfg.core.username}/.local/state/mpd/state"
-        sticker_file "/home/${config.cfg.core.username}/.local/state/mpd/sticker.sql"
+        music_directory "~/Music"
+        state_file "~/.local/state/mpd/state"
+        sticker_file "~/.local/state/mpd/sticker.sql"
 
         bind_to_address "localhost"
 

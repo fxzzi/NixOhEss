@@ -59,6 +59,7 @@
     };
 
     programs = {
+      obs-studio.enable = true;
       smoothScroll.enable = false;
       nvf.enable = true;
       uwsm.enable = true;
@@ -108,8 +109,6 @@
         enable = true;
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
-        animations.enable = true;
-        blur.enable = false;
         # useGit = true;
       };
       hyprlock.enable = true;
