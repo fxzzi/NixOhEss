@@ -32,7 +32,8 @@ in {
           wget
           ffmpeg
           imagemagick
-          lxqt.pavucontrol-qt
+          # lxqt.pavucontrol-qt
+          pwvucontrol
           mate.atril
           mate.eom
           libreoffice
