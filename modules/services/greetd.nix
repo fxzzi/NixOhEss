@@ -20,7 +20,7 @@ in {
           command =
             # sh
             ''
-              ${pkgs.greetd.tuigreet}/bin/tuigreet \
+              ${pkgs.tuigreet}/bin/tuigreet \
               --greeting 'Welcome to the fold of NixOhEss.' \
               --time \
               --remember \
