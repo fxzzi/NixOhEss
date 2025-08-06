@@ -19,5 +19,6 @@
     ./greetd.nix
     ./printing.nix
     ./getty-tty1.nix
+    ./mullvad.nix
   ];
 }
