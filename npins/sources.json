@@ -68,6 +68,19 @@
       "url": "https://github.com/fxzzi/hjem/archive/a303e923b52c37164fd3a11c56532c2162cc136c.tar.gz",
       "hash": "16gp8372vh4xhxxvr5gcz34pfjggcj4404n1pxiqm4f6wmqzn1ls"
     },
+    "hyprland": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "hyprwm",
+        "repo": "Hyprland"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "ec26b753a253bf92ad7451b685b95cbddcb75403",
+      "url": "https://github.com/hyprwm/Hyprland/archive/ec26b753a253bf92ad7451b685b95cbddcb75403.tar.gz",
+      "hash": "07cj2rdzlvbnyjyjivv62b442pkbpc3q3lqppjvn74azgngbvqq7"
+    },
     "lanzaboote": {
       "type": "Git",
       "repository": {
