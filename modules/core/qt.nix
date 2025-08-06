@@ -34,7 +34,15 @@ in {
         };
       };
       packages = with pkgs; [
-        qt6ct
+        (symlinkJoin {
+          inherit (pkgs.qt6ct) name pname version meta;
+          paths = [pkgs.qt6ct];
+          # remove the qt6ct .desktop file. It's not like
+          # we can modify settings in there anyway.
+          postBuild = ''
+            unlink $out/share/applications/qt6ct.desktop
+          '';
+        })
         adwaita-qt
         adwaita-qt6
       ];
