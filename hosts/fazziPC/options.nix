@@ -37,6 +37,7 @@
       };
     };
     services = {
+      mullvad.enable = true;
       mediamtx.enable = true;
       mate-polkit.enable = true;
       gcr-ssh-agent.enable = true;
