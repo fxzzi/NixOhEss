@@ -7,7 +7,7 @@
   cfg = config.cfg.hardware.nvidia;
 in {
   imports = [
-    ./nvuv
+    ./nvuv.nix
   ];
 
   options.cfg.hardware.nvidia = {
