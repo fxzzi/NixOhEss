@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -20,20 +21,71 @@ in {
         extraArgs = "--keep ${keepCount}";
       };
     };
-
     environment.shellAliases = {
       # rb means rebuild
       rb = "nh os switch";
       rbu = "nh os switch -u";
       rbb = "nh os boot";
       rbbu = "nh os boot -u";
-      evaltime = ''
-        time nix eval \
-          ''${NH_FLAKE}#nixosConfigurations.''${HOST}.config.system.build.toplevel \
-          --substituters " " \
-          --option eval-cache false \
-          --raw --read-only
-      '';
     };
+    hj.packages = [
+      (pkgs.writeShellApplication
+        {
+          name = "crb";
+          runtimeInputs = with pkgs; [
+            nh
+            git
+            coreutils # for `date`
+          ];
+          text = ''
+            # Save the current commit hash of origin/main before fetching
+            OLD_COMMIT=$(git -C "$NH_FLAKE" rev-parse origin/main)
+
+            # Fetch from origin
+            git -C "$NH_FLAKE" fetch origin
+
+            # Get the new commit hash of origin/main after fetching
+            NEW_COMMIT=$(git -C "$NH_FLAKE" rev-parse origin/main)
+
+            # Compare commits and continue only if they differ
+            if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
+              echo "Updating flake..."
+              git -C "$NH_FLAKE" reset --hard origin/main
+              echo "Rebuilding NixOS configuration..."
+              nh os boot
+              echo "Done! Updates will take effect on next boot."
+
+              # Log the update
+              LOG_DIR="$HOME/.local/share"
+              LOG_FILE="$LOG_DIR/crb.txt"
+              mkdir -p "$LOG_DIR"
+              echo "$(date '+%Y-%m-%d %H:%M:%S') $OLD_COMMIT -> $NEW_COMMIT" >> "$LOG_FILE"
+            else
+              echo "No updates found. Exiting."
+              exit 0
+            fi
+          '';
+        })
+
+      (pkgs.writeShellApplication {
+        name = "evaltime";
+        runtimeInputs = [
+          config.nix.package
+        ];
+        text = ''
+          # use current host if one isn't given
+          HOST="''${1:-$(hostname)}"
+          # Nicer time formatting (thanks raf!)
+          export TIMEFMT="[$ ~ %J]: %uU usr | %uS sys | %uE/%*Es elapsed | %P CPU
+          |> (%X avgtext + %D avgdata + %M maxresident)k used
+          |> [%I inputs / %O outputs] | (%F major + %R minor) pagefaults | %W swaps"
+          time nix eval \
+            "$NH_FLAKE"#nixosConfigurations."$HOST".config.system.build.toplevel \
+            --substituters " " \
+            --option eval-cache false \
+            --raw --read-only
+        '';
+      })
+    ];
   };
 }
