@@ -42,7 +42,6 @@ in {
         ];
       };
     };
-
     users.users.${username} = {
       isNormalUser = true;
       # so you can login the first time.
@@ -54,6 +53,18 @@ in {
         "input"
       ];
       uid = 1000;
+    };
+    xdg.mime.defaultApplications = {
+      "application/pdf" = "atril.desktop";
+
+      "image/png" = "eom.desktop";
+      "image/jpeg" = "eom.desktop";
+      "image/jpg" = "eom.desktop";
+      "image/gif" = "eom.desktop";
+      "image/webp" = "eom.desktop";
+      "image/bmp" = "eom.desktop";
+      "image/tiff" = "eom.desktop";
+      "image/svg+xml" = "eom.desktop";
     };
   };
 }

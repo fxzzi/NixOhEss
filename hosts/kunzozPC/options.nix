@@ -15,7 +15,6 @@
         enable = true;
         networkmanager.enable = true;
       };
-      xdg.enable = true;
       fonts.enable = true;
     };
     services = {

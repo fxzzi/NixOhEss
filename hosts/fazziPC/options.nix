@@ -17,7 +17,6 @@
       networking = {
         enable = true;
       };
-      xdg.enable = true;
       fonts.enable = true;
     };
     hardware = {
