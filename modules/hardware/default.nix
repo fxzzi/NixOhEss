@@ -3,6 +3,7 @@
     ./rules.nix
     ./scanning.nix
     ./amdgpu.nix
+    ./xone.nix
     ./nvidia
   ];
 

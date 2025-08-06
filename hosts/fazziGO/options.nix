@@ -9,7 +9,6 @@
         timeout = 0;
         secureboot.enable = true;
       };
-      xdg.enable = true;
       fonts.enable = true;
 
       networking = {
