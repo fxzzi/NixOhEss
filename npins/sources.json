@@ -12,6 +12,19 @@
       "url": null,
       "hash": "0ajszg89fqzlk3fx5s2f2alc0vsndfsnsbnlwnjjf8m17bx3wfyg"
     },
+    "rags": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NotAShelf",
+        "repo": "rags"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "8204a8825a0609dde0783037811c9f738dad48b5",
+      "url": "https://github.com/NotAShelf/rags/archive/8204a8825a0609dde0783037811c9f738dad48b5.tar.gz",
+      "hash": "1x1rckwzn2dxwrrqh89qx5pvx059w7anwm0pxkf4cpjq68mnvj4d"
+    },
     "startpage": {
       "type": "Git",
       "repository": {
