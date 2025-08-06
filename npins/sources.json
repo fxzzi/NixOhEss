@@ -1,5 +1,32 @@
 {
   "pins": {
+    "agenix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ryantm",
+        "repo": "agenix"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "9edb1787864c4f59ae5074ad498b6272b3ec308d",
+      "url": "https://github.com/ryantm/agenix/archive/9edb1787864c4f59ae5074ad498b6272b3ec308d.tar.gz",
+      "hash": "06w2dxnf8qxwcmqvgyxnrrx62ca5x1cw3lminpgs112md17wa3rl"
+    },
+    "creamlinux": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Novattz",
+        "repo": "creamlinux-installer"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "17ad517a459f1a41a40bef2642ee952859147ab5",
+      "url": "https://github.com/Novattz/creamlinux-installer/archive/17ad517a459f1a41a40bef2642ee952859147ab5.tar.gz",
+      "hash": "1phf048dfz0g8549xqhsf7jlhc2s8nxvc33fg5d9wzx25jbsv58a",
+      "frozen": true
+    },
     "foot": {
       "type": "Git",
       "repository": {
@@ -11,6 +38,45 @@
       "revision": "4be02b3668cf836b9f292121aa67c525945306be",
       "url": null,
       "hash": "0ajszg89fqzlk3fx5s2f2alc0vsndfsnsbnlwnjjf8m17bx3wfyg"
+    },
+    "hjem": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "fxzzi",
+        "repo": "hjem"
+      },
+      "branch": "local-fs",
+      "submodules": false,
+      "revision": "a303e923b52c37164fd3a11c56532c2162cc136c",
+      "url": "https://github.com/fxzzi/hjem/archive/a303e923b52c37164fd3a11c56532c2162cc136c.tar.gz",
+      "hash": "16gp8372vh4xhxxvr5gcz34pfjggcj4404n1pxiqm4f6wmqzn1ls"
+    },
+    "nvf": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NotAShelf",
+        "repo": "nvf"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "22fb0d22cc474e85f94c5aa95b6c550c81ca7278",
+      "url": "https://github.com/NotAShelf/nvf/archive/22fb0d22cc474e85f94c5aa95b6c550c81ca7278.tar.gz",
+      "hash": "0armkbgwpj74f8jk5pxi115c4v62nfqkmq4kd0lw719z6wabmvzb"
+    },
+    "nvuv": {
+      "type": "Git",
+      "repository": {
+        "type": "GitLab",
+        "repo_path": "fazzi/nvuv",
+        "server": "https://gitlab.com/"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "e18bd9550301ef89b0ff01607f3e14d6b10a88ae",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=e18bd9550301ef89b0ff01607f3e14d6b10a88ae",
+      "hash": "0svk0q3khcyfzhwydz6w7n1vhrzczqq7wc9zmm0vx6q247yh7i6r"
     },
     "rags": {
       "type": "Git",

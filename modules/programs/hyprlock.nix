@@ -7,6 +7,13 @@
 }: let
   inherit (lib) mkEnableOption mkIf optional;
   cfg = config.cfg.programs.hyprlock;
+  hyprlandAnimations = config.hj.xdg.config.files."hypr/hyprland.conf".value.animations.enabled;
+  animations =
+    if hyprlandAnimations == 0
+    then false
+    else if hyprlandAnimations == 1
+    then true
+    else hyprlandAnimations;
   land = config.cfg.programs.hyprland;
   multiMonitor =
     if land.secondaryMonitor != null
@@ -27,14 +34,14 @@ in {
             general = {
               hide_cursor = true;
               ignore_empty_input = true;
-              immediate_render = !land.animations.enable;
+              immediate_render = !animations;
             };
             bezier = [
               "easeOut, 0.61, 1, 0.88, 1"
               "easeIn, 0.12, 0, 0.39, 0"
             ];
             animations = {
-              enabled = land.animations.enable;
+              enabled = animations;
 
               animation = [
                 "fadeIn, 1, 3, easeIn"
@@ -45,7 +52,7 @@ in {
               [
                 {
                   monitor = "${land.defaultMonitor}";
-                  path = "/home/${config.cfg.core.username}/.local/state/wallpaper";
+                  path = "~/.local/state/wallpaper";
                   blur_size = 3;
                   blur_passes = 3;
                   contrast = 1;
@@ -55,7 +62,7 @@ in {
               ]
               ++ optional multiMonitor {
                 monitor = "";
-                path = "/home/${config.cfg.core.username}/.local/state/wallpaper";
+                path = "~/.local/state/wallpaper";
                 blur_size = 3;
                 blur_passes = 3;
                 contrast = 0.9;

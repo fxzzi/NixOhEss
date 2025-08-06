@@ -1,7 +1,7 @@
 {
   pkgs,
-  inputs,
   lib,
+  npins,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -17,7 +17,7 @@
       nvtopPackages.amd
       stremio
       sgdboop
-      inputs.creamlinux.packages.${pkgs.system}.default
+      (callPackage npins.creamlinux {})
     ];
     xdg.config.files."hypr/hyprland.conf" = {
       value = {

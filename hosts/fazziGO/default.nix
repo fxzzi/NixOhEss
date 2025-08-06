@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  npins,
+  ...
+}: {
   system.stateVersion = "25.05";
   imports = [
     ./hardware-configuration.nix
@@ -9,6 +13,14 @@
       telegram-desktop
       qpwgraph
     ];
+    xdg.config.files."hypr/hyprland.conf" = {
+      value = {
+        decoration = {
+          shadow.enabled = 0;
+          blur.enabled = 0;
+        };
+      };
+    };
   };
 
   hardware.bluetooth = {
