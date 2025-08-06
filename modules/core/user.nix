@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  inputs,
+  npins,
   config,
   ...
 }: let
@@ -15,7 +15,7 @@ in {
     description = "Sets the username for the system.";
   };
   imports = [
-    inputs.hjem.nixosModules.default
+    (npins.hjem + "/modules/nixos")
     # Allow using `hj` in configuration to
     # easily configure hjem in any file.
     # This pretty much makes or breaks my config.
@@ -38,7 +38,7 @@ in {
           libreoffice
           hunspell
           hunspellDicts.en_GB-ise
-          npins
+          pkgs.npins
         ];
       };
     };

@@ -5,7 +5,7 @@
   xLib,
   ...
 }: let
-  inherit (lib) mkOption types mkEnableOption getExe getExe' optionalAttrs mkIf;
+  inherit (lib) mkOption types mkDefault getExe getExe' optionalAttrs mkIf;
   inherit (builtins) isString baseNameOf concatLists genList toString;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
@@ -137,8 +137,6 @@ in {
         default = null;
         description = "Sets the secondary monitor for hypr*.";
       };
-      animations.enable = mkEnableOption "animations" // {default = true;};
-      blur.enable = mkEnableOption "blur" // {default = true;};
     };
   };
   config = {
@@ -247,13 +245,13 @@ in {
             rounding = 0;
 
             shadow = {
-              enabled = 1;
+              enabled = 0;
               color = "0xdd1a1a1a";
               render_power = 4;
               range = 8;
             };
             blur = {
-              enabled = cfg.blur.enable;
+              enabled = mkDefault 1;
               size = 3;
               passes = 3;
               popups = 1;
@@ -276,7 +274,7 @@ in {
             "workspaces, 1, 5, default, ${wsAnim}"
           ];
           animations = {
-            enabled = cfg.animations.enable;
+            enabled = mkDefault 1;
             first_launch_animation = false;
           };
           dwindle = {
@@ -377,7 +375,8 @@ in {
               "Control_L SHIFT, grave, pass, class:^(com.obsproject.Studio)$"
 
               # passthrough binds for discord
-              "Control_L SHIFT, M, pass, class:^(discord)$"
+              # FIXME: doesn't even work
+              # "Control_L SHIFT, M, pass, class:^(discord)$"
 
               # window management
               "$MOD, Q, killactive"

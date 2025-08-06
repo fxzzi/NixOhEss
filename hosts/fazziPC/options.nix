@@ -142,7 +142,6 @@
         enable = true;
         defaultMonitor = "DP-2";
         secondaryMonitor = "DP-3";
-        animations.enable = true;
         useGit = true;
         autoStart = true;
       };

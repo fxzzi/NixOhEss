@@ -2,12 +2,13 @@
   config,
   pkgs,
   lib,
-  inputs,
+  npins,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf getExe;
   inherit (builtins) toString;
   cfg = config.cfg.hardware.nvidia.nvuv;
+  nvuv = pkgs.callPackage npins.nvuv {};
 in {
   options.cfg = {
     hardware = {
@@ -45,7 +46,7 @@ in {
       wantedBy = ["multi-user.target"];
       serviceConfig = {
         ExecStart = ''
-          ${getExe inputs.nvuv.packages.${pkgs.system}.nvuv} \
+          ${getExe nvuv} \
           ${toString cfg.maxClock} \
           ${toString cfg.coreOffset} \
           ${toString cfg.memOffset} \
