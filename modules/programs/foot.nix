@@ -9,30 +9,32 @@
   inherit (builtins) substring;
   cfg = config.cfg.programs.foot;
   pin = npins.foot;
-  inherit (pkgs) makeDesktopItem;
-  # using this allows us to hide apps from runners like fuzzel.
-  makeHiddenDesktopItem = name: desktopName:
-    makeDesktopItem {
-      inherit name;
-      inherit desktopName;
-      exec = "";
-      noDisplay = true;
+  inherit (pkgs) symlinkJoin;
+  foot = pkgs.foot.overrideAttrs {
+    pname = "foot-transparency";
+    version = "0-unstable-${substring 0 8 pin.revision}";
+    src = pkgs.fetchFromGitea {
+      domain = "codeberg.org";
+      owner = "fazzi";
+      repo = "foot";
+      rev = pin.revision;
+      sha256 = pin.hash;
     };
+  };
 in {
   options.cfg.programs.foot.enable = mkEnableOption "foot";
   config = mkIf cfg.enable {
     programs.foot = {
       enable = true;
-      package = pkgs.foot.overrideAttrs {
-        pname = "foot-transparency";
-        version = "0-unstable-${substring 0 8 pin.revision}";
-        src = pkgs.fetchFromGitea {
-          domain = "codeberg.org";
-          owner = "fazzi";
-          repo = "foot";
-          rev = pin.revision;
-          sha256 = pin.hash;
-        };
+      package = symlinkJoin {
+        inherit (foot) name pname version meta;
+        paths = [foot];
+        # remove foot desktop files for server and client, as
+        # we just use standalone anyway
+        postBuild = ''
+          unlink $out/share/applications/footclient.desktop
+          unlink $out/share/applications/foot-server.desktop
+        '';
       };
       settings = {
         main = {
@@ -51,13 +53,6 @@ in {
           alpha-mode = "matching";
         };
       };
-    };
-    hj = {
-      packages = [
-        # hide footclient and foot-server from runners. We don't use them.
-        (makeHiddenDesktopItem "footclient" "Foot Client")
-        (makeHiddenDesktopItem "foot-server" "Foot Server")
-      ];
     };
   };
 }
