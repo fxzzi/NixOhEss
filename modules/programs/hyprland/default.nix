@@ -3,14 +3,11 @@
   pkgs,
   config,
   inputs,
+  npins,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf getExe';
   cfg = config.cfg.programs.hyprland;
-  pkg =
-    if cfg.useGit
-    then inputs.hyprland.packages.${pkgs.system}
-    else pkgs;
   uwsm = getExe' config.programs.uwsm.package "uwsm";
   uwsmEnabled = config.cfg.programs.uwsm.enable;
   autoStartCmd =
@@ -25,6 +22,18 @@
         exec Hyprland
       fi
     '';
+  compat = import npins.flake-compat;
+  hyprland =
+    (compat.load {
+      src = npins.hyprland;
+      replacements = {
+        nixpkgs = compat.load {src = inputs.nixpkgs;};
+      };
+    }).outputs;
+  hyprlandSet =
+    if cfg.useGit
+    then hyprland.packages.${pkgs.system}
+    else pkgs;
 in {
   options.cfg.programs = {
     hyprland = {
@@ -50,8 +59,8 @@ in {
   config = mkIf cfg.enable {
     programs.hyprland = {
       enable = true;
-      package = pkg.hyprland;
-      portalPackage = pkg.xdg-desktop-portal-hyprland;
+      package = hyprlandSet.hyprland;
+      portalPackage = hyprlandSet.xdg-desktop-portal-hyprland;
       withUWSM = config.cfg.programs.uwsm.enable;
     };
     hj.xdg.config.files."zsh/.zprofile".text = mkIf cfg.autoStart autoStartCmd;
