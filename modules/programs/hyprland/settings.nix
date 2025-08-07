@@ -145,13 +145,7 @@ in {
         screenshotScript
       ];
       xdg.config.files."hypr/hyprland.conf" = {
-        generator = xLib.generators.toHyprlang {
-          topCommandsPrefixes = [
-            "$"
-            "bezier"
-            "source"
-          ];
-        };
+        generator = xLib.generators.toHyprlang {};
         value = {
           exec = [
             "${runOnce pkgs.ags_1}"

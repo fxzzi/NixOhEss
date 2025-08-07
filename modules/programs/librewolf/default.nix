@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf concatMapAttrsStringSep;
+  inherit (lib) mkEnableOption mkIf concatMapAttrsStringSep optionalString;
   inherit (builtins) toJSON isBool isInt isString toString;
   cfg = config.cfg.programs.librewolf;
   newTabPage = "file:///home/${config.cfg.core.username}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
@@ -19,6 +19,10 @@
       else toString pref
     );
   jsPrefs = attrsToLines (name: value: "lockPref(\"${name}\", ${prefValue value});") prefs;
+  newTabPageJS = ''
+    // sets the new tab page to our local newtab.
+    ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
+  '';
 in {
   options.cfg.programs.librewolf = {
     enable = mkEnableOption "librewolf";
@@ -28,16 +32,12 @@ in {
       packages = with pkgs; [
         pywalfox-native
         (librewolf.override {
-          extraPrefs = jsPrefs;
-          # nativeMessagingHosts = mkIf config.cfg.programs.wallust.enable [pkgs.pywalfox-native];
+          extraPrefs = ''
+            ${optionalString config.cfg.programs.startpage.enable newTabPageJS}
+            ${jsPrefs}
+          '';
         })
       ];
-      xdg.config.files."librewolf/librewolf.overrides.cfg" = mkIf config.cfg.programs.startpage.enable {
-        text = ''
-          // sets the new tab page to our local newtab.
-          ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
-        '';
-      };
     };
     environment.sessionVariables = mkIf config.cfg.hardware.nvidia.enable {
       LIBVA_DRIVER_NAME = "nvidia";
