@@ -25,7 +25,6 @@ in {
     ./thunar.nix
     ./discord.nix
     ./ags
-    ./uwsm.nix
     ./sudo.nix
     ./heroic.nix
     ./lutris.nix

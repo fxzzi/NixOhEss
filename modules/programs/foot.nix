@@ -54,5 +54,11 @@ in {
         };
       };
     };
+    xdg.terminal-exec = {
+      enable = true;
+      settings = {
+        Hyprland = ["foot.desktop"];
+      };
+    };
   };
 }
