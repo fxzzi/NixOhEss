@@ -16,7 +16,7 @@ in {
     ./hyprlock.nix
     ./wleave
     ./fuzzel.nix
-    ./librewolf.nix
+    ./librewolf
     ./chromium
     ./startpage.nix
     ./foot.nix
