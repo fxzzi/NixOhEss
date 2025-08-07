@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkOption types mkDefault getExe getExe' optionalAttrs mkIf;
-  inherit (builtins) isString baseNameOf concatLists genList toString;
+  inherit (builtins) baseNameOf concatLists genList isString;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
   brightnessScript =
@@ -17,15 +17,7 @@
     if multiMonitor
     then "slidevert"
     else "slide";
-  uwsmEnabled = config.cfg.programs.uwsm.enable;
-  runProc = pkg:
-    if uwsmEnabled
-    then "app2unit -- ${pkg}"
-    else "${pkg}";
-  runTerm = cmd:
-    if uwsmEnabled
-    then "app2unit -T ${cmd}"
-    else "${cmd}";
+
   toggleProc = pkg: let
     exe =
       if isString pkg
@@ -35,16 +27,18 @@
       if isString pkg
       then exe
       else baseNameOf exe;
-  in
-    if uwsmEnabled
-    then "pkill ${binaryName} || ${runProc exe}"
-    else "pkill ${binaryName} || ${exe}";
+  in "pkill ${binaryName} || ${exe}";
+
   runOnce = pkg: let
-    exe = getExe pkg;
-  in
-    if uwsmEnabled
-    then "pgrep ${baseNameOf exe} || ${runProc exe}"
-    else "pgrep ${baseNameOf exe} || ${exe}";
+    exe =
+      if isString pkg
+      then pkg
+      else getExe pkg;
+    binaryName =
+      if isString pkg
+      then exe
+      else baseNameOf exe;
+  in "pgrep ${baseNameOf binaryName} || ${exe}";
 
   sunsetScript = pkgs.writeShellApplication {
     name = "sunset";
@@ -145,11 +139,22 @@ in {
         screenshotScript
       ];
       xdg.config.files."hypr/hyprland.conf" = {
-        generator = xLib.generators.toHyprlang {};
+        generator = xLib.generators.toHyprlang {
+          topCommandsPrefixes = [
+            "$"
+            "bezier"
+            "source"
+            "exec-once"
+            "exec-shutdown"
+          ];
+        };
         value = {
+          exec-once = [
+            "dbus-update-activation-environment --systemd --all; systemctl --user stop hyprland-session.target; systemctl --user start hyprland-session.target"
+          ];
           exec = [
             "${runOnce pkgs.ags_1}"
-            "${runProc "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"}"
+            "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"
           ];
           monitor = [
             ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
@@ -338,31 +343,31 @@ in {
           bind =
             [
               # screenshot script
-              ",Print, exec, ${runProc "${getExe screenshotScript} --monitor ${cfg.defaultMonitor}"}"
-              "SHIFT, Print, exec, ${runProc "${getExe screenshotScript} --selection"}"
-              "$MOD SHIFT, S, exec, ${runProc "${getExe screenshotScript} --selection"}"
-              "$MOD, Print, exec, ${runProc "${getExe screenshotScript} --active"}"
+              ",Print, exec, ${getExe screenshotScript} --monitor ${cfg.defaultMonitor}"
+              "SHIFT, Print, exec, ${getExe screenshotScript} --selection"
+              "$MOD SHIFT, S, exec, ${getExe screenshotScript} --selection"
+              "$MOD, Print, exec, ${getExe screenshotScript} --active"
 
               # binds for apps
-              "$MOD, F, exec, ${runProc "thunar.desktop"}"
-              "$MOD, T, exec, ${runProc "foot.desktop"}"
-              "$MOD, B, exec, ${runProc "librewolf.desktop"}"
-              "$MOD SHIFT, P, exec, ${runProc "librewolf.desktop:new-private-window"}"
-              "$MOD, W, exec, ${runProc "discord.desktop"}"
+              "$MOD, F, exec, thunar"
+              "$MOD, T, exec, xdg-terminal-exec"
+              "$MOD, B, exec, librewolf"
+              "$MOD SHIFT, P, exec, librewolf --private-window"
+              "$MOD, W, exec, Discord"
               "$MOD, D, exec, ${toggleProc "fuzzel"}"
               "$MOD SHIFT, E, exec, ${toggleProc pkgs.wleave} --protocol layer-shell -b 5 -T 360 -B 360 -k"
-              "CTRL SHIFT, Escape, exec, ${runTerm "btm"}"
-
+              "CTRL SHIFT, Escape, exec, xdg-terminal-exec btm"
               # extra schtuff
-              "$MOD, N, exec, ${runProc "${getExe sunsetScript} 3000"}"
+              "$MOD, N, exec, ${getExe sunsetScript} 3000"
               "$MOD, K, exec, ${toggleProc pkgs.hyprpicker} -r -a -n"
-              "$MOD, R, exec, ${runProc "random-wall.sh"}"
-              "$MOD SHIFT, R, exec, ${runProc "cycle-wall.sh"}"
-              "$MOD, J, exec, ${runTerm "wall-picker.sh"}"
-              "$MOD, L, exec, ${runProc "${getExe' pkgs.systemd "loginctl"} lock-session"}"
-              ", XF86AudioPrev, exec, ${runProc "${getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif)"}"
-              ", XF86AudioPlay, exec, ${runProc "${getExe pkgs.mpc} toggle; mpd-notif"}"
-              ", XF86AudioNext, exec, ${runProc "${getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif)"}"
+              "$MOD, R, exec, random-wall.sh"
+              "$MOD SHIFT, R, exec, cycle-wall.sh"
+              "$MOD, J, exec, xdg-terminal-exec wall-picker.sh"
+              "$MOD, L, exec, loginctl lock-session"
+
+              ", XF86AudioPrev, exec, ${getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif)"
+              ", XF86AudioPlay, exec, ${getExe pkgs.mpc} toggle; mpd-notif"
+              ", XF86AudioNext, exec, ${getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif)"
 
               # passthrough binds for obs
               "Control_L, grave, pass, class:^(com.obsproject.Studio)$"
@@ -411,18 +416,18 @@ in {
 
           binde = [
             # volume script
-            ", XF86AudioRaiseVolume, exec, ${runProc "audio.sh vol up 5"}"
-            ", XF86AudioLowerVolume, exec, ${runProc "audio.sh vol down 5"}"
-            ", XF86AudioMute, exec, ${runProc "audio.sh vol toggle"}"
-            ", XF86AudioMicMute, exec, ${runProc "audio.sh mic toggle"}"
-            ", F20, exec, ${runProc "audio.sh mic toggle"}"
+            ", XF86AudioRaiseVolume, exec, audio.sh vol up 5"
+            ", XF86AudioLowerVolume, exec, audio.sh vol down 5"
+            ", XF86AudioMute, exec, audio.sh vol toggle"
+            ", XF86AudioMicMute, exec, audio.sh mic toggle"
+            ", F20, exec, audio.sh mic toggle"
 
             # brightness script
-            ", XF86MonBrightnessUp, exec, ${runProc "${brightnessScript} up 5"}"
-            ", XF86MonBrightnessDown, exec, ${runProc "${brightnessScript} down 5"}"
+            ", XF86MonBrightnessUp, exec, ${brightnessScript} up 5"
+            ", XF86MonBrightnessDown, exec, ${brightnessScript} down 5"
 
             # can't type £ with US layout, so use wtype
-            "$MOD, comma, exec, ${runProc "${getExe pkgs.wtype} £"}"
+            "$MOD, comma, exec, ${getExe pkgs.wtype} £"
 
             # resize
             "$MOD CTRL, left, resizeactive, -10 0"
