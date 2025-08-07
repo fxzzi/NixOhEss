@@ -77,9 +77,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "ec26b753a253bf92ad7451b685b95cbddcb75403",
-      "url": "https://github.com/hyprwm/Hyprland/archive/ec26b753a253bf92ad7451b685b95cbddcb75403.tar.gz",
-      "hash": "07cj2rdzlvbnyjyjivv62b442pkbpc3q3lqppjvn74azgngbvqq7"
+      "revision": "a4529beb7c0be3980ce857c60b284a90f2ea6eb6",
+      "url": "https://github.com/hyprwm/Hyprland/archive/a4529beb7c0be3980ce857c60b284a90f2ea6eb6.tar.gz",
+      "hash": "099ckpkbarqw2dcz5hk1jz40jjq95s7nkxgn3yysc8vaffipcn2n"
     },
     "lanzaboote": {
       "type": "Git",

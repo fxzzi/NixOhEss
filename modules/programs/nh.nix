@@ -27,6 +27,7 @@ in {
       rbu = "nh os switch -u";
       rbb = "nh os boot";
       rbbu = "nh os boot -u";
+      nixupd = ''nix flake update --flake "$NH_FLAKE"; npins -d "$NH_FLAKE"/npins update'';
     };
     hj.packages = [
       (pkgs.writeShellApplication
@@ -75,10 +76,6 @@ in {
         text = ''
           # use current host if one isn't given
           HOST="''${1:-$(hostname)}"
-          # Nicer time formatting (thanks raf!)
-          export TIMEFMT="[$ ~ %J]: %uU usr | %uS sys | %uE/%*Es elapsed | %P CPU
-          |> (%X avgtext + %D avgdata + %M maxresident)k used
-          |> [%I inputs / %O outputs] | (%F major + %R minor) pagefaults | %W swaps"
           time nix eval \
             "$NH_FLAKE"#nixosConfigurations."$HOST".config.system.build.toplevel \
             --substituters " " \
