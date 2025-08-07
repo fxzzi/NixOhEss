@@ -7,7 +7,7 @@
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.mullvad;
 in {
-  options.cfg.services.mullvad.enable = lib.mkEnableOption "Mullvad VPN";
+  options.cfg.services.mullvad.enable = mkEnableOption "Mullvad VPN";
   config = mkIf cfg.enable {
     services = {
       mullvad-vpn = {
