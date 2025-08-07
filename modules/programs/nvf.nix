@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.nvf;
   compat = import npins.flake-compat;
   nvf =
@@ -18,7 +18,7 @@
 in {
   options.cfg.programs.nvf.enable = mkEnableOption "nvf";
   imports = [nvf.nixosModules.default];
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.sessionVariables = {
       "EDITOR" = "nvim";
     };
