@@ -61,7 +61,6 @@
     programs = {
       smoothScroll.enable = false;
       nvf.enable = true;
-      uwsm.enable = true;
       adb.enable = true;
       scripts.enable = true;
       wallust.enable = true;
