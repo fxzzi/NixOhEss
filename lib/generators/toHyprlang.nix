@@ -1,6 +1,5 @@
 lib: let
-  inherit
-    (lib)
+  inherit (lib)
     attrNames
     filterAttrs
     foldl
@@ -8,83 +7,82 @@ lib: let
     partition
     ;
 
-  inherit
-    (lib.strings)
+  inherit (lib.strings)
     concatMapStrings
     hasPrefix
     ;
 
   /**
-  Convert a structured Nix attribute set into Hyprland's configuration format.
+    Convert a structured Nix attribute set into Hyprland's configuration format.
 
-  This function takes a nested attribute set and converts it into Hyprland-compatible
-  configuration syntax, supporting top, bottom, and regular command sections.
+    This function takes a nested attribute set and converts it into Hyprland-compatible
+    configuration syntax, supporting top, bottom, and regular command sections.
+    
+    Commands are flattened using the `flattenAttrs` function, and attributes are formatted as
+    `key = value` pairs. Lists are expanded as duplicate keys to match Hyprland's expected format.
 
-  Commands are flattened using the `flattenAttrs` function, and attributes are formatted as
-  `key = value` pairs. Lists are expanded as duplicate keys to match Hyprland's expected format.
+    Configuration:
 
-  Configuration:
+    * `topCommandsPrefixes` - A list of prefixes to define **top** commands (default: `["$"]`).
+    * `bottomCommandsPrefixes` - A list of prefixes to define **bottom** commands (default: `[]`).
 
-  * `topCommandsPrefixes` - A list of prefixes to define **top** commands (default: `["$"]`).
-  * `bottomCommandsPrefixes` - A list of prefixes to define **bottom** commands (default: `[]`).
+    Attention:
 
-  Attention:
+    - The function ensures top commands appear **first** and bottom commands **last**.
+    - The generated configuration is a **single string**, suitable for writing to a config file.
+    - Lists are converted into multiple entries, ensuring compatibility with Hyprland.
 
-  - The function ensures top commands appear **first** and bottom commands **last**.
-  - The generated configuration is a **single string**, suitable for writing to a config file.
-  - Lists are converted into multiple entries, ensuring compatibility with Hyprland.
+    # Inputs
 
-  # Inputs
+    Structured function argument:
 
-  Structured function argument:
+    : topCommandsPrefixes (optional, default: `["$"]`)
+      : A list of prefixes that define **top** commands. Any key starting with one of these
+        prefixes will be placed at the beginning of the configuration.
+    : bottomCommandsPrefixes (optional, default: `[]`)
+      : A list of prefixes that define **bottom** commands. Any key starting with one of these
+        prefixes will be placed at the end of the configuration.
 
-  : topCommandsPrefixes (optional, default: `["$"]`)
-    : A list of prefixes that define **top** commands. Any key starting with one of these
-      prefixes will be placed at the beginning of the configuration.
-  : bottomCommandsPrefixes (optional, default: `[]`)
-    : A list of prefixes that define **bottom** commands. Any key starting with one of these
-      prefixes will be placed at the end of the configuration.
+    Value:
 
-  Value:
+    : The attribute set to be converted to Hyprland configuration format.
 
-  : The attribute set to be converted to Hyprland configuration format.
+    # Type
 
-  # Type
+    ```
+    toHyprlang :: AttrSet -> AttrSet -> String
+    ```
 
-  ```
-  toHyprlang :: AttrSet -> AttrSet -> String
-  ```
+    # Examples
+    :::{.example}
 
-  # Examples
-  :::{.example}
-
-  ```nix
-  let
-    config = {
-      "$mod" = "SUPER";
-      monitor = {
-        "HDMI-A-1" = "1920x1080@60,0x0,1";
+    ```nix
+    let
+      config = {
+        "$mod" = "SUPER";
+        monitor = {
+          "HDMI-A-1" = "1920x1080@60,0x0,1";
+        };
+        exec = [
+          "waybar"
+          "dunst"
+        ];
       };
-      exec = [
-        "waybar"
-        "dunst"
-      ];
-    };
-  in lib.toHyprlang {} config
-  ```
+    in lib.toHyprlang {} config
+    ```
 
-  **Output:**
-  ```nix
-  "$mod = SUPER"
-  "monitor:HDMI-A-1 = 1920x1080@60,0x0,1"
-  "exec = waybar"
-  "exec = dunst"
-  ```
+    **Output:**
+    ```nix
+    "$mod = SUPER"
+    "monitor:HDMI-A-1 = 1920x1080@60,0x0,1"
+    "exec = waybar"
+    "exec = dunst"
+    ```
 
-  :::
+    :::
   */
   toHyprlang = {
-    topCommandsPrefixes ? ["$"],
+    topCommandsPrefixes ? ["$" "bezier"],
     bottomCommandsPrefixes ? [],
   }: attrs: let
     toHyprlang' = attrs: let
@@ -101,7 +99,8 @@ lib: let
       commands = flattenAttrs (p: k: "${p}:${k}") attrs;
 
       # General filtering function to check if a key starts with any prefix in a given list.
-      filterCommands = list: n: foldl (acc: prefix: acc || hasPrefix prefix n) false list;
+      filterCommands = list: n:
+        foldl (acc: prefix: acc || hasPrefix prefix n) false list;
 
       # Partition keys into top commands and the rest
       result = partition (filterCommands topCommandsPrefixes) (attrNames commands);
@@ -123,58 +122,59 @@ lib: let
     toHyprlang' attrs;
 
   /**
-  Flatten a nested attribute set into a flat attribute set, using a custom key separator function.
+    Flatten a nested attribute set into a flat attribute set, using a custom key separator function.
 
-  This function recursively traverses a nested attribute set and produces a flat attribute set
-  where keys are joined using a user-defined function (`pred`). It allows transforming deeply
-  nested structures into a single-level attribute set while preserving key-value relationships.
+    This function recursively traverses a nested attribute set and produces a flat attribute set
+    where keys are joined using a user-defined function (`pred`). It allows transforming deeply
+    nested structures into a single-level attribute set while preserving key-value relationships.
 
-  Configuration:
+    Configuration:
 
-  * `pred` - A function `(string -> string -> string)` defining how keys should be concatenated.
+    * `pred` - A function `(string -> string -> string)` defining how keys should be concatenated.
+    
+    # Inputs
 
-  # Inputs
+    Structured function argument:
 
-  Structured function argument:
+    : pred (required)
+      : A function that determines how parent and child keys should be combined into a single key.
+        It takes a `prefix` (parent key) and `key` (current key) and returns the joined key.
+    
+    Value:
 
-  : pred (required)
-    : A function that determines how parent and child keys should be combined into a single key.
-      It takes a `prefix` (parent key) and `key` (current key) and returns the joined key.
+    : The nested attribute set to be flattened.
 
-  Value:
+    # Type
 
-  : The nested attribute set to be flattened.
+    ```
+    flattenAttrs :: (String -> String -> String) -> AttrSet -> AttrSet
+    ```
 
-  # Type
+    # Examples
+    :::{.example}
 
-  ```
-  flattenAttrs :: (String -> String -> String) -> AttrSet -> AttrSet
-  ```
+    ```nix
+    let
+      nested = {
+        a = "3";
+        b = { c = "4"; d = "5"; };
+      };
 
-  # Examples
-  :::{.example}
+      separator = (prefix: key: "${prefix}.${key}");  # Use dot notation
+    in lib.flattenAttrs separator nested
+    ```
 
-  ```nix
-  let
-    nested = {
-      a = "3";
-      b = { c = "4"; d = "5"; };
-    };
+    **Output:**
+    ```nix
+    {
+      "a" = "3";
+      "b.c" = "4";
+      "b.d" = "5";
+    }
+    ```
 
-    separator = (prefix: key: "${prefix}.${key}");  # Use dot notation
-  in lib.flattenAttrs separator nested
-  ```
+    :::
 
-  **Output:**
-  ```nix
-  {
-    "a" = "3";
-    "b.c" = "4";
-    "b.d" = "5";
-  }
-  ```
-
-  :::
   */
   flattenAttrs = pred: attrs: let
     flattenAttrs' = prefix: attrs:
@@ -195,6 +195,7 @@ lib: let
       ) {} (builtins.attrNames attrs);
   in
     flattenAttrs' "" attrs;
-in {
+in
+{
   inherit flattenAttrs toHyprlang;
 }
