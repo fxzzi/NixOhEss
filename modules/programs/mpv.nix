@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) generators concatStringsSep mapAttrsToList mkEnableOption mkIf;
-  inherit (builtins) typeOf stringLength toString;
+  inherit (builtins) typeOf stringLength toString head;
 
   yesNo = value:
     if value
@@ -84,7 +84,7 @@ in {
           ];
           sub-fix-timing = false;
           sub-font-size = 36;
-          sub-font = "${builtins.head config.fonts.fontconfig.defaultFonts.sansSerif}";
+          sub-font = "${head config.fonts.fontconfig.defaultFonts.sansSerif}";
           sub-scale-with-window = true;
 
           cursor-autohide = 250;
