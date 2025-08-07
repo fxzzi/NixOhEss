@@ -5,22 +5,13 @@
   inputs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf getExe';
+  inherit (lib) mkEnableOption mkOption types mkIf;
   cfg = config.cfg.programs.hyprland;
-  uwsm = getExe' config.programs.uwsm.package "uwsm";
-  uwsmEnabled = config.cfg.programs.uwsm.enable;
-  autoStartCmd =
-    if uwsmEnabled
-    then ''
-      if ${uwsm} check may-start; then
-        exec ${uwsm} start -F -- Hyprland
-      fi
-    ''
-    else ''
-      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-        exec Hyprland
-      fi
-    '';
+  autoStartCmd = ''
+    if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+      exec Hyprland
+    fi
+  '';
   hyprlandSet =
     if cfg.useGit
     then inputs.hyprland.packages.${pkgs.system}
@@ -52,8 +43,17 @@ in {
       enable = true;
       package = hyprlandSet.hyprland;
       portalPackage = hyprlandSet.xdg-desktop-portal-hyprland;
-      withUWSM = config.cfg.programs.uwsm.enable;
     };
     hj.xdg.config.files."zsh/.zprofile".text = mkIf cfg.autoStart autoStartCmd;
+    services.dbus.implementation = "broker";
+    systemd.user.targets.hyprland-session = {
+      description = "Hyprland compositor session";
+      documentation = ["man:systemd.special(7)"];
+      bindsTo = ["graphical-session.target"];
+      wants = [
+        "graphical-session-pre.target"
+      ];
+      after = ["graphical-session-pre.target"];
+    };
   };
 }

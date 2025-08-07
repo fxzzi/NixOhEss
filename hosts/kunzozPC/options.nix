@@ -65,7 +65,6 @@
       fuzzel.enable = true;
       scripts.enable = true;
       foot.enable = true;
-      uwsm.enable = true;
       nvf.enable = true;
       steam = {
         enable = true;

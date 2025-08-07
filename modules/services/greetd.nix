@@ -4,12 +4,8 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf getExe;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.greetd;
-  wrapper =
-    if config.cfg.programs.uwsm.enable
-    then "--session-wrapper '${getExe pkgs.uwsm} start -F --'"
-    else "";
 in {
   options.cfg.services.greetd.enable = mkEnableOption "greetd";
   config = mkIf cfg.enable {
@@ -21,13 +17,10 @@ in {
             # sh
             ''
               ${pkgs.tuigreet}/bin/tuigreet \
-              --greeting 'Welcome to the fold of NixOhEss.' \
+              --greeting 'Welcome to the fold of ${config.system.nixos.distroName}.' \
               --time \
               --remember \
-              --asterisks \
-              ${wrapper} \
-              -c 'Hyprland'
-
+              --asterisks
             '';
           user = "greeter";
         };

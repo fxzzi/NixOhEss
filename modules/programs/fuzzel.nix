@@ -6,11 +6,6 @@
 }: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.fuzzel;
-
-  terminal =
-    if config.cfg.programs.uwsm.enable
-    then "xdg-terminal-exec"
-    else "foot -e";
 in {
   options.cfg.programs.fuzzel.enable = mkEnableOption "fuzzel";
   config = mkIf cfg.enable {
@@ -33,15 +28,11 @@ in {
             inner-pad = "6";
             filter-desktop = true;
             # image-size-ratio = "0.5";
-            inherit terminal;
+            terminal = "xdg-terminal-exec";
             fields = "name,exec";
             placeholder = "Search...";
             match-mode = "exact";
             dpi-aware = false;
-            launch-prefix =
-              if config.cfg.programs.uwsm.enable
-              then "app2unit --fuzzel-compat --"
-              else null;
           };
           border = {
             radius = "6";

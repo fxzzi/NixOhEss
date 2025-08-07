@@ -6,10 +6,6 @@
 }: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.wleave;
-  logoutAction =
-    if config.cfg.programs.uwsm.enable
-    then "uwsm stop"
-    else "hyprctl dispatch exit";
 in {
   options.cfg.programs.wleave.enable = mkEnableOption "wleave";
   config = mkIf cfg.enable {
@@ -48,7 +44,7 @@ in {
               }
               {
                 label = "logout";
-                action = "${logoutAction}";
+                action = "hyprctl dispatch exit";
                 text = "Logout";
                 keybind = "e";
               }

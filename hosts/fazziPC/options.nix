@@ -96,7 +96,6 @@
       prismlauncher.enable = true;
       lutris.enable = true;
       heroic.enable = true;
-      uwsm.enable = true;
       adb.enable = true;
       scripts.enable = true;
       mpv.enable = true;

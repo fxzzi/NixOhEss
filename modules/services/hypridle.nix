@@ -77,7 +77,7 @@ in {
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
       unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY"; # Only start if WAYLAND_DISPLAY env var is set
+        ConditionEnvironment = "WAYLAND_DISPLAY";
       };
       serviceConfig = {
         Type = "simple";
