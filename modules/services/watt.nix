@@ -1,21 +1,11 @@
 {
   inputs,
-  npins,
   lib,
   config,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf mkForce;
   cfg = config.cfg.services.watt;
-  compat = import npins.flake-compat;
-  watt =
-    (compat.load {
-      src = npins.watt;
-
-      replacements = {
-        nixpkgs = compat.load {src = inputs.nixpkgs;};
-      };
-    }).outputs;
 in {
   options.cfg.services.watt.enable = mkEnableOption "watt";
   config = mkIf cfg.enable {
@@ -52,5 +42,5 @@ in {
       };
     };
   };
-  imports = [watt.nixosModules.default];
+  imports = [inputs.watt.nixosModules.default];
 }

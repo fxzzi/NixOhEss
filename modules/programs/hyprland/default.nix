@@ -3,7 +3,6 @@
   pkgs,
   config,
   inputs,
-  npins,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf getExe';
@@ -22,17 +21,9 @@
         exec Hyprland
       fi
     '';
-  compat = import npins.flake-compat;
-  hyprland =
-    (compat.load {
-      src = npins.hyprland;
-      replacements = {
-        nixpkgs = compat.load {src = inputs.nixpkgs;};
-      };
-    }).outputs;
   hyprlandSet =
     if cfg.useGit
-    then hyprland.packages.${pkgs.system}
+    then inputs.hyprland.packages.${pkgs.system}
     else pkgs;
 in {
   options.cfg.programs = {
