@@ -27,22 +27,6 @@
       "hash": "1phf048dfz0g8549xqhsf7jlhc2s8nxvc33fg5d9wzx25jbsv58a",
       "frozen": true
     },
-    "flake-compat": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "nilla-nix",
-        "repo": "flake-compat"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v0.0.2",
-      "revision": "2653659fb5d86f2853caae1b6475e63e8c23439c",
-      "url": "https://api.github.com/repos/nilla-nix/flake-compat/tarball/v0.0.2",
-      "hash": "165xl96d5f2xaawyiaj3cl8ccisrjvx5b1db8nfh18swaxyzdckn"
-    },
     "foot": {
       "type": "Git",
       "repository": {
@@ -68,45 +52,6 @@
       "url": "https://github.com/fxzzi/hjem/archive/a303e923b52c37164fd3a11c56532c2162cc136c.tar.gz",
       "hash": "16gp8372vh4xhxxvr5gcz34pfjggcj4404n1pxiqm4f6wmqzn1ls"
     },
-    "hyprland": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "hyprwm",
-        "repo": "Hyprland"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "a4529beb7c0be3980ce857c60b284a90f2ea6eb6",
-      "url": "https://github.com/hyprwm/Hyprland/archive/a4529beb7c0be3980ce857c60b284a90f2ea6eb6.tar.gz",
-      "hash": "099ckpkbarqw2dcz5hk1jz40jjq95s7nkxgn3yysc8vaffipcn2n"
-    },
-    "lanzaboote": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "nix-community",
-        "repo": "lanzaboote"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "892cbdca865d6b42f9c0d222fe309f7720259855",
-      "url": "https://github.com/nix-community/lanzaboote/archive/892cbdca865d6b42f9c0d222fe309f7720259855.tar.gz",
-      "hash": "1ywxw80y7x8wlq2wcjgm7czkv56wblc6x39rnccvxp6dqaqvygk8"
-    },
-    "nvf": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "NotAShelf",
-        "repo": "nvf"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "22fb0d22cc474e85f94c5aa95b6c550c81ca7278",
-      "url": "https://github.com/NotAShelf/nvf/archive/22fb0d22cc474e85f94c5aa95b6c550c81ca7278.tar.gz",
-      "hash": "0armkbgwpj74f8jk5pxi115c4v62nfqkmq4kd0lw719z6wabmvzb"
-    },
     "nvuv": {
       "type": "Git",
       "repository": {
@@ -129,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "8204a8825a0609dde0783037811c9f738dad48b5",
-      "url": "https://github.com/NotAShelf/rags/archive/8204a8825a0609dde0783037811c9f738dad48b5.tar.gz",
-      "hash": "1x1rckwzn2dxwrrqh89qx5pvx059w7anwm0pxkf4cpjq68mnvj4d"
+      "revision": "462d14d671f81f7c588c1b46de022ac0ae8ca473",
+      "url": "https://github.com/NotAShelf/rags/archive/462d14d671f81f7c588c1b46de022ac0ae8ca473.tar.gz",
+      "hash": "13mpym6y5rsgykyxi4bp8clcvlxwmnhj610n53zg6alc5z17ryjx"
     },
     "startpage": {
       "type": "Git",
@@ -158,19 +103,6 @@
       "revision": "b964da5d455a17ad71c1f7f50432f36f391d790f",
       "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=b964da5d455a17ad71c1f7f50432f36f391d790f",
       "hash": "19a0rv36n72k7xfjsx1lzyawxcggikd1k7bhv7l05slg80w53qjv"
-    },
-    "watt": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "NotAShelf",
-        "repo": "watt"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "f68a9795616699870d213dc9e641dab655aa434a",
-      "url": "https://github.com/NotAShelf/watt/archive/f68a9795616699870d213dc9e641dab655aa434a.tar.gz",
-      "hash": "0i5yy4w9p86ma7siw7yc6dl0bmzqpli2fgp1crv53w1ybgyf4i54"
     }
   },
   "version": 5
