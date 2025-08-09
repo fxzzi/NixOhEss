@@ -17,7 +17,9 @@
       networking = {
         enable = true;
       };
-      fonts.enable = true;
+      fonts = {
+        enable = true;
+      };
     };
     hardware = {
       rules = {
