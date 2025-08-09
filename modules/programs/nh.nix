@@ -22,12 +22,13 @@ in {
       };
     };
     environment.shellAliases = {
+      nixupd = ''nix flake update --flake "$NH_FLAKE"; npins -d "$NH_FLAKE"/npins update'';
+
       # rb means rebuild
       rb = "nh os switch";
-      rbu = "nh os switch -u";
+      rbu = "nixupd; rb";
       rbb = "nh os boot";
-      rbbu = "nh os boot -u";
-      nixupd = ''nix flake update --flake "$NH_FLAKE"; npins -d "$NH_FLAKE"/npins update'';
+      rbbu = "nixupd; rbb";
     };
     hj.packages = [
       (pkgs.writeShellApplication
