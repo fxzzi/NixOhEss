@@ -6,21 +6,12 @@
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.dunst;
-  pkg = pkgs.dunst.overrideAttrs {
-    patches = [
-      (pkgs.fetchpatch {
-        # patch to fix `dunstctl reload` on native wayland dunst
-        url = "https://github.com/dunst-project/dunst/pull/1458.patch";
-        sha256 = "sha256-uLY0atUjHRy7hCkAoEkWRk5kl8VvO6nygwuK5aqaG5c=";
-      })
-    ];
-  };
 in {
   options.cfg.services.dunst.enable = mkEnableOption "dunst";
   config = mkIf cfg.enable {
     hj = {
       packages = [
-        pkg
+        pkgs.dunst
       ];
       xdg.config.files."dunst/dunstrc" = {
         generator = lib.generators.toINI {};
@@ -110,7 +101,7 @@ in {
       serviceConfig = {
         Type = "dbus";
         BusName = "org.freedesktop.Notifications";
-        ExecStart = "${getExe pkg}";
+        ExecStart = "${getExe pkgs.dunst}";
       };
     };
   };
