@@ -4,33 +4,19 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf;
+  inherit (lib) mkEnableOption mkDefault mkIf;
   cfg = config.cfg.core.fonts;
 in {
   options.cfg.core.fonts = {
     enable = mkEnableOption "fonts";
     useMonoEverywhere = mkEnableOption "use mono everywhere";
-    subpixelLayout = mkOption {
-      type = types.enum [
-        "rgb"
-        "bgr"
-        "vrgb"
-        "vbgr"
-        "none"
-      ];
-      default = "rgb";
-      description = ''
-        Subpixel rendering layout. This is used to configure the order of
-        subpixels in the LCD screen. The default is rgb, which is the most
-        common layout.
-      '';
-    };
   };
   config = mkIf cfg.enable {
     fonts = {
       enableDefaultPackages = false;
       fontconfig = {
-        subpixel.rgba = cfg.subpixelLayout;
+        subpixel.rgba = mkDefault "rgb";
+        includeUserConf = false;
         # fixes emojis on browser
         useEmbeddedBitmaps = true;
 
