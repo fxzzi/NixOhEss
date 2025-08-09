@@ -14,7 +14,6 @@ import { CpuTempWidget } from "./modules/CpuTemp.js";
 import { MemUsageWidget } from "./modules/MemUsage.js";
 import { GpuTempWidget } from "./modules/GpuTemp.js";
 import { SysTrayWidget } from "./modules/SysTray.js";
-//import { NotificationPopups } from "./modules/notificationPopups.js"
 
 // Add svg icons from the ./icons directory
 App.addIcons(`${App.configDir}/icons/`);
@@ -85,7 +84,7 @@ const getMonitorByName = (name) => {
 const removeAllWindows = () => App.windows.forEach(App.removeWindow);
 
 const InitBars = (wdg) => {
-  
+
   hyprland.monitors.forEach((mon) => {
     const gdkMonitor = getMonitorByName(mon.name);
     if (gdkMonitor) App.addWindow(wdg(gdkMonitor));
