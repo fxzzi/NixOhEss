@@ -3,8 +3,8 @@
     core = {
       username = "kunzoz";
       kernel = {
-        type = "latest";
-        zenergy.enable = false;
+        type = "zen";
+        zenergy.enable = true;
       };
       boot = {
         enable = true;
