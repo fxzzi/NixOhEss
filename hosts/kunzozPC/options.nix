@@ -4,7 +4,7 @@
       username = "kunzoz";
       kernel = {
         type = "latest";
-        zenergy.enable = true;
+        zenergy.enable = false;
       };
       boot = {
         enable = true;
