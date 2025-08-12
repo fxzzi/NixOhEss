@@ -28,9 +28,9 @@ in {
         # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "580.65.06";
-          sha256_64bit = "sha256-BLEIZ69YXnZc+/3POe1fS9ESN1vrqwFy6qGHxqpQJP8=";
-          openSha256 = "sha256-BKe6LQ1ZSrHUOSoV6UCksUE0+TIa0WcCHZv4lagfIgA=";
+          version = "580.76.05";
+          sha256_64bit = "sha256-IZvmNrYJMbAhsujB4O/4hzY8cx+KlAyqh7zAVNBdl/0=";
+          openSha256 = "sha256-xEPJ9nskN1kISnSbfBigVaO6Mw03wyHebqQOQmUg/eQ=";
           usePersistenced = false;
           useSettings = false;
         };
@@ -56,9 +56,6 @@ in {
         # fix hw acceleration and native wayland on losslesscut
         "__EGL_VENDOR_LIBRARY_FILENAMES" = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
         "CUDA_CACHE_PATH" = "$HOME/.cache/nv";
-
-        # fix 580 gtk4 freezing
-        "GSK_RENDERER" = "ngl";
       };
       # fix high vram usage on discord and hyprland. match with the wrapper procnames
       etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool.json".source =
