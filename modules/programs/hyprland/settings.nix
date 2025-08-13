@@ -360,6 +360,7 @@ in {
               "$MOD SHIFT, R, exec, ${runProc "cycle-wall.sh"}"
               "$MOD, J, exec, ${runTerm "wall-picker.sh"}"
               "$MOD, L, exec, ${runProc "${getExe' pkgs.systemd "loginctl"} lock-session"}"
+              "$MOD, V, exec, pkill fuzzel || ${runProc "stash list | fuzzel --dmenu --width 75 --lines 10 | stash decode | wl-copy "}"
               ", XF86AudioPrev, exec, ${runProc "${getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif)"}"
               ", XF86AudioPlay, exec, ${runProc "${getExe pkgs.mpc} toggle; mpd-notif"}"
               ", XF86AudioNext, exec, ${runProc "${getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif)"}"

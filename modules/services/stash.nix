@@ -2,14 +2,17 @@
   lib,
   config,
   pkgs,
+  npins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
-  cfg = config.cfg.services.wl-clip-persist;
+  cfg = config.cfg.services.stash;
+  stash = pkgs.callPackage "${npins.stash}/nix/package.nix" {};
 in {
-  options.cfg.services.wl-clip-persist.enable = mkEnableOption "wl-clip-persist";
+  options.cfg.services.stash.enable = mkEnableOption "stash" // {default = true;};
   config = mkIf cfg.enable {
-    systemd.user.services.wl-clip-persist = {
+    hj.packages = [stash];
+    systemd.user.services.stash = {
       enable = true;
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
@@ -18,7 +21,7 @@ in {
         ConditionEnvironment = "WAYLAND_DISPLAY"; # Only start if WAYLAND_DISPLAY env var is set
       };
       serviceConfig = {
-        ExecStart = "${getExe pkgs.wl-clip-persist} --clipboard regular";
+        ExecStart = "${getExe stash} --max-items 10 watch";
         Restart = "on-abort";
       };
     };
