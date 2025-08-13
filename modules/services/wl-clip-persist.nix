@@ -7,7 +7,7 @@
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.wl-clip-persist;
 in {
-  options.cfg.services.wl-clip-persist.enable = mkEnableOption "wl-clip-persist" // {default = true;};
+  options.cfg.services.wl-clip-persist.enable = mkEnableOption "wl-clip-persist";
   config = mkIf cfg.enable {
     systemd.user.services.wl-clip-persist = {
       enable = true;
