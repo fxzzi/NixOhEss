@@ -91,6 +91,19 @@
       "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=0583d1f1bcbd077a69b143b56ecdbf532c1dfeac",
       "hash": "02c2gr5iqbvbbv1g5sh5pqjzdr2ypxm9zlpwa2mfximfj61grsj4"
     },
+    "stash": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NotAShelf",
+        "repo": "stash"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "47b85472fa425a99e519d9082d329b0d6e91f44b",
+      "url": "https://github.com/NotAShelf/stash/archive/47b85472fa425a99e519d9082d329b0d6e91f44b.tar.gz",
+      "hash": "1x4cvymvgq25547838qf5r7alsk547blsb535yp2vmnyi33ah2d7"
+    },
     "walls": {
       "type": "Git",
       "repository": {
