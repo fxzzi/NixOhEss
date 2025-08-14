@@ -6,8 +6,11 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
+  inherit (pkgs) callPackage;
   cfg = config.cfg.services.stash;
-  stash = pkgs.callPackage "${npins.stash}/nix/package.nix" {};
+  stash = callPackage "${npins.stash}/nix/package.nix" {
+    craneLib = callPackage "${npins.crane}/lib" {};
+  };
 in {
   options.cfg.services.stash.enable = mkEnableOption "stash" // {default = true;};
   config = mkIf cfg.enable {

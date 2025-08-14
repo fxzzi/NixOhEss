@@ -13,6 +13,19 @@
       "url": "https://github.com/ryantm/agenix/archive/9edb1787864c4f59ae5074ad498b6272b3ec308d.tar.gz",
       "hash": "06w2dxnf8qxwcmqvgyxnrrx62ca5x1cw3lminpgs112md17wa3rl"
     },
+    "crane": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ipetkov",
+        "repo": "crane"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "305707bbc27d83aa1039378e91d7dd816f4cac10",
+      "url": "https://github.com/ipetkov/crane/archive/305707bbc27d83aa1039378e91d7dd816f4cac10.tar.gz",
+      "hash": "0nq5an0gpw1qjzn08aw1lkphvgqajl1yb3d2bgxslq5aqixlb43n"
+    },
     "creamlinux": {
       "type": "Git",
       "repository": {
@@ -100,9 +113,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "47b85472fa425a99e519d9082d329b0d6e91f44b",
-      "url": "https://github.com/NotAShelf/stash/archive/47b85472fa425a99e519d9082d329b0d6e91f44b.tar.gz",
-      "hash": "1x4cvymvgq25547838qf5r7alsk547blsb535yp2vmnyi33ah2d7"
+      "revision": "c9b19f1e64e1bf16d4f615e26130b15a9638c9d7",
+      "url": "https://github.com/NotAShelf/stash/archive/c9b19f1e64e1bf16d4f615e26130b15a9638c9d7.tar.gz",
+      "hash": "02bx3zm0b21nkixf7xc4nqgjxiafg0dmrwqrwpgg9dszgrcl79r8"
     },
     "walls": {
       "type": "Git",
@@ -113,9 +126,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "b964da5d455a17ad71c1f7f50432f36f391d790f",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=b964da5d455a17ad71c1f7f50432f36f391d790f",
-      "hash": "19a0rv36n72k7xfjsx1lzyawxcggikd1k7bhv7l05slg80w53qjv"
+      "revision": "c25059e286e2e9c398c305a6610e3a0ebfb054b3",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=c25059e286e2e9c398c305a6610e3a0ebfb054b3",
+      "hash": "0f46h8j1cv8xsy198g7fv4w540fg3qiavk3id8ck0pxqmw6hxsf7"
     }
   },
   "version": 5
