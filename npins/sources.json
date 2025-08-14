@@ -13,6 +13,19 @@
       "url": "https://github.com/ryantm/agenix/archive/9edb1787864c4f59ae5074ad498b6272b3ec308d.tar.gz",
       "hash": "06w2dxnf8qxwcmqvgyxnrrx62ca5x1cw3lminpgs112md17wa3rl"
     },
+    "crane": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ipetkov",
+        "repo": "crane"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "444e81206df3f7d92780680e45858e31d2f07a08",
+      "url": "https://github.com/ipetkov/crane/archive/444e81206df3f7d92780680e45858e31d2f07a08.tar.gz",
+      "hash": "0ifbygfziaa4j4iz4wrg1s0cgy7qr3c3fcas17dhiqfxa7q15myj"
+    },
     "creamlinux": {
       "type": "Git",
       "repository": {
@@ -100,9 +113,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "47b85472fa425a99e519d9082d329b0d6e91f44b",
-      "url": "https://github.com/NotAShelf/stash/archive/47b85472fa425a99e519d9082d329b0d6e91f44b.tar.gz",
-      "hash": "1x4cvymvgq25547838qf5r7alsk547blsb535yp2vmnyi33ah2d7"
+      "revision": "7ccaf13bda2e1410c222015eaa7c0a86cca49f22",
+      "url": "https://github.com/NotAShelf/stash/archive/7ccaf13bda2e1410c222015eaa7c0a86cca49f22.tar.gz",
+      "hash": "1shiw9iwhd14x93mpif36958d7kmwa6jybz6xm9f9r73k22n9wmj"
     },
     "walls": {
       "type": "Git",
