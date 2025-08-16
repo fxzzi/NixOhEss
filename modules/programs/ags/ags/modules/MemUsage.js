@@ -1,22 +1,17 @@
+import GTop from "gi://GTop";
+
+const mem = new GTop.glibtop_mem();
+
 const memUsage = Variable("", {
   poll: [
     2000,
     () => {
       try {
-        const meminfo = Utils.readFile("/proc/meminfo");
-        const totalMatch = meminfo.match(/MemTotal:\s+(\d+)/);
-        const availableMatch = meminfo.match(/MemAvailable:\s+(\d+)/);
-
-        if (!totalMatch || !availableMatch)
-          throw new Error("Failed to parse /proc/meminfo");
-
-        const totalRamKiB = parseInt(totalMatch[1], 10);
-        const availableRamKiB = parseInt(availableMatch[1], 10);
-        const usedRamGiB = (totalRamKiB - availableRamKiB) / (1024 * 1024);
-
+        GTop.glibtop_get_mem(mem);
+        const usedRamGiB = mem.user / (1024 * 1024 * 1024);
         return `${usedRamGiB.toFixed(2)}GiB`;
       } catch (error) {
-        console.error("Error calculating RAM usage:", error);
+        console.error("Error calculating RAM usage with libgtop:", error);
         return "N/A";
       }
     },

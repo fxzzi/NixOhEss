@@ -12,7 +12,11 @@ in {
   config = mkIf cfg.enable {
     nixpkgs.overlays = [
       (final: _: {
-        ags_1 = final.callPackage "${npins.rags}/nix/package.nix" {};
+        ags_1 = final.callPackage "${npins.rags}/nix/package.nix" {
+          extraPackages = [
+            final.libgtop
+          ];
+        };
       })
     ];
     hj = {
