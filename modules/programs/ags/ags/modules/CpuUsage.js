@@ -1,20 +1,19 @@
+import GTop from "gi://GTop";
+
 let lastTotal = 0;
 let lastIdle = 0;
+
+const cpu = new GTop.glibtop_cpu();
 
 const cpuUsage = Variable("", {
   poll: [
     2000,
     () => {
       try {
-        const contents = Utils.readFile("/proc/stat");
-        const [user, nice, system, idle, iowait, irq, softirq] = contents
-          .split("\n")[0]
-          .split(/\s+/)
-          .slice(1)
-          .map(Number);
+        GTop.glibtop_get_cpu(cpu);
 
-        const currentIdle = idle + iowait;
-        const currentTotal = user + nice + system + currentIdle + irq + softirq;
+        const currentTotal = cpu.total;
+        const currentIdle = cpu.idle + cpu.iowait;
 
         const totalDiff = currentTotal - lastTotal;
         const idleDiff = currentIdle - lastIdle;
@@ -25,7 +24,7 @@ const cpuUsage = Variable("", {
         const usage = totalDiff > 0 ? (100 * (totalDiff - idleDiff)) / totalDiff : 0;
         return `${Math.round(usage)}%`;
       } catch (error) {
-        console.error("Error calculating CPU usage:", error);
+        console.error("Error calculating CPU usage with libgtop:", error);
         return "N/A";
       }
     },
