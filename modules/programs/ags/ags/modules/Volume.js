@@ -9,12 +9,20 @@ export function VolumeWidget() {
   };
 
   function getIcon() {
-    const icon = audio.speaker.is_muted
-      ? 0
-      : [70, 40, 1, 0].find(
-          (threshold) => threshold <= audio.speaker.volume * 100,
-        );
-    return icons[icon];
+    if (audio.speaker.is_muted) {
+        return icons[0];
+    }
+    const volume = audio.speaker.volume * 100;
+    if (volume >= 70) {
+        return icons[70];
+    }
+    if (volume >= 40) {
+        return icons[40];
+    }
+    if (volume > 0) {
+        return icons[1];
+    }
+    return icons[0];
   }
 
   return Widget.Box({
