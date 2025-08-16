@@ -63,28 +63,24 @@ const Bar = (gdkMonitor) => {
 
 const hyprland = await Service.import("hyprland");
 const display = Gdk.Display.get_default();
+const screen = display.get_default_screen();
 
-const getMonitorName = (gdkmonitor) => {
-  const screen = display.get_default_screen();
-  for (let i = 0; i < display.get_n_monitors(); ++i) {
-    if (gdkmonitor === display.get_monitor(i))
-      return screen.get_monitor_plug_name(i);
-  }
-  return null;
-};
+const gdkMonitorToName = new Map();
+const nameToGdkMonitor = new Map();
 
-const getMonitorByName = (name) => {
-  for (let i = 0; i < display.get_n_monitors(); ++i) {
-    const gdkMonitor = display.get_monitor(i);
-    if (getMonitorName(gdkMonitor) === name) return gdkMonitor;
-  }
-  return null;
-};
+for (let i = 0; i < display.get_n_monitors(); ++i) {
+  const gdkMonitor = display.get_monitor(i);
+  const monitorName = screen.get_monitor_plug_name(i);
+  gdkMonitorToName.set(gdkMonitor, monitorName);
+  nameToGdkMonitor.set(monitorName, gdkMonitor);
+}
+
+const getMonitorName = (gdkmonitor) => gdkMonitorToName.get(gdkmonitor) || null;
+const getMonitorByName = (name) => nameToGdkMonitor.get(name) || null;
 
 const removeAllWindows = () => App.windows.forEach(App.removeWindow);
 
 const InitBars = (wdg) => {
-
   hyprland.monitors.forEach((mon) => {
     const gdkMonitor = getMonitorByName(mon.name);
     if (gdkMonitor) App.addWindow(wdg(gdkMonitor));
@@ -97,7 +93,6 @@ hyprland.connect("event", (_, name) => {
     console.log(`monitor change event detected!`);
     removeAllWindows();
 		InitBars(Bar);
-		//InitBars(NotificationPopups)
   }
 });
 
@@ -125,6 +120,5 @@ function monitorCssFile() {
 
 // on startup, create bars for all monitors
 InitBars(Bar);
-//InitBars(NotificationPopups)
 // start monitoring colors_ags.css
 monitorCssFile();
