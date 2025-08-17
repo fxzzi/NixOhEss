@@ -78,6 +78,7 @@
     };
     hardware.scanning.enable = false;
     programs = {
+      osu.enable = true;
       smoothScroll.enable = false;
       # eden.enable = true;
       proton-ge = {
