@@ -13,6 +13,7 @@ in {
     nixpkgs.overlays = [
       (final: _: {
         ags_1 = final.callPackage "${npins.rags}/nix/package.nix" {
+          buildTypes = false;
           extraPackages = [
             final.libgtop
           ];
