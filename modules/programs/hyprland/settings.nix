@@ -251,7 +251,7 @@ in {
             };
             blur = {
               enabled = mkDefault 1;
-              size = 3;
+              size = 4;
               passes = 3;
               popups = 1;
               brightness = 0.67;
@@ -271,11 +271,12 @@ in {
             # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
             # and it will look like windows are moving into each other across the monitors.
             "workspaces, 1, 5, default, ${wsAnim}"
+            # don't zoom in when hyprland starts
+            # "monitorAdded, 0"
           ];
-          animations = {
-            enabled = mkDefault 1;
-            first_launch_animation = false;
-          };
+
+          animations.enabled = mkDefault 1;
+
           dwindle = {
             pseudotile = 1;
             preserve_split = 1;
