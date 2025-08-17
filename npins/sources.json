@@ -65,6 +65,19 @@
       "url": "https://github.com/fxzzi/hjem/archive/a303e923b52c37164fd3a11c56532c2162cc136c.tar.gz",
       "hash": "16gp8372vh4xhxxvr5gcz34pfjggcj4404n1pxiqm4f6wmqzn1ls"
     },
+    "nix-gaming": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "fufexan",
+        "repo": "nix-gaming"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "f2bf778502254d8852402a83ae346fd803095ccc",
+      "url": "https://github.com/fufexan/nix-gaming/archive/f2bf778502254d8852402a83ae346fd803095ccc.tar.gz",
+      "hash": "0vibky5fwdi94p6gndkfywcf49jv2hbax6z8zx8gkfa9gb5gp040"
+    },
     "nvuv": {
       "type": "Git",
       "repository": {
