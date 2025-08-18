@@ -42,10 +42,6 @@ in {
     };
     environment = {
       sessionVariables = {
-        # nvidia shenanigans
-        GBM_BACKEND = "nvidia-drm";
-        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-
         # disable vsync
         __GL_SYNC_TO_VBLANK = "0";
         # enable gsync / vrr support
