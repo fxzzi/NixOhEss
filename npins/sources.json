@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "444e81206df3f7d92780680e45858e31d2f07a08",
-      "url": "https://github.com/ipetkov/crane/archive/444e81206df3f7d92780680e45858e31d2f07a08.tar.gz",
-      "hash": "0ifbygfziaa4j4iz4wrg1s0cgy7qr3c3fcas17dhiqfxa7q15myj"
+      "revision": "3c40c97e1881fff381e4615e82557b333edf65c4",
+      "url": "https://github.com/ipetkov/crane/archive/3c40c97e1881fff381e4615e82557b333edf65c4.tar.gz",
+      "hash": "13hga5ngwzddrgsmk8sbsxvfaall59217z5l82kym7a887r8y3sf"
     },
     "creamlinux": {
       "type": "Git",
