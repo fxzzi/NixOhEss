@@ -9,7 +9,7 @@
 in {
   options.cfg.services.mpd.enable = mkEnableOption "mpd";
   imports = [
-    ./mpd-discord-rpc
+    ./mpd-discord-rpc.nix
   ];
   config = mkIf cfg.enable {
     hj = {
