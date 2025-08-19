@@ -1,6 +1,6 @@
 {
   imports = [
-    ./boot
+    ./boot.nix
     ./networking
     ./fonts
     ./kernel
