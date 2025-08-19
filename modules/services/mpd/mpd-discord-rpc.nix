@@ -2,11 +2,12 @@
   lib,
   config,
   pkgs,
+  npins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.mpd.discord-rpc;
-  pkg = pkgs.mpd-discord-rpc;
+  pkg = pkgs.callPackage "${npins.mpd-discord-rpc}/nix/package.nix" {};
 in {
   options.cfg.services.mpd.discord-rpc.enable = mkEnableOption "discord-rpc";
   config = mkIf cfg.enable {
@@ -23,6 +24,7 @@ in {
             small_image = "";
             large_text = "$album";
             small_text = "";
+            display_type = "state";
           };
         };
       };
