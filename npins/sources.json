@@ -65,6 +65,19 @@
       "url": "https://github.com/fxzzi/hjem/archive/a303e923b52c37164fd3a11c56532c2162cc136c.tar.gz",
       "hash": "16gp8372vh4xhxxvr5gcz34pfjggcj4404n1pxiqm4f6wmqzn1ls"
     },
+    "mpd-discord-rpc": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "JakeStanger",
+        "repo": "mpd-discord-rpc"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "955099ba696308a012435e367831eee913556444",
+      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/955099ba696308a012435e367831eee913556444.tar.gz",
+      "hash": "0jij72klka2k02jcv1m7qdzkaw5fykr2rvm8d4dj3i5irzakd28b"
+    },
     "nix-gaming": {
       "type": "Git",
       "repository": {
