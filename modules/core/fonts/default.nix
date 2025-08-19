@@ -9,7 +9,6 @@
 in {
   options.cfg.core.fonts = {
     enable = mkEnableOption "fonts";
-    useMonoEverywhere = mkEnableOption "use mono everywhere";
   };
   config = mkIf cfg.enable {
     fonts = {
@@ -23,18 +22,10 @@ in {
         enable = true;
         defaultFonts = {
           serif = [
-            (
-              if cfg.useMonoEverywhere
-              then "Ioshelfka Term"
-              else "Noto Serif"
-            )
+            "Noto Serif"
           ];
           sansSerif = [
-            (
-              if cfg.useMonoEverywhere
-              then "Ioshelfka Term"
-              else "Inter Variable"
-            )
+            "Inter Variable"
           ];
           monospace = [
             "Ioshelfka Term"

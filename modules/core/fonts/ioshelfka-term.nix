@@ -18,9 +18,9 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with lib; {
-    description = "Home-baked Iosevka builds, with Nix.";
+    description = "Home-baked Iosevka builds";
     homepage = "https://github.com/NotAShelf/Ioshelfka";
     license = licenses.mit;
-    platforms = platforms.all;
+    platforms = platforms.linux;
   };
 }
