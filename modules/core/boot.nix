@@ -23,9 +23,6 @@ in {
       '';
     };
   };
-  imports = [
-    ./secureboot.nix
-  ];
   config = mkIf cfg.enable {
     console = {
       earlySetup = true;

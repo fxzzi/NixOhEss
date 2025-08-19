@@ -2,12 +2,11 @@
   cfg = {
     core = {
       username = "faaris";
-      kernel.type = "latest";
+      kernel.type = "lts";
       boot = {
         enable = true;
         keyLayout = "uk";
         timeout = 0;
-        secureboot.enable = true;
       };
       fonts.enable = true;
 
