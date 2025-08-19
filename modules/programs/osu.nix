@@ -13,7 +13,10 @@
   # updates it faster and more regularly than nixpkgs.
   osu = callPackage "${npins.nix-gaming}/pkgs/osu-lazer-bin" {
     osu-mime = callPackage "${npins.nix-gaming}/pkgs/osu-mime" {};
+    # 32 quantum is REALLY LOW. My PC can handle it through my IEMs,
+    # but not my speakers. Provides theoretical latency of 0.73ms.
     pipewire_latency = "32/44100";
+    gmrun_enable = false;
     # HACK: adding env vars like so needs `env` as you can't add
     # env vars after an `exec` command.
     command_prefix = "env OSU_SDL3=1";
