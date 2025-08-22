@@ -161,7 +161,7 @@ in {
             "desc:Lenovo, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
             "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO display changes names sometimes idk why
             "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543, 2560x1440@170, 0x0, 1" # kunzozPC monitor
-            "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001, 2560x1440@175, 0x0, 1" # fazziPC monitor
+            "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 0x01010101, 2560x1440@176, 0x0, 1" # fazziPC monitor
             "desc:Philips, 1920x1080@75,-1920x180, 1" # place to the left of fazziPC monitor
           ];
           render = {
@@ -323,9 +323,13 @@ in {
             "immediate, class:^(cstrike_linux64)$" # cs source
             "immediate, class:^(gamescope)$"
             "immediate, class:^(Celeste)$"
-            "immediate, class:^(info.cemu.Cemu)$"
+            # "immediate, class:^(info.cemu.Cemu)$"
             "immediate, class:^(Cuphead.x86_64)$"
             "immediate, class:^(org.eden_emu.eden)$"
+
+            # Disable vrr for these apps / games, as I run them at higher than my rr
+            "novrr, class:^(geometrydash.exe)$"
+            "novrr, class:^(osu!)$"
           ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor [
