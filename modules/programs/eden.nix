@@ -4,26 +4,28 @@
   config,
   ...
 }: let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf mkEnableOption optionalString;
   inherit (pkgs) fetchurl stdenv;
   cfg = config.cfg.programs.eden;
   eden = stdenv.mkDerivation rec {
     pname = "eden";
-    version = "0.0.3-rc2";
+    version = "0.0.3-rc3";
 
     src = fetchurl {
       url = "https://github.com/eden-emulator/Releases/releases/download/v${version}/Eden-Linux-v${version}-amd64.AppImage";
-      sha256 = "sha256-l5LxjKO6V7mTIDg6w7sVauzQWtQW6JwHx6FHlPDM7c0=";
+      sha256 = "sha256-ipgIJVwu/EVGanSZZRubkN7nhmTamMYtMxYxixckftc=";
     };
 
     desktopItem = fetchurl {
       url = "https://git.eden-emu.dev/eden-emu/eden/raw/tag/v${version}/dist/org.eden_emu.eden.desktop";
-      sha256 = "sha256-xJBSZfNUYSulha0+dsMsNCWLBby1POXw+UEqa+pRMA0=";
+      sha256 = "sha256-fzLSjy2eIOrz2q3cN78P5ZUpUFnaohG9nGHK/csSiK0=";
     };
     desktopIcon = fetchurl {
       url = "https://git.eden-emu.dev/eden-emu/eden/raw/tag/v${version}/dist/org.eden_emu.eden.svg";
-      sha256 = "sha256-18Zae6k6C10mANg8rgOpia3zJxnI1Gq3wrKmc/H9jp0=";
+      sha256 = "sha256-ghAFsbKArr2jBtSkEWx8k3uoFLNEcpaWuzs7Fpb17/I=";
     };
+
+    nativeBuildInputs = [pkgs.makeWrapper];
 
     phases = ["installPhase"];
     installPhase = ''
@@ -33,6 +35,10 @@
       mkdir -p $out/share/{applications,icons/hicolor/scalable/apps}
       cp ${desktopItem} $out/share/applications/org.eden_emu.eden.desktop
       cp ${desktopIcon} $out/share/icons/hicolor/scalable/apps/org.eden_emu.eden.svg
+      ${optionalString config.cfg.hardware.nvidia.enable ''
+        wrapProgramShell $out/bin/${pname} \
+        --set XDG_DATA_DIRS "\$XDG_DATA_DIRS:${config.hardware.nvidia.package}/share"
+      ''}
     '';
   };
 in {
