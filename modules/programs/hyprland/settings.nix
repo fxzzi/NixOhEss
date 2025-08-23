@@ -158,11 +158,10 @@ in {
           ];
           monitor = [
             ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
-            "desc:Lenovo, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
-            "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO display changes names sometimes idk why
+            "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
             "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543, 2560x1440@170, 0x0, 1" # kunzozPC monitor
-            "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 0x01010101, 2560x1440@176, 0x0, 1" # fazziPC monitor
-            "desc:Philips, 1920x1080@75,-1920x180, 1" # place to the left of fazziPC monitor
+            "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001, 2560x1440@176, 0x0, 1" # fazziPC monitor
+            "desc:Philips, 1920x1080@75,auto-center-left, 1" # place to the left of fazziPC monitor
           ];
           render = {
             # direct_scanout = 1;

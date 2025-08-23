@@ -80,7 +80,7 @@
     programs = {
       osu.enable = true;
       smoothScroll.enable = false;
-      # eden.enable = true;
+      eden.enable = true;
       proton-ge = {
         enable = true;
         ntsync = true;
