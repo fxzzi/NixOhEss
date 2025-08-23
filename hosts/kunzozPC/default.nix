@@ -24,7 +24,7 @@
         # tearing and ds don't work on kunzozPC
         render.direct_scanout = lib.mkForce 0;
         general.allow_tearing = lib.mkForce 0;
-        # misc.vrr = lib.mkForce 2;
+        misc.vrr = lib.mkForce 2;
       };
     };
   };

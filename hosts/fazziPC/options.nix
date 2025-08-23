@@ -45,12 +45,13 @@
       gcr-ssh-agent.enable = true;
       pipewire = {
         enable = true;
-        rnnoise = {
-          enable = true;
-          vadThreshold = 92;
-          vadGracePeriod = 20;
-          retroactiveVadGrace = 0;
-        };
+        # rnnoise = {
+        #   enable = true;
+        #   vadThreshold = 92;
+        #   vadGracePeriod = 20;
+        #   retroactiveVadGrace = 0;
+        # };
+        deepfilter.enable = true;
       };
       scx = {
         enable = true;
