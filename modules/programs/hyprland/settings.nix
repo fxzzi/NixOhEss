@@ -164,7 +164,7 @@ in {
             "desc:Philips, 1920x1080@75,auto-center-left, 1" # place to the left of fazziPC monitor
           ];
           render = {
-            # direct_scanout = 1;
+            direct_scanout = 1;
             # HACK: gamescope is broken with color-management.
             # see: https://github.com/ValveSoftware/gamescope/issues/1825
             cm_enabled = !config.cfg.programs.gamescope.enable;
@@ -208,7 +208,7 @@ in {
             gaps_out = 4; # Outer monitor gaps
             gaps_in = 2; # Inner window gaps
             border_size = 2; # Set window border width
-            allow_tearing = 1;
+            allow_tearing = 0;
           };
           misc = {
             new_window_takes_over_fullscreen = 2; # Leave fullscreen on new window
@@ -322,7 +322,7 @@ in {
             "immediate, class:^(cstrike_linux64)$" # cs source
             "immediate, class:^(gamescope)$"
             "immediate, class:^(Celeste)$"
-            # "immediate, class:^(info.cemu.Cemu)$"
+            "immediate, class:^(info.cemu.Cemu)$"
             "immediate, class:^(Cuphead.x86_64)$"
             "immediate, class:^(org.eden_emu.eden)$"
 
