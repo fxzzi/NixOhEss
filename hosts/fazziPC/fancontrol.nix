@@ -13,7 +13,7 @@
   maxPwm = 255;
 in {
   config = {
-    environment.systemPackages = with pkgs; [lm_sensors];
+    environment.systemPackages = [pkgs.lm_sensors];
     hardware.fancontrol = {
       enable = true;
       config = ''

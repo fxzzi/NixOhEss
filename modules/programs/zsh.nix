@@ -155,10 +155,9 @@ in {
               wl-copy $link
             }
 
-
             ${mkPlugins plugins}
 
-            # these keybinds have to be set after the plugin
+            # these keybinds have to be set after the plugins
             bindkey "^[[A" history-substring-search-up
             bindkey "^[[B" history-substring-substring-search-down
             bindkey "^[OA" history-substring-search-up
@@ -179,7 +178,6 @@ in {
           wget = "wget --hsts-file=$HOME/.local/share/wget-hsts";
 
           die = "pkill -9";
-          sudo = "sudo ";
         };
       };
     };

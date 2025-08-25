@@ -31,7 +31,7 @@ in {
     services = {
       tumbler.enable = true; # Thunar thumbnailer
       gvfs.enable = true; # Enable gvfs for stuff like trash, mtp
-      gvfs.package = pkgs.gvfs; # Set to gvfs instead of gnome gvfs
+      # gvfs.package = pkgs.gvfs; # Set to gvfs instead of gnome gvfs
     };
     programs.file-roller.enable = true; # Enable File Roller for GUI archive management
 

@@ -5,6 +5,13 @@
 }: let
   inherit (lib) mkEnableOption mkIf mkMerge getExe';
   cfg = config.cfg.hardware.nvidia;
+  patchedPkg = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs (old: {
+    fixupPhase = ''
+      ${old.fixupPhase or ""}
+      substituteInPlace $out/share/vulkan/icd.d/nvidia_icd.x86_64.json \
+        --replace-fail '1.4.312' '1.4.321'
+    '';
+  });
 in {
   imports = [
     ./nvuv.nix
@@ -25,7 +32,8 @@ in {
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = patchedPkg;
+        # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
         #   version = "580.76.05";
@@ -53,7 +61,7 @@ in {
         __EGL_VENDOR_LIBRARY_FILENAMES = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
         CUDA_CACHE_PATH = "$HOME/.cache/nv";
         # fix gtk4 freezes on 580
-        GSK_RENDERER = "ngl";
+        GSK_RENDERER = "cairo";
       };
       # fix high vram usage on discord and hyprland. match with the wrapper procnames
       etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool.json".source =
