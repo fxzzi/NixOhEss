@@ -27,7 +27,7 @@ in {
     console = {
       earlySetup = true;
       font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
-      packages = with pkgs; [terminus_font];
+      packages = [pkgs.terminus_font];
       keyMap = cfg.keyLayout;
     };
 
