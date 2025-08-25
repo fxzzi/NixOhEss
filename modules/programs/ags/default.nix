@@ -6,23 +6,20 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
+  inherit (pkgs) callPackage;
   cfg = config.cfg.programs.ags;
+  pkg = callPackage "${npins.rags}/nix/package.nix" {
+    buildTypes = false;
+    extraPackages = [
+      pkgs.libgtop
+    ];
+  };
 in {
   options.cfg.programs.ags.enable = mkEnableOption "ags";
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [
-      (final: _: {
-        ags_1 = final.callPackage "${npins.rags}/nix/package.nix" {
-          buildTypes = false;
-          extraPackages = [
-            final.libgtop
-          ];
-        };
-      })
-    ];
     hj = {
       packages = [
-        pkgs.ags_1
+        pkg
       ];
       xdg.config.files = {
         "ags/icons".source = ./ags/icons;
