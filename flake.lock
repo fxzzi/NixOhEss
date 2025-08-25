@@ -186,15 +186,16 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1755945900,
-        "narHash": "sha256-OIuSFzAbKHfRZtxrYP4CZRKGAhlAHEjY5G0Q7ZfeH7w=",
-        "owner": "hyprwm",
+        "lastModified": 1756093174,
+        "narHash": "sha256-7SdaJHcc04R8McZlpje4Hr4uH+om4eisg08CZN+OQhA=",
+        "owner": "ikalco",
         "repo": "Hyprland",
-        "rev": "d9cf1cb78ef3dfd82f03965aab70792bbe25c9e2",
+        "rev": "b13016277984ae8a4ab432ad053cee0d03c739fd",
         "type": "github"
       },
       "original": {
-        "owner": "hyprwm",
+        "owner": "ikalco",
+        "ref": "fix_tearing_with_ds",
         "repo": "Hyprland",
         "type": "github"
       }

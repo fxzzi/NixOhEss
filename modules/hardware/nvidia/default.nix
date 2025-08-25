@@ -73,7 +73,7 @@ in {
           "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
           "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
           "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
-          "nvidia_modeset.disable_vrr_memclk_switch=1" # stop really high memclk when vrr is in use.
+          # "nvidia_modeset.disable_vrr_memclk_switch=1" # stop really high memclk when vrr is in use.
         ]
         (mkIf config.hardware.nvidia.powerManagement.enable [
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM

@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "3c40c97e1881fff381e4615e82557b333edf65c4",
-      "url": "https://github.com/ipetkov/crane/archive/3c40c97e1881fff381e4615e82557b333edf65c4.tar.gz",
-      "hash": "13hga5ngwzddrgsmk8sbsxvfaall59217z5l82kym7a887r8y3sf"
+      "revision": "25bd41b24426c7734278c2ff02e53258851db914",
+      "url": "https://github.com/ipetkov/crane/archive/25bd41b24426c7734278c2ff02e53258851db914.tar.gz",
+      "hash": "15f9zi94i4ldg3ng2s1cdckrzzrv6waxs9mjk2pgybws6h1m290l"
     },
     "creamlinux": {
       "type": "Git",
@@ -56,14 +56,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "fxzzi",
+        "owner": "feel-co",
         "repo": "hjem"
       },
-      "branch": "local-fs",
+      "branch": "main",
       "submodules": false,
-      "revision": "a303e923b52c37164fd3a11c56532c2162cc136c",
-      "url": "https://github.com/fxzzi/hjem/archive/a303e923b52c37164fd3a11c56532c2162cc136c.tar.gz",
-      "hash": "16gp8372vh4xhxxvr5gcz34pfjggcj4404n1pxiqm4f6wmqzn1ls"
+      "revision": "ce24546f7f552bb92315e013f2599776e0b33249",
+      "url": "https://github.com/feel-co/hjem/archive/ce24546f7f552bb92315e013f2599776e0b33249.tar.gz",
+      "hash": "0d864s7lg4qm81f5qcnx3cb0d38cgzx2q4kqvp7knh5gki6jcbq1"
     },
     "mpd-discord-rpc": {
       "type": "Git",
@@ -78,6 +78,19 @@
       "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/d6e5c4ade7691ae64ccb6059a275ee7a344e78d5.tar.gz",
       "hash": "13j5zmgrl1x6878j72cpihj3p90hqnmg837xsn99fyaq5dczpg15"
     },
+    "niqspkgs": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "diniamo",
+        "repo": "niqspkgs"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "254e508d3e92e676bd0581c3fb7de69626e0ab34",
+      "url": "https://github.com/diniamo/niqspkgs/archive/254e508d3e92e676bd0581c3fb7de69626e0ab34.tar.gz",
+      "hash": "1zrs2l0s40bs3f2mly3a4411fmy94gx9i40n7k1phbz0m70i706a"
+    },
     "nix-gaming": {
       "type": "Git",
       "repository": {
@@ -87,9 +100,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "b44f0ddc0912702662ae36ab265633d6cef3ea26",
-      "url": "https://github.com/fufexan/nix-gaming/archive/b44f0ddc0912702662ae36ab265633d6cef3ea26.tar.gz",
-      "hash": "1q9c61sdpbmkgn3hs0bgri681hjwwjh8nrw2jrby7nnn69s5a6hn"
+      "revision": "0ca8d5927960555f78b495a14aab4e2be08f202b",
+      "url": "https://github.com/fufexan/nix-gaming/archive/0ca8d5927960555f78b495a14aab4e2be08f202b.tar.gz",
+      "hash": "1827h559dwfkliaggz55n5czbivh2kr9l9xdj3z5abcr89pz1zjl"
     },
     "nvuv": {
       "type": "Git",
