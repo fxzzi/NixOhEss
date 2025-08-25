@@ -33,8 +33,8 @@
           enable = true;
           maxClock = 1830;
           coreOffset = 205;
-          memOffset = 1000;
-          powerLimit = 160;
+          memOffset = 900;
+          powerLimit = 150;
         };
       };
     };
