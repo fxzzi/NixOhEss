@@ -6,8 +6,7 @@
   inherit (lib) mkEnableOption mkIf mkMerge getExe';
   cfg = config.cfg.hardware.nvidia;
   patchedPkg = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs (old: {
-    fixupPhase = ''
-      ${old.fixupPhase or ""}
+    postFixup = ''
       substituteInPlace $out/share/vulkan/icd.d/nvidia_icd.x86_64.json \
         --replace-fail '1.4.312' '1.4.321'
     '';
