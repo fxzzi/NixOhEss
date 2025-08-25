@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  npins,
   ...
 }: let
   inherit (lib) mkIf gvariant;
@@ -28,7 +29,9 @@ in {
         };
       };
       packages = [
-        (pkgs.callPackage ./bibata-hyprcursor {})
+        (pkgs.callPackage "${npins.niqspkgs}/pkgs/bibata-hyprcursor/package.nix" {
+          variant = "original";
+        })
         pkgs.bibata-cursors
       ];
     };
