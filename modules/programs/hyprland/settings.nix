@@ -153,8 +153,8 @@ in {
             "dbus-update-activation-environment --systemd --all; systemctl --user stop hyprland-session.target; systemctl --user start hyprland-session.target"
           ];
           exec = [
-            "${runOnce pkgs.ags_1}"
             "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"
+            "pgrep ags || ags"
           ];
           monitor = [
             ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
