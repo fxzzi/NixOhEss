@@ -148,7 +148,7 @@ in {
         generator = xLib.generators.toHyprlang {};
         value = {
           exec = [
-            "${runOnce pkgs.ags_1}"
+            "pgrep ags || ${runProc "ags"}"
             "${runProc "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"}"
           ];
           monitor = [
