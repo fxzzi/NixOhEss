@@ -24,7 +24,7 @@ const cpuUsage = Variable("", {
         const usage = totalDiff > 0 ? (100 * (totalDiff - idleDiff)) / totalDiff : 0;
         return `${Math.round(usage)}%`;
       } catch (error) {
-        console.error("Error calculating CPU usage with libgtop:", error);
+        console.error("Error calculating CPU usage", error);
         return "N/A";
       }
     },
