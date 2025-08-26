@@ -39,6 +39,7 @@ in {
           libreoffice
           hunspell
           hunspellDicts.en_GB-ise
+          nix-tree
           pkgs.npins
         ];
       };
