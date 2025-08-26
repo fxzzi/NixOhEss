@@ -11,7 +11,7 @@ const memUsage = Variable("", {
         const usedRamGiB = mem.user / (1024 * 1024 * 1024);
         return `${usedRamGiB.toFixed(2)}GiB`;
       } catch (error) {
-        console.error("Error calculating RAM usage with libgtop:", error);
+        console.error("Error calculating RAM usage", error);
         return "N/A";
       }
     },
