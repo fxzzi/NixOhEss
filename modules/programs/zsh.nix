@@ -5,72 +5,7 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe mkBefore;
-  inherit (builtins) filter;
-  inherit (lib.attrsets) mapAttrsToList hasAttr;
-  inherit (lib.strings) concatStringsSep optionalString;
   cfg = config.cfg.programs.zsh;
-
-  mkPlugins = plugins:
-    concatStringsSep "\n" (
-      mapAttrsToList (
-        _: value: let
-          hasFile = hasAttr "file" value;
-        in
-          concatStringsSep "\n" (
-            filter (s: s != "") [
-              (optionalString (!hasFile) "fpath+=${value.src}")
-              (optionalString (hasFile && value.file != null) ''
-                if [[ -f "${value.src}/${value.file}" ]]; then
-                  source "${value.src}/${value.file}"
-                fi
-              '')
-            ]
-          )
-      )
-      plugins
-    );
-
-  plugins = {
-    zsh-completions = {
-      name = "zsh-completions";
-      src = "${pkgs.zsh-completions}/share/zsh/site-functions";
-    };
-
-    nix-zsh-completions = {
-      name = "nix-zsh-completions";
-      src = "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix";
-      file = "nix-zsh-completions.plugin.zsh";
-    };
-
-    zsh-syntax-highlighting = {
-      name = "zsh-syntax-highlighting";
-      src = "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting";
-      file = "zsh-syntax-highlighting.zsh";
-    };
-
-    fzf-tab = {
-      name = "fzf-tab";
-      src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
-      file = "fzf-tab.plugin.zsh";
-    };
-    zsh-fzf-history-search = {
-      name = "zsh-fzf-history-search";
-      src = "${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search";
-      file = "zsh-fzf-history-search.plugin.zsh";
-    };
-
-    zsh-autosuggestions = {
-      name = "zsh-autosuggestions";
-      src = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
-      file = "zsh-autosuggestions.zsh";
-    };
-
-    zsh-history-substring-search = {
-      name = "zsh-history-substring-search";
-      src = "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search";
-      file = "zsh-history-substring-search.zsh";
-    };
-  };
 in {
   options.cfg.programs.zsh.enable = mkEnableOption "zsh";
   config = mkIf cfg.enable {
@@ -155,7 +90,14 @@ in {
               wl-copy $link
             }
 
-            ${mkPlugins plugins}
+            # plugins and completions
+            fpath+=${pkgs.zsh-completions}/share/zsh/site-functions
+            source ${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh
+            source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+            source ${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
+            source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+            source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+            source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
             # these keybinds have to be set after the plugins
             bindkey "^[[A" history-substring-search-up
