@@ -156,6 +156,10 @@ in {
             "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"
             "pgrep ags || ags"
           ];
+          exec-shutdown = [
+            # discord loves to get stuck when closing
+            "pkill -f -9 .Discord-wrapped"
+          ];
           monitor = [
             ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
             "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO internal monitor

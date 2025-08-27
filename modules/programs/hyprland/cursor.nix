@@ -13,7 +13,7 @@ in {
       HYPRCURSOR_THEME = "Bibata-original";
       HYPRCURSOR_SIZE = 24;
       XCURSOR_THEME = "Bibata-Original-Classic";
-      XCURSOR_SIZE = "24";
+      XCURSOR_SIZE = 24;
       # as a list makes this append to instead of overwrite.
       XCURSOR_PATH = ["${pkgs.bibata-cursors}/share/icons"];
     };
