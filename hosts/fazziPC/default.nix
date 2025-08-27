@@ -25,7 +25,6 @@
       nvtopPackages.nvidia
       stremio
       yt-dlp
-      r2modman
     ];
   };
 }
