@@ -3,6 +3,7 @@
   lib,
   npins,
   config,
+  options,
   ...
 }: let
   inherit (lib) mkOption types;
@@ -15,7 +16,10 @@ in {
     description = "Sets the username for the system.";
   };
   imports = [
-    (npins.hjem + "/modules/nixos")
+    (lib.modules.importApply "${npins.hjem}/modules/nixos" {
+      inherit pkgs config lib options;
+      hjem-lib = import "${npins.hjem}/lib.nix" {inherit lib pkgs;};
+    })
     # Allow using `hj` in configuration to
     # easily configure hjem in any file.
     # This pretty much makes or breaks my config.
@@ -29,10 +33,10 @@ in {
         enable = true;
         # These are available no matter the host.
         packages = with pkgs; [
+          pkgs.npins
           wget
           ffmpeg
           imagemagick
-          # lxqt.pavucontrol-qt
           pwvucontrol
           mate.atril
           mate.eom
@@ -40,7 +44,6 @@ in {
           hunspell
           hunspellDicts.en_GB-ise
           nix-tree
-          pkgs.npins
         ];
       };
     };

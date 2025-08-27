@@ -61,9 +61,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "ce24546f7f552bb92315e013f2599776e0b33249",
-      "url": "https://github.com/feel-co/hjem/archive/ce24546f7f552bb92315e013f2599776e0b33249.tar.gz",
-      "hash": "0d864s7lg4qm81f5qcnx3cb0d38cgzx2q4kqvp7knh5gki6jcbq1"
+      "revision": "2426d6ad20e767895e936ed0c9563cc4e2b6c96f",
+      "url": "https://github.com/feel-co/hjem/archive/2426d6ad20e767895e936ed0c9563cc4e2b6c96f.tar.gz",
+      "hash": "0lnn46m56qlv58g1l3d3pd3gxk3m3i4aj3k3xqjk49mdzw7g97jq"
     },
     "mpd-discord-rpc": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d6e5c4ade7691ae64ccb6059a275ee7a344e78d5",
-      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/d6e5c4ade7691ae64ccb6059a275ee7a344e78d5.tar.gz",
-      "hash": "13j5zmgrl1x6878j72cpihj3p90hqnmg837xsn99fyaq5dczpg15"
+      "revision": "ea991a75b0fd0579604dc4f047f45a6ddd9048d1",
+      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/ea991a75b0fd0579604dc4f047f45a6ddd9048d1.tar.gz",
+      "hash": "0cx4g50fqwmqmkjd3f6q66llxzraxjlnvlyw18j1yjl4sh31gsiq"
     },
     "niqspkgs": {
       "type": "Git",
@@ -100,9 +100,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "0ca8d5927960555f78b495a14aab4e2be08f202b",
-      "url": "https://github.com/fufexan/nix-gaming/archive/0ca8d5927960555f78b495a14aab4e2be08f202b.tar.gz",
-      "hash": "1827h559dwfkliaggz55n5czbivh2kr9l9xdj3z5abcr89pz1zjl"
+      "revision": "00beb5274d213427a78794f719ed9e7505b091ec",
+      "url": "https://github.com/fufexan/nix-gaming/archive/00beb5274d213427a78794f719ed9e7505b091ec.tar.gz",
+      "hash": "01p2f6y4y55a67i3fajg6lnb3c9jj1883zs4g8yk001rbhzmf1w0"
     },
     "nvuv": {
       "type": "Git",
@@ -152,9 +152,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "c9a73b462dbe272dc879b764c6ad38bd6fdb19cd",
-      "url": "https://github.com/NotAShelf/stash/archive/c9a73b462dbe272dc879b764c6ad38bd6fdb19cd.tar.gz",
-      "hash": "1l9fbnlsk7kazpx1vzdcq1idhkgafvlvx78dc9vqrcfdrbmcr7iz"
+      "revision": "c9b19f1e64e1bf16d4f615e26130b15a9638c9d7",
+      "url": "https://github.com/NotAShelf/stash/archive/c9b19f1e64e1bf16d4f615e26130b15a9638c9d7.tar.gz",
+      "hash": "02bx3zm0b21nkixf7xc4nqgjxiafg0dmrwqrwpgg9dszgrcl79r8"
     },
     "walls": {
       "type": "Git",
