@@ -234,10 +234,10 @@ in {
             "blur, wleave"
             "blur, bar-.*"
             "ignorezero, launcher"
-            "ignorezero, walker"
             "ignorezero, bar-.*"
             "xray 1, wleave"
             "xray 1, bar-.*"
+            "animation slide, notifications"
           ];
           decoration = {
             rounding = 0;
@@ -266,12 +266,11 @@ in {
             "windowsMove, 1, 3, default"
             "border, 1, 8, default"
             "fade, 1, 3, smoothIn"
-            "fadeDim, 1, 3, smoothOut"
             # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
             # and it will look like windows are moving into each other across the monitors.
             "workspaces, 1, 5, default, ${wsAnim}"
             # don't zoom in when hyprland starts
-            # "monitorAdded, 0"
+            "monitorAdded, 0"
           ];
 
           animations.enabled = mkDefault 1;
