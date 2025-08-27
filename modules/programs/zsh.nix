@@ -78,7 +78,7 @@ in {
             zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
             # ctrl-left/right and ctrl-bspc will limit here
-            WORDCHARS='*?_-.[]~=&;!$%^(){}<>'
+            WORDCHARS='*?_-.[]~=&;!$%^(){}<>|'
 
             # `paste` command which allows you to upload text to a pastebin
             # usage: paste <file> or <command> | paste
