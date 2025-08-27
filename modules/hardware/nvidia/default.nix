@@ -63,8 +63,25 @@ in {
         GSK_RENDERER = "cairo";
       };
       # fix high vram usage on discord and hyprland. match with the wrapper procnames
-      etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool.json".source =
-        ./50-limit-free-buffer-pool.json;
+      etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool.json".text = builtins.toJSON {
+        rules =
+          map (proc: {
+            pattern = {
+              feature = "procname";
+              matches = proc;
+            };
+            profile = "No VidMem Reuse";
+          }) [
+            ".Hyprland-wrapped"
+            ".Discord-wrapped"
+            ".DiscordCanary-wrapped"
+            "electron"
+            ".electron-wrapped"
+            "losslesscut"
+            ".librewolf-wrapped"
+            "librewolf"
+          ];
+      };
     };
     boot = {
       # early load / early kms
