@@ -257,18 +257,36 @@ in {
             };
           };
           bezier = [
-            "overshot, 0.05, 0.9, 0.1, 1.05"
-            "smoothOut, 0.36, 0, 0.66, -0.56"
-            "smoothIn, 0.25, 1, 0.5, 1"
+            "easeOutQuint,0.23,1,0.32,1"
+            "easeInOutCubic,0.65,0.05,0.36,1"
+            "linear,0,0,1,1"
+            "almostLinear,0.5,0.5,0.75,1.0"
+            "quick,0.15,0,0.1,1"
           ];
           animation = [
-            "windows, 1, 4, overshot"
-            "windowsMove, 1, 3, default"
-            "border, 1, 8, default"
-            "fade, 1, 3, smoothIn"
+            "windowsIn, 1, 3, easeOutQuint, slide"
+            "windowsOut, 1, 3, easeOutQuint, slide"
+            "windowsMove, 1, 3, easeOutQuint"
+
+            "layersIn, 1, 4, easeOutQuint, fade"
+            "layersOut, 1, 1.5, linear, fade"
+
+            "fadeIn, 1, 1.2, almostLinear"
+            "fadeOut, 1, 2, almostLinear"
+            "fadeSwitch, 1, 1.2, almostLinear"
+            "fadeShadow, 1, 1.2, almostLinear"
+            "fadeDim, 1, 1.2, almostLinear"
+            "fadeLayers, 1, 1.4, linear"
+            "fadePopups, 1, 2, linear"
+
+            "border, 1, 5, easeOutQuint"
+            "specialWorkspace, 1, 3, quick, fade"
+            "zoomFactor, 1, 4, quick"
+
             # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
             # and it will look like windows are moving into each other across the monitors.
-            "workspaces, 1, 5, default, ${wsAnim}"
+            "workspaces, 1, 4, easeOutQuint, ${wsAnim}"
+
             # don't zoom in when hyprland starts
             "monitorAdded, 0"
           ];
