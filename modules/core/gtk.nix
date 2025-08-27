@@ -5,6 +5,13 @@
         pkgs.adw-gtk3
         pkgs.papirus-icon-theme
       ];
+      xdg.config.files."gtk-4.0/gtk.css".text =
+        #css
+        ''
+          window {
+            border-radius: 0;
+          }
+        '';
     };
     programs.dconf.profiles.user.databases = [
       {
