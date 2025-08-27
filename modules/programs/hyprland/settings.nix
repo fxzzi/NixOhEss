@@ -314,6 +314,18 @@ in {
             # Fix some dragging issues with XWayland
             "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 
+            # dialogs
+            "float,title:^(File Operation Progress)(.*)$"
+            "float,title:^(Confirm to replace files)(.*)$"
+            "float,title:^(Open File)(.*)$"
+            "float,title:^(Select a File)(.*)$"
+            "float,title:^(Choose wallpaper)(.*)$"
+            "float,title:^(Open Folder)(.*)$"
+            "float,title:^(Save As)(.*)$"
+            "float,title:^(Rename)(.*)$"
+            "float,title:^(Library)(.*)$"
+            "float,class:^(org.gnome.FileRoller)$,title:^(Extract)(.*)$"
+
             # Window rules for games
             # Fix focus issues with cs2
             "suppressevent maximize fullscreen, class: ^(cs2)$"
