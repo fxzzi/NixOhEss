@@ -31,7 +31,7 @@ in {
     hj = {
       packages = with pkgs; [
         pywalfox-native
-        (librewolf.override {
+        (librewolf-bin.override {
           extraPrefs = ''
             ${optionalString config.cfg.programs.startpage.enable newTabPageJS}
             ${jsPrefs}
