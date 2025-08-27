@@ -59,6 +59,7 @@ in {
           # sh
           ''
             # Define key bindings
+            bindkey -e # Use Emacs keybindings
             # Move cursor to beginning and end of line
             bindkey "\e[5~" beginning-of-line # Page Up
             bindkey "\e[6~" end-of-line # Page Down

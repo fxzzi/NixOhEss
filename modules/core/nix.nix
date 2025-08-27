@@ -42,7 +42,13 @@ in {
         ];
       };
     };
-    nixpkgs.config.allowUnfree = true; # not too fussed as long as app works on linux tbh
+    nixpkgs.config = {
+      allowUnfree = true; # not too fussed as long as app works on linux tbh
+      # these packages are marked as insecure but we still require them
+      permittedInsecurePackages = [
+        "qtwebengine-5.15.19"
+      ];
+    };
     documentation.nixos.enable = false; # remove useless docs .desktop
 
     # don't build stuff on tmpfs, it can easily run out of space
