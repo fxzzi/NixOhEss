@@ -74,9 +74,6 @@ in {
               ''
                 /* Hide nitro begging */
                 @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css");
-                div.sectionDivider__35e86 {
-                  margin-top: 0;
-                }
 
                 /* Hide the Visual Refresh title bar */
                 .visual-refresh {
@@ -146,12 +143,9 @@ in {
             postFixup = ''
               ${old.postFixup or ""}
               # add command line args like chromium
-              wrapProgramShell $out/bin/Discord \
+              wrapProgram $out/opt/Discord/Discord \
               --add-flags "${joinedArgs}" \
-              --set LD_LIBRARY_PATH "${makeLibraryPath [
-                # make hw accel work
-                pkgs.libva
-              ]}"
+              --set LD_LIBRARY_PATH "\$LD_LIBRARY_PATH:${makeLibraryPath [pkgs.libva]}"
             '';
           })
         )
