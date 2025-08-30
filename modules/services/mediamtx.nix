@@ -5,7 +5,6 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf toInt;
-  inherit (builtins) concatLists map attrValues;
   cfg = config.cfg.services.mediamtx;
   port = "4200";
 in {
@@ -13,12 +12,8 @@ in {
   config = mkIf cfg.enable {
     age.secrets.publicip.file = ../../secrets/publicip.age;
     networking.firewall = {
-      allowedTCPPorts = [
-        (toInt port)
-      ];
-      allowedUDPPorts = [
-        (toInt port)
-      ];
+      allowedTCPPorts = [(toInt port)];
+      allowedUDPPorts = [(toInt port)];
     };
     services.mediamtx = {
       enable = true;
