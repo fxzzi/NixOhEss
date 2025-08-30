@@ -15,16 +15,6 @@ in {
   options.cfg.services.mediamtx.enable = mkEnableOption "mediamtx";
   config = mkIf cfg.enable {
     age.secrets.publicip.file = ../../secrets/publicip.age;
-    # HACK: This is super hacky. I shouldn't have to do this. I won't have to do
-    # this once / if mediamtx allows reading IPs from a path.
-    # https://github.com/bluenviron/mediamtx/issues/4109#issuecomment-2581174785
-    system.activationScripts.localip = {
-      text = ''
-        secret=$(cat "${config.age.secrets.publicip.path}")
-        configFile=/etc/mediamtx.yaml
-        ${pkgs.gnused}/bin/sed -i -e "s#'@publicip@'#$secret#g" "$configFile"
-      '';
-    };
     networking.firewall = {
       allowedTCPPorts = [
         (toInt port)
@@ -43,7 +33,6 @@ in {
           [
             "1.1.1.1"
             "1.0.0.1"
-            "@publicip@" # @publicip@ is later replaced by agenix
           ]
           ++ localips;
         # allow publishing to all paths
@@ -52,5 +41,8 @@ in {
         };
       };
     };
+    # NOTE: pass the public ip to mediamtx via env var
+    # secret should be in the form MTX_WEBRTCADDITIONALHOSTS=publicip
+    systemd.services.mediamtx.serviceConfig.EnvironmentFile = "${config.age.secrets.publicip.path}";
   };
 }
