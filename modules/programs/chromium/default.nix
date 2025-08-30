@@ -13,25 +13,26 @@
     "ChromeWideEchoCancellation"
   ];
   enableFeatures =
-    []
+    [
+      "AcceleratedVideoDecodeLinuxGL"
+      "AcceleratedVideoDecodeLinuxZeroCopyGL"
+      "VaapiIgnoreDriverChecks"
+    ]
     ++ optionals config.cfg.hardware.nvidia.enable [
       "WaylandLinuxDrmSyncobj" # fix flickering
       # attempt to enable hardware acceleration
-      "AcceleratedVideoDecodeLinuxGL"
-      "AcceleratedVideoDecodeLinuxZeroCopyGL"
       "VaapiOnNvidiaGPUs"
-      "VaapiIgnoreDriverChecks"
     ];
 
   commandLineArgs =
-    (optionals (enableFeatures != []) [
-      "--enable-features=${concatStringsSep "," enableFeatures}"
-    ])
-    ++ (optionals (disableFeatures != []) [
-      "--disable-features=${concatStringsSep "," disableFeatures}"
-    ])
-    ++ [
+    [
       "--extension-mime-request-handling=always-prompt-for-install"
+    ]
+    ++ optionals (enableFeatures != []) [
+      "--enable-features=${concatStringsSep "," enableFeatures}"
+    ]
+    ++ optionals (disableFeatures != []) [
+      "--disable-features=${concatStringsSep "," disableFeatures}"
     ]
     ++ optionals (!config.cfg.programs.smoothScroll.enable) [
       "--disable-smooth-scrolling"

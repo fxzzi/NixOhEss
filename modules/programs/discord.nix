@@ -11,23 +11,26 @@
     "ChromeWideEchoCancellation"
   ];
   enableFeatures =
-    []
+    [
+      "AcceleratedVideoDecodeLinuxGL"
+      "AcceleratedVideoDecodeLinuxZeroCopyGL"
+      "VaapiIgnoreDriverChecks"
+    ]
     ++ optionals config.cfg.hardware.nvidia.enable [
       "WaylandLinuxDrmSyncobj" # fix flickering
       # attempt to enable hardware acceleration
-      "AcceleratedVideoDecodeLinuxGL"
-      "AcceleratedVideoDecodeLinuxZeroCopyGL"
       "VaapiOnNvidiaGPUs"
-      "VaapiIgnoreDriverChecks"
     ];
 
   commandLineArgs =
-    (optionals (enableFeatures != []) [
+    [
+    ]
+    ++ optionals (enableFeatures != []) [
       "--enable-features=${concatStringsSep "," enableFeatures}"
-    ])
-    ++ (optionals (disableFeatures != []) [
+    ]
+    ++ optionals (disableFeatures != []) [
       "--disable-features=${concatStringsSep "," disableFeatures}"
-    ])
+    ]
     ++ optionals (!config.cfg.programs.smoothScroll.enable) [
       "--disable-smooth-scrolling"
     ];
@@ -102,6 +105,7 @@ in {
                   --display-clan-tags: none;
                   --display-active-now: none;
                   --display-hover-reaction-emoji: none;
+                  --bool-show-name-gradients: false;
                 }
 
                 /* Align the chat box with the user panel */
@@ -145,7 +149,7 @@ in {
               # add command line args like chromium
               wrapProgram $out/opt/Discord/Discord \
               --add-flags "${joinedArgs}" \
-              --set LD_LIBRARY_PATH "\$LD_LIBRARY_PATH:${makeLibraryPath [pkgs.libva]}"
+              --set LD_LIBRARY_PATH "${makeLibraryPath [pkgs.libva]}"
             '';
           })
         )
