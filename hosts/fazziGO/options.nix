@@ -20,6 +20,8 @@
     };
 
     services = {
+      stash.enable = true;
+      wl-clip-persist.enable = true;
       mullvad.enable = true;
       mate-polkit.enable = true;
       gcr-ssh-agent.enable = true;
