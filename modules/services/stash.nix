@@ -13,7 +13,7 @@
   };
   regex = "(password|secret|api[_-]?key|token)[=: ]+[^\s]+";
 in {
-  options.cfg.services.stash.enable = mkEnableOption "stash" // {default = true;};
+  options.cfg.services.stash.enable = mkEnableOption "stash";
   config = mkIf cfg.enable {
     hj.packages = [stash];
     systemd.user.services.stash = {
