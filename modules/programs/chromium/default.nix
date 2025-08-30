@@ -20,7 +20,6 @@
     ]
     ++ optionals config.cfg.hardware.nvidia.enable [
       "WaylandLinuxDrmSyncobj" # fix flickering
-      # attempt to enable hardware acceleration
       "VaapiOnNvidiaGPUs"
     ];
 
