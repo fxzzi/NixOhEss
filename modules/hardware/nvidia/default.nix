@@ -5,19 +5,6 @@
 }: let
   inherit (lib) mkEnableOption mkIf mkMerge getExe';
   cfg = config.cfg.hardware.nvidia;
-  nvPkg = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    version = "580.76.05";
-    sha256_64bit = "sha256-IZvmNrYJMbAhsujB4O/4hzY8cx+KlAyqh7zAVNBdl/0=";
-    openSha256 = "sha256-xEPJ9nskN1kISnSbfBigVaO6Mw03wyHebqQOQmUg/eQ=";
-    usePersistenced = false;
-    useSettings = false;
-  };
-  patchedPkg = nvPkg.overrideAttrs {
-    postFixup = ''
-      substituteInPlace $out/share/vulkan/icd.d/nvidia_icd.x86_64.json \
-        --replace-fail '1.4.312' '1.4.321'
-    '';
-  };
 in {
   imports = [
     ./nvuv.nix
@@ -38,16 +25,21 @@ in {
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        package = patchedPkg;
         # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        #   version = "580.76.05";
-        #   sha256_64bit = "sha256-IZvmNrYJMbAhsujB4O/4hzY8cx+KlAyqh7zAVNBdl/0=";
-        #   openSha256 = "sha256-xEPJ9nskN1kISnSbfBigVaO6Mw03wyHebqQOQmUg/eQ=";
-        #   usePersistenced = false;
-        #   useSettings = false;
-        # };
+        package =
+          (config.boot.kernelPackages.nvidiaPackages.mkDriver {
+            version = "580.76.05";
+            sha256_64bit = "sha256-IZvmNrYJMbAhsujB4O/4hzY8cx+KlAyqh7zAVNBdl/0=";
+            openSha256 = "sha256-xEPJ9nskN1kISnSbfBigVaO6Mw03wyHebqQOQmUg/eQ=";
+            usePersistenced = false;
+            useSettings = false;
+          }).overrideAttrs {
+            postFixup = ''
+              substituteInPlace $out/share/vulkan/icd.d/nvidia_icd.x86_64.json \
+                --replace-fail '1.4.312' '1.4.321'
+            '';
+          };
       };
       graphics = {
         enable = true;
@@ -104,7 +96,6 @@ in {
           "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
           "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
           "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
-          # "nvidia_modeset.disable_vrr_memclk_switch=1" # stop really high memclk when vrr is in use.
         ]
         (mkIf config.hardware.nvidia.powerManagement.enable [
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
