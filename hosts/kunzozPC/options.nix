@@ -26,7 +26,7 @@
         enable = true;
         rnnoise = {
           enable = true;
-          vadThreshold = 92;
+          vadThreshold = 96;
           vadGracePeriod = 20;
           retroactiveVadGrace = 0;
         };
