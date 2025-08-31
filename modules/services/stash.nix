@@ -21,13 +21,10 @@ in {
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
-      unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY"; # Only start if WAYLAND_DISPLAY env var is set
-        loadCredential = "clipboard_filter:${writeText "stash-regex" regex}";
-      };
       serviceConfig = {
         ExecStart = "${getExe stash} --max-items 10 watch";
         Restart = "on-abort";
+        loadCredential = "clipboard_filter:${writeText "stash-regex" regex}";
       };
     };
   };
