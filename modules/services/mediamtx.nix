@@ -28,7 +28,7 @@ in {
       };
     };
     # NOTE: pass the public ip to mediamtx via env var
-    # secret should be in the form MTX_WEBRTCADDITIONALHOSTS=publicip
+    # secret should be in the form MTX_WEBRTCADDITIONALHOSTS=publicip1,publicip2,...
     systemd.services.mediamtx.serviceConfig.EnvironmentFile = "${config.age.secrets.publicip.path}";
   };
 }
