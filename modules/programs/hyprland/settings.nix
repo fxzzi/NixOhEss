@@ -158,7 +158,7 @@ in {
           ];
           exec-shutdown = [
             # discord loves to get stuck when closing
-            "pkill -f -9 .Discord-wrapped"
+            "pkill -9 .Discord-wrappe"
           ];
           monitor = [
             ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
