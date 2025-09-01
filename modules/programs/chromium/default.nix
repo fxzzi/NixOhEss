@@ -61,6 +61,24 @@
     terminal = false;
     icon = "${./via.svg}";
   };
+  baseChromium = pkgs.ungoogled-chromium.override {
+    inherit commandLineArgs;
+  };
+  chromium =
+    if (!config.cfg.hardware.nvidia.enable)
+    then baseChromium
+    else
+      pkgs.symlinkJoin {
+        name = "ungoogled-chromium-cbb";
+        paths = [
+          baseChromium
+        ];
+        buildInputs = [pkgs.makeWrapper];
+        postBuild = ''
+          wrapProgram $out/bin/chromium \
+            --set LD_PRELOAD "${pkgs.cudaBoostBypass}/boost_bypass.so"
+        '';
+      };
 in {
   options.cfg.programs.chromium = {
     enable = mkEnableOption "chromium";
@@ -71,9 +89,7 @@ in {
   config = mkIf cfg.enable {
     hj = {
       packages = [
-        (pkgs.ungoogled-chromium.override {
-          inherit commandLineArgs;
-        })
+        chromium
         (mkIf cfg.wootility.enable wootility)
         (mkIf cfg.scyrox-s-center.enable scyrox-s-center)
         (mkIf cfg.via.enable via)

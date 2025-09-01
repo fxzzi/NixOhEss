@@ -8,6 +8,7 @@
 in {
   imports = [
     ./nvuv.nix
+    ./cudaBoostBypass
   ];
 
   options.cfg.hardware.nvidia = {
@@ -78,6 +79,8 @@ in {
             ".electron-wrapped"
             "losslesscut"
             ".librewolf-wrapped"
+            ".librewolf-wrapped_"
+            ".librewolf-wrapped__"
             "librewolf"
           ];
       };
