@@ -28,7 +28,7 @@ in {
     };
     systemd.user.services.hyprpaper = {
       enable = true;
-      description = "hyprpaper wallpaper manager";
+      description = "Hyprpaper wallpaper manager";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];

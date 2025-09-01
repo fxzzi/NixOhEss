@@ -154,7 +154,6 @@ in {
           ];
           exec = [
             "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"
-            "pgrep ags || ags"
           ];
           exec-shutdown = [
             "systemctl --user stop hyprland-session.target"
