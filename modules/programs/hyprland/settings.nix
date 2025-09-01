@@ -5,7 +5,7 @@
   xLib,
   ...
 }: let
-  inherit (lib) mkOption types mkDefault getExe getExe' optionalAttrs mkIf;
+  inherit (lib) mkOption types mkDefault getExe optionalAttrs mkIf optionals;
   inherit (builtins) baseNameOf concatLists genList isString;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
@@ -28,17 +28,6 @@
       then exe
       else baseNameOf exe;
   in "pkill ${binaryName} || ${exe}";
-
-  runOnce = pkg: let
-    exe =
-      if isString pkg
-      then pkg
-      else getExe pkg;
-    binaryName =
-      if isString pkg
-      then exe
-      else baseNameOf exe;
-  in "pgrep ${baseNameOf binaryName} || ${exe}";
 
   sunsetScript = pkgs.writeShellApplication {
     name = "sunset";
@@ -152,9 +141,10 @@ in {
             "dbus-update-activation-environment --systemd --all"
             "systemctl --user start hyprland-session.target"
           ];
-          exec = [
+          exec = optionals multiMonitor [
             "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"
           ];
+
           exec-shutdown = [
             "systemctl --user stop hyprland-session.target"
           ];
