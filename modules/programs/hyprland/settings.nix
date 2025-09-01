@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkOption types mkDefault getExe optionalAttrs mkIf optionals;
-  inherit (builtins) baseNameOf concatLists genList isString;
+  inherit (builtins) concatLists genList;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
   brightnessScript =
@@ -17,17 +17,6 @@
     if multiMonitor
     then "slidevert"
     else "slide";
-
-  toggleProc = pkg: let
-    exe =
-      if isString pkg
-      then pkg
-      else getExe pkg;
-    binaryName =
-      if isString pkg
-      then exe
-      else baseNameOf exe;
-  in "pkill ${binaryName} || ${exe}";
 
   sunsetScript = pkgs.writeShellApplication {
     name = "sunset";
@@ -379,12 +368,12 @@ in {
               "$MOD, B, exec, librewolf"
               "$MOD SHIFT, P, exec, librewolf --private-window"
               "$MOD, W, exec, Discord"
-              "$MOD, D, exec, ${toggleProc "fuzzel"}"
-              "$MOD SHIFT, E, exec, ${toggleProc pkgs.wleave} --protocol layer-shell -b 5 -T 360 -B 360 -k"
+              "$MOD, D, exec, pkill fuzzel || fuzzel"
+              "$MOD SHIFT, E, exec, pkill wleave || wleave --protocol layer-shell -b 5 -T 360 -B 360 -k"
               "CTRL SHIFT, Escape, exec, xdg-terminal-exec btm"
               # extra schtuff
               "$MOD, N, exec, ${getExe sunsetScript} 3000"
-              "$MOD, K, exec, ${toggleProc pkgs.hyprpicker} -r -a -n"
+              "$MOD, K, exec, pkill hyprpicker || ${getExe pkgs.hyprpicker} -r -a -n"
               "$MOD, R, exec, random-wall.sh"
               "$MOD SHIFT, R, exec, cycle-wall.sh"
               "$MOD, J, exec, xdg-terminal-exec wall-picker.sh"
