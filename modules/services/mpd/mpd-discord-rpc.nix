@@ -35,6 +35,8 @@ in {
       documentation = ["https://github.com/JakeStanger/mpd-discord-rpc"];
       wantedBy = ["mpd.service"];
       requires = ["mpd.service"];
+      # make sure it starts and stops with mpd
+      partOf = ["mpd.service"];
       serviceConfig = {
         Type = "simple";
         Restart = "on-failure";
