@@ -145,20 +145,19 @@ in {
             "bezier"
             "source"
             "exec-once"
-            "exec-shutdown"
           ];
         };
         value = {
           exec-once = [
-            "dbus-update-activation-environment --systemd --all; systemctl --user stop hyprland-session.target; systemctl --user start hyprland-session.target"
+            "dbus-update-activation-environment --systemd --all"
+            "systemctl --user start hyprland-session.target"
           ];
           exec = [
             "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"
             "pgrep ags || ags"
           ];
           exec-shutdown = [
-            # discord loves to get stuck when closing
-            "pkill -9 .Discord-wrappe"
+            "systemctl --user stop hyprland-session.target"
           ];
           monitor = [
             ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.

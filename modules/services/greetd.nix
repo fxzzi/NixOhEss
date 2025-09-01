@@ -4,8 +4,12 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.greetd;
+  cmd = pkgs.writeShellScriptBin "greetd-hyprland" ''
+    Hyprland
+    systemctl --user stop hyprland-session.target
+  '';
 in {
   options.cfg.services.greetd.enable = mkEnableOption "greetd";
   config = mkIf cfg.enable {
@@ -21,7 +25,8 @@ in {
               --greeting 'Welcome to the fold of ${config.system.nixos.distroName}.' \
               --time \
               --remember \
-              --asterisks
+              --asterisks \
+              --cmd '${getExe cmd}'
             '';
           user = "greeter";
         };
