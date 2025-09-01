@@ -72,16 +72,18 @@ in {
             };
             profile = "No VidMem Reuse";
           }) [
+            "Hyprland"
             ".Hyprland-wrapped"
+            "Discord"
             ".Discord-wrapped"
+            "DiscordCanary"
             ".DiscordCanary-wrapped"
             "electron"
             ".electron-wrapped"
-            "losslesscut"
+            "librewolf"
             ".librewolf-wrapped"
             ".librewolf-wrapped_"
-            ".librewolf-wrapped__"
-            "librewolf"
+            "losslesscut"
           ];
       };
     };
@@ -108,7 +110,7 @@ in {
     };
     systemd = {
       services.nvidia-temp = mkIf cfg.exposeTemp {
-        description = "NVidia GPU temperature monitoring"; # exposes.hardware temperature at /tmp/nvidia-temp for monitoring
+        description = "Nvidia GPU temperature monitoring"; # exposes hardware temperature at /tmp/nvidia-temp for monitoring
         wantedBy = ["multi-user.target"];
         before = ["fancontrol.service"];
         script = ''
