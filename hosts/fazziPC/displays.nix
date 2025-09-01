@@ -40,11 +40,10 @@
     enable = true;
     wantedBy = ["multi-user.target"];
     unitConfig = {
-      Description = "Framebuffer resolution";
+      Description = "Set framebuffer resolution";
       Before = "display-manager.service";
     };
     serviceConfig = {
-      User = "root";
       Type = "oneshot";
       ExecStart = "${lib.getExe pkgs.fbset} -xres 2560 -yres 1440 -match --all";
       RemainAfterExit = "yes";
@@ -52,5 +51,4 @@
       StandardError = "journal";
     };
   };
-  hj.xdg.config.files."hypr/hyprland.conf".value.cursor.min_refresh_rate = 32;
 }
