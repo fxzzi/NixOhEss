@@ -16,7 +16,7 @@ in {
     };
     systemd.user.services.hyprsunset = {
       enable = true;
-      description = "An application to enable a blue-light filter on Hyprland.";
+      description = "Hyprsunset blue light filter";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];

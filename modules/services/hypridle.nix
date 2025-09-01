@@ -72,7 +72,7 @@ in {
     };
     systemd.user.services.hypridle = {
       enable = true;
-      description = "hypridle service";
+      description = "Hypridle idle management";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
