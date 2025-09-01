@@ -57,7 +57,7 @@ in {
         # lowest frame buffering -> lower latency
         __GL_MaxFramesAllowed = "1";
         # fix hw acceleration and native wayland on losslesscut
-        __EGL_VENDOR_LIBRARY_FILENAMES = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
+        __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
         CUDA_CACHE_PATH = "$HOME/.cache/nv";
         # fix gtk4 freezes on 580
         GSK_RENDERER = "cairo";
