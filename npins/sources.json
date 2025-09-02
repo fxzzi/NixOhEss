@@ -152,9 +152,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "c9b19f1e64e1bf16d4f615e26130b15a9638c9d7",
-      "url": "https://github.com/NotAShelf/stash/archive/c9b19f1e64e1bf16d4f615e26130b15a9638c9d7.tar.gz",
-      "hash": "02bx3zm0b21nkixf7xc4nqgjxiafg0dmrwqrwpgg9dszgrcl79r8"
+      "revision": "3176c9651496c9ba4bf55f0f70f373321795831c",
+      "url": "https://github.com/NotAShelf/stash/archive/3176c9651496c9ba4bf55f0f70f373321795831c.tar.gz",
+      "hash": "13s5nilwmw2si6g792wrzdz6x2k4dqhxdjiiwkbqi7gg0f7l710i"
     },
     "walls": {
       "type": "Git",
