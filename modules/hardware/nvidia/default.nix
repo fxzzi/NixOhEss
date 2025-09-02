@@ -28,19 +28,13 @@ in {
         nvidiaSettings = false; # useless on wayland still
         # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        package =
-          (config.boot.kernelPackages.nvidiaPackages.mkDriver {
-            version = "580.76.05";
-            sha256_64bit = "sha256-IZvmNrYJMbAhsujB4O/4hzY8cx+KlAyqh7zAVNBdl/0=";
-            openSha256 = "sha256-xEPJ9nskN1kISnSbfBigVaO6Mw03wyHebqQOQmUg/eQ=";
-            usePersistenced = false;
-            useSettings = false;
-          }).overrideAttrs {
-            postFixup = ''
-              substituteInPlace $out/share/vulkan/icd.d/nvidia_icd.x86_64.json \
-                --replace-fail '1.4.312' '1.4.321'
-            '';
-          };
+        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          version = "580.82.07";
+          sha256_64bit = "sha256-Bh5I4R/lUiMglYEdCxzqm3GLolQNYFB0/yJ/zgYoeYw=";
+          openSha256 = "sha256-8/7ZrcwBMgrBtxebYtCcH5A51u3lAxXTCY00LElZz08=";
+          usePersistenced = false;
+          useSettings = false;
+        };
       };
       graphics = {
         enable = true;
@@ -58,9 +52,7 @@ in {
         __GL_MaxFramesAllowed = "1";
         # fix hw acceleration and native wayland on losslesscut
         __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
-        CUDA_CACHE_PATH = "$HOME/.cache/nv";
-        # fix gtk4 freezes on 580
-        GSK_RENDERER = "cairo";
+        CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
       };
       # fix high vram usage on discord and hyprland. match with the wrapper procnames
       etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool.json".text = builtins.toJSON {
