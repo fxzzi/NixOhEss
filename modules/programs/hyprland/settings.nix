@@ -244,33 +244,34 @@ in {
             "almostLinear,0.5,0.5,0.75,1.0"
             "quick,0.15,0,0.1,1"
           ];
-          animation = [
-            "windowsIn, 1, 3, easeOutQuint, slide"
-            "windowsOut, 1, 3, easeOutQuint, slide"
-            "windowsMove, 1, 3, easeOutQuint"
+          animation =
+            [
+              "windowsIn, 1, 3, easeOutQuint, slide"
+              "windowsOut, 1, 3, easeOutQuint, slide"
+              "windowsMove, 1, 3, easeOutQuint"
 
-            "layersIn, 1, 4, easeOutQuint, fade"
-            "layersOut, 1, 1.5, linear, fade"
+              "layersIn, 1, 4, easeOutQuint, fade"
+              "layersOut, 1, 1.5, linear, fade"
 
-            "fadeIn, 1, 1.2, almostLinear"
-            "fadeOut, 1, 2, almostLinear"
-            "fadeSwitch, 1, 1.2, almostLinear"
-            "fadeShadow, 1, 1.2, almostLinear"
-            "fadeDim, 1, 1.2, almostLinear"
-            "fadeLayers, 1, 1.4, linear"
-            "fadePopups, 1, 2, linear"
+              "fadeIn, 1, 1.2, almostLinear"
+              "fadeOut, 1, 2, almostLinear"
+              "fadeSwitch, 1, 1.2, almostLinear"
+              "fadeShadow, 1, 1.2, almostLinear"
+              "fadeDim, 1, 1.2, almostLinear"
+              "fadeLayers, 1, 1.4, linear"
 
-            "border, 1, 5, easeOutQuint"
-            "specialWorkspace, 1, 3, quick, fade"
-            "zoomFactor, 1, 4, quick"
+              "border, 1, 5, easeOutQuint"
+              "specialWorkspace, 1, 3, quick, fade"
+              "zoomFactor, 1, 4, quick"
 
-            # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
-            # and it will look like windows are moving into each other across the monitors.
-            "workspaces, 1, 4, easeOutQuint, ${wsAnim}"
-
-            # don't zoom in when hyprland starts
-            "monitorAdded, 0"
-          ];
+              # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
+              # and it will look like windows are moving into each other across the monitors.
+              "workspaces, 1, 4, easeOutQuint, ${wsAnim}"
+            ]
+            ++ optionalAttrs cfg.useGit [
+              "monitorAdded, 0"
+              "fadePopups, 1, 2, linear"
+            ];
 
           animations.enabled = mkDefault 1;
 
@@ -278,68 +279,70 @@ in {
             pseudotile = 1;
             preserve_split = 1;
           };
-          windowrule = [
-            # pause hypridle for certain apps
-            "idleinhibit focus, class:^(mpv)$"
-            "idleinhibit focus, class:^(atril)$"
-            "idleinhibit fullscreen, class:^(foot)$"
-            "idleinhibit fullscreen, class:^(steam_app_.*)$"
+          windowrule =
+            [
+              # pause hypridle for certain apps
+              "idleinhibit focus, class:^(mpv)$"
+              "idleinhibit focus, class:^(atril)$"
+              "idleinhibit fullscreen, class:^(foot)$"
+              "idleinhibit fullscreen, class:^(steam_app_.*)$"
 
-            # some apps, mostly games, are stupid and they fullscreen on the
-            # wrong monitor. so just don't listen to them lol
-            "suppressevent fullscreenoutput, class:.*"
+              # some apps, mostly games, are stupid and they fullscreen on the
+              # wrong monitor. so just don't listen to them lol
+              "suppressevent fullscreenoutput, class:.*"
 
-            # Ignore maximize requests from apps. You'll probably like this.
-            "suppressevent maximize, class:.*"
+              # Ignore maximize requests from apps. You'll probably like this.
+              "suppressevent maximize, class:.*"
 
-            # Fix some dragging issues with XWayland
-            "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+              # Fix some dragging issues with XWayland
+              "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 
-            # dialogs
-            "float,title:^(File Operation Progress)(.*)$"
-            "float,title:^(Confirm to replace files)(.*)$"
-            "float,title:^(Open File)(.*)$"
-            "float,title:^(Select a File)(.*)$"
-            "float,title:^(Choose wallpaper)(.*)$"
-            "float,title:^(Open Folder)(.*)$"
-            "float,title:^(Save As)(.*)$"
-            "float,title:^(Rename)(.*)$"
-            "float,title:^(Library)(.*)$"
-            "float,class:^(org.gnome.FileRoller)$,title:^(Extract)(.*)$"
+              # dialogs
+              "float,title:^(File Operation Progress)(.*)$"
+              "float,title:^(Confirm to replace files)(.*)$"
+              "float,title:^(Open File)(.*)$"
+              "float,title:^(Select a File)(.*)$"
+              "float,title:^(Choose wallpaper)(.*)$"
+              "float,title:^(Open Folder)(.*)$"
+              "float,title:^(Save As)(.*)$"
+              "float,title:^(Rename)(.*)$"
+              "float,title:^(Library)(.*)$"
+              "float,class:^(org.gnome.FileRoller)$,title:^(Extract)(.*)$"
 
-            # Window rules for games
-            # Fix focus issues with cs2
-            "suppressevent maximize fullscreen, class: ^(cs2)$"
-            # make cs2 launch in fullscreen
-            "fullscreen, class:^(cs2)$"
-            # make tomb raider (2013) launch in fullscreen
-            "fullscreen, class:^(steam_app_203160)$"
+              # Window rules for games
+              # Fix focus issues with cs2
+              "suppressevent maximize fullscreen, class: ^(cs2)$"
+              # make cs2 launch in fullscreen
+              "fullscreen, class:^(cs2)$"
+              # make tomb raider (2013) launch in fullscreen
+              "fullscreen, class:^(steam_app_203160)$"
 
-            # Sets fullscreen for common Minecraft windows
-            "fullscreen, class:^(Minecraft\*.*)$"
-            "fullscreen, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
-            "fullscreen, class:^(org-prismlauncher-EntryPoint)$"
+              # Sets fullscreen for common Minecraft windows
+              "fullscreen, class:^(Minecraft\*.*)$"
+              "fullscreen, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
+              "fullscreen, class:^(org-prismlauncher-EntryPoint)$"
 
-            # Allow games to tear
-            "immediate, class:^(steam_app_.*)$" # all steam games
-            "immediate, class:^(cs2)$" # cs2
-            "immediate, class:^(Minecraft\*.*)$"
-            "immediate, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
-            "immediate, class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
-            "immediate, class:^(osu!)$"
-            "immediate, class:^(.*.exe)$" # all exe's
-            "immediate, class:^(hl2_linux)$" # half life 2
-            "immediate, class:^(cstrike_linux64)$" # cs source
-            "immediate, class:^(gamescope)$"
-            "immediate, class:^(Celeste)$"
-            "immediate, class:^(info.cemu.Cemu)$"
-            "immediate, class:^(Cuphead.x86_64)$"
-            "immediate, class:^(org.eden_emu.eden)$"
-
-            # Disable vrr for these apps / games, as I run them at higher than my rr
-            "novrr, class:^(geometrydash.exe)$"
-            "novrr, class:^(osu!)$"
-          ];
+              # Allow games to tear
+              "immediate, class:^(steam_app_.*)$" # all steam games
+              "immediate, class:^(cs2)$" # cs2
+              "immediate, class:^(Minecraft\*.*)$"
+              "immediate, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
+              "immediate, class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
+              "immediate, class:^(osu!)$"
+              "immediate, class:^(.*.exe)$" # all exe's
+              "immediate, class:^(hl2_linux)$" # half life 2
+              "immediate, class:^(cstrike_linux64)$" # cs source
+              "immediate, class:^(gamescope)$"
+              "immediate, class:^(Celeste)$"
+              "immediate, class:^(info.cemu.Cemu)$"
+              "immediate, class:^(Cuphead.x86_64)$"
+              "immediate, class:^(org.eden_emu.eden)$"
+            ]
+            ++ optionalAttrs cfg.useGit [
+              # Disable vrr for these apps / games, as I run them at higher than my rr
+              "novrr, class:^(geometrydash.exe)$"
+              "novrr, class:^(osu!)$"
+            ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor [
             "1, monitor:${cfg.defaultMonitor}"
