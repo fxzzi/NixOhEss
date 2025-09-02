@@ -3,99 +3,24 @@
   pkgs,
   config,
   xLib,
+  inputs,
   ...
 }: let
   inherit (lib) mkOption types mkDefault getExe optionalAttrs mkIf optionals;
   inherit (builtins) concatLists genList;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
-  brightnessScript =
+  pkgs' = inputs.self.packages.${pkgs.system};
+  brightness =
     if multiMonitor
-    then "brightness.sh"
-    else "brightness-laptop.sh";
+    then getExe (pkgs'.brightness.override {hyprland = config.programs.hyprland.package;})
+    else getExe pkgs'.brightness;
+  screenshot = getExe (pkgs'.screenshot.override {hyprland = config.programs.hyprland.package;});
+
   wsAnim =
     if multiMonitor
     then "slidevert"
     else "slide";
-
-  sunsetScript = pkgs.writeShellApplication {
-    name = "sunset";
-    runtimeInputs = [
-      config.programs.hyprland.package # provides hyprctl
-    ];
-    text = ''
-      if [ -e /tmp/sunsetLock ]; then
-        echo "Resetting temperature"
-        hyprctl hyprsunset identity
-        rm /tmp/sunsetLock
-      else
-        echo "Setting temperature to $1"
-        hyprctl hyprsunset temperature "$1"
-        touch /tmp/sunsetLock
-      fi
-    '';
-  };
-
-  screenshotScript = pkgs.writeShellApplication {
-    name = "screenshot";
-    runtimeInputs = with pkgs; [
-      libcanberra-gtk3
-      jq
-      grim
-      slurp
-      wl-clipboard
-      wayfreeze
-    ];
-    text = ''
-      # Screenshot the entire monitor, a selection, or active window
-      # and then copies the image to your clipboard.
-      # It also saves the image locally.
-
-      fileName="Screenshot from $(date '+%y.%m.%d %H:%M:%S').png"
-      screenshotDir="$HOME/Pictures/Screenshots"
-      path="$screenshotDir/$fileName"
-      grimCmd="grim -t png -l 1"
-
-      # make the screenshot directory if it doesn't already exist
-      if [ ! -d "$screenshotDir" ]; then
-        mkdir -p "$screenshotDir"
-        echo "Directory '$screenshotDir' created successfully."
-      fi
-
-      case $1 in
-      --monitor)
-        if [ -z "$2" ]; then
-          echo "give monitor output too"
-          exit 1
-        fi
-         $grimCmd -o "$2" "$path"
-        ;;
-      --selection)
-        wayfreeze --hide-cursor &
-        PID=$!
-        sleep .1
-        # don't allow multiple slurps at once
-        pidof slurp || ($grimCmd -g "$(slurp)" "$path" || echo "selection cancelled")
-        kill $PID
-        ;;
-      --active)
-        window_geometry=$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
-        $grimCmd -g "$window_geometry" "$path" || echo "no active window"
-        ;;
-      esac
-
-      # if the screenshot was successful
-      if [ -f "$path" ]; then
-        canberra-gtk-play -i camera-shutter & # play shutter sound
-        dunstify -i "$path" -a "screenshot" "Screenshot" "Copied to clipboard" -r 9998 &
-        wl-copy < "$path" # copy to clipboard
-        exit 0
-      fi
-
-      echo "Screenshot cancelled."
-      exit 1
-    '';
-  };
 in {
   options.cfg.programs = {
     hyprland = {
@@ -113,9 +38,6 @@ in {
   };
   config = {
     hj = {
-      packages = [
-        screenshotScript
-      ];
       xdg.config.files."hypr/hyprland.conf" = {
         generator = xLib.generators.toHyprlang {
           topCommandsPrefixes = [
@@ -268,7 +190,7 @@ in {
               # and it will look like windows are moving into each other across the monitors.
               "workspaces, 1, 4, easeOutQuint, ${wsAnim}"
             ]
-            ++ optionalAttrs cfg.useGit [
+            ++ optionals cfg.useGit [
               "monitorAdded, 0"
               "fadePopups, 1, 2, linear"
             ];
@@ -338,7 +260,7 @@ in {
               "immediate, class:^(Cuphead.x86_64)$"
               "immediate, class:^(org.eden_emu.eden)$"
             ]
-            ++ optionalAttrs cfg.useGit [
+            ++ optionals cfg.useGit [
               # Disable vrr for these apps / games, as I run them at higher than my rr
               "novrr, class:^(geometrydash.exe)$"
               "novrr, class:^(osu!)$"
@@ -360,10 +282,10 @@ in {
           bind =
             [
               # screenshot script
-              ",Print, exec, ${getExe screenshotScript} --monitor ${cfg.defaultMonitor}"
-              "SHIFT, Print, exec, ${getExe screenshotScript} --selection"
-              "$MOD SHIFT, S, exec, ${getExe screenshotScript} --selection"
-              "$MOD, Print, exec, ${getExe screenshotScript} --active"
+              ",Print, exec, ${screenshot} --monitor ${cfg.defaultMonitor}"
+              "SHIFT, Print, exec, ${screenshot} --selection"
+              "$MOD SHIFT, S, exec, ${screenshot} --selection"
+              "$MOD, Print, exec, ${screenshot} --active"
 
               # binds for apps
               "$MOD, F, exec, thunar"
@@ -375,16 +297,16 @@ in {
               "$MOD SHIFT, E, exec, pkill wleave || wleave --protocol layer-shell -b 5 -T 360 -B 360 -k"
               "CTRL SHIFT, Escape, exec, xdg-terminal-exec btm"
               # extra schtuff
-              "$MOD, N, exec, ${getExe sunsetScript} 3000"
+              "$MOD, N, exec, ${getExe (pkgs'.sunset.override {hyprland = config.programs.hyprland.package;})} 3000"
               "$MOD, K, exec, pkill hyprpicker || ${getExe pkgs.hyprpicker} -r -a -n"
-              "$MOD, R, exec, random-wall.sh"
-              "$MOD SHIFT, R, exec, cycle-wall.sh"
-              "$MOD, J, exec, xdg-terminal-exec wall-picker.sh"
+              "$MOD, R, exec, ${getExe pkgs'.random-wall}"
+              "$MOD SHIFT, R, exec, ${getExe pkgs'.cycle-wall}"
+              "$MOD, J, exec, xdg-terminal-exec ${getExe pkgs'. wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
 
-              ", XF86AudioPrev, exec, ${getExe pkgs.mpc} prev; (pidof ncmpcpp || mpd-notif)"
-              ", XF86AudioPlay, exec, ${getExe pkgs.mpc} toggle; mpd-notif"
-              ", XF86AudioNext, exec, ${getExe pkgs.mpc} next; (pidof ncmpcpp || mpd-notif)"
+              ", XF86AudioPrev, exec, ${getExe pkgs.mpc} prev"
+              ", XF86AudioPlay, exec, ${getExe pkgs.mpc} toggle"
+              ", XF86AudioNext, exec, ${getExe pkgs.mpc} next"
 
               # passthrough binds for obs
               "Control_L, grave, pass, class:^(com.obsproject.Studio)$"
@@ -433,15 +355,15 @@ in {
 
           binde = [
             # volume script
-            ", XF86AudioRaiseVolume, exec, audio.sh vol up 5"
-            ", XF86AudioLowerVolume, exec, audio.sh vol down 5"
-            ", XF86AudioMute, exec, audio.sh vol toggle"
-            ", XF86AudioMicMute, exec, audio.sh mic toggle"
-            ", F20, exec, audio.sh mic toggle"
+            ", XF86AudioRaiseVolume, exec, ${getExe pkgs'.audio} vol up 5"
+            ", XF86AudioLowerVolume, exec, ${getExe pkgs'.audio} vol down 5"
+            ", XF86AudioMute, exec, ${getExe pkgs'.audio} vol toggle"
+            ", XF86AudioMicMute, exec, ${getExe pkgs'.audio} mic toggle"
+            ", F20, exec, ${getExe pkgs'.audio} mic toggle"
 
             # brightness script
-            ", XF86MonBrightnessUp, exec, ${brightnessScript} up 5"
-            ", XF86MonBrightnessDown, exec, ${brightnessScript} down 5"
+            ", XF86MonBrightnessUp, exec, ${brightness} up 5"
+            ", XF86MonBrightnessDown, exec, ${brightness} down 5"
 
             # can't type £ with US layout, so use wtype
             "$MOD, comma, exec, ${getExe pkgs.wtype} £"

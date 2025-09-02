@@ -35,7 +35,6 @@ in {
     ./proton.nix
     ./osu.nix
     ./gamescope.nix
-    ./scripts
     ./wallust
   ];
   options.cfg.programs.smoothScroll = {

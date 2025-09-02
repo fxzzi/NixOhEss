@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   system.stateVersion = "25.05";
   imports = [
     ./hardware-configuration.nix
@@ -25,6 +29,7 @@
       nvtopPackages.nvidia
       stremio
       yt-dlp
+      inputs.self.packages.${pkgs.system}.transcode
     ];
     xdg.config.files."hypr/hyprland.conf".value = {
       render.new_render_scheduling = true;

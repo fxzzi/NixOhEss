@@ -63,7 +63,6 @@
       smoothScroll.enable = false;
       nvf.enable = true;
       adb.enable = true;
-      scripts.enable = true;
       wallust.enable = true;
       foot.enable = true;
       fuzzel.enable = true;
