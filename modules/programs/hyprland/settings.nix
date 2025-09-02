@@ -303,6 +303,7 @@ in {
               "$MOD SHIFT, R, exec, ${getExe pkgs'.cycle-wall}"
               "$MOD, J, exec, xdg-terminal-exec ${getExe pkgs'. wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
+              "$MOD, V, exec, stash list | fuzzel --dmenu | stash decode | wl-copy"
 
               ", XF86AudioPrev, exec, ${getExe pkgs.mpc} prev"
               ", XF86AudioPlay, exec, ${getExe pkgs.mpc} toggle"
