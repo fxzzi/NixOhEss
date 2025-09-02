@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "ea991a75b0fd0579604dc4f047f45a6ddd9048d1",
-      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/ea991a75b0fd0579604dc4f047f45a6ddd9048d1.tar.gz",
-      "hash": "0cx4g50fqwmqmkjd3f6q66llxzraxjlnvlyw18j1yjl4sh31gsiq"
+      "revision": "a83b73ba3b86c86a3072104fde0b4cd421369408",
+      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/a83b73ba3b86c86a3072104fde0b4cd421369408.tar.gz",
+      "hash": "04s9zdjfcfihncdj5fc2pnr7rygmmn1nf3l4jl00ls1y62bwk4bc"
     },
     "niqspkgs": {
       "type": "Git",
