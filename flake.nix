@@ -1,6 +1,8 @@
 {
   description = "fazzi's nixos + hjem conf";
   outputs = inputs: let
+    forEachSystem = inputs.nixpkgs.lib.genAttrs (import inputs.systems);
+    pkgsForEach = inputs.nixpkgs.legacyPackages;
     npins = import ./npins;
     xLib = import ./lib inputs.nixpkgs.lib;
 
@@ -17,6 +19,7 @@
     hosts = ["fazziPC" "fazziGO" "kunzozPC"];
   in {
     nixosConfigurations = inputs.nixpkgs.lib.genAttrs hosts mkSystem;
+    packages = forEachSystem (system: import ./pkgs {pkgs = pkgsForEach.${system};});
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";

@@ -65,7 +65,6 @@
       lutris.enable = true;
       wallust.enable = true;
       fuzzel.enable = true;
-      scripts.enable = true;
       foot.enable = true;
       nvf.enable = true;
       steam = {

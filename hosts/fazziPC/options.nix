@@ -102,7 +102,6 @@
       lutris.enable = true;
       heroic.enable = true;
       adb.enable = true;
-      scripts.enable = true;
       mpv.enable = true;
       obs-studio.enable = true;
       thunar = {
