@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }: let
   inherit (lib) concatStringsSep mapAttrsToList isList mkEnableOption getExe mkIf;
@@ -37,32 +38,13 @@
     if isList xs
     then xs
     else [xs];
-
-  notifScript = pkgs.writeShellApplication {
-    name = "mpd-notif";
-    runtimeInputs = with pkgs; [
-      ffmpeg
-      libnotify
-      mpc
-    ];
-    text = ''
-      music_dir="$HOME/Music"
-      previewdir="$XDG_STATE_HOME/ncmpcpp/previews"
-      filename="$(mpc --format "$music_dir"/%file% current)"
-      previewname="$previewdir/$(mpc --format %album% current | base64).png"
-
-      [ -e "$previewname" ] || ffmpeg -y -i "$filename" -an -vf scale=96:96 "$previewname" >/dev/null 2>&1
-
-      notify-send -r 27072 -a "mpd" "Now Playing" "$(mpc --format ' %title%\n %artist%' current)" -i "$previewname"
-    '';
-  };
 in {
   options.cfg.programs.ncmpcpp.enable = mkEnableOption "ncmpcpp";
   config = mkIf cfg.enable {
     hj = {
       packages = with pkgs; [
         ncmpcpp
-        notifScript
+        (inputs.self.packages.${pkgs.system}).mpd-notif
       ];
       xdg.config.files = {
         "ncmpcpp/bindings".text = renderBindings [
@@ -113,7 +95,7 @@ in {
           playlist_disable_highlight_delay = 1;
 
           # Notifications
-          execute_on_song_change = "${getExe notifScript}";
+          execute_on_song_change = "${getExe inputs.self.packages.${pkgs.system}.mpd-notif}";
         };
       };
     };
