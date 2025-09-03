@@ -29,7 +29,7 @@
       nvtopPackages.nvidia
       stremio
       yt-dlp
-      inputs.self.packages.${pkgs.system}.transcode
+      pkgs.transcode
     ];
     xdg.config.files."hypr/hyprland.conf".value = {
       render.new_render_scheduling = true;

@@ -1,13 +1,13 @@
 {
-  pkgs,
+  stdenv,
+  fetchurl,
   lib,
-  ...
 }:
-pkgs.stdenv.mkDerivation {
+stdenv.mkDerivation {
   pname = "cudaBoostBypass";
   version = "0-unstable";
 
-  src = pkgs.fetchurl {
+  src = fetchurl {
     url = "https://gist.githubusercontent.com/Ristovski/c81502f850ba095320353ec2094b14cf/raw/boost_bypass.c";
     sha256 = "sha256-3OPAAsfj2Oq+UB3PHnk5GW6PrhZ+YzQ5bu+H8p/EWlo=";
   };
