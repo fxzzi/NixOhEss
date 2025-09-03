@@ -2,7 +2,6 @@
   imports = [
     ./boot.nix
     ./networking
-    ./fonts
     ./kernel
 
     ./qt.nix
@@ -10,5 +9,6 @@
     ./agenix.nix
     ./user.nix
     ./nix.nix
+    ./fonts.nix
   ];
 }

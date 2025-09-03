@@ -13,8 +13,8 @@ stdenv.mkDerivation rec {
   };
 
   installPhase = ''
-    mkdir -p $out/share/fonts
-    cp -r * $out/share/fonts/
+    mkdir -p $out/share
+    cp -r * $out
   '';
 
   meta = with lib; {

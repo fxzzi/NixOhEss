@@ -58,14 +58,17 @@ in {
       xdg.config.files = {
         "MangoHud/MangoHud.conf".text = ''
           blacklist=mpv
-          font_size=19
+          font_size=20
+          font_file=${pkgs.customPkgs.ioshelfka-term}/share/fonts/truetype/IoshelfkaTerm-Bold.ttf
+          text_outline_thickness=1
+          cellpadding_y=-0.2
           fps_limit=${toString fpsLimit},0
+          vsync=1
           gl_vsync=0
           preset=0,1,2
           toggle_hud=Shift_R+F12
           toggle_hud_position=Shift_R+F11
           toggle_preset=Shift_R+F10
-          vsync=1
         '';
         "MangoHud/presets.conf".text = ''
           [preset 0]
@@ -74,7 +77,7 @@ in {
           hud_no_margin
 
           [preset 1]
-          background_alpha=0.3
+          background_alpha=0.33
           hud_no_margin
           gpu_text=GPU
           gpu_stats
@@ -91,10 +94,9 @@ in {
           cpu_temp
           cpu_power
           ram
-          present_mode
 
           [preset 2]
-          background_alpha=0.3
+          background_alpha=0.33
           hud_no_margin
           gpu_text=GPU
           gpu_stats
@@ -111,7 +113,6 @@ in {
           cpu_temp
           cpu_power
           ram
-          present_mode
         '';
       };
     };
