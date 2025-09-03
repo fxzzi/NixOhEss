@@ -13,7 +13,7 @@
   brightness =
     if multiMonitor
     then getExe (pkgs.customPkgs.brightness.override {hyprland = config.programs.hyprland.package;})
-    else getExe pkgs.customPkgs.brightness;
+    else getExe pkgs.customPkgs.brightness-laptop;
   screenshot = getExe (pkgs.customPkgs.screenshot.override {hyprland = config.programs.hyprland.package;});
 
   wsAnim =
