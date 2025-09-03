@@ -1,4 +1,4 @@
-{...}: {
+_: {
   config = {
     programs.bash.shellInit = ''
       # declutter ~

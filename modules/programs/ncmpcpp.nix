@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  inputs,
   ...
 }: let
   inherit (lib) concatStringsSep mapAttrsToList isList mkEnableOption getExe mkIf;
