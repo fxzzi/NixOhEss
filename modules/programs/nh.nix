@@ -37,7 +37,7 @@ in {
           runtimeInputs = with pkgs; [
             nh
             git
-            coreutils # for `date`
+            coreutils
           ];
           text = ''
             # Save the current commit hash of origin/main before fetching
@@ -71,9 +71,6 @@ in {
 
       (pkgs.writeShellApplication {
         name = "evaltime";
-        runtimeInputs = [
-          config.nix.package
-        ];
         text = ''
           # use current host if one isn't given
           HOST="''${1:-$(hostname)}"
