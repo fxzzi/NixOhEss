@@ -76,7 +76,7 @@
         buildInputs = [pkgs.makeWrapper];
         postBuild = ''
           wrapProgram $out/bin/chromium \
-            --set LD_PRELOAD "${pkgs.cudaBoostBypass}/boost_bypass.so"
+            --set LD_PRELOAD "${pkgs.customPkgs.cudaBoostBypass}/boost_bypass.so"
         '';
       };
 in {
