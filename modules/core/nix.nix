@@ -14,8 +14,6 @@ in {
       package = pkgs.lixPackageSets.latest.lix;
       # Disable channels and add the inputs to the registry
       channel.enable = false;
-      registry = mapAttrs (_: flake: {inherit flake;}) inputs;
-      nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
       settings = {
         experimental-features = [
           "nix-command"
@@ -29,8 +27,6 @@ in {
         allowed-users = ["@wheel"];
         trusted-users = ["@wheel"];
         build-dir = "/var/tmp";
-        # Disable channels and add the inputs to the registry
-        nix-path = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
         flake-registry = "";
         extra-substituters = [
           "https://hyprland.cachix.org"

@@ -3,14 +3,13 @@
   pkgs,
   config,
   xLib,
-  inputs,
   ...
 }: let
   inherit (lib) mkOption types mkDefault getExe optionalAttrs mkIf optionals;
   inherit (builtins) concatLists genList;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
-  
+
   brightness =
     if multiMonitor
     then getExe (pkgs.brightness.override {hyprland = config.programs.hyprland.package;})
@@ -303,7 +302,7 @@ in {
               "$MOD SHIFT, R, exec, ${getExe pkgs.cycle-wall}"
               "$MOD, J, exec, xdg-terminal-exec ${getExe pkgs.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
-              "$MOD, V, exec, stash list | fuzzel --dmenu | stash decode | wl-copy"
+              "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"
 
               ", XF86AudioPrev, exec, ${getExe pkgs.mpc} prev"
               ", XF86AudioPlay, exec, ${getExe pkgs.mpc} toggle"

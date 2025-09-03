@@ -23,9 +23,7 @@
     ];
 
   commandLineArgs =
-    [
-    ]
-    ++ optionals (enableFeatures != []) [
+    optionals (enableFeatures != []) [
       "--enable-features=${concatStringsSep "," enableFeatures}"
     ]
     ++ optionals (disableFeatures != []) [
