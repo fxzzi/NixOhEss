@@ -221,13 +221,10 @@ in {
               # dialogs
               "float,title:^(File Operation Progress)(.*)$"
               "float,title:^(Confirm to replace files)(.*)$"
-              "float,title:^(Open File)(.*)$"
               "float,title:^(Select a File)(.*)$"
-              "float,title:^(Choose wallpaper)(.*)$"
-              "float,title:^(Open Folder)(.*)$"
               "float,title:^(Save As)(.*)$"
               "float,title:^(Rename)(.*)$"
-              "float,title:^(Library)(.*)$"
+              "float,class:^(xdg-desktop-portal-gtk)$,title:^(Open)(.*)$"
               "float,class:^(org.gnome.FileRoller)$,title:^(Extract)(.*)$"
 
               # Window rules for games

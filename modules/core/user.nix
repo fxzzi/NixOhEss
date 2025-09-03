@@ -34,12 +34,12 @@ in {
         # These are available no matter the host.
         packages = with pkgs; [
           pkgs.npins
+          loupe
           wget
           ffmpeg
           imagemagick
           pwvucontrol
           mate.atril
-          mate.eom
           libreoffice
           hunspell
           hunspellDicts.en_GB-ise
@@ -62,14 +62,14 @@ in {
     xdg.mime.defaultApplications = {
       "application/pdf" = "atril.desktop";
 
-      "image/png" = "eom.desktop";
-      "image/jpeg" = "eom.desktop";
-      "image/jpg" = "eom.desktop";
-      "image/gif" = "eom.desktop";
-      "image/webp" = "eom.desktop";
-      "image/bmp" = "eom.desktop";
-      "image/tiff" = "eom.desktop";
-      "image/svg+xml" = "eom.desktop";
+      "image/png" = "org.gnome.Loupe.desktop";
+      "image/jpeg" = "org.gnome.Loupe.desktop";
+      "image/jpg" = "org.gnome.Loupe.desktop";
+      "image/gif" = "org.gnome.Loupe.desktop";
+      "image/webp" = "org.gnome.Loupe.desktop";
+      "image/bmp" = "org.gnome.Loupe.desktop";
+      "image/tiff" = "org.gnome.Loupe.desktop";
+      "image/svg+xml" = "org.gnome.Loupe.desktop";
     };
     environment.sessionVariables = {
       XDG_CONFIG_HOME = "$HOME/.config";
