@@ -19,7 +19,7 @@
 
   # override MangoHud to latest git until next release.
   # fixes keybinds on native wayland games, and avoids mangohud
-  # showing up on all gtk4 apps.
+  # showing up on all gtk4 apps (and mpv).
   mangohud = pkgs.mangohud.overrideAttrs {
     version = "0-unstable-${substring 0 8 npins.MangoHud.revision}";
     src = npins.MangoHud;
