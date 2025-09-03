@@ -8,7 +8,6 @@
 in {
   imports = [
     ./nvuv.nix
-    ./cudaBoostBypass
   ];
 
   options.cfg.hardware.nvidia = {
