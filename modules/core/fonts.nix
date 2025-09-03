@@ -44,7 +44,7 @@ in {
         noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
         corefonts # ms fonts.
         inter
-        (pkgs.callPackage ./ioshelfka-term.nix {}) # custom iosevka build
+        customPkgs.ioshelfka-term
       ];
     };
   };
