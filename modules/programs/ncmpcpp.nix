@@ -43,7 +43,6 @@ in {
     hj = {
       packages = with pkgs; [
         ncmpcpp
-        mpd-notif
       ];
       xdg.config.files = {
         "ncmpcpp/bindings".text = renderBindings [
@@ -94,7 +93,7 @@ in {
           playlist_disable_highlight_delay = 1;
 
           # Notifications
-          execute_on_song_change = "${getExe pkgs.mpd-notif}";
+          execute_on_song_change = "${getExe pkgs.customPkgs.mpd-notif}";
         };
       };
     };

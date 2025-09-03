@@ -23,7 +23,7 @@ in {
             buildInputs = [pkgs.makeWrapper];
             postBuild = ''
               wrapProgram $out/bin/obs \
-                --set LD_PRELOAD "${pkgs.cudaBoostBypass}/boost_bypass.so"
+                --set LD_PRELOAD "${pkgs.customPkgs.cudaBoostBypass}/boost_bypass.so"
             '';
           });
       plugins = with pkgs.obs-studio-plugins; [
