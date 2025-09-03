@@ -1,5 +1,18 @@
 {
   "pins": {
+    "MangoHud": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "flightlessmango",
+        "repo": "MangoHud"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "11a92acdf2c30100f6224a1e9618f1180dac354e",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/11a92acdf2c30100f6224a1e9618f1180dac354e.tar.gz",
+      "hash": "1lcbn89zcfkcnvvlxvgkjpwcyf0vp26yyz97sj99b4nxjn00a4ma"
+    },
     "agenix": {
       "type": "Git",
       "repository": {
