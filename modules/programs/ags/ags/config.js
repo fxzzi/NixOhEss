@@ -124,6 +124,5 @@ function monitorCssFile() {
 
 // on startup, create bars for all monitors
 InitBars(Bar);
-//InitBars(NotificationPopups)
 // start monitoring colors_ags.css
 monitorCssFile();

@@ -1,19 +1,18 @@
 {
   lib,
-  stdenv,
+  stdenvNoCC,
   fetchzip,
 }:
-stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "ioshelfka-term";
   version = "0.1.3";
 
   src = fetchzip {
-    url = "https://github.com/NotAShelf/Ioshelfka/releases/download/v${version}/IoshelfkaTerm.zip";
+    url = "https://github.com/NotAShelf/Ioshelfka/releases/download/v${finalAttrs.version}/IoshelfkaTerm.zip";
     sha256 = "sha256-4lgchtKzv+P8ZSX4AGdc9pdGaUt4aU+mGm+QmwoJ4qE=";
   };
 
   installPhase = ''
-    mkdir -p $out/share
     cp -r * $out
   '';
 
@@ -23,4 +22,4 @@ stdenv.mkDerivation rec {
     license = licenses.mit;
     platforms = platforms.linux;
   };
-}
+})

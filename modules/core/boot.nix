@@ -42,11 +42,6 @@ in {
 
     # Set your time zone.
     time.timeZone = mkDefault "Europe/London";
-    # set these when travelling
-    # services = {
-    #   geoclue2.enable = true;
-    #   localtimed.enable = true;
-    # };
 
     # Select internationalisation properties.
     i18n.defaultLocale = mkDefault "en_GB.UTF-8";
