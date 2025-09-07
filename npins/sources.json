@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "11a92acdf2c30100f6224a1e9618f1180dac354e",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/11a92acdf2c30100f6224a1e9618f1180dac354e.tar.gz",
-      "hash": "1lcbn89zcfkcnvvlxvgkjpwcyf0vp26yyz97sj99b4nxjn00a4ma"
+      "revision": "554ac9ecba348adb35b9782cd96e2f2ecc20b00e",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/554ac9ecba348adb35b9782cd96e2f2ecc20b00e.tar.gz",
+      "hash": "068lixv0z0k1hijy3ggsni21q9bq0868a0dzrndy2cg5a3539m0k"
     },
     "agenix": {
       "type": "Git",
@@ -35,9 +35,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "305707bbc27d83aa1039378e91d7dd816f4cac10",
-      "url": "https://github.com/ipetkov/crane/archive/305707bbc27d83aa1039378e91d7dd816f4cac10.tar.gz",
-      "hash": "0nq5an0gpw1qjzn08aw1lkphvgqajl1yb3d2bgxslq5aqixlb43n"
+      "revision": "d599ae4847e7f87603e7082d73ca673aa93c916d",
+      "url": "https://github.com/ipetkov/crane/archive/d599ae4847e7f87603e7082d73ca673aa93c916d.tar.gz",
+      "hash": "0mx5571sapgynn7dk5zyva1fc4bd5jbf84ki6k3yy4wirc444dwi"
     },
     "creamlinux": {
       "type": "Git",
@@ -61,9 +61,9 @@
       },
       "branch": "transparency_yipee",
       "submodules": false,
-      "revision": "471f0f674f1f0f678cc8e654b09585632866b48c",
+      "revision": "bf7175511a05e7110a57cce96540aa75f9cdca76",
       "url": null,
-      "hash": "16wm6vqca8gz30b1icmisgigyh5ahx103rb4kwvhi7qy2vlfwqgx"
+      "hash": "08vgdq6jj5f4yw7322m6n9dxdr90abfk0md4jpmr3vk8z6ckv7rb"
     },
     "hjem": {
       "type": "Git",
@@ -113,9 +113,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "c1376c823e440c159c0bde9fc22a6cee19c25b24",
-      "url": "https://github.com/fufexan/nix-gaming/archive/c1376c823e440c159c0bde9fc22a6cee19c25b24.tar.gz",
-      "hash": "085f3zpx0z0ak42zghs0qmn0a00j9vibqqpddbwj5qv7k4ycmzhb"
+      "revision": "e479c636519292b50de48f73d7df6cf14c745a1c",
+      "url": "https://github.com/fufexan/nix-gaming/archive/e479c636519292b50de48f73d7df6cf14c745a1c.tar.gz",
+      "hash": "0vild695a57n3b4sp8vn9jhj8mir70xxpy0yxwp57s7dlb81sq54"
     },
     "nvuv": {
       "type": "Git",
