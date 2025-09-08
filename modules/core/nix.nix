@@ -2,7 +2,6 @@
   lib,
   pkgs,
   inputs,
-  config,
   ...
 }: let
   inherit (lib) mapAttrsToList;
@@ -10,10 +9,11 @@
 in {
   config = {
     nix = {
-      # use lix, bcuz its faster i guess
-      package = pkgs.lixPackageSets.latest.lix;
+      package = pkgs.nixVersions.latest;
       # Disable channels and add the inputs to the registry
       channel.enable = false;
+      registry = mapAttrs (_: flake: {inherit flake;}) inputs;
+      nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
       settings = {
         experimental-features = [
           "nix-command"
@@ -26,7 +26,9 @@ in {
         use-xdg-base-directories = true; # clean up ~
         allowed-users = ["@wheel"];
         trusted-users = ["@wheel"];
-        build-dir = "/var/tmp";
+        # build-dir = "/var/tmp";
+        # Disable channels and add the inputs to the registry
+        nix-path = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
         flake-registry = "";
         extra-substituters = [
           "https://hyprland.cachix.org"
@@ -48,8 +50,8 @@ in {
     documentation.nixos.enable = false; # remove useless docs .desktop
 
     # don't build stuff on tmpfs, it can easily run out of space
-    systemd.services.nix-daemon = {
-      environment.TMPDIR = "/var/tmp";
-    };
+    # systemd.services.nix-daemon = {
+    #   environment.TMPDIR = "/var/tmp";
+    # };
   };
 }
