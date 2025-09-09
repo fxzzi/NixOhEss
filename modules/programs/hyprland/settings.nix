@@ -309,10 +309,6 @@ in {
               "Control_L, grave, pass, class:^(com.obsproject.Studio)$"
               "Control_L SHIFT, grave, pass, class:^(com.obsproject.Studio)$"
 
-              # passthrough binds for discord
-              # FIXME: doesn't even work
-              # "Control_L SHIFT, M, pass, class:^(discord)$"
-
               # window management
               "$MOD, Q, killactive"
               "$MOD, Space, fullscreen"
@@ -356,6 +352,7 @@ in {
             ", XF86AudioLowerVolume, exec, ${getExe pkgs.customPkgs.audio} vol down 5"
             ", XF86AudioMute, exec, ${getExe pkgs.customPkgs.audio} vol toggle"
             ", XF86AudioMicMute, exec, ${getExe pkgs.customPkgs.audio} mic toggle"
+            "$MOD SHIFT, M,  exec, ${getExe pkgs.customPkgs.audio} mic toggle"
             ", F20, exec, ${getExe pkgs.customPkgs.audio} mic toggle"
 
             # brightness script
