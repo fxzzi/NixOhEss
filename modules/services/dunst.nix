@@ -25,7 +25,7 @@ in {
             progress_bar = true;
             progress_bar_height = 14;
             progress_bar_frame_width = 0;
-            progress_bar_corner_radius = 8;
+            progress_bar_corner_radius = 7;
             icon_corner_radius = 0;
             indicate_hidden = true;
             separator_height = 2;
@@ -49,7 +49,7 @@ in {
             icon_position = "left";
             min_icon_size = 48;
             max_icon_size = 96;
-            icon_theme = "Papirus-Dark";
+            icon_theme = "Papirus-Dark, Papirus";
             sticky_history = true;
             history_length = 25;
             dmenu = "fuzzel -d";

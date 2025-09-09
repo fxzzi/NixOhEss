@@ -36,9 +36,9 @@ writeShellApplication {
     # Function to handle source notifications
     source_noti() {
     	if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED"; then
-    		dunstify -i audio-input-microphone-muted-symbolic -a "audio" -r 9996 "Microphone" "Muted"
+    		dunstify -i microphone-sensitivity-muted -a "audio" -r 9996 "Microphone" "Muted"
     	else
-    		dunstify -i audio-input-microphone-symbolic -a "audio" -r 9996 "Microphone" "Unmuted"
+    		dunstify -i microphone-sensitivity-high -a "audio" -r 9996 "Microphone" "Unmuted"
     	fi
     }
 
