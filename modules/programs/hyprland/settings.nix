@@ -5,7 +5,7 @@
   xLib,
   ...
 }: let
-  inherit (lib) mkOption types mkDefault getExe optionalAttrs mkIf optionals;
+  inherit (lib) mkOption types mkDefault getExe getExe' optionalAttrs mkIf optionals;
   inherit (builtins) concatLists genList;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
@@ -293,7 +293,7 @@ in {
               "$MOD SHIFT, R, exec, ${getExe pkgs.customPkgs.cycle-wall}"
               "$MOD, J, exec, xdg-terminal-exec ${getExe pkgs.customPkgs.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
-              "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"
+              "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | ${getExe' pkgs.wl-clipboard "wl-copy"})"
 
               ", XF86AudioPrev, exec, ${getExe pkgs.mpc} prev"
               ", XF86AudioPlay, exec, ${getExe pkgs.mpc} toggle"
