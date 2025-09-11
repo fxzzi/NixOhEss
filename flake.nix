@@ -1,11 +1,12 @@
 {
   description = "fazzi's nixos + hjem conf";
   outputs = inputs: let
+    inherit (inputs.nixpkgs) lib;
     npins = import ./npins;
-    xLib = import ./lib inputs.nixpkgs.lib;
+    xLib = import ./lib lib;
 
     mkSystem = hostName:
-      inputs.nixpkgs.lib.nixosSystem {
+      lib.nixosSystem {
         specialArgs = {
           inherit inputs npins xLib hostName;
         };
@@ -17,7 +18,7 @@
       };
     hosts = ["fazziPC" "fazziGO" "kunzozPC"];
   in {
-    nixosConfigurations = inputs.nixpkgs.lib.genAttrs hosts mkSystem;
+    nixosConfigurations = lib.genAttrs hosts mkSystem;
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";

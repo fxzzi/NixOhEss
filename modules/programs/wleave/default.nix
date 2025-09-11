@@ -26,14 +26,15 @@ in {
               }
               {
                 label = "reboot";
-                action = "systemctl reboot";
+                # full path just to ensure it won't fail
+                action = "sudo /run/current-system/sw/bin/systemctl kexec";
                 text = "Reboot";
                 keybind = "r";
               }
               {
-                label = "lock";
-                action = "loginctl lock-session";
-                text = "Lock";
+                label = "hard-reboot";
+                action = "systemctl reboot";
+                text = "Hard Reboot";
                 keybind = "l";
               }
               {
@@ -86,14 +87,6 @@ in {
             	color: @foreground;
             }
 
-            #lock {
-            	background-image: url("${./icons/lock.png}");
-            }
-
-            #lock:focus {
-            	background-image: url("${./icons/lock-hover.png}");
-            }
-
             #logout {
             	background-image: url("${./icons/logout.png}");
             }
@@ -123,6 +116,14 @@ in {
             }
 
             #reboot:focus {
+            	background-image: url("${./icons/restart-hover.png}");
+            }
+
+            #hard-reboot {
+            	background-image: url("${./icons/restart.png}");
+            }
+
+            #hard-reboot:focus {
             	background-image: url("${./icons/restart-hover.png}");
             }
           '';
