@@ -9,7 +9,7 @@
       packages = with pkgs; [
         telegram-desktop
         qpwgraph
-        stremio
+        # stremio
       ];
       xdg.config.files."hypr/hyprland.conf" = {
         value = {
