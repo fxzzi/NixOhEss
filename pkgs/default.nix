@@ -17,6 +17,7 @@
         transcode = callPackage ./transcode.nix {};
         wall-picker = callPackage ./wall-picker.nix {inherit (final.customPkgs) wallust-script;};
         wallust-script = callPackage ./wallust.nix {};
+        stremio-linux-shell = callPackage ./stremio-linux-shell.nix {};
       };
     })
   ];
