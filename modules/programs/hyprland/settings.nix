@@ -207,6 +207,7 @@ in {
               "idleinhibit focus, class:^(atril)$"
               "idleinhibit fullscreen, class:^(foot)$"
               "idleinhibit fullscreen, class:^(steam_app_.*)$"
+              "idleinhibit fullscreen, class:^(.*.exe)$"
 
               # some apps, mostly games, are stupid and they fullscreen on the
               # wrong monitor. so just don't listen to them lol
@@ -285,13 +286,13 @@ in {
 
               # binds for apps
               "$MOD, F, exec, thunar"
-              "$MOD, T, exec, xdg-terminal-exec"
+              "$MOD, T, exec, foot"
               "$MOD, B, exec, librewolf"
               "$MOD SHIFT, P, exec, librewolf --private-window"
               "$MOD, W, exec, Discord"
               "$MOD, D, exec, pkill fuzzel || fuzzel"
               "$MOD SHIFT, E, exec, pkill wleave || wleave --protocol layer-shell -b 5 -T 360 -B 360 -k"
-              "CTRL SHIFT, Escape, exec, xdg-terminal-exec btm"
+              "CTRL SHIFT, Escape, exec, foot btm"
               # extra schtuff
               "$MOD, N, exec, ${getExe (pkgs.customPkgs.sunset.override {hyprland = config.programs.hyprland.package;})} 3000"
               "$MOD, K, exec, pkill hyprpicker || ${getExe pkgs.hyprpicker} -r -a -n"
