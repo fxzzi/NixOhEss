@@ -74,9 +74,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "2426d6ad20e767895e936ed0c9563cc4e2b6c96f",
-      "url": "https://github.com/feel-co/hjem/archive/2426d6ad20e767895e936ed0c9563cc4e2b6c96f.tar.gz",
-      "hash": "0lnn46m56qlv58g1l3d3pd3gxk3m3i4aj3k3xqjk49mdzw7g97jq"
+      "revision": "94e77114b3cddf6c9b1c2ee541836ac32c1ac8a6",
+      "url": "https://github.com/feel-co/hjem/archive/94e77114b3cddf6c9b1c2ee541836ac32c1ac8a6.tar.gz",
+      "hash": "16jvq94412ah71shxfcrpn9p7xisxszigz1zigabdl06sci9jzqk"
     },
     "mpd-discord-rpc": {
       "type": "Git",
