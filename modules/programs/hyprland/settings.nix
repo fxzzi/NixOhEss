@@ -103,9 +103,6 @@ in {
           "device[elan0680:00-04f3:320a-touchpad]" = {
             accel_profile = "adaptive";
           };
-          gestures = {
-            workspace_swipe = true;
-          };
           general = {
             gaps_out = 4; # Outer monitor gaps
             gaps_in = 2; # Inner window gaps
@@ -370,6 +367,10 @@ in {
           bindm = [
             "$MOD, mouse:272, movewindow" # left click
             "$MOD, mouse:273, resizewindow" # right click
+          ];
+
+          gesture = [
+            "3, horizontal, workspace"
           ];
 
           # use when bug reporting
