@@ -13,6 +13,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   };
 
   installPhase = ''
+    mkdir $out
     cp -r * $out
   '';
 
