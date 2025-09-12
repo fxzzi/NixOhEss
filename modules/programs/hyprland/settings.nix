@@ -284,7 +284,7 @@ in {
               "$MOD SHIFT, P, exec, librewolf --private-window"
               "$MOD, W, exec, Discord"
               "$MOD, D, exec, pkill fuzzel || fuzzel"
-              "$MOD SHIFT, E, exec, pkill wleave || wleave --protocol layer-shell -b 5 -T 360 -B 360 -k"
+              "$MOD SHIFT, E, exec, pkill wleave || wleave"
               "CTRL SHIFT, Escape, exec, foot btm"
               # extra schtuff
               "$MOD, N, exec, ${getExe (pkgs.customPkgs.sunset.override {hyprland = config.programs.hyprland.package;})} 3000"
