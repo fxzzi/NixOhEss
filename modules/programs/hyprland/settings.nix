@@ -107,7 +107,7 @@ in {
             gaps_out = 4; # Outer monitor gaps
             gaps_in = 2; # Inner window gaps
             border_size = 2; # Set window border width
-            allow_tearing = 0;
+            allow_tearing = 1;
           };
           misc = {
             new_window_takes_over_fullscreen = 2; # Leave fullscreen on new window
