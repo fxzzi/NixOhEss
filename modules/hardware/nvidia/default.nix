@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf mkMerge getExe';
@@ -28,9 +29,9 @@ in {
         # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "580.82.07";
-          sha256_64bit = "sha256-Bh5I4R/lUiMglYEdCxzqm3GLolQNYFB0/yJ/zgYoeYw=";
-          openSha256 = "sha256-8/7ZrcwBMgrBtxebYtCcH5A51u3lAxXTCY00LElZz08=";
+          version = "580.82.09";
+          sha256_64bit = "sha256-Puz4MtouFeDgmsNMKdLHoDgDGC+QRXh6NVysvltWlbc=";
+          openSha256 = "sha256-YB+mQD+oEDIIDa+e8KX1/qOlQvZMNKFrI5z3CoVKUjs=";
           usePersistenced = false;
           useSettings = false;
         };
@@ -100,6 +101,21 @@ in {
       blacklistedKernelModules = ["nouveau"];
     };
     systemd = {
+      # makes kexec work with nvidia GPUs.
+      services.nvidia-kexec = {
+        unitConfig = {
+          Description = "Unload Nvidia before kexec";
+          Documentation = "man:modprobe(8)";
+          DefaultDependencies = "no";
+          After = "umount.target";
+          Before = "kexec.target";
+        };
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${getExe' pkgs.kmod "modprobe"} -r nvidia_drm";
+        };
+        wantedBy = ["kexec.target"];
+      };
       services.nvidia-temp = mkIf cfg.exposeTemp {
         description = "Nvidia GPU temperature monitoring"; # exposes hardware temperature at /tmp/nvidia-temp for monitoring
         wantedBy = ["multi-user.target"];

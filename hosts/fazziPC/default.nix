@@ -23,9 +23,9 @@
       sgdboop
       cemu
       nvtopPackages.nvidia
-      stremio
       yt-dlp
       customPkgs.transcode
+      customPkgs.stremio-linux-shell
     ];
     xdg.config.files."hypr/hyprland.conf".value = {
       render.new_render_scheduling = true;

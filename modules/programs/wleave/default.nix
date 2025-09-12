@@ -17,37 +17,49 @@ in {
         "wleave/layout.json" = {
           generator = lib.generators.toJSON {};
           value = {
+            no-version-info = true;
+            delay-command-ms = 0;
+            buttons-per-row = "1/1";
+            show-keybinds = true;
+            margin-top = 360;
+            margin-bottom = 360;
+
             buttons = [
               {
                 label = "shutdown";
                 action = "systemctl poweroff";
                 text = "Shutdown";
                 keybind = "s";
+                icon = ./icons/power.png;
               }
               {
                 label = "reboot";
-                # full path just to ensure it won't fail
-                action = "sudo /run/current-system/sw/bin/systemctl kexec";
+                # FIXME: kexec needs sudo
+                action = "sudo systemctl kexec";
                 text = "Reboot";
                 keybind = "r";
+                icon = ./icons/restart.png;
               }
               {
                 label = "hard-reboot";
                 action = "systemctl reboot";
                 text = "Hard Reboot";
                 keybind = "l";
+                icon = ./icons/restart.png;
               }
               {
                 label = "suspend";
                 action = "systemctl suspend";
                 text = "Suspend";
                 keybind = "u";
+                icon = ./icons/sleep.png;
               }
               {
                 label = "logout";
                 action = "hyprctl dispatch exit";
                 text = "Logout";
                 keybind = "e";
+                icon = ./icons/logout.png;
               }
             ];
           };
@@ -61,7 +73,6 @@ in {
             	font-family: monospace;
             	font-size: 20pt;
             	color: #c0caf5;
-            	/* text */
             	background-color: @background;
             }
 
@@ -85,46 +96,6 @@ in {
             button:focus {
             	background-color: @color1;
             	color: @foreground;
-            }
-
-            #logout {
-            	background-image: url("${./icons/logout.png}");
-            }
-
-            #logout:focus {
-            	background-image: url("${./icons/logout-hover.png}");
-            }
-
-            #suspend {
-            	background-image: url("${./icons/sleep.png}");
-            }
-
-            #suspend:focus {
-            	background-image: url("${./icons/sleep-hover.png}");
-            }
-
-            #shutdown {
-            	background-image: url("${./icons/power.png}");
-            }
-
-            #shutdown:focus {
-            	background-image: url("${./icons/power-hover.png}");
-            }
-
-            #reboot {
-            	background-image: url("${./icons/restart.png}");
-            }
-
-            #reboot:focus {
-            	background-image: url("${./icons/restart-hover.png}");
-            }
-
-            #hard-reboot {
-            	background-image: url("${./icons/restart.png}");
-            }
-
-            #hard-reboot:focus {
-            	background-image: url("${./icons/restart-hover.png}");
             }
           '';
       };
