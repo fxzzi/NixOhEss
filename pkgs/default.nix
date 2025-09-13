@@ -9,6 +9,7 @@
         brightness = callPackage ./brightness.nix {};
         cudaBoostBypass = callPackage ./cudaBoostBypass.nix {};
         cycle-wall = callPackage ./cycle-wall.nix {inherit (final.customPkgs) wallust-script;};
+        eden = callPackage ./eden.nix {};
         ioshelfka-term = callPackage ./ioshelfka-term.nix {};
         mpd-notif = callPackage ./mpd-notif.nix {};
         random-wall = callPackage ./random-wall.nix {inherit (final.customPkgs) wallust-script;};

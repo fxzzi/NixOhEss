@@ -88,7 +88,7 @@ in {
 
                   /* Bring the server list down a few pixels */
                   ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
-                    margin-top: 8px;
+                    margin-top: 6px;
                   }
                 }
 
@@ -104,22 +104,6 @@ in {
                   --display-active-now: none;
                   --display-hover-reaction-emoji: none;
                   --bool-show-name-gradients: false;
-                }
-
-                /* Align the chat box with the user panel */
-                form div[class="channelBottomBarArea_f75fb0"] {
-                  --custom-chat-input-margin-bottom: 6px;
-                  --custom-channel-textarea-text-area-height: 52px;
-                }
-
-                /* Make the slowmode text smaller */
-                .cooldownText_b21699 {
-                  font-size: 12px;
-                }
-
-                /* Hide the slowmode icon */
-                .slowModeIcon_b21699 {
-                  display: none;
                 }
 
                 /* Make "Read All" vencord button text smaller */
