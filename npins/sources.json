@@ -74,9 +74,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "94e77114b3cddf6c9b1c2ee541836ac32c1ac8a6",
-      "url": "https://github.com/feel-co/hjem/archive/94e77114b3cddf6c9b1c2ee541836ac32c1ac8a6.tar.gz",
-      "hash": "16jvq94412ah71shxfcrpn9p7xisxszigz1zigabdl06sci9jzqk"
+      "revision": "627b34efad55fd42d6dd52c19c796604d2b8e8bd",
+      "url": "https://github.com/feel-co/hjem/archive/627b34efad55fd42d6dd52c19c796604d2b8e8bd.tar.gz",
+      "hash": "1d4h4kj58ibz8jrvis0s2rw2fvvc1z1h8s7b8jsfahnfpk2cp7mb"
     },
     "mpd-discord-rpc": {
       "type": "Git",
@@ -113,9 +113,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5cba556b6c1a6fa4ea9c28d2e4cf946eff45ac07",
-      "url": "https://github.com/fufexan/nix-gaming/archive/5cba556b6c1a6fa4ea9c28d2e4cf946eff45ac07.tar.gz",
-      "hash": "0mxpl31cmfz1g6z7z8f7j4qhp46i5mzp2xbzjraypyvsy6x796ix"
+      "revision": "90919d75f79df055423fc836443a91c369301a61",
+      "url": "https://github.com/fufexan/nix-gaming/archive/90919d75f79df055423fc836443a91c369301a61.tar.gz",
+      "hash": "1k6jg7k48p932xnbljv3kicjnk1vb65x44fnaa6g0mvcc12qn4sp"
     },
     "nvuv": {
       "type": "Git",

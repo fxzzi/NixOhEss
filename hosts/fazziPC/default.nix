@@ -26,6 +26,7 @@
       yt-dlp
       customPkgs.transcode
       customPkgs.stremio-linux-shell
+      customPkgs.eden
     ];
     xdg.config.files."hypr/hyprland.conf".value = {
       render.new_render_scheduling = true;
