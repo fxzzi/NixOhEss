@@ -30,7 +30,6 @@ in {
     ./lutris.nix
     ./mangohud.nix
     ./prismlauncher.nix
-    ./eden.nix
     ./steam.nix
     ./proton.nix
     ./osu.nix
