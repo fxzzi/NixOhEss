@@ -6,6 +6,7 @@
 }: let
   inherit (lib) mapAttrsToList;
   inherit (builtins) mapAttrs;
+  nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
 in {
   config = {
     nix = {
@@ -13,7 +14,7 @@ in {
       # Disable channels and add the inputs to the registry
       channel.enable = false;
       registry = mapAttrs (_: flake: {inherit flake;}) inputs;
-      nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
+      inherit nixPath;
       settings = {
         experimental-features = [
           "nix-command"
@@ -24,11 +25,11 @@ in {
         allow-import-from-derivation = false; # don't allow IFD, they're slow asf
         accept-flake-config = true; # allow using substituters from flake.nix
         use-xdg-base-directories = true; # clean up ~
+        download-buffer-size = 524288000; # 500MiB. avoids warnings with full buffer
         allowed-users = ["@wheel"];
         trusted-users = ["@wheel"];
-        # build-dir = "/var/tmp";
         # Disable channels and add the inputs to the registry
-        nix-path = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
+        nix-path = nixPath;
         flake-registry = "";
         extra-substituters = [
           "https://hyprland.cachix.org"
@@ -43,15 +44,10 @@ in {
     nixpkgs.config = {
       allowUnfree = true; # not too fussed as long as app works on linux tbh
       # these packages are marked as insecure but we still require them
-      permittedInsecurePackages = [
-        "qtwebengine-5.15.19"
-      ];
+      # permittedInsecurePackages = [
+      #   "qtwebengine-5.15.19"
+      # ];
     };
     documentation.nixos.enable = false; # remove useless docs .desktop
-
-    # don't build stuff on tmpfs, it can easily run out of space
-    # systemd.services.nix-daemon = {
-    #   environment.TMPDIR = "/var/tmp";
-    # };
   };
 }
