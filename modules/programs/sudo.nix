@@ -14,17 +14,6 @@ _: {
           # custom sudo prompt
           Defaults passprompt = "[sudo 󱅞 ]: "
         '';
-        extraRules = [
-          {
-            groups = ["wheel"];
-            commands = [
-              {
-                command = "/run/current-system/sw/bin/systemctl kexec";
-                options = ["NOPASSWD"];
-              }
-            ];
-          }
-        ];
       };
     };
   };
