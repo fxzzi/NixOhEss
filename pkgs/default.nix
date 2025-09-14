@@ -3,6 +3,7 @@
     (final: prev: let
       inherit (prev) callPackage;
     in {
+      egl-wayland = callPackage ./egl-wayland2.nix {};
       customPkgs = {
         audio = callPackage ./audio.nix {};
         brightness-laptop = callPackage ./brightness-laptop.nix {};
