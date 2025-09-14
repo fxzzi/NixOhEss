@@ -40,11 +40,13 @@ in {
     enable = mkEnableOption "smooth scrolling" // {default = true;};
   };
   config = {
-    # nano is enabled by default. no.
+    programs = {
+      # nano is enabled by default. no.
+      # cmd-not-found is useless
+      nano.enable = mkDefault false;
+      command-not-found.enable = false;
+    };
     # also dont install any of the default packages.
-    # cmd-not-found is useless
-    programs.nano.enable = mkDefault false;
     environment.defaultPackages = mkDefault [];
-    programs.command-not-found.enable = false;
   };
 }

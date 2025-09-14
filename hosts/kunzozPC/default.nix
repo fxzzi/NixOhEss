@@ -15,8 +15,8 @@
       losslesscut-bin
       qbittorrent-enhanced
       nvtopPackages.amd
-      # stremio
       sgdboop
+      customPkgs.stremio-linux-shell
       (callPackage npins.creamlinux {})
     ];
     xdg.config.files."hypr/hyprland.conf" = {
