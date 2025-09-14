@@ -34,17 +34,9 @@ in {
               }
               {
                 label = "reboot";
-                # FIXME: kexec needs sudo
-                action = "sudo systemctl kexec";
+                action = "systemctl reboot";
                 text = "Reboot";
                 keybind = "r";
-                icon = ./icons/restart.png;
-              }
-              {
-                label = "hard-reboot";
-                action = "systemctl reboot";
-                text = "Hard Reboot";
-                keybind = "l";
                 icon = ./icons/restart.png;
               }
               {

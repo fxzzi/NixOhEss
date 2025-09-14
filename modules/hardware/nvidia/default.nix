@@ -100,38 +100,22 @@ in {
       ];
       blacklistedKernelModules = ["nouveau"];
     };
-    systemd = {
-      # makes kexec work with nvidia GPUs.
-      services.nvidia-kexec = {
-        unitConfig = {
-          Description = "Unload Nvidia before kexec";
-          Documentation = "man:modprobe(8)";
-          DefaultDependencies = "no";
-          After = "umount.target";
-          Before = "kexec.target";
-        };
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = "${getExe' pkgs.kmod "modprobe"} -r nvidia_drm";
-        };
-        wantedBy = ["kexec.target"];
-      };
-      services.nvidia-temp = mkIf cfg.exposeTemp {
-        description = "Nvidia GPU temperature monitoring"; # exposes hardware temperature at /tmp/nvidia-temp for monitoring
-        wantedBy = ["multi-user.target"];
-        before = ["fancontrol.service"];
-        script = ''
-          while :; do
-          	temp="$(${getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
-          	echo "$((temp * 1000))" > /tmp/nvidia-temp
-          	sleep 5
-          done
-        '';
-        serviceConfig = {
-          Type = "simple";
-          Restart = "always";
-          RestartSec = 5;
-        };
+
+    systemd.services.nvidia-temp = mkIf cfg.exposeTemp {
+      description = "Nvidia GPU temperature monitoring"; # exposes hardware temperature at /tmp/nvidia-temp for monitoring
+      wantedBy = ["multi-user.target"];
+      before = ["fancontrol.service"];
+      script = ''
+        while :; do
+        	temp="$(${getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
+        	echo "$((temp * 1000))" > /tmp/nvidia-temp
+        	sleep 5
+        done
+      '';
+      serviceConfig = {
+        Type = "simple";
+        Restart = "always";
+        RestartSec = 5;
       };
     };
   };
