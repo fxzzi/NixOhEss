@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "a83b73ba3b86c86a3072104fde0b4cd421369408",
-      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/a83b73ba3b86c86a3072104fde0b4cd421369408.tar.gz",
-      "hash": "04s9zdjfcfihncdj5fc2pnr7rygmmn1nf3l4jl00ls1y62bwk4bc"
+      "revision": "690fc2290496055caf3260b5a04f337a6cc504cb",
+      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/690fc2290496055caf3260b5a04f337a6cc504cb.tar.gz",
+      "hash": "1611f1h7jr49q28i8q0whkqkyzwbc7rnanvqa9m1f9bsv9khzkjk"
     },
     "niqspkgs": {
       "type": "Git",
@@ -165,9 +165,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "ad808c73c7bbf3b30edc72f3a5a9fb5d1cae4e6f",
-      "url": "https://github.com/NotAShelf/stash/archive/ad808c73c7bbf3b30edc72f3a5a9fb5d1cae4e6f.tar.gz",
-      "hash": "1bzm3haf6yhwl4c84c5f83jdss25wshssq1rkjf6ajgsjl6yci49"
+      "revision": "d1e348df9e28f548d0e611caa8dbfb55ef190359",
+      "url": "https://github.com/NotAShelf/stash/archive/d1e348df9e28f548d0e611caa8dbfb55ef190359.tar.gz",
+      "hash": "02c9rmjgld74apd3r8fra39xkg4ckhgnjq16axxnhj1lwkcg30ch"
     },
     "walls": {
       "type": "Git",
