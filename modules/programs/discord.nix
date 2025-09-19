@@ -66,9 +66,11 @@ in {
           MINIMIZE_TO_TRAY = cfg.minimizeToTray;
           OPEN_ON_STARTUP = false;
           DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
+          enableHardwareAcceleration = true;
           openasar = {
             setup = true;
-            quickstart = false;
+            cmdPreset = "balanced";
+            quickstart = true;
             # this css is made for discord compact mode. if you're not using that, stuff won't align!!
             css =
               # css
