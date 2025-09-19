@@ -22,19 +22,32 @@ in {
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        # package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "580.82.09";
-          sha256_64bit = "sha256-Puz4MtouFeDgmsNMKdLHoDgDGC+QRXh6NVysvltWlbc=";
-          openSha256 = "sha256-YB+mQD+oEDIIDa+e8KX1/qOlQvZMNKFrI5z3CoVKUjs=";
-          usePersistenced = false;
-          useSettings = false;
-        };
+        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        #   version = "580.82.09";
+        #   sha256_64bit = "sha256-Puz4MtouFeDgmsNMKdLHoDgDGC+QRXh6NVysvltWlbc=";
+        #   openSha256 = "sha256-YB+mQD+oEDIIDa+e8KX1/qOlQvZMNKFrI5z3CoVKUjs=";
+        #   usePersistenced = false;
+        #   useSettings = false;
+        # };
+        videoAcceleration = false;
       };
       graphics = {
         enable = true;
         enable32Bit = true;
+        extraPackages = [
+          (pkgs.nvidia-vaapi-driver.overrideAttrs (old: {
+            patches =
+              old.patches or []
+              ++ [
+                (pkgs.fetchpatch {
+                  url = "https://github.com/elFarto/nvidia-vaapi-driver/pull/394.patch";
+                  sha256 = "sha256-Qrf8yGO43sSSMEoPN6LTXaTCTK1RsOYzcqYOXKmFUN4=";
+                })
+              ];
+          }))
+        ];
       };
     };
     environment = {
