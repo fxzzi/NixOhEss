@@ -20,12 +20,13 @@
 
   # Stop weirdness when relaunching browser sometimes
   "browser.sessionstore.resume_from_crash" = false;
+  "browser.startup.couldRestoreSession.count" = 0;
 
   # Don't hide http or https in URL bar
-  "browser.urlbar.trimURLs" = false;
+  # "browser.urlbar.trimURLs" = false;
 
   # Show full URL on search results pages
-  "browser.urlbar.showSearchTerms.enabled" = false;
+  # "browser.urlbar.showSearchTerms.enabled" = false;
 
   # Force hardware acceleration (NVIDIA)
   "media.hardware-video-decoding.force-enabled" = true;
@@ -37,7 +38,7 @@
   # Disable touchpad overscroll
   "apz.overscroll.enabled" = false;
 
-  # Performance
+  # Don't limit frame rate
   "layout.frame_rate" = -1;
 
   # Disable smooth scrolling
@@ -65,6 +66,8 @@
 
   # Only use system-defined fonts
   "browser.display.use_document_fonts" = 0;
+  # don't use serif font by default
+  "font.default.x-western" = "sans-serif";
 
   # Hide X button (not needed in tiling WMs)
   "browser.tabs.inTitlebar" = 0;

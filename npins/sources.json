@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "554ac9ecba348adb35b9782cd96e2f2ecc20b00e",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/554ac9ecba348adb35b9782cd96e2f2ecc20b00e.tar.gz",
-      "hash": "068lixv0z0k1hijy3ggsni21q9bq0868a0dzrndy2cg5a3539m0k"
+      "revision": "e8e3898fb8ca5a24829d45329949251962c8a94f",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/e8e3898fb8ca5a24829d45329949251962c8a94f.tar.gz",
+      "hash": "199z9fqnwyvfa0dyvpnf9q7gx7fjq7akylqikscy6lffdrskd2bg"
     },
     "agenix": {
       "type": "Git",
@@ -100,9 +100,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "0583d1f1bcbd077a69b143b56ecdbf532c1dfeac",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=0583d1f1bcbd077a69b143b56ecdbf532c1dfeac",
-      "hash": "02c2gr5iqbvbbv1g5sh5pqjzdr2ypxm9zlpwa2mfximfj61grsj4"
+      "revision": "fa15cbe32d84c77cd7cb0dfb3f33bb1c1a918e5c",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=fa15cbe32d84c77cd7cb0dfb3f33bb1c1a918e5c",
+      "hash": "0nljaxyg6z50dfj14p2hnc67jbsi67rqpszdps99vrcn1rk4p8w2"
     },
     "walls": {
       "type": "Git",
