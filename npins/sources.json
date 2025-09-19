@@ -35,9 +35,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d599ae4847e7f87603e7082d73ca673aa93c916d",
-      "url": "https://github.com/ipetkov/crane/archive/d599ae4847e7f87603e7082d73ca673aa93c916d.tar.gz",
-      "hash": "0mx5571sapgynn7dk5zyva1fc4bd5jbf84ki6k3yy4wirc444dwi"
+      "revision": "a669fe77a8b0cd6f11419d89ea45a16691ca5121",
+      "url": "https://github.com/ipetkov/crane/archive/a669fe77a8b0cd6f11419d89ea45a16691ca5121.tar.gz",
+      "hash": "17jpgcnlyrd4avkwyb6zbd9l9cidbiljk88m1fy3giyxys836ygj"
     },
     "creamlinux": {
       "type": "Git",
@@ -165,9 +165,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "d1e348df9e28f548d0e611caa8dbfb55ef190359",
-      "url": "https://github.com/NotAShelf/stash/archive/d1e348df9e28f548d0e611caa8dbfb55ef190359.tar.gz",
-      "hash": "02c9rmjgld74apd3r8fra39xkg4ckhgnjq16axxnhj1lwkcg30ch"
+      "revision": "f40e11195c7076285178765938f2e2e2698bf3d3",
+      "url": "https://github.com/NotAShelf/stash/archive/f40e11195c7076285178765938f2e2e2698bf3d3.tar.gz",
+      "hash": "01whygmd81kq8z6b2dxzl7br5ibjjlr0990wm0jbafrpx1mfppk7"
     },
     "walls": {
       "type": "Git",

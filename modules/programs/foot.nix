@@ -57,7 +57,7 @@ in {
     xdg.terminal-exec = {
       enable = true;
       settings = {
-        Hyprland = ["foot.desktop"];
+        default = ["foot.desktop"];
       };
     };
   };
