@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   xLib,
   ...
@@ -12,9 +13,9 @@ in {
     xdg = {
       # we don't use these files
       autostart.enable = mkForce false;
-      # seems to help steam wanting to use chromium for some reason
       portal = {
         enable = true;
+        # seems to help steam wanting to use chromium for some reason
         xdgOpenUsePortal = true;
       };
     };
