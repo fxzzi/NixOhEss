@@ -1,9 +1,12 @@
-{
+{config, ...}: {
   nixpkgs.overlays = [
     (final: prev: let
       inherit (prev) callPackage;
     in {
-      egl-wayland = callPackage ./egl-wayland2.nix {};
+      egl-wayland =
+        if config.cfg.hardware.nvidia.enable
+        then (callPackage ./egl-wayland2.nix {})
+        else prev.egl-wayland;
       customPkgs = {
         audio = callPackage ./audio.nix {};
         brightness-laptop = callPackage ./brightness-laptop.nix {};
