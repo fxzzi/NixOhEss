@@ -2,15 +2,13 @@
   lib,
   config,
   pkgs,
-  npins,
+  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
-  inherit (pkgs) callPackage writeText;
+  inherit (pkgs) writeText;
+  stash = inputs.stash.packages.${pkgs.system}.default;
   cfg = config.cfg.services.stash;
-  stash = callPackage "${npins.stash}/nix/package.nix" {
-    craneLib = callPackage "${npins.crane}/lib" {};
-  };
   regex = "(password|secret|api[_-]?key|token)[=: ]+[^\s]+";
 in {
   options.cfg.services.stash.enable = mkEnableOption "stash";
