@@ -25,7 +25,6 @@
     systems.url = "github:nix-systems/x86_64-linux";
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      # url = "github:ikalco/Hyprland/fix_tearing_with_ds";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
