@@ -7,10 +7,6 @@
   inherit (lib) mkEnableOption mkIf mkMerge getExe';
   cfg = config.cfg.hardware.nvidia;
 in {
-  imports = [
-    ./nvuv.nix
-  ];
-
   options.cfg.hardware.nvidia = {
     exposeTemp = mkEnableOption "nvidia-temp";
     enable = mkEnableOption "nvidia";

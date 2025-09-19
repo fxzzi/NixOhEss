@@ -26,19 +26,6 @@
       "url": "https://github.com/ryantm/agenix/archive/9edb1787864c4f59ae5074ad498b6272b3ec308d.tar.gz",
       "hash": "06w2dxnf8qxwcmqvgyxnrrx62ca5x1cw3lminpgs112md17wa3rl"
     },
-    "crane": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "ipetkov",
-        "repo": "crane"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "a669fe77a8b0cd6f11419d89ea45a16691ca5121",
-      "url": "https://github.com/ipetkov/crane/archive/a669fe77a8b0cd6f11419d89ea45a16691ca5121.tar.gz",
-      "hash": "17jpgcnlyrd4avkwyb6zbd9l9cidbiljk88m1fy3giyxys836ygj"
-    },
     "creamlinux": {
       "type": "Git",
       "repository": {
@@ -64,32 +51,6 @@
       "revision": "bf7175511a05e7110a57cce96540aa75f9cdca76",
       "url": null,
       "hash": "08vgdq6jj5f4yw7322m6n9dxdr90abfk0md4jpmr3vk8z6ckv7rb"
-    },
-    "hjem": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "feel-co",
-        "repo": "hjem"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "627b34efad55fd42d6dd52c19c796604d2b8e8bd",
-      "url": "https://github.com/feel-co/hjem/archive/627b34efad55fd42d6dd52c19c796604d2b8e8bd.tar.gz",
-      "hash": "1d4h4kj58ibz8jrvis0s2rw2fvvc1z1h8s7b8jsfahnfpk2cp7mb"
-    },
-    "mpd-discord-rpc": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "JakeStanger",
-        "repo": "mpd-discord-rpc"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "690fc2290496055caf3260b5a04f337a6cc504cb",
-      "url": "https://github.com/JakeStanger/mpd-discord-rpc/archive/690fc2290496055caf3260b5a04f337a6cc504cb.tar.gz",
-      "hash": "1611f1h7jr49q28i8q0whkqkyzwbc7rnanvqa9m1f9bsv9khzkjk"
     },
     "niqspkgs": {
       "type": "Git",
@@ -117,19 +78,6 @@
       "url": "https://github.com/fufexan/nix-gaming/archive/17db183a6a2ba1217bbfc123b47d4b5ee70b256a.tar.gz",
       "hash": "0xqihksblvx9wj1lsz4jdvjgyslh3sy6pl0mprf7zhdb8c146sf2"
     },
-    "nvuv": {
-      "type": "Git",
-      "repository": {
-        "type": "GitLab",
-        "repo_path": "fazzi/nvuv",
-        "server": "https://gitlab.com/"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "e18bd9550301ef89b0ff01607f3e14d6b10a88ae",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=e18bd9550301ef89b0ff01607f3e14d6b10a88ae",
-      "hash": "0svk0q3khcyfzhwydz6w7n1vhrzczqq7wc9zmm0vx6q247yh7i6r"
-    },
     "rags": {
       "type": "Git",
       "repository": {
@@ -155,19 +103,6 @@
       "revision": "0583d1f1bcbd077a69b143b56ecdbf532c1dfeac",
       "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=0583d1f1bcbd077a69b143b56ecdbf532c1dfeac",
       "hash": "02c2gr5iqbvbbv1g5sh5pqjzdr2ypxm9zlpwa2mfximfj61grsj4"
-    },
-    "stash": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "NotAShelf",
-        "repo": "stash"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "f40e11195c7076285178765938f2e2e2698bf3d3",
-      "url": "https://github.com/NotAShelf/stash/archive/f40e11195c7076285178765938f2e2e2698bf3d3.tar.gz",
-      "hash": "01whygmd81kq8z6b2dxzl7br5ibjjlr0990wm0jbafrpx1mfppk7"
     },
     "walls": {
       "type": "Git",

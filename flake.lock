@@ -33,6 +33,21 @@
         "type": "github"
       }
     },
+    "crane": {
+      "locked": {
+        "lastModified": 1754269165,
+        "narHash": "sha256-0tcS8FHd4QjbCVoxN9jI+PjHgA4vc/IjkUSp+N3zy0U=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "444e81206df3f7d92780680e45858e31d2f07a08",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -105,6 +120,27 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
+    "hjem": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "smfh": []
+      },
+      "locked": {
+        "lastModified": 1757733237,
+        "narHash": "sha256-q57LxLzOQuW0ROtoBMMPbG8neBYa6LizRH9FVOQkkLQ=",
+        "owner": "feel-co",
+        "repo": "hjem",
+        "rev": "627b34efad55fd42d6dd52c19c796604d2b8e8bd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "feel-co",
+        "repo": "hjem",
         "type": "github"
       }
     },
@@ -453,11 +489,34 @@
     },
     "root": {
       "inputs": {
+        "hjem": "hjem",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
+        "stash": "stash",
         "systems": "systems",
         "watt": "watt"
+      }
+    },
+    "stash": {
+      "inputs": {
+        "crane": "crane",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1758270766,
+        "narHash": "sha256-Z97raug3O7UkqBykBDKVcsWS16G/N7HMR3gG1OrzkAc=",
+        "owner": "NotAShelf",
+        "repo": "stash",
+        "rev": "f40e11195c7076285178765938f2e2e2698bf3d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "stash",
+        "type": "github"
       }
     },
     "systems": {
