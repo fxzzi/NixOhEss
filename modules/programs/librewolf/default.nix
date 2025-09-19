@@ -28,6 +28,23 @@
       ${optionalString config.cfg.programs.startpage.enable newTabPageJS}
       ${jsPrefs}
     '';
+    extraPolicies = {
+      SearchEngines = {
+        PreventInstalls = true;
+        Add = [
+          {
+            Name = "Google";
+          }
+        ];
+        Remove = [
+          "DuckDuckGo"
+          "Wikipedia (en)"
+          "Bing"
+        ];
+        Default = "Google";
+      };
+      SearchSuggestEnabled = false;
+    };
   };
   librewolf =
     if (!config.cfg.hardware.nvidia.enable)
