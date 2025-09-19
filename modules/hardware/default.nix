@@ -4,7 +4,7 @@
     ./scanning.nix
     ./amdgpu.nix
     ./xone.nix
-    ./nvidia
+    ./nvidia.nix
   ];
 
   config = {

@@ -4,7 +4,6 @@
     inherit (inputs.nixpkgs) lib;
     npins = import ./npins;
     xLib = import ./lib lib;
-
     mkSystem = hostName:
       lib.nixosSystem {
         specialArgs = {
@@ -23,6 +22,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     systems.url = "github:nix-systems/x86_64-linux";
+    hjem = {
+      url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.smfh.follows = ""; # we use smfh from nixpkgs
+    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +36,10 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
+    };
+    stash = {
+      url = "github:NotAShelf/stash";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     watt = {
       url = "github:NotAShelf/watt";

@@ -1,9 +1,8 @@
 {
   pkgs,
   lib,
-  npins,
   config,
-  options,
+  inputs,
   ...
 }: let
   inherit (lib) mkOption types;
@@ -16,10 +15,7 @@ in {
     description = "Sets the username for the system.";
   };
   imports = [
-    (lib.modules.importApply "${npins.hjem}/modules/nixos" {
-      inherit pkgs config lib options;
-      hjem-lib = import "${npins.hjem}/lib.nix" {inherit lib pkgs;};
-    })
+    inputs.hjem.nixosModules.default
     # Allow using `hj` in configuration to
     # easily configure hjem in any file.
     # This pretty much makes or breaks my config.

@@ -29,16 +29,16 @@
       nvidia = {
         enable = true;
         exposeTemp = true;
-        nvuv = {
-          enable = true;
-          maxClock = 1830;
-          coreOffset = 205;
-          memOffset = 900;
-          powerLimit = 150;
-        };
       };
     };
     services = {
+      nvidia_oc = {
+        enable = true;
+        maxClock = 1830;
+        coreOffset = 205;
+        memOffset = 900;
+        powerLimit = 150;
+      };
       stash.enable = true;
       wl-clip-persist.enable = true;
       mullvad.enable = true;
