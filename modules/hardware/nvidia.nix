@@ -102,16 +102,12 @@ in {
       wantedBy = ["multi-user.target"];
       before = ["fancontrol.service"];
       script = ''
-        while :; do
-        	temp="$(${getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
-        	echo "$((temp * 1000))" > /tmp/nvidia-temp
-        	sleep 5
-        done
+        ${getExe' config.hardware.nvidia.package "nvidia-smi"} \
+        --query-gpu=temperature.gpu --format=noheader --loop-ms=5000 |
+        ${getExe' pkgs.gawk "awk"} '{temp = $1 * 1000; print temp > "/tmp/nvidia-temp"; close("/tmp/nvidia-temp")}'
       '';
       serviceConfig = {
-        Type = "simple";
         Restart = "always";
-        RestartSec = 5;
       };
     };
   };
