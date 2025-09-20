@@ -73,7 +73,6 @@
       discord = {
         enable = true;
         minimizeToTray = false;
-        vencord.enable = true;
       };
       librewolf = {
         enable = true;

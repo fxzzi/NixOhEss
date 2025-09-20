@@ -54,7 +54,6 @@ in {
     minimizeToTray =
       mkEnableOption "Minimize to tray"
       // {default = true;};
-    vencord.enable = mkEnableOption "Vencord for discord";
   };
 
   config = mkIf cfg.enable {
@@ -70,6 +69,7 @@ in {
           openasar = {
             setup = true;
             cmdPreset = "balanced";
+            customFlags = joinedArgs;
             quickstart = true;
             # this css is made for discord compact mode. if you're not using that, stuff won't align!!
             css =
@@ -124,16 +124,15 @@ in {
             withTTS = false;
             enableAutoscroll = true;
             withOpenASAR = true;
-            withVencord = cfg.vencord.enable;
+            withVencord = true;
           }).overrideAttrs
           (old: {
             nativeBuildInputs = (old.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
             postFixup = ''
               ${old.postFixup or ""}
-              # add command line args like chromium
+              # without this, vaapi decoding does not work.
               wrapProgram $out/opt/Discord/Discord \
-              --add-flags "${joinedArgs}" \
-              --set LD_LIBRARY_PATH "${makeLibraryPath [pkgs.libva]}"
+                --set LD_LIBRARY_PATH "${makeLibraryPath [pkgs.libva]}"
             '';
           })
         )

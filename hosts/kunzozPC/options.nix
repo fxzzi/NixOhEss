@@ -79,10 +79,7 @@
       mpv.enable = true;
       obs-studio.enable = true;
       thunar.enable = true;
-      discord = {
-        enable = true;
-        vencord.enable = true;
-      };
+      discord.enable = true;
       librewolf = {
         enable = true;
       };
