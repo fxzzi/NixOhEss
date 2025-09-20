@@ -291,7 +291,7 @@ in {
               "$MOD, K, exec, pkill hyprpicker || ${getExe pkgs.hyprpicker} -r -a -n"
               "$MOD, R, exec, ${getExe pkgs.customPkgs.random-wall}"
               "$MOD SHIFT, R, exec, ${getExe pkgs.customPkgs.cycle-wall}"
-              "$MOD, J, exec, xdg-terminal-exec ${getExe pkgs.customPkgs.wall-picker}"
+              "$MOD, J, exec, foot ${getExe pkgs.customPkgs.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
               "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | ${getExe' pkgs.wl-clipboard "wl-copy"})"
 
