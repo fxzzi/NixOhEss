@@ -109,22 +109,23 @@ in {
       ];
       blacklistedKernelModules = ["nouveau"];
     };
-    systemd.services.nvidia-temp = mkIf cfg.exposeTemp {
-      description = "Nvidia GPU temperature monitoring"; # exposes hardware temperature at /tmp/nvidia-temp for monitoring
-      wantedBy = ["multi-user.target"];
-      before = ["fancontrol.service"];
-      script = ''
+    systemd.services.nvidia-temp = let
+      getTemp = "${getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits";
+      writeTemp = pkgs.writers.writeDash "writeNvidiaTemp" ''
         while :; do
-        	temp="$(${getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits)"
-        	echo "$((temp * 1000))" > /tmp/nvidia-temp
-        	sleep 5
+          printf '%d\n' $(($(${getTemp}) * 1000)) > /tmp/nvidia-temp
+          sleep 5
         done
       '';
-      serviceConfig = {
-        Type = "simple";
-        Restart = "always";
-        RestartSec = 5;
+    in
+      mkIf cfg.exposeTemp {
+        description = "Nvidia GPU temperature monitoring";
+        wantedBy = ["multi-user.target"];
+        before = ["fancontrol.service"];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = writeTemp;
+        };
       };
-    };
   };
 }
