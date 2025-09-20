@@ -106,7 +106,7 @@ in {
             bindkey "^[OA" history-substring-search-up
             bindkey "^[OB" history-substring-search-down
           '';
-        histFile = "$HOME/.local/share/zsh/zsh_history";
+        histFile = "$XDG_DATA_HOME/zsh/zsh_history";
         histSize = 10000;
         shellAliases = {
           grep = "${getExe pkgs.ripgrep}";
@@ -118,7 +118,7 @@ in {
 
           lt = "${getExe pkgs.eza} --icons --tree";
 
-          wget = "wget --hsts-file=$HOME/.local/share/wget-hsts";
+          wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
 
           die = "pkill -9";
         };

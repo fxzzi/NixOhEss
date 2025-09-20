@@ -61,6 +61,10 @@
   "media.getusermedia.audio.processing.noise.enabled" = false;
   "media.getusermedia.audio.processing.hpf.enabled" = false;
 
+  # Disable speech dispatcher stuff
+  "reader.parse-on-load.enabled" = false;
+  "media.webspeech.synth.enabled" = false;
+
   # Disable bookmarks bar
   "browser.toolbars.bookmarks.visibility" = "never";
 

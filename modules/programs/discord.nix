@@ -117,9 +117,9 @@ in {
           };
         };
       };
-      packages = with pkgs; [
+      packages = [
         (
-          (discord.override {
+          (pkgs.discord.override {
             disableUpdates = false;
             withTTS = false;
             enableAutoscroll = true;
@@ -127,13 +127,8 @@ in {
             withVencord = true;
           }).overrideAttrs
           (old: {
-            nativeBuildInputs = (old.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
-            postFixup = ''
-              ${old.postFixup or ""}
-              # without this, vaapi decoding does not work.
-              wrapProgram $out/opt/Discord/Discord \
-                --set LD_LIBRARY_PATH "${makeLibraryPath [pkgs.libva]}"
-            '';
+            # add libva to ld library path for video decoding
+            libPath = old.libPath + ":${makeLibraryPath [pkgs.libva]}";
           })
         )
       ];
