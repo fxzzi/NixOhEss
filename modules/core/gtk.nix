@@ -30,6 +30,10 @@
             monospace-font-name = "Monospace Regular 12";
             color-scheme = "prefer-dark";
           };
+          "org/gnome/desktop/wm/preferences" = {
+            # hide all title bar buttons on gtk apps
+            button-layout = ":";
+          };
         };
       }
     ];
