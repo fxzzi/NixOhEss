@@ -27,8 +27,7 @@ in {
             vertical-pad = "10";
             inner-pad = "6";
             filter-desktop = true;
-            # image-size-ratio = "0.5";
-            terminal = "xdg-terminal-exec";
+            terminal = "foot";
             fields = "name,exec";
             placeholder = "Search...";
             match-mode = "exact";
