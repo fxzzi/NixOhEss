@@ -67,11 +67,11 @@ in {
       "image/tiff" = "org.gnome.Loupe.desktop";
       "image/svg+xml" = "org.gnome.Loupe.desktop";
     };
-    # environment.sessionVariables = {
-    #   XDG_CONFIG_HOME = "$HOME/.config";
-    #   XDG_DATA_HOME = "$HOME/.local/share";
-    #   XDG_CACHE_HOME = "$HOME/.cache";
-    #   XDG_STATE_HOME = "$HOME/.local/state";
-    # };
+    environment.sessionVariables = {
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_CACHE_HOME = "$HOME/.cache";
+      XDG_STATE_HOME = "$HOME/.local/state";
+    };
   };
 }
