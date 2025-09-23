@@ -43,7 +43,7 @@ in {
               ++ [
                 (pkgs.fetchpatch {
                   url = "https://github.com/elFarto/nvidia-vaapi-driver/pull/394.patch";
-                  sha256 = "sha256-Qrf8yGO43sSSMEoPN6LTXaTCTK1RsOYzcqYOXKmFUN4=";
+                  sha256 = "sha256-P/8SPjAzWU2nuug2bworrFpoE2xis3kQJynurpOqfQ8=";
                 })
               ];
           }))
