@@ -90,7 +90,7 @@ in {
 
                   /* Bring the server list down a few pixels */
                   ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
-                    margin-top: 6px;
+                    margin-top: 8px;
                   }
                 }
 
@@ -118,19 +118,16 @@ in {
         };
       };
       packages = [
-        (
-          (pkgs.discord.override {
+        ((pkgs.discord.override {
             disableUpdates = false;
             withTTS = false;
             enableAutoscroll = true;
             withOpenASAR = true;
             withVencord = true;
-          }).overrideAttrs
-          (old: {
+          }).overrideAttrs (old: {
             # add libva to ld library path for video decoding
             libPath = old.libPath + ":${makeLibraryPath [pkgs.libva]}";
-          })
-        )
+          }))
       ];
     };
   };

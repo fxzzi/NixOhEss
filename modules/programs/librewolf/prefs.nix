@@ -69,7 +69,8 @@
   "browser.toolbars.bookmarks.visibility" = "never";
 
   # Only use system-defined fonts
-  "browser.display.use_document_fonts" = 0;
+  # would love to use this however breaks icons on many sites
+  # "browser.display.use_document_fonts" = 0;
   # don't use serif font by default
   "font.default.x-western" = "sans-serif";
 
