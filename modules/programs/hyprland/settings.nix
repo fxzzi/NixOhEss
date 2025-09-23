@@ -219,7 +219,7 @@ in {
             "float,title:^(Select a File)(.*)$"
             "float,title:^(Save As)(.*)$"
             "float,title:^(Rename)(.*)$"
-            "float,class:^(xdg-desktop-portal-gtk)$,title:^(Open)(.*)$"
+            "float,class:^(xdg-desktop-portal-gtk)$"
             "float,class:^(org.gnome.FileRoller)$,title:^(Extract)(.*)$"
 
             # Window rules for games
