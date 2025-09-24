@@ -1,12 +1,8 @@
-{config, ...}: {
+{
   nixpkgs.overlays = [
     (final: prev: let
       inherit (prev) callPackage;
     in {
-      egl-wayland =
-        if config.cfg.hardware.nvidia.enable
-        then (callPackage ./egl-wayland2.nix {})
-        else prev.egl-wayland;
       customPkgs = {
         audio = callPackage ./audio.nix {};
         brightness-laptop = callPackage ./brightness-laptop.nix {};
@@ -14,6 +10,7 @@
         cudaBoostBypass = callPackage ./cudaBoostBypass.nix {};
         cycle-wall = callPackage ./cycle-wall.nix {inherit (final.customPkgs) wallust-script;};
         eden = callPackage ./eden.nix {};
+        egl-wayland2 = callPackage ./egl-wayland2.nix {};
         ioshelfka-term = callPackage ./ioshelfka-term.nix {};
         mpd-notif = callPackage ./mpd-notif.nix {};
         random-wall = callPackage ./random-wall.nix {inherit (final.customPkgs) wallust-script;};
@@ -23,6 +20,7 @@
         wall-picker = callPackage ./wall-picker.nix {inherit (final.customPkgs) wallust-script;};
         wallust-script = callPackage ./wallust.nix {};
         stremio-linux-shell = callPackage ./stremio-linux-shell.nix {};
+        stremio-linux-shell-cef = callPackage ./stremio-linux-shell-cef.nix {};
       };
     })
   ];
