@@ -61,6 +61,10 @@
       "uid=1000"
       "gid=100"
       "iocharset=utf8"
+      # don't fail boot if the drives fail to mount
+      "nofail"
+      # continue boot after 10s
+      "x-systemd.mount-timeout=10"
     ];
   };
 
@@ -75,6 +79,10 @@
       "uid=1000"
       "gid=100"
       "iocharset=utf8"
+      # don't fail boot if the drives fail to mount
+      "nofail"
+      # continue boot after 10s
+      "x-systemd.mount-timeout=10"
     ];
   };
 
