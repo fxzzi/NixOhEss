@@ -119,16 +119,14 @@ in {
         };
       };
       packages = [
-        ((pkgs.discord.override {
-            disableUpdates = false;
-            withTTS = false;
-            enableAutoscroll = true;
-            withOpenASAR = true;
-            withVencord = true;
-          }).overrideAttrs (old: {
-            # add libva to ld library path for video decoding
-            libPath = old.libPath + ":${makeLibraryPath [pkgs.libva]}";
-          }))
+        (pkgs.discord.override {
+          # we disable updates in settings.json
+          disableUpdates = false;
+          withTTS = false;
+          enableAutoscroll = true;
+          withOpenASAR = true;
+          withVencord = true;
+        })
       ];
     };
   };
