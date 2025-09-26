@@ -70,7 +70,8 @@ in {
             setup = true;
             cmdPreset = "balanced";
             customFlags = joinedArgs;
-            quickstart = true;
+            # quickstart is buggy and breaks discord sometimes.
+            quickstart = false;
             # this css is made for discord compact mode. if you're not using that, stuff won't align!!
             css =
               # css
