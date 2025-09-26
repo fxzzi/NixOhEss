@@ -15,6 +15,8 @@ in {
       enableDefaultPackages = false;
       fontconfig = {
         subpixel.rgba = mkDefault "rgb";
+        # apparently closer to windows cleartype
+        subpixel.lcdfilter = "light";
         includeUserConf = false;
         # fixes emojis on browser
         useEmbeddedBitmaps = true;
