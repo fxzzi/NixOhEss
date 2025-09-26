@@ -25,7 +25,7 @@
       nvtopPackages.nvidia
       yt-dlp
       customPkgs.transcode
-      customPkgs.stremio-linux-shell-cef
+      customPkgs.stremio-enhanced
       customPkgs.eden
     ];
   };
