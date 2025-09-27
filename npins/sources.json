@@ -79,6 +79,19 @@
       "url": "https://github.com/fufexan/nix-gaming/archive/b08fc1a88b61430a48761e5e6d3e977886391a54.tar.gz",
       "hash": "0dpjr2jwq33ivqmmsfbz8p8q8hrcf0a0qm6ija9gb5ybm96q7lpf"
     },
+    "nvidia-vaapi-driver": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "elFarto",
+        "repo": "nvidia-vaapi-driver"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "3d46e26818a9e0eff26a7cd0db581316029d953b",
+      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/3d46e26818a9e0eff26a7cd0db581316029d953b.tar.gz",
+      "hash": "09dn2v9sfh1bls7hr9yhm6qxj8cgc7g5zjy2kn47rvhvmhrncfdg"
+    },
     "rags": {
       "type": "Git",
       "repository": {
