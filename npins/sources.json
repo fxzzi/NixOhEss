@@ -11,7 +11,8 @@
       "submodules": false,
       "revision": "5c52e66245dd934b7410cd0989b2980e4367ba79",
       "url": "https://github.com/flightlessmango/MangoHud/archive/5c52e66245dd934b7410cd0989b2980e4367ba79.tar.gz",
-      "hash": "0xpn36sl9ak8bdnabmckm8anl7fpkj081vr767dv340h20p3cp4k"
+      "hash": "0xpn36sl9ak8bdnabmckm8anl7fpkj081vr767dv340h20p3cp4k",
+      "frozen": true
     },
     "agenix": {
       "type": "Git",
