@@ -32,6 +32,7 @@
       };
     };
     services = {
+      kdeconnect.enable = true;
       nvidia_oc = {
         enable = true;
         maxClock = 1830;

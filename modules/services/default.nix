@@ -22,6 +22,7 @@
     ./mullvad.nix
     ./stash.nix
     ./nvidia_oc.nix
+    ./kdeconnect.nix
   ];
   config = {
     # Disable speech-dispatcher as its unneeded in my case.
