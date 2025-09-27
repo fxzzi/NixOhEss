@@ -18,6 +18,7 @@
       fonts.enable = true;
     };
     services = {
+      kdeconnect.enable = true;
       stash.enable = true;
       wl-clip-persist.enable = true;
       mate-polkit.enable = true;
