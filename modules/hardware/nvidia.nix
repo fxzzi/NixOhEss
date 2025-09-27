@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  npins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf mkMerge getExe';
@@ -31,22 +32,18 @@ in {
         #   usePersistenced = false;
         #   useSettings = false;
         # };
+
+        # because we are overriding nvidia-vaapi-driver below we must disable it here
         videoAcceleration = false;
       };
       graphics = {
         enable = true;
         enable32Bit = true;
         extraPackages = [
-          (pkgs.nvidia-vaapi-driver.overrideAttrs (old: {
-            patches =
-              old.patches or []
-              ++ [
-                (pkgs.fetchpatch {
-                  url = "https://github.com/elFarto/nvidia-vaapi-driver/pull/394.patch";
-                  sha256 = "sha256-P/8SPjAzWU2nuug2bworrFpoE2xis3kQJynurpOqfQ8=";
-                })
-              ];
-          }))
+          (pkgs.nvidia-vaapi-driver.overrideAttrs {
+            version = "0-unstable-${builtins.substring 0 8 npins.nvidia-vaapi-driver.revision}";
+            src = npins.nvidia-vaapi-driver;
+          })
         ];
       };
     };
