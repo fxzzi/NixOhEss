@@ -10,6 +10,8 @@
         telegram-desktop
         qpwgraph
         customPkgs.stremio-enhanced
+        # ide for uni
+        processing
       ];
       xdg.config.files."hypr/hyprland.conf" = {
         value = {
