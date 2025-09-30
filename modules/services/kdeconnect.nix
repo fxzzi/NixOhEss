@@ -34,10 +34,7 @@ in {
       };
       kdeconnect-indicator = {
         enable = true;
-        after = [
-          "graphical-session.target"
-          "kdeconnect.service"
-        ];
+        after = ["graphical-session.target"];
         wantedBy = ["graphical-session.target"];
         partOf = ["graphical-session.target"];
         unitConfig.ConditionEnvironment = "WAYLAND_DISPLAY";

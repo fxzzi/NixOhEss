@@ -134,9 +134,7 @@
       zsh.enable = true;
       nh.enable = true;
       ncmpcpp.enable = true;
-      ags = {
-        enable = true;
-      };
+      ags.enable = true;
       wleave.enable = true;
       hyprland = {
         enable = true;
