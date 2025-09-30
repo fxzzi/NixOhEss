@@ -16,17 +16,17 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "stremio-linux-shell";
-  rev = "0dae774166e6cd2fd17999779cfb475d20a52ab4";
+  rev = "28fc1cf2d3aba97c5bdd4599a269cf4e241a687a";
   version = "0-unstable-${builtins.substring 0 8 finalAttrs.rev}";
 
   src = fetchFromGitHub {
     owner = "Stremio";
     repo = "stremio-linux-shell";
     inherit (finalAttrs) rev;
-    sha256 = "sha256-OZbOXNvU+3usKCOVb5VKHA4H7jxnKJf6bw/BuhI2awY=";
+    sha256 = "sha256-cOD9sjgyZMBG7kj3J3QqIYwHr4hEckPCZ4BwFenoTvQ=";
   };
 
-  cargoHash = "sha256-6LxveTep6Fu2KHaN2A/YqKvxx7uyEE2U05FK88RFW7M=";
+  cargoHash = "sha256-f4TpTqejR55KPSGUi47UGtHgQESUC4tnwCruy7ZfdrY=";
 
   buildInputs = [
     webkitgtk_6_0

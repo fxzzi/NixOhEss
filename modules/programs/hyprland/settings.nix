@@ -149,8 +149,8 @@ in {
             };
             blur = {
               enabled = mkDefault 1;
-              size = 8;
-              passes = 2;
+              size = 4;
+              passes = 3;
               popups = 1;
               brightness = 0.67;
             };
