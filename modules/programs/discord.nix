@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf makeLibraryPath concatStringsSep optionals;
+  inherit (lib) mkEnableOption mkIf concatStringsSep optionals;
   cfg = config.cfg.programs.discord;
   disableFeatures = [
     "WebRtcAllowInputVolumeAdjustment"
@@ -69,7 +69,6 @@ in {
           openasar = {
             setup = true;
             cmdPreset = "balanced";
-            customFlags = joinedArgs;
             # quickstart is buggy and breaks discord sometimes.
             quickstart = false;
             # this css is made for discord compact mode. if you're not using that, stuff won't align!!
@@ -122,6 +121,7 @@ in {
         (pkgs.discord.override {
           # we disable updates in settings.json
           disableUpdates = false;
+          commandLineArgs = joinedArgs;
           withTTS = false;
           enableAutoscroll = true;
           withOpenASAR = true;

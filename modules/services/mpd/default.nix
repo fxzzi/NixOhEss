@@ -24,8 +24,23 @@ in {
         bind_to_address "localhost"
 
         audio_output {
-        type "pipewire"
-        name "PipeWire Sound Server"
+          type "pipewire"
+          name "PipeWire Sound Server"
+        }
+
+        # use ffmpeg decoder over opus and vorbis
+        # opus decoder is cooked
+        decoder {
+          plugin "opus"
+          enabled "no"
+        }
+        decoder {
+          plugin "vorbis"
+          enabled "no"
+        }
+        decoder {
+          plugin "ffmpeg"
+          enabled "yes"
         }
 
         replaygain "track"
