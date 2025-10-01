@@ -7,7 +7,7 @@
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   inherit (pkgs) callPackage;
-  cfg = config.cfg.programs.ags;
+  cfg = config.cfg.services.ags;
   pkg = callPackage "${npins.rags}/nix/package.nix" {
     buildTypes = false;
     extraPackages = [
@@ -15,7 +15,7 @@
     ];
   };
 in {
-  options.cfg.programs.ags.enable = mkEnableOption "ags";
+  options.cfg.services.ags.enable = mkEnableOption "ags";
   config = mkIf cfg.enable {
     hj = {
       packages = [

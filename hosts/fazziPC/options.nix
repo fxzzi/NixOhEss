@@ -32,6 +32,7 @@
       };
     };
     services = {
+      ags.enable = true;
       kdeconnect.enable = true;
       nvidia_oc = {
         enable = true;
@@ -134,7 +135,6 @@
       zsh.enable = true;
       nh.enable = true;
       ncmpcpp.enable = true;
-      ags.enable = true;
       wleave.enable = true;
       hyprland = {
         enable = true;
