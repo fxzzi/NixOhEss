@@ -24,7 +24,6 @@ in {
     ./obs-studio.nix
     ./thunar.nix
     ./discord.nix
-    ./ags
     ./sudo.nix
     ./heroic.nix
     ./lutris.nix
