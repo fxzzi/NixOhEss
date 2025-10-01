@@ -18,8 +18,8 @@
         };
       };
     };
-
     services = {
+      ags.enable = true;
       stash.enable = true;
       wl-clip-persist.enable = true;
       mullvad.enable = true;
@@ -51,14 +51,13 @@
       xdph.enable = true;
       dunst.enable = true;
       greetd.enable = true;
-    };
 
-    services.printing.enable = true;
-    hardware.scanning.enable = false;
+      printing.enable = true;
+    };
     hardware = {
+      scanning.enable = false;
       amdgpu.enable = true;
     };
-
     programs = {
       smoothScroll.enable = false;
       nvf.enable = true;
@@ -98,9 +97,6 @@
       zsh.enable = true;
       nh.enable = true;
       ncmpcpp.enable = true;
-      ags = {
-        enable = true;
-      };
       wleave.enable = true;
       hyprland = {
         enable = true;

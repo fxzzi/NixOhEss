@@ -18,6 +18,7 @@
       fonts.enable = true;
     };
     services = {
+      ags.enable = true;
       kdeconnect.enable = true;
       stash.enable = true;
       wl-clip-persist.enable = true;
@@ -105,9 +106,6 @@
       };
       zsh.enable = true;
       nh.enable = true;
-      ags = {
-        enable = true;
-      };
       wleave.enable = true;
       hyprland = {
         enable = true;

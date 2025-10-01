@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf optionalAttrs;
   cfg = config.cfg.programs.wallust;
 in {
   options.cfg.programs.wallust.enable = mkEnableOption "wallust";
@@ -24,57 +24,50 @@ in {
             check_contrast = true;
             backend = "resized";
             color_space = "lch";
-            templates = {
-              fuzzel =
-                if config.cfg.programs.fuzzel.enable
-                then {
+            templates =
+              {}
+              // optionalAttrs config.cfg.programs.fuzzel.enable {
+                fuzzel = {
                   template = "colors_fuzzel.ini";
                   target = "~/.cache/wallust/colors_fuzzel.ini";
-                }
-                else null;
-              hyprland =
-                if config.cfg.programs.hyprland.enable
-                then {
+                };
+              }
+              // optionalAttrs config.cfg.programs.hyprland.enable {
+                hyprland = {
                   template = "colors_hyprland.conf";
                   target = "~/.cache/wallust/colors_hyprland.conf";
-                }
-                else null;
-              ags =
-                if config.cfg.programs.ags.enable
-                then {
+                };
+              }
+              // optionalAttrs config.cfg.services.ags.enable {
+                ags = {
                   template = "colors_ags.css";
                   target = "~/.config/ags/colors_ags.css";
-                }
-                else null;
-              foot =
-                if config.cfg.programs.foot.enable
-                then {
+                };
+              }
+              // optionalAttrs config.cfg.programs.foot.enable {
+                foot = {
                   template = "colors_foot.ini";
                   target = "~/.cache/wallust/colors_foot.ini";
-                }
-                else null;
-              pywalfox =
-                if config.cfg.programs.librewolf.enable
-                then {
+                };
+              }
+              // optionalAttrs config.cfg.programs.librewolf.enable {
+                pywalfox = {
                   template = "colors_pywalfox.json";
                   target = "~/.cache/wal/colors.json";
-                }
-                else null;
-              wleave =
-                if config.cfg.programs.wleave.enable
-                then {
+                };
+              }
+              // optionalAttrs config.cfg.programs.wleave.enable {
+                wleave = {
                   template = "colors_wleave.css";
                   target = "~/.config/wleave/colors_wleave.css";
-                }
-                else null;
-              dunst =
-                if config.cfg.services.dunst.enable
-                then {
+                };
+              }
+              // optionalAttrs config.cfg.services.dunst.enable {
+                dunst = {
                   template = "99-wallust.conf";
                   target = "~/.config/dunst/dunstrc.d/99-wallust.conf";
-                }
-                else null;
-            };
+                };
+              };
           };
         };
       };
