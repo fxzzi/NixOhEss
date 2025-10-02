@@ -29,7 +29,9 @@ in {
         }
 
         # use ffmpeg decoder over opus and vorbis
-        # opus decoder is cooked
+        # opus decoder is cooked, but mpd will read ogg opus
+        # files with vorbis which is obviously wrong. So disable
+        # that too.
         decoder {
           plugin "opus"
           enabled "no"
@@ -44,7 +46,6 @@ in {
         }
 
         replaygain "track"
-        replaygain_preamp "4.8"
         restore_paused "yes"
       '';
     };
