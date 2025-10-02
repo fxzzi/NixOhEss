@@ -49,7 +49,7 @@ in {
           hide-when-typing = true;
         };
         colors = {
-          alpha = 0.80;
+          alpha = 0.85;
           alpha-mode = "matching";
         };
       };
