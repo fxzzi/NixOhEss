@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf optional;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.hyprlock;
   hyprlandAnimations = config.hj.xdg.config.files."hypr/hyprland.conf".value.animations.enabled;
   animations =
@@ -15,10 +15,6 @@
     then true
     else hyprlandAnimations;
   land = config.cfg.programs.hyprland;
-  multiMonitor =
-    if land.secondaryMonitor != null
-    then true
-    else false;
 in {
   options.cfg.programs.hyprlock.enable = mkEnableOption "hyprlock";
   config = mkIf cfg.enable {
@@ -48,27 +44,17 @@ in {
                 "fadeOut, 1, 3, easeOut"
               ];
             };
-            background =
-              [
-                {
-                  monitor = "${land.defaultMonitor}";
-                  path = "~/.local/state/wallpaper";
-                  blur_size = 3;
-                  blur_passes = 3;
-                  contrast = 1;
-                  brightness = 0.5;
-                  vibrancy = 0.5;
-                }
-              ]
-              ++ optional multiMonitor {
+            background = [
+              {
                 monitor = "";
                 path = "~/.local/state/wallpaper";
-                blur_size = 3;
-                blur_passes = 3;
-                contrast = 0.9;
+                blur_size = 2;
+                blur_passes = 4;
+                contrast = 0.85;
                 brightness = 0.3;
                 vibrancy = 0.3;
-              };
+              }
+            ];
             input-field = [
               {
                 monitor = "${land.defaultMonitor}";

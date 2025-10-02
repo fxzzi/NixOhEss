@@ -127,9 +127,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "c25059e286e2e9c398c305a6610e3a0ebfb054b3",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=c25059e286e2e9c398c305a6610e3a0ebfb054b3",
-      "hash": "0f46h8j1cv8xsy198g7fv4w540fg3qiavk3id8ck0pxqmw6hxsf7"
+      "revision": "fd13dcf4ded1805ffac38e374eff141e780a303f",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=fd13dcf4ded1805ffac38e374eff141e780a303f",
+      "hash": "1raw7riiffhi29a8g1d0c1h26gwcydps9a0cixib3iks6k2fcs36"
     }
   },
   "version": 5
