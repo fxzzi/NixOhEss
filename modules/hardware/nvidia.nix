@@ -23,15 +23,15 @@ in {
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        # package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "580.95.05";
-          sha256_64bit = "sha256-hJ7w746EK5gGss3p8RwTA9VPGpp2lGfk5dlhsv4Rgqc=";
-          openSha256 = "sha256-RFwDGQOi9jVngVONCOB5m/IYKZIeGEle7h0+0yGnBEI=";
-          usePersistenced = false;
-          useSettings = false;
-        };
+        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        #   version = "580.95.05";
+        #   sha256_64bit = "sha256-hJ7w746EK5gGss3p8RwTA9VPGpp2lGfk5dlhsv4Rgqc=";
+        #   openSha256 = "sha256-RFwDGQOi9jVngVONCOB5m/IYKZIeGEle7h0+0yGnBEI=";
+        #   usePersistenced = false;
+        #   useSettings = false;
+        # };
 
         # because we are overriding nvidia-vaapi-driver below we must disable it here
         videoAcceleration = false;
