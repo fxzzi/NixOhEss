@@ -20,7 +20,7 @@ and [hjem](https://github.com/feel-co/hjem).
   RTX 3070.
 - [fazziGO](./hosts/fazziGO): My Thinkpad L14 Gen 4, which sports an AMD Ryzen 5
   7530U.
-- [kunzozPC](./hosts/kunzozPC): My friends gaming PC, where I manage his NixOS
+- [kunzozPC](./hosts/kunzozPC): My friend's gaming PC, where I manage his NixOS
   installation.
 
 ## Structure
