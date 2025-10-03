@@ -14,7 +14,6 @@
       qbittorrent-enhanced
       telegram-desktop
       losslesscut-bin
-      qpwgraph
       steamguard-cli
       picard
       rsgain
