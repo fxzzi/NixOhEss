@@ -23,10 +23,7 @@
   "browser.startup.couldRestoreSession.count" = 0;
 
   # Don't hide http or https in URL bar
-  # "browser.urlbar.trimURLs" = false;
-
-  # Show full URL on search results pages
-  # "browser.urlbar.showSearchTerms.enabled" = false;
+  "browser.urlbar.trimURLs" = false;
 
   # Force hardware acceleration (NVIDIA)
   "media.hardware-video-decoding.force-enabled" = true;
@@ -69,8 +66,8 @@
   "browser.toolbars.bookmarks.visibility" = "never";
 
   # Only use system-defined fonts
-  # would love to use this however breaks icons on many sites
-  # "browser.display.use_document_fonts" = 0;
+  # BREAKS ICONS ON MOST SITES!
+  "browser.display.use_document_fonts" = 0;
   # don't use serif font by default
   "font.default.x-western" = "sans-serif";
 
