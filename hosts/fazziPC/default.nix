@@ -21,6 +21,7 @@
       nicotine-plus
       sgdboop
       cemu
+      dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
       customPkgs.transcode
