@@ -120,7 +120,7 @@ in {
             swallow_exception_regex = "^(foot)$"; # Make foot not swallow itself
             initial_workspace_tracking = 0;
             vrr = 2;
-            anr_missed_pings = 4; # by default, ANR dialog shows up way too aggressively.
+            anr_missed_pings = 5; # by default, ANR dialog shows up way too aggressively.
             middle_click_paste = 0;
           };
           ecosystem = {
