@@ -30,7 +30,7 @@ in {
         # These are available no matter the host.
         packages = with pkgs; [
           pkgs.npins
-          helvum
+          qpwgraph
           loupe
           wget
           ffmpeg
