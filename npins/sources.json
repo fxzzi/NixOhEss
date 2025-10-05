@@ -49,9 +49,9 @@
       },
       "branch": "transparency_yipee",
       "submodules": false,
-      "revision": "bf7175511a05e7110a57cce96540aa75f9cdca76",
+      "revision": "0e655b4e3ce4c5a425c656643eb018951065ca86",
       "url": null,
-      "hash": "08vgdq6jj5f4yw7322m6n9dxdr90abfk0md4jpmr3vk8z6ckv7rb"
+      "hash": "1hvpmx2q54a8787ppqy9xicsgghfrpq1y968b9w7rqf0sd01kv4r"
     },
     "niqspkgs": {
       "type": "Git",
