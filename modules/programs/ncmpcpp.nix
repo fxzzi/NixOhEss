@@ -4,39 +4,8 @@
   lib,
   ...
 }: let
-  inherit (lib) concatStringsSep mapAttrsToList isList mkEnableOption getExe mkIf;
-  inherit (builtins) typeOf toString;
+  inherit (lib) mkEnableOption getExe mkIf;
   cfg = config.cfg.programs.ncmpcpp;
-
-  renderSettings = settings: concatStringsSep "\n" (mapAttrsToList renderSetting settings);
-
-  renderSetting = name: value: "${name}=${renderValue value}";
-
-  renderValue = option:
-    rec {
-      int = toString option;
-      bool =
-        if option
-        then "yes"
-        else "no";
-      string = option;
-    }
-    .${
-      typeOf option
-    };
-
-  renderBindings = bindings: concatStringsSep "\n" (map renderBinding bindings);
-
-  renderBinding = {
-    key,
-    command,
-  }:
-    concatStringsSep "\n  " ([''def_key "${key}"''] ++ maybeWrapList command);
-
-  maybeWrapList = xs:
-    if isList xs
-    then xs
-    else [xs];
 in {
   options.cfg.programs.ncmpcpp.enable = mkEnableOption "ncmpcpp";
   config = mkIf cfg.enable {
@@ -45,56 +14,33 @@ in {
         ncmpcpp
       ];
       xdg.config.files = {
-        "ncmpcpp/bindings".text = renderBindings [
-          {
-            key = "+";
-            command = "volume_up";
-          }
-          {
-            key = "=";
-            command = "volume_up";
-          }
-          {
-            key = "_";
-            command = "volume_down";
-          }
-          {
-            key = "-";
-            command = "volume_down";
-          }
-        ];
-        "ncmpcpp/config".text = renderSettings {
-          # Directories
-          lyrics_directory = "~/.local/share/ncmpcpp/lyrics/";
-
-          # Mouse and scrolling
-          mouse_support = "yes";
-          lines_scrolled = "1";
-
-          # Playlist settings
-          playlist_shorten_total_times = "yes";
-          autocenter_mode = "yes";
-
-          # Editor
-          external_editor = "nvim";
-
-          # Progress bar settings
-          progressbar_elapsed_color = "blue";
-          progressbar_color = "black";
-          progressbar_look = "▃▃▃";
-
-          # UI
-          user_interface = "alternative";
-          playlist_display_mode = "classic";
-          song_list_format = "$5{%a $2»$8 %t}$0";
-          # hide playlist info
-          header_visibility = "no";
-          # hide current song highlight after 1 second
-          playlist_disable_highlight_delay = 1;
-
-          # Notifications
-          execute_on_song_change = "${getExe pkgs.customPkgs.mpd-notif}";
-        };
+        "ncmpcpp/bindings".text = ''
+          def_key "+"
+            volume_up
+          def_key "="
+            volume_up
+          def_key "_"
+            volume_down
+          def_key "-"
+            volume_down
+        '';
+        "ncmpcpp/config".text = ''
+          autocenter_mode=yes
+          execute_on_song_change=${getExe pkgs.customPkgs.mpd-notif}
+          external_editor=nvim
+          header_visibility=no
+          lines_scrolled=1
+          lyrics_directory=~/.local/share/ncmpcpp/lyrics/
+          mouse_support=yes
+          playlist_disable_highlight_delay=1
+          playlist_display_mode=classic
+          playlist_shorten_total_times=yes
+          progressbar_color=black
+          progressbar_elapsed_color=blue
+          progressbar_look=▃▃▃
+          song_list_format=$5{%a $2»$8 %t}$0
+          user_interface=alternative
+        '';
       };
     };
     environment.shellAliases = {
