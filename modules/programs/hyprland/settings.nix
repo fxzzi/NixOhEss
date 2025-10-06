@@ -66,7 +66,7 @@ in {
             "desc:Philips, 1920x1080@75,auto-center-left, 1" # place to the left of fazziPC monitor
           ];
           render = {
-            direct_scanout = 1;
+            direct_scanout = 2;
             # HACK: gamescope is broken with color-management.
             # see: https://github.com/ValveSoftware/gamescope/issues/1825
             cm_enabled = !config.cfg.programs.gamescope.enable;
@@ -120,7 +120,7 @@ in {
             swallow_exception_regex = "^(foot)$"; # Make foot not swallow itself
             initial_workspace_tracking = 0;
             vrr = 2;
-            anr_missed_pings = 4; # by default, ANR dialog shows up way too aggressively.
+            anr_missed_pings = 5; # by default, ANR dialog shows up way too aggressively.
             middle_click_paste = 0;
           };
           ecosystem = {
@@ -200,8 +200,6 @@ in {
             "idleinhibit focus, class:^(mpv)$"
             "idleinhibit focus, class:^(atril)$"
             "idleinhibit fullscreen, class:^(foot)$"
-            "idleinhibit fullscreen, class:^(steam_app_.*)$"
-            "idleinhibit fullscreen, class:^(.*.exe)$"
 
             # some apps, mostly games, are stupid and they fullscreen on the
             # wrong monitor. so just don't listen to them lol
@@ -225,31 +223,38 @@ in {
             # Window rules for games
             # Fix focus issues with cs2
             "suppressevent maximize fullscreen, class: ^(cs2)$"
-            # make cs2 launch in fullscreen
-            "fullscreen, class:^(cs2)$"
-            # make tomb raider (2013) launch in fullscreen
-            "fullscreen, class:^(steam_app_203160)$"
 
-            # Sets fullscreen for common Minecraft windows
-            "fullscreen, class:^(Minecraft\*.*)$"
-            "fullscreen, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
-            "fullscreen, class:^(org-prismlauncher-EntryPoint)$"
+            # set content type for all games
+            "content game, xdgTag:proton-game" # modern proton versions set xdgTag
+            "content game, class:^(steam_app_.*)$" # all xwayland proton games
+            "content game, class:^(cs2)$" # cs2
+            "content game, class:^(Minecraft\*.*)$"
+            "content game, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
+            "content game, class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
+            "content game, class:^(osu!)$"
+            "content game, class:^(.*.exe)$" # all exe's
+            "content game, class:^(hl2_linux)$" # half life 2
+            "content game, class:^(cstrike_linux64)$" # cs source
+            "content game, class:^(portal2_linux)$" # portal 2
+            "content game, class:^(gamescope)$"
+            "content game, class:^(Celeste)$"
+            "content game, class:^(info.cemu.Cemu)$"
+            "content game, class:^(Cuphead.x86_64)$"
+            "content game, class:^(org.eden_emu.eden)$"
+            "content game, class:^(hollow_knight.x86_64)$"
+            "content game, class:^(Terraria.bin.x86_64)$"
 
-            # Allow games to tear
-            "immediate, class:^(steam_app_.*)$" # all steam games
-            "immediate, class:^(cs2)$" # cs2
-            "immediate, class:^(Minecraft\*.*)$"
-            "immediate, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
-            "immediate, class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
-            "immediate, class:^(osu!)$"
-            "immediate, class:^(.*.exe)$" # all exe's
-            "immediate, class:^(hl2_linux)$" # half life 2
-            "immediate, class:^(cstrike_linux64)$" # cs source
-            "immediate, class:^(gamescope)$"
-            "immediate, class:^(Celeste)$"
-            "immediate, class:^(info.cemu.Cemu)$"
-            "immediate, class:^(Cuphead.x86_64)$"
-            "immediate, class:^(org.eden_emu.eden)$"
+            # enable tearing and inhibit idle for games
+            "immediate, content:game"
+            "idleinhibit fullscreen, content:game"
+            "fullscreen, content:game"
+            "fullscreenstate 3 3, content:game"
+
+            # content type game means ds will be in effect.
+            # ds and tearing cannot activate at the same time.
+            # gmd needs tearing for unlocked fps.
+            "content none, class:^(geometrydash.exe)$"
+            "immediate, class:^(geometrydash.exe)$"
 
             # Disable vrr for these apps / games, as I run them at higher than my rr
             "novrr, class:^(geometrydash.exe)$"
