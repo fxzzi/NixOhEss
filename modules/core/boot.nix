@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  npins,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf mkDefault;
@@ -57,12 +58,37 @@ in {
       initrd.systemd.enable = true;
       loader = {
         inherit (cfg) timeout;
-        systemd-boot = {
-          enable = true; # Enable systemd-boot
-          configurationLimit = 5; # shouldn't really need any more than that.
-          editor = false; # Disable editor for security
-          consoleMode = "max"; # Set console mode to max resolution
+        limine = {
+          enable = true;
+          maxGenerations = 8;
+          style = {
+            wallpapers = ["${npins.walls}/images/fuji.jpg"];
+            interface = {
+              resolution = "max";
+              helpHidden = true;
+              branding = "Limine Bootloader";
+            };
+            graphicalTerminal = {
+              font.scale = "2x2";
+              # don't have any margin around the background colour
+              margin = -1;
+              marginGradient = -1;
+              background = "33080808";
+              foreground = "B9C1D6";
+            };
+          };
+          extraEntries = ''
+            /Windoesn't
+                protocol: efi
+                path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+          '';
         };
+        # systemd-boot = {
+        #   enable = true; # Enable systemd-boot
+        #   configurationLimit = 5; # shouldn't really need any more than that.
+        #   editor = false; # Disable editor for security
+        #   consoleMode = "max"; # Set console mode to max resolution
+        # };
         efi.canTouchEfiVariables = true;
       };
       kernelParams = [
