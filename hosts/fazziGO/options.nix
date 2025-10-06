@@ -6,7 +6,7 @@
       boot = {
         enable = true;
         keyLayout = "uk";
-        timeout = 0;
+        timeout = 8;
       };
       fonts.enable = true;
 

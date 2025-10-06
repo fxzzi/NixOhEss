@@ -12,7 +12,7 @@
       boot = {
         enable = true;
         keyLayout = "us";
-        timeout = 0;
+        timeout = 8;
       };
       networking = {
         enable = true;
