@@ -38,5 +38,10 @@ in {
         };
       };
     };
+    # Delay syncthing to after boot, to speed up boot
+    systemd.services.syncthing-init = {
+      wantedBy = lib.mkForce ["default.target"];
+      after = lib.mkForce ["syncthing.service" "default.target"];
+    };
   };
 }
