@@ -30,6 +30,7 @@ in {
         # These are available no matter the host.
         packages = with pkgs; [
           pkgs.npins
+          qpwgraph
           loupe
           wget
           ffmpeg

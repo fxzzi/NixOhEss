@@ -8,7 +8,6 @@
     hj = {
       packages = with pkgs; [
         telegram-desktop
-        qpwgraph
         customPkgs.stremio-enhanced
         # ide for uni
         processing
