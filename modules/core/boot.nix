@@ -62,7 +62,14 @@ in {
           enable = true;
           maxGenerations = 8;
           style = {
-            wallpapers = ["${npins.walls}/images/fuji.jpg"];
+            wallpapers = [
+              "${npins.walls}/images/fuji.jpg"
+              "${npins.walls}/images/cherry-blossom.jpg"
+              "${npins.walls}/images/clouds.jpg"
+              "${npins.walls}/images/austria_landscape.jpg"
+              "${npins.walls}/images/pink_flowers.jpg"
+              "${npins.walls}/images/wallhaven-9oxkwk_3840x2160.jpg"
+            ];
             interface = {
               resolution = "max";
               helpHidden = true;
