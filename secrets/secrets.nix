@@ -1,5 +1,5 @@
 let
-  faaris = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIhE7wYZ6juPg1uPs8hTJJMjzWVlMB4maX2K7rE9X84I";
+  fazziPC = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHNAU7x3A0Jt4gSiMklxKplU8Y0p8dUYflp4JYtVgfY root@fazziPC";
 in {
-  "publicip.age".publicKeys = [faaris];
+  "publicip.age".publicKeys = [fazziPC];
 }
