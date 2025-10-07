@@ -27,5 +27,6 @@ in {
         unShaderBackgroundProcessingThreads ${toString cfg.shaderThreads}
       '';
     };
+    hardware.steam-hardware.enable = true;
   };
 }
