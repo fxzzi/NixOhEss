@@ -28,23 +28,6 @@ in {
           name "PipeWire Sound Server"
         }
 
-        # use ffmpeg decoder over opus and vorbis
-        # opus decoder is cooked, but mpd will read ogg opus
-        # files with vorbis which is obviously wrong. So disable
-        # that too.
-        decoder {
-          plugin "opus"
-          enabled "no"
-        }
-        decoder {
-          plugin "vorbis"
-          enabled "no"
-        }
-        decoder {
-          plugin "ffmpeg"
-          enabled "yes"
-        }
-
         replaygain "track"
         restore_paused "yes"
       '';
@@ -62,7 +45,7 @@ in {
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${getExe pkgs.mpd} --no-daemon";
+        ExecStart = "${getExe pkgs.mpd} --systemd";
       };
     };
   };
