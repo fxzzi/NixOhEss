@@ -15,8 +15,6 @@ in {
       enableDefaultPackages = false;
       fontconfig = {
         subpixel.rgba = mkDefault "rgb";
-        # apparently closer to windows cleartype
-        subpixel.lcdfilter = "light";
         includeUserConf = false;
         # fixes emojis on browser
         useEmbeddedBitmaps = true;
@@ -44,7 +42,8 @@ in {
         noto-fonts # Google Noto Fonts
         noto-fonts-emoji # Emoji Font
         noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
-        corefonts # ms fonts.
+        corefonts # ms fonts
+        vista-fonts # more ms fonts including calibri and consolas
         inter
         customPkgs.ioshelfka-term
       ];
