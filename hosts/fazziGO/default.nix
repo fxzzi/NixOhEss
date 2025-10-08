@@ -9,8 +9,9 @@
       packages = with pkgs; [
         telegram-desktop
         customPkgs.stremio-enhanced
-        # ide for uni
+        # uni stuff
         processing
+        logisim-evolution
       ];
       xdg.config.files."hypr/hyprland.conf" = {
         value = {
