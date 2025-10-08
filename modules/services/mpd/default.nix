@@ -28,6 +28,12 @@ in {
           name "PipeWire Sound Server"
         }
 
+        # opus decoder incorrectly applies replaygain
+        decoder {
+          plugin "opus"
+          enabled "no"
+        }
+
         replaygain "track"
         restore_paused "yes"
       '';
