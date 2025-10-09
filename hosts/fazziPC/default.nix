@@ -27,6 +27,8 @@
       customPkgs.transcode
       customPkgs.stremio-enhanced
       customPkgs.eden
+      customPkgs.flac2opus
+      customPkgs.flac2vorbis
     ];
   };
 }
