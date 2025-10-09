@@ -11,6 +11,8 @@
         cycle-wall = callPackage ./cycle-wall.nix {inherit (final.customPkgs) wallust-script;};
         eden = callPackage ./eden.nix {};
         egl-wayland2 = callPackage ./egl-wayland2.nix {};
+        flac2opus = callPackage ./flac2opus.nix {};
+        flac2vorbis = callPackage ./flac2vorbis.nix {};
         ioshelfka-term = callPackage ./ioshelfka-term.nix {};
         mpd-notif = callPackage ./mpd-notif.nix {};
         random-wall = callPackage ./random-wall.nix {inherit (final.customPkgs) wallust-script;};
