@@ -20,6 +20,27 @@
     if multiMonitor
     then "slidevert"
     else "slide";
+
+  games = [
+    "xdgTag:proton-game" # modern proton versions set xdgTag
+    "class:^(steam_app_.*)$" # all xwayland proton games
+    "class:^(cs2)$" # cs2
+    "class:^(Minecraft\*.*)$"
+    "initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
+    "class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
+    "class:^(osu!)$"
+    "class:^(.*\.exe)$" # all exe's
+    "class:^(hl2_linux)$" # half life 2
+    "class:^(cstrike_linux64)$" # cs source
+    "class:^(portal2_linux)$" # portal 2
+    "class:^(gamescope)$"
+    "class:^(Celeste)$"
+    "class:^(info.cemu.Cemu)$"
+    "class:^(Cuphead.x86_64)$"
+    "class:^(org.eden_emu.eden)$"
+    "class:^(hollow_knight.x86_64)$"
+    "class:^(Terraria.bin.x86_64)$"
+  ];
 in {
   options.cfg.programs = {
     hyprland = {
@@ -67,9 +88,7 @@ in {
           ];
           render = {
             direct_scanout = 2;
-            # HACK: gamescope is broken with color-management.
-            # see: https://github.com/ValveSoftware/gamescope/issues/1825
-            cm_enabled = !config.cfg.programs.gamescope.enable;
+            cm_enabled = false;
           };
           cursor = {
             default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
@@ -195,71 +214,56 @@ in {
             pseudotile = 1;
             preserve_split = 1;
           };
-          windowrule = [
-            # pause hypridle for certain apps
-            "idleinhibit focus, class:^(mpv)$"
-            "idleinhibit focus, class:^(atril)$"
-            "idleinhibit fullscreen, class:^(foot)$"
+          windowrule =
+            [
+              # pause hypridle for certain apps
+              "idleinhibit focus, class:^(mpv)$"
+              "idleinhibit focus, class:^(atril)$"
+              "idleinhibit fullscreen, class:^(foot)$"
 
-            # some apps, mostly games, are stupid and they fullscreen on the
-            # wrong monitor. so just don't listen to them lol
-            "suppressevent fullscreenoutput, class:.*"
+              # some apps, mostly games, are stupid and they fullscreen on the
+              # wrong monitor. so just don't listen to them lol
+              "suppressevent fullscreenoutput, class:.*"
 
-            # Ignore maximize requests from apps. You'll probably like this.
-            "suppressevent maximize, class:.*"
+              # Ignore maximize requests from apps. You'll probably like this.
+              "suppressevent maximize, class:.*"
 
-            # Fix some dragging issues with XWayland
-            "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+              # Fix some dragging issues with XWayland
+              "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 
-            # dialogs
-            "float,title:^(File Operation Progress)(.*)$"
-            "float,title:^(Confirm to replace files)(.*)$"
-            "float,title:^(Select a File)(.*)$"
-            "float,title:^(Save As)(.*)$"
-            "float,title:^(Rename)(.*)$"
-            "float,class:^(xdg-desktop-portal-gtk)$"
-            "float,class:^(org.gnome.FileRoller)$,title:^(Extract)(.*)$"
+              # dialogs
+              "float,title:^(File Operation Progress)(.*)$"
+              "float,title:^(Confirm to replace files)(.*)$"
+              "float,title:^(Select a File)(.*)$"
+              "float,title:^(Save As)(.*)$"
+              "float,title:^(Rename)(.*)$"
+              "float,class:^(xdg-desktop-portal-gtk)$"
+              "float,class:^(org.gnome.FileRoller)$,title:^(Extract)(.*)$"
 
-            # Window rules for games
-            # Fix focus issues with cs2
-            "suppressevent maximize fullscreen, class: ^(cs2)$"
+              # Window rules for games
+            ]
+            ++ (lib.concatMap (
+                game: [
+                  # enable tearing and inhibit idle for games
+                  "immediate, ${game}"
+                  "idleinhibit fullscreen, ${game}"
+                  "fullscreen, ${game}"
+                  "suppressevent maximize fullscreen, ${game}"
+                  "content game, ${game}"
+                ]
+              )
+              games)
+            ++ [
+              # content type game means ds will be in effect.
+              # ds and tearing cannot activate at the same time.
+              # gmd needs tearing for unlocked fps.
+              "content none, class:^(geometrydash.exe)$"
+              "immediate, class:^(geometrydash.exe)$"
 
-            # set content type for all games
-            "content game, xdgTag:proton-game" # modern proton versions set xdgTag
-            "content game, class:^(steam_app_.*)$" # all xwayland proton games
-            "content game, class:^(cs2)$" # cs2
-            "content game, class:^(Minecraft\*.*)$"
-            "content game, initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
-            "content game, class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
-            "content game, class:^(osu!)$"
-            "content game, class:^(.*.exe)$" # all exe's
-            "content game, class:^(hl2_linux)$" # half life 2
-            "content game, class:^(cstrike_linux64)$" # cs source
-            "content game, class:^(portal2_linux)$" # portal 2
-            "content game, class:^(gamescope)$"
-            "content game, class:^(Celeste)$"
-            "content game, class:^(info.cemu.Cemu)$"
-            "content game, class:^(Cuphead.x86_64)$"
-            "content game, class:^(org.eden_emu.eden)$"
-            "content game, class:^(hollow_knight.x86_64)$"
-            "content game, class:^(Terraria.bin.x86_64)$"
-
-            # enable tearing and inhibit idle for games
-            "immediate, content:game"
-            "idleinhibit fullscreen, content:game"
-            "fullscreen, content:game"
-            "fullscreenstate 3 3, content:game"
-
-            # content type game means ds will be in effect.
-            # ds and tearing cannot activate at the same time.
-            # gmd needs tearing for unlocked fps.
-            "content none, class:^(geometrydash.exe)$"
-            "immediate, class:^(geometrydash.exe)$"
-
-            # Disable vrr for these apps / games, as I run them at higher than my rr
-            "novrr, class:^(geometrydash.exe)$"
-            "novrr, class:^(osu!)$"
-          ];
+              # Disable vrr for these apps / games, as I run them at higher than my rr
+              "novrr, class:^(geometrydash.exe)$"
+              "novrr, class:^(osu!)$"
+            ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor [
             "1, monitor:${cfg.defaultMonitor}"
@@ -346,6 +350,14 @@ in {
             );
 
           binde = [
+            # resize
+            "$MOD CTRL, left, resizeactive, -10 0"
+            "$MOD CTRL, right, resizeactive, 10 0"
+            "$MOD CTRL, up, resizeactive, 0 -10"
+            "$MOD CTRL, down, resizeactive, 0 10"
+          ];
+
+          bindel = [
             # volume script
             ", XF86AudioRaiseVolume, exec, ${getExe pkgs.customPkgs.audio} vol up 5"
             ", XF86AudioLowerVolume, exec, ${getExe pkgs.customPkgs.audio} vol down 5"
@@ -357,21 +369,14 @@ in {
             # brightness script
             ", XF86MonBrightnessUp, exec, ${brightness} up 5"
             ", XF86MonBrightnessDown, exec, ${brightness} down 5"
-
-            # can't type £ with US layout, so use wtype
-            "$MOD, comma, exec, ${getExe pkgs.wtype} £"
-
-            # resize
-            "$MOD CTRL, left, resizeactive, -10 0"
-            "$MOD CTRL, right, resizeactive, 10 0"
-            "$MOD CTRL, up, resizeactive, 0 -10"
-            "$MOD CTRL, down, resizeactive, 0 10"
           ];
 
           # mouse bindings
           bindm = [
             "$MOD, mouse:272, movewindow" # left click
+            "$MOD, Control_L, movewindow"
             "$MOD, mouse:273, resizewindow" # right click
+            "$MOD, ALT_L, resizewindow"
           ];
 
           gesture = [

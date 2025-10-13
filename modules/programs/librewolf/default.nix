@@ -23,7 +23,7 @@
     // sets the new tab page to our local newtab.
     ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
   '';
-  baseLibrewolf = pkgs.librewolf-bin.override {
+  librewolf = pkgs.librewolf-bin.override {
     extraPrefs = ''
       ${optionalString config.cfg.programs.startpage.enable newTabPageJS}
       ${jsPrefs}
@@ -46,21 +46,6 @@
       SearchSuggestEnabled = false;
     };
   };
-  librewolf =
-    if (!config.cfg.hardware.nvidia.enable)
-    then baseLibrewolf
-    else
-      pkgs.symlinkJoin {
-        name = "librewolf-bin-cbb";
-        paths = [
-          baseLibrewolf
-        ];
-        buildInputs = [pkgs.makeWrapper];
-        postBuild = ''
-          wrapProgram $out/bin/librewolf \
-            --set LD_PRELOAD "${pkgs.customPkgs.cudaBoostBypass}/boost_bypass.so"
-        '';
-      };
 in {
   options.cfg.programs.librewolf = {
     enable = mkEnableOption "librewolf";

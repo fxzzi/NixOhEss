@@ -24,19 +24,25 @@
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.smfh.follows = ""; # we use smfh from nixpkgs
-      inputs.ndg.follows = ""; # sorry, docs!
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        smfh.follows = ""; # we use smfh from nixpkgs
+        ndg.follows = ""; # sorry, docs!
+      };
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
     nvf = {
-      url = "github:NotAShelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
+      url = "github:NotAShelf/nvf/v0.8";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
     stash = {
       url = "github:NotAShelf/stash";
