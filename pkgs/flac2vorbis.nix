@@ -6,7 +6,6 @@ writeShellApplication {
   name = "flac2vorbis";
   runtimeInputs = [vorbis-tools];
   text = ''
-    shopt -s globstar nullglob
     for file in **/*.flac; do
       output="''${file%.flac}.ogg"
       echo "Converting: $file -> $output"
