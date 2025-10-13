@@ -17,7 +17,7 @@
             group_processes = true;
             hide_table_gap = true;
             process_memory_as_value = true;
-            enable_gpu = true;
+            hide_k_threads = true;
           };
           temperature.sensor_filter = {
             list = [
@@ -43,6 +43,13 @@
               "/nix/store/"
             ];
           };
+          disk.columns = [
+            "Disk"
+            "Mount"
+            "Used"
+            "Free"
+            "Total"
+          ];
           # customize the layout of bottom
           row = [
             {

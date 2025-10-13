@@ -89,6 +89,9 @@ in {
                 protocol: efi
                 path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
           '';
+          extraConfig = ''
+            quiet: yes
+          '';
         };
         # systemd-boot = {
         #   enable = true; # Enable systemd-boot
