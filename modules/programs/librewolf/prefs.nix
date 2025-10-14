@@ -69,11 +69,15 @@
   "browser.toolbars.bookmarks.visibility" = "never";
 
   # Only use system-defined fonts
-  # BREAKS ICONS ON MOST SITES!
+  # WARN: BREAKS ICONS ON MOST SITES!
   "browser.display.use_document_fonts" = 0;
   # don't use serif font by default
   "font.default.x-western" = "sans-serif";
 
   # Hide X button (not needed in tiling WMs)
   "browser.tabs.inTitlebar" = 0;
+
+  # enable compact ui
+  "browser.compactmode.show" = true;
+  "browser.uidensity" = 1;
 }
