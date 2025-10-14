@@ -38,8 +38,8 @@ in {
       };
       settings = {
         main = {
-          font = "monospace:size=13";
-          pad = "8x8";
+          font = "monospace:size=12";
+          pad = "6x6";
           transparent-fullscreen = true; # option added by my fork
         };
         cursor = {

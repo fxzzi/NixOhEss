@@ -52,7 +52,7 @@ in {
             <name>Copy File / Folder Path</name>
             <submenu></submenu>
             <unique-id>1653335357081852-1</unique-id>
-            <command>echo -n &apos;"%f"&apos; | ${getExe' pkgs.wl-clipboard "wl-copy"}</command>
+            <command>echo -n &apos;"%f"&apos; | wl-copy</command>
             <description></description>
             <range></range>
             <patterns>*</patterns>

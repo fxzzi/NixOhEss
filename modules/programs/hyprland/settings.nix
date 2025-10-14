@@ -123,9 +123,9 @@ in {
             accel_profile = "adaptive";
           };
           general = {
-            gaps_out = 4; # Outer monitor gaps
-            gaps_in = 2; # Inner window gaps
-            border_size = 2; # Set window border width
+            gaps_out = 2; # Outer monitor gaps
+            gaps_in = 1; # Inner window gaps
+            border_size = 1; # Set window border width
             allow_tearing = 1;
           };
           misc = {
@@ -302,7 +302,7 @@ in {
               "$MOD SHIFT, R, exec, ${getExe pkgs.customPkgs.cycle-wall}"
               "$MOD, J, exec, foot ${getExe pkgs.customPkgs.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
-              "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | ${getExe' pkgs.wl-clipboard "wl-copy"})"
+              "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"
 
               ", XF86AudioPrev, exec, ${getExe pkgs.mpc} prev"
               ", XF86AudioPlay, exec, ${getExe pkgs.mpc} toggle"
