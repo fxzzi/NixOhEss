@@ -1,5 +1,5 @@
 {
-  description = "fazzi's nixos + hjem conf";
+  description = "fazzi's nixos conf";
   outputs = inputs: let
     inherit (inputs.nixpkgs) lib;
     npins = import ./npins;
