@@ -14,7 +14,7 @@ export function TimeWidget() {
       Widget.Icon({
         icon: "clock-analog-outline-symbolic",
         class_name: "icon",
-        size: 20,
+        size: 16,
       }),
       Widget.Label({
         class_name: "time",

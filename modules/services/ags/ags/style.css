@@ -4,22 +4,35 @@
   transition:
     color ease-in-out 0.25s,
     background ease-in-out 0.25s;
+  padding: unset;
+  margin: unset;
 }
 
 window > box {
   background: @background;
-  font: 17px monospace;
+  font: 15.5px monospace;
   font-weight: bold;
   color: @foreground;
-  margin: 4px;
-  margin-bottom: 0px;
+  margin: 4px 4px 0 4px;
   border: 2px solid @color4;
-  min-height: 34px;
+  min-height: 30px;
 }
 
 button {
   background: transparent;
   box-shadow: none;
+  padding: 0 6px 0 6px;
+}
+
+menu {
+  margin: 4px;
+  padding: 6px;
+}
+menu separator {
+  margin: 6px 0;
+}
+menu menuitem {
+  padding: 4px 6px;
 }
 
 .workspaces {
@@ -32,7 +45,6 @@ button {
 
 .workspaces button {
   border-radius: 0;
-  transition: none;
   padding: 0 1px;
   box-shadow: none;
   color: @foreground;
@@ -41,7 +53,7 @@ button {
 
 .workspaces button.focused {
   border-bottom: 2px solid @color6;
-  margin-top: 2px;
+  padding-top: 2px;
 }
 
 .workspaces button:hover {
