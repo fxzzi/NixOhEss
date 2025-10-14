@@ -1,5 +1,5 @@
 const hyprland = await Service.import("hyprland");
-const len = 72;
+const len = 96;
 
 export const ClientTitleWidget = () => Widget.Label({
   class_name: "client-title",
