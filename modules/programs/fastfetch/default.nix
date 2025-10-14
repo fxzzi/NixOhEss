@@ -40,7 +40,7 @@ in {
           logo = {
             source = "${icon}";
             type = "raw";
-            height = 10;
+            height = 9;
             width = 15;
             padding = {
               top = 1;
