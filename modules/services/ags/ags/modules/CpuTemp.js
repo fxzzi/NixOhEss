@@ -105,7 +105,7 @@ export function CpuTempWidget() {
       Widget.Icon({
         icon: "thermometer-outline-symbolic",
         class_name: "icon",
-        size: 20,
+        size: 16,
       }),
       Widget.Label({
         class_name: "temperature-usage",

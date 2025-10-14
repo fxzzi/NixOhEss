@@ -37,7 +37,7 @@ export function CpuUsageWidget() {
       Widget.Icon({
         icon: "activity-outline-symbolic",
         class_name: "icon",
-        size: 20,
+        size: 16,
       }),
       Widget.Label({
         class_name: "cpu-usage",

@@ -36,7 +36,7 @@ in {
             gap_size = 4;
             separator_color = "frame";
             sort = true;
-            font = "monospace 14";
+            font = "monospace 13";
             markup = "full";
             format = "<b>%s</b>\\n%b";
             alignment = "left";

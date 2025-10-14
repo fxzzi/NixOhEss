@@ -6,6 +6,7 @@ export const BatteryWidget = () => Widget.Box({
     Widget.Icon({
       icon: battery.bind("icon-name"),
       class_name: battery.bind("charging").as(ch => ch ? "charging icon" : "icon"),
+      size: 16,
     }),
     Widget.Label({
       class_name: "battery",
