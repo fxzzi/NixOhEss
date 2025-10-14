@@ -16,14 +16,14 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "egl-wayland2";
-  rev = "d4deb7c371aac2a304522ffc297fcb71e6507699";
+  rev = "eb31eb3674829a12e8b49dee17b5f3d3ab92d31d";
   version = "0-unstable-${builtins.substring 0 8 finalAttrs.rev}";
 
   src = fetchFromGitHub {
     owner = "NVIDIA";
     repo = "egl-wayland2";
     inherit (finalAttrs) rev;
-    hash = "sha256-xJU1FZRrNf4kcS+vvbArABwSvkzAC1+gVzIRBHLay6A=";
+    hash = "sha256-+cEpOS5te0Hedx/5dyqUxLedkVjfcFPto15B/gdLboA=";
   };
 
   nativeBuildInputs = [
