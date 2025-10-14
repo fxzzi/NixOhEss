@@ -24,7 +24,7 @@ export function MemUsageWidget() {
       Widget.Icon({
         icon: "pie-chart-outline-symbolic",
         class_name: "icon",
-        size: 20,
+        size: 16,
       }),
       Widget.Label({
         class_name: "memory-usage",

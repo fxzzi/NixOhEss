@@ -10,17 +10,17 @@ export function VolumeWidget() {
 
   function getIcon() {
     if (audio.speaker.is_muted) {
-        return icons[0];
+      return icons[0];
     }
     const volume = audio.speaker.volume * 100;
     if (volume >= 70) {
-        return icons[70];
+      return icons[70];
     }
     if (volume >= 40) {
-        return icons[40];
+      return icons[40];
     }
     if (volume > 0) {
-        return icons[1];
+      return icons[1];
     }
     return icons[0];
   }
@@ -30,6 +30,7 @@ export function VolumeWidget() {
       Widget.Icon({
         icon: Utils.watch(getIcon(), audio.speaker, getIcon),
         class_name: "icon",
+        size: 16,
       }),
       Widget.Label({
         hexpand: true,
