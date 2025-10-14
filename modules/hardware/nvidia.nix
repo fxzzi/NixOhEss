@@ -15,6 +15,11 @@ in {
 
   config = mkIf cfg.enable {
     nixpkgs.config.cudaSupport = true; # enable cuda support in packages which need it
+    nixpkgs.overlays = [
+      (final: _: {
+        egl-wayland = final.customPkgs.egl-wayland2;
+      })
+    ];
     services.xserver.videoDrivers = ["nvidia"];
 
     hardware = {
