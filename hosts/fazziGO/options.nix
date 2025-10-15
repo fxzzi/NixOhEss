@@ -93,6 +93,8 @@
         enable = true;
         name = "Fazzi";
         email = "faaris.ansari@proton.me";
+        gpgsigning.enable = true;
+        gpgsigning.key = "09E880187DF217BB";
       };
       zsh.enable = true;
       nh.enable = true;
