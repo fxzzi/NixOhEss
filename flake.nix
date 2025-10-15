@@ -23,7 +23,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
-      url = "github:feel-co/hjem";
+      url = "github:feel-co/hjem/31f969f69f02b62e417bcc39571a605977cb89fa";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         smfh.follows = ""; # we use smfh from nixpkgs
@@ -38,7 +38,7 @@
       };
     };
     nvf = {
-      url = "github:NotAShelf/nvf";
+      url = "github:NotAShelf/nvf/v0.8";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
