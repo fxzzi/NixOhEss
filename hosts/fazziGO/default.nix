@@ -25,9 +25,9 @@
       };
     };
     # set these when travelling
-    services = {
-      geoclue2.enable = true;
-      localtimed.enable = true;
-    };
+    # services = {
+    #   geoclue2.enable = true;
+    #   localtimed.enable = true;
+    # };
   };
 }
