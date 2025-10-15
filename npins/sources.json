@@ -75,9 +75,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "f8f51dd445f7b0dbb3429a3e31994bb0f2908010",
-      "url": "https://github.com/fufexan/nix-gaming/archive/f8f51dd445f7b0dbb3429a3e31994bb0f2908010.tar.gz",
-      "hash": "0hg9301nv0y2lqpnhy27adszfhwlsvsmr18hlkby9hzldf42j9jn"
+      "revision": "d7f6ab23b939e6e1247321a0e63a89cacb98c03c",
+      "url": "https://github.com/fufexan/nix-gaming/archive/d7f6ab23b939e6e1247321a0e63a89cacb98c03c.tar.gz",
+      "hash": "0xm32g5vhcznin7fmg4d9ylfdla7hklc1f3vik9vp0v3iwqap2n9"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -117,22 +117,6 @@
       "revision": "fa15cbe32d84c77cd7cb0dfb3f33bb1c1a918e5c",
       "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=fa15cbe32d84c77cd7cb0dfb3f33bb1c1a918e5c",
       "hash": "0nljaxyg6z50dfj14p2hnc67jbsi67rqpszdps99vrcn1rk4p8w2"
-    },
-    "stash": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "NotAShelf",
-        "repo": "stash"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v0.3.1",
-      "revision": "d7f0a927499a23e50c697808313e48a8cb78fb71",
-      "url": "https://api.github.com/repos/NotAShelf/stash/tarball/v0.3.1",
-      "hash": "0qqvc6p2sfvi7rrscg6hy3qap1sp1p4x9q2gc62cp7wxpr9gcpxk"
     },
     "walls": {
       "type": "Git",
