@@ -50,7 +50,7 @@
       hyprsunset.enable = true;
       xdph.enable = true;
       dunst.enable = true;
-      greetd.enable = true;
+      # greetd.enable = true;
 
       printing.enable = true;
     };
@@ -104,6 +104,7 @@
         enable = true;
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
+        autoStart = true;
         # useGit = true;
       };
       hyprlock.enable = true;
