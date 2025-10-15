@@ -10,7 +10,7 @@
 
 window > box {
   background: @background;
-  font: 15.5px monospace;
+  font: 15px monospace;
   font-weight: bold;
   color: @foreground;
   margin: 2px 2px 0 2px;
