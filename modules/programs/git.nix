@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf;
@@ -36,6 +35,19 @@ in {
       config = {
         user = {
           inherit (cfg) name email;
+          signingkey = "09E880187DF217BB";
+        };
+        commit.gpgsign = true;
+        init = {
+          defaultBranch = "main";
+        };
+        url = {
+          "https://github.com/" = {
+            insteadOf = [
+              "gh:"
+              "github:"
+            ];
+          };
         };
       };
     };
