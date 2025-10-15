@@ -12,6 +12,7 @@
         # uni stuff
         processing
         logisim-evolution
+        vscodium
       ];
       xdg.config.files."hypr/hyprland.conf" = {
         value = {
