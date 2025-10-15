@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf;
@@ -36,10 +37,11 @@ in {
         user = {
           inherit (cfg) name email;
         };
-        signing = {
-          format = "ssh";
-        };
       };
+    };
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
     };
   };
 }
