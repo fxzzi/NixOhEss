@@ -11,7 +11,7 @@
 window > box {
   background: @background;
   font: 15px monospace;
-  font-weight: bold;
+  font-weight: 600;
   color: @foreground;
   margin: 2px 2px 0 2px;
   border: 1px solid @color4;
