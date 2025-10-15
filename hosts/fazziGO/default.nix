@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./options.nix
@@ -24,6 +28,12 @@
           render.new_render_scheduling = true;
         };
       };
+    };
+    # encryption is enabled on fazziGO. So enter encryption
+    # password and then autologin.
+    services.getty = {
+      autologinUser = config.cfg.core.username;
+      autologinOnce = true;
     };
     # set these when travelling
     # services = {
