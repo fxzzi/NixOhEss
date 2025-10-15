@@ -45,7 +45,7 @@
       };
     };
     stash = {
-      url = "github:NotAShelf/stash";
+      url = "github:NotAShelf/stash/v0.3.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     watt = {
