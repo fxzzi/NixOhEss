@@ -54,6 +54,12 @@ in {
               "github:"
             ];
           };
+          "https://gitlab.com/" = {
+            insteadOf = [
+              "gl:"
+              "gitlab:"
+            ];
+          };
         };
       };
     };
