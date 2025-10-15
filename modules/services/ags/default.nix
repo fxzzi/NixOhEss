@@ -30,7 +30,7 @@ in {
     };
     systemd.user.services.ags = {
       enable = true;
-      description = "ags widgets";
+      description = "Aylurs GTK Shell";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
