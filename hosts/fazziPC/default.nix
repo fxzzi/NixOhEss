@@ -31,4 +31,13 @@
       customPkgs.flac2vorbis
     ];
   };
+  services.factorio = {
+    # enable = true;
+    loadLatestSave = true;
+    requireUserVerification = false;
+    port = 25565;
+    game-password = "1234";
+    nonBlockingSaving = true;
+    admins = ["fazzi"];
+  };
 }
