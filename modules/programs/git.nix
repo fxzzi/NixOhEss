@@ -18,12 +18,6 @@ in {
       default = false;
       description = "Sets your email for git.";
     };
-    gpgsigning.enable = mkEnableOption "GPG signing for git commits";
-    gpgsigning.key = mkOption {
-      type = types.str;
-      default = "";
-      description = "Sets your GPG key for signing git commits.";
-    };
   };
   config = mkIf cfg.enable {
     environment.shellAliases = {
@@ -41,9 +35,7 @@ in {
       config = {
         user = {
           inherit (cfg) name email;
-          signingkey = mkIf cfg.gpgsigning.enable cfg.gpgsigning.key;
         };
-        commit.gpgsign = cfg.gpgsigning.enable;
         init = {
           defaultBranch = "main";
         };
@@ -62,10 +54,6 @@ in {
           };
         };
       };
-    };
-    programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
     };
   };
 }
