@@ -23,9 +23,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "9edb1787864c4f59ae5074ad498b6272b3ec308d",
-      "url": "https://github.com/ryantm/agenix/archive/9edb1787864c4f59ae5074ad498b6272b3ec308d.tar.gz",
-      "hash": "06w2dxnf8qxwcmqvgyxnrrx62ca5x1cw3lminpgs112md17wa3rl"
+      "revision": "2f0f812f69f3eb4140157fe15e12739adf82e32a",
+      "url": "https://github.com/ryantm/agenix/archive/2f0f812f69f3eb4140157fe15e12739adf82e32a.tar.gz",
+      "hash": "1d4m7hsq727q7ndjqmgyl8vkbkqjwps962ygmv2mcc5dbqzgn963"
     },
     "creamlinux": {
       "type": "Git",
@@ -75,9 +75,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "7d002241668a738df3973a6c07ef5d79e5508b24",
-      "url": "https://github.com/fufexan/nix-gaming/archive/7d002241668a738df3973a6c07ef5d79e5508b24.tar.gz",
-      "hash": "1za3ni5mzc1yjqw6q4k29bxdp3yajdbwzqg32msldn3zlawxprb2"
+      "revision": "6aa0613ecf363840e011006b05aefa094b78b053",
+      "url": "https://github.com/fufexan/nix-gaming/archive/6aa0613ecf363840e011006b05aefa094b78b053.tar.gz",
+      "hash": "0pz3smqcbsx77jwda53q2flsw0qn0491gqj2gybiv33px3a2d9pl"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",

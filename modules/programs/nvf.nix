@@ -77,6 +77,7 @@ in {
             ts.enable = true;
             lua.enable = true;
             python.enable = true;
+            typst.enable = true;
           };
 
           notes = {
