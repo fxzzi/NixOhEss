@@ -151,6 +151,7 @@ in {
             "blur, walker"
             "blur, wleave"
             "blur, bar-.*"
+            "blur, notifications"
             "ignorezero, launcher"
             "ignorezero, bar-.*"
             "xray 1, wleave"
