@@ -20,9 +20,10 @@
     nixosConfigurations = lib.genAttrs hosts mkSystem;
   };
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
+      # latest master is broken
       url = "github:feel-co/hjem/31f969f69f02b62e417bcc39571a605977cb89fa";
       inputs = {
         nixpkgs.follows = "nixpkgs";
