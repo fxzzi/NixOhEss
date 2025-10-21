@@ -59,6 +59,7 @@
       scanning.enable = false;
     };
     programs = {
+      adb.enable = true;
       mangohud = {
         enable = true;
         enableSessionWide = true;
