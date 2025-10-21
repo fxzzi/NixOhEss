@@ -113,6 +113,17 @@ in {
                   font-size: 11.5px;
                   font-weight: normal;
                 }
+
+                /* Hide the buttons next to mute and deafen */
+                div[class^=micButtonParent__] {
+                  button[role="switch"] {
+                    border-radius: var(--radius-sm) !important;
+
+                    ~ button {
+                      display: none;
+                    }
+                  }
+                }
               '';
           };
         };
