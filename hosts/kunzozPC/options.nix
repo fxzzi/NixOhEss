@@ -39,6 +39,7 @@
         scheduler = "scx_bpfland";
       };
 
+      hyprsunset.enable = true;
       hypridle = {
         enable = true;
         dpmsTimeout = 600;
