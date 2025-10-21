@@ -32,7 +32,7 @@
     ];
   };
   services.factorio = {
-    # enable = true;
+    enable = true;
     loadLatestSave = true;
     requireUserVerification = false;
     port = 25565;
