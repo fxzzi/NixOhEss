@@ -9,10 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5c52e66245dd934b7410cd0989b2980e4367ba79",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/5c52e66245dd934b7410cd0989b2980e4367ba79.tar.gz",
-      "hash": "0xpn36sl9ak8bdnabmckm8anl7fpkj081vr767dv340h20p3cp4k",
-      "frozen": true
+      "revision": "e96a0bf5afbc8f01b648a739bfd34379979c23cc",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/e96a0bf5afbc8f01b648a739bfd34379979c23cc.tar.gz",
+      "hash": "0fjzqrhdblcw07clsx3srkl5z373dr32hhhzf30k30i6g9hbgp6f"
     },
     "agenix": {
       "type": "Git",
@@ -51,7 +50,8 @@
       "submodules": false,
       "revision": "0e655b4e3ce4c5a425c656643eb018951065ca86",
       "url": null,
-      "hash": "1hvpmx2q54a8787ppqy9xicsgghfrpq1y968b9w7rqf0sd01kv4r"
+      "hash": "1hvpmx2q54a8787ppqy9xicsgghfrpq1y968b9w7rqf0sd01kv4r",
+      "frozen": true
     },
     "niqspkgs": {
       "type": "Git",
@@ -75,9 +75,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "6fa7d37d878cceeaa3c88e2606dbadf15c8022ad",
-      "url": "https://github.com/fufexan/nix-gaming/archive/6fa7d37d878cceeaa3c88e2606dbadf15c8022ad.tar.gz",
-      "hash": "0dxnf5xz83999naprxasn0034jgy1dw2sl7zwxn2i1p19crhqapw"
+      "revision": "1ef1f1b6bee55ec3ca76d8094ebc699585eb5005",
+      "url": "https://github.com/fufexan/nix-gaming/archive/1ef1f1b6bee55ec3ca76d8094ebc699585eb5005.tar.gz",
+      "hash": "1f1gqsca7b0sl51p3vblxdk4d9w3vcdr9a6ilsmkrwlvi26v563a"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
