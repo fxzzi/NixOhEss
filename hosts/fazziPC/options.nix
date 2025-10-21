@@ -33,7 +33,7 @@
     };
     services = {
       ags.enable = true;
-      kdeconnect.enable = true;
+      # kdeconnect.enable = true;
       nvidia_oc = {
         enable = true;
         maxClock = 1830;
