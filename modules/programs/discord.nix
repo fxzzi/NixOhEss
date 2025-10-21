@@ -114,13 +114,20 @@ in {
                   font-weight: normal;
                 }
 
-                /* Hide the buttons next to mute and deafen */
-                div[class^=micButtonParent__] {
-                  button[role="switch"] {
-                    border-radius: var(--radius-sm) !important;
+                /* Hide Discover button */
+                div[data-list-item-id="guildsnav___guild-discover-button"] {
+                  display: none !important;
+                }
 
-                    ~ button {
-                      display: none;
+                /* Hide the buttons next to mute and deafen */
+                div[class^=buttons__] {
+                  gap: 2px;
+                  div[class^=micButtonParent__] {
+                    button[role="switch"] {
+                      border-radius: var(--radius-sm) !important;
+                      ~ button {
+                        display: none;
+                      }
                     }
                   }
                 }
