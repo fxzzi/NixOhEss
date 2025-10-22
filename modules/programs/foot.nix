@@ -54,10 +54,11 @@ in {
         };
       };
     };
-    xdg.mime.defaultApplications = {
-      "application/x-terminal-emulator" = "foot.desktop";
-      "x-terminal-emulator" = "foot.desktop";
-      "x-scheme-handler/terminal" = "foot.desktop";
+    xdg.terminal-exec = {
+      enable = true;
+      settings.default = [
+        "foot.desktop"
+      ];
     };
   };
 }
