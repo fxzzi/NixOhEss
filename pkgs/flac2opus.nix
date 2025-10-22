@@ -6,7 +6,7 @@ writeShellApplication {
   name = "flac2opus";
   runtimeInputs = [opusTools];
   text = ''
-    for file in **/*.flac; do
+    for file in *.flac **/*.flac; do
       output="''${file%.flac}.ogg"
       echo "Converting: $file -> $output"
       if opusenc --bitrate 128 "$file" "$output"; then
