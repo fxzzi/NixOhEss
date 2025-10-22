@@ -84,6 +84,10 @@ in {
         Restart = "always";
         ExecStart = "${getExe pkgs.hypridle}";
       };
+      path = [
+        config.programs.hyprland.package # for hyprctl
+        pkgs.systemd # for loginctl
+      ];
     };
   };
 }
