@@ -140,6 +140,8 @@ in {
             initial_workspace_tracking = 0;
             vrr = 2;
             anr_missed_pings = 5; # by default, ANR dialog shows up way too aggressively.
+            mouse_move_enables_dpms = true;
+            key_press_enables_dpms = true;
             middle_click_paste = 0;
           };
           ecosystem = {
