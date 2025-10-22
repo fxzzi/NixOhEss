@@ -6,7 +6,7 @@ writeShellApplication {
   name = "flac2vorbis";
   runtimeInputs = [vorbis-tools];
   text = ''
-    for file in **/*.flac; do
+    for file in *.flac **/*.flac; do
       output="''${file%.flac}.ogg"
       echo "Converting: $file -> $output"
       if oggenc -q 7 "$file" -o "$output"; then
