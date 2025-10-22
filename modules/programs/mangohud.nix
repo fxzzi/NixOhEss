@@ -113,6 +113,7 @@ in {
           cpu_temp
           cpu_power
           ram
+          winesync
         '';
       };
     };
