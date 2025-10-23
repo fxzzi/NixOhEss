@@ -6,7 +6,7 @@
   xLib,
   ...
 }: let
-  inherit (lib) mkOption types mkDefault getExe getExe' optionalAttrs mkIf optionals;
+  inherit (lib) mkOption types mkDefault getExe optionalAttrs mkIf optionals;
   inherit (builtins) concatLists genList;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
