@@ -48,7 +48,8 @@
       };
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      # url = "github:hyprwm/Hyprland";
+      url = "github:gulafaran/Hyprland/fifo";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
