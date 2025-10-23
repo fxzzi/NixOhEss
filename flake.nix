@@ -13,7 +13,6 @@
       fix
       ;
 
-    hosts = builtins.attrNames (builtins.readDir ./hosts);
     pins = import ./npins;
     xLib = import ./lib nixpkgs.lib;
     systems = import inputs.systems;
@@ -31,13 +30,17 @@
     mkPackages = system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in
+      # some of our pkgs depend on each other, so use fix and pass self through
       fix (self:
-        packagesFromDirectoryRecursive {
-          callPackage = pkgs.lib.callPackageWith (pkgs // self // {inherit pins;});
-          directory = ./pkgs;
-        });
+        # recursively callPackage every drv in ./pkgs
+          packagesFromDirectoryRecursive {
+            # pass through our npins sources as well
+            callPackage = pkgs.lib.callPackageWith (pkgs // self // {inherit pins;});
+            directory = ./pkgs;
+          });
   in {
-    nixosConfigurations = genAttrs hosts mkSystem;
+    # parse all dirs in ./hosts, generate a nixosConfiguration for each
+    nixosConfigurations = genAttrs builtins.attrNames (builtins.readDir ./hosts) mkSystem;
     packages = forEachSystem mkPackages;
   };
   inputs = {
