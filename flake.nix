@@ -24,10 +24,9 @@
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
       # latest master is broken
-      url = "github:feel-co/hjem/31f969f69f02b62e417bcc39571a605977cb89fa";
+      url = "github:feel-co/hjem";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        smfh.follows = ""; # we use smfh from nixpkgs
         ndg.follows = ""; # sorry, docs!
       };
     };
@@ -39,7 +38,7 @@
       };
     };
     nvf = {
-      url = "github:NotAShelf/nvf";
+      url = "github:NotAShelf/nvf/ea3ee477fa1814352b30d114f31bf4895eed053e";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
