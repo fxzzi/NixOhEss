@@ -56,13 +56,14 @@
       };
     };
     nvf = {
-      url = "github:NotAShelf/nvf/ea3ee477fa1814352b30d114f31bf4895eed053e";
+      url = "github:NotAShelf/nvf/v0.8";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };
     };
     stash = {
+      # pin to 0.3.1 for now
       url = "github:NotAShelf/stash/v0.3.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
