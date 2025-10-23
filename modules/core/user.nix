@@ -29,7 +29,7 @@ in {
         enable = true;
         # These are available no matter the host.
         packages = with pkgs; [
-          pkgs.npins
+          npins
           qpwgraph
           loupe
           wget

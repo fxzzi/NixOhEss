@@ -1,23 +1,35 @@
 {
   description = "fazzi's nixos conf";
-  outputs = inputs: let
-    inherit (inputs.nixpkgs) lib;
-    npins = import ./npins;
+  outputs = {self, ...} @ inputs: let
+    inherit (inputs) nixpkgs;
+    inherit (nixpkgs) lib;
+    inherit (lib) genAttrs nixosSystem packagesFromDirectoryRecursive;
+    pins = import ./npins;
     xLib = import ./lib lib;
+    systems = import inputs.systems;
+    forEachSystem = nixpkgs.lib.genAttrs systems;
+    pkgsForEach = nixpkgs.legacyPackages;
     mkSystem = hostName:
-      lib.nixosSystem {
+      nixosSystem {
         specialArgs = {
-          inherit inputs npins xLib hostName;
+          inherit self inputs pins xLib hostName;
         };
         modules = [
           ./modules
-          ./pkgs
           ./hosts/${hostName}
         ];
       };
     hosts = ["fazziPC" "fazziGO" "kunzozPC"];
   in {
-    nixosConfigurations = lib.genAttrs hosts mkSystem;
+    nixosConfigurations = genAttrs hosts mkSystem;
+    packages = forEachSystem (system: let
+      pkgs = pkgsForEach.${system};
+    in
+      packagesFromDirectoryRecursive {
+        inherit (pkgs) callPackage;
+        newScope = extra: pkgs.newScope (extra // {inherit pins;});
+        directory = ./pkgs;
+      });
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

@@ -1,7 +1,8 @@
 {
+  self,
   pkgs,
   lib,
-  npins,
+  pins,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -16,8 +17,8 @@
       qbittorrent-enhanced
       nvtopPackages.amd
       sgdboop
-      customPkgs.stremio-enhanced
-      (callPackage npins.creamlinux {})
+      self.packages.${pkgs.system}.stremio-enhanced
+      (callPackage pins.creamlinux {})
     ];
     xdg.config.files."hypr/hyprland.conf" = {
       value = {

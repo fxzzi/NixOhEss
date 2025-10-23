@@ -45,7 +45,7 @@ in {
       package = hyprlandSet.hyprland;
       portalPackage = hyprlandSet.xdg-desktop-portal-hyprland;
     };
-    hj.xdg.config.files."zsh/.zprofile".text = mkIf cfg.autoStart autoStartCmd;
+    hj.xdg.config.files."zsh/.zprofile" = mkIf cfg.autoStart {text = autoStartCmd;};
     services.dbus.implementation = "broker";
     systemd.user.targets.hyprland-session = {
       description = "Hyprland compositor session";
