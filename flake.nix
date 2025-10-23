@@ -1,7 +1,10 @@
 {
   description = "fazzi's nixos conf";
-  outputs = {self, ...} @ inputs: let
-    inherit (inputs) nixpkgs;
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     inherit (nixpkgs) lib;
     inherit (lib) genAttrs nixosSystem packagesFromDirectoryRecursive;
     pins = import ./npins;
@@ -19,9 +22,8 @@
           ./hosts/${hostName}
         ];
       };
-    hosts = ["fazziPC" "fazziGO" "kunzozPC"];
   in {
-    nixosConfigurations = genAttrs hosts mkSystem;
+    nixosConfigurations = genAttrs (builtins.attrNames (builtins.readDir ./hosts)) mkSystem;
     packages = forEachSystem (system: let
       pkgs = pkgsForEach.${system};
     in
@@ -35,7 +37,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
     hjem = {
-      # latest master is broken
       url = "github:feel-co/hjem";
       inputs = {
         nixpkgs.follows = "nixpkgs";
