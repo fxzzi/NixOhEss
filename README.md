@@ -32,6 +32,7 @@ and [hjem](https://github.com/feel-co/hjem).
   in the host specific config.
 - [`hosts/`](./hosts/): The configurations for each host is contained here. This
   is where the hardware configurations and host-specific modules are kept.
+  [`pkgs/`](./pkgs/): Contains package derivations used throughout the flake.
 
 ## SPECIAL THANKS
 
