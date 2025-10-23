@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   config,
   lib,
@@ -26,7 +27,7 @@ in {
         '';
         "ncmpcpp/config".text = ''
           autocenter_mode=yes
-          execute_on_song_change=${getExe pkgs.customPkgs.mpd-notif}
+          execute_on_song_change=${getExe self.packages.${pkgs.system}.mpd-notif}
           external_editor=nvim
           header_visibility=no
           lines_scrolled=1

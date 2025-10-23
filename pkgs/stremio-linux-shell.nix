@@ -1,7 +1,6 @@
 {
   lib,
   rustPlatform,
-  fetchFromGitHub,
   makeWrapper,
   openssl,
   pkg-config,
@@ -12,21 +11,15 @@
   webkitgtk_6_0,
   libsoup_3,
   nodejs,
+  pins,
   ...
 }:
-rustPlatform.buildRustPackage (finalAttrs: {
+rustPlatform.buildRustPackage {
   pname = "stremio-linux-shell";
-  rev = "28fc1cf2d3aba97c5bdd4599a269cf4e241a687a";
-  version = "0-unstable-${builtins.substring 0 8 finalAttrs.rev}";
+  version = "0-unstable-${builtins.substring 0 8 pins.stremio-linux-shell.revision}";
 
-  src = fetchFromGitHub {
-    owner = "Stremio";
-    repo = "stremio-linux-shell";
-    inherit (finalAttrs) rev;
-    sha256 = "sha256-cOD9sjgyZMBG7kj3J3QqIYwHr4hEckPCZ4BwFenoTvQ=";
-  };
-
-  cargoHash = "sha256-f4TpTqejR55KPSGUi47UGtHgQESUC4tnwCruy7ZfdrY=";
+  src = pins.stremio-linux-shell;
+  cargoLock.lockFile = "${pins.stremio-linux-shell}/Cargo.lock";
 
   buildInputs = [
     webkitgtk_6_0
@@ -63,4 +56,4 @@ rustPlatform.buildRustPackage (finalAttrs: {
     maintainers = lib.maintainers.fazzi;
     platforms = lib.platforms.linux;
   };
-})
+}

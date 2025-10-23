@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{self, pkgs, ...}: {
   system.stateVersion = "25.05";
   imports = [
     ./hardware-configuration.nix
@@ -24,11 +24,11 @@
       dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
-      customPkgs.transcode
-      customPkgs.stremio-enhanced
-      customPkgs.eden
-      customPkgs.flac2opus
-      customPkgs.flac2vorbis
+      self.packages.${pkgs.system}.transcode
+      self.packages.${pkgs.system}.stremio-enhanced
+      self.packages.${pkgs.system}.eden
+      self.packages.${pkgs.system}.flac2opus
+      self.packages.${pkgs.system}.flac2vorbis
     ];
   };
   services.factorio = {

@@ -1,8 +1,9 @@
 {
+  self,
   config,
   lib,
   pkgs,
-  npins,
+  pins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf mkMerge getExe';
@@ -16,8 +17,8 @@ in {
   config = mkIf cfg.enable {
     nixpkgs.config.cudaSupport = true; # enable cuda support in packages which need it
     nixpkgs.overlays = [
-      (final: _: {
-        egl-wayland = final.customPkgs.egl-wayland2;
+      (_: _: {
+        egl-wayland = self.packages.${pkgs.system}.egl-wayland2;
       })
     ];
     services.xserver.videoDrivers = ["nvidia"];
@@ -46,8 +47,8 @@ in {
         enable32Bit = true;
         extraPackages = [
           (pkgs.nvidia-vaapi-driver.overrideAttrs {
-            version = "0-unstable-${builtins.substring 0 8 npins.nvidia-vaapi-driver.revision}";
-            src = npins.nvidia-vaapi-driver;
+            version = "0-unstable-${builtins.substring 0 8 pins.nvidia-vaapi-driver.revision}";
+            src = pins.nvidia-vaapi-driver;
           })
         ];
       };

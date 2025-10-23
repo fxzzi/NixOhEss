@@ -1,26 +1,14 @@
 {
+  self,
   lib,
   config,
   pkgs,
-  npins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  inherit (builtins) substring;
   cfg = config.cfg.programs.foot;
-  pin = npins.foot;
   inherit (pkgs) symlinkJoin;
-  foot = pkgs.foot.overrideAttrs {
-    pname = "foot-transparency";
-    version = "0-unstable-${substring 0 8 pin.revision}";
-    src = pkgs.fetchFromGitea {
-      domain = "codeberg.org";
-      owner = "fazzi";
-      repo = "foot";
-      rev = pin.revision;
-      sha256 = pin.hash;
-    };
-  };
+  foot = self.packages.${pkgs.system}.foot-transparency-git;
 in {
   options.cfg.programs.foot.enable = mkEnableOption "foot";
   config = mkIf cfg.enable {
