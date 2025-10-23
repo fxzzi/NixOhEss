@@ -5,33 +5,40 @@
     nixpkgs,
     ...
   } @ inputs: let
-    inherit (nixpkgs) lib;
-    inherit (lib) genAttrs nixosSystem packagesFromDirectoryRecursive;
+    inherit
+      (nixpkgs.lib)
+      genAttrs
+      nixosSystem
+      packagesFromDirectoryRecursive
+      fix
+      ;
+
+    hosts = builtins.attrNames (builtins.readDir ./hosts);
     pins = import ./npins;
-    xLib = import ./lib lib;
+    xLib = import ./lib nixpkgs.lib;
     systems = import inputs.systems;
-    forEachSystem = nixpkgs.lib.genAttrs systems;
-    pkgsForEach = nixpkgs.legacyPackages;
+    forEachSystem = genAttrs systems;
+
     mkSystem = hostName:
       nixosSystem {
-        specialArgs = {
-          inherit self inputs pins xLib hostName;
-        };
+        specialArgs = {inherit self inputs pins xLib hostName;};
         modules = [
           ./modules
           ./hosts/${hostName}
         ];
       };
-  in {
-    nixosConfigurations = genAttrs (builtins.attrNames (builtins.readDir ./hosts)) mkSystem;
-    packages = forEachSystem (system: let
-      pkgs = pkgsForEach.${system};
+
+    mkPackages = system: let
+      pkgs = nixpkgs.legacyPackages.${system};
     in
-      packagesFromDirectoryRecursive {
-        inherit (pkgs) callPackage;
-        newScope = extra: pkgs.newScope (extra // {inherit pins;});
-        directory = ./pkgs;
-      });
+      fix (self:
+        packagesFromDirectoryRecursive {
+          callPackage = pkgs.lib.callPackageWith (pkgs // self // {inherit pins;});
+          directory = ./pkgs;
+        });
+  in {
+    nixosConfigurations = genAttrs hosts mkSystem;
+    packages = forEachSystem mkPackages;
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
