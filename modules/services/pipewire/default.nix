@@ -32,8 +32,4 @@ in {
     # only enable if scx is disabled
     security.rtkit.enable = !config.cfg.services.scx.enable;
   };
-  imports = [
-    ./rnnoise.nix
-    ./deepfilter.nix
-  ];
 }

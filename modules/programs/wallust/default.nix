@@ -8,9 +8,6 @@
   cfg = config.cfg.programs.wallust;
 in {
   options.cfg.programs.wallust.enable = mkEnableOption "wallust";
-  imports = [
-    ./integrations.nix
-  ];
   config = mkIf cfg.enable {
     hj = {
       packages = with pkgs; [

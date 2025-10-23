@@ -3,6 +3,7 @@
   pins,
 }: let
   newMangohud = mangohud.overrideAttrs {
+    pname = "mangohud-git";
     version = "0-unstable-${builtins.substring 0 8 pins.MangoHud.revision}";
     src = pins.MangoHud;
   };

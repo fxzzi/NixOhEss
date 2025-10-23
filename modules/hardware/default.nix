@@ -1,12 +1,4 @@
 {...}: {
-  imports = [
-    ./rules.nix
-    ./scanning.nix
-    ./amdgpu.nix
-    ./xone.nix
-    ./nvidia.nix
-  ];
-
   config = {
     # enable microcode updates n stuff
     hardware.enableRedistributableFirmware = true;
