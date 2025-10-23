@@ -11,7 +11,8 @@
   attrsToLines = f: attrs: concatMapAttrsStringSep "\n" f attrs;
   # thank you diniamo for this cool pref setup!
   # https://github.com/diniamo/niqs/blob/main/modules/workstation/librewolf/default.nix
-  prefs = import ./prefs.nix {inherit newTabPage config;};
+  # NOTE: this file begins with an _ so that my recursive importer in `../../default.nix` ignores it.
+  prefs = import ./_prefs.nix {inherit newTabPage config;};
   prefValue = pref:
     toJSON (
       if isBool pref || isInt pref || isString pref

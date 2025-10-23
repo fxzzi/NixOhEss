@@ -25,7 +25,7 @@ in {
         allow-import-from-derivation = false; # don't allow IFD, they're slow asf
         accept-flake-config = true; # allow using substituters from flake.nix
         use-xdg-base-directories = true; # clean up ~
-        download-buffer-size = 524288000; # 500MiB. avoids warnings with full buffer
+        download-buffer-size = 500 * 1024 * 1024; # 500MiB. avoids warnings with full buffer
         allowed-users = ["@wheel"];
         trusted-users = ["@wheel"];
         # Disable channels and add the inputs to the registry
@@ -44,10 +44,10 @@ in {
     nixpkgs.config = {
       allowUnfree = true; # not too fussed as long as app works on linux tbh
       # these packages are marked as insecure but we still require them
-      permittedInsecurePackages = [
-        "qtwebengine-5.15.19"
-        "mbedtls-2.28.10"
-      ];
+      # permittedInsecurePackages = [
+      #   "qtwebengine-5.15.19"
+      #   "mbedtls-2.28.10"
+      # ];
     };
     documentation.nixos.enable = false; # remove useless docs .desktop
   };

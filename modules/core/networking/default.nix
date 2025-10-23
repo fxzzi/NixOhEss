@@ -43,7 +43,4 @@ in {
       dnsovertls = "opportunistic";
     };
   };
-  imports = [
-    ./networkmanager.nix
-  ];
 }
