@@ -1,4 +1,8 @@
-{self, pkgs, ...}: {
+{
+  self,
+  pkgs,
+  ...
+}: {
   system.stateVersion = "25.05";
   imports = [
     ./hardware-configuration.nix
