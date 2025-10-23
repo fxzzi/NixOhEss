@@ -23,7 +23,7 @@ in {
   ];
   config = {
     hjem = {
-      linker = pkgs.smfh;
+      linker = inputs.hjem.packages.${pkgs.system}.smfh;
       clobberByDefault = true;
       users.${username} = {
         enable = true;
