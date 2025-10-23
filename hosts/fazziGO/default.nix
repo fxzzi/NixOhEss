@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   config,
   ...
@@ -12,7 +13,7 @@
     hj = {
       packages = with pkgs; [
         telegram-desktop
-        customPkgs.stremio-enhanced
+        self.packages.${pkgs.system}.stremio-enhanced
         # uni stuff
         processing
         logisim-evolution

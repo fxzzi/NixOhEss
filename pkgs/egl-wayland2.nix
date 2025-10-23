@@ -1,7 +1,6 @@
 {
   lib,
   stdenv,
-  fetchFromGitHub,
   eglexternalplatform,
   pkg-config,
   meson,
@@ -13,18 +12,13 @@
   libgbm,
   wayland,
   wayland-protocols,
+  pins,
 }:
-stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation {
   pname = "egl-wayland2";
-  rev = "eb31eb3674829a12e8b49dee17b5f3d3ab92d31d";
-  version = "0-unstable-${builtins.substring 0 8 finalAttrs.rev}";
+  version = "0-unstable-${builtins.substring 0 8 pins.egl-wayland2.revision}";
 
-  src = fetchFromGitHub {
-    owner = "NVIDIA";
-    repo = "egl-wayland2";
-    inherit (finalAttrs) rev;
-    hash = "sha256-+cEpOS5te0Hedx/5dyqUxLedkVjfcFPto15B/gdLboA=";
-  };
+  src = pins.egl-wayland2;
 
   nativeBuildInputs = [
     meson
@@ -53,4 +47,4 @@ stdenv.mkDerivation (finalAttrs: {
     platforms = lib.platforms.linux;
     maintainers = lib.maintainers.fazzi;
   };
-})
+}

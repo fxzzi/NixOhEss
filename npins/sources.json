@@ -40,17 +40,30 @@
       "hash": "1phf048dfz0g8549xqhsf7jlhc2s8nxvc33fg5d9wzx25jbsv58a",
       "frozen": true
     },
+    "egl-wayland2": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NVIDIA",
+        "repo": "egl-wayland2"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "e16cb0ffd8ff53a2ece9ef899f085120dc32a862",
+      "url": "https://github.com/NVIDIA/egl-wayland2/archive/e16cb0ffd8ff53a2ece9ef899f085120dc32a862.tar.gz",
+      "hash": "0ckwc417lxn1fmfqhycb4iwvcj16kl8jpskf0p1gydbmsgpgywr2"
+    },
     "foot": {
       "type": "Git",
       "repository": {
         "type": "Git",
-        "url": "https://codeberg.org/fazzi/foot.git"
+        "url": "https://codeberg.org/dnkl/foot"
       },
-      "branch": "transparency_yipee",
+      "branch": "master",
       "submodules": false,
-      "revision": "c22ecce826b4123e453249303e2b4f5b6aacf722",
+      "revision": "558760446932f0f22c794084285cf998462dd706",
       "url": null,
-      "hash": "1wxxkqwgb60ibdqvbhg4mjlh2nkv1y115rk64vx54d2akikk72qj"
+      "hash": "1wcxzjww42rc478zjb89i0mi6q32y796kjshdj4h5xk4w5qadim7"
     },
     "niqspkgs": {
       "type": "Git",
@@ -116,6 +129,19 @@
       "revision": "fa15cbe32d84c77cd7cb0dfb3f33bb1c1a918e5c",
       "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=fa15cbe32d84c77cd7cb0dfb3f33bb1c1a918e5c",
       "hash": "0nljaxyg6z50dfj14p2hnc67jbsi67rqpszdps99vrcn1rk4p8w2"
+    },
+    "stremio-linux-shell": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Stremio",
+        "repo": "stremio-linux-shell"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "28fc1cf2d3aba97c5bdd4599a269cf4e241a687a",
+      "url": "https://github.com/Stremio/stremio-linux-shell/archive/28fc1cf2d3aba97c5bdd4599a269cf4e241a687a.tar.gz",
+      "hash": "1x2fx3liaw40cz146wj4i2phg31159s2gxs8xr3c0r1j72rgvq3h"
     },
     "walls": {
       "type": "Git",

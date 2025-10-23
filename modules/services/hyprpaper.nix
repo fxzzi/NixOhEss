@@ -3,7 +3,7 @@
   xLib,
   pkgs,
   config,
-  npins,
+  pins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
@@ -12,7 +12,7 @@ in {
   options.cfg.services.hyprpaper.enable = mkEnableOption "hyprpaper";
   config = mkIf cfg.enable {
     hj = {
-      xdg.data.files."walls".source = "${npins.walls}/images"; # wallpapers
+      xdg.data.files."walls".source = "${pins.walls}/images"; # wallpapers
 
       packages = [pkgs.hyprpaper];
       xdg.config.files."hypr/hyprpaper.conf" = {

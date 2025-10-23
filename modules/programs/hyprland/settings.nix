@@ -1,4 +1,5 @@
 {
+  self,
   lib,
   pkgs,
   config,
@@ -12,9 +13,9 @@
 
   brightness =
     if multiMonitor
-    then getExe (pkgs.customPkgs.brightness.override {hyprland = config.programs.hyprland.package;})
-    else getExe pkgs.customPkgs.brightness-laptop;
-  screenshot = getExe (pkgs.customPkgs.screenshot.override {hyprland = config.programs.hyprland.package;});
+    then getExe (self.packages.${pkgs.system}.brightness.override {hyprland = config.programs.hyprland.package;})
+    else getExe self.packages.${pkgs.system}.brightness-laptop;
+  screenshot = getExe (self.packages.${pkgs.system}.screenshot.override {hyprland = config.programs.hyprland.package;});
 
   wsAnim =
     if multiMonitor
@@ -299,11 +300,11 @@ in {
               "$MOD SHIFT, E, exec, pkill wleave || wleave"
               "CTRL SHIFT, Escape, exec, foot btm"
               # extra schtuff
-              "$MOD, N, exec, ${getExe (pkgs.customPkgs.sunset.override {hyprland = config.programs.hyprland.package;})} 3000"
+              "$MOD, N, exec, ${getExe (self.packages.${pkgs.system}.sunset.override {hyprland = config.programs.hyprland.package;})} 3000"
               "$MOD, K, exec, pkill hyprpicker || ${getExe pkgs.hyprpicker} -r -a -n"
-              "$MOD, R, exec, ${getExe pkgs.customPkgs.random-wall}"
-              "$MOD SHIFT, R, exec, ${getExe pkgs.customPkgs.cycle-wall}"
-              "$MOD, J, exec, foot ${getExe pkgs.customPkgs.wall-picker}"
+              "$MOD, R, exec, ${getExe self.packages.${pkgs.system}.random-wall}"
+              "$MOD SHIFT, R, exec, ${getExe self.packages.${pkgs.system}.cycle-wall}"
+              "$MOD, J, exec, foot ${getExe self.packages.${pkgs.system}.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
               "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"
 
@@ -362,12 +363,12 @@ in {
 
           bindel = [
             # volume script
-            ", XF86AudioRaiseVolume, exec, ${getExe pkgs.customPkgs.audio} vol up 5"
-            ", XF86AudioLowerVolume, exec, ${getExe pkgs.customPkgs.audio} vol down 5"
-            ", XF86AudioMute, exec, ${getExe pkgs.customPkgs.audio} vol toggle"
-            ", XF86AudioMicMute, exec, ${getExe pkgs.customPkgs.audio} mic toggle"
-            "$MOD SHIFT, M,  exec, ${getExe pkgs.customPkgs.audio} mic toggle"
-            ", F20, exec, ${getExe pkgs.customPkgs.audio} mic toggle"
+            ", XF86AudioRaiseVolume, exec, ${getExe self.packages.${pkgs.system}.audio} vol up 5"
+            ", XF86AudioLowerVolume, exec, ${getExe self.packages.${pkgs.system}.audio} vol down 5"
+            ", XF86AudioMute, exec, ${getExe self.packages.${pkgs.system}.audio} vol toggle"
+            ", XF86AudioMicMute, exec, ${getExe self.packages.${pkgs.system}.audio} mic toggle"
+            "$MOD SHIFT, M,  exec, ${getExe self.packages.${pkgs.system}.audio} mic toggle"
+            ", F20, exec, ${getExe self.packages.${pkgs.system}.audio} mic toggle"
 
             # brightness script
             ", XF86MonBrightnessUp, exec, ${brightness} up 5"

@@ -2,13 +2,13 @@
   lib,
   config,
   pkgs,
-  npins,
+  pins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   inherit (pkgs) callPackage;
   cfg = config.cfg.services.ags;
-  pkg = callPackage "${npins.rags}/nix/package.nix" {
+  pkg = callPackage "${pins.rags}/nix/package.nix" {
     buildTypes = false;
     extraPackages = [
       pkgs.libgtop
