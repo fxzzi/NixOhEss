@@ -5,18 +5,12 @@
     nixpkgs,
     ...
   } @ inputs: let
-    inherit
-      (nixpkgs.lib)
-      genAttrs
-      nixosSystem
-      packagesFromDirectoryRecursive
-      fix
-      ;
+    inherit (nixpkgs.lib) fix genAttrs nixosSystem packagesFromDirectoryRecursive;
 
     pins = import ./npins;
     xLib = import ./lib nixpkgs.lib;
-    systems = import inputs.systems;
-    forEachSystem = genAttrs systems;
+    forEachSystem = genAttrs (import inputs.systems);
+    pkgsForEach = nixpkgs.legacyPackages;
 
     mkSystem = hostName:
       nixosSystem {
@@ -28,7 +22,7 @@
       };
 
     mkPackages = system: let
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = pkgsForEach.${system};
     in
       # some of our pkgs depend on each other, so use fix and pass self through
       fix (self:
@@ -40,7 +34,7 @@
           });
   in {
     # parse all dirs in ./hosts, generate a nixosConfiguration for each
-    nixosConfigurations = genAttrs builtins.attrNames (builtins.readDir ./hosts) mkSystem;
+    nixosConfigurations = genAttrs (builtins.attrNames (builtins.readDir ./hosts)) mkSystem;
     packages = forEachSystem mkPackages;
   };
   inputs = {
