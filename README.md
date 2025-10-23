@@ -29,24 +29,22 @@ and [hjem](https://github.com/feel-co/hjem).
   for my entire configuration.
 - [`modules/`](./modules/): This contains all host-agnostic modules which I use
   across all devices. A lot of the modules are optional, and can be configured
-  in the host specific config.
+  in the host specific config. All module files are imported automatically.
 - [`hosts/`](./hosts/): The configurations for each host is contained here. This
   is where the hardware configurations and host-specific modules are kept.
   [`pkgs/`](./pkgs/): Contains package derivations used throughout the flake.
 
 ## SPECIAL THANKS
 
-- [raf](https://github.com/NotAShelf) for creating
-  [nvf](https://github.com/NotAShelf/nvf), my current editor of choice, among
-  other projects like [watt](https://github.com/NotAShelf/watt) (for power
-  management)
-- [Rexie](https://github.com/Rexcrazy804/Zaphkiel) for helping out with npins
-  setup :)
-- [feel-co](https://github.com/feel-co) for making hjem and maintaining such a
-  minimal but powerful piece of software
-- [nezia](https://github.com/nezia1) for helping with making hjem easy
-- [Nobbz](https://github.com/NobbZ) for providing lots of support in the nixos
-  community discord server
+- [raf](https://github.com/NotAShelf) for creating lots of cool software like
+  [nvf](https://github.com/NotAShelf/nvf),
+  [watt](https://github.com/NotAShelf/watt),
+  [stash](https://github.com/NotAShelf/stash) and
+  [rags](https://github.com/NotAShelf/rags)
+- [feel-co](https://github.com/feel-co) for making hjem
+- [nezia](https://github.com/nezia1) for persuading me to use hjem
+- [Rexie](https://github.com/Rexcrazy804/Zaphkiel) for helping with npins :)
+- [NobbZ](https://github.com/NobbZ) for providing support when i was a beginner
 - the others which i wasn't able to mention here!!
 
 ## License

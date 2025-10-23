@@ -33,12 +33,6 @@ in {
       };
     };
   };
-  imports = [
-    ./env.nix
-    ./settings.nix
-    ./cursor.nix
-  ];
-
   config = mkIf cfg.enable {
     programs.hyprland = {
       enable = true;

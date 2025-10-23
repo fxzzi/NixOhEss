@@ -2,11 +2,11 @@
   writeShellApplication,
   ffmpeg,
   libnotify,
-  mpc-cli,
+  mpc,
 }:
 writeShellApplication {
   name = "mpd-notif";
-  runtimeInputs = [ffmpeg libnotify mpc-cli];
+  runtimeInputs = [ffmpeg libnotify mpc];
   text = ''
     music_dir="$HOME/Music"
     previewdir="$XDG_STATE_HOME/ncmpcpp/previews"

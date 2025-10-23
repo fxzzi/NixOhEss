@@ -39,8 +39,4 @@ in {
       };
     };
   };
-  imports = [
-    ./v4l2.nix
-    ./zenergy.nix
-  ];
 }

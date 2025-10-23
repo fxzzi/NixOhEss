@@ -74,9 +74,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "ca8c6d1b1ba39b12f08e839db3572ef08eb81be7",
-      "url": "https://github.com/diniamo/niqspkgs/archive/ca8c6d1b1ba39b12f08e839db3572ef08eb81be7.tar.gz",
-      "hash": "0z8im3l4g5invarppihddsh166x65qhq35zhr30gqxzvbm7z10sx"
+      "revision": "8e97ae847e72e67b49c23f3cf82e2ab788139cc7",
+      "url": "https://github.com/diniamo/niqspkgs/archive/8e97ae847e72e67b49c23f3cf82e2ab788139cc7.tar.gz",
+      "hash": "101p32kn60kq99x6fk1024pi02z72bkzn2mpwf3bkk4nikz7m2fk"
     },
     "nix-gaming": {
       "type": "Git",
