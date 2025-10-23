@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  npins,
+  pins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -11,8 +11,8 @@
   otd = config.cfg.services.opentabletdriver.enable;
   # osu!lazer needs to be up to date. fuf's nix-gaming repo
   # updates it faster and more regularly than nixpkgs.
-  osu = callPackage "${npins.nix-gaming}/pkgs/osu-lazer-bin" {
-    osu-mime = callPackage "${npins.nix-gaming}/pkgs/osu-mime" {};
+  osu = callPackage "${pins.nix-gaming}/pkgs/osu-lazer-bin" {
+    osu-mime = callPackage "${pins.nix-gaming}/pkgs/osu-mime" {};
     # 64 quantum is pretty low. My PC can handle it through my IEMs,
     # but not my speakers. Provides theoretical latency of 1.46ms.
     pipewire_latency = "64/44100";

@@ -1,12 +1,12 @@
 {
+  self,
   config,
   lib,
   pkgs,
-  npins,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf;
-  inherit (builtins) substring toString;
+  inherit (builtins) toString;
   cfg = config.cfg.programs.mangohud;
 
   fpsLimit = let
@@ -16,22 +16,6 @@
     then rr
     # NOTE:https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
     else (rr - (rr * rr / 4096));
-
-  # override MangoHud to latest git until next release.
-  # fixes keybinds on native wayland games, and avoids mangohud
-  # showing up on all gtk4 apps (and mpv).
-  mangohud = pkgs.mangohud.overrideAttrs {
-    version = "0-unstable-${substring 0 8 npins.MangoHud.revision}";
-    src = npins.MangoHud;
-  };
-  package = mangohud.override {
-    mangohud32 = pkgs.pkgsi686Linux.mangohud.overrideAttrs {
-      version = "0-unstable-${substring 0 8 npins.MangoHud.revision}";
-      src = npins.MangoHud;
-    };
-    gamescopeSupport = config.cfg.programs.gamescope.enable;
-    nvidiaSupport = config.cfg.hardware.nvidia.enable;
-  };
 in {
   options.cfg.programs.mangohud = {
     enable = mkEnableOption "mangohud";
@@ -54,12 +38,12 @@ in {
       "MANGOHUD" = "1";
     };
     hj = {
-      packages = [package];
+      packages = [self.packages.${pkgs.system}.mangohud-git];
       xdg.config.files = {
         "MangoHud/MangoHud.conf".text = ''
           blacklist=mpv
           font_size=20
-          font_file=${pkgs.customPkgs.ioshelfka-term}/share/fonts/truetype/IoshelfkaTerm-Bold.ttf
+          font_file=${self.packages.${pkgs.system}.ioshelfka-term}/share/fonts/truetype/IoshelfkaTerm-Bold.ttf
           text_outline_thickness=1
           cellpadding_y=-0.2
           fps_limit=${toString fpsLimit},0
