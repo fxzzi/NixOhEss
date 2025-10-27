@@ -28,6 +28,14 @@
       dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
+      (retroarch.withCores (cores:
+        with cores; [
+          bsnes
+          beetle-psx-hw
+          genesis-plus-gx
+          melonds
+          mupen64plus
+        ]))
       self.packages.${pkgs.system}.transcode
       self.packages.${pkgs.system}.stremio-enhanced
       self.packages.${pkgs.system}.eden

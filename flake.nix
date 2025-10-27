@@ -64,7 +64,7 @@
     };
     stash = {
       # pin to 0.3.1 for now
-      url = "github:NotAShelf/stash/v0.3.1";
+      url = "github:NotAShelf/stash/notashelf/push-rnnzunzyvynn";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     watt = {

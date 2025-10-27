@@ -41,6 +41,10 @@
     "class:^(org.eden_emu.eden)$"
     "class:^(hollow_knight.x86_64)$"
     "class:^(Terraria.bin.x86_64)$"
+    "class:^(Rosalie's Mupen GUI)$"
+    "class:^(sm64coopdx)$"
+    "class:^(retroarch)$" # xwl
+    "class:^(com.libretro.RetroArch)$" # wl
   ];
 in {
   options.cfg.programs = {
@@ -78,6 +82,7 @@ in {
           ];
 
           exec-shutdown = [
+            "pkill -9 Discord" # discord loves to hang instead of close nicely.
             "systemctl --user stop hyprland-session.target"
           ];
           monitor = [
