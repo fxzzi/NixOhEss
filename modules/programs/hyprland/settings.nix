@@ -6,15 +6,16 @@
   xLib,
   ...
 }: let
-  inherit (lib) mkOption types mkDefault getExe optionalAttrs mkIf optionals;
+  inherit (lib) mkOption mkEnableOption types mkDefault getExe optionalAttrs mkIf optionals;
   inherit (builtins) concatLists genList;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
 
   brightness =
-    if multiMonitor
-    then getExe (self.packages.${pkgs.system}.brightness.override {hyprland = config.programs.hyprland.package;})
-    else getExe self.packages.${pkgs.system}.brightness-laptop;
+    if cfg.laptop
+    then getExe self.packages.${pkgs.system}.brightness-laptop
+    else getExe (self.packages.${pkgs.system}.brightness.override {hyprland = config.programs.hyprland.package;});
+
   screenshot = getExe (self.packages.${pkgs.system}.screenshot.override {hyprland = config.programs.hyprland.package;});
 
   wsAnim =
@@ -58,6 +59,9 @@ in {
         type = types.nullOr types.str;
         default = null;
         description = "Sets the secondary monitor for hypr*.";
+      };
+      laptop = mkEnableOption {
+        description = "Use laptop brightness";
       };
     };
   };
