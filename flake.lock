@@ -223,11 +223,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1761428743,
-        "narHash": "sha256-9wv93vajGGfEvkfKC2X6SWK9WknsnTT+dHU6vPoYJeU=",
+        "lastModified": 1761582305,
+        "narHash": "sha256-qR8M9WN3beavxFEXDCOUED/3Bx7g+btBGUm8qkRRZeg=",
         "owner": "gulafaran",
         "repo": "Hyprland",
-        "rev": "b188e1b6d6ada307767570c85e7bcc8c5e50ab0e",
+        "rev": "cdbba8c3a0b65f4ff3df891b3f8c4a8318ac21d7",
         "type": "github"
       },
       "original": {
@@ -554,16 +554,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1758280397,
-        "narHash": "sha256-s1/2Ur6dn8uEYU/g1MkNV4er8PDQPKZzPnE7La5hG2M=",
+        "lastModified": 1761552674,
+        "narHash": "sha256-lRigOUaKNt40yfomi0FQx8X4EjX628tuiOkwuWWD+Wk=",
         "owner": "NotAShelf",
         "repo": "stash",
-        "rev": "a70c7d7014e4757434e36622904de28b6b719567",
+        "rev": "c95d9a4567e925cf74f11e9f59f4bf7aa8f900e9",
         "type": "github"
       },
       "original": {
         "owner": "NotAShelf",
-        "ref": "v0.3.1",
+        "ref": "notashelf/push-rnnzunzyvynn",
         "repo": "stash",
         "type": "github"
       }
