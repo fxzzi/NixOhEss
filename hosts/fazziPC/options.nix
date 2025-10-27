@@ -75,18 +75,20 @@
       hyprsunset.enable = true;
       xdph.enable = true;
       dunst.enable = true;
-      # greetd.enable = true;
-      getty-tty1.onlyPassword = true;
+      greetd.enable = true;
+      # getty-tty1.onlyPassword = true;
 
       printing.enable = true;
     };
     hardware.scanning.enable = false;
     programs = {
+      # gamescope.enable = true;
       osu.enable = true;
       smoothScroll.enable = false;
       proton-ge = {
         enable = true;
         ntsync = true;
+        # nativeWayland = true;
       };
       mangohud = {
         enable = true;
@@ -141,7 +143,7 @@
         defaultMonitor = "DP-2";
         secondaryMonitor = "DP-3";
         useGit = true;
-        autoStart = true;
+        # autoStart = true;
       };
       hyprlock.enable = true;
       wallust.enable = true;

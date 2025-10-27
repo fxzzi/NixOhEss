@@ -80,4 +80,7 @@
   # enable compact ui
   "browser.compactmode.show" = true;
   "browser.uidensity" = 1;
+
+  # allow theming
+  "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 }
