@@ -13,10 +13,7 @@
 in {
   options.cfg.services.stash.enable = mkEnableOption "stash";
   config = mkIf cfg.enable {
-    hj.packages = [
-      stash
-      pkgs.wl-clipboard
-    ];
+    hj.packages = [stash];
     systemd.user.services.stash = {
       enable = true;
       after = ["graphical-session.target"];
