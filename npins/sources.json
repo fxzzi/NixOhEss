@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "8ac5469d67b8c197832575db87f6bde38032a947",
-      "url": "https://github.com/fufexan/nix-gaming/archive/8ac5469d67b8c197832575db87f6bde38032a947.tar.gz",
-      "hash": "149my9lcjpjraf48f5zkl3vsk77inidqckfciljmhfi45i0xgby8"
+      "revision": "2cc4c43e456f561ac26aa2052133e8e7bbf0efdc",
+      "url": "https://github.com/fufexan/nix-gaming/archive/2cc4c43e456f561ac26aa2052133e8e7bbf0efdc.tar.gz",
+      "hash": "061zs0wcjjfrl3qjgcld2h7n12b36grijyrjhacc9kqr68fgdhbf"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -152,9 +152,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "5bedc0b9f88f4f9fcb0000244853cf84e4415251",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=5bedc0b9f88f4f9fcb0000244853cf84e4415251",
-      "hash": "0112ga55h15iah2rgxh4a0l0s68hqfkcb453d8nk5i0b78gcm49b"
+      "revision": "c068ada35b36d1fac52b641a85abbe38f6c8a0c5",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=c068ada35b36d1fac52b641a85abbe38f6c8a0c5",
+      "hash": "0kr5d089qagi7k9j5szxs395mwlv7sfc8qyly5sz0wpjvd6w3yk9"
     }
   },
   "version": 5
