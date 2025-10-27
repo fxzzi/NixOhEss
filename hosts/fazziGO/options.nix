@@ -102,6 +102,7 @@
         enable = true;
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
+        laptop = true;
         autoStart = true;
         # useGit = true;
       };
