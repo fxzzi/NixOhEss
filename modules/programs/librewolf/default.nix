@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  pins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf concatMapAttrsStringSep optionalString;
