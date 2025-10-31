@@ -1,8 +1,8 @@
 {
   lib,
-  xLib,
   pkgs,
   config,
+  self,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -23,7 +23,7 @@ in {
         pkgs.hyprlock
       ];
       xdg.config.files."hypr/hyprlock.conf" = {
-        generator = xLib.generators.toHyprconf;
+        generator = self.lib.generators.toHyprconf;
         value = {
           importantPrefixes = ["bezier"];
           attrs = {
