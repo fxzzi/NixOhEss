@@ -111,10 +111,10 @@
         "owner": "NotAShelf",
         "repo": "rags"
       },
-      "branch": "notashelf/push-ztutmuwzvnqo",
+      "branch": "master",
       "submodules": false,
-      "revision": "042c07501792807bbc9baa55e75cc07cbc352daf",
-      "url": "https://github.com/NotAShelf/rags/archive/042c07501792807bbc9baa55e75cc07cbc352daf.tar.gz",
+      "revision": "b8450560f6c8f8aa75202197c5b3aae9026005f0",
+      "url": "https://github.com/NotAShelf/rags/archive/b8450560f6c8f8aa75202197c5b3aae9026005f0.tar.gz",
       "hash": "0iz36qjzjjmikfggypv0blx7l5bx584h9dmk3qsb90jbarc20gs8"
     },
     "startpage": {
