@@ -22,15 +22,15 @@ in {
         pkg
       ];
       xdg.config.files = {
-        "ags/icons".source = ./ags/icons;
-        "ags/modules".source = ./ags/modules;
-        "ags/config.js".source = ./ags/config.js;
-        "ags/style.css".source = ./ags/style.css;
+        "ags/icons".source = ./icons;
+        "ags/modules".source = ./modules;
+        "ags/config.js".source = ./config.js;
+        "ags/style.css".source = ./style.css;
       };
     };
     systemd.user.services.ags = {
       enable = true;
-      description = "Aylurs GTK Shell";
+      description = "Aylur's GTK Shell";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
