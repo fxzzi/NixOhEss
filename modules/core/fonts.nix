@@ -41,7 +41,7 @@ in {
       packages = with pkgs; [
         nerd-fonts.symbols-only # symbols for terminal, bar, lock, etc
         noto-fonts # Google Noto Fonts
-        noto-fonts-emoji # Emoji Font
+        noto-fonts-color-emoji # Emoji Font
         noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
         corefonts # ms fonts
         vista-fonts # more ms fonts including calibri and consolas
