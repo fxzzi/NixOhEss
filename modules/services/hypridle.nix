@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  xLib,
+  self,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf mkOption types optionals getExe getExe';
@@ -36,7 +36,7 @@ in {
     hj = {
       packages = [pkgs.hypridle];
       xdg.config.files."hypr/hypridle.conf" = {
-        generator = xLib.generators.toHyprconf;
+        generator = self.lib.generators.toHyprconf;
         value = {
           attrs = {
             general = {

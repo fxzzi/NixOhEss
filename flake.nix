@@ -1,45 +1,30 @@
 {
   description = "fazzi's nixos conf";
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    inherit (nixpkgs.lib) fix genAttrs nixosSystem packagesFromDirectoryRecursive;
-
-    pins = import ./npins;
-    xLib = import ./lib nixpkgs.lib;
-    forEachSystem = genAttrs (import inputs.systems);
-    pkgsForEach = nixpkgs.legacyPackages;
-
-    mkSystem = hostName:
-      nixosSystem {
-        specialArgs = {inherit self inputs pins xLib hostName;};
-        modules = [
-          ./modules
-          ./hosts/${hostName}
-        ];
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {
+      inherit inputs;
+      specialArgs = {
+        pins = import ./parts/npins;
       };
-  in {
-    # parse all dirs in ./hosts, generate a nixosConfiguration for each
-    nixosConfigurations = genAttrs (builtins.attrNames (builtins.readDir ./hosts)) mkSystem;
-    packages = forEachSystem (system: let
-      pkgs = pkgsForEach.${system};
-    in
-      # some of our pkgs depend on each other, so use fix and pass self through
-      fix (self:
-        # recursively callPackage every drv in ./pkgs
-          packagesFromDirectoryRecursive {
-            # pass through our npins sources as well
-            callPackage = pkgs.lib.callPackageWith (pkgs // self // {inherit pins;});
-            directory = ./pkgs;
-          }));
-    # alejandra and co. for formatting
-    formatter = forEachSystem (system: self.packages.${system}.alejFmt);
-  };
+    } {
+      systems = import inputs.systems;
+      imports = [
+        ./hosts
+        ./parts/packages
+        ./parts/fmt.nix
+      ];
+      flake = {
+        lib = import ./parts/lib inputs.nixpkgs.lib;
+      };
+    };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     hjem = {
       url = "github:feel-co/hjem";
       inputs = {

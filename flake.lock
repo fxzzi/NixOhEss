@@ -83,6 +83,26 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760948891,
+        "narHash": "sha256-TmWcdiUUaWk8J4lpjzu4gCGxWY6/Ok7mOK4fIFfBuU4=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "864599284fc7c0ba6357ed89ed5e2cd5040f0c04",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
+      "inputs": {
+        "nixpkgs-lib": [
           "nvf",
           "nixpkgs"
         ]
@@ -443,7 +463,7 @@
     "nvf": {
       "inputs": {
         "flake-compat": "flake-compat_2",
-        "flake-parts": "flake-parts",
+        "flake-parts": "flake-parts_2",
         "mnw": "mnw",
         "nixpkgs": [
           "nixpkgs"
@@ -453,11 +473,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761514959,
-        "narHash": "sha256-7xcjhq6lKupZGph2qAmHfBjTB9nKJs32+n/3iAkl36I=",
+        "lastModified": 1761920420,
+        "narHash": "sha256-6kYN+5S+55iFete09uvoTGDo6RPPcE1owOZcdAs7dPo=",
         "owner": "NotAShelf",
         "repo": "nvf",
-        "rev": "96ba7b64862ec27becbd6846a9d5c05de1697f8e",
+        "rev": "e6b2d28159a61b258eb53b84dc114a2db93a022f",
         "type": "github"
       },
       "original": {
@@ -492,6 +512,7 @@
     },
     "root": {
       "inputs": {
+        "flake-parts": "flake-parts",
         "hjem": "hjem",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs",
