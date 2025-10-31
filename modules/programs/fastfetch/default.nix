@@ -6,7 +6,11 @@
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf getExe;
   cfg = config.cfg.programs.fastfetch;
-  icon = ./sixels/${cfg.icon}.sixel;
+  iconPath = ./images/${cfg.icon}.jpg;
+  # Generate sixel using chafa
+  icon = pkgs.runCommand "fastfetch-icon" {} ''
+    ${getExe pkgs.chafa} ${iconPath} -s 17 --format sixel > $out
+  '';
 in {
   options = {
     cfg.programs.fastfetch = {
@@ -20,6 +24,9 @@ in {
         type = types.enum [
           "azzi"
           "azzi-laptop"
+          "azzi-merl"
+          "azzi-yawn"
+          "tomoe"
           "kunzoz"
         ];
         default = "azzi";
