@@ -90,20 +90,19 @@ in {
             }
 
             # plugins and completions
-            zstyle ':fzf-tab:complete:cd:*' fzf-preview '${config.programs.zsh.shellAliases.ls} --color=always --width 1 $realpath'
-            fpath+=${pkgs.zsh-completions}/share/zsh/site-functions
+            fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
             source ${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh
             source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
             source ${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
             source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
             source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-            source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+            source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+            zstyle ':fzf-tab:complete:cd:*' fzf-preview '${config.programs.zsh.shellAliases.ls} --color=always --width 1 $realpath'
+
 
             # these keybinds have to be set after the plugin is sourced
-            bindkey "^[[A" history-substring-search-up
-            bindkey "^[[B" history-substring-substring-search-down
-            bindkey "^[OA" history-substring-search-up
-            bindkey "^[OB" history-substring-search-down
+            bindkey "''${key[Up]}" history-substring-search-up
+            bindkey "''${key[Down]}" history-substring-search-down
           '';
         histFile = "$XDG_DATA_HOME/zsh/zsh_history";
         histSize = 10000;
