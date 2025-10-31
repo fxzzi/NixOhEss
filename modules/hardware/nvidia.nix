@@ -86,7 +86,6 @@ in {
             ".electron-wrapped"
             "librewolf"
             ".librewolf-wrapped"
-            ".librewolf-wrapped_"
             "losslesscut"
           ];
       };

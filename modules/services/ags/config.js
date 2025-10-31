@@ -96,7 +96,7 @@ hyprland.connect("event", (_, name) => {
   if (name === "monitoradded" || name === "monitorremoved") {
     console.log(`monitor change event detected!`);
     removeAllWindows();
-		InitBars(Bar);
+    InitBars(Bar);
   }
 });
 
