@@ -1,15 +1,16 @@
 {
   fetchurl,
   stdenv,
-  makeWrapper,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "eden";
   version = "0.0.4-rc1";
 
   src = fetchurl {
-    url = "https://github.com/eden-emulator/Releases/releases/download/v${finalAttrs.version}/Eden-Linux-v${finalAttrs.version}-amd64-gcc-standard.AppImage";
-    sha256 = "sha256-K0Oka5T3yqNgwjNFyBpSmTFzi/CWGPE3hf/ghCCFOss=";
+    # 0.0.4-rc1 has a bug, so use a nightly build for now instead
+    # url = "https://github.com/eden-emulator/Releases/releases/download/v${finalAttrs.version}/Eden-Linux-v${finalAttrs.version}-amd64-gcc-standard.AppImage";
+    url = "https://github.com/pflyly/eden-nightly/releases/download/2025-10-30-27931/Eden-27931-Common-PGO-x86_64.AppImage";
+    sha256 = "sha256-e8eCUnTGByFf18TDqF3SEiazpdylaK99ZTwQ67Fr3+s=";
   };
 
   desktopItem = fetchurl {
@@ -22,8 +23,6 @@ stdenv.mkDerivation (finalAttrs: {
     sha256 = "sha256-ghAFsbKArr2jBtSkEWx8k3uoFLNEcpaWuzs7Fpb17/I=";
   };
 
-  nativeBuildInputs = [makeWrapper];
-
   phases = ["installPhase"];
 
   installPhase = ''
@@ -34,9 +33,5 @@ stdenv.mkDerivation (finalAttrs: {
     mkdir -p $out/share/{applications,icons/hicolor/scalable/apps}
     cp ${finalAttrs.desktopItem} $out/share/applications/dev.eden_emu.eden.desktop
     cp ${finalAttrs.desktopIcon} $out/share/icons/hicolor/scalable/apps/dev.eden_emu.eden.svg
-
-    # fix eden being unable to find gpu icd's for nvidia
-    wrapProgram $out/bin/${finalAttrs.pname} \
-      --set XDG_DATA_DIRS "\$XDG_DATA_DIRS:/run/opengl-driver/share"
   '';
 })
