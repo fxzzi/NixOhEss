@@ -27,8 +27,8 @@
       };
       packages = with pkgs; [
         (symlinkJoin {
-          inherit (pkgs.qt6ct) name pname version meta;
-          paths = [pkgs.qt6ct];
+          inherit (pkgs.kdePackages.qt6ct) name pname version meta;
+          paths = [pkgs.kdePackages.qt6ct];
           # remove the qt6ct .desktop file. It's not like
           # we can modify settings in there anyway.
           postBuild = ''
