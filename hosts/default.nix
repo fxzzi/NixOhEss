@@ -22,8 +22,5 @@
       ];
     };
 in {
-  flake.nixosConfigurations =
-    genAttrs
-    (attrNames dirs)
-    mkSystem;
+  flake.nixosConfigurations = genAttrs (attrNames dirs) mkSystem;
 }

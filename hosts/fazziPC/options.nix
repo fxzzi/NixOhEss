@@ -126,7 +126,7 @@
       fastfetch = {
         enable = true;
         shellIntegration = true;
-        icon = "azzi";
+        icon = "tomoe";
       };
       ssh.enable = true;
       git = {
