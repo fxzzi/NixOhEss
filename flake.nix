@@ -20,8 +20,10 @@
           ./hosts/${hostName}
         ];
       };
-
-    mkPackages = system: let
+  in {
+    # parse all dirs in ./hosts, generate a nixosConfiguration for each
+    nixosConfigurations = genAttrs (builtins.attrNames (builtins.readDir ./hosts)) mkSystem;
+    packages = forEachSystem (system: let
       pkgs = pkgsForEach.${system};
     in
       # some of our pkgs depend on each other, so use fix and pass self through
@@ -31,11 +33,9 @@
             # pass through our npins sources as well
             callPackage = pkgs.lib.callPackageWith (pkgs // self // {inherit pins;});
             directory = ./pkgs;
-          });
-  in {
-    # parse all dirs in ./hosts, generate a nixosConfiguration for each
-    nixosConfigurations = genAttrs (builtins.attrNames (builtins.readDir ./hosts)) mkSystem;
-    packages = forEachSystem mkPackages;
+          }));
+    # alejandra and co. for formatting
+    formatter = forEachSystem (system: self.packages.${system}.alejFmt);
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

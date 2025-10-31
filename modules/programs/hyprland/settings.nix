@@ -146,7 +146,7 @@ in {
             swallow_regex = "^(foot)$"; # Make foot swallow executed windows
             swallow_exception_regex = "^(foot)$"; # Make foot not swallow itself
             initial_workspace_tracking = 0;
-            vrr = 1;
+            vrr = 2;
             anr_missed_pings = 5; # by default, ANR dialog shows up way too aggressively.
             mouse_move_enables_dpms = true;
             key_press_enables_dpms = true;
