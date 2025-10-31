@@ -3,19 +3,12 @@
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake {
       inherit inputs;
-      specialArgs = {
-        pins = import ./parts/npins;
-      };
     } {
       systems = import inputs.systems;
       imports = [
         ./hosts
-        ./parts/packages
-        ./parts/fmt.nix
+        ./parts
       ];
-      flake = {
-        lib = import ./parts/lib inputs.nixpkgs.lib;
-      };
     };
 
   inputs = {
