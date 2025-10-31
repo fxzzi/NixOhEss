@@ -10,13 +10,6 @@
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
 
-  brightness =
-    if cfg.laptop
-    then getExe self.packages.${pkgs.system}.brightness-laptop
-    else getExe (self.packages.${pkgs.system}.brightness.override {hyprland = config.programs.hyprland.package;});
-
-  screenshot = getExe (self.packages.${pkgs.system}.screenshot.override {hyprland = config.programs.hyprland.package;});
-
   wsAnim =
     if multiMonitor
     then "slidevert"
@@ -288,7 +281,9 @@ in {
             "10, monitor:${cfg.secondaryMonitor}"
           ];
           "$MOD" = "SUPER";
-          bind =
+          bind = let
+            screenshot = getExe (self.packages.${pkgs.system}.screenshot.override {hyprland = config.programs.hyprland.package;});
+          in
             [
               # screenshot script
               ",Print, exec, ${screenshot} --monitor ${cfg.defaultMonitor}"
@@ -307,13 +302,13 @@ in {
               "CTRL SHIFT, Escape, exec, foot btm"
               # extra schtuff
               "$MOD, N, exec, ${getExe (self.packages.${pkgs.system}.sunset.override {hyprland = config.programs.hyprland.package;})} 3000"
-              "$MOD, K, exec, pkill hyprpicker || ${getExe pkgs.hyprpicker} -r -a -n"
               "$MOD, R, exec, ${getExe self.packages.${pkgs.system}.random-wall}"
-              "$MOD SHIFT, R, exec, ${getExe self.packages.${pkgs.system}.cycle-wall}"
+              "$MOD SHIFT, R, exec, hyprctl reload"
               "$MOD, J, exec, foot ${getExe self.packages.${pkgs.system}.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
               "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"
 
+              # mpd media controls
               ", XF86AudioPrev, exec, ${getExe pkgs.mpc} prev"
               ", XF86AudioPlay, exec, ${getExe pkgs.mpc} toggle"
               ", XF86AudioNext, exec, ${getExe pkgs.mpc} next"
@@ -367,14 +362,20 @@ in {
             "$MOD CTRL, down, resizeactive, 0 10"
           ];
 
-          bindel = [
+          bindel = let
+            audio = getExe self.packages.${pkgs.system}.audio;
+            brightness =
+              if cfg.laptop
+              then getExe self.packages.${pkgs.system}.brightness-laptop
+              else getExe (self.packages.${pkgs.system}.brightness.override {hyprland = config.programs.hyprland.package;});
+          in [
             # volume script
-            ", XF86AudioRaiseVolume, exec, ${getExe self.packages.${pkgs.system}.audio} vol up 5"
-            ", XF86AudioLowerVolume, exec, ${getExe self.packages.${pkgs.system}.audio} vol down 5"
-            ", XF86AudioMute, exec, ${getExe self.packages.${pkgs.system}.audio} vol toggle"
-            ", XF86AudioMicMute, exec, ${getExe self.packages.${pkgs.system}.audio} mic toggle"
-            "$MOD SHIFT, M,  exec, ${getExe self.packages.${pkgs.system}.audio} mic toggle"
-            ", F20, exec, ${getExe self.packages.${pkgs.system}.audio} mic toggle"
+            ", XF86AudioRaiseVolume, exec, ${audio} vol up 5"
+            ", XF86AudioLowerVolume, exec, ${audio} vol down 5"
+            ", XF86AudioMute, exec, ${audio} vol toggle"
+            ", XF86AudioMicMute, exec, ${audio} mic toggle"
+            "$MOD SHIFT, M,  exec, ${audio} mic toggle"
+            ", F20, exec, ${audio} mic toggle"
 
             # brightness script
             ", XF86MonBrightnessUp, exec, ${brightness} up 5"
