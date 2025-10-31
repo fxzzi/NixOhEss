@@ -5,7 +5,7 @@
 
   imports = [
     ./lib
-    ./packages
+    ./pkgs
     ./fmt.nix
   ];
 }
