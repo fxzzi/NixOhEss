@@ -1,7 +1,7 @@
 {
   description = "fazzi's nixos conf";
-  outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {
       inherit inputs;
       specialArgs = {
         pins = import ./parts/npins;
