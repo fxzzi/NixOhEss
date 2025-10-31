@@ -3,7 +3,6 @@
   lib,
   pkgs,
   config,
-  xLib,
   ...
 }: let
   inherit (lib) mkOption mkEnableOption types mkDefault getExe optionalAttrs mkIf optionals;
@@ -68,7 +67,7 @@ in {
   config = {
     hj = {
       xdg.config.files."hypr/hyprland.conf" = {
-        generator = xLib.generators.toHyprlang {
+        generator = self.lib.generators.toHyprlang {
           topCommandsPrefixes = [
             "$"
             "bezier"

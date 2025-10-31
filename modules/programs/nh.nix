@@ -22,7 +22,7 @@ in {
       };
     };
     environment.shellAliases = {
-      nixupd = ''nix flake update --flake "$NH_FLAKE"; npins -d "$NH_FLAKE"/npins update'';
+      nixupd = ''nix flake update --flake "$NH_FLAKE"; npins -d "$NH_FLAKE"/parts/npins update'';
 
       # rb means rebuild
       rb = "nh os switch";

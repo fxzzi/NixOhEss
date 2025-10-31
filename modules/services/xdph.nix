@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  xLib,
+  self,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf mkForce;
@@ -21,7 +21,7 @@ in {
     hj = {
       files = {
         ".config/hypr/xdph.conf" = {
-          generator = xLib.generators.toHyprlang {};
+          generator = self.lib.generators.toHyprlang {};
           value = {
             screencopy.max_fps = 60; # don't need to capture more than 60fps
           };

@@ -1,6 +1,6 @@
 {
   lib,
-  xLib,
+  self,
   pkgs,
   config,
   pins,
@@ -16,7 +16,7 @@ in {
 
       packages = [pkgs.hyprpaper];
       xdg.config.files."hypr/hyprpaper.conf" = {
-        generator = xLib.generators.toHyprlang {};
+        generator = self.lib.generators.toHyprlang {};
         value = {
           ipc = 1;
           splash = 0;
