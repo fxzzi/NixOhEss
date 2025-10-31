@@ -1,3 +1,5 @@
-lib: {
-  generators = import ./generators lib;
+{lib, ...}: {
+  flake.lib = {
+    generators = import ./generators lib;
+  };
 }
