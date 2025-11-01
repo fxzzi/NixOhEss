@@ -36,11 +36,11 @@
           melonds
           mupen64plus
         ]))
-      self.packages.${pkgs.system}.transcode
-      self.packages.${pkgs.system}.stremio-enhanced
-      self.packages.${pkgs.system}.eden
-      self.packages.${pkgs.system}.flac2opus
-      self.packages.${pkgs.system}.flac2vorbis
+      self.packages.${pkgs.stdenv.hostPlatform.system}.transcode
+      self.packages.${pkgs.stdenv.hostPlatform.system}.stremio-enhanced
+      self.packages.${pkgs.stdenv.hostPlatform.system}.eden
+      self.packages.${pkgs.stdenv.hostPlatform.system}.flac2opus
+      self.packages.${pkgs.stdenv.hostPlatform.system}.flac2vorbis
     ];
   };
   services.factorio = {

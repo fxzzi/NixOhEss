@@ -18,6 +18,7 @@
       fonts.enable = true;
     };
     services = {
+      activate-linux.enable = true;
       ags.enable = true;
       kdeconnect.enable = true;
       stash.enable = true;

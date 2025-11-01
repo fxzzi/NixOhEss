@@ -7,7 +7,8 @@
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.greetd;
   cmd = pkgs.writeShellScriptBin "greetd-hyprland" ''
-    /run/current-system/sw/bin/Hyprland || systemctl --user stop hyprland-session.target
+    Hyprland
+    systemctl --user stop hyprland-session.target
   '';
 in {
   options.cfg.services.greetd.enable = mkEnableOption "greetd";
