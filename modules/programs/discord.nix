@@ -110,7 +110,7 @@ in {
 
                 /* Make "Read All" vencord button text smaller */
                 button.vc-ranb-button {
-                  font-size: 11.5px;
+                  font-size: 9.5pt;
                   font-weight: normal;
                 }
 

@@ -7,15 +7,18 @@
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf;
   cfg = config.cfg.programs.hyprland;
-  autoStartCmd = ''
-    if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-      Hyprland || systemctl --user stop hyprland-session.target
-      exit
-    fi
-  '';
+  autoStartCmd =
+    #sh
+    ''
+      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+        Hyprland
+        systemctl --user stop hyprland-session.target
+        exit
+      fi
+    '';
   hyprlandSet =
     if cfg.useGit
-    then inputs.hyprland.packages.${pkgs.system}
+    then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
 in {
   options.cfg.programs = {

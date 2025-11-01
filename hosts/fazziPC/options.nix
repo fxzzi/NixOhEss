@@ -32,6 +32,7 @@
       };
     };
     services = {
+      # activate-linux.enable = true;
       ags.enable = true;
       # kdeconnect.enable = true;
       nvidia_oc = {
