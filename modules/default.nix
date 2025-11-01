@@ -12,5 +12,7 @@
     && hasSuffix ".nix" name # make sure every file is a .nix file
     && ! hasPrefix "_" name; # files starting with _ shouldn't be imported
 in {
-  imports = builtins.filter filterFile allNixFiles;
+  flake.nixosModules.default = {
+    imports = builtins.filter filterFile allNixFiles;
+  };
 }
