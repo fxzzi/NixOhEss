@@ -27,13 +27,13 @@ and [hjem](https://github.com/feel-co/hjem).
 
 - [`flake.nix`](./flake.nix): The entrypoint to each module of my flake, using
   flake-parts.
-- [`parts`](./parts/): My larger flake decomposed into smaller parts.
+- [`parts/`](./parts/): My larger flake decomposed into smaller parts.
 - [`modules/`](./modules/): This contains all host-agnostic modules which I use
   across all devices. A lot of the modules are optional, and can be configured
-  in the host specific config. All module files are imported automatically.
+  in the host specific config. All module files are imported automatically under
+  `nixosModules.default`.
 - [`hosts/`](./hosts/): The configurations for each host is contained here. This
   is where the hardware configurations and host-specific modules are kept.
-- [`pkgs/`](./pkgs/): Contains package derivations used throughout the flake.
 
 ## SPECIAL THANKS
 
