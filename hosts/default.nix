@@ -17,7 +17,7 @@
         inherit self inputs hostName pins;
       };
       modules = [
-        ../modules
+        self.nixosModules.default
         ./${hostName}
       ];
     };
