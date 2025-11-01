@@ -18,7 +18,7 @@ in {
     nixpkgs.config.cudaSupport = true; # enable cuda support in packages which need it
     nixpkgs.overlays = [
       (_: _: {
-        egl-wayland = self.packages.${pkgs.system}.egl-wayland2;
+        egl-wayland = self.packages.${pkgs.stdenv.hostPlatform.system}.egl-wayland2;
       })
     ];
     services.xserver.videoDrivers = ["nvidia"];

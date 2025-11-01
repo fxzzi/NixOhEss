@@ -8,7 +8,7 @@
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.foot;
   inherit (pkgs) symlinkJoin;
-  foot = self.packages.${pkgs.system}.foot-transparency-git;
+  foot = self.packages.${pkgs.stdenv.hostPlatform.system}.foot-transparency-git;
 in {
   options.cfg.programs.foot.enable = mkEnableOption "foot";
   config = mkIf cfg.enable {

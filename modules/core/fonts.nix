@@ -46,7 +46,7 @@ in {
         corefonts # ms fonts
         vista-fonts # more ms fonts including calibri and consolas
         inter
-        self.packages.${pkgs.system}.ioshelfka-term
+        self.packages.${pkgs.stdenv.hostPlatform.system}.ioshelfka-term
       ];
     };
   };

@@ -13,7 +13,7 @@
     hj = {
       packages = with pkgs; [
         telegram-desktop
-        self.packages.${pkgs.system}.stremio-enhanced
+        self.packages.${pkgs.stdenv.hostPlatform.system}.stremio-enhanced
         # uni stuff
         processing
         logisim-evolution
