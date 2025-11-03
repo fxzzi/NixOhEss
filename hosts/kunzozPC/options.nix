@@ -3,7 +3,7 @@
     core = {
       username = "kunzoz";
       kernel = {
-        type = "lts";
+        type = "zen";
         zenergy.enable = true;
       };
       boot = {
@@ -18,7 +18,7 @@
       fonts.enable = true;
     };
     services = {
-      activate-linux.enable = true;
+      # activate-linux.enable = true;
       ags.enable = true;
       kdeconnect.enable = true;
       stash.enable = true;
