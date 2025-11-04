@@ -25,7 +25,7 @@ in {
 
     hardware = {
       nvidia = {
-        open = false;
+        open = true;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
@@ -34,7 +34,7 @@ in {
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
           version = "580.105.08";
           sha256_64bit = "sha256-2cboGIZy8+t03QTPpp3VhHn6HQFiyMKMjRdiV2MpNHU=";
-          openSha256 = "";
+          openSha256 = "sha256-FGmMt3ShQrw4q6wsk8DSvm96ie5yELoDFYinSlGZcwQ=";
           usePersistenced = false;
           useSettings = false;
         };
@@ -59,13 +59,14 @@ in {
         __GL_SYNC_TO_VBLANK = "0";
         # enable gsync / vrr support
         __GL_VRR_ALLOWED = "1";
-
         # lowest frame buffering -> lower latency
         __GL_MaxFramesAllowed = "1";
+        # no idea what this does but apprently useful
+        __GL_YIELD = "usleep";
         # fix hw acceleration and native wayland on losslesscut
         __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
-        # stop ramping GPU clocks when CUDA is in use
+        # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
       };
       # fix high vram usage on discord and hyprland. match with the wrapper procnames
