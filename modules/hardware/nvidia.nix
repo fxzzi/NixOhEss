@@ -25,19 +25,19 @@ in {
 
     hardware = {
       nvidia = {
-        open = true;
+        open = false;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        #   version = "580.95.05";
-        #   sha256_64bit = "sha256-hJ7w746EK5gGss3p8RwTA9VPGpp2lGfk5dlhsv4Rgqc=";
-        #   openSha256 = "sha256-RFwDGQOi9jVngVONCOB5m/IYKZIeGEle7h0+0yGnBEI=";
-        #   usePersistenced = false;
-        #   useSettings = false;
-        # };
+        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          version = "580.105.08";
+          sha256_64bit = "sha256-2cboGIZy8+t03QTPpp3VhHn6HQFiyMKMjRdiV2MpNHU=";
+          openSha256 = "";
+          usePersistenced = false;
+          useSettings = false;
+        };
 
         # because we are overriding nvidia-vaapi-driver below we must disable it here
         videoAcceleration = false;
@@ -65,6 +65,8 @@ in {
         # fix hw acceleration and native wayland on losslesscut
         __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
+        # stop ramping GPU clocks when CUDA is in use
+        CUDA_DISABLE_PERF_BOOST = 1;
       };
       # fix high vram usage on discord and hyprland. match with the wrapper procnames
       etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool.json".text = builtins.toJSON {
