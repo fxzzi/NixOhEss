@@ -1,9 +1,7 @@
 {
   description = "fazzi's nixos conf";
   outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {
-      inherit inputs;
-    } {
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
       systems = import inputs.systems;
       imports = [
         ./hosts
