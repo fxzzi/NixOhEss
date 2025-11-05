@@ -53,7 +53,7 @@ in {
         description = "Sets the secondary monitor for hypr*.";
       };
       laptop = mkEnableOption {
-        description = "Use laptop brightness";
+        description = "Use laptop brightness and keybinds";
       };
     };
   };
@@ -383,12 +383,15 @@ in {
           ];
 
           # mouse bindings
-          bindm = [
-            "$MOD, mouse:272, movewindow" # left click
-            "$MOD, Control_L, movewindow"
-            "$MOD, mouse:273, resizewindow" # right click
-            "$MOD, ALT_L, resizewindow"
-          ];
+          bindm =
+            [
+              "$MOD, mouse:272, movewindow" # left click
+              "$MOD, mouse:273, resizewindow" # right click
+            ]
+            ++ optionals cfg.laptop [
+              "$MOD, Control_L, movewindow"
+              "$MOD, ALT_L, resizewindow"
+            ];
 
           gesture = [
             "3, horizontal, workspace"
