@@ -84,7 +84,7 @@ in {
                   --custom-app-top-bar-height: 0 !important;
 
                   /* Title bar buttons are still visible so hide them too */
-                  div.base_c48ade > div.bar_c38106 {
+                  div.base__5e434 > div.bar_c38106 {
                     display: none;
                   }
 
