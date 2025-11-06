@@ -222,6 +222,8 @@ in {
               # pause hypridle for certain apps
               "idleinhibit focus, class:^(mpv)$"
               "idleinhibit focus, class:^(atril)$"
+              "idleinhibit focus, class:^(blender)$, title:^(Blender Render)$"
+              "idleinhibit fullscreen, class:^(blender)$"
               "idleinhibit fullscreen, class:^(foot)$"
 
               # some apps, mostly games, are stupid and they fullscreen on the
