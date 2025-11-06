@@ -6,7 +6,6 @@
   meson,
   ninja,
   wayland-scanner,
-  mesa,
   libdrm,
   libglvnd,
   libgbm,
@@ -28,7 +27,6 @@ stdenv.mkDerivation {
   ];
 
   buildInputs = [
-    mesa
     libglvnd
     libdrm
     libgbm
@@ -43,7 +41,7 @@ stdenv.mkDerivation {
   meta = {
     description = "Dma-buf-based Wayland external platform library";
     homepage = "https://github.com/NVIDIA/egl-wayland2";
-    license = lib.licenses.mit;
+    license = lib.licenses.asl20;
     platforms = lib.platforms.linux;
     maintainers = lib.maintainers.fazzi;
   };
