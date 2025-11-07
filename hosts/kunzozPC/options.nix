@@ -43,7 +43,7 @@
       hyprsunset.enable = true;
       hypridle = {
         enable = true;
-        dpmsTimeout = 600;
+        dpmsTimeout = 0;
         lockTimeout = 620;
         suspendTimeout = 1200;
       };
