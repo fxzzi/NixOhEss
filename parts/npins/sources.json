@@ -1,5 +1,17 @@
 {
   "pins": {
+    "Disblock-Origin": {
+      "type": "Git",
+      "repository": {
+        "type": "Git",
+        "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "5b60a16ad189250d80a9fe4a56b950df3dea83b9",
+      "url": null,
+      "hash": "027w875v6nd9qnic9rk76h6zi7g7slc7a037kn5k63g2mscqrb1v"
+    },
     "MangoHud": {
       "type": "Git",
       "repository": {
@@ -87,9 +99,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "4e3340a53ea9f6b79168050a3e4b9c3944ff158e",
-      "url": "https://github.com/fufexan/nix-gaming/archive/4e3340a53ea9f6b79168050a3e4b9c3944ff158e.tar.gz",
-      "hash": "05rhq2hy9kwg06b3xhaf6af34i7nc2bpkfb6mk908i25v7a91590"
+      "revision": "cf716e9b2f0fda1b1809156121037f646815eb26",
+      "url": "https://github.com/fufexan/nix-gaming/archive/cf716e9b2f0fda1b1809156121037f646815eb26.tar.gz",
+      "hash": "0agbwhxqwz54yaqvsj2alhqx2ypzwkz38kycr9if5amv062m109l"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",

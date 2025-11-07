@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  pins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf concatStringsSep optionals;
@@ -76,7 +77,7 @@ in {
               # css
               ''
                 /* Hide nitro begging */
-                @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css");
+                ${builtins.readFile "${pins.Disblock-Origin}/DisblockOrigin.theme.css"}
 
                 /* Hide the Visual Refresh title bar */
                 .visual-refresh {
