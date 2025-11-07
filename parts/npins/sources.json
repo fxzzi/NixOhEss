@@ -21,9 +21,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "88e9de7a96a2e36a7686f3a45e1e8131dcc7b478",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/88e9de7a96a2e36a7686f3a45e1e8131dcc7b478.tar.gz",
-      "hash": "188vbvy0piym5rlv2fgp2d7a9m46f3zs6x8ii2qkslgyccba8lq9"
+      "revision": "912b3cdf8141a4ce54785557e6732599b3f23405",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/912b3cdf8141a4ce54785557e6732599b3f23405.tar.gz",
+      "hash": "0njm62cd5mm96gl46iz379f7dw3s7cznis7gcsq4yasx2jznshf7"
     },
     "agenix": {
       "type": "Git",
