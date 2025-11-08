@@ -1,5 +1,6 @@
 {
   pkgs,
+  self,
   lib,
   ...
 }: {
@@ -27,8 +28,8 @@
       };
       packages = with pkgs; [
         (symlinkJoin {
-          inherit (pkgs.kdePackages.qt6ct) name pname version meta;
-          paths = [pkgs.kdePackages.qt6ct];
+          inherit (self.packages.${pkgs.stdenv.hostPlatform.system}.qt6ct-kde-git) name pname version meta;
+          paths = [self.packages.${pkgs.stdenv.hostPlatform.system}.qt6ct-kde-git];
           # remove the qt6ct .desktop file. It's not like
           # we can modify settings in there anyway.
           postBuild = ''
