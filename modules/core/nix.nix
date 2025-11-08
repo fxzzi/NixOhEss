@@ -10,7 +10,7 @@
 in {
   config = {
     nix = {
-      # package = pkgs.nixVersions.latest;
+      package = pkgs.nixVersions.latest;
       # Disable channels and add the inputs to the registry
       channel.enable = false;
       registry = mapAttrs (_: flake: {inherit flake;}) inputs;
