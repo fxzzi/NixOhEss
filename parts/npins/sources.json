@@ -1,17 +1,5 @@
 {
   "pins": {
-    "Disblock-Origin": {
-      "type": "Git",
-      "repository": {
-        "type": "Git",
-        "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "5b60a16ad189250d80a9fe4a56b950df3dea83b9",
-      "url": null,
-      "hash": "027w875v6nd9qnic9rk76h6zi7g7slc7a037kn5k63g2mscqrb1v"
-    },
     "MangoHud": {
       "type": "Git",
       "repository": {
@@ -21,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "912b3cdf8141a4ce54785557e6732599b3f23405",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/912b3cdf8141a4ce54785557e6732599b3f23405.tar.gz",
-      "hash": "0njm62cd5mm96gl46iz379f7dw3s7cznis7gcsq4yasx2jznshf7"
+      "revision": "7686167c2a41bcf7c23a2302518cea7603ca9519",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/7686167c2a41bcf7c23a2302518cea7603ca9519.tar.gz",
+      "hash": "1l24ablnl6drbc1731053xrx05416k9cbhq6r9n92irs8ljapszv"
     },
     "agenix": {
       "type": "Git",
@@ -99,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "cf716e9b2f0fda1b1809156121037f646815eb26",
-      "url": "https://github.com/fufexan/nix-gaming/archive/cf716e9b2f0fda1b1809156121037f646815eb26.tar.gz",
-      "hash": "0agbwhxqwz54yaqvsj2alhqx2ypzwkz38kycr9if5amv062m109l"
+      "revision": "9bb3ba9d192aeebc18a14c4c29140a78f0b28a7f",
+      "url": "https://github.com/fufexan/nix-gaming/archive/9bb3ba9d192aeebc18a14c4c29140a78f0b28a7f.tar.gz",
+      "hash": "1xm7g24r6m9zf10j1hxndirvmavgggmg319r24zws1jcbvif30w0"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -112,9 +100,21 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "3d46e26818a9e0eff26a7cd0db581316029d953b",
-      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/3d46e26818a9e0eff26a7cd0db581316029d953b.tar.gz",
-      "hash": "09dn2v9sfh1bls7hr9yhm6qxj8cgc7g5zjy2kn47rvhvmhrncfdg"
+      "revision": "5a539c7740e4f108fd825e51b8be0b077d50b22b",
+      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/5a539c7740e4f108fd825e51b8be0b077d50b22b.tar.gz",
+      "hash": "17lznkxcn0rb25iqs195s1962gqnngs39laykxymck676d83yh82"
+    },
+    "qt6ct": {
+      "type": "Git",
+      "repository": {
+        "type": "Git",
+        "url": "https://www.opencode.net/ilya-fedin/qt6ct.git"
+      },
+      "branch": "kde",
+      "submodules": false,
+      "revision": "9d64a13ff6c376380901ef855f3c5e6a1f7afc0d",
+      "url": null,
+      "hash": "0g1k885c5b11174wxi1gwcwwks8zbcrpiqy2lzjvkjm30i1d2iv3"
     },
     "rags": {
       "type": "Git",
