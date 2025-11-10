@@ -57,13 +57,13 @@
       "type": "Git",
       "repository": {
         "type": "Git",
-        "url": "https://codeberg.org/dnkl/foot"
+        "url": "https://codeberg.org/fazzi/foot.git"
       },
-      "branch": "master",
+      "branch": "transparency_yipee",
       "submodules": false,
-      "revision": "1fce0e69f5ec2c24d518917c0538a4d762b8a1e4",
+      "revision": "c22ecce826b4123e453249303e2b4f5b6aacf722",
       "url": null,
-      "hash": "12wbq2swyk6f23ijxaii20r5lzp6gm3in35vxkmaxs9ppmrhrxlr"
+      "hash": "1wxxkqwgb60ibdqvbhg4mjlh2nkv1y115rk64vx54d2akikk72qj"
     },
     "niqspkgs": {
       "type": "Git",

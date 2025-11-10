@@ -8,13 +8,12 @@
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.foot;
   inherit (pkgs) symlinkJoin;
-  foot = self.packages.${pkgs.stdenv.hostPlatform.system}.foot-transparency-git;
+  foot = self.packages.${pkgs.stdenv.hostPlatform.system}.foot-transparency;
 in {
   options.cfg.programs.foot.enable = mkEnableOption "foot";
   config = mkIf cfg.enable {
-    programs.foot = {
-      enable = true;
-      package = symlinkJoin {
+    hj.packages = [
+      (symlinkJoin {
         inherit (foot) name pname version meta;
         paths = [foot];
         # remove foot desktop files for server and client, as
@@ -23,8 +22,11 @@ in {
           unlink $out/share/applications/footclient.desktop
           unlink $out/share/applications/foot-server.desktop
         '';
-      };
-      settings = {
+      })
+    ];
+    hj.xdg.config.files."foot/foot.ini" = {
+      generator = lib.generators.toINI {};
+      value = {
         main = {
           font = "monospace:size=12";
           pad = "6x6";
