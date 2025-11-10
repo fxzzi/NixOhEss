@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "7686167c2a41bcf7c23a2302518cea7603ca9519",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/7686167c2a41bcf7c23a2302518cea7603ca9519.tar.gz",
-      "hash": "1l24ablnl6drbc1731053xrx05416k9cbhq6r9n92irs8ljapszv"
+      "revision": "d4ac646440f8733e97cd83ce4ed64ef122fcd8c0",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/d4ac646440f8733e97cd83ce4ed64ef122fcd8c0.tar.gz",
+      "hash": "0hh0vyq95agn5lasl1rqkd10s65k0gb02v2wdv308sfbq0a9gwps"
     },
     "agenix": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "9ba0d85de3eaa7afeab493fed622008b6e4924f5",
-      "url": "https://github.com/ryantm/agenix/archive/9ba0d85de3eaa7afeab493fed622008b6e4924f5.tar.gz",
-      "hash": "1pkgdarjb2k7chs93s5wnbsnmqbhlbidipa6ncxr3yhr7sx5dhwn"
+      "revision": "fcdea223397448d35d9b31f798479227e80183f6",
+      "url": "https://github.com/ryantm/agenix/archive/fcdea223397448d35d9b31f798479227e80183f6.tar.gz",
+      "hash": "1d4m7hsq727q7ndjqmgyl8vkbkqjwps962ygmv2mcc5dbqzgn963"
     },
     "creamlinux": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "9bb3ba9d192aeebc18a14c4c29140a78f0b28a7f",
-      "url": "https://github.com/fufexan/nix-gaming/archive/9bb3ba9d192aeebc18a14c4c29140a78f0b28a7f.tar.gz",
-      "hash": "1xm7g24r6m9zf10j1hxndirvmavgggmg319r24zws1jcbvif30w0"
+      "revision": "8dce0b23e30b03efbdc94e8db7cb27298446e4cc",
+      "url": "https://github.com/fufexan/nix-gaming/archive/8dce0b23e30b03efbdc94e8db7cb27298446e4cc.tar.gz",
+      "hash": "06ah3ib8jvgh6nggaw5pinzmpxbv21j44ha3zyqmx6yzvdbj1lqa"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
