@@ -4,13 +4,11 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "eden";
-  version = "0.0.4-rc1";
+  version = "0.0.4-rc2";
 
   src = fetchurl {
-    # 0.0.4-rc1 has a bug, so use a nightly build for now instead
-    # url = "https://github.com/eden-emulator/Releases/releases/download/v${finalAttrs.version}/Eden-Linux-v${finalAttrs.version}-amd64-gcc-standard.AppImage";
-    url = "https://github.com/pflyly/eden-nightly/releases/download/2025-10-30-27931/Eden-27931-Common-PGO-x86_64.AppImage";
-    sha256 = "sha256-e8eCUnTGByFf18TDqF3SEiazpdylaK99ZTwQ67Fr3+s=";
+    url = "https://github.com/eden-emulator/Releases/releases/download/v${finalAttrs.version}/Eden-Linux-v${finalAttrs.version}-amd64-clang-pgo.AppImage";
+    sha256 = "sha256-IAdtroN8TxA0kFyEGf15HH8Uvp6kUJ+8sU/Z+x0gJUc=";
   };
 
   desktopItem = fetchurl {
