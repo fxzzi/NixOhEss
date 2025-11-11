@@ -91,6 +91,7 @@ in {
             "librewolf"
             ".librewolf-wrapped"
             "losslesscut"
+            ".losslesscut-wrapped"
           ];
       };
     };
@@ -102,6 +103,7 @@ in {
         "nvidia_uvm"
         "nvidia_drm"
       ];
+      blacklistedKernelModules = ["nouveau"];
 
       kernelParams = mkMerge [
         [
@@ -114,7 +116,6 @@ in {
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
         ])
       ];
-      blacklistedKernelModules = ["nouveau"];
     };
     systemd.services.nvidia-temp = let
       getTemp = "${getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits";
