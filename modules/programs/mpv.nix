@@ -76,12 +76,10 @@ in {
           - add volume -2 ; show-text "Volume: ''${volume}"
           = add volume +2 ; show-text "Volume: ''${volume}"
           Q quit
-          u cycle-values hwdec "nvdec" "no"
           i script-binding stats/display-stats
           I script-binding stats/display-stats-toggle
           o cycle-values osd-level 3 1
           p cycle-values video-rotate 90 180 270 0
-          P cycle-values video-aspect "16:9" "4:3" "2.35:1" "16:10"
           a cycle audio
           s cycle sub
           S cycle sub-visibility
