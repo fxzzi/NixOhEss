@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d4ac646440f8733e97cd83ce4ed64ef122fcd8c0",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/d4ac646440f8733e97cd83ce4ed64ef122fcd8c0.tar.gz",
-      "hash": "0hh0vyq95agn5lasl1rqkd10s65k0gb02v2wdv308sfbq0a9gwps"
+      "revision": "1c0e8525bf105646b0ac2d002d13e481a4b6f270",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/1c0e8525bf105646b0ac2d002d13e481a4b6f270.tar.gz",
+      "hash": "03rvv5yirz1m519fqyn60gmdzwmmahp3hk0vfr9gc9bhkvkk4xmh"
     },
     "agenix": {
       "type": "Git",
@@ -49,9 +49,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "e16cb0ffd8ff53a2ece9ef899f085120dc32a862",
-      "url": "https://github.com/NVIDIA/egl-wayland2/archive/e16cb0ffd8ff53a2ece9ef899f085120dc32a862.tar.gz",
-      "hash": "0ckwc417lxn1fmfqhycb4iwvcj16kl8jpskf0p1gydbmsgpgywr2"
+      "revision": "d71abc0f87f2694a446aba5b5cd919d8a2704de3",
+      "url": "https://github.com/NVIDIA/egl-wayland2/archive/d71abc0f87f2694a446aba5b5cd919d8a2704de3.tar.gz",
+      "hash": "0i5l4hfsrdsglwxh18i8x2zvan70ssikzqhgn99hxm4lzrdcm9zb"
     },
     "foot": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "8e97ae847e72e67b49c23f3cf82e2ab788139cc7",
-      "url": "https://github.com/diniamo/niqspkgs/archive/8e97ae847e72e67b49c23f3cf82e2ab788139cc7.tar.gz",
-      "hash": "101p32kn60kq99x6fk1024pi02z72bkzn2mpwf3bkk4nikz7m2fk"
+      "revision": "435353935b769bda822642d5bc50ab105100e052",
+      "url": "https://github.com/diniamo/niqspkgs/archive/435353935b769bda822642d5bc50ab105100e052.tar.gz",
+      "hash": "1z3pmp9bsrlr0hf2ycwr4lvkdjf9h80bxl2v6drzizsyf0gg5wn9"
     },
     "nix-gaming": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "8dce0b23e30b03efbdc94e8db7cb27298446e4cc",
-      "url": "https://github.com/fufexan/nix-gaming/archive/8dce0b23e30b03efbdc94e8db7cb27298446e4cc.tar.gz",
-      "hash": "06ah3ib8jvgh6nggaw5pinzmpxbv21j44ha3zyqmx6yzvdbj1lqa"
+      "revision": "eefca17cb40462878ee1c46ac6910b2ec21adaa8",
+      "url": "https://github.com/fufexan/nix-gaming/archive/eefca17cb40462878ee1c46ac6910b2ec21adaa8.tar.gz",
+      "hash": "1ahhcjfzlinvcc9bj5q1hrxj63ws0bb5hgph8s3y19dqag1dp2ik"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
