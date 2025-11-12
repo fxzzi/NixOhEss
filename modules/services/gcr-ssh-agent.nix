@@ -9,10 +9,7 @@
 in {
   options.cfg.services.gcr-ssh-agent.enable = mkEnableOption "gcr-ssh-agent";
   config = mkIf cfg.enable {
-    services.gnome.gcr-ssh-agent = {
-      enable = true;
-      package = pkgs.gcr_4;
-    };
+    services.gnome.gcr-ssh-agent.enable = true;
     programs = {
       seahorse.enable = true;
       ssh.enableAskPassword = true;
