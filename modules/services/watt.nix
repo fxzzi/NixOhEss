@@ -11,36 +11,32 @@ in {
   config = mkIf cfg.enable {
     services = {
       power-profiles-daemon.enable = mkForce false;
-      watt = {
-        enable = true;
-        settings = {
-          # use powersaving on battery and performance on charger
-          charger = {
-            # when using amd-pstate the governor should always be "powersave"
-            governor = "powersave";
-            epp = "performance";
-            epb = "balance_performance";
-            platform_profile = "performance";
-            turbo = "auto";
-          };
-          battery = {
-            governor = "powersave";
-            epp = "power";
-            epb = "balance_power";
-            platform_profile = "low-power";
-            turbo = "auto";
-          };
-
-          daemon = {
-            poll_interval_sec = 5;
-            adaptive_interval = true;
-            min_poll_interval_sec = 1;
-            max_poll_interval_sec = 30;
-            throttle_on_battery = true;
-          };
-        };
-      };
+      watt.enable = true;
     };
+    systemd.services.watt.serviceConfig.Environment = [
+      "WATT_CONFIG=/etc/watt.toml"
+    ];
+    environment.etc."watt.toml".text = mkForce ''
+      [[rule]]
+      if       = "?discharging"
+      priority = 99
+
+      cpu.energy-performance-preference = { if = { is-energy-performance-preference-available = "power" }, then = "power" }
+      cpu.governor                      = { if = { is-governor-available = "powersave" }, then = "powersave" }
+      cpu.turbo                         = { if = "?turbo-available", then = false }
+
+      power.platform-profile            = { if = { is-platform-profile-available = "low-power" }, then = "low-power" }
+
+      [[rule]]
+      if.not   = "?discharging"
+      priority = 100
+
+      cpu.energy-performance-preference = { if = { is-energy-performance-preference-available = "performance" }, then = "performance" }
+      cpu.governor                      = { if = { is-governor-available = "performance" }, then = "performance" }
+      cpu.turbo                         = { if = "?turbo-available", then = true }
+
+      power.platform-profile            = { if = { is-platform-profile-available = "performance" }, then = "performance" }
+    '';
   };
   imports = [inputs.watt.nixosModules.default];
 }
