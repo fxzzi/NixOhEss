@@ -28,7 +28,7 @@
       dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
-      blender
+      # blender
       (retroarch.withCores (cores:
         with cores; [
           bsnes

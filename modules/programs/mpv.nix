@@ -28,7 +28,7 @@ in {
           embeddedfonts=no # just use system fonts
           slang=en,eng
           sub-auto=all
-          sub-color="#B9C1D6"
+          sub-color="#C9D1D6"
           sub-file-paths-append=Subs/''${filename/no-ext}
           sub-file-paths-append=Subs/''${filename}
           sub-file-paths-append=subs/''${filename/no-ext}
@@ -46,10 +46,10 @@ in {
           sub-file-paths-append=subs
           sub-file-paths-append=subtitles
           sub-fix-timing=no
-          sub-font-size=36
+          sub-font-size=24
           sub-font=${head config.fonts.fontconfig.defaultFonts.sansSerif}
           sub-scale-with-window=yes
-          cursor-autohide=250
+          cursor-autohide=500
           cursor-autohide-fs-only=yes
           msg-color=yes
           msg-module=yes
