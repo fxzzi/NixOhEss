@@ -25,11 +25,5 @@ in {
         loadCredential = "clipboard_filter:${writeText "stash-regex" regex}";
       };
     };
-    # hj.packages = [pkgs.stash];
-    # services.stash-clipboard = {
-    #   enable = true;
-    #   flags = ["--max-items 10"];
-    #   excludedApps = ["Bitwarden"];
-    # };
   };
 }
