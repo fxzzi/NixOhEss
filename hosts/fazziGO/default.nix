@@ -15,9 +15,14 @@
         telegram-desktop
         self.packages.${pkgs.stdenv.hostPlatform.system}.stremio-enhanced
         # uni stuff
+        onlyoffice-desktopeditors
         processing
         logisim-evolution
+        rars
         vscodium
+        (jetbrains.idea-community-bin.override {
+          vmopts = "-Dawt.toolkit.name=WLToolkit";
+        })
       ];
       xdg.config.files."hypr/hyprland.conf" = {
         value = {
