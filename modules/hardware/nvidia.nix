@@ -24,9 +24,9 @@ in {
     services.xserver.videoDrivers = ["nvidia"];
 
     hardware = {
-      nvidia = {
-        open = true;
-        gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
+      nvidia = rec {
+        open = false;
+        gsp.enable = open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
         # package = config.boot.kernelPackages.nvidiaPackages.beta;

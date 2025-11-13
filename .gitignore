@@ -1,2 +1,3 @@
-./result # nix builds
-*.qcow2 # nix vm images
+result
+result-*
+*.qcow2
