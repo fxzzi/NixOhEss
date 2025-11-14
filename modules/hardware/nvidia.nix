@@ -24,8 +24,10 @@ in {
     services.xserver.videoDrivers = ["nvidia"];
 
     hardware = {
-      nvidia = rec {
+      nvidia = let
         open = false;
+      in {
+        inherit open;
         gsp.enable = open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still

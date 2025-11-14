@@ -13,12 +13,11 @@
   # updates it faster and more regularly than nixpkgs.
   osu = callPackage "${pins.nix-gaming}/pkgs/osu-lazer-bin" {
     osu-mime = callPackage "${pins.nix-gaming}/pkgs/osu-mime" {};
-    # 64 quantum is pretty low. My PC can handle it through my IEMs,
-    # but not my speakers. Provides theoretical latency of ~1.46ms.
-    pipewire_latency = "64/44100";
+    # 32 quantum is really low, if audio is glitching, increase
+    pipewire_latency = "32/44100";
     # releaseStream = "tachyon";
     gmrun_enable = false;
-    command_prefix = "env OSU_SDL3=1 SDL_VIDEO_DRIVER=x11 obs-gamecapture";
+    command_prefix = "env OSU_SDL3=1 SDL_VIDEO_DRIVER=x11";
   };
 in {
   options.cfg.programs.osu.enable = mkEnableOption "osu!";

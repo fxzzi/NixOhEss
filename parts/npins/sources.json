@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "8c940d5fe125002fbb6b8931a97165772e46f060",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/8c940d5fe125002fbb6b8931a97165772e46f060.tar.gz",
-      "hash": "1yzqn6bwxg4fv2qbq6cqp5qznf7p3lba2miq72cidwyrqmp8w0hw"
+      "revision": "6e2b152f7f3a15d9f7f53d764b59d91dfa23c202",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/6e2b152f7f3a15d9f7f53d764b59d91dfa23c202.tar.gz",
+      "hash": "0zq40xkj8s0hdwl0bqn97vlz7p1sxjkmgbrkcwxrk64598pjhfsp"
     },
     "agenix": {
       "type": "Git",
@@ -49,9 +49,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "d71abc0f87f2694a446aba5b5cd919d8a2704de3",
-      "url": "https://github.com/NVIDIA/egl-wayland2/archive/d71abc0f87f2694a446aba5b5cd919d8a2704de3.tar.gz",
-      "hash": "0i5l4hfsrdsglwxh18i8x2zvan70ssikzqhgn99hxm4lzrdcm9zb"
+      "revision": "0c15809fcfb3fcf4b2eb2422fdd1dae4f9aea6ae",
+      "url": "https://github.com/NVIDIA/egl-wayland2/archive/0c15809fcfb3fcf4b2eb2422fdd1dae4f9aea6ae.tar.gz",
+      "hash": "14xpw8vga32pvldhgvkb5rn03m40dk3cg6lqkcwxrp08zzffr2kb"
     },
     "foot": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "4e7b35681a36b19f8dd40b15993869a479da17e4",
-      "url": "https://github.com/fufexan/nix-gaming/archive/4e7b35681a36b19f8dd40b15993869a479da17e4.tar.gz",
-      "hash": "15y7p8w22n24p6zvd3g96iqnqm5gpr7rk8b68w5p43sgwalq0l8v"
+      "revision": "78d0b05dcffe05a184c97325a4fb4bcc4389ac9a",
+      "url": "https://github.com/fufexan/nix-gaming/archive/78d0b05dcffe05a184c97325a4fb4bcc4389ac9a.tar.gz",
+      "hash": "1f7gcfxp9z4avzg6sw95vd8mpvq0i17x2xkcmzb742w1i8fjwbsz"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -100,9 +100,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5a539c7740e4f108fd825e51b8be0b077d50b22b",
-      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/5a539c7740e4f108fd825e51b8be0b077d50b22b.tar.gz",
-      "hash": "17lznkxcn0rb25iqs195s1962gqnngs39laykxymck676d83yh82"
+      "revision": "57a476b0e55f015759d9c50cc1f13159c6cd8f95",
+      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/57a476b0e55f015759d9c50cc1f13159c6cd8f95.tar.gz",
+      "hash": "1bw8icfshh1g04w1j0ih3cb3xw837rlswkrjcgw233nimbxmnq13"
     },
     "qt6ct": {
       "type": "Git",
