@@ -5,6 +5,7 @@
   alsa-lib,
   appimageTools,
   autoPatchelfHook,
+  ffmpeg_4,
   fetchurl,
   icu,
   libkrb5,
@@ -42,6 +43,7 @@
       SDL2
       sdl3
       alsa-lib
+      ffmpeg_4
       icu
       libkrb5
       lttng-ust
