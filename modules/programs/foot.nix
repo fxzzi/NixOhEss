@@ -24,25 +24,42 @@ in {
         '';
       })
     ];
-    hj.xdg.config.files."foot/foot.ini" = {
-      generator = lib.generators.toINI {};
-      value = {
-        main = {
-          font = "monospace:size=12";
-          pad = "6x6";
-          transparent-fullscreen = true; # option added by my fork
-        };
-        cursor = {
-          style = "beam";
-        };
-        mouse = {
-          hide-when-typing = true;
-        };
-        colors = {
-          alpha = 0.85;
-          alpha-mode = "matching";
+    hj.xdg.config.files = {
+      "foot/foot.ini" = {
+        generator = lib.generators.toINI {};
+        value = {
+          main = {
+            font = "monospace:size=12";
+            pad = "6x6";
+            transparent-fullscreen = true; # option added by my fork
+          };
+          cursor = {
+            style = "beam";
+          };
+          mouse = {
+            hide-when-typing = true;
+          };
+          colors = {
+            alpha = 0.85;
+            alpha-mode = "matching";
+          };
         };
       };
+      # zsh shell integration. see:
+      #  <https://codeberg.org/dnkl/foot/wiki#user-content-spawning-new-terminal-instances-in-the-current-working-directory>
+      "zsh/.zshrc".text = ''
+        function osc7-pwd() {
+            emulate -L zsh # also sets localoptions for us
+            setopt extendedglob
+            local LC_ALL=C
+            printf '\e]7;file://%s%s\e\' $HOST ''${PWD//(#m)([^@-Za-z&-;_~])/%''${(l:2::0:)$(([##16]#MATCH))}}
+        }
+
+        function chpwd-osc7-pwd() {
+            (( ZSH_SUBSHELL )) || osc7-pwd
+        }
+        add-zsh-hook -Uz chpwd chpwd-osc7-pwd
+      '';
     };
     xdg.terminal-exec = {
       enable = true;

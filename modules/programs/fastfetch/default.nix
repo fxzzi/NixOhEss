@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf getExe;
+  inherit (lib) mkEnableOption mkOption types mkIf getExe mkAfter;
   cfg = config.cfg.programs.fastfetch;
   iconPath = ./images/${cfg.icon}.jpg;
   # Generate sixel using chafa
@@ -102,8 +102,10 @@ in {
         };
       };
     };
-    hj.xdg.config.files."zsh/.zshrc".text = mkIf cfg.shellIntegration ''
-      ${getExe pkgs.fastfetchMinimal}
-    '';
+    hj.xdg.config.files."zsh/.zshrc" = lib.mkIf cfg.shellIntegration {
+      text = lib.mkAfter ''
+        ${getExe pkgs.fastfetchMinimal}
+      '';
+    };
   };
 }
