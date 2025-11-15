@@ -1,19 +1,25 @@
 {
   lib,
   config,
-  self,
   pkgs,
+  pins,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf concatStringsSep;
+  inherit (pkgs) callPackage;
   cfg = config.cfg.programs.osu;
   otd = config.cfg.services.opentabletdriver.enable;
+  envVars = [
+    "OSU_SDL3=1"
+    "SDL_VIDEO_DRIVER=wayland"
+  ];
   # osu!lazer needs to be up to date. fuf's nix-gaming repo
   # updates it faster and more regularly than nixpkgs.
-  osu = self.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
+  osu = callPackage "${pins.nix-gaming}/pkgs/osu-lazer-bin" {
+    osu-mime = callPackage "${pins.nix-gaming}/pkgs/osu-mime" {};
     # allows for really low latency. if audio is glitching, increase
     pipewire_latency = "32/44100";
-    command_prefix = "env SDL_VIDEODRIVER=wayland";
+    command_prefix = "env ${concatStringsSep " " envVars}";
   };
 in {
   options.cfg.programs.osu.enable = mkEnableOption "osu!";

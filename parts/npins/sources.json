@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "e84c017968bb9d3e05442e8bdbbe34278dd6c72d",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/e84c017968bb9d3e05442e8bdbbe34278dd6c72d.tar.gz",
-      "hash": "02ki2hqzchkxwx9wscgvqs53vsbd81xw2llbnzspx8zn4briw3nx"
+      "revision": "ecb895ff6109185934baf04ee020ba5d1959ceaf",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/ecb895ff6109185934baf04ee020ba5d1959ceaf.tar.gz",
+      "hash": "0ia6pkk23738fzpi57qxjb2356aw4x64wc3yknv8afrnfbligdjx"
     },
     "agenix": {
       "type": "Git",
