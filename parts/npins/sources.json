@@ -120,13 +120,13 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "fxzzi",
+        "owner": "NotAShelf",
         "repo": "rags"
       },
-      "branch": "GIRRepo-3.0",
+      "branch": "master",
       "submodules": false,
-      "revision": "9d426b0889d415416664899d3148e551f34b9e7d",
-      "url": "https://github.com/fxzzi/rags/archive/9d426b0889d415416664899d3148e551f34b9e7d.tar.gz",
+      "revision": "1e0bbbe314c408c86ad7c0d9cb90bc9460ea3062",
+      "url": "https://github.com/NotAShelf/rags/archive/1e0bbbe314c408c86ad7c0d9cb90bc9460ea3062.tar.gz",
       "hash": "0g0wgd2y758fbzbp7l60854a29dpm3zlafqpmf2mbm0f18hwq6g8"
     },
     "startpage": {
