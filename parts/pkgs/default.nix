@@ -17,9 +17,7 @@ in {
     # to the same configuration instance - this one.
     legacyPackages = import inputs.nixpkgs {
       inherit system;
-      config = {
-        allowUnfree = true;
-      };
+      config.allowUnfree = true;
     };
     _module.args = {
       # Unify all instances of nixpkgs into a single `pkgs` set

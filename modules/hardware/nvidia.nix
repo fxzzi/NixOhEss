@@ -16,11 +16,6 @@ in {
 
   config = mkIf cfg.enable {
     nixpkgs.config.cudaSupport = true; # enable cuda support in packages which need it
-    nixpkgs.overlays = [
-      (_: _: {
-        egl-wayland = self.packages.${pkgs.stdenv.hostPlatform.system}.egl-wayland2;
-      })
-    ];
     services.xserver.videoDrivers = ["nvidia"];
 
     hardware = {
@@ -64,10 +59,12 @@ in {
         __GL_VRR_ALLOWED = "1";
         # lowest frame buffering -> lower latency
         __GL_MaxFramesAllowed = "1";
-        # no idea what this does but apprently useful
+        # no idea what this does but apparently useful
         __GL_YIELD = "usleep";
         # fix hw acceleration and native wayland on losslesscut
         __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
+        # fix hw acceleration in bwrap (osu!lazer, wrapped appimages)
+        __EGL_EXTERNAL_PLATFORM_CONFIG_DIRS = "/run/opengl-driver/share/egl/egl_external_platform.d";
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
         # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
