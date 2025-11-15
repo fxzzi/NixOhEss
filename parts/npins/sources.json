@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "6e2b152f7f3a15d9f7f53d764b59d91dfa23c202",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/6e2b152f7f3a15d9f7f53d764b59d91dfa23c202.tar.gz",
-      "hash": "0zq40xkj8s0hdwl0bqn97vlz7p1sxjkmgbrkcwxrk64598pjhfsp"
+      "revision": "e84c017968bb9d3e05442e8bdbbe34278dd6c72d",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/e84c017968bb9d3e05442e8bdbbe34278dd6c72d.tar.gz",
+      "hash": "02ki2hqzchkxwx9wscgvqs53vsbd81xw2llbnzspx8zn4briw3nx"
     },
     "agenix": {
       "type": "Git",
@@ -120,14 +120,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "NotAShelf",
+        "owner": "fxzzi",
         "repo": "rags"
       },
-      "branch": "master",
+      "branch": "GIRRepo-3.0",
       "submodules": false,
-      "revision": "d28fe9fc8ed5fffcea3abf1b7d1e4c17c93845a5",
-      "url": "https://github.com/NotAShelf/rags/archive/d28fe9fc8ed5fffcea3abf1b7d1e4c17c93845a5.tar.gz",
-      "hash": "171an8y7977d1lammqlj5dg61f2hia2fs7zxfn4a1l43l18mcdc9"
+      "revision": "9d426b0889d415416664899d3148e551f34b9e7d",
+      "url": "https://github.com/fxzzi/rags/archive/9d426b0889d415416664899d3148e551f34b9e7d.tar.gz",
+      "hash": "0g0wgd2y758fbzbp7l60854a29dpm3zlafqpmf2mbm0f18hwq6g8"
     },
     "startpage": {
       "type": "Git",
