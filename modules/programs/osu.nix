@@ -13,7 +13,7 @@
   osu = self.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
     # allows for really low latency. if audio is glitching, increase
     pipewire_latency = "32/44100";
-    command_prefix = "env OSU_SDL3=1";
+    command_prefix = "env SDL_VIDEODRIVER=wayland";
   };
 in {
   options.cfg.programs.osu.enable = mkEnableOption "osu!";
