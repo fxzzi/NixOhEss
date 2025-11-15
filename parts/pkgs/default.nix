@@ -21,7 +21,7 @@ in {
     };
     _module.args = {
       # Unify all instances of nixpkgs into a single `pkgs` set
-      # Wthat includes our own overlays within `perSystem`. This
+      # that includes our own overlays within `perSystem`. This
       # is not done by flake-parts, so we do it ourselves.
       # See:
       #  <https://github.com/hercules-ci/flake-parts/issues/106#issuecomment-1399041045>
