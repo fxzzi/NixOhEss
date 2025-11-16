@@ -1,5 +1,5 @@
 {
-  self,
+  self',
   config,
   lib,
   pkgs,
@@ -43,7 +43,7 @@ in {
         enable = true;
         enable32Bit = true;
         extraPackages = [
-          self.packages.${pkgs.stdenv.hostPlatform.system}.egl-wayland2
+          self'.packages.egl-wayland2
           (pkgs.nvidia-vaapi-driver.overrideAttrs {
             version = "0-unstable-${builtins.substring 0 8 pins.nvidia-vaapi-driver.revision}";
             src = pins.nvidia-vaapi-driver;

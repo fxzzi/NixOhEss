@@ -103,7 +103,7 @@ in {
       };
     };
     hj.xdg.config.files."zsh/.zshrc" = lib.mkIf cfg.shellIntegration {
-      text = lib.mkAfter ''
+      text = mkAfter ''
         ${getExe pkgs.fastfetchMinimal}
       '';
     };

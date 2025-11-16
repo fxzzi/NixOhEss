@@ -1,5 +1,5 @@
 {
-  self,
+  self',
   lib,
   config,
   pkgs,
@@ -8,7 +8,7 @@
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.foot;
   inherit (pkgs) symlinkJoin;
-  foot = self.packages.${pkgs.stdenv.hostPlatform.system}.foot-transparency;
+  foot = self'.packages.foot-transparency;
 in {
   options.cfg.programs.foot.enable = mkEnableOption "foot";
   config = mkIf cfg.enable {

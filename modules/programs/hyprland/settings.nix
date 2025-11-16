@@ -1,5 +1,6 @@
 {
   self,
+  self',
   lib,
   pkgs,
   config,
@@ -284,7 +285,7 @@ in {
           ];
           "$MOD" = "SUPER";
           bind = let
-            screenshot = getExe (self.packages.${pkgs.stdenv.hostPlatform.system}.screenshot.override {hyprland = config.programs.hyprland.package;});
+            screenshot = getExe (self'.packages.screenshot.override {hyprland = config.programs.hyprland.package;});
           in
             [
               # screenshot script
@@ -303,10 +304,10 @@ in {
               "$MOD SHIFT, E, exec, pkill wleave || wleave"
               "CTRL SHIFT, Escape, exec, foot btm"
               # extra schtuff
-              "$MOD, N, exec, ${getExe (self.packages.${pkgs.stdenv.hostPlatform.system}.sunset.override {hyprland = config.programs.hyprland.package;})} 3000"
-              "$MOD, R, exec, ${getExe self.packages.${pkgs.stdenv.hostPlatform.system}.random-wall}"
+              "$MOD, N, exec, ${getExe (self'.packages.sunset.override {hyprland = config.programs.hyprland.package;})} 3000"
+              "$MOD, R, exec, ${getExe self'.packages.random-wall}"
               "$MOD SHIFT, R, exec, hyprctl reload"
-              "$MOD, J, exec, foot ${getExe self.packages.${pkgs.stdenv.hostPlatform.system}.wall-picker}"
+              "$MOD, J, exec, foot ${getExe self'.packages.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
               "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"
 
@@ -365,11 +366,11 @@ in {
           ];
 
           bindel = let
-            audio = getExe self.packages.${pkgs.stdenv.hostPlatform.system}.audio;
+            audio = getExe self'.packages.audio;
             brightness =
               if cfg.laptop
-              then getExe self.packages.${pkgs.stdenv.hostPlatform.system}.brightness-laptop
-              else getExe (self.packages.${pkgs.stdenv.hostPlatform.system}.brightness.override {hyprland = config.programs.hyprland.package;});
+              then getExe self'.packages.brightness-laptop
+              else getExe (self'.packages.brightness.override {hyprland = config.programs.hyprland.package;});
           in [
             # volume script
             ", XF86AudioRaiseVolume, exec, ${audio} vol up 5"
