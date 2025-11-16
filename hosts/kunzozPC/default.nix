@@ -1,5 +1,5 @@
 {
-  self,
+  self',
   pkgs,
   lib,
   pins,
@@ -17,7 +17,7 @@
       qbittorrent-enhanced
       nvtopPackages.amd
       sgdboop
-      self.packages.${pkgs.stdenv.hostPlatform.system}.stremio-enhanced
+      self'.packages.stremio-enhanced
       (callPackage pins.creamlinux {})
     ];
     xdg.config.files."hypr/hyprland.conf" = {

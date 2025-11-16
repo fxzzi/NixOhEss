@@ -1,8 +1,7 @@
 {
   lib,
   config,
-  self,
-  pkgs,
+  self',
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -12,7 +11,7 @@ in {
   config = mkIf cfg.enable {
     # only used patched amdgpu on kernels >= 6.17
     boot.extraModulePackages = mkIf (config.boot.kernelPackages.kernelAtLeast "6.17") [
-      (self.packages.${pkgs.stdenv.hostPlatform.system}.amdgpu-kernel-module.override {
+      (self'.packages.amdgpu-kernel-module.override {
         inherit (config.boot.kernelPackages) kernel;
       })
     ];

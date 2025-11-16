@@ -1,7 +1,7 @@
 {
-  self,
   pkgs,
   config,
+  self',
   ...
 }: {
   imports = [
@@ -13,7 +13,7 @@
     hj = {
       packages = with pkgs; [
         telegram-desktop
-        self.packages.${pkgs.stdenv.hostPlatform.system}.stremio-enhanced
+        self'.packages.stremio-enhanced
         # uni stuff
         onlyoffice-desktopeditors
         processing

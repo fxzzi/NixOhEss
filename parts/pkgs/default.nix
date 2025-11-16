@@ -1,9 +1,10 @@
 {
   inputs,
   pins,
+  lib,
   ...
 }: let
-  inherit (inputs.nixpkgs.lib) packagesFromDirectoryRecursive fix;
+  inherit (lib) packagesFromDirectoryRecursive fix;
 in {
   perSystem = {
     pkgs,
