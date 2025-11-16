@@ -1,5 +1,5 @@
 {
-  self,
+  self',
   pkgs,
   config,
   lib,
@@ -46,7 +46,7 @@ in {
         corefonts # ms fonts
         vista-fonts # more ms fonts including calibri and consolas
         inter
-        self.packages.${pkgs.stdenv.hostPlatform.system}.ioshelfka-term
+        self'.packages.ioshelfka-term
       ];
     };
   };

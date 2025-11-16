@@ -3,6 +3,7 @@
   lib,
   config,
   inputs,
+  inputs',
   ...
 }: let
   inherit (lib) mkOption types;
@@ -23,7 +24,7 @@ in {
   ];
   config = {
     hjem = {
-      linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
+      linker = inputs'.hjem.packages.smfh;
       clobberByDefault = true;
       users.${username} = {
         enable = true;
