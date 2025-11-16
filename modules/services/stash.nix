@@ -2,12 +2,12 @@
   lib,
   config,
   pkgs,
-  inputs,
+  inputs',
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   inherit (pkgs) writeText;
-  stash = inputs.stash.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  stash = inputs'.stash.packages.default;
   cfg = config.cfg.services.stash;
   regex = "(password|secret|api[_-]?key|token)[=: ]+[^\s]+";
 in {

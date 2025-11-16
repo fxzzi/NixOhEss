@@ -1,10 +1,10 @@
 {
   pkgs,
-  self,
+  self',
   lib,
   ...
 }: let
-  qt6ct = self.packages.${pkgs.stdenv.hostPlatform.system}.qt6ct-kde;
+  qt6ct = self'.packages.qt6ct-kde;
 in {
   config = {
     environment = {

@@ -1,8 +1,7 @@
 {
-  self,
+  self',
   config,
   lib,
-  pkgs,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf;
@@ -38,12 +37,12 @@ in {
       "MANGOHUD" = "1";
     };
     hj = {
-      packages = [self.packages.${pkgs.stdenv.hostPlatform.system}.mangohud-git];
+      packages = [self'.packages.mangohud-git];
       xdg.config.files = {
         "MangoHud/MangoHud.conf".text = ''
           blacklist=mpv
           font_size=20
-          font_file=${self.packages.${pkgs.stdenv.hostPlatform.system}.ioshelfka-term}/share/fonts/truetype/IoshelfkaTerm-Bold.ttf
+          font_file=${self'.packages.ioshelfka-term}/share/fonts/truetype/IoshelfkaTerm-Bold.ttf
           text_outline_thickness=1
           cellpadding_y=-0.2
           fps_limit=${toString fpsLimit},0
