@@ -114,7 +114,7 @@
         enable = true;
         defaultMonitor = "DP-3";
         secondaryMonitor = null;
-        useGit = true;
+        useGit = false;
       };
       hyprlock.enable = true;
     };
