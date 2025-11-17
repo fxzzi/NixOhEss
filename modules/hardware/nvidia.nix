@@ -113,6 +113,7 @@ in {
         ]
         (mkIf config.hardware.nvidia.powerManagement.enable [
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
+          "nvidia.NVreg_EnableS0ixPowerManagement=0"
         ])
       ];
     };

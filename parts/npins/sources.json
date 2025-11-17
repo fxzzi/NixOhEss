@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "ecb895ff6109185934baf04ee020ba5d1959ceaf",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/ecb895ff6109185934baf04ee020ba5d1959ceaf.tar.gz",
-      "hash": "0ia6pkk23738fzpi57qxjb2356aw4x64wc3yknv8afrnfbligdjx"
+      "revision": "0e5097cf5831db868fd3b22440679f542ed57a41",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/0e5097cf5831db868fd3b22440679f542ed57a41.tar.gz",
+      "hash": "1j0rzc78k0m2hdpfgjfajkxqdw3alk01agda72vqzzihgpx7fvqz"
     },
     "agenix": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "0a1e194e207cdfb71d40407c417c25141ce926a9",
-      "url": "https://github.com/fufexan/nix-gaming/archive/0a1e194e207cdfb71d40407c417c25141ce926a9.tar.gz",
-      "hash": "099q62wp72wz1gf0ni5k003ylr07vy85aj4rabqvv4jvm7i6ybv1"
+      "revision": "faa8b1fd869418ea37dafe7d20000c1f660d3664",
+      "url": "https://github.com/fufexan/nix-gaming/archive/faa8b1fd869418ea37dafe7d20000c1f660d3664.tar.gz",
+      "hash": "1z6b8zybnf8wlavvc7q3cjgap22aakd5z8bf6vy96c5q6d6zplh8"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
