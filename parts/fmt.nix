@@ -1,7 +1,13 @@
-_: {
-  perSystem = {pkgs, ...}: {
+{
+  perSystem = {pkgs, ...}: let
+    exclusionList = [
+      "npins/*"
+      "*/npins/*"
+    ];
+    excludeArgs = builtins.concatStringsSep " " (map (pattern: "--exclude '${pattern}'") exclusionList);
+  in {
     formatter = pkgs.writeShellApplication {
-      name = "alejFmt";
+      name = "nix-formatter";
       runtimeInputs = with pkgs; [
         alejandra
         deadnix
@@ -9,8 +15,8 @@ _: {
         fd
       ];
       text = ''
-        fd "$@" -t f -e nix -x statix fix -- '{}'
-        fd "$@" -t f -e nix -X deadnix -e -- '{}' \; -X alejandra -q '{}'
+        fd "$@" ${excludeArgs} -t f -e nix -x statix fix -- '{}'
+        fd "$@" ${excludeArgs} -t f -e nix -X deadnix -e -- '{}' \; -X alejandra -q '{}'
       '';
     };
   };
