@@ -4,7 +4,14 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf mkDefault;
+  inherit
+    (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    mkDefault
+    ;
   cfg = config.cfg.core.boot;
 in {
   options.cfg.core.boot = {
@@ -79,6 +86,7 @@ in {
       '';
       # zram is fast enough that we can be aggressive with swappiness
       kernel.sysctl."vm.swappiness" = 130;
+      kernel.sysctl."kernel.sysrq" = 1; # enable sysrq / reisub
     };
   };
 }

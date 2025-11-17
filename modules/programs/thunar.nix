@@ -33,11 +33,11 @@ in {
       gvfs.enable = true; # Enable gvfs for stuff like trash, mtp
       gvfs.package = pkgs.gvfs; # Set to gvfs instead of gnome gvfs
     };
-    programs.file-roller.enable = true; # Enable File Roller for GUI archive management
 
     hj = {
       # add some packages for file-roller to work
       packages = with pkgs; [
+        file-roller
         p7zip
         unar
         unrar-wrapper
