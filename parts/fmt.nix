@@ -1,8 +1,7 @@
 {
   perSystem = {pkgs, ...}: let
     exclusionList = [
-      "npins/*"
-      "*/npins/*"
+      "**/npins/*"
     ];
     excludeArgs = builtins.concatStringsSep " " (map (pattern: "--exclude '${pattern}'") exclusionList);
   in {
