@@ -13,8 +13,8 @@
   in
     if config.hj.xdg.config.files."hypr/hyprland.conf".value.misc.vrr == 0
     then rr
-    # NOTE:https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
-    else (rr - (rr * rr / 4096));
+    # NOTE: https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
+    else (rr - (rr * rr / 4096.0));
 in {
   options.cfg.programs.mangohud = {
     enable = mkEnableOption "mangohud";
