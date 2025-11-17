@@ -221,11 +221,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1763386497,
-        "narHash": "sha256-0Cb99eDgyrny8Szmb5+e7OTJxlacM8YiPyCSGpDU+D4=",
+        "lastModified": 1763402014,
+        "narHash": "sha256-6rAQBb6/dVPIDaK9+EyjIkxErt4u6BHWRAVV5wN33RU=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "ad52ba9c1393de717f6b86b9e94c21be9e96e320",
+        "rev": "95ee08b3403b90e2930d46425cada1d280f3524e",
         "type": "github"
       },
       "original": {
@@ -453,16 +453,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1763377333,
-        "narHash": "sha256-GtikA/H/igDjeLBq1J34N0ZtmsEO4g67B7UbBhLHXKo=",
+        "lastModified": 1763283776,
+        "narHash": "sha256-Y7TDFPK4GlqrKrivOcsHG8xSGqQx3A6c+i7novT85Uk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c0fad0156f3ee09c49be8afcf66d4ef61c46f9c6",
+        "rev": "50a96edd8d0db6cc8db57dab6bb6d6ee1f3dc49a",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable-small",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
