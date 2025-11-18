@@ -1,7 +1,8 @@
 {
   description = "fazzi's NixOS config";
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
       imports = [
         ./hosts
@@ -29,7 +30,7 @@
       };
     };
     nvf = {
-      url = "github:NotAShelf/nvf/v0.8";
+      url = "github:NotAShelf/nvf/25aafc84f57973ed7f17528b60490a99ee539163";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
