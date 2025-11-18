@@ -17,6 +17,8 @@
     then pkgs.linuxKernel.packages.linux_xanmod_latest
     else if cfg.type == "lqx"
     then pkgs.linuxKernel.packages.linux_lqx
+    else if cfg.type == "rc"
+    then pkgs.linuxPackages_testing
     else throw "Unsupported kernel type.";
 in {
   options.cfg.core.kernel.type = mkOption {
@@ -26,6 +28,7 @@ in {
       "xanmod"
       "lqx"
       "lts"
+      "rc"
     ];
     default = "latest";
     description = "Selects which kernel to use";
