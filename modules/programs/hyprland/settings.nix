@@ -27,7 +27,7 @@
     else "slide";
 
   games = [
-    # "xdg_tag proton-game" # modern proton versions set xdgTag
+    "xdg_tag proton-game" # modern proton versions set xdgTag
     "class steam_app_.*" # all xwayland proton games
     "class cs2" # cs2
     "class Minecraft\*.*"
