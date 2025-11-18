@@ -43,9 +43,9 @@
       hyprsunset.enable = true;
       hypridle = {
         enable = true;
-        dpmsTimeout = 0;
+        dpmsTimeout = 600;
         lockTimeout = 620;
-        suspendTimeout = 1200;
+        suspendTimeout = 0;
       };
       hyprpaper.enable = true;
       xdph.enable = true;
