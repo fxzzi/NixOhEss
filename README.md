@@ -4,15 +4,13 @@
 
 ## Overview
 
-This repo consists of a relatively simple multi-host configuration using nixOS
-and [hjem](https://github.com/feel-co/hjem).
+This repo consists of a relatively simple multi-host configuration using NixOS
+and [hjem](https://github.com/feel-co/hjem). [flake-parts](https://flake.parts/)
+is also used to modularize the flake.
 
 > [!WARNING]
-> These configurations are highly tailored to my personal setup and may not work
-> out of the box for your system. They include host-specific settings such as
-> hardware configurations, networking details, and secrets that **will likely
-> require significant adjustments**. Use them as a reference and at your own
-> risk — **no warranty is provided**.
+> My configurations will likely not work OOTB on other devices, due to the use
+> of secrets, different hardware, among other things. Tread with caution!
 
 ## Hosts
 
@@ -31,7 +29,7 @@ and [hjem](https://github.com/feel-co/hjem).
 - [`modules/`](./modules/): This contains all host-agnostic modules which I use
   across all devices. A lot of the modules are optional, and can be configured
   in the host specific config. All module files are imported automatically under
-  `nixosModules.default`.
+  `self.nixosModules.default`.
 - [`hosts/`](./hosts/): The configurations for each host is contained here. This
   is where the hardware configurations and host-specific modules are kept.
 
