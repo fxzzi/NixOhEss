@@ -54,6 +54,8 @@ in {
         "wheel" # sudo
         "video"
         "input"
+        "audio"
+        "pipewire"
       ];
       uid = 1000;
     };
