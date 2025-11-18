@@ -6,7 +6,17 @@
   config,
   ...
 }: let
-  inherit (lib) mkOption mkEnableOption types mkDefault getExe optionalAttrs mkIf optionals;
+  inherit
+    (lib)
+    mkOption
+    mkEnableOption
+    types
+    mkDefault
+    getExe
+    optionalAttrs
+    mkIf
+    optionals
+    ;
   inherit (builtins) concatLists genList;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
@@ -17,28 +27,28 @@
     else "slide";
 
   games = [
-    "xdgTag:proton-game" # modern proton versions set xdgTag
-    "class:^(steam_app_.*)$" # all xwayland proton games
-    "class:^(cs2)$" # cs2
-    "class:^(Minecraft\*.*)$"
-    "initialTitle:^(Minecraft\*.*)$" # sometimes class isn't set
-    "class:^(org-prismlauncher-EntryPoint)$" # legacy mc versions
-    "class:^(osu!)$"
-    "class:^(.*\.exe)$" # all exe's
-    "class:^(hl2_linux)$" # half life 2
-    "class:^(cstrike_linux64)$" # cs source
-    "class:^(portal2_linux)$" # portal 2
-    "class:^(gamescope)$"
-    "class:^(Celeste)$"
-    "class:^(info.cemu.Cemu)$"
-    "class:^(Cuphead.x86_64)$"
-    "class:^(org.eden_emu.eden)$"
-    "class:^(hollow_knight.x86_64)$"
-    "class:^(Terraria.bin.x86_64)$"
-    "class:^(Rosalie's Mupen GUI)$"
-    "class:^(sm64coopdx)$"
-    "class:^(retroarch)$" # xwl
-    "class:^(com.libretro.RetroArch)$" # wl
+    # "xdg_tag proton-game" # modern proton versions set xdgTag
+    "class steam_app_.*" # all xwayland proton games
+    "class cs2" # cs2
+    "class Minecraft\*.*"
+    "initial_title Minecraft\*.*" # sometimes class isn't set
+    "class org-prismlauncher-EntryPoint" # legacy mc versions
+    "class osu!"
+    "class .*.exe" # all exe's
+    "class hl2_linux" # half life 2
+    "class cstrike_linux64" # cs source
+    "class portal2_linux" # portal 2
+    "class gamescope"
+    "class Celeste"
+    "class info.cemu.Cemu"
+    "class Cuphead.x86_64"
+    "class org.eden_emu.eden"
+    "class hollow_knight.x86_64"
+    "class Terraria.bin.x86_64"
+    "class Rosalie's Mupen GUI"
+    "class sm64coopdx"
+    "class retroarch" # xwl
+    "class com.libretro.RetroArch" # wl
   ];
 in {
   options.cfg.programs = {
@@ -136,8 +146,8 @@ in {
             mouse_move_focuses_monitor = 0; # Disables hover for monitor focus
             focus_on_activate = 1; # Focuses windows which ask for activation
             enable_swallow = 1; # Enable window swalling
-            swallow_regex = "^(foot)$"; # Make foot swallow executed windows
-            swallow_exception_regex = "^(foot)$"; # Make foot not swallow itself
+            swallow_regex = "foot"; # Make foot swallow executed windows
+            swallow_exception_regex = "foot"; # Make foot not swallow itself
             initial_workspace_tracking = 0;
             vrr = 2;
             anr_missed_pings = 5; # by default, ANR dialog shows up way too aggressively.
@@ -150,16 +160,16 @@ in {
             no_donation_nag = 1;
           };
           layerrule = [
-            "blur, launcher"
-            "blur, walker"
-            "blur, wleave"
-            "blur, bar-.*"
-            "blur, notifications"
-            "ignorezero, launcher"
-            "ignorezero, bar-.*"
-            "xray 1, wleave"
-            "xray 1, bar-.*"
-            "animation slide, notifications"
+            "match:namespace launcher, blur 1"
+            "match:namespace walker, blur 1"
+            "match:namespace wleave, blur 1"
+            "match:namespace bar-.*, blur 1"
+            "match:namespace notifications, blur 1"
+            "match:namespace launcher, ignore_alpha 0 "
+            "match:namespace bar-.*, ignore_alpha 0"
+            "match:namespace wleave, xray 1"
+            "match:namespace bar-.*, xray 1"
+            "match:namespace notifications, animation slide"
           ];
           decoration = {
             rounding = 0;
@@ -221,54 +231,48 @@ in {
           windowrule =
             [
               # pause hypridle for certain apps
-              "idleinhibit focus, class:^(mpv)$"
-              "idleinhibit focus, class:^(atril)$"
-              "idleinhibit focus, class:^(blender)$, title:^(Blender Render)$"
-              "idleinhibit fullscreen, class:^(blender)$"
-              "idleinhibit fullscreen, class:^(foot)$"
+              "match:class mpv, idle_inhibit focus"
+              "match:class atril, idle_inhibit focus"
+              "match:class blender match:title Blender Render, idle_inhibit focus"
+              "match:class blender, idle_inhibit fullscreen"
+              "match:class foot, idle_inhibit fullscreen"
 
               # some apps, mostly games, are stupid and they fullscreen on the
               # wrong monitor. so just don't listen to them lol
-              "suppressevent fullscreenoutput, class:.*"
+              "match:class .*, suppress_event fullscreenoutput"
 
               # Ignore maximize requests from apps. You'll probably like this.
-              "suppressevent maximize, class:.*"
+              "match:class .*, suppress_event maximize"
 
               # Fix some dragging issues with XWayland
-              "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+              "match:class .*, match:title .*,  match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0, no_focus 1"
 
               # dialogs
-              "float,title:^(File Operation Progress)(.*)$"
-              "float,title:^(Confirm to replace files)(.*)$"
-              "float,title:^(Select a File)(.*)$"
-              "float,title:^(Save As)(.*)$"
-              "float,title:^(Rename)(.*)$"
-              "float,class:^(xdg-desktop-portal-gtk)$"
-              "float,class:^(org.gnome.FileRoller)$,title:^(Extract)(.*)$"
+              "match:title File Operation Progress.*, float 1"
+              "match:title Confirm to replace files.*, float 1"
+              "match:title Select a File.*, float 1"
+              "match:title Save As.*, float 1"
+              "match:title Rename.*, float 1"
+              "match:class xdg-desktop-portal-gtk, float 1"
+              "match:class org.gnome.FileRoller, match:title Extract.*, float 1"
 
               # Window rules for games
             ]
-            ++ (lib.concatMap (
-                game: [
-                  # enable tearing and inhibit idle for games
-                  "immediate, ${game}"
-                  "idleinhibit fullscreen, ${game}"
-                  "fullscreen, ${game}"
-                  "suppressevent maximize fullscreen, ${game}"
-                  "content game, ${game}"
-                ]
-              )
+            ++ (lib.concatMap (game: [
+                # for all game matches
+                "match:${game}, immediate 1, idle_inhibit fullscreen, fullscreen 1, content game"
+              ])
               games)
             ++ [
               # content type game means ds will be in effect.
               # ds and tearing cannot activate at the same time.
               # gmd needs tearing for unlocked fps.
-              "content none, class:^(geometrydash.exe)$"
-              "immediate, class:^(geometrydash.exe)$"
+              "match:class geometrydash.exe, content none"
+              "match:class geometrydash.exe, immediate 1"
 
               # Disable vrr for these apps / games, as I run them at higher than my rr
-              "novrr, class:^(geometrydash.exe)$"
-              "novrr, class:^(osu!)$"
+              "match:class geometrydash.exe, no_vrr 1"
+              "match:class osu!, no_vrr 1"
             ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor [
@@ -285,7 +289,9 @@ in {
           ];
           "$MOD" = "SUPER";
           bind = let
-            screenshot = getExe (self'.packages.screenshot.override {hyprland = config.programs.hyprland.package;});
+            screenshot = getExe (
+              self'.packages.screenshot.override {hyprland = config.programs.hyprland.package;}
+            );
           in
             [
               # screenshot script
@@ -304,7 +310,9 @@ in {
               "$MOD SHIFT, E, exec, pkill wleave || wleave"
               "CTRL SHIFT, Escape, exec, foot btm"
               # extra schtuff
-              "$MOD, N, exec, ${getExe (self'.packages.sunset.override {hyprland = config.programs.hyprland.package;})} 3000"
+              "$MOD, N, exec, ${
+                getExe (self'.packages.sunset.override {hyprland = config.programs.hyprland.package;})
+              } 3000"
               "$MOD, R, exec, ${getExe self'.packages.random-wall}"
               "$MOD SHIFT, R, exec, hyprctl reload"
               "$MOD, J, exec, foot ${getExe self'.packages.wall-picker}"
@@ -317,8 +325,8 @@ in {
               ", XF86AudioNext, exec, ${getExe pkgs.mpc} next"
 
               # passthrough binds for obs
-              "Control_L, grave, pass, class:^(com.obsproject.Studio)$"
-              "Control_L SHIFT, grave, pass, class:^(com.obsproject.Studio)$"
+              "Control_L, grave, pass, class:com.obsproject.Studio"
+              "Control_L SHIFT, grave, pass, class:com.obsproject.Studio"
 
               # window management
               "$MOD, Q, killactive"
@@ -343,18 +351,24 @@ in {
               "$MOD, mouse_down, workspace, e+1"
               "$MOD, mouse_up, workspace, e-1"
             ]
-            ++ ( # workspaces
+            ++
+            # workspaces
+            (
               # binds $MOD + [shift +] {1..10} to [move to] workspace {1..10}
-              concatLists (genList (x: let
-                  ws = let
-                    c = (x + 1) / 10;
-                  in
-                    toString (x + 1 - (c * 10));
-                in [
-                  "$MOD, ${ws}, workspace, ${toString (x + 1)}"
-                  "$MOD SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-                ])
-                10)
+              concatLists (
+                genList (
+                  x: let
+                    ws = let
+                      c = (x + 1) / 10;
+                    in
+                      toString (x + 1 - (c * 10));
+                  in [
+                    "$MOD, ${ws}, workspace, ${toString (x + 1)}"
+                    "$MOD SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                  ]
+                )
+                10
+              )
             );
 
           binde = [
