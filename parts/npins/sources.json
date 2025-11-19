@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "4ae24d5b42cd2ce58946aa16e29faa3b22f7c4b3",
-      "url": "https://github.com/fufexan/nix-gaming/archive/4ae24d5b42cd2ce58946aa16e29faa3b22f7c4b3.tar.gz",
-      "hash": "0p94q3fhmia225w867d68n092p3lqky1fjsnlncbkwllv17w1dqb"
+      "revision": "b13a918dae392cd84191c55448ecd7ffca6cf7d0",
+      "url": "https://github.com/fufexan/nix-gaming/archive/b13a918dae392cd84191c55448ecd7ffca6cf7d0.tar.gz",
+      "hash": "0zyps9h0ajhmcnaby0hsbp785xsp66w986bz8796b2pm9z61n022"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
