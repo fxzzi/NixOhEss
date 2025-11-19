@@ -27,7 +27,7 @@ in {
         '';
         "ncmpcpp/config".text = ''
           autocenter_mode=yes
-          execute_on_song_change=${getExe self'.packages.mpd-notif}
+          execute_on_song_change=${getExe self'.packages.mpd-notif} &
           external_editor=nvim
           header_visibility=no
           lines_scrolled=1
