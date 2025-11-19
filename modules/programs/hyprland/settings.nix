@@ -137,7 +137,7 @@ in {
             gaps_out = 2; # Outer monitor gaps
             gaps_in = 1; # Inner window gaps
             border_size = 1; # Set window border width
-            allow_tearing = 0;
+            allow_tearing = 1;
           };
           misc = {
             new_window_takes_over_fullscreen = 2; # Leave fullscreen on new window
@@ -249,23 +249,22 @@ in {
               "match:class xdg-desktop-portal-gtk, float 1"
               "match:class org.gnome.FileRoller, match:title Extract.*, float 1"
 
+              # make rars launch tiled
+              "match:class rars-Launch, match:title RARS .*, tile 1"
+
               # Window rules for games
             ]
             ++ (lib.concatMap (game: [
                 # for all game matches
-                "match:${game}, immediate 1, idle_inhibit fullscreen, fullscreen 1, content game"
+                "match:${game}, immediate 0, idle_inhibit fullscreen, fullscreen 1, content game"
               ])
               games)
             ++ [
               # content type game means ds will be in effect.
               # ds and tearing cannot activate at the same time.
-              # gmd needs tearing for unlocked fps.
-              "match:class geometrydash.exe, content none"
-              "match:class geometrydash.exe, immediate 1"
-
-              # Disable vrr for these apps / games, as I run them at higher than my rr
-              "match:class geometrydash.exe, no_vrr 1"
-              "match:class osu!, no_vrr 1"
+              # gmd and osu!lazer needs tearing for unlocked fps.
+              "match:class geometrydash.exe, content none, immediate 1, no_vrr 1"
+              "match:class osu!, content none, immediate 1, no_vrr 1"
             ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor [
