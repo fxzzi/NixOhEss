@@ -16,8 +16,8 @@ in {
 
       # fix java bug on tiling wm's / compositors
       _JAVA_AWT_WM_NONREPARENTING = "1";
-
-      # HYPRLAND_TRACE = "1";
+      # enable java anti aliasing
+      _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=on";
     };
   };
 }
