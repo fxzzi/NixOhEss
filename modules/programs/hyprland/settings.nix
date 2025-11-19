@@ -238,7 +238,8 @@ in {
               # some apps, mostly games, are stupid and they fullscreen on the
               # wrong monitor. so just don't listen to them lol
               # also ignore maximize requests from apps. You'll probably like this.
-              "match:class .*, suppress_event maximize fullscreenoutput"
+              # some games, like cs2, request tearing by default. disable this.
+              "match:class .*, suppress_event maximize fullscreenoutput, immediate 0"
 
               # dialogs
               "match:title File Operation Progress.*, float 1"
@@ -256,7 +257,7 @@ in {
             ]
             ++ (lib.concatMap (game: [
                 # for all game matches
-                "match:${game}, immediate 0, idle_inhibit fullscreen, fullscreen 1, content game"
+                "match:${game}, idle_inhibit fullscreen, fullscreen 1, content game"
               ])
               games)
             ++ [

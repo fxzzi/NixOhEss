@@ -20,8 +20,8 @@ pkgs.stdenv.mkDerivation {
 
   patches = [
     (pkgs.fetchpatch {
-      url = "https://gitlab.freedesktop.org/-/project/4522/uploads/220bf055057e9aa7e522409c9cd9aea6/0001-drm-amdgpu-Fix-wait-after-reset-sequence-in-S3.patch";
-      hash = "sha256-IHifmBZnFsDA7GdIPRd3elkEIlovyyGxnL1nD+EonhA=";
+      url = "https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/patch/?id=570a66b48c22214851949fcd71816fee280aa096";
+      hash = "sha256-CU3paDbXLMJJulYRDoy+CsmX8EykrXN/7epWabSogyE=";
     })
   ];
 
