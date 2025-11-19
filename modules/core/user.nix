@@ -31,12 +31,10 @@ in {
         # These are available no matter the host.
         packages = with pkgs; [
           npins
-          qpwgraph
           loupe
           wget
           ffmpeg
           imagemagick
-          pwvucontrol
           mate.atril
           libreoffice
           hunspell
@@ -54,8 +52,6 @@ in {
         "wheel" # sudo
         "video"
         "input"
-        "audio"
-        "pipewire"
       ];
       uid = 1000;
     };
