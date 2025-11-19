@@ -233,19 +233,12 @@ in {
               # pause hypridle for certain apps
               "match:class mpv, idle_inhibit focus"
               "match:class atril, idle_inhibit focus"
-              "match:class blender match:title Blender Render, idle_inhibit focus"
-              "match:class blender, idle_inhibit fullscreen"
               "match:class foot, idle_inhibit fullscreen"
 
               # some apps, mostly games, are stupid and they fullscreen on the
               # wrong monitor. so just don't listen to them lol
-              "match:class .*, suppress_event fullscreenoutput"
-
-              # Ignore maximize requests from apps. You'll probably like this.
-              "match:class .*, suppress_event maximize"
-
-              # Fix some dragging issues with XWayland
-              "match:class .*, match:title .*,  match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0, no_focus 1"
+              # also ignore maximize requests from apps. You'll probably like this.
+              "match:class .*, suppress_event maximize fullscreenoutput"
 
               # dialogs
               "match:title File Operation Progress.*, float 1"

@@ -13,6 +13,7 @@
     hj = {
       packages = with pkgs; [
         telegram-desktop
+        deluge
         self'.packages.stremio-enhanced
         # uni stuff
         onlyoffice-desktopeditors
