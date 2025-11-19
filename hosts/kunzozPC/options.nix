@@ -3,7 +3,7 @@
     core = {
       username = "kunzoz";
       kernel = {
-        type = "rc";
+        type = "zen";
         zenergy.enable = true;
       };
       boot = {
@@ -45,7 +45,7 @@
         enable = true;
         dpmsTimeout = 600;
         lockTimeout = 620;
-        suspendTimeout = 1200;
+        suspendTimeout = 0;
       };
       hyprpaper.enable = true;
       xdph.enable = true;
