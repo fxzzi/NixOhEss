@@ -23,5 +23,8 @@ in {
         enable32Bit = true;
       };
     };
+    # enable HIP for packages which use it
+    # (blender for the most part lol)
+    nixpkgs.config.hipSupport = true;
   };
 }
