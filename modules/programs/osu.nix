@@ -12,6 +12,7 @@
   envVars = [
     "OSU_SDL3=1"
     "SDL_VIDEO_DRIVER=wayland"
+    ''PIPEWIRE_ALSA="{ alsa.buffer-bytes=640 alsa.period-bytes=128 }"''
   ];
   # osu!lazer needs to be up to date. fuf's nix-gaming repo
   # updates it faster and more regularly than nixpkgs.

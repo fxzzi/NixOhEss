@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "7ada82625b38bff2b63d12e15378ca5e0101d05e",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/7ada82625b38bff2b63d12e15378ca5e0101d05e.tar.gz",
-      "hash": "1j1r2l3qamx6jr4c23icvnzwdn4lbv989jywazjifx667kvm1lq4"
+      "revision": "f60524b9d31261f6ffdc57cd27687f3b76d64301",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/f60524b9d31261f6ffdc57cd27687f3b76d64301.tar.gz",
+      "hash": "12gzdvmynjlmbvx2gn5gfipkpb9ndl0jbpxrxjwjisj7j16vaqva"
     },
     "agenix": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "b13a918dae392cd84191c55448ecd7ffca6cf7d0",
-      "url": "https://github.com/fufexan/nix-gaming/archive/b13a918dae392cd84191c55448ecd7ffca6cf7d0.tar.gz",
-      "hash": "0zyps9h0ajhmcnaby0hsbp785xsp66w986bz8796b2pm9z61n022"
+      "revision": "c34f0eefe470a12e486ee56d65e5e21a55161028",
+      "url": "https://github.com/fufexan/nix-gaming/archive/c34f0eefe470a12e486ee56d65e5e21a55161028.tar.gz",
+      "hash": "1khaz8y1yl9xv0ym90dmq2ckhq2cf32dl5vn782p1qvrnk3isgql"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -151,9 +151,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "28fc1cf2d3aba97c5bdd4599a269cf4e241a687a",
-      "url": "https://github.com/Stremio/stremio-linux-shell/archive/28fc1cf2d3aba97c5bdd4599a269cf4e241a687a.tar.gz",
-      "hash": "1x2fx3liaw40cz146wj4i2phg31159s2gxs8xr3c0r1j72rgvq3h"
+      "revision": "2b393b39a56afc63a537078ad6a65b494569e3b1",
+      "url": "https://github.com/Stremio/stremio-linux-shell/archive/2b393b39a56afc63a537078ad6a65b494569e3b1.tar.gz",
+      "hash": "1070j57z5ppm5sp3kq69ss7523grzk10xz0ax1w8dkprxrhzpdnk"
     },
     "walls": {
       "type": "Git",
