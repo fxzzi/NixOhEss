@@ -16,6 +16,7 @@
     optionalAttrs
     mkIf
     optionals
+    mod
     ;
   inherit (builtins) concatLists genList;
   cfg = config.cfg.programs.hyprland;
@@ -263,23 +264,24 @@ in {
             ++ [
               # content type game means ds will be in effect.
               # ds and tearing cannot activate at the same time.
-              # gmd and osu!lazer needs tearing for unlocked fps.
+              # gmd and osu!lazer need tearing for unlocked fps.
+              # probably all winewayland stuff too.
               "match:class geometrydash.exe, content none, immediate 1, no_vrr 1"
               "match:class osu!, content none, immediate 1, no_vrr 1"
             ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
-          workspace = optionalAttrs multiMonitor [
-            "1, monitor:${cfg.defaultMonitor}"
-            "2, monitor:${cfg.secondaryMonitor}"
-            "3, monitor:${cfg.defaultMonitor}"
-            "4, monitor:${cfg.secondaryMonitor}"
-            "5, monitor:${cfg.defaultMonitor}"
-            "6, monitor:${cfg.secondaryMonitor}"
-            "7, monitor:${cfg.defaultMonitor}"
-            "8, monitor:${cfg.secondaryMonitor}"
-            "9, monitor:${cfg.defaultMonitor}"
-            "10, monitor:${cfg.secondaryMonitor}"
-          ];
+          workspace = optionalAttrs multiMonitor (
+            genList (
+              x: let
+                workspaceNum = x + 1;
+                monitor =
+                  if (mod x 2) == 0
+                  then cfg.defaultMonitor
+                  else cfg.secondaryMonitor;
+              in "${toString workspaceNum}, monitor:${monitor}"
+            )
+            10
+          );
           "$MOD" = "SUPER";
           bind = let
             screenshot = getExe (
@@ -304,7 +306,9 @@ in {
               "CTRL SHIFT, Escape, exec, foot btm"
               # extra schtuff
               "$MOD, N, exec, ${
-                getExe (self'.packages.sunset.override {hyprland = config.programs.hyprland.package;})
+                getExe (
+                  self'.packages.sunset.override {hyprland = config.programs.hyprland.package;}
+                )
               } 3000"
               "$MOD, R, exec, ${getExe self'.packages.random-wall}"
               "$MOD SHIFT, R, exec, hyprctl reload"
