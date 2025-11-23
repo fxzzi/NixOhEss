@@ -4,11 +4,11 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "eden";
-  version = "0.0.4-rc2";
+  version = "0.0.4-rc3";
 
   src = fetchurl {
     url = "https://github.com/eden-emulator/Releases/releases/download/v${finalAttrs.version}/Eden-Linux-v${finalAttrs.version}-amd64-clang-pgo.AppImage";
-    sha256 = "sha256-IAdtroN8TxA0kFyEGf15HH8Uvp6kUJ+8sU/Z+x0gJUc=";
+    sha256 = "sha256-nV2y75tqVJ+OunTN3TF8K7JyssE4vApY9Vn4Fh5IczY=";
   };
 
   desktopItem = fetchurl {

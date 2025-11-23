@@ -21,7 +21,6 @@ in {
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = mkIf config.cfg.programs.proton-ge.enable [pkgs.proton-ge-bin];
-      protontricks.enable = true;
     };
     hj = {
       files.".local/share/Steam/steam_dev.cfg".text = ''
