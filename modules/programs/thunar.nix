@@ -36,9 +36,9 @@ in {
 
     hj = {
       packages = with pkgs; [
-        p7zip
-        unrar
         file-roller
+        unrar
+        p7zip
       ];
       xdg.config.files = {
         "gtk-3.0/bookmarks".text = concatMapStrings (l: l + "\n") bookmarks;
