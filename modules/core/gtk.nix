@@ -16,7 +16,7 @@
     };
     environment.sessionVariables = {
       # mate-polkit seems to read from this env var. maybe other apps too
-      GTK_THEME = "adw-gtk3-dark";
+      GTK_THEME = "adw-gtk3-dark:dark";
     };
     programs.dconf.profiles.user.databases = [
       {
