@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "9890b7495c78d7729b11f831d7f0f39252b47fb1",
-      "url": "https://github.com/fufexan/nix-gaming/archive/9890b7495c78d7729b11f831d7f0f39252b47fb1.tar.gz",
-      "hash": "1hx6gdpb4ijyagn6r3lar3rnyg5vav1cq253xmf3xjsc6ifj614g"
+      "revision": "faa39649d0ad7e11bfcb7887ccda478515e489e8",
+      "url": "https://github.com/fufexan/nix-gaming/archive/faa39649d0ad7e11bfcb7887ccda478515e489e8.tar.gz",
+      "hash": "1x588w6qg2rbfqzk3iak6qgilfmfbzsxfiwa2j6amklwzmp89pww"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -100,9 +100,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "57a476b0e55f015759d9c50cc1f13159c6cd8f95",
-      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/57a476b0e55f015759d9c50cc1f13159c6cd8f95.tar.gz",
-      "hash": "1bw8icfshh1g04w1j0ih3cb3xw837rlswkrjcgw233nimbxmnq13"
+      "revision": "2e204c67d4401292905f6afb4832a7e7df9ce53a",
+      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/2e204c67d4401292905f6afb4832a7e7df9ce53a.tar.gz",
+      "hash": "047wlyrb0wc50fjv9y9z1m39jdqchg17mp6cnhcahk6w0f2457db"
     },
     "qt6ct": {
       "type": "Git",
@@ -120,14 +120,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "NotAShelf",
+        "owner": "fxzzi",
         "repo": "rags"
       },
-      "branch": "master",
+      "branch": "fix-nix",
       "submodules": false,
-      "revision": "1e0bbbe314c408c86ad7c0d9cb90bc9460ea3062",
-      "url": "https://github.com/NotAShelf/rags/archive/1e0bbbe314c408c86ad7c0d9cb90bc9460ea3062.tar.gz",
-      "hash": "0g0wgd2y758fbzbp7l60854a29dpm3zlafqpmf2mbm0f18hwq6g8"
+      "revision": "0f9fb6ef74924524aba926c6249b914532007c0a",
+      "url": "https://github.com/fxzzi/rags/archive/0f9fb6ef74924524aba926c6249b914532007c0a.tar.gz",
+      "hash": "099i2nlr8m4jxhswk0dz1z0y2kr6v77wfj3pxzmd4584adara6hs"
     },
     "startpage": {
       "type": "Git",
