@@ -29,6 +29,8 @@
             document-font-name = "Sans Regular 11";
             monospace-font-name = "Monospace Regular 12";
             color-scheme = "prefer-dark";
+
+            gtk-enable-primary-paste = false; # disable middle click paste
           };
           "org/gnome/desktop/wm/preferences" = {
             # hide all title bar buttons on gtk apps
