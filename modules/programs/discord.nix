@@ -136,22 +136,15 @@ in {
         };
       };
       packages = [
-        ((pkgs.discord.override {
-            # we disable updates in settings.json
-            disableUpdates = false;
-            commandLineArgs = joinedArgs;
-            withTTS = false;
-            enableAutoscroll = true;
-            withOpenASAR = true;
-            withVencord = true;
-          }).overrideAttrs rec {
-            # override discord version, it has updated electron
-            version = "0.0.115";
-            src = pkgs.fetchurl {
-              url = "https://stable.dl2.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
-              hash = "sha256-DXGlo9qdmJTqm6ResvspauQ0awIFSuYalcpVXEfTxK4=";
-            };
-          })
+        (pkgs.discord.override {
+          # we disable updates in settings.json
+          disableUpdates = false;
+          commandLineArgs = joinedArgs;
+          withTTS = false;
+          enableAutoscroll = true;
+          withOpenASAR = true;
+          withVencord = true;
+        })
       ];
     };
   };
