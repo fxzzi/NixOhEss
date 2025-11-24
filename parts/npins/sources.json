@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "f60524b9d31261f6ffdc57cd27687f3b76d64301",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/f60524b9d31261f6ffdc57cd27687f3b76d64301.tar.gz",
-      "hash": "12gzdvmynjlmbvx2gn5gfipkpb9ndl0jbpxrxjwjisj7j16vaqva"
+      "revision": "cfbaff3bb7cf2370f40cb7a6fdd6243fa92328c1",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/cfbaff3bb7cf2370f40cb7a6fdd6243fa92328c1.tar.gz",
+      "hash": "1kyj8ncs057kqhlabfx9mh86plmzrwmkz97phl3f2945m7mp05i7"
     },
     "agenix": {
       "type": "Git",
@@ -44,13 +44,13 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "kbrenneman",
+        "owner": "NVIDIA",
         "repo": "egl-wayland2"
       },
-      "branch": "render-buffer-attrib",
+      "branch": "main",
       "submodules": false,
-      "revision": "14c013b12ef4cccdabaa7df5269939a563d51898",
-      "url": "https://github.com/kbrenneman/egl-wayland2/archive/14c013b12ef4cccdabaa7df5269939a563d51898.tar.gz",
+      "revision": "3e5b643542708cbb9c67d18fe19b5fa4151d7d8f",
+      "url": "https://github.com/NVIDIA/egl-wayland2/archive/3e5b643542708cbb9c67d18fe19b5fa4151d7d8f.tar.gz",
       "hash": "0hb5zs00dnmwjkh10dzcmjz0sym2f5lbpk0mlrj3sxnqpm5pn14a"
     },
     "foot": {
