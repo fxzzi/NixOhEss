@@ -44,14 +44,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "NVIDIA",
+        "owner": "kbrenneman",
         "repo": "egl-wayland2"
       },
-      "branch": "main",
+      "branch": "render-buffer-attrib",
       "submodules": false,
-      "revision": "0c15809fcfb3fcf4b2eb2422fdd1dae4f9aea6ae",
-      "url": "https://github.com/NVIDIA/egl-wayland2/archive/0c15809fcfb3fcf4b2eb2422fdd1dae4f9aea6ae.tar.gz",
-      "hash": "14xpw8vga32pvldhgvkb5rn03m40dk3cg6lqkcwxrp08zzffr2kb"
+      "revision": "14c013b12ef4cccdabaa7df5269939a563d51898",
+      "url": "https://github.com/kbrenneman/egl-wayland2/archive/14c013b12ef4cccdabaa7df5269939a563d51898.tar.gz",
+      "hash": "0hb5zs00dnmwjkh10dzcmjz0sym2f5lbpk0mlrj3sxnqpm5pn14a"
     },
     "foot": {
       "type": "Git",
