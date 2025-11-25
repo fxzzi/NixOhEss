@@ -141,7 +141,6 @@ in {
             allow_tearing = 1;
           };
           misc = {
-            new_window_takes_over_fullscreen = 2; # Leave fullscreen on new window
             disable_hyprland_logo = 1; # Disable hyprland wallpapers etc
             disable_splash_rendering = 1; # Disable startup splashscreen
             mouse_move_focuses_monitor = 0; # Disables hover for monitor focus
