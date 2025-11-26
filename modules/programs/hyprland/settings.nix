@@ -35,7 +35,7 @@
     "initial_title Minecraft\*.*" # sometimes class isn't set
     "class org-prismlauncher-EntryPoint" # legacy mc versions
     "class osu!"
-    "class .*.exe" # all exe's
+    # "class .*.exe" # all exe's
     "class hl2_linux" # half life 2
     "class cstrike_linux64" # cs source
     "class portal2_linux" # portal 2
