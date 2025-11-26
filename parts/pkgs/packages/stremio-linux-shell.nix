@@ -4,31 +4,26 @@
   openssl,
   pkg-config,
   mpv,
-  libappindicator,
-  libsoup_3,
   makeWrapper,
   nodejs,
   webkitgtk_6_0,
   libadwaita,
   libepoxy,
-  gettext,
   wrapGAppsHook4,
   glib-networking,
   pins,
   ...
 }:
-rustPlatform.buildRustPackage {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "stremio-linux-shell";
-  version = "0-unstable-${builtins.substring 0 8 pins.stremio-linux-shell.revision}";
-
-  src = pins.stremio-linux-shell;
-  cargoLock.lockFile = "${pins.stremio-linux-shell}/Cargo.lock";
+  src = pins.${finalAttrs.pname};
+  version = "0-unstable-${builtins.substring 0 8 finalAttrs.src.revision}";
+  cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";
 
   buildInputs = [
     webkitgtk_6_0
     libadwaita
     libepoxy
-    libsoup_3
     openssl
     mpv
     glib-networking
@@ -38,7 +33,6 @@ rustPlatform.buildRustPackage {
     wrapGAppsHook4
     makeWrapper
     pkg-config
-    gettext
   ];
 
   postInstall = ''
@@ -48,6 +42,7 @@ rustPlatform.buildRustPackage {
     cp $src/data/com.stremio.Stremio.desktop $out/share/applications/com.stremio.Stremio.desktop
     cp $src/data/icons/com.stremio.Stremio.svg $out/share/icons/hicolor/scalable/apps/com.stremio.Stremio.svg
 
+    # to run server.js
     wrapProgram $out/bin/stremio \
        --prefix PATH : ${lib.makeBinPath [nodejs]}
   '';
@@ -58,9 +53,10 @@ rustPlatform.buildRustPackage {
     homepage = "https://www.stremio.com/";
     license = with lib.licenses; [
       gpl3Only
+      # the server.js downloaded by the program is unfree
       unfree
     ];
     maintainers = lib.maintainers.fazzi;
     platforms = lib.platforms.linux;
   };
-}
+})
