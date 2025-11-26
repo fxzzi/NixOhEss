@@ -1,16 +1,19 @@
 {
   lib,
   rustPlatform,
-  makeWrapper,
   openssl,
   pkg-config,
-  wrapGAppsHook4,
+  mpv,
+  libappindicator,
+  libsoup_3,
+  makeWrapper,
+  nodejs,
+  webkitgtk_6_0,
   libadwaita,
   libepoxy,
-  mpv,
-  webkitgtk_6_0,
-  libsoup_3,
-  nodejs,
+  gettext,
+  wrapGAppsHook4,
+  glib-networking,
   pins,
   ...
 }:
@@ -28,18 +31,19 @@ rustPlatform.buildRustPackage {
     libsoup_3
     openssl
     mpv
+    glib-networking
   ];
 
   nativeBuildInputs = [
-    pkg-config
     wrapGAppsHook4
     makeWrapper
+    pkg-config
+    gettext
   ];
 
   postInstall = ''
     mkdir -p $out/share/applications
     mkdir -p $out/share/icons/hicolor/scalable/apps
-
     mv $out/bin/stremio-linux-shell $out/bin/stremio
     cp $src/data/com.stremio.Stremio.desktop $out/share/applications/com.stremio.Stremio.desktop
     cp $src/data/icons/com.stremio.Stremio.svg $out/share/icons/hicolor/scalable/apps/com.stremio.Stremio.svg
@@ -52,7 +56,10 @@ rustPlatform.buildRustPackage {
     mainProgram = "stremio";
     description = "Modern media center that gives you the freedom to watch everything you want";
     homepage = "https://www.stremio.com/";
-    license = lib.licenses.gpl3Only;
+    license = with lib.licenses; [
+      gpl3Only
+      unfree
+    ];
     maintainers = lib.maintainers.fazzi;
     platforms = lib.platforms.linux;
   };
