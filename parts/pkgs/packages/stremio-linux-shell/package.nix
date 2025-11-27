@@ -51,10 +51,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
     cp $src/data/icons/com.stremio.Stremio.svg $out/share/icons/hicolor/scalable/apps/com.stremio.Stremio.svg
 
     # to run server.js
-    # also run with opengl instead of vk
+    # this shell has loads of weird bugs on wayland
+    # so use xwayland / x11 instead.
     wrapProgram $out/bin/stremio \
        --prefix PATH : ${lib.makeBinPath [nodejs]} \
-       --set GSK_RENDERER opengl
+       --set GDK_BACKEND x11
   '';
 
   meta = {
