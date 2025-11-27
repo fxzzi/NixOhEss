@@ -35,6 +35,14 @@ rustPlatform.buildRustPackage (finalAttrs: {
     pkg-config
   ];
 
+  # the title bar is useless, and offloading the overlay
+  # graphics to the gpu was causing some problems. mpv
+  # still uses gpu decoding
+  patches = [
+    ./0001-window-disable-graphics-offload.patch
+    ./0002-window-hide-title-bar.patch
+  ];
+
   postInstall = ''
     mkdir -p $out/share/applications
     mkdir -p $out/share/icons/hicolor/scalable/apps
@@ -43,8 +51,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     cp $src/data/icons/com.stremio.Stremio.svg $out/share/icons/hicolor/scalable/apps/com.stremio.Stremio.svg
 
     # to run server.js
+    # also run with opengl instead of vk
     wrapProgram $out/bin/stremio \
-       --prefix PATH : ${lib.makeBinPath [nodejs]}
+       --prefix PATH : ${lib.makeBinPath [nodejs]} \
+       --set GSK_RENDERER opengl
   '';
 
   meta = {
