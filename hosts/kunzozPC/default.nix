@@ -17,7 +17,7 @@
       qbittorrent-enhanced
       nvtopPackages.amd
       sgdboop
-      self'.packages.stremio-linux-shell
+      self'.packages.stremio-linux-shell-rewrite
       (callPackage pins.creamlinux {})
     ];
     xdg.config.files."hypr/hyprland.conf" = {

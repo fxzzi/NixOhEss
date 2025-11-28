@@ -16,7 +16,7 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "stremio-linux-shell";
-  src = pins.${finalAttrs.pname};
+  src = pins.stremio-rewrite;
   version = "0-unstable-${builtins.substring 0 8 finalAttrs.src.revision}";
   cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";
 
