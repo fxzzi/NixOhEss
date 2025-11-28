@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "cfbaff3bb7cf2370f40cb7a6fdd6243fa92328c1",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/cfbaff3bb7cf2370f40cb7a6fdd6243fa92328c1.tar.gz",
-      "hash": "1kyj8ncs057kqhlabfx9mh86plmzrwmkz97phl3f2945m7mp05i7"
+      "revision": "160b9f75d766c2be7767d3bdfe6e131e285c25a1",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/160b9f75d766c2be7767d3bdfe6e131e285c25a1.tar.gz",
+      "hash": "0zz3m3invfsgsd49ys2l1alaxrri4dkhyglq8341raalihm2qfcs"
     },
     "agenix": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "80e0aed8c6dd00c9fa41f82c808a8972632e3016",
-      "url": "https://github.com/fufexan/nix-gaming/archive/80e0aed8c6dd00c9fa41f82c808a8972632e3016.tar.gz",
-      "hash": "0b7wzwj55qpmiv3lq0mx2n73h2csiaxan0748db3187wnq6fr81p"
+      "revision": "f189ee5932ef2e0fcc4f63d12a698a968b8450e8",
+      "url": "https://github.com/fufexan/nix-gaming/archive/f189ee5932ef2e0fcc4f63d12a698a968b8450e8.tar.gz",
+      "hash": "05p838s5zlcjl6njpbrwqyjsfsshlnidwpxlbx0768mgjrxkwz9a"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -151,8 +151,21 @@
       },
       "branch": "main",
       "submodules": false,
+      "revision": "2eb0252fb568eaba829c9289e5ce49db6378f734",
+      "url": "https://github.com/Stremio/stremio-linux-shell/archive/2eb0252fb568eaba829c9289e5ce49db6378f734.tar.gz",
+      "hash": "1ml8r712izyipz9gl5ivwfc5c614hjq2wpns3q0a1qxmam7a2l1m"
+    },
+    "stremio-rewrite": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "fxzzi",
+        "repo": "stremio-linux-shell"
+      },
+      "branch": "rewrite-upd",
+      "submodules": false,
       "revision": "2b393b39a56afc63a537078ad6a65b494569e3b1",
-      "url": "https://github.com/Stremio/stremio-linux-shell/archive/2b393b39a56afc63a537078ad6a65b494569e3b1.tar.gz",
+      "url": "https://github.com/fxzzi/stremio-linux-shell/archive/2b393b39a56afc63a537078ad6a65b494569e3b1.tar.gz",
       "hash": "1070j57z5ppm5sp3kq69ss7523grzk10xz0ax1w8dkprxrhzpdnk"
     },
     "walls": {
