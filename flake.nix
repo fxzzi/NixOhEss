@@ -29,7 +29,7 @@
       };
     };
     nvf = {
-      url = "github:NotAShelf/nvf/25aafc84f57973ed7f17528b60490a99ee539163";
+      url = "github:NotAShelf/nvf/v0.8";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
