@@ -10,23 +10,19 @@
   cef-binary,
   makeWrapper,
   nodejs,
-  fetchurl,
   pins,
   ...
 }: let
-  # the server isn't reachable with too new cef, so use 138
-  cef = cef-binary.overrideAttrs (let
+  # upstream uses cef 138
+  cef = cef-binary.override {
     version = "138.0.17";
     gitRevision = "ac9b751";
     chromiumVersion = "138.0.7204.97";
-    srcHash = "sha256-3qgIhen6l/kxttyw0z78nmwox62riVhlmFSGPkUot7g=";
-  in {
-    inherit version gitRevision chromiumVersion;
-    src = fetchurl {
-      url = "https://cef-builds.spotifycdn.com/cef_binary_${version}+g${gitRevision}+chromium-${chromiumVersion}_linux64_minimal.tar.bz2";
-      hash = srcHash;
+
+    srcHashes = {
+      "x86_64-linux" = "sha256-3qgIhen6l/kxttyw0z78nmwox62riVhlmFSGPkUot7g=";
     };
-  });
+  };
   # cef-rs expects a specific directory layout
   # Copied from https://github.com/NixOS/nixpkgs/pull/428206 because im lazy
   cef-path = stdenv.mkDerivation {
@@ -49,9 +45,14 @@ in
     src = pins.${finalAttrs.pname};
     version = "0-unstable-${builtins.substring 0 8 finalAttrs.src.revision}";
 
-    # some of the cargo.lock entries don't have hashes?
-    # so have to manually put the hash here
-    cargoHash = "sha256-3HJqzkhmKF1J3aHiw3UvgeWzLNnr3tw+/cvMyAKNvAQ=";
+    cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";
+    cargoLock.outputHashes = {
+      # some hashes are missing from the cargo lockfile? Not sure why
+      "cef-138.2.2+138.0.21" = "sha256-HfhiNwhCtKcuI27fGTCjk1HA1Icau6SUjXjHqAOllAk=";
+      "dpi-0.1.1" = "sha256-5nc8cGFl4jUsJXfEtfOxFBQFRoBrM6/5xfA2c1qhmoQ=";
+      "glutin-0.32.3" = "sha256-5IX+03mQmWxlCdVC0g1q2J+ulW+nPTAhYAd25wyaHx8=";
+      "libmpv2-4.1.0" = "sha256-zXMFuajnkY8RnVGlvXlZfoMpfifzqzJnt28a+yPZmcQ=";
+    };
 
     buildInputs = [
       openssl
@@ -71,6 +72,7 @@ in
       mkdir -p $out/share/icons/hicolor/scalable/apps
 
       mv $out/bin/stremio-linux-shell $out/bin/stremio
+      # copy vendored server.js, shell no longer fetches at runtime
       cp $src/data/server.js $out/bin/server.js
       cp $src/data/com.stremio.Stremio.desktop $out/share/applications/com.stremio.Stremio.desktop
       cp $src/data/icons/com.stremio.Stremio.svg $out/share/icons/hicolor/scalable/apps/com.stremio.Stremio.svg
