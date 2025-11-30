@@ -21,36 +21,6 @@
   inherit (builtins) concatLists genList;
   cfg = config.cfg.programs.hyprland;
   multiMonitor = cfg.secondaryMonitor != null;
-
-  wsAnim =
-    if multiMonitor
-    then "slidevert"
-    else "slide";
-
-  games = [
-    "xdg_tag proton-game" # modern proton versions set xdgTag
-    "class steam_app_.*" # all xwayland proton games
-    "class cs2" # cs2
-    "class Minecraft\*.*"
-    "initial_title Minecraft\*.*" # sometimes class isn't set
-    "class org-prismlauncher-EntryPoint" # legacy mc versions
-    "class osu!"
-    # "class .*.exe" # all exe's
-    "class hl2_linux" # half life 2
-    "class cstrike_linux64" # cs source
-    "class portal2_linux" # portal 2
-    "class gamescope"
-    "class Celeste"
-    "class info.cemu.Cemu"
-    "class Cuphead.x86_64"
-    "class org.eden_emu.eden"
-    "class hollow_knight.x86_64"
-    "class Terraria.bin.x86_64"
-    "class Rosalie's Mupen GUI"
-    "class sm64coopdx"
-    "class retroarch" # xwl
-    "class com.libretro.RetroArch" # wl
-  ];
 in {
   options.cfg.programs = {
     hyprland = {
@@ -188,6 +158,10 @@ in {
               brightness = 0.67;
             };
           };
+          animations = {
+            enabled = mkDefault 1;
+            workspace_wraparound = 1;
+          };
           bezier = [
             "easeOutQuint,0.23,1,0.32,1"
             "easeInOutCubic,0.65,0.05,0.36,1"
@@ -195,7 +169,12 @@ in {
             "almostLinear,0.5,0.5,0.75,1.0"
             "quick,0.15,0,0.1,1"
           ];
-          animation = [
+          animation = let
+            wsAnim =
+              if multiMonitor
+              then "slidevert"
+              else "slide";
+          in [
             "windowsIn, 1, 3, easeOutQuint, slide"
             "windowsOut, 1, 3, easeOutQuint, slide"
             "windowsMove, 1, 3, easeOutQuint"
@@ -218,11 +197,7 @@ in {
             # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
             # and it will look like windows are moving into each other across the monitors.
             "workspaces, 1, 4, easeOutQuint, ${wsAnim}"
-
-            "monitorAdded, 0"
           ];
-
-          animations.enabled = mkDefault 1;
 
           dwindle = {
             pseudotile = 1;
@@ -232,6 +207,7 @@ in {
             [
               # pause hypridle for certain apps
               "match:class mpv, idle_inhibit focus"
+              "match:class .*stremio.*, idle_inhibit focus, content video"
               "match:class atril, idle_inhibit focus"
               "match:class foot, idle_inhibit fullscreen"
 
@@ -259,7 +235,28 @@ in {
                 # for all game matches
                 "match:${game}, idle_inhibit fullscreen, fullscreen 1, content game"
               ])
-              games)
+              [
+                "xdg_tag proton-game" # modern proton versions set xdgTag
+                "class steam_app_.*" # all xwayland proton games
+                "class cs2"
+                "class Minecraft\*.*"
+                "initial_title Minecraft\*.*" # sometimes class isn't set
+                "class org-prismlauncher-EntryPoint" # legacy mc versions
+                "class osu!"
+                # "class .*.exe" # all exe's
+                "class hl2_linux"
+                "class cstrike_linux64" # cs source
+                "class portal2_linux"
+                "class gamescope"
+                "class Celeste"
+                "class info.cemu.Cemu"
+                "class Cuphead.x86_64"
+                "class org.eden_emu.eden"
+                "class hollow_knight.x86_64"
+                "class Terraria.bin.x86_64"
+                "class sm64coopdx"
+                "class com.libretro.RetroArch"
+              ])
             ++ [
               # content type game means ds will be in effect.
               # ds and tearing cannot activate at the same time.
