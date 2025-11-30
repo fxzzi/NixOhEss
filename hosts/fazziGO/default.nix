@@ -14,7 +14,7 @@
       packages = with pkgs; [
         telegram-desktop
         deluge
-        self'.packages.stremio-linux-shell-rewrite
+        self'.packages.stremio-linux-shell
         # uni stuff
         onlyoffice-desktopeditors
         processing
