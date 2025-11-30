@@ -38,7 +38,7 @@
           mupen64plus
         ]))
       self'.packages.transcode
-      self'.packages.stremio-linux-shell-rewrite
+      self'.packages.stremio-linux-shell
       self'.packages.eden
       self'.packages.flac2opus
       self'.packages.flac2vorbis
