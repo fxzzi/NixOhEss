@@ -13,14 +13,14 @@
   pins,
   ...
 }: let
-  # upstream uses cef 138
+  # upstream uses cef 138.0.21
   cef = cef-binary.override {
-    version = "138.0.17";
-    gitRevision = "ac9b751";
-    chromiumVersion = "138.0.7204.97";
+    version = "138.0.21";
+    gitRevision = "54811fe";
+    chromiumVersion = "138.0.7204.101";
 
     srcHashes = {
-      "x86_64-linux" = "sha256-3qgIhen6l/kxttyw0z78nmwox62riVhlmFSGPkUot7g=";
+      "x86_64-linux" = "sha256-Kob/5lPdZc9JIPxzqiJXNSMaxLuAvNQKdd/AZDiXvNI=";
     };
   };
   # cef-rs expects a specific directory layout
