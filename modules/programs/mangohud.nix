@@ -1,5 +1,6 @@
 {
   self',
+  pkgs,
   config,
   lib,
   ...
@@ -37,7 +38,7 @@ in {
       "MANGOHUD" = "1";
     };
     hj = {
-      packages = [self'.packages.mangohud-git];
+      packages = [pkgs.mangohud];
       xdg.config.files = {
         "MangoHud/MangoHud.conf".text = ''
           blacklist=mpv
