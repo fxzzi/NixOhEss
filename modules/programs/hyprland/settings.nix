@@ -152,10 +152,10 @@ in {
             };
             blur = {
               enabled = mkDefault 1;
-              size = 4;
+              size = 3;
               passes = 3;
               popups = 1;
-              brightness = 0.67;
+              # brightness = 0.67;
             };
           };
           animations = {
