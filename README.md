@@ -21,6 +21,29 @@ is also used to modularize the flake.
 - [kunzozPC](./hosts/kunzozPC): My friend's gaming PC, where I manage his NixOS
   installation.
 
+## Packages
+
+All available packages are listed [here.](./parts/pkgs/packages/)
+
+It's easy to use packages from my flake if you want! Simply add my repo to your
+`flake.nix`, and make my local nixpkgs version follow yours:
+
+```nix
+nixohess = {
+  url = "gitlab:fazzi/nixohess";
+  inputs.nixpkgs.follows = "nixpkgs";
+};
+```
+
+and then my packages are available in your flake. To use `stremio-linux-shell`
+for example, add
+
+```nix
+inputs.nixohess.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell
+```
+
+to your `environment.systemPackages`.
+
 ## Structure
 
 - [`flake.nix`](./flake.nix): The entrypoint to each module of my flake, using
