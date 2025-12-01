@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "e2ce842bf077fbc0f9433fd8aa04edaec013b720",
-      "url": "https://github.com/flightlessmango/MangoHud/archive/e2ce842bf077fbc0f9433fd8aa04edaec013b720.tar.gz",
-      "hash": "1vvps9rqj8rxcz6ckkj0l8k46v53ggbnxq5jhnfw7prd7mnzxx1v"
+      "revision": "2afc6930e0303514fd22c3a6b1d6045303b0a6bb",
+      "url": "https://github.com/flightlessmango/MangoHud/archive/2afc6930e0303514fd22c3a6b1d6045303b0a6bb.tar.gz",
+      "hash": "04chj895660bp2c2xgz7jlnjlfkxbk2yg7wpbl4jfs9wmka02c57"
     },
     "agenix": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "a7e39d9815660852933c12f4454c7d7756dc8923",
-      "url": "https://github.com/fufexan/nix-gaming/archive/a7e39d9815660852933c12f4454c7d7756dc8923.tar.gz",
-      "hash": "0ss5zqgqfp4b9dp6hxp952y2p6xmr7x81ll00za3kxdl6x7bqkwc"
+      "revision": "a36dc95a8108fa992cc3ecaaa6b5e50700d2788b",
+      "url": "https://github.com/fufexan/nix-gaming/archive/a36dc95a8108fa992cc3ecaaa6b5e50700d2788b.tar.gz",
+      "hash": "0jd3n48v4cil652i1cq6bpsmd0qw6ja8bxh81mxppnx2xym6xp27"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -120,14 +120,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "fxzzi",
+        "owner": "NotAShelf",
         "repo": "rags"
       },
-      "branch": "fix-nix",
+      "branch": "master",
       "submodules": false,
-      "revision": "0f9fb6ef74924524aba926c6249b914532007c0a",
-      "url": "https://github.com/fxzzi/rags/archive/0f9fb6ef74924524aba926c6249b914532007c0a.tar.gz",
-      "hash": "099i2nlr8m4jxhswk0dz1z0y2kr6v77wfj3pxzmd4584adara6hs"
+      "revision": "72583c60bbefec4e100e7f7906f9510a0f232323",
+      "url": "https://github.com/NotAShelf/rags/archive/72583c60bbefec4e100e7f7906f9510a0f232323.tar.gz",
+      "hash": "0vhcr5g1c418m9mybcd1gv5lplinzpx94sgrkmqiqqk1kr43jb4x"
     },
     "startpage": {
       "type": "Git",

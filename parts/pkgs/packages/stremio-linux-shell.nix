@@ -8,6 +8,7 @@
   mpv,
   libappindicator,
   cef-binary,
+  libGL,
   makeWrapper,
   nodejs,
   pins,
@@ -36,9 +37,6 @@
       cp -r ${cef}/Release/{libcef.so,libEGL.so,libGLESv2.so,libvk_swiftshader.so,v8_context_snapshot.bin} $out
       cp -r ${cef}/Resources/{*.pak,icudtl.dat} $out
       cp -r ${cef}/Resources/locales/*.pak $out/locales
-    '';
-    postFixup = ''
-      strip $out/*.so*
     '';
   };
 in
@@ -86,7 +84,7 @@ in
 
 
       wrapProgram $out/bin/stremio \
-         --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [libappindicator]} \
+         --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [libGL libappindicator]} \
          --prefix PATH : ${lib.makeBinPath [nodejs]}'';
 
     meta = {

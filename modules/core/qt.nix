@@ -1,11 +1,8 @@
 {
   pkgs,
-  self',
   lib,
   ...
-}: let
-  qt6ct = self'.packages.qt6ct-kde;
-in {
+}: {
   config = {
     environment = {
       sessionVariables = {
@@ -30,8 +27,8 @@ in {
       };
       packages = with pkgs; [
         (symlinkJoin {
-          inherit (qt6ct) name pname version meta;
-          paths = [qt6ct];
+          inherit (pkgs.qt6Packages.qt6ct) name pname version meta;
+          paths = [pkgs.qt6Packages.qt6ct];
           # remove the qt6ct .desktop file. It's not like
           # we can modify settings in there anyway.
           postBuild = ''
