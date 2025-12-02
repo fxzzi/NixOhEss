@@ -24,7 +24,7 @@
     // sets the new tab page to our local newtab.
     ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
   '';
-  librewolf = pkgs.librewolf-bin.override {
+  librewolf = pkgs.librewolf.override {
     extraPrefs = ''
       ${optionalString config.cfg.programs.startpage.enable newTabPageJS}
       ${jsPrefs}
