@@ -160,7 +160,6 @@ in {
           };
           animations = {
             enabled = mkDefault 1;
-            workspace_wraparound = 1;
           };
           bezier = [
             "easeOutQuint,0.23,1,0.32,1"
@@ -197,6 +196,7 @@ in {
             # wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
             # and it will look like windows are moving into each other across the monitors.
             "workspaces, 1, 4, easeOutQuint, ${wsAnim}"
+            "monitorAdded, 0"
           ];
 
           dwindle = {
