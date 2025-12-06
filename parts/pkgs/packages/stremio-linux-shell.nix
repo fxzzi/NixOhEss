@@ -4,7 +4,7 @@
   rustPlatform,
   openssl,
   pkg-config,
-  gtk3,
+  wrapGAppsHook3,
   mpv,
   libappindicator,
   cef-binary,
@@ -60,12 +60,12 @@ in
 
     buildInputs = [
       openssl
-      gtk3
       mpv
     ];
 
     nativeBuildInputs = [
       makeWrapper
+      wrapGAppsHook3
       pkg-config
     ];
 
