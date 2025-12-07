@@ -1,6 +1,6 @@
 {
   lib,
-  stdenv,
+  runCommand,
   rustPlatform,
   openssl,
   pkg-config,
@@ -24,21 +24,16 @@
       "x86_64-linux" = "sha256-Kob/5lPdZc9JIPxzqiJXNSMaxLuAvNQKdd/AZDiXvNI=";
     };
   };
+
   # cef-rs expects a specific directory layout
-  # Copied from https://github.com/NixOS/nixpkgs/pull/428206 because im lazy
-  cef-path = stdenv.mkDerivation {
-    pname = "cef-path";
-    inherit (cef) version;
-    dontUnpack = true;
+  cef-path = runCommand "cef-path" {} ''
     # the exact files to copy are listed here:
     # https://github.com/Stremio/stremio-linux-shell/blob/2eb0252fb568eaba829c9289e5ce49db6378f734/flatpak/com.stremio.Stremio.Devel.json#L140
-    installPhase = ''
       mkdir -p "$out/locales"
       cp -r ${cef}/Release/{libcef.so,libEGL.so,libGLESv2.so,libvk_swiftshader.so,v8_context_snapshot.bin} $out
       cp -r ${cef}/Resources/{*.pak,icudtl.dat} $out
       cp -r ${cef}/Resources/locales/*.pak $out/locales
-    '';
-  };
+  '';
 in
   rustPlatform.buildRustPackage (finalAttrs: {
     pname = "stremio-linux-shell";
