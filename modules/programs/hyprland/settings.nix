@@ -13,6 +13,7 @@
     types
     mkDefault
     getExe
+    getExe'
     optionalAttrs
     mkIf
     optionals
@@ -307,7 +308,7 @@ in {
                 )
               } 3000"
               "$MOD, R, exec, ${getExe self'.packages.random-wall}"
-              "$MOD SHIFT, R, exec, hyprctl reload"
+              "$MOD SHIFT, R, exec, hyprctl reload && ${getExe' pkgs.dunst "dunstify"} \"Hyprland\" \"Reloaded Successfully.\""
               "$MOD, J, exec, foot ${getExe self'.packages.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
               "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"
