@@ -41,6 +41,9 @@ stdenv.mkDerivation {
   fixupPhase = ''
     substituteInPlace "$out/share/egl/egl_external_platform.d/09_nvidia_wayland2.json" \
       --replace 'libnvidia-egl-wayland2.so.1' "$out/lib/libnvidia-egl-wayland2.so.1"
+    # the nvidia driver is broken, a file starting with a lower number SHOULD have prio,
+    # but currently the drivers have this logic flipped. egl-wayland1 has the prefix 10,
+    # so make egl-wayland2 use 09 and 11 in case.
     cp $out/share/egl/egl_external_platform.d/09_nvidia_wayland2.json \
        $out/share/egl/egl_external_platform.d/11_nvidia_wayland2.json
   '';
