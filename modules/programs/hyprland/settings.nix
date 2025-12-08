@@ -208,7 +208,8 @@ in {
             [
               # pause hypridle for certain apps
               "match:class mpv, idle_inhibit focus"
-              "match:class .*stremio.*, idle_inhibit focus, content video"
+              # hyprland shows anr dialog when stremio is in another workspace, so render_unfocused 1
+              "match:class .*stremio.*, idle_inhibit focus, content video, render_unfocused 1"
               "match:class atril, idle_inhibit focus"
               "match:class foot, idle_inhibit fullscreen"
 
