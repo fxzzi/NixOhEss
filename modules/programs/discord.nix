@@ -136,15 +136,22 @@ in {
         };
       };
       packages = [
-        (pkgs.discord.override {
-          # we disable updates in settings.json
-          disableUpdates = false;
-          commandLineArgs = joinedArgs;
-          withTTS = false;
-          enableAutoscroll = true;
-          withOpenASAR = true;
-          withVencord = true;
-        })
+        ((pkgs.discord.override {
+            # we disable updates in settings.json
+            disableUpdates = false;
+            commandLineArgs = joinedArgs;
+            withTTS = false;
+            enableAutoscroll = true;
+            withOpenASAR = true;
+            withVencord = true;
+          }).overrideAttrs rec {
+            # override discord version, it has vaapi streaming
+            version = "0.0.118";
+            src = pkgs.fetchurl {
+              url = "https://stable.dl2.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
+              hash = "sha256-B7gCr+DGoEghMw624OwyBOnPVxDvrYHUBAB9gSStw4g=";
+            };
+          })
       ];
     };
   };
