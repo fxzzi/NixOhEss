@@ -84,7 +84,7 @@
     hardware.scanning.enable = false;
     programs = {
       # gamescope.enable = true;
-      osu.enable = true;
+      # osu.enable = true;
       smoothScroll.enable = false;
       proton-ge = {
         enable = true;
