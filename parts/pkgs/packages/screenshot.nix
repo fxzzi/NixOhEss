@@ -6,12 +6,11 @@
   slurp,
   wl-clipboard,
   wayfreeze,
-  hyprland,
   dunst,
 }:
 writeShellApplication {
   name = "screenshot";
-  runtimeInputs = [libcanberra-gtk3 jq grim slurp wl-clipboard wayfreeze hyprland dunst];
+  runtimeInputs = [libcanberra-gtk3 jq grim slurp wl-clipboard wayfreeze dunst];
   text = ''
     # Screenshot the entire monitor, a selection, or active window
     # and then copies the image to your clipboard.
