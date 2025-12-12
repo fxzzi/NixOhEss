@@ -1,11 +1,10 @@
 {
   writeShellApplication,
-  hyprland,
   dunst,
 }:
 writeShellApplication {
   name = "brightness";
-  runtimeInputs = [hyprland dunst];
+  runtimeInputs = [dunst];
   text = ''
     # Function to send brightness change notification
     notification() {

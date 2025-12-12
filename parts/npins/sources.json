@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "2816f37db45462e39da401d2c4f45695032a1645",
-      "url": "https://github.com/fufexan/nix-gaming/archive/2816f37db45462e39da401d2c4f45695032a1645.tar.gz",
-      "hash": "0161p8wfbjhvcslqckny81479aw1z2gbnd6fjn9i30i10hjhdajx"
+      "revision": "2597ac42bcf2b32253ab6acab70264fdbb2b102e",
+      "url": "https://github.com/fufexan/nix-gaming/archive/2597ac42bcf2b32253ab6acab70264fdbb2b102e.tar.gz",
+      "hash": "1xfllal6kgfjhb1q6qkm3br8fwzgi5qyqg1xby4dlgrh24sb7p4m"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -113,8 +113,8 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "fa15cbe32d84c77cd7cb0dfb3f33bb1c1a918e5c",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=fa15cbe32d84c77cd7cb0dfb3f33bb1c1a918e5c",
+      "revision": "31c681720da00c313c41b816ba8fc4ffe96f4f16",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=31c681720da00c313c41b816ba8fc4ffe96f4f16",
       "hash": "0nljaxyg6z50dfj14p2hnc67jbsi67rqpszdps99vrcn1rk4p8w2"
     },
     "stremio-linux-shell": {

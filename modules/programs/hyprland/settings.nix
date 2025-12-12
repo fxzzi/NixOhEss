@@ -282,9 +282,7 @@ in {
           );
           "$MOD" = "SUPER";
           bind = let
-            screenshot = getExe (
-              self'.packages.screenshot.override {hyprland = config.programs.hyprland.package;}
-            );
+            screenshot = getExe self'.packages.screenshot;
           in
             [
               # screenshot script
@@ -303,11 +301,7 @@ in {
               "$MOD SHIFT, E, exec, pkill wleave || wleave"
               "CTRL SHIFT, Escape, exec, foot btm"
               # extra schtuff
-              "$MOD, N, exec, ${
-                getExe (
-                  self'.packages.sunset.override {hyprland = config.programs.hyprland.package;}
-                )
-              } 3000"
+              "$MOD, N, exec, ${getExe self'.packages.sunset} 3000"
               "$MOD, R, exec, ${getExe self'.packages.random-wall}"
               "$MOD SHIFT, R, exec, hyprctl reload && ${getExe' pkgs.dunst "dunstify"} \"Hyprland\" \"Reloaded Successfully.\""
               "$MOD, J, exec, foot ${getExe self'.packages.wall-picker}"
@@ -379,7 +373,7 @@ in {
             brightness =
               if cfg.laptop
               then getExe self'.packages.brightness-laptop
-              else getExe (self'.packages.brightness.override {hyprland = config.programs.hyprland.package;});
+              else getExe self'.packages.brightness;
           in [
             # volume script
             ", XF86AudioRaiseVolume, exec, ${audio} vol up 5"
