@@ -1,13 +1,12 @@
 {
   writeShellApplication,
-  hyprpaper,
   wallust,
   dunst,
   pywalfox-native,
 }:
 writeShellApplication {
   name = "wallust-script";
-  runtimeInputs = [hyprpaper wallust dunst pywalfox-native];
+  runtimeInputs = [wallust dunst pywalfox-native];
   text = ''
     STATICWALL="$XDG_STATE_HOME/wallpaper"
 
@@ -21,6 +20,7 @@ writeShellApplication {
 
     # set new wallpaper
     hyprctl hyprpaper reload ,"$1"
+    # hyprctl hyprpaper wallpaper ", $1"
 
     # generate colours and configs with colours
     wallust run "$1"

@@ -28,6 +28,7 @@
       dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
+      zoom-us
       # blender
       (retroarch.withCores (cores:
         with cores; [

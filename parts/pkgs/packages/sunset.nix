@@ -1,10 +1,6 @@
-{
-  writeShellApplication,
-  hyprland,
-}:
+{writeShellApplication}:
 writeShellApplication {
   name = "sunset";
-  runtimeInputs = [hyprland];
   text = ''
     if [ -e /tmp/sunsetLock ]; then
       echo "Resetting temperature"

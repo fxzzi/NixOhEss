@@ -89,6 +89,8 @@ in {
             ".librewolf-wrapped"
             "losslesscut"
             ".losslesscut-wrapped"
+            "hyprpaper"
+            ".hyprpaper-wrapped"
           ];
       };
     };
