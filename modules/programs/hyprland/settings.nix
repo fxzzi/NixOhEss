@@ -125,6 +125,8 @@ in {
             mouse_move_enables_dpms = true;
             key_press_enables_dpms = true;
             middle_click_paste = 0;
+            # we launch with Hyprland, not start-hyprland.
+            # disable_watchdog_warning = 1;
           };
           ecosystem = {
             no_update_news = 1;
