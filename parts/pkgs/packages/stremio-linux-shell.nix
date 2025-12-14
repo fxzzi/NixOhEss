@@ -3,8 +3,6 @@
   lib,
   symlinkJoin,
   rustPlatform,
-  versionCheckHook,
-  gitUpdater,
   atk,
   cef-binary,
   gtk3,
@@ -45,13 +43,15 @@ in
     src = pins.${finalAttrs.pname};
     version = "0-unstable-${builtins.substring 0 8 finalAttrs.src.revision}";
 
-    cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";
-    cargoLock.outputHashes = {
-      # some hashes are missing from the cargo lockfile? Not sure why
-      "cef-138.2.2+138.0.21" = "sha256-HfhiNwhCtKcuI27fGTCjk1HA1Icau6SUjXjHqAOllAk=";
-      "dpi-0.1.1" = "sha256-5nc8cGFl4jUsJXfEtfOxFBQFRoBrM6/5xfA2c1qhmoQ=";
-      "glutin-0.32.3" = "sha256-5IX+03mQmWxlCdVC0g1q2J+ulW+nPTAhYAd25wyaHx8=";
-      "libmpv2-4.1.0" = "sha256-zXMFuajnkY8RnVGlvXlZfoMpfifzqzJnt28a+yPZmcQ=";
+    cargoLock = {
+      lockFile = "${finalAttrs.src}/Cargo.lock";
+      outputHashes = {
+        # some hashes are missing from the cargo lockfile? Not sure why
+        "cef-138.2.2+138.0.21" = "sha256-HfhiNwhCtKcuI27fGTCjk1HA1Icau6SUjXjHqAOllAk=";
+        "dpi-0.1.1" = "sha256-5nc8cGFl4jUsJXfEtfOxFBQFRoBrM6/5xfA2c1qhmoQ=";
+        "glutin-0.32.3" = "sha256-5IX+03mQmWxlCdVC0g1q2J+ulW+nPTAhYAd25wyaHx8=";
+        "libmpv2-4.1.0" = "sha256-zXMFuajnkY8RnVGlvXlZfoMpfifzqzJnt28a+yPZmcQ=";
+      };
     };
 
     postPatch = ''

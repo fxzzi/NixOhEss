@@ -1,0 +1,22 @@
+diff --git a/src/server/mod.rs b/src/server/mod.rs
+index 4bc728c..8b40ca8 100644
+--- a/src/server/mod.rs
++++ b/src/server/mod.rs
+@@ -10,8 +10,6 @@ use std::{
+ use anyhow::{Context, Ok};
+ use tracing::debug;
+
+-use crate::server::config::FILE;
+-
+ pub struct Server {
+     process: Option<Child>,
+     file: PathBuf,
+@@ -19,7 +17,7 @@ pub struct Server {
+
+ impl Server {
+     pub fn new(data_dir: &Path) -> Self {
+-        let file = data_dir.join(FILE);
++        let file = PathBuf::from("/lib/stremio/server.js");
+
+         Self {
+             process: None,
