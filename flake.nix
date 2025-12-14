@@ -22,7 +22,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      # PR just before hyprpaper ipc format changed
       url = "github:hyprwm/Hyprland/9b1891e4765e2c5b84c8c61725e3973ca9940e05";
       inputs = {
         nixpkgs.follows = "nixpkgs";

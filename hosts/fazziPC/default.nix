@@ -16,7 +16,7 @@
   hj = {
     packages = with pkgs; [
       qbittorrent-enhanced
-      telegram-desktop
+      # telegram-desktop
       losslesscut-bin
       steamguard-cli
       picard
@@ -28,7 +28,7 @@
       dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
-      zoom-us
+      # zoom-us
       # blender
       (retroarch.withCores (cores:
         with cores; [
