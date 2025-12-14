@@ -81,7 +81,7 @@ in {
                 /* Hide the Visual Refresh title bar */
                 .visual-refresh {
                   /* Hide the bar itself */
-                  --custom-app-top-bar-height: 0 !important;
+                  --custom-app-top-bar-height: 0px !important;
 
                   /* Title bar buttons are still visible so hide them too */
                   div.base__5e434 > div.bar_c38106 {

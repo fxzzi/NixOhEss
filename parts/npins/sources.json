@@ -36,9 +36,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "3e5b643542708cbb9c67d18fe19b5fa4151d7d8f",
-      "url": "https://github.com/NVIDIA/egl-wayland2/archive/3e5b643542708cbb9c67d18fe19b5fa4151d7d8f.tar.gz",
-      "hash": "0hb5zs00dnmwjkh10dzcmjz0sym2f5lbpk0mlrj3sxnqpm5pn14a"
+      "revision": "ada1c37041002f4f009a33d6d285eae39bf9ad02",
+      "url": "https://github.com/NVIDIA/egl-wayland2/archive/ada1c37041002f4f009a33d6d285eae39bf9ad02.tar.gz",
+      "hash": "0nrb5h0qi6ii91jvhcjfmh9zpn2hm98xdm5vi26grrz0ra6smwz7"
     },
     "foot": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "2597ac42bcf2b32253ab6acab70264fdbb2b102e",
-      "url": "https://github.com/fufexan/nix-gaming/archive/2597ac42bcf2b32253ab6acab70264fdbb2b102e.tar.gz",
-      "hash": "1xfllal6kgfjhb1q6qkm3br8fwzgi5qyqg1xby4dlgrh24sb7p4m"
+      "revision": "b94559105b220cfcb1a25c43d75b86968f5edb98",
+      "url": "https://github.com/fufexan/nix-gaming/archive/b94559105b220cfcb1a25c43d75b86968f5edb98.tar.gz",
+      "hash": "1wrffywl4d09fxd57djbr3grqgdn50y6yl4x1wn5qzcwkfi5r76z"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -117,6 +117,19 @@
       "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=31c681720da00c313c41b816ba8fc4ffe96f4f16",
       "hash": "0nljaxyg6z50dfj14p2hnc67jbsi67rqpszdps99vrcn1rk4p8w2"
     },
+    "stremio-gtk4": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Stremio",
+        "repo": "stremio-linux-shell"
+      },
+      "branch": "refactor/gtk4",
+      "submodules": false,
+      "revision": "f2499ad63f28858d913e2776befbcd029900fd5f",
+      "url": "https://github.com/Stremio/stremio-linux-shell/archive/f2499ad63f28858d913e2776befbcd029900fd5f.tar.gz",
+      "hash": "1mm7a0pr595ashcqsyxcxgapjdh70cdn8n2arl353q359gk42phi"
+    },
     "stremio-linux-shell": {
       "type": "Git",
       "repository": {
@@ -129,19 +142,6 @@
       "revision": "2eb0252fb568eaba829c9289e5ce49db6378f734",
       "url": "https://github.com/Stremio/stremio-linux-shell/archive/2eb0252fb568eaba829c9289e5ce49db6378f734.tar.gz",
       "hash": "1ml8r712izyipz9gl5ivwfc5c614hjq2wpns3q0a1qxmam7a2l1m"
-    },
-    "stremio-rewrite": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "fxzzi",
-        "repo": "stremio-linux-shell"
-      },
-      "branch": "rewrite-upd",
-      "submodules": false,
-      "revision": "2b393b39a56afc63a537078ad6a65b494569e3b1",
-      "url": "https://github.com/fxzzi/stremio-linux-shell/archive/2b393b39a56afc63a537078ad6a65b494569e3b1.tar.gz",
-      "hash": "1070j57z5ppm5sp3kq69ss7523grzk10xz0ax1w8dkprxrhzpdnk"
     },
     "walls": {
       "type": "Git",
