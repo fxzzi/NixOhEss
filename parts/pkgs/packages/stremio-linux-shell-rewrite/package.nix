@@ -67,18 +67,6 @@ in
     # use packaged cef-binary
     env.CEF_PATH = cefPath;
 
-    patches = [
-      ./0001-server-location.patch
-      ./0002-window-hide-title-bar.patch
-    ];
-
-    postPatch = ''
-      # Fix path to bundled server.js
-      substituteInPlace src/server/mod.rs \
-        --replace-fail  "/lib/stremio/server.js" \
-                        "${placeholder "out"}/lib/stremio/server.js"
-    '';
-
     postInstall = ''
       mkdir -p $out/share/applications
       cp data/com.stremio.Stremio.desktop $out/share/applications/com.stremio.Stremio.desktop
@@ -98,7 +86,8 @@ in
       gappsWrapperArgs+=(
         --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib" \
         --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libGL]}" \
-        --prefix PATH : "${lib.makeBinPath [nodejs]}"
+        --prefix PATH : "${lib.makeBinPath [nodejs]}" \
+        --set SERVER_PATH "$out/lib/stremio/server.js"
       )
     '';
 
