@@ -13,6 +13,7 @@
   cef-binary,
   libGL,
   pins,
+  windowDecor ? false,
   ...
 }: let
   # Follow upstream
@@ -64,7 +65,7 @@ in
 
     # Don't download CEF during build
     buildFeatures = ["offline-build"];
-    # use packaged cef-binary
+    # use packaged CEF
     env.CEF_PATH = cefPath;
 
     postInstall = ''
@@ -87,7 +88,8 @@ in
         --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib" \
         --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libGL]}" \
         --prefix PATH : "${lib.makeBinPath [nodejs]}" \
-        --set SERVER_PATH "$out/lib/stremio/server.js"
+        --set SERVER_PATH "$out/lib/stremio/server.js" \
+        ${lib.optionalString (!windowDecor) "--add-flags '--no-window-decorations'"}
       )
     '';
 
