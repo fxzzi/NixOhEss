@@ -120,9 +120,9 @@ in {
                 }
 
                 /* Hide the buttons next to mute and deafen */
-                div[class^=buttons__] {
+                div[class=_37e49614b9f110a9-buttons] {
                   gap: 2px;
-                  div[class^=micButtonParent__] {
+                  div[class*=-micButtonParent] {
                     button[role="switch"] {
                       border-radius: var(--radius-sm) !important;
                       ~ button {
