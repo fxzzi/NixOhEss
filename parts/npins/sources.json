@@ -126,9 +126,9 @@
       },
       "branch": "refactor/gtk4",
       "submodules": false,
-      "revision": "bfd6f38c9bf669f4758f2f5a132c24a15edc9625",
-      "url": "https://github.com/Stremio/stremio-linux-shell/archive/bfd6f38c9bf669f4758f2f5a132c24a15edc9625.tar.gz",
-      "hash": "1jngizdsjyn4fcgvv9ijk8vlyhqhhm4fdgas0mxfwa8x6w20p99y"
+      "revision": "73c1e42323292b534b67f168987034812d5aa8b9",
+      "url": "https://github.com/Stremio/stremio-linux-shell/archive/73c1e42323292b534b67f168987034812d5aa8b9.tar.gz",
+      "hash": "1dcw66q4fv7cr3fy0v2xkjrw8zrk9dl02nnwq0gx846vzjsp8l7s"
     },
     "stremio-linux-shell": {
       "type": "Git",
