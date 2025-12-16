@@ -146,10 +146,10 @@ in {
             withVencord = true;
           }).overrideAttrs rec {
             # override discord version, it has vaapi streaming
-            version = "0.0.118";
+            version = "0.0.119";
             src = pkgs.fetchurl {
               url = "https://stable.dl2.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
-              hash = "sha256-B7gCr+DGoEghMw624OwyBOnPVxDvrYHUBAB9gSStw4g=";
+              hash = "sha256-/NfgHBXsUWYoDEVGz13GBU1ISpSdB5OmrjhSN25SBMg=";
             };
           })
       ];
