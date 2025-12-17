@@ -34,6 +34,11 @@ in {
               then "sendonly"
               else "sendreceive";
             devices = ["fazziPC" "fazziGO" "Pissel 7"];
+            ignorePatterns = [
+              ".thumbnails"
+              ".database_uuid"
+              ".nomedia"
+            ];
           };
         };
       };
