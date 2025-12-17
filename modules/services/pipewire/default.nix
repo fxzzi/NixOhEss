@@ -11,9 +11,25 @@ in {
   config = mkIf cfg.enable {
     services.pipewire = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
       pulse.enable = true;
+      wireplumber.extraConfig = {
+        "99-disable-suspend-MAX97220"."monitor.alsa.rules" = [
+          {
+            # CX31993 dac's with a MAX97220 amp have noticeable wake delay, so
+            # disable suspend for them. also keep the amp alive with low dither noise
+            matches = [{"node.name" = "~alsa_output.*MAX97220.*";}];
+            actions.update-props = {
+              "session.suspend-timeout-seconds" = 0;
+              "dither.method" = "wannamaker3";
+              "dither.noise" = 1; # shouldn't be hearable
+            };
+          }
+        ];
+      };
     };
     hj.packages = with pkgs; [
       qpwgraph
