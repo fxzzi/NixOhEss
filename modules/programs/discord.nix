@@ -84,12 +84,12 @@ in {
                   --custom-app-top-bar-height: 0px !important;
 
                   /* Title bar buttons are still visible so hide them too */
-                  div.base__5e434 > div.bar_c38106 {
+                  div._5e434347c823b592-base > div.c38106a3f0c3ca76-bar {
                     display: none;
                   }
 
                   /* Bring the server list down a few pixels */
-                  ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
+                  ul[data-list-id="guildsnav"] > div.ef3116c2da186559-itemsContainer {
                     margin-top: 8px;
                   }
                 }
