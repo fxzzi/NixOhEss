@@ -20,7 +20,7 @@ in {
 
     hardware = {
       nvidia = {
-        open = false;
+        open = true;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
@@ -29,7 +29,7 @@ in {
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
           version = "590.48.01";
           sha256_64bit = "sha256-ueL4BpN4FDHMh/TNKRCeEz3Oy1ClDWto1LO/LWlr1ok=";
-          openSha256 = "";
+          openSha256 = "sha256-hECHfguzwduEfPo5pCDjWE/MjtRDhINVr4b1awFdP44=";
           usePersistenced = false;
           useSettings = false;
         };
@@ -77,18 +77,16 @@ in {
             };
             profile = "No VidMem Reuse";
           }) [
-            "Hyprland"
             ".Hyprland-wrapped"
             "Discord"
             ".Discord-wrapped"
-            "DiscordCanary"
-            ".DiscordCanary-wrapped"
             "electron"
             ".electron-wrapped"
             "librewolf"
             ".librewolf-wrapped"
             "losslesscut"
             ".losslesscut-wrapped"
+            "hyprpaper"
           ];
       };
     };
