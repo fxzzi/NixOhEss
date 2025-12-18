@@ -19,13 +19,20 @@ in {
       wireplumber.extraConfig = {
         "99-disable-suspend-MAX97220"."monitor.alsa.rules" = [
           {
-            # CX31993 dac's with a MAX97220 amp have noticeable wake delay, so
-            # disable suspend for them. also keep the amp alive with low dither noise
+            # stop MAX97220 amp from sleeping
             matches = [{"node.name" = "~alsa_output.*MAX97220.*";}];
             actions.update-props = {
-              "session.suspend-timeout-seconds" = 0;
               "dither.method" = "wannamaker3";
               "dither.noise" = 1; # shouldn't be hearable
+            };
+          }
+        ];
+        "99-disable-suspend-CX31993"."monitor.alsa.rules" = [
+          {
+            # don't sleep CX31993 dac
+            matches = [{"node.name" = "~alsa_output.*CX31993.*";}];
+            actions.update-props = {
+              "session.suspend-timeout-seconds" = 0;
             };
           }
         ];
