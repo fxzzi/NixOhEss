@@ -19,8 +19,7 @@ writeShellApplication {
     ln -sf "$1" "$STATICWALL"
 
     # set new wallpaper
-    hyprctl hyprpaper reload ,"$1"
-    # hyprctl hyprpaper wallpaper ", $1"
+    hyprctl hyprpaper wallpaper ", $1"
 
     # generate colours and configs with colours
     wallust run "$1"

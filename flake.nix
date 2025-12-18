@@ -22,10 +22,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland/9b1891e4765e2c5b84c8c61725e3973ca9940e05";
+      url = "github:hyprwm/Hyprland";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
+        hyprland-guiutils.inputs.hyprtoolkit.follows = "hyprpaper/hyprtoolkit";
+      };
+    };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        aquamarine.follows = "hyprland/aquamarine";
+        hyprutils.follows = "hyprland/hyprutils";
+        hyprwire.follows = "hyprland/hyprwire";
       };
     };
     nvf = {

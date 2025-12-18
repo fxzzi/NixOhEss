@@ -1,6 +1,7 @@
 {
   lib,
   self,
+  inputs',
   pkgs,
   config,
   pins,
@@ -14,15 +15,15 @@ in {
     hj = {
       xdg.data.files."walls".source = "${pins.walls}/images"; # wallpapers
 
-      packages = [pkgs.hyprpaper];
+      packages = [inputs'.hyprpaper.packages.default];
       xdg.config.files."hypr/hyprpaper.conf" = {
         generator = self.lib.generators.toHyprlang {};
         value = {
-          ipc = 1;
           splash = 0;
 
-          preload = ["~/.local/state/wallpaper"];
-          wallpaper = [",~/.local/state/wallpaper"];
+          "wallpaper[]" = {
+            path = "~/.local/state/wallpaper";
+          };
         };
       };
     };
@@ -38,7 +39,7 @@ in {
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${getExe pkgs.hyprpaper}";
+        ExecStart = "${getExe inputs'.hyprpaper.packages.default}";
       };
     };
   };
