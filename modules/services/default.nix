@@ -1,6 +1,10 @@
 {
   config = {
-    # Disable speech-dispatcher as its unneeded in my case.
-    services.speechd.enable = false;
+    services = {
+      # disable speech-dispatcher
+      speechd.enable = false;
+      # use dbus-broker
+      dbus.implementation = "broker";
+    };
   };
 }
