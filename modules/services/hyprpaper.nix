@@ -2,7 +2,6 @@
   lib,
   self,
   inputs',
-  pkgs,
   config,
   pins,
   ...
