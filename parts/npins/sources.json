@@ -36,9 +36,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "ada1c37041002f4f009a33d6d285eae39bf9ad02",
-      "url": "https://github.com/NVIDIA/egl-wayland2/archive/ada1c37041002f4f009a33d6d285eae39bf9ad02.tar.gz",
-      "hash": "0nrb5h0qi6ii91jvhcjfmh9zpn2hm98xdm5vi26grrz0ra6smwz7"
+      "revision": "f4a2d326cc2eb32d6cf6c0b64082f1c53c770049",
+      "url": "https://github.com/NVIDIA/egl-wayland2/archive/f4a2d326cc2eb32d6cf6c0b64082f1c53c770049.tar.gz",
+      "hash": "0am840yk05hdwy162p198qxs8cfm01yhq3lpcvkajvcfhc0idjay"
     },
     "foot": {
       "type": "Git",
@@ -48,9 +48,9 @@
       },
       "branch": "transparency_yipee",
       "submodules": false,
-      "revision": "0e6f0455046c64a6e3d04d5a6269a99ca213bd4c",
+      "revision": "8b27eb66ae53f429ed44c091af139aeac8ab6371",
       "url": null,
-      "hash": "1ij2c3db9s1ca9dkjaxabp88p5yd48j023fks8vkqddagx41zqy3"
+      "hash": "127794sd3z07dq96szga1mm4zmww3387mqzpbdkbp3axl2g0qy6c"
     },
     "niqspkgs": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "f67539f079071f57cf3e2f3e3ca00595d62990f3",
-      "url": "https://github.com/fufexan/nix-gaming/archive/f67539f079071f57cf3e2f3e3ca00595d62990f3.tar.gz",
-      "hash": "076dfyjx22cg7zvr9cgdlx0l4gwknqj9dix21j5lmakq8z7ix7ga"
+      "revision": "788b74af6830cd2fefc6fc0f576ce556e0744211",
+      "url": "https://github.com/fufexan/nix-gaming/archive/788b74af6830cd2fefc6fc0f576ce556e0744211.tar.gz",
+      "hash": "1hdz6ypjm6w1ql1qwnxl9jv0xfnqkcrx2jr1428jvb4b1qhp9zm1"
     },
     "nvidia-vaapi-driver": {
       "type": "Git",

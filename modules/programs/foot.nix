@@ -39,7 +39,7 @@ in {
           mouse = {
             hide-when-typing = true;
           };
-          colors = {
+          colors-dark = {
             alpha = 0.85;
             alpha-mode = "matching";
           };
