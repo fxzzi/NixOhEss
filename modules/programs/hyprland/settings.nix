@@ -70,6 +70,7 @@ in {
             "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543, 2560x1440@170, 0x0, 1" # kunzozPC monitor
             "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001, 2560x1440@175, 0x0, 1" # fazziPC monitor
             "desc:Philips, 1920x1080@75,auto-center-left, 1" # place to the left of fazziPC monitor
+            "desc:Samsung Electric Company SAMSUNG 0x01000E00, 3840x2160@120, 0x0, 1"
           ];
           render = {
             direct_scanout = 2;

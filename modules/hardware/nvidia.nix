@@ -58,7 +58,7 @@ in {
         # lowest frame buffering -> lower latency
         __GL_MaxFramesAllowed = "1";
         # no idea what this does but apparently useful
-        __GL_YIELD = "usleep";
+        # __GL_YIELD = "usleep";
         # fix hw acceleration and native wayland on losslesscut
         __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
         # fix hw acceleration in bwrap (osu!lazer, wrapped appimages)
@@ -105,11 +105,9 @@ in {
           "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
           "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
           "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
-          "nvidia_modeset.disable_vrr_memclk_switch=1" # stop really high memclk when vrr is in use.
         ]
         (mkIf config.hardware.nvidia.powerManagement.enable [
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
-          "nvidia.NVreg_EnableS0ixPowerManagement=0"
         ])
       ];
     };
