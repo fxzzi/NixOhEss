@@ -104,7 +104,10 @@ in {
     };
     hj.xdg.config.files."zsh/.zshrc" = lib.mkIf cfg.shellIntegration {
       text = mkAfter ''
-        ${getExe pkgs.fastfetchMinimal}
+        # only run fastfetch if term is large enough
+        if [[ $COLUMNS -ge 45 && $LINES -ge 15 ]]; then
+          ${getExe pkgs.fastfetchMinimal}
+        fi
       '';
     };
   };
