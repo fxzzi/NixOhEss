@@ -25,6 +25,7 @@ in {
         paths = {
           all_others = {};
         };
+        writeQueueSize = 2048;
       };
     };
     # NOTE: pass the public ip to mediamtx via env var
