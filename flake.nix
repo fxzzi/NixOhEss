@@ -20,6 +20,7 @@
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.smfh.follows = "";
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
@@ -27,6 +28,7 @@
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
         hyprland-guiutils.inputs.hyprtoolkit.follows = "hyprpaper/hyprtoolkit";
+        # aquamarine.url = "github:gulafaran/aquamarine/commit";
       };
     };
     hyprpaper = {

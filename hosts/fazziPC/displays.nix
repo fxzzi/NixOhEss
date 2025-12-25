@@ -3,8 +3,6 @@
   lib,
   ...
 }: {
-  # the M27Q is a bgr monitor
-  fonts.fontconfig.subpixel.rgba = "bgr";
   hardware.display = {
     edid = {
       enable = true;
