@@ -3,7 +3,6 @@
   lib,
   config,
   inputs,
-  inputs',
   ...
 }: let
   inherit (lib) mkOption types;
