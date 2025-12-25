@@ -20,7 +20,7 @@ in {
 
     hardware = {
       nvidia = {
-        open = false;
+        open = true;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
@@ -108,6 +108,7 @@ in {
         ]
         (mkIf config.hardware.nvidia.powerManagement.enable [
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
+          "nvidia.NVreg_EnableS0ixPowerManagement=0"
         ])
       ];
     };
