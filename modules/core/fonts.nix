@@ -15,7 +15,12 @@ in {
     fonts = {
       enableDefaultPackages = false;
       fontconfig = {
-        subpixel.rgba = mkDefault "rgb";
+        subpixel = {
+          rgba = "none";
+          lcdfilter = "light";
+        };
+        hinting.style = "slight";
+        antialias = true;
         includeUserConf = false;
         # fixes emojis on browser
         useEmbeddedBitmaps = true;
