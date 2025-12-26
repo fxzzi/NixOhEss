@@ -143,6 +143,19 @@
       "url": "https://github.com/Stremio/stremio-linux-shell/archive/2eb0252fb568eaba829c9289e5ce49db6378f734.tar.gz",
       "hash": "sha256-NVChTlW146AAHtpeLrCEJBhWmOM7FvrSv9H/KMLJiNY="
     },
+    "tuigreet": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NotAShelf",
+        "repo": "tuigreet"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "7952ac59a3c782aebe3feffe8b07cb888bea17bc",
+      "url": "https://github.com/NotAShelf/tuigreet/archive/7952ac59a3c782aebe3feffe8b07cb888bea17bc.tar.gz",
+      "hash": "sha256-4zmpqSZgyL9R5LpkjZFVLI+o25n7NLYlXsdiwsUAOk8="
+    },
     "walls": {
       "type": "Git",
       "repository": {
