@@ -2,10 +2,12 @@
   lib,
   config,
   pkgs,
+  pins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.greetd;
+  # tuigreet = pkgs.callPackage "${pins.tuigreet}/nix/package.nix" {};
   cmd = pkgs.writeShellScriptBin "greetd-hyprland" ''
     Hyprland
     systemctl --user stop hyprland-session.target
