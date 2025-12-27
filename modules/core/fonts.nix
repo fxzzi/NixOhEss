@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkDefault;
   cfg = config.cfg.core.fonts;
 in {
   options.cfg.core.fonts = {
@@ -15,7 +15,7 @@ in {
       enableDefaultPackages = false;
       fontconfig = {
         subpixel = {
-          rgba = "none";
+          rgba = mkDefault "rgb";
           lcdfilter = "light";
         };
         hinting.style = "slight";
