@@ -28,7 +28,7 @@
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
         hyprland-guiutils.inputs.hyprtoolkit.follows = "hyprpaper/hyprtoolkit";
-        aquamarine.url = "github:gulafaran/aquamarine/commit";
+        # aquamarine.url = "github:gulafaran/aquamarine/commit";
       };
     };
     hyprpaper = {
