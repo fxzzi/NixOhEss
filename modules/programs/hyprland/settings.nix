@@ -68,13 +68,24 @@ in {
             ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
             "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
             "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543, 2560x1440@170, 0x0, 1" # kunzozPC monitor
-            "desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917, 2560x1440@280, 0x0, 1, bitdepth, 10" # fazziPC main monitor
-            "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001, 2560x1440@170, auto-center-left, 1, bitdepth, 10, vrr, 1" # place to the left of fazziPC monitor
             "desc:Samsung Electric Company SAMSUNG 0x01000E00, 3840x2160@120, 0x0, 1" # fazziPC TV
           ];
+          "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
+            mode = "2560x1440@280";
+            position = "0x0";
+            scale = 1;
+            bitdepth = 10;
+            cm = "auto";
+          };
+          "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
+            mode = "2560x1440@170";
+            position = "auto-center-left";
+            scale = 1;
+            bitdepth = 10;
+            cm = "srgb";
+          };
           render = {
             direct_scanout = 2;
-            cm_enabled = false;
           };
           cursor = {
             default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
