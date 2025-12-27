@@ -1,5 +1,4 @@
 {
-  self',
   pkgs,
   config,
   lib,
@@ -31,11 +30,11 @@ in {
             "Noto Serif"
           ];
           sansSerif = [
-            "Inter Variable"
+            "Adwaita Sans"
           ];
           monospace = [
-            "Ioshelfka Term"
-            "Symbols Nerd Font Mono"
+            "JetBrains Mono"
+            "Symbols Nerd Font"
           ];
           emoji = [
             "Noto Color Emoji"
@@ -50,8 +49,8 @@ in {
         noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
         corefonts # ms fonts
         vista-fonts # more ms fonts including calibri and consolas
-        inter
-        self'.packages.ioshelfka-term
+        adwaita-fonts
+        jetbrains-mono
       ];
     };
   };

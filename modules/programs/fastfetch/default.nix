@@ -9,7 +9,7 @@
   iconPath = ./images/${cfg.icon}.jpg;
   # Generate sixel using chafa
   icon = pkgs.runCommand "fastfetch-icon" {} ''
-    ${getExe pkgs.chafa} ${iconPath} -s 17 --format sixel > $out
+    ${getExe pkgs.chafa} ${iconPath} -s 18 --format sixel > $out
   '';
 in {
   options = {
@@ -45,7 +45,7 @@ in {
             detectVersion = false;
           };
           logo = {
-            source = "${icon}";
+            source = icon;
             type = "raw";
             height = 9;
             width = 15;
