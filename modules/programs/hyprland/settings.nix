@@ -82,15 +82,22 @@ in {
             position = "auto-center-left";
             scale = 1;
             bitdepth = 10;
-            cm = "srgb";
+            cm = "auto";
+            # this monitor does support HDR, but only by technicality.
+            # it's implementation is bad. so just disable it entirely.
+            supports_hdr = -1;
+            # we enable vrr globally for fullscreen windows. but this
+            # monitor is great with vrr flicker, so enable it always.
+            vrr = 1;
           };
           render = {
+            cm_enabled = mkDefault 0;
             direct_scanout = 2;
           };
           cursor = {
             default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
             sync_gsettings_theme = 0; # we handle this ourselves
-            inactive_timeout = 4; # after x seconds of inactivity, hide the cursor
+            inactive_timeout = 5; # after x seconds of inactivity, hide the cursor
             no_break_fs_vrr = 0; # NOTE: https://github.com/hyprwm/Hyprland/issues/8582
           };
           input = {
