@@ -94,7 +94,7 @@
       mangohud = {
         enable = true;
         enableSessionWide = true;
-        refreshRate = 175;
+        refreshRate = 280;
       };
 
       nvf.enable = true;

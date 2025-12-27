@@ -10,7 +10,6 @@
     ./fancontrol.nix
     ./gtkBookmarks.nix
     ./options.nix
-    ./displays.nix
   ];
   # host specific packages
   hj = {
@@ -53,5 +52,9 @@
     game-password = "1234";
     nonBlockingSaving = true;
     admins = ["fazzi"];
+  };
+  hardware.display.outputs = {
+    "DP-2".mode = "2560x1440@280";
+    "DP-3".mode = "2560x1440@170";
   };
 }

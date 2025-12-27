@@ -24,7 +24,7 @@ in {
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs {
+        package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta.overrideAttrs {
           postInstall = ''
             rm -rf $out/share/egl/egl_external_platform.d/99_nvidia_wayland2.json
           '';

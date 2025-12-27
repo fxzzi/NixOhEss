@@ -1,5 +1,4 @@
 {
-  self',
   pkgs,
   config,
   lib,
@@ -43,7 +42,7 @@ in {
         "MangoHud/MangoHud.conf".text = ''
           blacklist=mpv
           font_size=20
-          font_file=${self'.packages.ioshelfka-term}/share/fonts/truetype/IoshelfkaTerm-Bold.ttf
+          font_file=${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf
           text_outline_thickness=1
           cellpadding_y=-0.2
           fps_limit=${toString fpsLimit},0

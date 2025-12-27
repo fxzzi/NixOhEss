@@ -7,7 +7,7 @@
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.greetd;
-  # tuigreet = pkgs.callPackage "${pins.tuigreet}/nix/package.nix" {};
+  tuigreet = pkgs.callPackage "${pins.tuigreet}/nix/package.nix" {};
   cmd = pkgs.writeShellScriptBin "greetd-hyprland" ''
     Hyprland
     systemctl --user stop hyprland-session.target
@@ -18,20 +18,33 @@ in {
     services.greetd = {
       enable = true;
       useTextGreeter = true;
-      settings = {
-        default_session = {
-          command =
-            # sh
-            ''
-              ${pkgs.tuigreet}/bin/tuigreet \
-              --greeting 'Welcome to the fold of ${config.system.nixos.distroName}.' \
-              --time \
-              --remember \
-              --asterisks \
-              --cmd '${getExe cmd}'
-            '';
-          user = "greeter";
+      settings.default_session = {
+        command = "${getExe tuigreet} --cmd '${getExe cmd}'";
+        user = "greeter";
+      };
+    };
+    environment.etc."tuigreet/config.toml".source = (pkgs.formats.toml {}).generate "tuigreet-config.toml" {
+      display = {
+        greeting = "Welcome to the fold of ${config.system.nixos.distroName}.";
+        show_time = true;
+      };
+      layout = {
+        window_padding = 1;
+        widgets = {
+          time_position = "top";
+          status_position = "hidden";
         };
+      };
+      session.command = getExe cmd;
+      secret = {
+        mode = "characters";
+        characters = "*";
+      };
+      remember.username = true;
+      power = {
+        use_setsid = false;
+        shutdown = "systemctl poweroff";
+        reboot = "systemctl reboot";
       };
     };
   };
