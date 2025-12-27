@@ -43,18 +43,14 @@
       self'.packages.flac2opus
       self'.packages.flac2vorbis
     ];
-  };
-  services.factorio = {
-    # enable = true;
-    loadLatestSave = true;
-    requireUserVerification = false;
-    port = 25565;
-    game-password = "1234";
-    nonBlockingSaving = true;
-    admins = ["fazzi"];
+    xdg.config.files."hypr/hyprland.conf".value.render.cm_enabled = 1;
   };
   hardware.display.outputs = {
-    "DP-2".mode = "2560x1440@280";
-    "DP-3".mode = "2560x1440@170";
+    "DP-2".mode = "2560x1440-30@280";
+    "DP-3".mode = "2560x1440-30@170";
   };
+  # fazziPC has a WOLED main monitor with subpixel layout RGWB,
+  # and a secondary monitor of layout BGR. Therefore we shouldn't
+  # use subpixel rendering.
+  fonts.fontconfig.subpixel.rgba = "none";
 }

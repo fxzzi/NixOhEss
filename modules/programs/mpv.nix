@@ -16,8 +16,12 @@ in {
           save-position-on-quit=yes
           vo=gpu-next
           hwdec=auto
+          gpu-api=vulkan
+          gpu-context=waylandvk
+          target-colorspace-hint=yes
           volume-max=150
           keep-open=yes
+          fs=yes
           alang=en,eng
           slang=en,eng
           sub-scale=0.75
