@@ -20,16 +20,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1766625730,
-        "narHash": "sha256-3E3c8/w8eSP66y/OH5CvV2/zJys2VPz3Wrgo0mpYNoc=",
-        "owner": "gulafaran",
+        "lastModified": 1765900596,
+        "narHash": "sha256-+hn8v9jkkLP9m+o0Nm5SiEq10W0iWDSotH2XfjU45fA=",
+        "owner": "hyprwm",
         "repo": "aquamarine",
-        "rev": "26bc07fe3501433285e2d4283fa4f42f4fbd2402",
+        "rev": "d83c97f8f5c0aae553c1489c7d9eff3eadcadace",
         "type": "github"
       },
       "original": {
-        "owner": "gulafaran",
-        "ref": "commit",
+        "owner": "hyprwm",
         "repo": "aquamarine",
         "type": "github"
       }
@@ -253,11 +252,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1766787391,
-        "narHash": "sha256-YDEf0chnHpMl+symW6UJDM/nvffUO4l7/Orpm4MQBe0=",
+        "lastModified": 1766859471,
+        "narHash": "sha256-18U/GR9nzrC/dpz20hdLf71GZIXmjgCCpUH5Jo5KJKY=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "d7f26038ee2b44f3d02fe2a7556bafb91a02f46e",
+        "rev": "e5f22c06b4c01784753315156247e15d0ec3db45",
         "type": "github"
       },
       "original": {
