@@ -21,7 +21,7 @@
         logisim-evolution
         rars
         vscodium
-        (jetbrains.idea-community-bin.override {
+        (jetbrains.idea-oss.override {
           vmopts = "-Dawt.toolkit.name=WLToolkit";
         })
       ];
