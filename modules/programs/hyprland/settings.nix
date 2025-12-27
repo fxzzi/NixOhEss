@@ -82,7 +82,7 @@ in {
             position = "auto-center-left";
             scale = 1;
             bitdepth = 10;
-            cm = "auto";
+            cm = "srgb";
             # this monitor does support HDR, but only by technicality.
             # it's implementation is bad. so just disable it entirely.
             supports_hdr = -1;
