@@ -150,11 +150,11 @@
         "owner": "NotAShelf",
         "repo": "tuigreet"
       },
-      "branch": "notashelf/push-rrosmvtlvxpp",
+      "branch": "master",
       "submodules": false,
-      "revision": "f5d9b79f8ea51039b4bf017e2bcce775fb04fda9",
-      "url": "https://github.com/NotAShelf/tuigreet/archive/f5d9b79f8ea51039b4bf017e2bcce775fb04fda9.tar.gz",
-      "hash": "sha256-gh4MR6hJdnsi95Ct9slk6XE/B6eapWtWYvv5fuj9L3A="
+      "revision": "416bbe8f7249b39148776358e7d2bd54566f6019",
+      "url": "https://github.com/NotAShelf/tuigreet/archive/416bbe8f7249b39148776358e7d2bd54566f6019.tar.gz",
+      "hash": "sha256-NOQ5jpQ+hLsU8mdEcdftrhV5yhQEIeW52Go+dSIDJII="
     },
     "walls": {
       "type": "Git",
