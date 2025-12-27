@@ -18,7 +18,7 @@ in {
           hwdec=auto
           gpu-api=vulkan
           gpu-context=waylandvk
-          target-colorspace-hint=yes
+          target-colorspace-hint=auto
           volume-max=150
           keep-open=yes
           fs=yes
