@@ -68,8 +68,8 @@
       };
       hypridle = {
         enable = true;
-        dpmsTimeout = 120;
-        lockTimeout = 180;
+        dpmsTimeout = 180;
+        lockTimeout = 300;
         suspendTimeout = 600;
       };
       hyprpaper.enable = true;
