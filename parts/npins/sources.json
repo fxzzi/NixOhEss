@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "4e3926b98be61b018915ded9f8f8706a4ce1a267",
-      "url": "https://github.com/fufexan/nix-gaming/archive/4e3926b98be61b018915ded9f8f8706a4ce1a267.tar.gz",
-      "hash": "sha256-fvzdJMWM3Nisav0AYbCO9yQ0LbM2Od8Ulp6YBw2r3Ac="
+      "revision": "4108f21b00b10e185ab3d28f9e89e6359c159793",
+      "url": "https://github.com/fufexan/nix-gaming/archive/4108f21b00b10e185ab3d28f9e89e6359c159793.tar.gz",
+      "hash": "sha256-uttWzlZdQxd7surfe4zeMjTnwIgWUjBygVDdrA1Ssag="
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -150,11 +150,11 @@
         "owner": "NotAShelf",
         "repo": "tuigreet"
       },
-      "branch": "master",
+      "branch": "notashelf/push-rrosmvtlvxpp",
       "submodules": false,
-      "revision": "7952ac59a3c782aebe3feffe8b07cb888bea17bc",
-      "url": "https://github.com/NotAShelf/tuigreet/archive/7952ac59a3c782aebe3feffe8b07cb888bea17bc.tar.gz",
-      "hash": "sha256-4zmpqSZgyL9R5LpkjZFVLI+o25n7NLYlXsdiwsUAOk8="
+      "revision": "f5d9b79f8ea51039b4bf017e2bcce775fb04fda9",
+      "url": "https://github.com/NotAShelf/tuigreet/archive/f5d9b79f8ea51039b4bf017e2bcce775fb04fda9.tar.gz",
+      "hash": "sha256-gh4MR6hJdnsi95Ct9slk6XE/B6eapWtWYvv5fuj9L3A="
     },
     "walls": {
       "type": "Git",
