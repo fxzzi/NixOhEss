@@ -19,7 +19,7 @@ in {
       enable = true;
       useTextGreeter = true;
       settings.default_session = {
-        command = "${getExe tuigreet} --cmd '${getExe cmd}'";
+        command = getExe tuigreet;
         user = "greeter";
       };
     };
@@ -35,7 +35,8 @@ in {
           status_position = "hidden";
         };
       };
-      session.command = getExe cmd;
+      # silence cmd output also
+      session.command = "${getExe cmd} >/dev/null 2>&1";
       secret = {
         mode = "characters";
         characters = "*";
