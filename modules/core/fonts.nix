@@ -41,7 +41,6 @@ in {
           ];
         };
       };
-
       packages = with pkgs; [
         nerd-fonts.symbols-only # symbols for terminal, bar, lock, etc
         noto-fonts # Google Noto Fonts
@@ -52,6 +51,10 @@ in {
         inter
         jetbrains-mono
       ];
+    };
+    environment.sessionVariables = {
+      # https://blog.aktsbot.in/no-more-blurry-fonts.html
+      "FREETYPE_PROPERTIES" = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
     };
   };
 }

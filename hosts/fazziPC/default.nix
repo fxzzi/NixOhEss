@@ -45,6 +45,7 @@
     ];
     xdg.config.files."hypr/hyprland.conf".value.render.cm_enabled = 1;
   };
+  # set resolutions early to avoid modeset when launching hyprland
   hardware.display.outputs = {
     "DP-2".mode = "2560x1440-30@280";
     "DP-3".mode = "2560x1440-30@170";
