@@ -67,9 +67,9 @@ in {
           monitor = [
             ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
             "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
-            "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543, 2560x1440@170, 0x0, 1" # kunzozPC monitor
             "desc:Samsung Electric Company SAMSUNG 0x01000E00, 3840x2160@120, 0x0, 1" # fazziPC TV
           ];
+          # fazziPC main monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
             mode = "2560x1440@280";
             position = "0x0";
@@ -78,6 +78,7 @@ in {
             # monitor has good native colour space
             cm = "edid";
           };
+          # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
             mode = "2560x1440@170";
             position = "auto-center-left";
@@ -92,9 +93,18 @@ in {
             # monitor is great with vrr flicker, so enable it always.
             vrr = 1;
           };
+          # kunzozPC
+          "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543]" = {
+            mode = "2560x1440@170";
+            position = "0x0";
+            scale = 1;
+            # this monitor does support HDR, but only by technicality.
+            # it's implementation is bad. so just disable it entirely.
+            supports_hdr = -1;
+          };
           render = {
-            cm_enabled = mkDefault 0;
             direct_scanout = mkDefault 2;
+            cm_auto_hdr = 2; # cm hdredid
           };
           cursor = {
             default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
@@ -110,12 +120,6 @@ in {
             float_switch_override_focus = 0; # Stop floating windows from stealing focus
             # i hate caps lock, so make it escape instead. also reset f13-f24 to their expected keysyms.
             kb_options = "fkeys:basic_13-24, caps:escape";
-            # don't set tablet settings if opentabletdriver is enabled.
-            tablet = optionalAttrs (!config.cfg.services.opentabletdriver.enable) {
-              left_handed = 1; # inverted tablet
-              output = "${cfg.defaultMonitor}";
-              # active_area_size = "130, 73";
-            };
             touchpad = {
               natural_scroll = true;
             };
