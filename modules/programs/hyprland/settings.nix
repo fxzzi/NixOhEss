@@ -98,8 +98,7 @@ in {
             mode = "2560x1440@170";
             position = "0x0";
             scale = 1;
-            # this monitor does support HDR, but only by technicality.
-            # it's implementation is bad. so just disable it entirely.
+            # same monitor, same bad hdr
             supports_hdr = -1;
           };
           render = {
