@@ -48,9 +48,7 @@ in {
       description = "Hyprland compositor session";
       documentation = ["man:systemd.special(7)"];
       bindsTo = ["graphical-session.target"];
-      wants = [
-        "graphical-session-pre.target"
-      ];
+      wants = ["graphical-session-pre.target"];
       after = ["graphical-session-pre.target"];
     };
   };
