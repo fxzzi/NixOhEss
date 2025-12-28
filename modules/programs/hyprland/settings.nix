@@ -94,7 +94,7 @@ in {
           };
           render = {
             cm_enabled = mkDefault 0;
-            direct_scanout = 2;
+            direct_scanout = mkDefault 2;
           };
           cursor = {
             default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
@@ -130,7 +130,7 @@ in {
             gaps_out = 2; # Outer monitor gaps
             gaps_in = 1; # Inner window gaps
             border_size = 1; # Set window border width
-            allow_tearing = 1;
+            allow_tearing = mkDefault 1;
           };
           misc = {
             disable_hyprland_logo = 1; # Disable hyprland wallpapers etc
