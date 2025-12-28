@@ -30,7 +30,7 @@ in {
             "Noto Serif"
           ];
           sansSerif = [
-            "Adwaita Sans"
+            "Inter"
           ];
           monospace = [
             "JetBrains Mono"
@@ -49,7 +49,7 @@ in {
         noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
         corefonts # ms fonts
         vista-fonts # more ms fonts including calibri and consolas
-        adwaita-fonts
+        inter
         jetbrains-mono
       ];
     };

@@ -75,13 +75,15 @@ in {
             position = "0x0";
             scale = 1;
             bitdepth = 10;
-            cm = "auto";
+            # monitor has good native colour space
+            cm = "edid";
           };
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
             mode = "2560x1440@170";
             position = "auto-center-left";
             scale = 1;
             bitdepth = 10;
+            # this monitor has good sRGB
             cm = "srgb";
             # this monitor does support HDR, but only by technicality.
             # it's implementation is bad. so just disable it entirely.
@@ -140,7 +142,7 @@ in {
             swallow_exception_regex = "foot"; # Make foot not swallow itself
             initial_workspace_tracking = 0;
             vrr = 2;
-            anr_missed_pings = 5; # by default, ANR dialog shows up way too aggressively.
+            anr_missed_pings = 6; # by default, ANR dialog shows up way too aggressively.
             mouse_move_enables_dpms = true;
             key_press_enables_dpms = true;
             middle_click_paste = 0;
