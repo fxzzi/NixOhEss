@@ -83,12 +83,11 @@ in {
             mode = "2560x1440@170";
             position = "auto-center-left";
             scale = 1;
-            bitdepth = 10;
-            # this monitor has good sRGB
-            cm = "srgb";
             # this monitor does support HDR, but only by technicality.
             # it's implementation is bad. so just disable it entirely.
             supports_hdr = -1;
+            # this monitor DOES support 10-bit, but only at 120Hz
+            supports_wide_color = -1;
             # we enable vrr globally for fullscreen windows. but this
             # monitor is great with vrr flicker, so enable it always.
             vrr = 1;
@@ -100,6 +99,8 @@ in {
             scale = 1;
             # same monitor, same bad hdr
             supports_hdr = -1;
+            # same monitor, same color gamut limitation
+            supports_wide_color = -1;
           };
           render = {
             direct_scanout = mkDefault 2;
