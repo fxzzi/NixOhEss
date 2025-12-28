@@ -19,6 +19,7 @@ in {
           gpu-api=vulkan
           gpu-context=waylandvk
           target-colorspace-hint=auto
+          target-colorspace-hint-mode=source
           volume-max=150
           keep-open=yes
           fs=yes
