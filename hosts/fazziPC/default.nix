@@ -43,7 +43,6 @@
       self'.packages.flac2opus
       self'.packages.flac2vorbis
     ];
-    xdg.config.files."hypr/hyprland.conf".value.render.cm_enabled = 1;
   };
   # set resolutions early to avoid modeset when launching hyprland
   hardware.display.outputs = {
