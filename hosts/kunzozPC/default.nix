@@ -23,17 +23,13 @@
     xdg.config.files."hypr/hyprland.conf" = {
       value = {
         # tearing and ds don't work on kunzozPC
-        render.direct_scanout = lib.mkForce 0;
-        general.allow_tearing = lib.mkForce 0;
-        misc.vrr = lib.mkForce 2;
+        render.direct_scanout = 0;
+        general.allow_tearing = 0;
       };
     };
   };
-
   hardware.display = {
-    outputs."DP-3" = {
-      mode = "2560x1440@170";
-    };
+    outputs."DP-3".mode = "2560x1440@170";
   };
   networking.firewall = {
     # minecraft
