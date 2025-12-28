@@ -20,11 +20,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766625730,
-        "narHash": "sha256-3E3c8/w8eSP66y/OH5CvV2/zJys2VPz3Wrgo0mpYNoc=",
+        "lastModified": 1766917675,
+        "narHash": "sha256-wmW/qUAtZ5UiQJlAM7UqVQrB7BfufzIuHAheDIIu35k=",
         "owner": "gulafaran",
         "repo": "aquamarine",
-        "rev": "26bc07fe3501433285e2d4283fa4f42f4fbd2402",
+        "rev": "7570d09e73013fc167ad2cdc80f903a0e76a075a",
         "type": "github"
       },
       "original": {
@@ -132,11 +132,11 @@
         "smfh": []
       },
       "locked": {
-        "lastModified": 1766511129,
-        "narHash": "sha256-NpMe6qDe6PVJQvFltug0OHijMF5aUwIgjdvCbyyrf30=",
+        "lastModified": 1766888411,
+        "narHash": "sha256-nLq6i7g0SrEzNMXFsEnNForI2J4uogt2W9zn9pJG/BA=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "64d92d3ed0c292c070e730e83857d5ba4fd0bfa0",
+        "rev": "86ef7f76dc60f8ce7cbd092c2066ee17a86f04a5",
         "type": "github"
       },
       "original": {
@@ -253,11 +253,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1766867279,
-        "narHash": "sha256-0rm/B06bbWcRBdzQMLzsGncs4B/zawVc1lcx4G+JXpc=",
+        "lastModified": 1766870612,
+        "narHash": "sha256-k0JGpkHZb5s/msskYKcYLwGuPklJW8qWN1vIhBZARyI=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "e5d20b56bcad78df42c9060a5d330274b0a6e510",
+        "rev": "a8452705d6512da36f66e4a7d6e7799afbc7ffdd",
         "type": "github"
       },
       "original": {
