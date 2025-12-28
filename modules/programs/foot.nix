@@ -32,7 +32,6 @@ in {
             font = "monospace:size=12";
             pad = "6x6";
             transparent-fullscreen = true; # option added by my fork
-            gamma-correct-blending = true;
           };
           cursor = {
             style = "beam";
@@ -44,8 +43,6 @@ in {
             alpha = 0.85;
             alpha-mode = "matching";
           };
-          # don't alter colours of foot
-          tweak.surface-bit-depth = "8-bit";
         };
       };
       # zsh shell integration. see:
