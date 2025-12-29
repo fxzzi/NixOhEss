@@ -47,7 +47,7 @@
   # set resolutions early to avoid modeset when launching hyprland
   hardware.display.outputs = {
     "DP-2".mode = "2560x1440-30@280";
-    "DP-3".mode = "2560x1440-30@170";
+    "DP-3".mode = "2560x1440-30@120";
   };
   # fazziPC has a WOLED main monitor with subpixel layout RGWB,
   # and a secondary monitor of layout BGR. Therefore we shouldn't
