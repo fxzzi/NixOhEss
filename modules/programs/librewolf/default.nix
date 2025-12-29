@@ -60,7 +60,6 @@ in {
     };
     environment.sessionVariables = mkIf config.cfg.hardware.nvidia.enable {
       LIBVA_DRIVER_NAME = "nvidia";
-      NVD_BACKEND = "direct";
       MOZ_DISABLE_RDD_SANDBOX = "1";
     };
     xdg.mime.defaultApplications = {

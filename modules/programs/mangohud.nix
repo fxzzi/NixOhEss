@@ -1,5 +1,6 @@
 {
   pkgs,
+  self',
   config,
   lib,
   ...
@@ -37,7 +38,8 @@ in {
       "MANGOHUD" = "1";
     };
     hj = {
-      packages = [pkgs.mangohud];
+      # mangohud with some patches for hdr
+      packages = [self'.packages.mangohud-patched];
       xdg.config.files = {
         "MangoHud/MangoHud.conf".text = ''
           blacklist=mpv
