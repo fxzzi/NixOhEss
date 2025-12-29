@@ -77,6 +77,7 @@ in {
             bitdepth = 10;
             # monitor has good native colour space
             cm = "edid";
+            # icc = "${./icc/GBT_MO27Q28G.icm}";
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
@@ -92,6 +93,7 @@ in {
             # we enable vrr globally for fullscreen windows. but this
             # monitor is great with vrr flicker, so enable it always.
             vrr = 1;
+            # icc = "${./icc/M27Q-rtings.icm}";
           };
           # kunzozPC
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543]" = {
@@ -105,7 +107,7 @@ in {
           };
           render = {
             direct_scanout = mkDefault 2;
-            cm_auto_hdr = 2; # cm hdredid
+            non_shader_cm = 1;
           };
           cursor = {
             default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
