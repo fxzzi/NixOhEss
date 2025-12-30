@@ -150,11 +150,11 @@
         "owner": "NotAShelf",
         "repo": "tuigreet"
       },
-      "branch": "master",
+      "branch": "notashelf/push-pnqpxznwrroy",
       "submodules": false,
-      "revision": "416bbe8f7249b39148776358e7d2bd54566f6019",
-      "url": "https://github.com/NotAShelf/tuigreet/archive/416bbe8f7249b39148776358e7d2bd54566f6019.tar.gz",
-      "hash": "sha256-NOQ5jpQ+hLsU8mdEcdftrhV5yhQEIeW52Go+dSIDJII="
+      "revision": "a033aef6fe4c98a376c70d6bb03554b5d46a7a68",
+      "url": "https://github.com/NotAShelf/tuigreet/archive/a033aef6fe4c98a376c70d6bb03554b5d46a7a68.tar.gz",
+      "hash": "sha256-URb+H7kD/8oOLaI4iuNVHS0Xma9bDWyC2nPhUUbWczs="
     },
     "walls": {
       "type": "Git",

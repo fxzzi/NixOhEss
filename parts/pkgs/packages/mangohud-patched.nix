@@ -8,6 +8,11 @@
       url = "https://github.com/flightlessmango/MangoHud/pull/1924.patch";
       sha256 = "sha256-yI3S/pjQb358/evE1ageO0zdJ0E7aQO87CA1Rd2FOjo=";
     })
+    # allow customizing the font size of units like Mhz, etc
+    (fetchpatch {
+      url = "https://github.com/flightlessmango/MangoHud/pull/1811.patch";
+      sha256 = "sha256-0mnTTzyu3IN8RwCzSe6PLniW7CXJZpn+CEkKR4iGbWI=";
+    })
   ];
 in
   (pkgs.mangohud.overrideAttrs (old: {
