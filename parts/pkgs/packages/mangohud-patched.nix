@@ -3,6 +3,7 @@
   fetchpatch,
 }: let
   patches = [
+    # fix oversaturated colors in HDR, and undersaturated colors in CS2, Haste (SDL?)
     (fetchpatch {
       url = "https://github.com/flightlessmango/MangoHud/pull/1924.patch";
       sha256 = "sha256-yI3S/pjQb358/evE1ageO0zdJ0E7aQO87CA1Rd2FOjo=";

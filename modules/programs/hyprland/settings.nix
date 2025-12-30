@@ -107,7 +107,6 @@ in {
           };
           render = {
             direct_scanout = mkDefault 2;
-            non_shader_cm = 1;
           };
           cursor = {
             default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
@@ -171,6 +170,8 @@ in {
             "match:namespace wleave, xray 1"
             "match:namespace bar-.*, xray 1"
             "match:namespace notifications, animation slide"
+            "match:namespace selection, no_anim 1"
+            "match:namespace wayfreeze, no_anim 1"
           ];
           decoration = {
             rounding = 0;
@@ -240,6 +241,8 @@ in {
               "match:class mpv, idle_inhibit focus"
               # hyprland shows anr dialog when stremio is in another workspace, so render_unfocused 1
               "match:class .*stremio.*, idle_inhibit focus, content video, render_unfocused 1"
+
+              "match:content 2, no_vrr 1" # disable vrr on content type video
               "match:class atril, idle_inhibit focus"
               "match:class foot, idle_inhibit fullscreen"
 
