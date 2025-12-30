@@ -44,6 +44,7 @@ in {
         "MangoHud/MangoHud.conf".text = ''
           blacklist=mpv
           text_outline_thickness=1
+          font_size_small=15
           # normally this is #000000, but it isn't correctly
           # tonemapped in HDR. So lighten it ourselves
           text_outline_color=262626
