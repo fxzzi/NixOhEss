@@ -44,11 +44,11 @@ in {
         "MangoHud/MangoHud.conf".text = ''
           blacklist=mpv
           text_outline_thickness=1
-          font_size_small=15
+          font_size_small=14
           # normally this is #000000, but it isn't correctly
           # tonemapped in HDR. So lighten it ourselves
           text_outline_color=262626
-          cellpadding_y=-0.2
+          cellpadding_y=-0.3
           fps_limit=${toString fpsLimit},0
           vsync=1
           gl_vsync=0
@@ -57,10 +57,13 @@ in {
           toggle_hud_position=Shift_R+F11
           toggle_preset=Shift_R+F10
         '';
-        "MangoHud/presets.conf".text = ''
+        "MangoHud/presets.conf".text = let
+          mono = "${pkgs.jetbrains-mono}/share/fonts/opentype/JetBrainsMono-SemiBold.otf";
+          sans = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
+        in ''
           # mimic the basic steam fps counter
           [preset 0]
-          font_file=${pkgs.inter}/share/fonts/truetype/InterVariable.ttf
+          font_file=${sans}
           font_size=15
           text_outline=false
           # text_color=8A8A8A
@@ -72,7 +75,7 @@ in {
 
           [preset 1]
           font_size=20
-          font_file=${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf
+          font_file=${mono}
           background_alpha=0.33
           hud_no_margin
           gpu_text=GPU
@@ -93,7 +96,7 @@ in {
 
           [preset 2]
           font_size=20
-          font_file=${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf
+          font_file=${mono}
           background_alpha=0.33
           hud_no_margin
           gpu_text=GPU
