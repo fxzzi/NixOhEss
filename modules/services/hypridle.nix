@@ -59,6 +59,12 @@ in {
                   timeout = cfg.lockTimeout;
                   on-timeout = "loginctl lock-session";
                 }
+                {
+                  timeout = 30;
+                  # dpms off screen if hyprlock is running
+                  on-timeout = "${getExe' pkgs.procps "pidof"} hyprlock && hyprctl dispatch dpms off";
+                  on-resume = "hyprctl dispatch dpms on";
+                }
               ]
               ++ optionals (cfg.suspendTimeout != 0) [
                 {
