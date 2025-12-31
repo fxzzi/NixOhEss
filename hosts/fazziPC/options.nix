@@ -35,11 +35,11 @@
       # activate-linux.enable = true;
       ags.enable = true;
       # kdeconnect.enable = true;
-      nvidia_oc = {
+      nvuv = {
         enable = true;
-        maxClock = 1830;
-        coreOffset = 205;
-        memOffset = 900;
+        maxClock = 1860;
+        coreOffset = 235;
+        memOffset = 800;
         powerLimit = 150;
       };
       stash.enable = true;

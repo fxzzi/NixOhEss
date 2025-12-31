@@ -91,6 +91,19 @@
       "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/2e204c67d4401292905f6afb4832a7e7df9ce53a.tar.gz",
       "hash": "sha256-q51ChAPcTKgYtMzcesKDDDeZRg0/+bSlA4VxsLKn/BA="
     },
+    "nvuv": {
+      "type": "Git",
+      "repository": {
+        "type": "GitLab",
+        "repo_path": "fazzi/nvuv",
+        "server": "https://gitlab.com/"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "e18bd9550301ef89b0ff01607f3e14d6b10a88ae",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=e18bd9550301ef89b0ff01607f3e14d6b10a88ae",
+      "hash": "sha256-2cQD/SECm75BrT8xfjD+7Ge4gz3c/OY5/M4zOAcGc2s="
+    },
     "rags": {
       "type": "Git",
       "repository": {
