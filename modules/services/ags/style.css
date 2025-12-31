@@ -36,6 +36,7 @@ menu menuitem {
 }
 
 .workspaces {
+  padding-top: 2px;
   margin-left: 5px;
 }
 
@@ -49,11 +50,11 @@ menu menuitem {
   box-shadow: none;
   color: @foreground;
   background-color: transparent;
+  border-bottom: 2px solid transparent;
 }
 
 .workspaces button.focused {
   border-bottom: 2px solid @color6;
-  margin-top: 2px;
 }
 
 .workspaces button:hover {
