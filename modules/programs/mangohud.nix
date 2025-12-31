@@ -58,63 +58,45 @@ in {
           toggle_preset=Shift_R+F10
         '';
         "MangoHud/presets.conf".text = let
-          mono = "${pkgs.jetbrains-mono}/share/fonts/opentype/JetBrainsMono-SemiBold.otf";
+          mono = "${pkgs.jetbrains-mono}/share/fonts/opentype/JetBrainsMono-Regular.otf";
           sans = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
+          common = ''
+            font_size=20
+            font_file=${mono}
+            background_alpha=0.33
+            hud_no_margin
+            gpu_stats
+            gpu_core_clock
+            gpu_mem_clock
+            gpu_temp
+            gpu_power
+            vram
+            fps
+            frame_timing
+            cpu_mhz
+            cpu_stats
+            cpu_temp
+            cpu_power
+            ram
+          '';
         in ''
           # mimic the basic steam fps counter
           [preset 0]
           font_file=${sans}
           font_size=15
           text_outline=false
-          # text_color=8A8A8A
-          alpha=0.6
+          alpha=0.75
           fps_only
           background_alpha=0
           hud_no_margin
           hud_compact
 
           [preset 1]
-          font_size=20
-          font_file=${mono}
-          background_alpha=0.33
-          hud_no_margin
-          gpu_text=GPU
-          gpu_stats
-          gpu_core_clock
-          gpu_mem_clock
-          gpu_temp
-          gpu_power
-          vram
-          fps
-          frame_timing
-          cpu_text=CPU
-          cpu_stats
-          cpu_mhz
-          cpu_temp
-          cpu_power
-          ram
+          ${common}
 
           [preset 2]
-          font_size=20
-          font_file=${mono}
-          background_alpha=0.33
-          hud_no_margin
-          gpu_text=GPU
-          gpu_stats
-          gpu_core_clock
-          gpu_mem_clock
-          gpu_temp
-          gpu_power
-          vram
-          fps
-          frame_timing
-          cpu_text=CPU
-          cpu_stats
+          ${common}
           core_load
-          cpu_temp
-          cpu_power
-          ram
-          winesync
         '';
       };
     };
