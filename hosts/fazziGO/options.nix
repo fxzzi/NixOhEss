@@ -104,7 +104,7 @@
         secondaryMonitor = null;
         laptop = true;
         autoStart = true;
-        useGit = true;
+        # useGit = true;
       };
       hyprlock.enable = true;
     };

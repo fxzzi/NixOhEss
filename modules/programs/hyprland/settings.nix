@@ -268,7 +268,7 @@ in {
             ]
             ++ (lib.concatMap (game: [
                 # for all game matches
-                "match:${game}, idle_inhibit fullscreen, fullscreen 1, content game"
+                "match:${game}, idle_inhibit fullscreen, content game"
               ])
               [
                 "xdg_tag proton-game" # modern proton versions set xdgTag
@@ -291,6 +291,7 @@ in {
                 "class Terraria.bin.x86_64"
                 "class sm64coopdx"
                 "class com.libretro.RetroArch"
+                "class dolphin-emu"
               ])
             ++ [
               # content type game means ds will be in effect.

@@ -1,7 +1,6 @@
 {
   self',
   pkgs,
-  lib,
   pins,
   ...
 }: {
