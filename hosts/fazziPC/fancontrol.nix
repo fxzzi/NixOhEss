@@ -11,9 +11,9 @@
   fan2 = "${nct_hwmon}/fan2_input";
   cpu_temp = "${k10temp_hwmon}/temp1_input";
   gpu_temp = "/tmp/nvidia-temp";
-  minTemp = 35;
-  maxTemp = 90;
-  minPwm = 42;
+  minTemp = 45;
+  maxTemp = 95;
+  minPwm = 36;
   maxPwm = null;
 in {
   config = {
@@ -21,7 +21,7 @@ in {
     hardware.fancontrol = {
       enable = true;
       config = ''
-        INTERVAL=4
+        INTERVAL=5
         FCTEMPS=${pwm2}=${cpu_temp} ${pwm1}=${gpu_temp}
         FCFANS=${pwm2}=${fan2} ${pwm1}=${fan1}
         MINTEMP=${pwm2}=${toString minTemp} ${pwm1}=${toString minTemp}
