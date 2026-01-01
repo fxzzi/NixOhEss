@@ -253,11 +253,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1767275312,
-        "narHash": "sha256-2ft/iDGc4wyAnAxMmPKaMXd5ODOpjTgtvU2WIdZFl2Y=",
-        "owner": "hyprwm",
+        "lastModified": 1767285495,
+        "narHash": "sha256-38VGAQ9zYZi3HAhWNEqlYDfxrqE7cImh7afLZhvnkHY=",
+        "owner": "vaxerski",
         "repo": "Hyprland",
-        "rev": "bd7f9aad053866d5ca07195a79c1c7a1b060a8c1",
+        "rev": "ca7149c21975db3bc3d14c04efb8875cec3136bc",
         "type": "github"
       },
       "original": {
