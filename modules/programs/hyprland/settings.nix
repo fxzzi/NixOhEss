@@ -75,7 +75,7 @@ in {
             scale = 1;
             bitdepth = 10;
             cm = "edid";
-            # icc = "${./icc/gigabyte_mo27q28g.icm}";
+            icc = "${./icc/gigabyte_mo27q28g.icc}";
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
@@ -87,7 +87,7 @@ in {
             supports_hdr = -1;
             bitdepth = 10;
             cm = "edid";
-            # icc = "${./icc/M27Q_v1.icm}";
+            icc = "${./icc/M27Q_v1.icc}";
             # we enable vrr globally for fullscreen windows. but this
             # monitor is great with vrr flicker, so enable it always.
             vrr = 1;
