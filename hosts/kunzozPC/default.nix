@@ -17,7 +17,7 @@
       nvtopPackages.amd
       sgdboop
       self'.packages.stremio-linux-shell
-      (callPackage pins.creamlinux {})
+      (callPackage "${pins.creamlinux}" {})
     ];
     xdg.config.files."hypr/hyprland.conf" = {
       value = {
