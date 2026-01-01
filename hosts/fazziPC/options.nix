@@ -37,8 +37,8 @@
       # kdeconnect.enable = true;
       nvuv = {
         enable = true;
-        maxClock = 1860;
-        coreOffset = 235;
+        maxClock = 1830;
+        coreOffset = 220;
         memOffset = 800;
         powerLimit = 150;
       };
