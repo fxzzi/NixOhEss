@@ -36,9 +36,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "f4a2d326cc2eb32d6cf6c0b64082f1c53c770049",
-      "url": "https://github.com/NVIDIA/egl-wayland2/archive/f4a2d326cc2eb32d6cf6c0b64082f1c53c770049.tar.gz",
-      "hash": "sha256-XskWAYOObanmZpcODH0A1TGkO0YpXGGC5w0WMD0gqCo="
+      "revision": "6bbe588f21255222d8a149048a48f8b1091f12e5",
+      "url": "https://github.com/NVIDIA/egl-wayland2/archive/6bbe588f21255222d8a149048a48f8b1091f12e5.tar.gz",
+      "hash": "sha256-jyiMFQlRxcVazMY7jK/n9OXkFIzye27qjABb8KWU3kk="
     },
     "foot": {
       "type": "Git",
@@ -100,9 +100,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "e18bd9550301ef89b0ff01607f3e14d6b10a88ae",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=e18bd9550301ef89b0ff01607f3e14d6b10a88ae",
-      "hash": "sha256-2cQD/SECm75BrT8xfjD+7Ge4gz3c/OY5/M4zOAcGc2s="
+      "revision": "b6bedefbfb630ebb7e96265388c3d3c648de43a7",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=b6bedefbfb630ebb7e96265388c3d3c648de43a7",
+      "hash": "sha256-CI2Hbi6SUOH7hVlXIFbl1GFf2HD/iwNZKYunBRFBZBA="
     },
     "rags": {
       "type": "Git",

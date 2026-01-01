@@ -6,15 +6,12 @@
 }: let
   inherit (lib) mkEnableOption mkIf concatMapStrings getExe';
   cfg = config.cfg.programs.thunar;
-  bookmarks =
-    [
-      "file:///home/${config.cfg.core.username}/Downloads Downloads"
-      "file:///home/${config.cfg.core.username}/Videos Videos"
-    ]
-    ++ [
-      "file:///home/${config.cfg.core.username}/Pictures/Screenshots Screenshots"
-      "file:///home/${config.cfg.core.username}/.config/nixos NixOS"
-    ];
+  bookmarks = [
+    "file:///home/${config.cfg.core.username}/Downloads Downloads"
+    "file:///home/${config.cfg.core.username}/Videos Videos"
+    "file:///home/${config.cfg.core.username}/Pictures/Screenshots Screenshots"
+    "file:///home/${config.cfg.core.username}/.config/nixos NixOS"
+  ];
 in {
   options.cfg.programs.thunar = {
     enable = mkEnableOption "thunar";
@@ -24,14 +21,18 @@ in {
     programs.thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
+        # Enable some plugins for archive support
         thunar-archive-plugin
         thunar-media-tags-plugin
-      ]; # Enable some plugins for archive support
+      ];
     };
     services = {
-      tumbler.enable = true; # Thunar thumbnailer
-      gvfs.enable = true; # Enable gvfs for stuff like trash, mtp
-      gvfs.package = pkgs.gvfs; # Set to gvfs instead of gnome gvfs
+      # Thunar thumbnailer
+      tumbler.enable = true;
+      gvfs = {
+        enable = true; # Enable gvfs for stuff like trash, mtp
+        package = pkgs.gvfs; # Set to gvfs instead of gnome gvfs
+      };
     };
 
     hj = {
