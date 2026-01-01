@@ -18,6 +18,9 @@ in {
       _JAVA_AWT_WM_NONREPARENTING = "1";
       # enable java anti aliasing
       _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=on";
+
+      # don't use libdecor as it's a little borken
+      LIBDECOR_PLUGIN_DIR = "nope";
     };
   };
 }
