@@ -75,7 +75,7 @@ in {
             scale = 1;
             bitdepth = 10;
             cm = "edid";
-            icc = "${./icc/gigabyte_mo27q28g.icc}";
+            # icc = "${./icc/gigabyte_mo27q28g.icc}";
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
@@ -87,7 +87,7 @@ in {
             supports_hdr = -1;
             bitdepth = 10;
             cm = "edid";
-            icc = "${./icc/M27Q_v1.icc}";
+            # icc = "${./icc/M27Q_v1.icc}";
             # we enable vrr globally for fullscreen windows. but this
             # monitor is great with vrr flicker, so enable it always.
             vrr = 1;
@@ -159,16 +159,10 @@ in {
             no_donation_nag = 1;
           };
           layerrule = [
-            "match:namespace launcher, blur 1"
-            "match:namespace walker, blur 1"
-            "match:namespace wleave, blur 1"
-            "match:namespace bar-.*, blur 1"
-            "match:namespace notifications, blur 1"
-            "match:namespace launcher, ignore_alpha 0 "
-            "match:namespace bar-.*, ignore_alpha 0"
-            "match:namespace wleave, xray 1"
-            "match:namespace bar-.*, xray 1"
-            "match:namespace notifications, animation slide"
+            "match:namespace launcher, blur 1, ignore_alpha 0"
+            "match:namespace wleave, blur 1, xray 1"
+            "match:namespace bar-.*, blur 1, xray 1, ignore_alpha 0"
+            "match:namespace notifications, blur 1, animation slide"
             "match:namespace selection, no_anim 1"
             "match:namespace wayfreeze, no_anim 1"
           ];
