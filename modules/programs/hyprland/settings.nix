@@ -66,7 +66,6 @@ in {
           ];
           monitor = [
             ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
-            "desc:BOE, 1920x1080@60, 0x0, 1" # fazziGO internal monitor
             "desc:Samsung Electric Company SAMSUNG 0x01000E00, 3840x2160@120, 0x0, 1" # fazziPC TV
           ];
           # fazziPC main monitor
@@ -75,9 +74,8 @@ in {
             position = "0x0";
             scale = 1;
             bitdepth = 10;
-            # monitor has good native colour space
             cm = "edid";
-            # icc = "${./icc/GBT_MO27Q28G.icm}";
+            # icc = "${./icc/gigabyte_mo27q28g.icm}";
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
@@ -88,12 +86,11 @@ in {
             # it's implementation is bad. so just disable it entirely.
             supports_hdr = -1;
             bitdepth = 10;
-            # monitor covers 92% of dcip3
-            cm = "dcip3";
+            cm = "edid";
+            # icc = "${./icc/M27Q_v1.icm}";
             # we enable vrr globally for fullscreen windows. but this
             # monitor is great with vrr flicker, so enable it always.
             vrr = 1;
-            # icc = "${./icc/M27Q-rtings.icm}";
           };
           # kunzozPC
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543]" = {
@@ -106,7 +103,9 @@ in {
             supports_wide_color = -1;
           };
           render = {
-            direct_scanout = mkDefault 2;
+            direct_scanout = mkDefault 0;
+            non_shader_cm = 1;
+            cm_auto_hdr = 2; # use hdredid for autohdr
           };
           cursor = {
             default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
@@ -146,7 +145,7 @@ in {
             enable_swallow = 1; # Enable window swalling
             swallow_regex = "foot"; # Make foot swallow executed windows
             swallow_exception_regex = "foot"; # Make foot not swallow itself
-            initial_workspace_tracking = 0;
+            # initial_workspace_tracking = 0;
             vrr = 2;
             anr_missed_pings = 6; # by default, ANR dialog shows up way too aggressively.
             mouse_move_enables_dpms = true;
@@ -237,12 +236,11 @@ in {
           };
           windowrule =
             [
-              # pause hypridle for certain apps
-              "match:class mpv, idle_inhibit focus"
+              # pause hypridle for apps with content type video
+              "match:content 2, idle_inhibit focus"
               # hyprland shows anr dialog when stremio is in another workspace, so render_unfocused 1
               "match:class .*stremio.*, idle_inhibit focus, content video, render_unfocused 1"
 
-              "match:content 2, no_vrr 1" # disable vrr on content type video
               "match:class atril, idle_inhibit focus"
               "match:class foot, idle_inhibit fullscreen"
 
