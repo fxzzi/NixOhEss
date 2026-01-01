@@ -85,7 +85,7 @@ in {
           font_file=${sans}
           font_size=15
           text_outline=false
-          alpha=0.75
+          alpha=0.5
           fps_only
           background_alpha=0
           hud_no_margin
