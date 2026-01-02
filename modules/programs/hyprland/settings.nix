@@ -163,8 +163,9 @@ in {
             "match:namespace wleave, blur 1, xray 1"
             "match:namespace bar-.*, blur 1, xray 1, ignore_alpha 0"
             "match:namespace notifications, blur 1, animation slide"
-            "match:namespace selection, no_anim 1"
-            "match:namespace wayfreeze, no_anim 1"
+            # show wayfreeze below slurp, but show both over notifs.
+            "match:namespace selection, no_anim 1, order -2"
+            "match:namespace wayfreeze, no_anim 1, order -1"
           ];
           decoration = {
             rounding = 0;
