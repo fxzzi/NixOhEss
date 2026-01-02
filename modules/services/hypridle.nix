@@ -64,6 +64,8 @@ in {
                   # dpms off screen if hyprlock is running
                   on-timeout = "${getExe' pkgs.procps "pidof"} hyprlock && hyprctl dispatch dpms off";
                   on-resume = "hyprctl dispatch dpms on";
+                  # no matter what, dimming screen on lockscreen shouldn't be a problem
+                  ignore_inhibit = true;
                 }
               ]
               ++ optionals (cfg.suspendTimeout != 0) [
