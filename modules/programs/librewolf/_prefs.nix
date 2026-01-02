@@ -68,10 +68,7 @@
   # Disable bookmarks bar
   "browser.toolbars.bookmarks.visibility" = "never";
 
-  # Only use system-defined fonts
-  # WARN: BREAKS ICONS ON MOST SITES!
-  "browser.display.use_document_fonts" = 0;
-  # don't use serif font by default
+  # use sans serif over serif
   "font.default.x-western" = "sans-serif";
 
   # Hide X button (not needed in tiling WMs)

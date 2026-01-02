@@ -11,7 +11,9 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # FIXME: pinned due to gcc15 build issues
+    nixpkgs.url = "github:NixOS/nixpkgs/c0b0e0fddf73fd517c3471e546c0df87a42d53f4";
     systems.url = "github:nix-systems/x86_64-linux";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";

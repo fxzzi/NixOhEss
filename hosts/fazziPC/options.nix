@@ -38,7 +38,7 @@
       nvuv = {
         enable = true;
         maxClock = 1830;
-        coreOffset = 220;
+        coreOffset = 205;
         memOffset = 800;
         powerLimit = 150;
       };
