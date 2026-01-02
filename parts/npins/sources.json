@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "45ce6a5470514514079e2d65eea7dddafba6bfc8",
-      "url": "https://github.com/fufexan/nix-gaming/archive/45ce6a5470514514079e2d65eea7dddafba6bfc8.tar.gz",
-      "hash": "sha256-E8oSyoOQnqVCSg7+D0512fnL8JeltFqWaKETJrmo1Q8="
+      "revision": "f39d1b692c466255e7f5b2fa8ac5b8aead5eadb5",
+      "url": "https://github.com/fufexan/nix-gaming/archive/f39d1b692c466255e7f5b2fa8ac5b8aead5eadb5.tar.gz",
+      "hash": "sha256-salrbdHzVTRpgnASAJMX61kuqrg65KiuQ2yxkrVcB8Y="
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -139,9 +139,9 @@
       },
       "branch": "refactor/gtk4",
       "submodules": false,
-      "revision": "73c1e42323292b534b67f168987034812d5aa8b9",
-      "url": "https://github.com/Stremio/stremio-linux-shell/archive/73c1e42323292b534b67f168987034812d5aa8b9.tar.gz",
-      "hash": "sha256-+lB0tfzbENQfwNxaAWhLM3/Es5xdbODdyOxsR7AxnLU="
+      "revision": "a0d8793ab585a4b54ea46ccdd253f47faa711563",
+      "url": "https://github.com/Stremio/stremio-linux-shell/archive/a0d8793ab585a4b54ea46ccdd253f47faa711563.tar.gz",
+      "hash": "sha256-oDvj0wpsfHa6X4h7Nt0lSY9EnetTYLpYPvZaiI0DNIE="
     },
     "stremio-linux-shell": {
       "type": "Git",
