@@ -11,6 +11,8 @@ in {
     hardware = {
       # early load / early kms
       amdgpu.initrd.enable = true;
+      # overclocking / undervolting
+      amdgpu.overdrive.enable = true;
       graphics = {
         enable = true;
         enable32Bit = true;
