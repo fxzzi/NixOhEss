@@ -256,6 +256,9 @@ in {
               # make rars launch tiled
               "match:class rars-Launch, match:title RARS .*, tile 1"
 
+              # see: https://github.com/hyprwm/Hyprland/discussions/12786
+              "match:class steam, match:title Steam, tile 1"
+
               # Window rules for games
             ]
             ++ (lib.concatMap (game: [

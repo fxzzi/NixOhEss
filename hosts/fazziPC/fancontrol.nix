@@ -14,7 +14,7 @@
   minTemp = 45;
   maxTemp = 100;
   minPwm = 32;
-  maxPwm = null;
+  maxPwm = 220;
 in {
   config = {
     environment.systemPackages = [pkgs.lm_sensors];
