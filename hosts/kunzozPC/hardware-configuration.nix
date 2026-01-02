@@ -22,6 +22,7 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+  boot.supportedFilesystems = lib.mkDefault ["btrfs" "vfat" "ntfs"];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
@@ -52,15 +53,10 @@
 
   fileSystems."/mnt/windows-kunzoz" = {
     device = "/dev/disk/by-uuid/DC2C38A72C387F18";
-    fsType = "ntfs3";
+    fsType = "ntfs-3g";
     options = [
       "rw"
-      "nosuid"
-      "nodev"
-      "relatime"
       "uid=1000"
-      "gid=100"
-      "iocharset=utf8"
       # don't fail boot if the drives fail to mount
       "nofail"
       # continue boot after 10s
@@ -70,15 +66,10 @@
 
   fileSystems."/mnt/windows-dad" = {
     device = "/dev/disk/by-uuid/84B25357B2534CB4";
-    fsType = "ntfs3";
+    fsType = "ntfs-3g";
     options = [
       "rw"
-      "nosuid"
-      "nodev"
-      "relatime"
       "uid=1000"
-      "gid=100"
-      "iocharset=utf8"
       # don't fail boot if the drives fail to mount
       "nofail"
       # continue boot after 10s
