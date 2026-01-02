@@ -96,7 +96,8 @@ in
       gappsWrapperArgs+=(
         --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib" \
         --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libGL]}" \
-        --prefix PATH : "${lib.makeBinPath [nodejs]}"
+        --prefix PATH : "${lib.makeBinPath [nodejs]}" \
+        --add-flags "--enable-features=UseOzonePlatform --ozone-platform-hint=auto"
       )
     '';
 
