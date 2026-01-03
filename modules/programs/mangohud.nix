@@ -63,7 +63,7 @@ in {
           common = ''
             font_size=20
             font_file=${mono}
-            background_alpha=0.33
+            background_alpha=0.42
             hud_no_margin
             gpu_stats
             gpu_core_clock
@@ -83,9 +83,9 @@ in {
           # mimic the basic steam fps counter
           [preset 0]
           font_file=${sans}
-          font_size=15
+          font_size=16
           text_outline=false
-          alpha=0.5
+          alpha=0.67
           fps_only
           background_alpha=0
           hud_no_margin
