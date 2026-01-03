@@ -64,24 +64,23 @@ in {
             "pkill -9 Discord" # discord loves to hang instead of close nicely.
             "systemctl --user stop hyprland-session.target"
           ];
-          monitor = [
-            ", preferred, auto, 1" # set 1x scale for all monitors which are undefined here. should be a good default.
-            "desc:Samsung Electric Company SAMSUNG 0x01000E00, 3840x2160@120, 0x0, 1" # fazziPC TV
-          ];
+          # default settings for monitors
+          "monitorv2[]" = {
+            position = "auto";
+            scale = 1;
+            # default 80, 203 is more correct
+            max_avg_luminance = 203;
+          };
           # fazziPC main monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
             mode = "2560x1440@280";
-            position = "0x0";
-            scale = 1;
             bitdepth = 10;
             cm = "edid";
-            # icc = "${./icc/gigabyte_mo27q28g.icc}";
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
-            mode = "2560x1440@120";
+            mode = "2560x1440@170";
             position = "auto-center-left";
-            scale = 1;
             # this monitor does support HDR, but only by technicality.
             # it's implementation is bad. so just disable it entirely.
             supports_hdr = -1;
@@ -95,8 +94,6 @@ in {
           # kunzozPC
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543]" = {
             mode = "2560x1440@170";
-            position = "0x0";
-            scale = 1;
             # same monitor, same bad hdr
             supports_hdr = -1;
             # this monitor does support 10bit, but only at 120Hz and lower.
@@ -104,7 +101,7 @@ in {
           };
           render = {
             direct_scanout = mkDefault 0;
-            non_shader_cm = 1;
+            non_shader_cm = 2;
             cm_auto_hdr = 2; # use hdredid for autohdr
           };
           cursor = {
