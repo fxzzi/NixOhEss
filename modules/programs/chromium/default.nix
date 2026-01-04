@@ -8,15 +8,12 @@
   cfg = config.cfg.programs.chromium;
   newTabPage = "file:///home/${config.cfg.core.username}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
 
-  disableFeatures =
-    [
-      "WebRtcAllowInputVolumeAdjustment"
-      "ChromeWideEchoCancellation"
-    ]
-    ++ optionals config.cfg.hardware.nvidia.enable [
-      # hdr on chromium broken on nvidia
-      "WaylandWpColorManagerV1 "
-    ];
+  disableFeatures = [
+    "WebRtcAllowInputVolumeAdjustment"
+    "ChromeWideEchoCancellation"
+    # wayland on chromium is bork, fixed in 144
+    "WaylandWpColorManagerV1"
+  ];
   enableFeatures =
     [
       "AcceleratedVideoDecodeLinuxGL"
