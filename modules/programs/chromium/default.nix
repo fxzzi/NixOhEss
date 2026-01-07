@@ -11,8 +11,6 @@
   disableFeatures = [
     "WebRtcAllowInputVolumeAdjustment"
     "ChromeWideEchoCancellation"
-    # cm on chromium is bork, fixed in 144
-    "WaylandWpColorManagerV1"
   ];
   enableFeatures =
     [
