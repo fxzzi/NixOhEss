@@ -11,9 +11,7 @@
     };
 
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # FIXME: pinned due to gcc15 build issues
-    nixpkgs.url = "github:NixOS/nixpkgs/c0b0e0fddf73fd517c3471e546c0df87a42d53f4";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -30,7 +28,7 @@
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
         hyprland-guiutils.inputs.hyprtoolkit.follows = "hyprpaper/hyprtoolkit";
-        aquamarine.url = "github:gulafaran/aquamarine/commit";
+        aquamarine.url = "github:gulafaran/aquamarine/atomic";
       };
     };
     hyprpaper = {

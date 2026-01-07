@@ -20,7 +20,7 @@ in {
   config = mkIf cfg.enable {
     programs.thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [
+      plugins = with pkgs; [
         # Enable some plugins for archive support
         thunar-archive-plugin
         thunar-media-tags-plugin

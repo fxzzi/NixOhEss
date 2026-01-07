@@ -24,7 +24,7 @@
     // sets the new tab page to our local newtab.
     ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
   '';
-  librewolf = pkgs.librewolf.override {
+  librewolf = pkgs.librewolf-bin.override {
     extraPrefs = ''
       ${optionalString config.cfg.programs.startpage.enable newTabPageJS}
       ${jsPrefs}
@@ -58,6 +58,11 @@ in {
         librewolf
       ];
     };
+    # some schmuck marked librewolf bin packages as insecure
+    nixpkgs.config.permittedInsecurePackages = [
+      "librewolf-bin-unwrapped-${librewolf.version}"
+      "librewolf-bin-${librewolf.version}"
+    ];
     environment.sessionVariables = mkIf config.cfg.hardware.nvidia.enable {
       LIBVA_DRIVER_NAME = "nvidia";
       MOZ_DISABLE_RDD_SANDBOX = "1";
