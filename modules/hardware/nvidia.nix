@@ -3,6 +3,7 @@
   lib,
   pkgs,
   pins,
+  self',
   ...
 }: let
   inherit (lib) mkEnableOption mkIf mkMerge getExe';
@@ -23,7 +24,11 @@ in {
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs {
+          postFixup = ''
+            rm -f $out/share/egl/egl-external-platform.d./*nvidia_wayland*.json
+          '';
+        };
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
         #   version = "590.48.01";
@@ -40,7 +45,7 @@ in {
         enable = true;
         enable32Bit = true;
         extraPackages = [
-          # self'.packages.egl-wayland2
+          self'.packages.egl-wayland2
           (pkgs.nvidia-vaapi-driver.overrideAttrs {
             version = "0-unstable-${builtins.substring 0 8 pins.nvidia-vaapi-driver.revision}";
             src = pins.nvidia-vaapi-driver;

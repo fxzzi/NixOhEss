@@ -22,13 +22,11 @@
       rsgain
       olympus
       nicotine-plus
-      sgdboop
+      # sgdboop
       cemu
       dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
-      # zoom-us
-      # blender
       (retroarch.withCores (cores:
         with cores; [
           bsnes
@@ -37,6 +35,13 @@
           melonds
           mupen64plus
         ]))
+      processing
+      logisim-evolution
+      rars
+      vscodium
+      (jetbrains.idea-oss.override {
+        vmopts = "-Dawt.toolkit.name=WLToolkit";
+      })
       self'.packages.transcode
       self'.packages.stremio-linux-shell-rewrite
       self'.packages.eden

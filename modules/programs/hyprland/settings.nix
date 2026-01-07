@@ -68,8 +68,6 @@ in {
           "monitorv2[]" = {
             position = "auto";
             scale = 1;
-            # default 80, 203 is more correct
-            max_avg_luminance = 203;
           };
           # fazziPC main monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
@@ -331,6 +329,7 @@ in {
               "$MOD, N, exec, ${getExe self'.packages.sunset} 3000"
               "$MOD, R, exec, ${getExe self'.packages.random-wall}"
               "$MOD SHIFT, R, exec, hyprctl reload && ${getExe' pkgs.dunst "dunstify"} \"Hyprland\" \"Reloaded Successfully.\""
+              "$MOD, K, exec, hyprctl kill"
               "$MOD, J, exec, foot ${getExe self'.packages.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
               "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"
