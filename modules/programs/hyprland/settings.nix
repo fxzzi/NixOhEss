@@ -73,7 +73,7 @@ in {
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
             mode = "2560x1440@280";
             bitdepth = 10;
-            cm = "edid";
+            # cm = "edid";
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
@@ -83,7 +83,7 @@ in {
             # it's implementation is bad. so just disable it entirely.
             supports_hdr = -1;
             bitdepth = 10;
-            cm = "edid";
+            # cm = "edid";
             # icc = "${./icc/M27Q_v1.icc}";
             # we enable vrr globally for fullscreen windows. but this
             # monitor is great with vrr flicker, so enable it always.
