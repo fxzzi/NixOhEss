@@ -14,12 +14,8 @@ in {
       xdg.config.files = {
         "mpv/mpv.conf".text = ''
           save-position-on-quit=yes
-          vo=gpu-next
-          hwdec=auto
-          gpu-api=vulkan
-          gpu-context=waylandvk
-          target-colorspace-hint=auto
           target-colorspace-hint-mode=source
+          hwdec=auto
           volume-max=150
           keep-open=yes
           fs=yes
@@ -29,10 +25,7 @@ in {
           sub-color="#C9D1D6"
           sub-font=${head config.fonts.fontconfig.defaultFonts.sansSerif}
           sub-scale-with-window=yes
-          cursor-autohide=500
-          msg-color=yes
-          msg-module=yes
-          term-osd-bar=yes
+          cursor-autohide=1000
         '';
         "mpv/input.conf".text = ''
           MOUSE_BTN0 show-progress
