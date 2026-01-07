@@ -19,10 +19,7 @@ in {
         generator = self.lib.generators.toHyprlang {};
         value = {
           splash = 0;
-
-          "wallpaper[]" = {
-            path = "~/.local/state/wallpaper";
-          };
+          "wallpaper[]".path = "~/.local/state/wallpaper";
         };
       };
     };

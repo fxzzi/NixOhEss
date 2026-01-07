@@ -9,12 +9,12 @@
 in {
   options.cfg.programs.adb.enable = mkEnableOption "adb";
   config = mkIf cfg.enable {
-    programs.adb.enable = true;
     users.users.${config.cfg.core.username} = {
       extraGroups = ["adbusers"];
     };
     hj = {
       packages = with pkgs; [
+        android-tools
         (symlinkJoin {
           inherit (pkgs.scrcpy) name pname version meta;
           paths = [pkgs.scrcpy];
