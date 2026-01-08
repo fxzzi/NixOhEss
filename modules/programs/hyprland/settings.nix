@@ -98,7 +98,7 @@ in {
             supports_wide_color = -1;
           };
           render = {
-            direct_scanout = mkDefault 0;
+            direct_scanout = mkDefault 1;
             non_shader_cm = 2;
             cm_auto_hdr = 2; # use hdredid for autohdr
           };
@@ -238,7 +238,7 @@ in {
               # wrong monitor. so just don't listen to them lol
               # also ignore maximize requests from apps. You'll probably like this.
               # some games, like cs2, request tearing by default. disable this.
-              "match:class .*, suppress_event maximize fullscreenoutput, immediate 0"
+              "match:class .*, suppress_event maximize fullscreenoutput"
 
               # dialogs
               "match:title File Operation Progress.*, float 1"
@@ -259,7 +259,7 @@ in {
             ]
             ++ (lib.concatMap (game: [
                 # for all game matches
-                "match:${game}, idle_inhibit fullscreen, content game"
+                "match:${game}, idle_inhibit fullscreen, content game, borderless_fullscreen 1"
               ])
               [
                 "xdg_tag proton-game" # modern proton versions set xdgTag

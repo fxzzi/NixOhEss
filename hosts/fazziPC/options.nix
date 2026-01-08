@@ -141,8 +141,8 @@
       wleave.enable = true;
       hyprland = {
         enable = true;
-        defaultMonitor = "DP-2";
-        secondaryMonitor = "DP-3";
+        defaultMonitor = "DP-3";
+        secondaryMonitor = "DP-2";
         useGit = true;
         # autoStart = true;
       };
