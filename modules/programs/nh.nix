@@ -58,7 +58,7 @@ in {
               echo "Done! Updates will take effect on next boot."
 
               # Log the update
-              LOG_DIR="$HOME/.local/share"
+              LOG_DIR="$XDG_DATA_HOME"
               LOG_FILE="$LOG_DIR/crb.txt"
               mkdir -p "$LOG_DIR"
               echo "$(date '+%Y-%m-%d %H:%M:%S') $OLD_COMMIT -> $NEW_COMMIT" >> "$LOG_FILE"
