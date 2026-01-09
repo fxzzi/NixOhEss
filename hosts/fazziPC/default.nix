@@ -35,6 +35,7 @@
           melonds
           mupen64plus
         ]))
+      onlyoffice-desktopeditors
       processing
       logisim-evolution
       rars
