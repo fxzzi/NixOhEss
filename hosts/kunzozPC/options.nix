@@ -55,7 +55,6 @@
       printing.enable = true;
     };
     hardware = {
-      rules.via.enable = true;
       amdgpu.enable = true;
       scanning.enable = false;
     };

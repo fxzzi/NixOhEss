@@ -48,6 +48,9 @@
       self'.packages.eden
       self'.packages.flac2vorbis
     ];
+
+    # idk ds is broken
+    xdg.config.files."hypr/hyprland.conf".value.render.direct_scanout = 0;
   };
   # set resolutions early to avoid modeset when launching hyprland
   hardware.display.outputs = {
