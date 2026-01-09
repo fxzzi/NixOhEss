@@ -27,7 +27,7 @@ in {
       extraCompatPackages = mkIf config.cfg.programs.proton-ge.enable [pkgs.proton-ge-bin];
     };
     hj = {
-      files.".local/share/Steam/steam_dev.cfg".text = ''
+      xdg.data.files."Steam/steam_dev.cfg".text = ''
         unShaderBackgroundProcessingThreads ${toString cfg.shaderThreads}
       '';
     };

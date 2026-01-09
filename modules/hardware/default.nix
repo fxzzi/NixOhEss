@@ -16,13 +16,10 @@
 
     services.udev = {
       packages = [
-        pkgs.wooting-udev-rules
+        # this udev package sets a rule which also
+        # covers wooting keyboards, and scyrox mice.
         pkgs.via
       ];
-      extraRules = ''
-        # Allow configuring scyrox mice (compx)
-        KERNEL=="hidraw*", ATTRS{idVendor}=="3554", MODE="0666", TAG+="uaccess"
-      '';
     };
   };
 }
