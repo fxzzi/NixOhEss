@@ -152,9 +152,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "2eb0252fb568eaba829c9289e5ce49db6378f734",
-      "url": "https://github.com/Stremio/stremio-linux-shell/archive/2eb0252fb568eaba829c9289e5ce49db6378f734.tar.gz",
-      "hash": "sha256-NVChTlW146AAHtpeLrCEJBhWmOM7FvrSv9H/KMLJiNY="
+      "revision": "57bbfdb6d8773bf4976871b2016ab1ce33fdd9f2",
+      "url": "https://github.com/Stremio/stremio-linux-shell/archive/57bbfdb6d8773bf4976871b2016ab1ce33fdd9f2.tar.gz",
+      "hash": "sha256-1f9IBNo5gxpSqTSIf8QuQOlf+sfRhohOmQTLRbX/OU8="
     },
     "tuigreet": {
       "type": "Git",
