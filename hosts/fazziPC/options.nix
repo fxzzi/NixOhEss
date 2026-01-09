@@ -22,10 +22,6 @@
       };
     };
     hardware = {
-      rules = {
-        wooting.enable = true;
-        scyrox.enable = true;
-      };
       nvidia = {
         enable = true;
         exposeTemp = true;

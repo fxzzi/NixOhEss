@@ -99,7 +99,7 @@ in {
             supports_wide_color = -1;
           };
           render = {
-            direct_scanout = mkDefault 1;
+            direct_scanout = mkDefault 2;
             non_shader_cm = 2;
             cm_auto_hdr = 2; # use hdredid for autohdr
           };
