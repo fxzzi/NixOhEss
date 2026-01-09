@@ -25,6 +25,8 @@ in {
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
         package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs {
+          # patch out driver bundled egl-wayland and egl-wayland2.
+          # we use git egl-wayland2 below.
           postFixup = ''
             rm -f $out/share/egl/egl-external-platform.d./*nvidia_wayland*.json
           '';
