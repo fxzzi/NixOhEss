@@ -100,9 +100,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "b6bedefbfb630ebb7e96265388c3d3c648de43a7",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=b6bedefbfb630ebb7e96265388c3d3c648de43a7",
-      "hash": "sha256-CI2Hbi6SUOH7hVlXIFbl1GFf2HD/iwNZKYunBRFBZBA="
+      "revision": "957d6db2da71e464a79110d3bc08a08c31e2d3c2",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=957d6db2da71e464a79110d3bc08a08c31e2d3c2",
+      "hash": "sha256-WvFp2Emm40TK3Fr4lipQrqWYMNerNaUa1EwvVfVZE/0="
     },
     "rags": {
       "type": "Git",
@@ -178,9 +178,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "209605f506cd0bc5d82683b7cc303e3d19c60104",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=209605f506cd0bc5d82683b7cc303e3d19c60104",
-      "hash": "sha256-tAdDmeoC6Mb4VUfMe/igVtdXYCu/dZBmeX6IoD9WpFA="
+      "revision": "cd727abfd57cc0554566649c1a4f7f8fc52be735",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=cd727abfd57cc0554566649c1a4f7f8fc52be735",
+      "hash": "sha256-UNGLWoxxEPE9i91PCN3JT7U/Q6y83xhQlsL9ZuYwr8Y="
     }
   },
   "version": 7
