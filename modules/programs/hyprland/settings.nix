@@ -66,6 +66,7 @@ in {
           ];
           # default settings for monitors
           "monitorv2[]" = {
+            mode = "highres";
             position = "auto";
             scale = 1;
           };
@@ -148,6 +149,8 @@ in {
             middle_click_paste = 0;
             # we launch with Hyprland, not start-hyprland.
             disable_watchdog_warning = 1;
+            # makes the fade out of hyprlock a bit nicer.
+            session_lock_xray = 1;
           };
           ecosystem = {
             no_update_news = 1;
@@ -249,8 +252,9 @@ in {
               "match:class xdg-desktop-portal-gtk, float 1"
               "match:class org.gnome.FileRoller, match:title Extract.*, float 1"
 
-              # make rars launch tiled
+              # make some java apps launch tiled
               "match:class rars-Launch, match:title RARS .*, tile 1"
+              "match:class com-cburch-logisim-Main, match:title .*Logisim-evolution v.*, tile 1"
 
               # see: https://github.com/hyprwm/Hyprland/discussions/12786
               "match:class steam, match:title Steam, tile 1"
@@ -262,27 +266,27 @@ in {
                 "match:${game}, idle_inhibit fullscreen, content game, borderless_fullscreen 1"
               ])
               [
+                # wine, proton, etc
+                "class .*.exe" # all exe's
                 "xdg_tag proton-game" # modern proton versions set xdgTag
                 "class steam_app_.*" # all xwayland proton games
+                # emulators
+                "class info.cemu.Cemu"
+                "class org.eden_emu.eden"
+                "class com.libretro.RetroArch"
+                "class dolphin-emu"
+                # native games
+                "class .*_linux" # 32-bit source
+                "class .*_linux64" # 64-bit source
+                "class .*.x86_64" # native sdl games
                 "class cs2"
                 "class Minecraft\*.*"
                 "initial_title Minecraft\*.*" # sometimes class isn't set
                 "class org-prismlauncher-EntryPoint" # legacy mc versions
                 "class osu!"
-                # "class .*.exe" # all exe's
-                "class hl2_linux"
-                "class cstrike_linux64" # cs source
-                "class portal2_linux"
                 "class gamescope"
                 "class Celeste"
-                "class info.cemu.Cemu"
-                "class Cuphead.x86_64"
-                "class org.eden_emu.eden"
-                "class hollow_knight.x86_64"
-                "class Terraria.bin.x86_64"
                 "class sm64coopdx"
-                "class com.libretro.RetroArch"
-                "class dolphin-emu"
               ])
             ++ [
               # content type game means ds will be in effect.

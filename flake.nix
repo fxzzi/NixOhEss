@@ -27,18 +27,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        hyprland-guiutils.inputs.hyprtoolkit.follows = "hyprpaper/hyprtoolkit";
         aquamarine.url = "github:gulafaran/aquamarine/atomic";
-      };
-    };
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        aquamarine.follows = "hyprland/aquamarine";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwire.follows = "hyprland/hyprwire";
       };
     };
     nvf = {
