@@ -18,14 +18,10 @@ in {
         xdgOpenUsePortal = true;
       };
     };
-    hj = {
-      files = {
-        ".config/hypr/xdph.conf" = {
-          generator = self.lib.generators.toHyprlang {};
-          value = {
-            screencopy.max_fps = 60; # don't need to capture more than 60fps
-          };
-        };
+    hj.xdg.config.files."hypr/xdph.conf" = {
+      generator = self.lib.generators.toHyprlang {};
+      value = {
+        screencopy.max_fps = 60; # don't need to capture more than 60fps
       };
     };
   };

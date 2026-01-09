@@ -23,7 +23,7 @@ in {
     };
     # de-clutter $HOME
     environment.sessionVariables = {
-      ZDOTDIR = "$HOME/.config/zsh";
+      ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
     };
     programs = {
       zsh = {
