@@ -2,7 +2,7 @@ _: {
   config = {
     programs.bash.shellInit = ''
       # declutter ~
-      export HISTFILE="$HOME/.local/state/bash_history"
+      export HISTFILE="$XDG_STATE_HOME/bash_history"
     '';
   };
 }

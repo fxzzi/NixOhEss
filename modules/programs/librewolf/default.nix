@@ -7,7 +7,7 @@
   inherit (lib) mkEnableOption mkIf concatMapAttrsStringSep optionalString;
   inherit (builtins) toJSON isBool isInt isString toString;
   cfg = config.cfg.programs.librewolf;
-  newTabPage = "file:///home/${config.cfg.core.username}/.local/share/startpage/${config.cfg.programs.startpage.user}/index.html";
+  newTabPage = "file://${config.hj.xdg.data.directory}/startpage/${config.cfg.programs.startpage.user}/index.html";
   attrsToLines = f: attrs: concatMapAttrsStringSep "\n" f attrs;
   # thank you diniamo for this cool pref setup!
   # https://github.com/diniamo/niqs/blob/main/modules/workstation/librewolf/default.nix
