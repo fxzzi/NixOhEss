@@ -295,6 +295,9 @@ in {
               # probably all winewayland stuff too.
               "match:class geometrydash.exe, content none, immediate 1, no_vrr 1"
               "match:class osu!, content none, immediate 1, no_vrr 1"
+
+              # enable tearing on vrrtest
+              "match:class love, match:title Freesync test, immediate 1"
             ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor (
