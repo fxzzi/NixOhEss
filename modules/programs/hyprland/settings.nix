@@ -65,29 +65,26 @@ in {
             "systemctl --user stop hyprland-session.target"
           ];
           # default settings for monitors
-          "monitorv2[]" = {
-            mode = "highres";
-            position = "auto";
-            scale = 1;
-          };
+          monitor = [
+            ",highres,auto,1"
+          ];
+
           # fazziPC main monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
-            mode = "2560x1440@280";
+            mode = "highres";
             bitdepth = 10;
-            # cm = "edid";
+            cm = "edid";
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
-            mode = "2560x1440@170";
+            mode = "2560x1440@120";
             position = "auto-center-left";
-            # this monitor does support HDR, but only by technicality.
-            # it's implementation is bad. so just disable it entirely.
+            # hdr sucks on this monitor lol
             supports_hdr = -1;
             bitdepth = 10;
-            # cm = "edid";
+            cm = "edid";
             # icc = "${./icc/M27Q_v1.icc}";
-            # we enable vrr globally for fullscreen windows. but this
-            # monitor is great with vrr flicker, so enable it always.
+            # this monitor doesn't flicker when using VRR at all
             vrr = 1;
           };
           # kunzozPC
