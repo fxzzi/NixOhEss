@@ -36,9 +36,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "6bbe588f21255222d8a149048a48f8b1091f12e5",
-      "url": "https://github.com/NVIDIA/egl-wayland2/archive/6bbe588f21255222d8a149048a48f8b1091f12e5.tar.gz",
-      "hash": "sha256-jyiMFQlRxcVazMY7jK/n9OXkFIzye27qjABb8KWU3kk="
+      "revision": "1893c371d074c5a648a65e198c4e0eee80d2d7f1",
+      "url": "https://github.com/NVIDIA/egl-wayland2/archive/1893c371d074c5a648a65e198c4e0eee80d2d7f1.tar.gz",
+      "hash": "sha256-QvGMXol2WNbXCavJR8qkWlQQP205aNMxSoqJrQmGZC8="
     },
     "foot": {
       "type": "Git",
