@@ -28,6 +28,7 @@
       };
     };
     services = {
+      libvirt.enable = true;
       # activate-linux.enable = true;
       ags.enable = true;
       # kdeconnect.enable = true;
