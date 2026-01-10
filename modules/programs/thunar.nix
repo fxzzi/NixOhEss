@@ -26,15 +26,22 @@ in {
         thunar-media-tags-plugin
       ];
     };
+    # NOTE: This service is already added to system with programs.thunar.enable
+    # however it doesn't have any set conditions to make it start
+    systemd.user.services.thunar = {
+      after = ["graphical-session.target"];
+      wantedBy = ["graphical-session.target"];
+      partOf = ["graphical-session.target"];
+      unitConfig.ConditionEnvironment = "WAYLAND_DISPLAY";
+    };
     services = {
       # Thunar thumbnailer
       tumbler.enable = true;
       gvfs = {
         enable = true; # Enable gvfs for stuff like trash, mtp
-        package = pkgs.gvfs; # Set to gvfs instead of gnome gvfs
+        package = pkgs.gvfs; # Regular gvfs is less bloat
       };
     };
-
     hj = {
       packages = with pkgs; [
         file-roller
@@ -48,7 +55,7 @@ in {
           <actions>
           <action>
             <icon>clipboard</icon>
-            <name>Copy File / Folder Path</name>
+            <name>Copy as Path</name>
             <submenu></submenu>
             <unique-id>1653335357081852-1</unique-id>
             <command>echo -n &apos;"%f"&apos; | wl-copy</command>
@@ -76,7 +83,7 @@ in {
           </action>
           <action>
             <icon>folder-blue-script</icon>
-            <name>Launch Terminal here</name>
+            <name>Open Terminal here</name>
             <submenu></submenu>
             <unique-id>1715763119333224-2</unique-id>
             <command>foot -D %f</command>
@@ -84,18 +91,6 @@ in {
             <range>*</range>
             <patterns>*</patterns>
             <directories/>
-          </action>
-          <action>
-            <icon>utilities-terminal_su</icon>
-            <name>Edit as root</name>
-            <submenu></submenu>
-            <unique-id>1716201472079277-1</unique-id>
-            <command>foot ${getExe' pkgs.sudo "sudoedit"} %f</command>
-            <description></description>
-            <range>*</range>
-            <patterns>*</patterns>
-            <other-files/>
-            <text-files/>
           </action>
           </actions>
         '';
