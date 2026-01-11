@@ -15,7 +15,7 @@
       losslesscut-bin
       qbittorrent-enhanced
       nvtopPackages.amd
-      # sgdboop
+      sgdboop
       self'.packages.stremio-linux-shell
       (callPackage "${pins.creamlinux}" {})
     ];
