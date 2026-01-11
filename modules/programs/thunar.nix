@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf concatMapStrings getExe';
+  inherit (lib) mkEnableOption mkIf concatMapStrings;
   cfg = config.cfg.programs.thunar;
   bookmarks = [
     "file:///home/${config.cfg.core.username}/Downloads Downloads"
@@ -25,14 +25,6 @@ in {
         thunar-archive-plugin
         thunar-media-tags-plugin
       ];
-    };
-    # NOTE: This service is already added to system with programs.thunar.enable
-    # however it doesn't have any set conditions to make it start
-    systemd.user.services.thunar = {
-      after = ["graphical-session.target"];
-      wantedBy = ["graphical-session.target"];
-      partOf = ["graphical-session.target"];
-      unitConfig.ConditionEnvironment = "WAYLAND_DISPLAY";
     };
     services = {
       # Thunar thumbnailer
