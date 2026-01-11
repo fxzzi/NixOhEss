@@ -77,19 +77,18 @@ in {
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
-            mode = "2560x1440@120";
+            mode = "highres";
             position = "auto-center-left";
             # hdr sucks on this monitor lol
             supports_hdr = -1;
             bitdepth = 10;
             cm = "edid";
-            # icc = "${./icc/M27Q_v1.icc}";
             # this monitor doesn't flicker when using VRR at all
             vrr = 1;
           };
           # kunzozPC
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543]" = {
-            mode = "2560x1440@170";
+            mode = "highres";
             # same monitor, same bad hdr
             supports_hdr = -1;
             # this monitor does support 10bit, but only at 120Hz and lower.
@@ -138,7 +137,6 @@ in {
             enable_swallow = 1; # Enable window swalling
             swallow_regex = "foot"; # Make foot swallow executed windows
             swallow_exception_regex = "foot"; # Make foot not swallow itself
-            # initial_workspace_tracking = 0;
             vrr = 2;
             anr_missed_pings = 6; # by default, ANR dialog shows up way too aggressively.
             mouse_move_enables_dpms = true;
