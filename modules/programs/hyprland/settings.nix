@@ -258,7 +258,7 @@ in {
             ]
             ++ (lib.concatMap (game: [
                 # for all game matches
-                "match:${game}, idle_inhibit fullscreen, content game, borderless_fullscreen 1"
+                "match:${game}, idle_inhibit fullscreen, content game"
               ])
               [
                 # wine, proton, etc
