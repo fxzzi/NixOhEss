@@ -73,7 +73,7 @@ in {
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
             mode = "highres";
             bitdepth = 10;
-            cm = "edid";
+            # cm = "edid";
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
@@ -82,7 +82,7 @@ in {
             # hdr sucks on this monitor lol
             supports_hdr = -1;
             bitdepth = 10;
-            cm = "edid";
+            # cm = "edid";
             # this monitor doesn't flicker when using VRR at all
             vrr = 1;
           };
@@ -95,7 +95,7 @@ in {
             supports_wide_color = -1;
           };
           render = {
-            direct_scanout = mkDefault 2;
+            direct_scanout = mkDefault 0;
             non_shader_cm = 2;
             cm_auto_hdr = 2; # use hdredid for autohdr
           };
@@ -258,7 +258,7 @@ in {
             ]
             ++ (lib.concatMap (game: [
                 # for all game matches
-                "match:${game}, idle_inhibit fullscreen, content game"
+                "match:${game}, idle_inhibit fullscreen, content game, immediate 1"
               ])
               [
                 # wine, proton, etc

@@ -55,7 +55,7 @@ in {
     };
     vadGracePeriod = mkOption {
       type = types.int;
-      default = 20;
+      default = 200;
       description = "Set the rnnoise VAD grace period in milliseconds.";
     };
     retroactiveVadGrace = mkOption {
