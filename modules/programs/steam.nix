@@ -18,10 +18,6 @@ in {
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;
-      package = pkgs.steam.override {
-        # maybe fix steam input in winewayland
-        extraArgs = "-steamos3";
-      };
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = mkIf config.cfg.programs.proton-ge.enable [pkgs.proton-ge-bin];
