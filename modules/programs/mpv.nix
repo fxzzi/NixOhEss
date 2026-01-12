@@ -16,6 +16,7 @@ in {
           save-position-on-quit=yes
           target-colorspace-hint-mode=source
           hwdec=auto
+          video-sync=display-resample
           volume-max=150
           keep-open=yes
           fs=yes
