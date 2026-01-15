@@ -82,14 +82,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "elFarto",
+        "owner": "kode54",
         "repo": "nvidia-vaapi-driver"
       },
-      "branch": "master",
+      "branch": "fix-chromium",
       "submodules": false,
-      "revision": "2e204c67d4401292905f6afb4832a7e7df9ce53a",
-      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/2e204c67d4401292905f6afb4832a7e7df9ce53a.tar.gz",
-      "hash": "sha256-q51ChAPcTKgYtMzcesKDDDeZRg0/+bSlA4VxsLKn/BA="
+      "revision": "b78dc72524d01200b590aeb8807e0e402be3ce06",
+      "url": "https://github.com/kode54/nvidia-vaapi-driver/archive/b78dc72524d01200b590aeb8807e0e402be3ce06.tar.gz",
+      "hash": "sha256-SFYyEYzE6sxwJSgA8/wPZHKhLLJm5vV4QzZvCwM9wU4="
     },
     "nvuv": {
       "type": "Git",
