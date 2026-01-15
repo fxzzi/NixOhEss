@@ -127,7 +127,7 @@ in {
             gaps_out = 2; # Outer monitor gaps
             gaps_in = 1; # Inner window gaps
             border_size = 1; # Set window border width
-            allow_tearing = mkDefault 1;
+            allow_tearing = mkDefault 0;
           };
           misc = {
             disable_hyprland_logo = 1; # Disable hyprland wallpapers etc
@@ -425,14 +425,14 @@ in {
               "$MOD, ALT_L, resizewindow"
             ];
 
-          gesture = [
+          gesture = mkIf cfg.laptop [
             "3, horizontal, workspace"
           ];
 
           quirks = {
             # allow ds to activate with winewayland
             # also fix mpv freezing in fullscreen
-            # skip_non_kms_dmabuf_formats = 1;
+            skip_non_kms_dmabuf_formats = 1;
             # report hdr mode as preferred to gamescope
             prefer_hdr = 2;
           };
