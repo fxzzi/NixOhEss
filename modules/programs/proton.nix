@@ -22,7 +22,6 @@ in {
 
     environment.sessionVariables = {
       "PROTON_ENABLE_WAYLAND" = mkIf cfg.nativeWayland "1";
-      "PROTON_NO_WM_DECORATION" = mkIf cfg.nativeWayland "1";
       "WAYLANDDRV_PRIMARY_MONITOR" = mkIf cfg.nativeWayland config.cfg.programs.hyprland.defaultMonitor;
       "PROTON_USE_WOW64" = "1"; # pretty stable so should be fine to always enable
     };

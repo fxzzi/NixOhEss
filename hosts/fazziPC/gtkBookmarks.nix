@@ -5,7 +5,7 @@
 }: let
   bookmarks = [
     "file:///games Games"
-    "file:///home/${config.cfg.core.username}/.local/torrents Torrents"
+    "file://${config.hj.directory}/.local/torrents Torrents"
   ];
 in {
   config = {
