@@ -13,27 +13,27 @@ in {
         # GitHub
         Host github.com
         	Hostname github.com
-        	IdentityFile /home/${config.cfg.core.username}/.ssh/github
+        	IdentityFile ${config.hj.directory}/.ssh/github
 
         # GitLab
         Host gitlab.com
         	Hostname gitlab.com
-        	IdentityFile /home/${config.cfg.core.username}/.ssh/gitlab
+        	IdentityFile ${config.hj.directory}/.ssh/gitlab
 
         # ArchLinux GitLab
         Host https://gitlab.archlinux.org
         	Hostname https://gitlab.archlinux.org/
-        	IdentityFile /home/${config.cfg.core.username}/.ssh/archlinux-gitlab
+        	IdentityFile ${config.hj.directory}/.ssh/archlinux-gitlab
 
         # AUR
         Host aur.archlinux.org
         	Hostname aur.archlinux.org
-        	IdentityFile /home/${config.cfg.core.username}/.ssh/aur
+        	IdentityFile ${config.hj.directory}/.ssh/aur
 
         # Codeberg
         Host codeberg.org
         	Hostname codeberg.org
-        	IdentityFile /home/${config.cfg.core.username}/.ssh/codeberg
+        	IdentityFile ${config.hj.directory}/.ssh/codeberg
       '';
     };
   };
