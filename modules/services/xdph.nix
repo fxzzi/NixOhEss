@@ -21,7 +21,7 @@ in {
     hj.xdg.config.files."hypr/xdph.conf" = {
       generator = self.lib.generators.toHyprlang {};
       value = {
-        screencopy.max_fps = 60; # don't need to capture more than 60fps
+        screencopy.max_fps = 120; # don't need to capture more than 60fps
       };
     };
   };

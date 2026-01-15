@@ -13,7 +13,8 @@
   ];
   # host specific packages
   hj = {
-    packages = with pkgs; [
+    packages = with pkgs;
+    with self'.packages; [
       qbittorrent-enhanced
       telegram-desktop
       losslesscut-bin
@@ -27,7 +28,6 @@
       dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
-      mprime
       (retroarch.withCores (cores:
         with cores; [
           bsnes
@@ -36,18 +36,10 @@
           melonds
           mupen64plus
         ]))
-      onlyoffice-desktopeditors
-      processing
-      logisim-evolution
-      rars
-      vscodium
-      (jetbrains.idea-oss.override {
-        vmopts = "-Dawt.toolkit.name=WLToolkit";
-      })
-      self'.packages.transcode
-      self'.packages.stremio-linux-shell-rewrite
-      self'.packages.eden
-      self'.packages.flac2vorbis
+      transcode
+      stremio-linux-shell-rewrite
+      eden
+      flac2vorbis
     ];
   };
   # set resolutions early to avoid modeset when launching hyprland
