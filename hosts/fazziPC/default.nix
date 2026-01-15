@@ -27,6 +27,7 @@
       dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
+      mprime
       (retroarch.withCores (cores:
         with cores; [
           bsnes

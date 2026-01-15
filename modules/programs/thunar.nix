@@ -7,10 +7,10 @@
   inherit (lib) mkEnableOption mkIf concatMapStrings;
   cfg = config.cfg.programs.thunar;
   bookmarks = [
-    "file:///home/${config.cfg.core.username}/Downloads Downloads"
-    "file:///home/${config.cfg.core.username}/Videos Videos"
-    "file:///home/${config.cfg.core.username}/Pictures/Screenshots Screenshots"
-    "file:///home/${config.cfg.core.username}/.config/nixos NixOS"
+    "file://${config.hj.directory}/Downloads Downloads"
+    "file://${config.hj.directory}/Videos Videos"
+    "file://${config.hj.directory}/Pictures/Screenshots Screenshots"
+    "file://${config.hj.directory}/.config/nixos NixOS"
   ];
 in {
   options.cfg.programs.thunar = {

@@ -73,7 +73,7 @@ in {
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
             mode = "highres";
             bitdepth = 10;
-            # cm = "edid";
+            cm = "edid";
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
@@ -82,7 +82,7 @@ in {
             # hdr sucks on this monitor lol
             supports_hdr = -1;
             bitdepth = 10;
-            # cm = "edid";
+            cm = "edid";
             # this monitor doesn't flicker when using VRR at all
             vrr = 1;
           };
@@ -224,10 +224,8 @@ in {
           };
           windowrule =
             [
-              # pause hypridle for apps with content type video
-              "match:content 2, idle_inhibit focus"
               # hyprland shows anr dialog when stremio is in another workspace, so render_unfocused 1
-              "match:class .*stremio.*, idle_inhibit focus, content video, render_unfocused 1"
+              "match:class .*stremio.*, render_unfocused 1"
 
               "match:class atril, idle_inhibit focus"
               "match:class foot, idle_inhibit fullscreen"
@@ -434,7 +432,7 @@ in {
           quirks = {
             # allow ds to activate with winewayland
             # also fix mpv freezing in fullscreen
-            skip_non_kms_dmabuf_formats = 1;
+            # skip_non_kms_dmabuf_formats = 1;
             # report hdr mode as preferred to gamescope
             prefer_hdr = 2;
           };

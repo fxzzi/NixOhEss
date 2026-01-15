@@ -13,7 +13,7 @@ in {
       enable = true;
       # avoid using slow relays
       openDefaultPorts = true;
-      dataDir = "/home/${config.cfg.core.username}";
+      dataDir = "${config.hj.directory}";
       group = "users";
       user = config.cfg.core.username;
       settings = {
