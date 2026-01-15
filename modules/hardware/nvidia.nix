@@ -6,7 +6,7 @@
   self',
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkMerge getExe';
+  inherit (lib) mkEnableOption mkIf optionals getExe';
   cfg = config.cfg.hardware.nvidia;
 in {
   options.cfg.hardware.nvidia = {
@@ -20,7 +20,7 @@ in {
 
     hardware = {
       nvidia = {
-        open = true;
+        open = false;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
@@ -52,6 +52,9 @@ in {
             version = "0-unstable-${builtins.substring 0 8 pins.nvidia-vaapi-driver.revision}";
             src = pins.nvidia-vaapi-driver;
           })
+        ];
+        extraPackages32 = [
+          self'.packages.egl-wayland2
         ];
       };
     };
@@ -109,17 +112,17 @@ in {
       ];
       blacklistedKernelModules = ["nouveau"];
 
-      kernelParams = mkMerge [
+      kernelParams =
         [
           "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
           "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
           "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
+          "nvidia-modeset.disable_vrr_memclk_switch=1"
         ]
-        (mkIf config.hardware.nvidia.powerManagement.enable [
+        ++ optionals config.hardware.nvidia.powerManagement.enable [
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
           "nvidia.NVreg_EnableS0ixPowerManagement=0"
-        ])
-      ];
+        ];
     };
     systemd.services.nvidia-temp = let
       getTemp = "${getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits";

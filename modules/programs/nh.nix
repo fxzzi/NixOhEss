@@ -13,7 +13,7 @@ in {
   config = mkIf cfg.enable {
     programs.nh = {
       enable = true;
-      flake = "/home/${config.cfg.core.username}/.config/nixos";
+      flake = "${config.hj.directory}/.config/nixos";
       clean = {
         enable = true;
         dates = "weekly";
