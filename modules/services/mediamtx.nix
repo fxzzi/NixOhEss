@@ -10,7 +10,7 @@
 in {
   options.cfg.services.mediamtx.enable = mkEnableOption "mediamtx";
   config = mkIf cfg.enable {
-    age.secrets.publicip.file = "${self}/secrets/publicip.age";
+    age.secrets.publicip.file = "${self}/parts/secrets/publicip.age";
     networking.firewall = {
       allowedTCPPorts = [(toInt port)];
       allowedUDPPorts = [(toInt port)];
