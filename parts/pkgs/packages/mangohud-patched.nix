@@ -14,10 +14,10 @@
       sha256 = "sha256-0mnTTzyu3IN8RwCzSe6PLniW7CXJZpn+CEkKR4iGbWI=";
     })
     # prioritize better sensors for cpu temp
-    (fetchpatch {
-      url = "https://github.com/flightlessmango/MangoHud/pull/1930.patch";
-      sha256 = "sha256-6AjuflyBarFxRBTYqXNbwVvlcacVPBZlxWF+sdbw99s=";
-    })
+    # (fetchpatch {
+    #   url = "https://github.com/flightlessmango/MangoHud/pull/1930.patch";
+    #   sha256 = "sha256-6AjuflyBarFxRBTYqXNbwVvlcacVPBZlxWF+sdbw99s=";
+    # })
   ];
 in
   (pkgs.mangohud.overrideAttrs (old: {
