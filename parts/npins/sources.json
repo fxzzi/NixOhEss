@@ -61,9 +61,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "bb1727114fb1875bcbd43a09904369420f5a817c",
-      "url": "https://github.com/diniamo/niqspkgs/archive/bb1727114fb1875bcbd43a09904369420f5a817c.tar.gz",
-      "hash": "sha256-dLACby041Mcl5S/3jUI1HJj8WokpeK+uAwMMM/bYU9U="
+      "revision": "74831b270ce1dd76b242586670f114534ce74896",
+      "url": "https://github.com/diniamo/niqspkgs/archive/74831b270ce1dd76b242586670f114534ce74896.tar.gz",
+      "hash": "sha256-KFurej/3hkdxa4cH2PXGVDxWnV5Ag9coiU4QireEW/U="
     },
     "nix-gaming": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "9ee81ce65767266e644e2d2b528eb9078c3e61fa",
-      "url": "https://github.com/fufexan/nix-gaming/archive/9ee81ce65767266e644e2d2b528eb9078c3e61fa.tar.gz",
-      "hash": "sha256-mvO8KVhuyihA0EXemT0nRPyfg9BO1XQNRJpxo99rHWI="
+      "revision": "12c404b997930a1fe8ffcaa231f85fd8ebc6338a",
+      "url": "https://github.com/fufexan/nix-gaming/archive/12c404b997930a1fe8ffcaa231f85fd8ebc6338a.tar.gz",
+      "hash": "sha256-1WCbVm2Dqqb+HEuahu06l8lQ393P8jIAHEjM3jhm4gc="
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
@@ -163,11 +163,11 @@
         "owner": "NotAShelf",
         "repo": "tuigreet"
       },
-      "branch": "notashelf/push-pnqpxznwrroy",
+      "branch": "master",
       "submodules": false,
-      "revision": "a033aef6fe4c98a376c70d6bb03554b5d46a7a68",
-      "url": "https://github.com/NotAShelf/tuigreet/archive/a033aef6fe4c98a376c70d6bb03554b5d46a7a68.tar.gz",
-      "hash": "sha256-URb+H7kD/8oOLaI4iuNVHS0Xma9bDWyC2nPhUUbWczs="
+      "revision": "caee48ee88eb1210ef62a10546466d84929cf4db",
+      "url": "https://github.com/NotAShelf/tuigreet/archive/caee48ee88eb1210ef62a10546466d84929cf4db.tar.gz",
+      "hash": "sha256-eB5voX32d5wkqcfA9Pwxf3wbaOpVUr6uSm8+xVOXFtM="
     },
     "walls": {
       "type": "Git",
