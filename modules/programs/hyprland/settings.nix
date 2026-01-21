@@ -88,14 +88,17 @@ in {
           };
           # kunzozPC
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543]" = {
-            mode = "highres";
+            # this monitor is weird and has a 4k60 downscale mode.
+            # highrr will prefer the mode with highest rr, then highest res
+            # so effectively 1440p170
+            mode = "highrr";
             # same monitor, same bad hdr
             supports_hdr = -1;
             # this monitor does support 10bit, but only at 120Hz and lower.
             supports_wide_color = -1;
           };
           render = {
-            direct_scanout = mkDefault 0;
+            direct_scanout = mkDefault 2;
             non_shader_cm = 2;
             cm_auto_hdr = 2; # use hdredid for autohdr
           };
@@ -127,7 +130,7 @@ in {
             gaps_out = 2; # Outer monitor gaps
             gaps_in = 1; # Inner window gaps
             border_size = 1; # Set window border width
-            allow_tearing = mkDefault 0;
+            allow_tearing = mkDefault 1;
           };
           misc = {
             disable_hyprland_logo = 1; # Disable hyprland wallpapers etc

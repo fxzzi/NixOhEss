@@ -5,7 +5,6 @@
       kernel = {
         type = "zen";
         zenergy.enable = true;
-        xone.enable = false;
         v4l2.enable = true;
       };
 
@@ -14,21 +13,18 @@
         keyLayout = "us";
         timeout = 0;
       };
-      networking = {
-        enable = true;
-      };
-      fonts = {
-        enable = true;
-      };
+      networking.enable = true;
+      fonts.enable = true;
     };
     hardware = {
       nvidia = {
         enable = true;
         exposeTemp = true;
       };
+      # scanning.enable = true;
     };
     services = {
-      libvirt.enable = true;
+      # libvirt.enable = true;
       # activate-linux.enable = true;
       ags.enable = true;
       # kdeconnect.enable = true;
@@ -78,7 +74,6 @@
 
       printing.enable = true;
     };
-    hardware.scanning.enable = false;
     programs = {
       gamescope.enable = true;
       osu.enable = true;
@@ -105,13 +100,9 @@
       adb.enable = true;
       mpv.enable = true;
       obs-studio.enable = true;
-      thunar = {
-        enable = true;
-      };
+      thunar.enable = true;
       discord.enable = true;
-      librewolf = {
-        enable = true;
-      };
+      librewolf.enable = true;
       chromium = {
         enable = true;
         wootility.enable = true;
