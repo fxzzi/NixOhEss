@@ -78,7 +78,6 @@ in {
                 /* Hide nitro begging */
                 @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css");
 
-
                 /* Hide the Visual Refresh title bar */
                 .visual-refresh {
                   /* Hide the bar itself */
@@ -120,17 +119,14 @@ in {
                   display: none !important;
                 }
 
-                /* Hide the buttons next to mute and deafen */
-                div[class=_37e49614b9f110a9-buttons] {
-                  gap: 2px;
-                  div[class*=-micButtonParent] {
-                    button[role="switch"] {
-                      border-radius: var(--radius-sm) !important;
-                      ~ button {
-                        display: none;
-                      }
-                    }
-                  }
+                /* Hide voice settings menus in user panel */
+                div[class*="-micButtonParent"] button[role="switch"] {
+                  border-radius: var(--radius-sm);
+                  & ~ button { display: none; }
+                }
+                /* Also reduce the gap between the buttons */
+                div:has(> div[class*="-micButtonParent"]) {
+                  gap: 1px;
                 }
               '';
           };
