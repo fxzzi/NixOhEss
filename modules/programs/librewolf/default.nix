@@ -46,6 +46,7 @@
       };
       SearchSuggestEnabled = false;
     };
+    nativeMessagingHosts = with pkgs; [ff2mpv-rust];
   };
 in {
   options.cfg.programs.librewolf = {
