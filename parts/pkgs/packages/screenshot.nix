@@ -19,12 +19,13 @@ writeShellApplication {
     fileName="Screenshot from $(date '+%y.%m.%d %H:%M:%S').png"
     screenshotDir="$HOME/Pictures/Screenshots"
     path="$screenshotDir/$fileName"
-    grimCmd="grim -t png -l 1"
+    # -l sets compression level. default is 6. the higher you
+    # go the slower the screenshot takes to save.
+    grimCmd="grim -t png -l 3"
 
     # make the screenshot directory if it doesn't already exist
     if [ ! -d "$screenshotDir" ]; then
       mkdir -p "$screenshotDir"
-      echo "Directory '$screenshotDir' created successfully."
     fi
 
     case $1 in
