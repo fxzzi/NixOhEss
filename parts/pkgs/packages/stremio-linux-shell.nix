@@ -7,6 +7,7 @@
   cef-binary,
   gtk3,
   libayatana-appindicator,
+  libxkbcommon,
   mpv,
   openssl,
   wrapGAppsHook4,
@@ -57,6 +58,10 @@ in
     postPatch = ''
       substituteInPlace $cargoDepsCopy/libappindicator-sys-*/src/lib.rs \
         --replace-fail "libayatana-appindicator3.so.1" "${libayatana-appindicator}/lib/libayatana-appindicator3.so.1"
+      substituteInPlace $cargoDepsCopy/xkbcommon-dl-*/src/lib.rs \
+        --replace-fail "libxkbcommon.so.0" "${libxkbcommon}/lib/libxkbcommon.so.0"
+      substituteInPlace $cargoDepsCopy/xkbcommon-dl-*/src/x11.rs \
+        --replace-fail "libxkbcommon-x11.so.0" "${libxkbcommon}/lib/libxkbcommon-x11.so.0"
     '';
 
     # Don't download CEF during build
@@ -67,6 +72,7 @@ in
       cefPath
       gtk3
       libayatana-appindicator
+      libxkbcommon
       mpv
       openssl
     ];
@@ -94,10 +100,8 @@ in
     # Add to `gappsWrapperArgs` to avoid two layers of wrapping.
     preFixup = ''
       gappsWrapperArgs+=(
-        --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib" \
         --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libGL]}" \
-        --prefix PATH : "${lib.makeBinPath [nodejs]}" \
-        --add-flags "--enable-features=UseOzonePlatform --ozone-platform-hint=auto"
+        --prefix PATH : "${lib.makeBinPath [nodejs]}"
       )
     '';
 
