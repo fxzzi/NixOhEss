@@ -60,12 +60,18 @@ in {
     hj = {
       xdg.config.files."discord/settings.json" = {
         generator = lib.generators.toJSON {};
-        value = {
+        value = let
+          endpoint = "https://inject.shelter.uwu.network/vencord";
+        in {
           SKIP_HOST_UPDATE = true;
           MINIMIZE_TO_TRAY = cfg.minimizeToTray;
           OPEN_ON_STARTUP = false;
           DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
           enableHardwareAcceleration = true;
+          # use vencord through sheltupdate instead of using nixpkgs vencord
+          # this means we can get faster vencord updates outside of nixpkgs
+          UPDATE_ENDPOINT = endpoint;
+          NEW_UPDATE_ENDPOINT = "${endpoint}/";
           openasar = {
             setup = true;
             cmdPreset = "balanced";
@@ -140,7 +146,6 @@ in {
           withTTS = false;
           enableAutoscroll = true;
           withOpenASAR = true;
-          withVencord = true;
         })
       ];
     };
