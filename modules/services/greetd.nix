@@ -27,6 +27,7 @@ in {
       display = {
         greeting = "Welcome to the fold of ${config.system.nixos.distroName}.";
         show_time = true;
+        show_title = false;
       };
       layout = {
         window_padding = 1;
