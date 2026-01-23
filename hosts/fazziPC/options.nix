@@ -21,6 +21,7 @@
         enable = true;
         exposeTemp = true;
       };
+      bluetooth.enable = true;
       # scanning.enable = true;
     };
     services = {
@@ -82,7 +83,7 @@
       proton-ge = {
         enable = true;
         ntsync = true;
-        # nativeWayland = true;
+        nativeWayland = true;
       };
       mangohud = {
         enable = true;
