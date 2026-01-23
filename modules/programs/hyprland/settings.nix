@@ -99,13 +99,14 @@ in {
           };
           render = {
             direct_scanout = mkDefault 0;
-            non_shader_cm = 2;
+            non_shader_cm = 0;
+            cm_fs_passthrough = 0;
             cm_auto_hdr = 2; # use hdredid for autohdr
           };
           quirks = {
             # allow ds to activate with winewayland
             # also fix mpv freezing in fullscreen
-            skip_non_kms_dmabuf_formats = 1;
+            # skip_non_kms_dmabuf_formats = 1;
             # report hdr mode as preferred to gamescope
             prefer_hdr = 2;
           };
@@ -137,7 +138,7 @@ in {
             gaps_out = 2; # Outer monitor gaps
             gaps_in = 1; # Inner window gaps
             border_size = 1; # Set window border width
-            allow_tearing = mkDefault 0;
+            # allow_tearing = mkDefault 0;
           };
           misc = {
             disable_hyprland_logo = 1; # Disable hyprland wallpapers etc
