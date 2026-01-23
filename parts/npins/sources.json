@@ -165,9 +165,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "caee48ee88eb1210ef62a10546466d84929cf4db",
-      "url": "https://github.com/NotAShelf/tuigreet/archive/caee48ee88eb1210ef62a10546466d84929cf4db.tar.gz",
-      "hash": "sha256-eB5voX32d5wkqcfA9Pwxf3wbaOpVUr6uSm8+xVOXFtM="
+      "revision": "46556a7af6e9e639fd5e30d80265cf723fbb2478",
+      "url": "https://github.com/NotAShelf/tuigreet/archive/46556a7af6e9e639fd5e30d80265cf723fbb2478.tar.gz",
+      "hash": "sha256-gVrr8DEPml/VV5aLfLZ170VS2NNnla0BqG7sJjwNWXg="
     },
     "walls": {
       "type": "Git",
