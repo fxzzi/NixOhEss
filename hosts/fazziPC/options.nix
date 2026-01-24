@@ -25,7 +25,7 @@
       # scanning.enable = true;
     };
     services = {
-      sunshine.enable = true;
+      # sunshine.enable = true;
       # libvirt.enable = true;
       # activate-linux.enable = true;
       ags.enable = true;
