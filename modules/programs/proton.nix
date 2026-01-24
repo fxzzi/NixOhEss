@@ -21,8 +21,11 @@ in {
     '';
 
     environment.sessionVariables = {
-      "PROTON_ENABLE_WAYLAND" = mkIf cfg.nativeWayland "1";
-      "WAYLANDDRV_PRIMARY_MONITOR" = mkIf cfg.nativeWayland config.cfg.programs.hyprland.defaultMonitor;
+      "PROTON_ENABLE_WAYLAND" = mkIf cfg.nativeWayland 1;
+      # Without this, games won't detect a controller after they've launched
+      # They'll only detect if the controller was connected before launching
+      "PROTON_USE_SDL" = mkIf cfg.nativeWayland 1;
+      # "WAYLANDDRV_PRIMARY_MONITOR" = mkIf cfg.nativeWayland config.cfg.programs.hyprland.defaultMonitor;
       "PROTON_USE_WOW64" = "1"; # pretty stable so should be fine to always enable
     };
   };
