@@ -74,6 +74,7 @@ in {
           NEW_UPDATE_ENDPOINT = "${endpoint}/";
           openasar = {
             setup = true;
+            # using the performance preset breaks vaapi
             cmdPreset = "balanced";
             # quickstart is buggy and breaks discord sometimes.
             quickstart = false;
@@ -90,12 +91,12 @@ in {
                   --custom-app-top-bar-height: 0px !important;
 
                   /* Title bar buttons are still visible so hide them too */
-                  div._5e434347c823b592-base > div.c38106a3f0c3ca76-bar {
+                  div.base__5e434 > div.bar_c38106 {
                     display: none;
                   }
 
                   /* Bring the server list down a few pixels */
-                  ul[data-list-id="guildsnav"] > div.ef3116c2da186559-itemsContainer {
+                  ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
                     margin-top: 8px;
                   }
                 }
@@ -126,12 +127,12 @@ in {
                 }
 
                 /* Hide voice settings menus in user panel */
-                div[class*="-micButtonParent"] button[role="switch"] {
+                div[class^="micButtonParent__"] button[role="switch"] {
                   border-radius: var(--radius-sm);
                   & ~ button { display: none; }
                 }
                 /* Also reduce the gap between the buttons */
-                div:has(> div[class*="-micButtonParent"]) {
+                div:has(> div[class^="micButtonParent__"]) {
                   gap: 1px;
                 }
               '';
