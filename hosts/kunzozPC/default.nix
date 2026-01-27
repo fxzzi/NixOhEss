@@ -37,6 +37,6 @@
   };
   services.lact = {
     enable = true;
-    # settings = {}
+    # settings = {};
   };
 }

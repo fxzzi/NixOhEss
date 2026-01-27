@@ -83,7 +83,8 @@ in {
               # css
               ''
                 /* Hide nitro begging */
-                @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css");
+                /* @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css"); */
+                @import url("https://codeberg.org/AllPurposeMat/Disblock-Origin/raw/commit/f437ab2d724adc454688588033e2821168af0dcc/DisblockOrigin.theme.css");
 
                 /* Hide the Visual Refresh title bar */
                 .visual-refresh {
@@ -132,7 +133,7 @@ in {
                   & ~ button { display: none; }
                 }
                 /* Also reduce the gap between the buttons */
-                div:has(> div[class^="micButtonParent__"]) {
+                div.container__37e49 > div.buttons__37e49 {
                   gap: 1px;
                 }
               '';

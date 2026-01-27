@@ -20,7 +20,7 @@ in {
 
     hardware = {
       nvidia = {
-        open = false;
+        open = true;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
@@ -33,9 +33,10 @@ in {
         };
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        #   version = "590.48.01";
-        #   sha256_64bit = "sha256-ueL4BpN4FDHMh/TNKRCeEz3Oy1ClDWto1LO/LWlr1ok=";
-        #   openSha256 = "sha256-hECHfguzwduEfPo5pCDjWE/MjtRDhINVr4b1awFdP44=";
+        #   url = "https://developer.nvidia.com/downloads/vulkan-beta-5809416-linux";
+        #   version = "580.94.16";
+        #   sha256_64bit = "sha256-DqwALfSNPjLsat4Q9Sg44BACNUyqK+kpUxL5CFzLlRc=";
+        #   openSha256 = "sha256-WWql/WBQyWNG+skZgvUFbNCClVjty3s3+QR6NnJhSF4=";
         #   usePersistenced = false;
         #   useSettings = false;
         # };
