@@ -48,13 +48,8 @@ in {
         promptInit =
           # sh
           ''
-            function precmd() {
-              local indicators=""
-              [[ -n $IN_NIX_SHELL ]] && indicators+="%F{blue} %f "
-              PROMPT="$indicators%F{yellow}%3~%f $ "
-            }
+            PROMPT="%F{yellow}%3~%f $ "
           '';
-
         interactiveShellInit =
           # sh
           ''
@@ -104,7 +99,7 @@ in {
             bindkey "''${key[Down]}" history-substring-search-down
           '';
         histFile = "$XDG_DATA_HOME/zsh/zsh_history";
-        histSize = 10000;
+        histSize = 99999;
         shellAliases = {
           grep = "${getExe pkgs.ripgrep}";
           cat = "${getExe pkgs.bat}";
