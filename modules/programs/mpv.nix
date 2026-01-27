@@ -62,6 +62,17 @@ in {
           SPACE cycle pause
           m cycle mute
         '';
+        # When mpv stops at the end of a file, replay from beginning when user tries to resume
+        # https://github.com/mpv-player/mpv/issues/11183#issuecomment-1398635235
+        "mpv/scripts/replay-at-end.lua".text =
+          #lua
+          ''
+            mp.observe_property("pause", "bool", function(name, value)
+                if value == true and mp.get_property("eof-reached") == "yes" then
+                    mp.command("no-osd seek 0 absolute")
+                end
+            end)
+          '';
       };
     };
     xdg.mime.defaultApplications = {
