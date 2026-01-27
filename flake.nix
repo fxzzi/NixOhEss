@@ -44,7 +44,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     watt = {
-      url = "github:NotAShelf/watt/v1-dev";
+      url = "github:NotAShelf/watt";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
