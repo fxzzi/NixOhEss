@@ -74,22 +74,22 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "87dc0c70761dbb930a40ae7bd34d38e0b7974e49",
-      "url": "https://github.com/fufexan/nix-gaming/archive/87dc0c70761dbb930a40ae7bd34d38e0b7974e49.tar.gz",
-      "hash": "sha256-SNGXY1/HAxyUzt82sW+ZvOrWeTNnv/wFTQiG3crwQcY="
+      "revision": "816b22afddd7f21f1d26cf87914ba43fe7916235",
+      "url": "https://github.com/fufexan/nix-gaming/archive/816b22afddd7f21f1d26cf87914ba43fe7916235.tar.gz",
+      "hash": "sha256-sftyCOoChAkNYpcMxCeVcR0WYr/YG+Y+rRoUuet2p9s="
     },
     "nvidia-vaapi-driver": {
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "kode54",
+        "owner": "elFarto",
         "repo": "nvidia-vaapi-driver"
       },
-      "branch": "fix-chromium",
+      "branch": "master",
       "submodules": false,
-      "revision": "b78dc72524d01200b590aeb8807e0e402be3ce06",
-      "url": "https://github.com/kode54/nvidia-vaapi-driver/archive/b78dc72524d01200b590aeb8807e0e402be3ce06.tar.gz",
-      "hash": "sha256-SFYyEYzE6sxwJSgA8/wPZHKhLLJm5vV4QzZvCwM9wU4="
+      "revision": "2e204c67d4401292905f6afb4832a7e7df9ce53a",
+      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/2e204c67d4401292905f6afb4832a7e7df9ce53a.tar.gz",
+      "hash": "sha256-q51ChAPcTKgYtMzcesKDDDeZRg0/+bSlA4VxsLKn/BA="
     },
     "nvuv": {
       "type": "Git",
