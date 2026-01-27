@@ -627,16 +627,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1768541084,
-        "narHash": "sha256-iPP1gyLHIgK66tZWdSSr4ag1RBIDpzSBP2+lX7I505c=",
+        "lastModified": 1769522132,
+        "narHash": "sha256-6fPKos/dksYYt8Ds3nwsaSWlvpZmKybbVF6tm+MqYV4=",
         "owner": "NotAShelf",
         "repo": "watt",
-        "rev": "0088116610f8d54037677dbff01836af38d66ac3",
+        "rev": "a8e3438dc0dd3fe3da5f8d48a11314f3ef470f2b",
         "type": "github"
       },
       "original": {
         "owner": "NotAShelf",
-        "ref": "v1-dev",
         "repo": "watt",
         "type": "github"
       }
