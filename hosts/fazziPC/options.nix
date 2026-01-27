@@ -83,7 +83,7 @@
       proton-ge = {
         enable = true;
         ntsync = true;
-        nativeWayland = true;
+        # nativeWayland = true;
       };
       mangohud = {
         enable = true;

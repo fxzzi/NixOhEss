@@ -414,7 +414,9 @@ in {
           in [
             # volume script
             ", XF86AudioRaiseVolume, exec, ${audio} vol up 5"
+            "SHIFT, XF86AudioRaiseVolume, exec, ${audio} vol up 1"
             ", XF86AudioLowerVolume, exec, ${audio} vol down 5"
+            "SHIFT, XF86AudioLowerVolume, exec, ${audio} vol down 1"
             ", XF86AudioMute, exec, ${audio} vol toggle"
             ", XF86AudioMicMute, exec, ${audio} mic toggle"
             "$MOD SHIFT, M,  exec, ${audio} mic toggle"
