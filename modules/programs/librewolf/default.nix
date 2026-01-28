@@ -55,7 +55,6 @@ in {
   config = mkIf cfg.enable {
     hj = {
       packages = [
-        pkgs.pywalfox-native
         librewolf
       ];
     };
