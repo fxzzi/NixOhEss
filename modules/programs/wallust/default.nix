@@ -47,12 +47,6 @@ in {
                   target = "~/.cache/wallust/colors_foot.ini";
                 };
               }
-              // optionalAttrs config.cfg.programs.librewolf.enable {
-                pywalfox = {
-                  template = "colors_pywalfox.json";
-                  target = "~/.cache/wal/colors.json";
-                };
-              }
               // optionalAttrs config.cfg.programs.wleave.enable {
                 wleave = {
                   template = "colors_wleave.css";
