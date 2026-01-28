@@ -2,11 +2,10 @@
   writeShellApplication,
   wallust,
   dunst,
-  pywalfox-native,
 }:
 writeShellApplication {
   name = "wallust-script";
-  runtimeInputs = [wallust dunst pywalfox-native];
+  runtimeInputs = [wallust dunst];
   text = ''
     STATICWALL="$XDG_STATE_HOME/wallpaper"
 
@@ -29,6 +28,5 @@ writeShellApplication {
 
     # restart dunst and update pywalfox
     dunstctl reload &
-    pywalfox --browser librewolf update
   '';
 }
