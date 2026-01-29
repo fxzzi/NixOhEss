@@ -23,7 +23,8 @@
       inputs.smfh.follows = "";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      # url = "github:hyprwm/Hyprland";
+      url = "github:fxzzi/Hyprland/ujin-cm-fixes";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
