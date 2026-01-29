@@ -20,13 +20,12 @@
       else toString pref
     );
   jsPrefs = attrsToLines (name: value: "lockPref(\"${name}\", ${prefValue value});") prefs;
-  newTabPageJS = ''
-    // sets the new tab page to our local newtab.
-    ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
-  '';
   librewolf = pkgs.librewolf-bin.override {
     extraPrefs = ''
-      ${optionalString config.cfg.programs.startpage.enable newTabPageJS}
+      ${optionalString config.cfg.programs.startpage.enable ''
+        // sets the new tab page to our local newtab.
+        ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
+      ''}
       ${jsPrefs}
     '';
     extraPolicies = {
@@ -46,18 +45,14 @@
       };
       SearchSuggestEnabled = false;
     };
-    nativeMessagingHosts = with pkgs; [ff2mpv-rust];
   };
 in {
   options.cfg.programs.librewolf = {
     enable = mkEnableOption "librewolf";
   };
   config = mkIf cfg.enable {
-    hj = {
-      packages = [
-        librewolf
-      ];
-    };
+    hj.packages = [librewolf];
+
     # some schmuck marked librewolf bin packages as insecure
     nixpkgs.config.permittedInsecurePackages = [
       "librewolf-bin-unwrapped-${librewolf.version}"
