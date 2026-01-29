@@ -40,7 +40,7 @@
       };
     };
     stash = {
-      url = "github:NotAShelf/stash";
+      url = "github:NotAShelf/stash/bb1c5dc50b20751d47c8aab41288575ea979bb1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     watt = {
