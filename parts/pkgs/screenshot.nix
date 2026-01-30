@@ -42,7 +42,7 @@ writeShellApplication {
       sleep .05
       # don't allow multiple slurps at once
       # nicer colours on slurp too
-      pidof slurp || ($grimCmd -g "$(slurp -b '#0a0a0a77' -c '#FFFFFF' -s '#FFFFFF17' -w 2)" "$path" || echo "selection cancelled")
+      $grimCmd -g "$(slurp -b '#0a0a0a77' -c '#FFFFFF' -s '#FFFFFF17' -w 2)" "$path" || echo "selection cancelled"
       kill $PID
       ;;
     --active)

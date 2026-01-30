@@ -10,7 +10,6 @@ in {
   options.cfg.services.activate-linux.enable = mkEnableOption "activate-linux";
   config = mkIf cfg.enable {
     systemd.user.services.activate-linux = {
-      enable = true;
       description = "Activate Linux watermark";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];

@@ -10,7 +10,6 @@ in {
   options.cfg.services.wl-clip-persist.enable = mkEnableOption "wl-clip-persist";
   config = mkIf cfg.enable {
     systemd.user.services.wl-clip-persist = {
-      enable = true;
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];

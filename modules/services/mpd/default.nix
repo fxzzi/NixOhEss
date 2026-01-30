@@ -36,7 +36,6 @@ in {
       '';
     };
     systemd.user.services.mpd = {
-      enable = true;
       description = "Music Player Daemon";
       after = [
         "network.target"
