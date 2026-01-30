@@ -22,7 +22,6 @@ in {
     };
     systemd.user.services = {
       kdeconnect = {
-        enable = true;
         after = ["graphical-session.target"];
         wantedBy = ["graphical-session.target"];
         partOf = ["graphical-session.target"];
@@ -33,7 +32,6 @@ in {
         };
       };
       kdeconnect-indicator = {
-        enable = true;
         after = ["graphical-session.target"];
         wantedBy = ["graphical-session.target"];
         partOf = ["graphical-session.target"];

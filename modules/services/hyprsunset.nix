@@ -15,7 +15,6 @@ in {
       ];
     };
     systemd.user.services.hyprsunset = {
-      enable = true;
       description = "Hyprsunset blue light filter";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];

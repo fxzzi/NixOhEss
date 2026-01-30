@@ -29,7 +29,6 @@ in {
       };
     };
     systemd.user.services.mpd-discord-rpc = {
-      enable = true;
       description = "Discord Rich Presence for MPD";
       documentation = ["https://github.com/JakeStanger/mpd-discord-rpc"];
       wantedBy = ["mpd.service"];
