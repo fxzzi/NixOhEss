@@ -15,7 +15,6 @@ in {
   config = mkIf cfg.enable {
     hj.packages = [stash];
     systemd.user.services.stash = {
-      enable = true;
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];

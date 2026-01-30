@@ -11,7 +11,6 @@ in {
   config = mkIf cfg.enable {
     security.polkit.enable = true;
     systemd.user.services.mate-polkit = {
-      enable = true;
       description = "Mate Polkit";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];

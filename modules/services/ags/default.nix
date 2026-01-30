@@ -29,7 +29,6 @@ in {
       };
     };
     systemd.user.services.ags = {
-      enable = true;
       description = "Aylur's GTK Shell";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
