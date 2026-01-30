@@ -16,7 +16,7 @@
       qbittorrent-enhanced
       nvtopPackages.amd
       sgdboop
-      inputs'.azzipkgs.packages.stremio-linux-shell
+      inputs'.azzipkgs.packages.stremio-linux-shell-git
       (callPackage "${pins.creamlinux}" {})
     ];
     xdg.config.files."hypr/hyprland.conf" = {
