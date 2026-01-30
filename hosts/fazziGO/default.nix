@@ -14,7 +14,7 @@
       packages = with pkgs; [
         telegram-desktop
         deluge
-        inputs'.azzipkgs.packages.stremio-linux-shell
+        inputs'.azzipkgs.packages.stremio-linux-shell-git
         # uni stuff
         onlyoffice-desktopeditors
         processing
