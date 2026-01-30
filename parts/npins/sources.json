@@ -27,31 +27,6 @@
       "hash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
       "frozen": true
     },
-    "egl-wayland2": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "NVIDIA",
-        "repo": "egl-wayland2"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "1893c371d074c5a648a65e198c4e0eee80d2d7f1",
-      "url": "https://github.com/NVIDIA/egl-wayland2/archive/1893c371d074c5a648a65e198c4e0eee80d2d7f1.tar.gz",
-      "hash": "sha256-QvGMXol2WNbXCavJR8qkWlQQP205aNMxSoqJrQmGZC8="
-    },
-    "foot": {
-      "type": "Git",
-      "repository": {
-        "type": "Git",
-        "url": "https://codeberg.org/fazzi/foot.git"
-      },
-      "branch": "transparency_yipee",
-      "submodules": false,
-      "revision": "2024fd27787412a94f99210c11073a1bcbb4f354",
-      "url": null,
-      "hash": "sha256-V6wu3gtE/AWezQsypWydSJGstpykN7bglf6xFw+B6DI="
-    },
     "niqspkgs": {
       "type": "Git",
       "repository": {
@@ -74,22 +49,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "60855f0c988b2b4b787f54ddda18a3af44134623",
-      "url": "https://github.com/fufexan/nix-gaming/archive/60855f0c988b2b4b787f54ddda18a3af44134623.tar.gz",
-      "hash": "sha256-vOKkxlAREINxBVFzsj+8D3WZkoOPHLcjhweE0hDMwbg="
-    },
-    "nvidia-vaapi-driver": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "elFarto",
-        "repo": "nvidia-vaapi-driver"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "2e204c67d4401292905f6afb4832a7e7df9ce53a",
-      "url": "https://github.com/elFarto/nvidia-vaapi-driver/archive/2e204c67d4401292905f6afb4832a7e7df9ce53a.tar.gz",
-      "hash": "sha256-q51ChAPcTKgYtMzcesKDDDeZRg0/+bSlA4VxsLKn/BA="
+      "revision": "cd0a8141f410a6532a76546df2665a4e3c93b69b",
+      "url": "https://github.com/fufexan/nix-gaming/archive/cd0a8141f410a6532a76546df2665a4e3c93b69b.tar.gz",
+      "hash": "sha256-Tbk4SF5XhM9fnrDtPl4wy3ItkjRMcBTVuA26ThzLVcs="
     },
     "nvuv": {
       "type": "Git",
@@ -113,9 +75,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "df2b8a72f3586bd1804f275526916657a823ea72",
-      "url": "https://github.com/NotAShelf/rags/archive/df2b8a72f3586bd1804f275526916657a823ea72.tar.gz",
-      "hash": "sha256-nXiRmawPgrzdxVdEKn4+/NZtH9Xbm3QP/JlUs8E1ENY="
+      "revision": "d9216617ae171217f3c72bff2643cdab6092fc23",
+      "url": "https://github.com/NotAShelf/rags/archive/d9216617ae171217f3c72bff2643cdab6092fc23.tar.gz",
+      "hash": "sha256-Uf5U3q3ZNgHXjgb0lGTXb90dqcfm0l3ttKScWyAPyhw="
     },
     "startpage": {
       "type": "Git",
@@ -129,32 +91,6 @@
       "revision": "31c681720da00c313c41b816ba8fc4ffe96f4f16",
       "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=31c681720da00c313c41b816ba8fc4ffe96f4f16",
       "hash": "sha256-gqNLZg6W5Z2Svu3ri/MxUS95DLNQXBKka6B883xXklo="
-    },
-    "stremio-gtk4": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Stremio",
-        "repo": "stremio-linux-shell"
-      },
-      "branch": "refactor/gtk4",
-      "submodules": false,
-      "revision": "a0d8793ab585a4b54ea46ccdd253f47faa711563",
-      "url": "https://github.com/Stremio/stremio-linux-shell/archive/a0d8793ab585a4b54ea46ccdd253f47faa711563.tar.gz",
-      "hash": "sha256-oDvj0wpsfHa6X4h7Nt0lSY9EnetTYLpYPvZaiI0DNIE="
-    },
-    "stremio-linux-shell": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Stremio",
-        "repo": "stremio-linux-shell"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "57bbfdb6d8773bf4976871b2016ab1ce33fdd9f2",
-      "url": "https://github.com/Stremio/stremio-linux-shell/archive/57bbfdb6d8773bf4976871b2016ab1ce33fdd9f2.tar.gz",
-      "hash": "sha256-1f9IBNo5gxpSqTSIf8QuQOlf+sfRhohOmQTLRbX/OU8="
     },
     "tuigreet": {
       "type": "Git",

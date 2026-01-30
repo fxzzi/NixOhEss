@@ -3,7 +3,7 @@
   lib,
   pkgs,
   pins,
-  self',
+  inputs',
   ...
 }: let
   inherit (lib) mkEnableOption mkIf optionals getExe';
@@ -40,22 +40,15 @@ in {
         #   usePersistenced = false;
         #   useSettings = false;
         # };
-
-        # because we are overriding nvidia-vaapi-driver below we must disable it here
-        videoAcceleration = false;
       };
       graphics = {
         enable = true;
         enable32Bit = true;
         extraPackages = [
-          self'.packages.egl-wayland2
-          (pkgs.nvidia-vaapi-driver.overrideAttrs {
-            version = "0-unstable-${builtins.substring 0 8 pins.nvidia-vaapi-driver.revision}";
-            src = pins.nvidia-vaapi-driver;
-          })
+          inputs'.azzipkgs.packages.egl-wayland2
         ];
         extraPackages32 = [
-          self'.packages.egl-wayland2
+          inputs'.azzipkgs.packages.egl-wayland2
         ];
       };
     };
