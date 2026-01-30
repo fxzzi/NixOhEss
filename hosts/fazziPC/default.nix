@@ -1,5 +1,6 @@
 {
   self',
+  inputs',
   pkgs,
   ...
 }: {
@@ -13,8 +14,7 @@
   ];
   # host specific packages
   hj = {
-    packages = with pkgs;
-    with self'.packages; [
+    packages = with pkgs; [
       qbittorrent-enhanced
       telegram-desktop
       losslesscut-bin
@@ -36,10 +36,10 @@
           melonds
           mupen64plus
         ]))
-      transcode
-      stremio-linux-shell-rewrite
-      eden
-      flac2vorbis
+      self'.packages.transcode
+      inputs'.azzipkgs.packages.stremio-linux-shell-rewrite
+      inputs'.azzipkgs.packages.eden
+      inputs'.azzipkgs.packages.flac2vorbis
     ];
   };
   # set resolutions early to avoid modeset when launching hyprland
