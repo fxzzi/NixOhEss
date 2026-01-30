@@ -37,8 +37,8 @@
           mupen64plus
         ]))
       self'.packages.transcode
-      inputs'.azzipkgs.packages.stremio-linux-shell-rewrite
-      inputs'.azzipkgs.packages.eden
+      inputs'.azzipkgs.packages.stremio-linux-shell-rewrite-git
+      inputs'.azzipkgs.packages.eden-bin
       inputs'.azzipkgs.packages.flac2vorbis
     ];
   };

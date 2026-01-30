@@ -8,7 +8,7 @@
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.foot;
   inherit (pkgs) symlinkJoin;
-  foot = inputs'.azzipkgs.packages.foot-transparency;
+  foot = inputs'.azzipkgs.packages.foot-transparency-git;
 in {
   options.cfg.programs.foot.enable = mkEnableOption "foot";
   config = mkIf cfg.enable {

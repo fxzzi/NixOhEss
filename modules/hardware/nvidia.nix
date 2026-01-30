@@ -45,15 +45,16 @@ in {
         enable = true;
         enable32Bit = true;
         extraPackages = [
-          inputs'.azzipkgs.packages.egl-wayland2
+          inputs'.azzipkgs.packages.egl-wayland2-git
         ];
         extraPackages32 = [
-          inputs'.azzipkgs.packages.egl-wayland2
+          inputs'.azzipkgs.packages.egl-wayland2-git
         ];
       };
     };
     environment = {
       systemPackages = [
+        # this is required for HDR on nvidia 590
         pkgs.vulkan-hdr-layer-kwin6
       ];
       sessionVariables = {
