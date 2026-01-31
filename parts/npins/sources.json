@@ -49,9 +49,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "cd0a8141f410a6532a76546df2665a4e3c93b69b",
-      "url": "https://github.com/fufexan/nix-gaming/archive/cd0a8141f410a6532a76546df2665a4e3c93b69b.tar.gz",
-      "hash": "sha256-Tbk4SF5XhM9fnrDtPl4wy3ItkjRMcBTVuA26ThzLVcs="
+      "revision": "84471e0ca212961bd297a2b9017582041c903ddd",
+      "url": "https://github.com/fufexan/nix-gaming/archive/84471e0ca212961bd297a2b9017582041c903ddd.tar.gz",
+      "hash": "sha256-jyfGSLu7TjgwaZb7wgUJnAEtcoksqG4f0LORh4JBcdM="
     },
     "nvuv": {
       "type": "Git",
@@ -75,9 +75,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5e795653828a6334dc117304453513fe831ecb22",
-      "url": "https://github.com/NotAShelf/rags/archive/5e795653828a6334dc117304453513fe831ecb22.tar.gz",
-      "hash": "sha256-G5V7usj1WxhfxfPgvTdDhbdfbt9GwYQ+Ll64h7YGxQY="
+      "revision": "b00a1cee5beb7dfa41384f5d4150ebefb4a017df",
+      "url": "https://github.com/NotAShelf/rags/archive/b00a1cee5beb7dfa41384f5d4150ebefb4a017df.tar.gz",
+      "hash": "sha256-IoNSHwwITLQoM3+RNGK9bYPcH6qiOQs2QkQAU3QQ1p0="
     },
     "startpage": {
       "type": "Git",
