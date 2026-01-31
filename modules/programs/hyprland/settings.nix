@@ -111,10 +111,12 @@ in {
             prefer_hdr = 2;
           };
           cursor = {
-            default_monitor = mkIf multiMonitor "${cfg.defaultMonitor}";
+            default_monitor = mkIf multiMonitor cfg.defaultMonitor;
             sync_gsettings_theme = 0; # we handle this ourselves
             inactive_timeout = 4; # after x seconds of inactivity, hide the cursor
-            no_break_fs_vrr = 0; # NOTE: https://github.com/hyprwm/Hyprland/issues/8582
+            no_break_fs_vrr = 1;
+            min_refresh_rate = 48;
+            no_hardware_cursors = 0;
           };
           input = {
             repeat_rate = 55; # Set characters to repeat on hold every 55ms
