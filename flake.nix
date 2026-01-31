@@ -17,7 +17,6 @@
     azzipkgs = {
       url = "gitlab:fazzi/azzipkgs";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
