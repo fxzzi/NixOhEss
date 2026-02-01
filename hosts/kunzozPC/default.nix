@@ -16,6 +16,7 @@
       qbittorrent-enhanced
       nvtopPackages.amd
       sgdboop
+      cemu
       inputs'.azzipkgs.packages.stremio-linux-shell-git
       (callPackage "${pins.creamlinux}" {})
     ];
