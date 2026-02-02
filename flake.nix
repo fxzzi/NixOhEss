@@ -11,7 +11,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/8e883f431f048f270b4c62dcea2e751b124210d7";
     systems.url = "github:nix-systems/x86_64-linux";
     # my packages which are intended for public use are available here
     azzipkgs = {
