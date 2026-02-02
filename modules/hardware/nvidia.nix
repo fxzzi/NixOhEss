@@ -23,13 +23,7 @@ in {
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs {
-          # patch out driver bundled egl-wayland and egl-wayland2.
-          # we use git egl-wayland2 below.
-          postFixup = ''
-            rm -f $out/share/egl/egl-external-platform.d./*nvidia_wayland*.json
-          '';
-        };
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
         #   url = "https://developer.nvidia.com/downloads/vulkan-beta-5809416-linux";
@@ -43,12 +37,12 @@ in {
       graphics = {
         enable = true;
         enable32Bit = true;
-        extraPackages = [
-          inputs'.azzipkgs.packages.egl-wayland2-git
-        ];
-        extraPackages32 = [
-          inputs'.azzipkgs.packages.egl-wayland2-git
-        ];
+        # extraPackages = [
+        #   inputs'.azzipkgs.packages.egl-wayland2-git
+        # ];
+        # extraPackages32 = [
+        #   inputs'.azzipkgs.packages.egl-wayland2-git
+        # ];
       };
     };
     environment = {

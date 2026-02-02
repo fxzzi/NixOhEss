@@ -75,9 +75,9 @@
       },
       "branch": "notashelf/push-ttztwlsuqwtk",
       "submodules": false,
-      "revision": "d092aee4ecfa77632909af2cdc95355fe3407cae",
-      "url": "https://github.com/NotAShelf/rags/archive/d092aee4ecfa77632909af2cdc95355fe3407cae.tar.gz",
-      "hash": "sha256-XQ9KSyuypIKBGmLICcu8zIJwoMfRbRN4+KzqALFkZz8="
+      "revision": "e8f2835ca499c395a7e667135a4ccc0b839d8e2b",
+      "url": "https://github.com/NotAShelf/rags/archive/e8f2835ca499c395a7e667135a4ccc0b839d8e2b.tar.gz",
+      "hash": "sha256-L77ca62Udfee/gaDz0lpbdU2pyLkx15+eguFkk9CTcY="
     },
     "startpage": {
       "type": "Git",
