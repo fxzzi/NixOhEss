@@ -11,7 +11,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/8e883f431f048f270b4c62dcea2e751b124210d7";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     systems.url = "github:nix-systems/x86_64-linux";
     # my packages which are intended for public use are available here
     azzipkgs = {
@@ -46,7 +46,7 @@
       };
     };
     stash = {
-      url = "github:NotAShelf/stash/bb1c5dc50b20751d47c8aab41288575ea979bb1";
+      url = "github:NotAShelf/stash";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     watt = {
