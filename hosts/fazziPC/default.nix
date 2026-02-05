@@ -40,6 +40,7 @@
       inputs'.azzipkgs.packages.stremio-linux-shell-rewrite-git
       inputs'.azzipkgs.packages.eden-bin
       inputs'.azzipkgs.packages.flac2vorbis
+      gpu-screen-recorder-gtk
     ];
   };
   # set resolutions early to avoid modeset when launching hyprland
@@ -51,4 +52,8 @@
   # and a secondary monitor of layout BGR. Therefore we shouldn't
   # use subpixel rendering.
   fonts.fontconfig.subpixel.rgba = "none";
+
+  programs.gpu-screen-recorder = {
+    enable = true;
+  };
 }
