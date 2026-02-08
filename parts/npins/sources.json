@@ -36,9 +36,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "74831b270ce1dd76b242586670f114534ce74896",
-      "url": "https://github.com/diniamo/niqspkgs/archive/74831b270ce1dd76b242586670f114534ce74896.tar.gz",
-      "hash": "sha256-KFurej/3hkdxa4cH2PXGVDxWnV5Ag9coiU4QireEW/U="
+      "revision": "d3ecf69607638ff323ea735d71cca826d4e70098",
+      "url": "https://github.com/diniamo/niqspkgs/archive/d3ecf69607638ff323ea735d71cca826d4e70098.tar.gz",
+      "hash": "sha256-WQLwbfnl1NsSUpF08KmGgY0TgX93qXbBc2H4Fxqp7zM="
     },
     "nix-gaming": {
       "type": "Git",
@@ -49,9 +49,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "f7d17740ed90663b11ae907d33b3fed9fc9e15a9",
-      "url": "https://github.com/fufexan/nix-gaming/archive/f7d17740ed90663b11ae907d33b3fed9fc9e15a9.tar.gz",
-      "hash": "sha256-8wH3ZYNs36V0A3f/ikraqdoVE++BfnXg9Ql8nAuUkHw="
+      "revision": "1acfa576224cdf69baa4be3ff45b3db3a90e97f8",
+      "url": "https://github.com/fufexan/nix-gaming/archive/1acfa576224cdf69baa4be3ff45b3db3a90e97f8.tar.gz",
+      "hash": "sha256-JRqzcHj+azNxHQYBEesD1fNm6S/ElcVrowXTBqJLpnk="
     },
     "nvuv": {
       "type": "Git",

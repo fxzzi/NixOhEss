@@ -18,6 +18,11 @@ in {
             temurin-jre-bin-17
             temurin-jre-bin-21
           ];
+          additionalLibs = with pkgs; [
+            libXt
+            libXtst
+            libxkbcommon
+          ];
         })
       ];
     };
