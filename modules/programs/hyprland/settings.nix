@@ -158,7 +158,7 @@ in {
             # we launch with Hyprland, not start-hyprland.
             disable_watchdog_warning = 1;
             # makes the fade out of hyprlock a bit nicer.
-            session_lock_xray = 1;
+            # session_lock_xray = 1;
           };
           ecosystem = {
             no_update_news = 1;
