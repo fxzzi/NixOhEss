@@ -17,6 +17,7 @@
       nvtopPackages.amd
       sgdboop
       cemu
+      waywall
       inputs'.azzipkgs.packages.stremio-linux-shell-git
       (callPackage "${pins.creamlinux}" {})
     ];
