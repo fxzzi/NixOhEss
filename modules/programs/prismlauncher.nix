@@ -49,7 +49,7 @@ in {
             },
           },
           experimental = {
-            tearing = true,
+            -- tearing = true,
           },
           input = {
             repeat_rate = 55,
