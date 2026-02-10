@@ -57,7 +57,7 @@ in {
             "systemctl --user start hyprland-session.target"
           ];
           exec = optionals multiMonitor [
-            "${getExe pkgs.xorg.xrandr} --output ${cfg.defaultMonitor} --primary"
+            "${getExe pkgs.xrandr} --output ${cfg.defaultMonitor} --primary"
           ];
 
           exec-shutdown = [

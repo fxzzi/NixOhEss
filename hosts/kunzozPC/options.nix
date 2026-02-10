@@ -75,7 +75,10 @@
         enable = true;
         shaderThreads = 6;
       };
-      prismlauncher.enable = true;
+      prismlauncher = {
+        enable = true;
+        waywall.enable = true;
+      };
       proton-ge = {
         enable = true;
         ntsync = true;

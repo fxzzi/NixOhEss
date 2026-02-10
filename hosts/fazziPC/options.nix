@@ -96,7 +96,10 @@
         enable = true;
         shaderThreads = 6;
       };
-      prismlauncher.enable = true;
+      prismlauncher = {
+        enable = true;
+        waywall.enable = true;
+      };
       lutris.enable = true;
       heroic.enable = true;
       adb.enable = true;
