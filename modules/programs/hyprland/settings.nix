@@ -304,6 +304,9 @@ in {
 
               # enable tearing on vrrtest
               "match:class love, match:title Freesync test, immediate 1"
+
+              # launch waywall in fullscreen
+              "match:class waywall, fullscreen 1"
             ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor (
