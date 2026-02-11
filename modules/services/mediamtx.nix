@@ -24,14 +24,13 @@ in {
         # allow publishing to all paths
         paths = {
           all_others = {};
-          fazzi = {
-            alwaysAvailable = true;
-            # alwaysAvailableFile = ./stream-closed.mp4;
-            alwaysAvailableTracks = [
-              {codec = "Opus";}
-              {codec = "H264";}
-            ];
-          };
+          # fazzi = {
+          #   alwaysAvailable = true;
+          #   alwaysAvailableTracks = [
+          #     {codec = "Opus";}
+          #     {codec = "H264";}
+          #   ];
+          # };
         };
         writeQueueSize = 2048;
       };
