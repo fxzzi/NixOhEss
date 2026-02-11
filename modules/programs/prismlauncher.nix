@@ -24,11 +24,12 @@ in {
           temurin-jre-bin-17
           temurin-jre-bin-21
         ];
-        # required for mcsr anticheat (fairplay), ninb
+        # required for mcsr anticheat (fairplay), ninjabrain-bot
         additionalLibs = [
-          libXt
-          libXtst
+          libxt
+          libxtst
           libxkbcommon
+          libxinerama
         ];
       })
       (mkIf cfg.waywall.enable waywall)
