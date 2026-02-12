@@ -43,28 +43,31 @@ in {
         local config = {
           theme = {
             background = "#303030ff",
+            ninb_opacity = 0.9,
             ninb_anchor = {
-              position = "bottomleft",
-              x = 160,
-              y = -90,
+              position = "topleft",
+              x = 300,
+              y = 60,
             },
           },
           experimental = {
-            -- tearing = true,
+            tearing = true,
           },
           input = {
             repeat_rate = 55,
             repeat_delay = 375,
             confine_pointer = true,
           },
-        }
-        config.actions = {
-          ["Ctrl-Shift-N"] = function()
-            waywall.exec("${getExe pkgs.temurin-jre-bin-17} -jar ${ninjabrain-bot} -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel")
-          end,
-          ["F7"] = function()
-            helpers.toggle_floating()
-          end
+          actions = {
+            -- run ninjabrain-bot
+            ["Ctrl-Shift-N"] = function()
+              waywall.exec("${getExe pkgs.temurin-jre-bin} -jar ${ninjabrain-bot}")
+            end,
+            -- show / hide it
+            ["F7"] = function()
+              helpers.toggle_floating()
+            end,
+          }
         }
 
         return config
