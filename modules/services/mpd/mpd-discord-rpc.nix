@@ -24,6 +24,10 @@ in {
             large_text = "$album";
             small_text = "";
             display_type = "state";
+            # button1_text = "Listen on YouTube";
+            # button1_link = "https://www.youtube.com/results?search_query=$artist%20-%20$title";
+            # button2_text = "Album on MusicBrainz";
+            # button2_url = "https://musicbrainz.org/search?query=$albumartist%20$artist&type=release&method=indexed";
           };
         };
       };

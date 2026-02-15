@@ -50,6 +50,7 @@ in {
         vista-fonts # more ms fonts including calibri and consolas
         inter
         jetbrains-mono
+        nerd-fonts.space-mono
       ];
     };
   };
