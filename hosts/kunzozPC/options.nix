@@ -59,6 +59,7 @@
       scanning.enable = false;
     };
     programs = {
+      gpu-screen-recorder.enable = true;
       adb.enable = true;
       mangohud = {
         enable = true;
