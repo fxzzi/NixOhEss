@@ -73,7 +73,7 @@ in {
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
             mode = "highres";
             bitdepth = 10;
-            # cm = "edid";
+            cm = "edid";
           };
           # fazziPC secondary monitor
           "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
@@ -82,7 +82,7 @@ in {
             # hdr sucks on this monitor lol
             supports_hdr = -1;
             bitdepth = 10;
-            # cm = "edid";
+            cm = "edid";
             # this monitor doesn't flicker when using VRR at all
             vrr = 1;
           };
