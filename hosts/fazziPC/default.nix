@@ -51,4 +51,6 @@
   # and a secondary monitor of layout BGR. Therefore we shouldn't
   # use subpixel rendering.
   fonts.fontconfig.subpixel.rgba = "none";
+
+  services.flatpak.enable = true;
 }
