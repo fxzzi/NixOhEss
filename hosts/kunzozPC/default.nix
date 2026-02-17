@@ -40,4 +40,5 @@
     enable = true;
     # settings = {};
   };
+  services.flatpak.enable = true;
 }
