@@ -127,7 +127,7 @@ in {
                 }
 
                 /* Hide voice settings menus in user panel */
-                div[class^="micButtonParent__"] button[role="switch"] {
+                div[class^="audioButtonParent__"] button[role="switch"] {
                   border-radius: var(--radius-sm);
                   & ~ button { display: none; }
                 }

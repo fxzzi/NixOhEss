@@ -49,9 +49,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "43b1d5711e81761bb2152cfc0920f465d3edd9b0",
-      "url": "https://github.com/fufexan/nix-gaming/archive/43b1d5711e81761bb2152cfc0920f465d3edd9b0.tar.gz",
-      "hash": "sha256-Foh3EICQDI3Q9XI0lnTh3EceVAYUJP4Gan7oluieqC4="
+      "revision": "06154d726ba4eb01c9b2d18edcc3d2476c83d3bc",
+      "url": "https://github.com/fufexan/nix-gaming/archive/06154d726ba4eb01c9b2d18edcc3d2476c83d3bc.tar.gz",
+      "hash": "sha256-E6vYsfrmSugowvC30inu7cpChPXYl68Sjs+p7/3ZitY="
     },
     "nvuv": {
       "type": "Git",
@@ -101,9 +101,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "1b720654b03ee30105f4208c8338c869e234d509",
-      "url": "https://github.com/NotAShelf/tuigreet/archive/1b720654b03ee30105f4208c8338c869e234d509.tar.gz",
-      "hash": "sha256-HNDutruDYt6ZDDqydTbFKSRwMkkw81MXVXVtc+kmhRc="
+      "revision": "b05e1c335cc79881b3c4822f8c8192c38efb2d80",
+      "url": "https://github.com/NotAShelf/tuigreet/archive/b05e1c335cc79881b3c4822f8c8192c38efb2d80.tar.gz",
+      "hash": "sha256-vaiq9NaaXM4oNIXxcff3EXp3T2Mu3OLxFyFK+el4BZs="
     },
     "walls": {
       "type": "Git",
@@ -114,9 +114,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "cd727abfd57cc0554566649c1a4f7f8fc52be735",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=cd727abfd57cc0554566649c1a4f7f8fc52be735",
-      "hash": "sha256-UNGLWoxxEPE9i91PCN3JT7U/Q6y83xhQlsL9ZuYwr8Y="
+      "revision": "3cec880403db0797071e98870f5b317b32f97059",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=3cec880403db0797071e98870f5b317b32f97059",
+      "hash": "sha256-2lXNH+2e9uN9ZNCy4xHkvWTCa7kbBK76YjTlfsYfuDU="
     }
   },
   "version": 7
