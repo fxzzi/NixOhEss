@@ -59,7 +59,7 @@
       syncthing.enable = true;
       mpd = {
         enable = true;
-        discord-rpc.enable = true;
+        # discord-rpc.enable = true;
       };
       hypridle = {
         enable = true;
