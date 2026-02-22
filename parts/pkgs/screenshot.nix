@@ -34,7 +34,27 @@ writeShellApplication {
         echo "give monitor output too"
         exit 1
       fi
-       $grimCmd -o "$2" "$path"
+
+      monName="$2"
+
+      monJson="$(hyprctl monitors -j | jq -r --arg name "$monName" '.[] | select(.name == $name)')"
+      monId="$(echo "$monJson" | jq -r '.id')"
+
+      if [ -z "$monId" ] || [ "$monId" = "null" ]; then
+        echo "unknown monitor: $monName"
+        exit 1
+      fi
+
+      fsStableId="$(hyprctl clients -j | jq -r --argjson mid "$monId" '
+        map(select(.monitor == $mid and ((.fullscreen // 0) != 0)))
+        | .[0].stableId // empty
+      ')"
+
+      if [ -n "$fsStableId" ]; then
+        $grimCmd -T "$fsStableId" "$path"
+      else
+        $grimCmd -o "$monName" "$path"
+      fi
       ;;
     --selection)
       wayfreeze --hide-cursor &
@@ -46,8 +66,8 @@ writeShellApplication {
       kill $PID
       ;;
     --active)
-      window_geometry=$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
-      $grimCmd -g "$window_geometry" "$path" || echo "no active window"
+      stableId=$(hyprctl activewindow -j | jq -r '.stableId')
+      $grimCmd -T "$stableId" "$path" || echo "no active window"
       ;;
     esac
 
