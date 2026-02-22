@@ -98,7 +98,7 @@ in {
             supports_wide_color = -1;
           };
           render = {
-            direct_scanout = mkDefault 1;
+            direct_scanout = mkDefault 2;
             # block cm if ds is active
             non_shader_cm = 2;
             cm_auto_hdr = 2; # use hdredid for autohdr
@@ -114,8 +114,7 @@ in {
             default_monitor = mkIf multiMonitor cfg.defaultMonitor;
             sync_gsettings_theme = 0; # we handle this ourselves
             inactive_timeout = 4; # after x seconds of inactivity, hide the cursor
-            no_break_fs_vrr = 1;
-            min_refresh_rate = 48;
+            no_break_fs_vrr = 2;
             no_hardware_cursors = 0;
           };
           input = {
@@ -241,7 +240,8 @@ in {
               "match:class .*stremio.*, render_unfocused 1"
 
               "match:class atril, idle_inhibit focus"
-              "match:class foot, idle_inhibit fullscreen"
+              # oled flicker is annoying on term
+              "match:class foot, idle_inhibit fullscreen, no_vrr 1"
 
               # some apps, mostly games, are stupid and they fullscreen on the
               # wrong monitor. so just don't listen to them lol
@@ -273,7 +273,6 @@ in {
               ])
               [
                 # wine, proton, etc
-                "class .*.exe" # all exe's
                 "xdg_tag proton-game" # modern proton versions set xdgTag
                 "class steam_app_.*" # all xwayland proton games
                 # emulators
