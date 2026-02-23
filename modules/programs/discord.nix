@@ -61,7 +61,7 @@ in {
       xdg.config.files."discord/settings.json" = {
         generator = lib.generators.toJSON {};
         value = let
-          endpoint = "https://inject.shelter.uwu.network/vencord";
+          endpoint = "https://inject.shelter.uwu.network/equicord";
         in {
           SKIP_HOST_UPDATE = true;
           MINIMIZE_TO_TRAY = cfg.minimizeToTray;
