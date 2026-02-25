@@ -327,7 +327,7 @@ in {
           in
             [
               # screenshot script
-              ",Print, exec, ${screenshot} --monitor ${cfg.defaultMonitor}"
+              ",Print, exec, ${screenshot} --monitor"
               "SHIFT, Print, exec, ${screenshot} --selection"
               "$MOD SHIFT, S, exec, ${screenshot} --selection"
               "$MOD, Print, exec, ${screenshot} --active"
@@ -367,7 +367,7 @@ in {
               "$MOD, Space, fullscreen"
               "$MOD, Tab, togglefloating"
               "$MOD, P, pseudo # dwindle"
-              "$MOD, S, togglesplit # dwindle"
+              "$MOD, S, layoutmsg, togglesplit # dwindle"
 
               # focus
               "$MOD, left, movefocus, l"

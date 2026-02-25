@@ -11,6 +11,7 @@
 writeShellApplication {
   name = "screenshot";
   runtimeInputs = [libcanberra-gtk3 jq grim slurp wl-clipboard wayfreeze dunst];
+  excludeShellChecks = ["SC2016"];
   text = ''
     # Screenshot the entire monitor, a selection, or active window
     # and then copies the image to your clipboard.
@@ -30,26 +31,15 @@ writeShellApplication {
 
     case $1 in
     --monitor)
-      if [ -z "$2" ]; then
-        echo "give monitor output too"
-        exit 1
-      fi
+      monitorJson=$(hyprctl monitors -j | jq -r '.[] | select(.focused)')
+      monName=$(echo "$monitorJson" | jq -r '.name')
+      activeWsId=$(echo "$monitorJson" | jq -r '.activeWorkspace.id')
 
-      monName="$2"
+      # find a fullscreen window on the active workspace, if any
+      fsStableId=$(hyprctl clients -j | jq -r --argjson ws "$activeWsId" 'map(select(.workspace.id == $ws and (.fullscreen // 0) != 0)) | .[0].stableId // empty')
 
-      monJson="$(hyprctl monitors -j | jq -r --arg name "$monName" '.[] | select(.name == $name)')"
-      monId="$(echo "$monJson" | jq -r '.id')"
-
-      if [ -z "$monId" ] || [ "$monId" = "null" ]; then
-        echo "unknown monitor: $monName"
-        exit 1
-      fi
-
-      fsStableId="$(hyprctl clients -j | jq -r --argjson mid "$monId" '
-        map(select(.monitor == $mid and ((.fullscreen // 0) != 0)))
-        | .[0].stableId // empty
-      ')"
-
+      # if there's a fullscreen window, capture it directly by stable ID
+      # so grim doesn't include bars/decorations. otherwise capture the output.
       if [ -n "$fsStableId" ]; then
         $grimCmd -T "$fsStableId" "$path"
       else
