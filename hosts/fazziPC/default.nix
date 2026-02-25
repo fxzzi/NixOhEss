@@ -28,6 +28,7 @@
       dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
+      eden
       (retroarch.withCores (cores:
         with cores; [
           bsnes
@@ -38,7 +39,6 @@
         ]))
       self'.packages.transcode
       inputs'.azzipkgs.packages.stremio-linux-shell-rewrite-git
-      inputs'.azzipkgs.packages.eden-bin
       inputs'.azzipkgs.packages.flac2vorbis
     ];
   };
