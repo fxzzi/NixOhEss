@@ -17,6 +17,7 @@
     packages = with pkgs; [
       qbittorrent-enhanced
       telegram-desktop
+      stoat-desktop
       losslesscut-bin
       steamguard-cli
       picard

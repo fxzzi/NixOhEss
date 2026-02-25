@@ -264,7 +264,7 @@ in {
               "match:class com-cburch-logisim-Main, match:title .*Logisim-evolution v.*, tile 1"
 
               # see: https://github.com/hyprwm/Hyprland/discussions/12786
-              "match:class steam, match:title Steam, tile 1"
+              # "match:class steam, match:title Steam, tile 1"
 
               # Window rules for games
             ]
@@ -293,6 +293,7 @@ in {
                 "class gamescope"
                 "class Celeste"
                 "class sm64coopdx"
+                "class UnleashedRecomp"
               ])
             ++ [
               # content type game means ds will be in effect.
