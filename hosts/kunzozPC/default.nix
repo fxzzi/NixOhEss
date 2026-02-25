@@ -15,6 +15,7 @@
       losslesscut-bin
       qbittorrent-enhanced
       nvtopPackages.amd
+      stoat-desktop
       sgdboop
       cemu
       inputs'.azzipkgs.packages.stremio-linux-shell-git
