@@ -298,9 +298,8 @@ in {
             ++ [
               # content type game means ds will be in effect.
               # ds and tearing cannot activate at the same time.
-              # gmd and osu!lazer need tearing for unlocked fps.
+              # osu!lazer needs tearing for unlocked fps.
               # probably all winewayland stuff too.
-              "match:class geometrydash.exe, content none, immediate 1, no_vrr 1"
               "match:class osu!, content none, immediate 1, no_vrr 1"
 
               # enable tearing on vrrtest
