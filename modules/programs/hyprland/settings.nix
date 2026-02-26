@@ -264,7 +264,7 @@ in {
               "match:class com-cburch-logisim-Main, match:title .*Logisim-evolution v.*, tile 1"
 
               # see: https://github.com/hyprwm/Hyprland/discussions/12786
-              # "match:class steam, match:title Steam, tile 1"
+              "match:class steam, match:title Steam, tile 1"
 
               # Window rules for games
             ]
