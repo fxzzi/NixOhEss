@@ -7,17 +7,12 @@
 }: let
   inherit (lib) mkEnableOption getExe mkIf;
   cfg = config.cfg.programs.ncmpcpp;
-
-  # FIXME: https://github.com/NixOS/nixpkgs/issues/493758#issuecomment-3954410597
-  ncmpcpp = pkgs.ncmpcpp.override {
-    boost = pkgs.boost187;
-  };
 in {
   options.cfg.programs.ncmpcpp.enable = mkEnableOption "ncmpcpp";
   config = mkIf cfg.enable {
     hj = {
       packages = [
-        ncmpcpp
+        pkgs.ncmpcpp
       ];
       xdg.config.files = {
         "ncmpcpp/bindings".text = ''
@@ -50,7 +45,7 @@ in {
       };
     };
     environment.shellAliases = {
-      ncm = "${getExe ncmpcpp}";
+      ncm = "${getExe pkgs.ncmpcpp}";
     };
   };
 }

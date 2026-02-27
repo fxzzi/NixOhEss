@@ -36,7 +36,7 @@ in {
           ffmpeg
           imagemagick
           atril
-          libreoffice
+          libreoffice-fresh
           hunspell
           hunspellDicts.en_GB-ise
           nix-tree

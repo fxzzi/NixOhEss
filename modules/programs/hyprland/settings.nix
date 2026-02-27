@@ -270,7 +270,7 @@ in {
             ]
             ++ (lib.concatMap (game: [
                 # for all game matches
-                "match:${game}, idle_inhibit fullscreen, content game, immediate 1"
+                "match:${game}, idle_inhibit fullscreen, content game, immediate 1, confine_pointer fullscreen"
               ])
               [
                 # wine, proton, etc
@@ -294,6 +294,7 @@ in {
                 "class Celeste"
                 "class sm64coopdx"
                 "class UnleashedRecomp"
+                "class sober"
               ])
             ++ [
               # content type game means ds will be in effect.

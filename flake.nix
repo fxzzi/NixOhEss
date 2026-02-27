@@ -28,10 +28,12 @@
       inputs.smfh.follows = "";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      # url = "github:hyprwm/Hyprland";
+      url = "github:fxzzi/Hyprland/confine_cursor_rule";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
+        aquamarine.url = "github:hyprwm/aquamarine/main";
       };
     };
     nvf = {
