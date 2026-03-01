@@ -15,6 +15,7 @@
     getExe
     getExe'
     optionalAttrs
+    optionalString
     mkIf
     optionals
     mod
@@ -270,7 +271,7 @@ in {
             ]
             ++ (lib.concatMap (game: [
                 # for all game matches
-                "match:${game}, idle_inhibit fullscreen, content game, immediate 1, confine_pointer fullscreen"
+                "match:${game}, idle_inhibit fullscreen, content game, immediate 1${optionalString cfg.useGit ", confine_pointer fullscreen"}"
               ])
               [
                 # wine, proton, etc
