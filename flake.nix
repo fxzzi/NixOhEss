@@ -33,7 +33,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        aquamarine.url = "github:hyprwm/aquamarine/main";
       };
     };
     nvf = {
