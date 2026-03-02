@@ -239,7 +239,9 @@ in {
           windowrule =
             [
               # hyprland shows anr dialog when stremio is in another workspace, so render_unfocused 1
-              "match:class .*stremio.*, render_unfocused 1"
+              "match:class .*stremio.*, render_unfocused 1, content video"
+              # no vrr on video content
+              "match:content 2, idle_inhibit fullscreen, no_vrr 1"
 
               "match:class atril, idle_inhibit focus"
               # oled flicker is annoying on term
