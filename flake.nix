@@ -28,8 +28,7 @@
       inputs.smfh.follows = "";
     };
     hyprland = {
-      # url = "github:hyprwm/Hyprland";
-      url = "github:fxzzi/Hyprland/confine_cursor_rule";
+      url = "github:hyprwm/Hyprland";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
