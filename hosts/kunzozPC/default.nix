@@ -10,6 +10,7 @@
     ./gtkBookmarks.nix
     ./options.nix
   ];
+
   hj = {
     packages = with pkgs; [
       losslesscut-bin
@@ -23,6 +24,16 @@
     ];
     xdg.config.files."hypr/hyprland.conf" = {
       value = {
+        "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543]" = {
+          # this monitor is weird and has a 4k60 downscale mode.
+          # highrr will prefer the mode with highest rr, then highest res
+          # so effectively 1440p170
+          mode = "highrr";
+          # bad hdr
+          supports_hdr = -1;
+          # this monitor does support 10bit, but only at 120Hz and lower.
+          supports_wide_color = -1;
+        };
         # tearing and ds don't work on kunzozPC
         render.direct_scanout = 0;
         general.allow_tearing = 0;
