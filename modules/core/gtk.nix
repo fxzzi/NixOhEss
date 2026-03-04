@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   noRounding = ''
     window {
       border-radius: 0;
@@ -32,7 +36,7 @@ in {
             color-scheme = "prefer-dark";
 
             gtk-enable-primary-paste = false; # disable middle click paste
-            enable-animations = false;
+            enable-animations = config.cfg.programs.smoothScroll.enable;
           };
           "org/gnome/desktop/wm/preferences" = {
             # hide all title bar buttons on gtk apps
