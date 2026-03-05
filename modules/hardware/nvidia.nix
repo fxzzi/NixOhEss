@@ -23,33 +23,22 @@ in {
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
         nvidiaSettings = false; # useless on wayland still
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        #   url = "https://developer.nvidia.com/downloads/vulkan-beta-5809416-linux";
-        #   version = "580.94.16";
-        #   sha256_64bit = "sha256-DqwALfSNPjLsat4Q9Sg44BACNUyqK+kpUxL5CFzLlRc=";
-        #   openSha256 = "sha256-WWql/WBQyWNG+skZgvUFbNCClVjty3s3+QR6NnJhSF4=";
-        #   usePersistenced = false;
-        #   useSettings = false;
-        # };
+        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          version = "595.45.04";
+          sha256_64bit = "sha256-zUllSSRsuio7dSkcbBTuxF+dN12d6jEPE0WgGvVOj14=";
+          openSha256 = "";
+          usePersistenced = false;
+          useSettings = false;
+        };
       };
       graphics = {
         enable = true;
         enable32Bit = true;
-        # extraPackages = [
-        #   inputs'.azzipkgs.packages.egl-wayland2-git
-        # ];
-        # extraPackages32 = [
-        #   inputs'.azzipkgs.packages.egl-wayland2-git
-        # ];
       };
     };
     environment = {
-      systemPackages = [
-        # this is required for HDR on nvidia 590
-        pkgs.vulkan-hdr-layer-kwin6
-      ];
       sessionVariables = {
         # disable vsync
         __GL_SYNC_TO_VBLANK = "0";
@@ -58,7 +47,7 @@ in {
         # lowest frame buffering -> lower latency
         __GL_MaxFramesAllowed = "1";
         # no idea what this does but apparently useful
-        # __GL_YIELD = "usleep";
+        __GL_YIELD = "usleep";
         # fix hw acceleration and native wayland on losslesscut
         __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
         # fix hw acceleration in bwrap (osu!lazer, wrapped appimages)
@@ -67,27 +56,31 @@ in {
         # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
       };
-      # fix high vram usage on discord and hyprland. match with the wrapper procnames
-      etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool.json".text = builtins.toJSON {
-        rules =
-          map (proc: {
-            pattern = {
-              feature = "procname";
-              matches = proc;
-            };
-            profile = "No VidMem Reuse";
-          }) [
-            ".Hyprland-wrapped"
-            "Discord"
-            ".Discord-wrapped"
-            "electron"
-            ".electron-wrapped"
-            "librewolf"
-            ".librewolf-wrapped"
-            "losslesscut"
-            ".losslesscut-wrapped"
-            "hyprpaper"
+      etc = {
+        # fix high vram usage on some apps. nvidia tries to do this automatically but only for select programs
+        "nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool.json".text = builtins.toJSON {
+          rules = [
+            {
+              pattern = {
+                feature = "true";
+                matches = "";
+              };
+              profile = "No VidMem Reuse";
+            }
           ];
+        };
+        # don't lock to a lower (p2) perf state when cuda is in use.
+        "nvidia/nvidia-application-profiles-rc.d/51-cuda-dont-lock-to-p2.json".text = builtins.toJSON {
+          rules = [
+            {
+              pattern = {
+                feature = "true";
+                matches = "";
+              };
+              profile = "CudaNoStablePerfLimit";
+            }
+          ];
+        };
       };
     };
     boot = {
@@ -109,7 +102,8 @@ in {
         ]
         ++ optionals config.hardware.nvidia.powerManagement.enable [
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
-          "nvidia.NVreg_EnableS0ixPowerManagement=0"
+          "nvidia.NVreg_UseKernelSuspendNotifiers=1"
+          "nvidia.NVreg_EnableS0ixPowerManagement=1"
         ];
     };
     systemd.services.nvidia-temp = let
