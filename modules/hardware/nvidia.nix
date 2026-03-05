@@ -19,16 +19,16 @@ in {
     hardware = {
       nvidia = {
         # open drivers fail to wake from suspend for me :(
-        open = false;
+        open = true;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
-        powerManagement.enable = true; # Fixes nvidia-vaapi-driver after suspend
+        powerManagement.enable = !config.hardware.nvidia.open;
         nvidiaSettings = false; # useless on wayland still
         # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
           version = "595.45.04";
           sha256_64bit = "sha256-zUllSSRsuio7dSkcbBTuxF+dN12d6jEPE0WgGvVOj14=";
-          openSha256 = "";
+          openSha256 = "sha256-uqNfImwTKhK8gncUdP1TPp0D6Gog4MSeIJMZQiJWDoE=";
           usePersistenced = false;
           useSettings = false;
         };
@@ -46,12 +46,10 @@ in {
         __GL_VRR_ALLOWED = "1";
         # lowest frame buffering -> lower latency
         __GL_MaxFramesAllowed = "1";
-        # no idea what this does but apparently useful
-        __GL_YIELD = "usleep";
         # fix hw acceleration and native wayland on losslesscut
-        __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
+        __EGL_VENDOR_LIBRARY_CONFIG_DIRS = "/run/opengl-driver/share/glvnd/egl_vendor.d/";
         # fix hw acceleration in bwrap (osu!lazer, wrapped appimages)
-        __EGL_EXTERNAL_PLATFORM_CONFIG_DIRS = "/run/opengl-driver/share/egl/egl_external_platform.d";
+        __EGL_EXTERNAL_PLATFORM_CONFIG_DIRS = "/run/opengl-driver/share/egl/egl_external_platform.d/";
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
         # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
@@ -99,11 +97,11 @@ in {
           "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
           "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
           "nvidia-modeset.disable_vrr_memclk_switch=1"
+          "nvidia.NVreg_TemporaryFilePath=/var/tmp"
         ]
-        ++ optionals config.hardware.nvidia.powerManagement.enable [
-          "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
+        ++ optionals config.hardware.nvidia.open [
+          "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
           "nvidia.NVreg_UseKernelSuspendNotifiers=1"
-          "nvidia.NVreg_EnableS0ixPowerManagement=1"
         ];
     };
     systemd.services.nvidia-temp = let
