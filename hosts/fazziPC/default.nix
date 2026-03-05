@@ -60,7 +60,8 @@
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
           mode = "highres";
           bitdepth = 10;
-          icc = "${config.age.secrets.mo27q28g.path}";
+          # use the srgb mode on the monitor for now due to fw issues
+          # icc = "${config.age.secrets.mo27q28g.path}";
         };
         # secondary monitor
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
