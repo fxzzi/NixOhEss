@@ -47,6 +47,8 @@
       url = "github:NotAShelf/stash";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # for lanzaboote
+    crane.follows = "stash/crane";
     watt = {
       url = "github:NotAShelf/watt";
       inputs.nixpkgs.follows = "nixpkgs";
