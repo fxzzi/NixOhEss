@@ -1,7 +1,8 @@
-const GLib = imports.gi.GLib;
-const Gio = imports.gi.Gio;
+import GLib from "gi://GLib";
+import Gio from "gi://Gio";
 
-// Priority mapping for sensors and their corresponding temperature labels
+const decoder = new TextDecoder();
+
 const sensorLabelPriority = [
   { regex: /^k10temp/, labels: ["Tdie", "Tctl"] },
   { regex: /^zenpower/, labels: ["Tdie", "Tctl"] },
@@ -24,7 +25,7 @@ function findInputForLabel(directory, label) {
     if (fileName.startsWith('temp') && fileName.endsWith('_label')) {
       const labelFilePath = `${directory}/${fileName}`;
       const [success, contents] = GLib.file_get_contents(labelFilePath);
-      if (success && new TextDecoder().decode(contents).trim() === label) {
+      if (success && decoder.decode(contents).trim() === label) {
         const inputFilePath = labelFilePath.replace('_label', '_input');
         if (GLib.file_test(inputFilePath, GLib.FileTest.EXISTS | GLib.FileTest.IS_REGULAR)) {
           return inputFilePath;
@@ -51,7 +52,7 @@ function determineTempFilePath() {
       if (GLib.file_test(nameFilePath, GLib.FileTest.EXISTS | GLib.FileTest.IS_REGULAR)) {
         const [success, nameBytes] = GLib.file_get_contents(nameFilePath);
         if (success) {
-          const sensorName = new TextDecoder().decode(nameBytes).trim();
+          const sensorName = decoder.decode(nameBytes).trim();
           const priority = sensorLabelPriority.findIndex(({ regex }) => regex.test(sensorName));
           if (priority !== -1) {
             sensorCandidates.push({ path: hwmonDirPath, priority, labels: sensorLabelPriority[priority].labels });
@@ -89,7 +90,7 @@ const cpuTemp = Variable("", {
       try {
         const [success, tempBytes] = GLib.file_get_contents(tempFilePath);
         if (!success) return "N/A";
-        const temp = parseFloat(new TextDecoder().decode(tempBytes)) / 1000;
+        const temp = parseFloat(decoder.decode(tempBytes)) / 1000;
         return `${temp.toFixed(0)}°C`;
       } catch (error) {
         console.error("Error reading CPU temperature from", tempFilePath, ":", error);

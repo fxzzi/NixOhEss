@@ -1,5 +1,7 @@
-const GLib = imports.gi.GLib;
-const Gio = imports.gi.Gio;
+import GLib from "gi://GLib";
+import Gio from "gi://Gio";
+
+const decoder = new TextDecoder();
 
 function findAmdGpuTempFile() {
   try {
@@ -13,7 +15,7 @@ function findAmdGpuTempFile() {
       const vendorPath = `${devicePath}/vendor`;
 
       const [success, vendorBytes] = GLib.file_get_contents(vendorPath);
-      if (success && new TextDecoder().decode(vendorBytes).trim() === "0x1002") {
+      if (success && decoder.decode(vendorBytes).trim() === "0x1002") {
         const hwmonPath = `${devicePath}/hwmon`;
         if (GLib.file_test(hwmonPath, GLib.FileTest.IS_DIR)) {
           const hwmonDir = Gio.File.new_for_path(hwmonPath);
@@ -61,7 +63,7 @@ const gpuTemp = Variable("", {
       try {
         const [success, tempBytes] = GLib.file_get_contents(gpuTempFilePath);
         if (!success) return "N/A";
-        const temp = parseFloat(new TextDecoder().decode(tempBytes)) / 1000;
+        const temp = parseFloat(decoder.decode(tempBytes)) / 1000;
         return `${temp.toFixed(0)}°C`;
       } catch (error) {
         console.error("Error reading GPU temperature from", gpuTempFilePath, ":", error);
