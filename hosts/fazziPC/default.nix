@@ -29,7 +29,6 @@
     packages = with pkgs; [
       qbittorrent-enhanced
       telegram-desktop
-      stoat-desktop
       losslesscut-bin
       steamguard-cli
       picard
@@ -42,6 +41,7 @@
       nvtopPackages.nvidia
       yt-dlp
       eden
+      stremio-linux-shell
       (retroarch.withCores (cores:
         with cores; [
           bsnes
@@ -51,7 +51,6 @@
           mupen64plus
         ]))
       self'.packages.transcode
-      inputs'.azzipkgs.packages.stremio-linux-shell-rewrite-git
       inputs'.azzipkgs.packages.flac2vorbis
     ];
     xdg.config.files."hypr/hyprland.conf" = {

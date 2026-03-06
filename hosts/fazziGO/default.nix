@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  inputs',
   ...
 }: {
   imports = [
@@ -14,7 +13,7 @@
       packages = with pkgs; [
         telegram-desktop
         deluge
-        inputs'.azzipkgs.packages.stremio-linux-shell-git
+        stremio-linux-shell
         # uni stuff
         onlyoffice-desktopeditors
         processing
