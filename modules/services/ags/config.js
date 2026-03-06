@@ -81,16 +81,34 @@ const getMonitorByName = (name) => {
   return null;
 };
 
-const InitBars = () =>
+const removeAllWindows = () => App.windows.forEach(App.removeWindow);
+
+const InitBars = (wdg) => {
+
   hyprland.monitors.forEach((mon) => {
     const gdkMonitor = getMonitorByName(mon.name);
-    if (gdkMonitor) App.addWindow(Bar(gdkMonitor));
+    if (gdkMonitor) App.addWindow(wdg(gdkMonitor));
   });
+};
 
-App.config({ style: "./style.css" });
+// listen for monitor connects and disconnects, and reinit all bars.
+hyprland.connect("event", (_, name) => {
+  if (name === "monitoradded" || name === "monitorremoved") {
+    console.log(`monitor change event detected!`);
+    removeAllWindows();
+    InitBars(Bar);
+  }
+});
 
+// App configuration
+App.config({
+  style: "./style.css",
+});
+
+// Reload CSS when wallust updates colors
 function monitorCssFile() {
   const cssFilePath = `${App.configDir}/colors_ags.css`;
+
   const monitor = Utils.monitorFile(cssFilePath, (file, event) => {
     if (event === Gio.FileMonitorEvent.CHANGES_DONE_HINT) {
       console.log("Caught wallust reload, reloading CSS!");
@@ -98,8 +116,13 @@ function monitorCssFile() {
       App.applyCss(`${App.configDir}/style.css`);
     }
   });
-  if (!monitor) console.error("Failed to monitor CSS file.");
+
+  if (!monitor) {
+    console.error("Failed to monitor CSS file.");
+  }
 }
 
-InitBars();
+// on startup, create bars for all monitors
+InitBars(Bar);
+// start monitoring colors_ags.css
 monitorCssFile();

@@ -6,7 +6,6 @@
 }: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.wleave;
-  logout = lib.getExe pkgs.hyprshutdown;
 in {
   options.cfg.programs.wleave.enable = mkEnableOption "wleave";
   config = mkIf cfg.enable {
@@ -28,14 +27,14 @@ in {
             buttons = [
               {
                 label = "shutdown";
-                action = "${logout} -p 'systemctl poweroff'";
+                action = "systemctl poweroff";
                 text = "Shutdown";
                 keybind = "s";
                 icon = ./icons/power.png;
               }
               {
                 label = "reboot";
-                action = "${logout} -p 'systemctl reboot'";
+                action = "systemctl reboot";
                 text = "Reboot";
                 keybind = "r";
                 icon = ./icons/restart.png;
@@ -49,7 +48,7 @@ in {
               }
               {
                 label = "logout";
-                action = logout;
+                action = "hyprctl dispatch exit";
                 text = "Logout";
                 keybind = "e";
                 icon = ./icons/logout.png;
