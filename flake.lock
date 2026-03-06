@@ -594,6 +594,10 @@
     "root": {
       "inputs": {
         "azzipkgs": "azzipkgs",
+        "crane": [
+          "stash",
+          "crane"
+        ],
         "flake-parts": "flake-parts",
         "hjem": "hjem",
         "hyprland": "hyprland",
