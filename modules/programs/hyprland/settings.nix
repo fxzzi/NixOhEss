@@ -61,7 +61,6 @@ in {
           ];
 
           exec-shutdown = [
-            "pkill -9 Discord" # discord loves to hang instead of close nicely.
             "systemctl --user stop hyprland-session.target"
           ];
           # default settings for monitors
