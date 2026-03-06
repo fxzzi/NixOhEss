@@ -1,11 +1,8 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./options.nix
+    ./secureboot.nix
   ];
   config = {
     system.stateVersion = "25.05";
@@ -30,16 +27,8 @@
             shadow.enabled = 0;
             blur.enabled = 0;
           };
-          # helps on laptops
-          render.new_render_scheduling = true;
         };
       };
-    };
-    # encryption is enabled on fazziGO. So enter encryption
-    # password and then autologin.
-    services.getty = {
-      autologinUser = config.cfg.core.username;
-      autologinOnce = true;
     };
     # set these when travelling
     # services = {

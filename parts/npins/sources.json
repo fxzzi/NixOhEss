@@ -27,6 +27,22 @@
       "hash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
       "frozen": true
     },
+    "lanzaboote": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "lanzaboote"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v1.0.0",
+      "revision": "2fe211d9c0e2320ce23dc995a3f93666ca149d9a",
+      "url": "https://api.github.com/repos/nix-community/lanzaboote/tarball/refs/tags/v1.0.0",
+      "hash": "sha256-RJmgVDzjRI18BWVogG6wpsl1UCuV6ui8qr4DJ1LfWZ8="
+    },
     "niqspkgs": {
       "type": "Git",
       "repository": {
