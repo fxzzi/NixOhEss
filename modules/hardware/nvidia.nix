@@ -50,7 +50,7 @@ in {
         __EGL_VENDOR_LIBRARY_CONFIG_DIRS = "/run/opengl-driver/share/glvnd/egl_vendor.d/";
         # fix hw acceleration in bwrap (osu!lazer, wrapped appimages)
         __EGL_EXTERNAL_PLATFORM_CONFIG_DIRS = "/run/opengl-driver/share/egl/egl_external_platform.d/";
-        # avoid creation $HOME/.nv dir
+        # avoid creation of $HOME/.nv dir
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
         # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
@@ -94,12 +94,10 @@ in {
           "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
           "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
           "nvidia-modeset.disable_vrr_memclk_switch=1"
+          "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
         ]
         ++ optionals isOpen [
           "nvidia.NVreg_UseKernelSuspendNotifiers=1"
-        ]
-        ++ optionals (!isOpen) [
-          "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
         ];
     };
     systemd.services.nvidia-temp = let
