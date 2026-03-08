@@ -91,12 +91,16 @@ const InitBars = (wdg) => {
   });
 };
 
-// listen for monitor connects and disconnects, and reinit all bars.
-hyprland.connect("event", (_, name) => {
-  if (name === "monitoradded" || name === "monitorremoved") {
-    console.log(`monitor change event detected!`);
-    removeAllWindows();
-    InitBars(Bar);
+// listen for monitor connects and disconnects, and update only the affected bar.
+hyprland.connect("event", (_, name, data) => {
+  if (name === "monitoradded") {
+    console.log(`monitor added: ${data}`);
+    const gdkMonitor = getMonitorByName(data);
+    if (gdkMonitor) App.addWindow(Bar(gdkMonitor));
+  } else if (name === "monitorremoved") {
+    console.log(`monitor removed: ${data}`);
+    const win = App.getWindow(`bar-${data}`);
+    if (win) App.removeWindow(win);
   }
 });
 
