@@ -45,7 +45,7 @@
         enable = true;
         dpmsTimeout = 600;
         lockTimeout = 620;
-        suspendTimeout = 1200;
+        # suspendTimeout = 1200;
       };
       hyprpaper.enable = true;
       xdph.enable = true;
