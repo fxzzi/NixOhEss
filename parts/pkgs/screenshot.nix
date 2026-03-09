@@ -47,6 +47,10 @@ writeShellApplication {
       fi
       ;;
     --selection)
+      if pgrep -x slurp > /dev/null; then
+        echo "screenshot already in progress"
+        exit 1
+      fi
       wayfreeze --hide-cursor &
       PID=$!
       sleep .05
