@@ -31,10 +31,7 @@ in {
       tumbler.enable = true;
       gvfs = {
         enable = true; # Enable gvfs for stuff like trash, mtp
-        package = pkgs.gvfs.override {
-          avahi = pkgs.avahi; # Required for webdav
-          samba = null;
-        };
+        package = pkgs.gvfs;
       };
     };
     hj = {

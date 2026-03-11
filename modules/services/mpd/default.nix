@@ -35,7 +35,7 @@ in {
         restore_paused "yes"
       '';
     };
-    systemd.user.services.mpd = {
+    hj.systemd.services.mpd = {
       description = "Music Player Daemon";
       after = [
         "network.target"
@@ -49,6 +49,10 @@ in {
         Restart = "always";
         ExecStart = "${getExe pkgs.mpd} --systemd";
       };
+      restartTriggers = [
+        config.hj.xdg.config.files."mpd/mpd.conf".source
+        pkgs.mpd
+      ];
     };
   };
 }

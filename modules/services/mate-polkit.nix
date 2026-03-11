@@ -10,13 +10,13 @@ in {
   options.cfg.services.mate-polkit.enable = mkEnableOption "mate-polkit";
   config = mkIf cfg.enable {
     security.polkit.enable = true;
-    systemd.user.services.mate-polkit = {
+    hj.systemd.services.mate-polkit = {
       description = "Mate Polkit";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
       unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY"; # Only start if WAYLAND_DISPLAY env var is set
+        ConditionEnvironment = "WAYLAND_DISPLAY";
       };
       serviceConfig = {
         Type = "simple";
