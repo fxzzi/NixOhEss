@@ -72,6 +72,7 @@
           # this monitor doesn't flicker when using VRR at all
           vrr = 1;
           icc = "${config.age.secrets.m27q.path}";
+          # cm = "edid";
         };
       };
     };

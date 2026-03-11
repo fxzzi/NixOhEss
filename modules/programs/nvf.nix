@@ -185,10 +185,7 @@ in {
       };
     };
     xdg.mime.defaultApplications = {
-      "text/plain" = "nvim.desktop";
-      "text/markdown" = "nvim.desktop";
-      "text/x-nix" = "nvim.desktop";
-      "text/x-log" = "nvim.desktop";
+      "text/*" = "nvim.desktop";
       "application/x-shellscript" = "nvim.desktop";
       "application/xml" = "nvim.desktop";
     };

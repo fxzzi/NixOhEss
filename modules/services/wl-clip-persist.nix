@@ -9,12 +9,12 @@
 in {
   options.cfg.services.wl-clip-persist.enable = mkEnableOption "wl-clip-persist";
   config = mkIf cfg.enable {
-    systemd.user.services.wl-clip-persist = {
+    hj.systemd.services.wl-clip-persist = {
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
       unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY"; # Only start if WAYLAND_DISPLAY env var is set
+        ConditionEnvironment = "WAYLAND_DISPLAY";
       };
       serviceConfig = {
         ExecStart = "${getExe pkgs.wl-clip-persist} --clipboard regular";

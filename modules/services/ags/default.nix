@@ -28,7 +28,7 @@ in {
         "ags/style.css".source = ./style.css;
       };
     };
-    systemd.user.services.ags = {
+    hj.systemd.services.ags = {
       description = "Aylur's GTK Shell";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
@@ -41,6 +41,13 @@ in {
         Restart = "always";
         ExecStart = "${getExe pkg}";
       };
+      restartTriggers = [
+        config.hj.xdg.config.files."ags/config.js".source
+        config.hj.xdg.config.files."ags/style.css".source
+        config.hj.xdg.config.files."ags/icons".source
+        config.hj.xdg.config.files."ags/modules".source
+        pkg
+      ];
     };
     services.upower.enable = config.cfg.services.watt.enable; # enable battery module if watt is in use, its a good indicator of whether we're on a laptop.
   };

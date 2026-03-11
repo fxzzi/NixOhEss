@@ -32,7 +32,7 @@ in {
         };
       };
     };
-    systemd.user.services.mpd-discord-rpc = {
+    hj.systemd.services.mpd-discord-rpc = {
       description = "Discord Rich Presence for MPD";
       documentation = ["https://github.com/JakeStanger/mpd-discord-rpc"];
       wantedBy = ["mpd.service"];
@@ -44,6 +44,10 @@ in {
         Restart = "on-failure";
         ExecStart = "${getExe pkg}";
       };
+      restartTriggers = [
+        config.hj.xdg.config.files."discord-rpc/config.toml".source
+        pkg
+      ];
     };
   };
 }

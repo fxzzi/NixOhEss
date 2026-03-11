@@ -210,8 +210,8 @@ in {
             [
               # hyprland shows anr dialog when stremio is in another workspace, so render_unfocused 1
               "match:class .*stremio.*, render_unfocused 1, content video"
-              # no vrr on video content
-              "match:content 2, idle_inhibit fullscreen, no_vrr 1"
+              # no vrr on video content, like mpv
+              "match:content video, idle_inhibit fullscreen, no_vrr 1"
 
               "match:class atril, idle_inhibit focus"
               # oled flicker is annoying on term
@@ -254,7 +254,7 @@ in {
                 "class org.eden_emu.eden"
                 "class com.libretro.RetroArch"
                 "class dolphin-emu"
-                # native games
+                # native
                 "class .*_linux" # 32-bit source
                 "class .*_linux64" # 64-bit source
                 "class .*.x86_64" # native sdl games
@@ -268,14 +268,9 @@ in {
                 "class sm64coopdx"
                 "class UnleashedRecomp"
                 "class sober"
+                "class love, match:title Freesync test"
               ])
             ++ [
-              # content type game means ds will be in effect.
-              # ds and tearing cannot activate at the same time.
-              # osu!lazer needs tearing for unlocked fps.
-              # probably all winewayland stuff too.
-              "match:class osu!, content none, immediate 1, no_vrr 1"
-
               # enable tearing on vrrtest
               "match:class love, match:title Freesync test, immediate 1"
 

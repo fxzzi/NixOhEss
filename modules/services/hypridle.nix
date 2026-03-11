@@ -78,7 +78,7 @@ in {
         };
       };
     };
-    systemd.user.services.hypridle = {
+    hj.systemd.services.hypridle = {
       description = "Hypridle idle management";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
@@ -94,6 +94,10 @@ in {
       path = [
         config.programs.hyprland.package # for hyprctl
         pkgs.systemd # for loginctl
+      ];
+      restartTriggers = [
+        config.hj.xdg.config.files."hypr/hypridle.conf".source
+        pkgs.hypridle
       ];
     };
   };

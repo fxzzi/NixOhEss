@@ -91,8 +91,7 @@ in {
         };
       };
     };
-    systemd.user.services.dunst = {
-      enable = true;
+    hj.systemd.services.dunst = {
       unitConfig = {
         Description = "Dunst notification daemon";
         After = ["graphical-session-pre.target"];
@@ -103,6 +102,10 @@ in {
         BusName = "org.freedesktop.Notifications";
         ExecStart = "${getExe pkgs.dunst}";
       };
+      restartTriggers = [
+        config.hj.xdg.config.files."dunst/dunstrc".source
+        pkgs.dunst
+      ];
     };
   };
 }
