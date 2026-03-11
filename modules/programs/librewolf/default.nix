@@ -21,6 +21,7 @@
     );
   jsPrefs = attrsToLines (name: value: "lockPref(\"${name}\", ${prefValue value});") prefs;
   librewolf = pkgs.librewolf-bin.override {
+    nativeMessagingHosts = [pkgs.ff2mpv-rust];
     extraPrefs = ''
       ${optionalString config.cfg.programs.startpage.enable ''
         // sets the new tab page to our local newtab.
