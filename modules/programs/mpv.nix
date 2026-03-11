@@ -15,7 +15,8 @@ in {
         "mpv/mpv.conf".text = ''
           save-position-on-quit=yes
           target-colorspace-hint-mode=source
-          hwdec=auto
+          # FIXME: https://github.com/mpv-player/mpv/issues/16782
+          hwdec=nvdec,auto
           video-sync=display-resample
           volume-max=150
           keep-open=yes

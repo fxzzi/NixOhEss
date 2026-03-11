@@ -9,13 +9,13 @@
 in {
   options.cfg.services.activate-linux.enable = mkEnableOption "activate-linux";
   config = mkIf cfg.enable {
-    systemd.user.services.activate-linux = {
+    hj.systemd.services.activate-linux = {
       description = "Activate Linux watermark";
       after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
       unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY"; # Only start if WAYLAND_DISPLAY env var is set
+        ConditionEnvironment = "WAYLAND_DISPLAY";
       };
       serviceConfig = {
         Type = "simple";

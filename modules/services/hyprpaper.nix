@@ -22,19 +22,24 @@ in {
           "wallpaper[]".path = "~/.local/state/wallpaper";
         };
       };
-    };
-    systemd.user.services.hyprpaper = {
-      description = "Hyprpaper wallpaper manager";
-      after = ["graphical-session.target"];
-      wantedBy = ["graphical-session.target"];
-      partOf = ["graphical-session.target"];
-      unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY";
-      };
-      serviceConfig = {
-        Type = "simple";
-        Restart = "always";
-        ExecStart = "${getExe pkgs.hyprpaper}";
+
+      systemd.services.hyprpaper = {
+        description = "Hyprpaper wallpaper manager";
+        after = ["graphical-session.target"];
+        wantedBy = ["graphical-session.target"];
+        partOf = ["graphical-session.target"];
+        unitConfig = {
+          ConditionEnvironment = "WAYLAND_DISPLAY";
+        };
+        serviceConfig = {
+          Type = "simple";
+          Restart = "always";
+          ExecStart = "${getExe pkgs.hyprpaper}";
+        };
+        restartTriggers = [
+          config.hj.xdg.config.files."hypr/hyprpaper.conf".source
+          pkgs.hyprpaper
+        ];
       };
     };
   };
