@@ -18,7 +18,7 @@ in {
           generator = lib.generators.toJSON {};
           value = {
             no-version-info = true;
-            delay-command-ms = 0;
+            # delay-command-ms = 0;
             buttons-per-row = "1/1";
             show-keybinds = true;
             margin-top = 360;
