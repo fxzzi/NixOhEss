@@ -1,6 +1,7 @@
 {
   pkgs,
   pins,
+  inputs',
   ...
 }: {
   system.stateVersion = "25.05";
@@ -17,7 +18,8 @@
       nvtopPackages.amd
       sgdboop
       cemu
-      stremio-linux-shell
+      # stremio-linux-shell
+      inputs'.azzipkgs.packages.stremio-linux-shell-rewrite-git
       (callPackage "${pins.creamlinux}" {})
     ];
     xdg.config.files."hypr/hyprland.conf" = {
