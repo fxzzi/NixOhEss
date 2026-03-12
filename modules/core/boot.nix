@@ -14,20 +14,23 @@
     ;
   cfg = config.cfg.core.boot;
 in {
-  options.cfg.core.boot = {
-    enable = mkEnableOption "boot";
-    keyLayout = mkOption {
-      type = types.str;
-      default = "us";
-      description = "Sets the keyboard layout for ttys";
-    };
-    timeout = mkOption {
-      type = types.int;
-      default = 5;
-      description = ''
-        Sets the timeout for the boot menu to automatically continue.
-        If set to 0, the boot menu will be hidden unless space is spammed during boot.
-      '';
+  options.cfg.core = {
+    isLaptop = mkEnableOption "laptop";
+    boot = {
+      enable = mkEnableOption "boot";
+      keyLayout = mkOption {
+        type = types.str;
+        default = "us";
+        description = "Sets the keyboard layout for ttys";
+      };
+      timeout = mkOption {
+        type = types.int;
+        default = 5;
+        description = ''
+          Sets the timeout for the boot menu to automatically continue.
+          If set to 0, the boot menu will be hidden unless space is spammed during boot.
+        '';
+      };
     };
   };
   config = mkIf cfg.enable {

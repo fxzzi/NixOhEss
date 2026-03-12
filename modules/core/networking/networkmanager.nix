@@ -9,7 +9,6 @@
 in {
   options.cfg.core.networking.networkmanager = {
     enable = mkEnableOption "NetworkManager";
-    powersaving.enable = mkEnableOption "powersaving";
   };
   config = mkIf cfg.enable {
     programs.nm-applet.enable = true; # enable the nice lil applet
@@ -18,7 +17,7 @@ in {
       networkmanager = {
         enable = true;
         wifi = {
-          powersave = cfg.powersaving.enable;
+          powersave = config.cfg.core.isLaptop;
         };
         dns = "systemd-resolved";
         plugins = with pkgs; [
