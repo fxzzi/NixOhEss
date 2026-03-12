@@ -87,8 +87,8 @@ in {
             no_hardware_cursors = 0;
           };
           input = {
-            repeat_rate = 55; # Set characters to repeat on hold every 55ms
-            repeat_delay = 375; # Set repeat timeout to 375ms
+            repeat_rate = 55; # Set characters to repeat on hold every Xms
+            repeat_delay = 375; # Set repeat timeout to Xms
             follow_mouse = 2; # Follow mouse clicks for window focus
             accel_profile = "flat"; # disable all mouse accel by default
             float_switch_override_focus = 0; # Stop floating windows from stealing focus
@@ -152,10 +152,8 @@ in {
             };
             blur = {
               enabled = mkDefault 1;
-              size = 3;
-              passes = 3;
-              popups = 1;
-              # brightness = 0.67;
+              size = 4;
+              passes = 2;
             };
           };
           animations = {
