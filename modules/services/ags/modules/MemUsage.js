@@ -21,15 +21,8 @@ const memUsage = Variable("", {
 export function MemUsageWidget() {
   return Widget.Box({
     children: [
-      Widget.Icon({
-        icon: "pie-chart-outline-symbolic",
-        class_name: "icon",
-        size: 16,
-      }),
-      Widget.Label({
-        class_name: "memory-usage",
-        label: memUsage.bind(),
-      }),
+      Widget.Icon({ icon: "pie-chart-outline-symbolic", class_name: "icon", size: 16 }),
+      Widget.Label({ class_name: "memory-usage", label: memUsage.bind() }),
     ],
   });
 }

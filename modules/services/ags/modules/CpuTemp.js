@@ -1,11 +1,23 @@
 import GLib from "gi://GLib";
 import Gio from "gi://Gio";
 
-const decoder = new TextDecoder();
+const readFile = (path) => {
+  const [ok, bytes] = GLib.file_get_contents(path);
+  return ok ? new TextDecoder().decode(bytes).trim() : null;
+};
+
+function listDir(path) {
+  try {
+    const iter = Gio.File.new_for_path(path).enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
+    const names = [];
+    let info;
+    while ((info = iter.next_file(null)) !== null) names.push(info.get_name());
+    return names;
+  } catch (e) { return []; }
+}
 
 const sensorLabelPriority = [
-  { regex: /^k10temp/, labels: ["Tdie", "Tctl"] },
-  { regex: /^zenpower/, labels: ["Tdie", "Tctl"] },
+  { regex: /^k10temp|^zenpower/, labels: ["Tdie", "Tctl"] },
   { regex: /^coretemp/, labels: ["Package id 0"] },
   { regex: /^atk0110/, labels: ["CPU Temperature"] },
   { regex: /^it8603/, labels: ["temp1"] },
@@ -15,67 +27,35 @@ const sensorLabelPriority = [
   { regex: /^cpuss0_/, labels: ["temp1"] },
 ];
 
-function findInputForLabel(directory, label) {
-  const dir = Gio.File.new_for_path(directory);
-  const enumerator = dir.enumerate_children('standard::name', Gio.FileQueryInfoFlags.NONE, null);
-
-  let fileInfo;
-  while ((fileInfo = enumerator.next_file(null)) !== null) {
-    const fileName = fileInfo.get_name();
-    if (fileName.startsWith('temp') && fileName.endsWith('_label')) {
-      const labelFilePath = `${directory}/${fileName}`;
-      const [success, contents] = GLib.file_get_contents(labelFilePath);
-      if (success && decoder.decode(contents).trim() === label) {
-        const inputFilePath = labelFilePath.replace('_label', '_input');
-        if (GLib.file_test(inputFilePath, GLib.FileTest.EXISTS | GLib.FileTest.IS_REGULAR)) {
-          return inputFilePath;
-        }
-      }
-    }
-  }
-  return null;
-}
-
 function determineTempFilePath() {
   try {
-    const hwmonPath = '/sys/class/hwmon';
-    const hwmonDir = Gio.File.new_for_path(hwmonPath);
-    const hwmonEnumerator = hwmonDir.enumerate_children('standard::name', Gio.FileQueryInfoFlags.NONE, null);
+    const candidates = listDir("/sys/class/hwmon")
+      .map(h => {
+        const path = `/sys/class/hwmon/${h}`;
+        const i = sensorLabelPriority.findIndex(({ regex }) => regex.test(readFile(`${path}/name`)));
+        return i !== -1 ? { path, priority: i, labels: sensorLabelPriority[i].labels } : null;
+      })
+      .filter(Boolean)
+      .sort((a, b) => a.priority - b.priority);
 
-    const sensorCandidates = [];
-
-    let fileInfo;
-    while ((fileInfo = hwmonEnumerator.next_file(null)) !== null) {
-      const hwmonDirPath = `${hwmonPath}/${fileInfo.get_name()}`;
-      const nameFilePath = `${hwmonDirPath}/name`;
-
-      if (GLib.file_test(nameFilePath, GLib.FileTest.EXISTS | GLib.FileTest.IS_REGULAR)) {
-        const [success, nameBytes] = GLib.file_get_contents(nameFilePath);
-        if (success) {
-          const sensorName = decoder.decode(nameBytes).trim();
-          const priority = sensorLabelPriority.findIndex(({ regex }) => regex.test(sensorName));
-          if (priority !== -1) {
-            sensorCandidates.push({ path: hwmonDirPath, priority, labels: sensorLabelPriority[priority].labels });
+    for (const { path, labels } of candidates) {
+      const labelFiles = listDir(path).filter(f => f.startsWith("temp") && f.endsWith("_label"));
+      for (const label of labels) {
+        for (const file of labelFiles) {
+          const filePath = `${path}/${file}`;
+          if (readFile(filePath) === label) {
+            const inputPath = filePath.replace("_label", "_input");
+            if (GLib.file_test(inputPath, GLib.FileTest.EXISTS)) {
+              console.log(`Using CPU temperature file: ${inputPath}`);
+              return inputPath;
+            }
           }
         }
       }
     }
-
-    sensorCandidates.sort((a, b) => a.priority - b.priority);
-
-    for (const { path, labels } of sensorCandidates) {
-      for (const label of labels) {
-        const inputPath = findInputForLabel(path, label);
-        if (inputPath) {
-          console.log(`Using CPU temperature file: ${inputPath}`);
-          return inputPath;
-        }
-      }
-    }
-  } catch (error) {
-    console.error("Error determining temperature file path:", error);
+  } catch (e) {
+    console.error("Error determining CPU temp file:", e);
   }
-
   console.error("No valid CPU temperature path found.");
   return null;
 }
@@ -83,35 +63,18 @@ function determineTempFilePath() {
 const tempFilePath = determineTempFilePath();
 
 const cpuTemp = Variable("", {
-  poll: [
-    5000,
-    () => {
-      if (!tempFilePath) return "N/A";
-      try {
-        const [success, tempBytes] = GLib.file_get_contents(tempFilePath);
-        if (!success) return "N/A";
-        const temp = parseFloat(decoder.decode(tempBytes)) / 1000;
-        return `${temp.toFixed(0)}°C`;
-      } catch (error) {
-        console.error("Error reading CPU temperature from", tempFilePath, ":", error);
-        return "N/A";
-      }
-    },
-  ],
+  poll: [5000, () => {
+    if (!tempFilePath) return "N/A";
+    const raw = readFile(tempFilePath);
+    return raw ? `${(parseFloat(raw) / 1000).toFixed(0)}°C` : "N/A";
+  }],
 });
 
 export function CpuTempWidget() {
   return Widget.Box({
     children: [
-      Widget.Icon({
-        icon: "thermometer-outline-symbolic",
-        class_name: "icon",
-        size: 16,
-      }),
-      Widget.Label({
-        class_name: "temperature-usage",
-        label: cpuTemp.bind(),
-      }),
+      Widget.Icon({ icon: "thermometer-outline-symbolic", class_name: "icon", size: 16 }),
+      Widget.Label({ class_name: "temperature-usage", label: cpuTemp.bind() }),
     ],
   });
 }
