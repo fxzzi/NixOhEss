@@ -60,8 +60,6 @@ in {
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
         # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
-        # allow nvidia reflex
-        DXVK_NVAPI_VKREFLEX = 1;
       };
       etc = {
         "nvidia/nvidia-application-profiles-rc.d/50-vram-and-cuda-fixes.json".text = builtins.toJSON {
