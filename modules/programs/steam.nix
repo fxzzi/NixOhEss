@@ -18,6 +18,14 @@ in {
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;
+      package = pkgs.steam.override {
+        extraEnv = {
+          # allow using the nvidia reflex layer.
+          # according to nvidia it can cause issues in apps which
+          # don't even use reflex, so enable it in here only for steam
+          DXVK_NVAPI_VKREFLEX = config.cfg.hardware.nvidia.enable;
+        };
+      };
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = mkIf config.cfg.programs.proton-ge.enable [pkgs.proton-ge-bin];
