@@ -12,7 +12,8 @@ in {
       # early load / early kms
       amdgpu.initrd.enable = true;
       # overclocking / undervolting
-      amdgpu.overdrive.enable = true;
+      # disable on laptops, it messes with power management
+      amdgpu.overdrive.enable = !config.cfg.core.isLaptop;
       graphics = {
         enable = true;
         enable32Bit = true;

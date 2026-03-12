@@ -35,9 +35,6 @@ in {
         default = null;
         description = "Sets the secondary monitor for hypr*.";
       };
-      laptop = mkEnableOption {
-        description = "Use laptop brightness and keybinds";
-      };
     };
   };
   config = {
@@ -385,7 +382,7 @@ in {
           bindel = let
             audio = getExe self'.packages.audio;
             brightness =
-              if cfg.laptop
+              if config.cfg.core.isLaptop
               then getExe self'.packages.brightness-laptop
               else getExe self'.packages.brightness;
           in [
@@ -410,12 +407,12 @@ in {
               "$MOD, mouse:272, movewindow" # left click
               "$MOD, mouse:273, resizewindow" # right click
             ]
-            ++ optionals cfg.laptop [
+            ++ optionals config.cfg.core.isLaptop [
               "$MOD, Control_L, movewindow"
               "$MOD, ALT_L, resizewindow"
             ];
 
-          gesture = mkIf cfg.laptop [
+          gesture = mkIf config.cfg.core.isLaptop [
             "3, horizontal, workspace"
           ];
           # use when bug reporting
