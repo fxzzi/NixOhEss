@@ -34,15 +34,8 @@ const cpuUsage = Variable("", {
 export function CpuUsageWidget() {
   return Widget.Box({
     children: [
-      Widget.Icon({
-        icon: "activity-outline-symbolic",
-        class_name: "icon",
-        size: 16,
-      }),
-      Widget.Label({
-        class_name: "cpu-usage",
-        label: cpuUsage.bind(),
-      }),
+      Widget.Icon({ icon: "activity-outline-symbolic", class_name: "icon", size: 16 }),
+      Widget.Label({ class_name: "cpu-usage", label: cpuUsage.bind() }),
     ],
   });
 }
