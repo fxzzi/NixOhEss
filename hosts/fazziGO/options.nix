@@ -2,7 +2,8 @@
   cfg = {
     core = {
       username = "faaris";
-      kernel.type = "lts";
+      kernel.type = "latest";
+      isLaptop = true;
       boot = {
         enable = true;
         keyLayout = "uk";
@@ -12,10 +13,7 @@
 
       networking = {
         enable = true;
-        networkmanager = {
-          enable = true;
-          powersaving.enable = true;
-        };
+        networkmanager.enable = true;
       };
     };
     services = {
@@ -102,8 +100,6 @@
         enable = true;
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
-        laptop = true;
-        # autoStart = true;
         # useGit = true;
       };
       hyprlock.enable = true;
