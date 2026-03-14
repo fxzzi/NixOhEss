@@ -9,7 +9,6 @@
   inherit
     (lib)
     mkOption
-    mkEnableOption
     types
     mkDefault
     getExe

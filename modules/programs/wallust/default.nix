@@ -21,44 +21,32 @@ in {
             check_contrast = true;
             backend = "resized";
             color_space = "lch";
-            templates =
-              {}
-              // optionalAttrs config.cfg.programs.fuzzel.enable {
-                fuzzel = {
-                  template = "colors_fuzzel.ini";
-                  target = "~/.cache/wallust/colors_fuzzel.ini";
-                };
-              }
-              // optionalAttrs config.cfg.programs.hyprland.enable {
-                hyprland = {
-                  template = "colors_hyprland.conf";
-                  target = "~/.cache/wallust/colors_hyprland.conf";
-                };
-              }
-              // optionalAttrs config.cfg.services.ags.enable {
-                ags = {
-                  template = "colors_ags.css";
-                  target = "~/.config/ags/colors_ags.css";
-                };
-              }
-              // optionalAttrs config.cfg.programs.foot.enable {
-                foot = {
-                  template = "colors_foot.ini";
-                  target = "~/.cache/wallust/colors_foot.ini";
-                };
-              }
-              // optionalAttrs config.cfg.programs.wleave.enable {
-                wleave = {
-                  template = "colors_wleave.css";
-                  target = "~/.config/wleave/colors_wleave.css";
-                };
-              }
-              // optionalAttrs config.cfg.services.dunst.enable {
-                dunst = {
-                  template = "99-wallust.conf";
-                  target = "~/.config/dunst/dunstrc.d/99-wallust.conf";
-                };
+            templates = {
+              fuzzel = optionalAttrs config.cfg.programs.fuzzel.enable {
+                template = "colors_fuzzel.ini";
+                target = "~/.cache/wallust/colors_fuzzel.ini";
               };
+              hyprland = optionalAttrs config.cfg.programs.hyprland.enable {
+                template = "colors_hyprland.conf";
+                target = "~/.cache/wallust/colors_hyprland.conf";
+              };
+              ags = optionalAttrs config.cfg.services.ags.enable {
+                template = "colors_ags.css";
+                target = "~/.config/ags/colors_ags.css";
+              };
+              foot = optionalAttrs config.cfg.programs.foot.enable {
+                template = "colors_foot.ini";
+                target = "~/.cache/wallust/colors_foot.ini";
+              };
+              wleave = optionalAttrs config.cfg.programs.wleave.enable {
+                template = "colors_wleave.css";
+                target = "~/.config/wleave/colors_wleave.css";
+              };
+              dunst = optionalAttrs config.cfg.services.dunst.enable {
+                template = "99-wallust.conf";
+                target = "~/.config/dunst/dunstrc.d/99-wallust.conf";
+              };
+            };
           };
         };
       };
