@@ -4,11 +4,43 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf getExe mkBefore;
+  inherit (lib) mkEnableOption mkIf getExe mapAttrsToList escapeShellArg filterAttrs;
   cfg = config.cfg.programs.zsh;
+  options = [
+    # cd without explicit `cd`
+    "AUTOCD"
+    # match files beginning with . without explicitly specifying the dot
+    "GLOBDOTS"
+    # history options to ignore dups and stuff
+    "EXTENDED_HISTORY"
+    "HIST_EXPIRE_DUPS_FIRST"
+    "HIST_IGNORE_ALL_DUPS"
+    "HIST_FIND_NO_DUPS"
+    "HIST_SAVE_NO_DUPS"
+    "HIST_IGNORE_SPACE"
+
+    # make all opened shells share history
+    "SHARE_HISTORY"
+  ];
+  aliases = {
+    grep = "${getExe pkgs.ripgrep}";
+    cat = "${getExe pkgs.bat}";
+
+    ls = "${getExe pkgs.eza} --icons --group-directories-first";
+    la = "ls -a";
+    ll = "ls -lah";
+
+    lt = "${getExe pkgs.eza} --icons --tree";
+
+    wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
+
+    die = "pkill -9";
+  };
 in {
   options.cfg.programs.zsh.enable = mkEnableOption "zsh";
   config = mkIf cfg.enable {
+    programs.zsh.enable = true;
+    programs.zsh.promptInit = "";
     users.users.${config.cfg.core.username} = {
       shell = pkgs.zsh; # Set shell to zsh
     };
@@ -19,102 +51,71 @@ in {
         bat
         eza
       ];
-      xdg.config.files."zsh/.zshrc".text = mkBefore "# i am not a new zsh user...";
+      xdg.config.files."zsh/.zshrc".text =
+        # sh
+        ''
+          SAVEHIST=50000
+          HISTSIZE=50000
+          HISTFILE="$XDG_DATA_HOME/zsh/zsh_history"
+          PROMPT="%F{yellow}%3~%f $ "
+
+          setopt ${builtins.concatStringsSep " " options}
+
+          # Define key bindings
+          bindkey -e # Use Emacs keybindings
+          # Move cursor to beginning and end of line
+          bindkey "\e[5~" beginning-of-line # Page Up
+          bindkey "\e[6~" end-of-line # Page Down
+          # Delete characters and words
+          bindkey "^[[3~" delete-char # DEL
+          bindkey '^H' backward-kill-word # Ctrl+Backspace (delete word backwards)
+          bindkey '^[[3;5~' kill-word # Ctrl+Delete (delete word forwards)
+          # Move cursor forward and backward one word at a time
+          bindkey "^[[1;5C" forward-word # CTRL+ARROW_RIGHT
+          bindkey "^[[1;5D" backward-word # CTRL+ARROW_LEFT
+          # Undo and redo changes
+          bindkey "^Z" undo # CTRL+Z
+          bindkey "^Y" redo # CTRL+Y
+
+          # tells zsh to ignore case when completing commands or filenames.
+          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+          # ctrl-left/right and ctrl-bspc will limit here
+          WORDCHARS='*?_-.[]~=&;!$%^(){}<>|'
+
+          # `paste` command which allows you to upload text to a pastebin
+          # usage: paste <file> or <command> | paste
+          function paste() {
+            local file=''${1:-/dev/stdin}
+            local link=$(curl -s --data-binary @"$file" https://paste.rs)
+            echo $link
+            wl-copy $link
+          }
+
+          # plugins and completions
+          fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
+          source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+          source ${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
+          source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+          source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+          source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+          zstyle ':fzf-tab:complete:cd:*' fzf-preview '${aliases.ls} --color=always --width 1 $realpath'
+
+          # these keybinds have to be set after the plugin is sourced
+          bindkey "''${key[Up]}" history-substring-search-up
+          bindkey "''${key[Down]}" history-substring-search-down
+
+          # aliases
+          ${builtins.concatStringsSep "\n" (
+            mapAttrsToList (k: v: "alias -- ${k}=${escapeShellArg v}") (
+              filterAttrs (_: v: v != null) aliases
+            )
+          )}
+        '';
     };
     # de-clutter $HOME
     environment.sessionVariables = {
       ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
-    };
-    programs = {
-      zsh = {
-        enable = true;
-        setOptions = [
-          # cd without explicit `cd`
-          "AUTOCD"
-          # match files beginning with . without explicitly specifying the dot
-          "GLOBDOTS"
-          # history options to ignore dups and stuff
-          "EXTENDED_HISTORY"
-          "HIST_EXPIRE_DUPS_FIRST"
-          "HIST_IGNORE_ALL_DUPS"
-          "HIST_FIND_NO_DUPS"
-          "HIST_SAVE_NO_DUPS"
-          "HIST_IGNORE_SPACE"
-
-          # make all opened shells share history
-          "SHARE_HISTORY"
-        ];
-
-        promptInit =
-          # sh
-          ''
-            PROMPT="%F{yellow}%3~%f $ "
-          '';
-        interactiveShellInit =
-          # sh
-          ''
-            # Define key bindings
-            bindkey -e # Use Emacs keybindings
-            # Move cursor to beginning and end of line
-            bindkey "\e[5~" beginning-of-line # Page Up
-            bindkey "\e[6~" end-of-line # Page Down
-            # Delete characters and words
-            bindkey "^[[3~" delete-char # DEL
-            bindkey '^H' backward-kill-word # Ctrl+Backspace (delete word backwards)
-            bindkey '^[[3;5~' kill-word # Ctrl+Delete (delete word forwards)
-            # Move cursor forward and backward one word at a time
-            bindkey "^[[1;5C" forward-word # CTRL+ARROW_RIGHT
-            bindkey "^[[1;5D" backward-word # CTRL+ARROW_LEFT
-            # Undo and redo changes
-            bindkey "^Z" undo # CTRL+Z
-            bindkey "^Y" redo # CTRL+Y
-
-            # tells zsh to ignore case when completing commands or filenames.
-            zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-            # ctrl-left/right and ctrl-bspc will limit here
-            WORDCHARS='*?_-.[]~=&;!$%^(){}<>|'
-
-            # `paste` command which allows you to upload text to a pastebin
-            # usage: paste <file> or <command> | paste
-            function paste() {
-              local file=''${1:-/dev/stdin}
-              local link=$(curl -s --data-binary @"$file" https://paste.rs)
-              echo $link
-              wl-copy $link
-            }
-
-            # plugins and completions
-            fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
-            source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-            source ${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
-            source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-            source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-            source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-            zstyle ':fzf-tab:complete:cd:*' fzf-preview '${config.programs.zsh.shellAliases.ls} --color=always --width 1 $realpath'
-
-
-            # these keybinds have to be set after the plugin is sourced
-            bindkey "''${key[Up]}" history-substring-search-up
-            bindkey "''${key[Down]}" history-substring-search-down
-          '';
-        histFile = "$XDG_DATA_HOME/zsh/zsh_history";
-        histSize = 99999;
-        shellAliases = {
-          grep = "${getExe pkgs.ripgrep}";
-          cat = "${getExe pkgs.bat}";
-
-          ls = "${getExe pkgs.eza} --icons --group-directories-first";
-          la = "ls -a";
-          ll = "ls -lah";
-
-          lt = "${getExe pkgs.eza} --icons --tree";
-
-          wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
-
-          die = "pkill -9";
-        };
-      };
     };
   };
 }
