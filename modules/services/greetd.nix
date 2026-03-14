@@ -5,7 +5,7 @@
   pins,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf getExe;
+  inherit (lib) mkEnableOption mkIf getExe optionalAttrs;
   cfg = config.cfg.services.greetd;
   tuigreet = pkgs.callPackage "${pins.tuigreet}/nix/package.nix" {};
   cmd = pkgs.writeShellScriptBin "greetd-hyprland" ''
@@ -51,6 +51,16 @@ in {
         shutdown = "systemctl poweroff";
         reboot = "systemctl reboot";
       };
+      # outputs = optionalAttrs (config.cfg.programs.hyprland.secondaryMonitor != null) [
+      #   {
+      #     connector = config.cfg.programs.hyprland.defaultMonitor;
+      #     primary = true;
+      #   }
+      #   {
+      #     connector = config.cfg.programs.hyprland.secondaryMonitor;
+      #     enabled = false;
+      #   }
+      # ];
     };
   };
 }

@@ -99,11 +99,13 @@ in {
           "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
           "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
           "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
-          "nvidia-modeset.disable_vrr_memclk_switch=1"
-          "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
+          "nvidia-modeset.disable_vrr_memclk_switch=1" # don't force P0 when VRR is active
         ]
         ++ optionals isOpen [
           "nvidia.NVreg_UseKernelSuspendNotifiers=1"
+        ]
+        ++ optionals (!config.zramSwap.enable) [
+          "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
         ];
     };
     systemd.services.nvidia-temp = let

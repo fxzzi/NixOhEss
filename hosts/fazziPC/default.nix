@@ -3,7 +3,6 @@
   inputs',
   pkgs,
   self,
-  config,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -68,11 +67,10 @@
           position = "auto-center-left";
           # hdr sucks on this monitor lol
           supports_hdr = -1;
-          bitdepth = 10;
+          supports_wide_color = -1;
           # this monitor doesn't flicker when using VRR at all
           vrr = 1;
           # icc = "${config.age.secrets.m27q.path}";
-          cm = "edid";
         };
       };
     };
@@ -80,7 +78,7 @@
   # set resolutions early to avoid modeset when launching hyprland
   hardware.display.outputs = {
     "DP-3".mode = "2560x1440-30@280";
-    "DP-2".mode = "2560x1440-30@120";
+    "DP-2".mode = "2560x1440-24@170";
   };
   # fazziPC has a WOLED main monitor with subpixel layout RGWB,
   # and a secondary monitor of layout BGR. Therefore we shouldn't
