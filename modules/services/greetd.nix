@@ -5,7 +5,7 @@
   pins,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf getExe optionalAttrs;
+  inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.greetd;
   tuigreet = pkgs.callPackage "${pins.tuigreet}/nix/package.nix" {};
   cmd = pkgs.writeShellScriptBin "greetd-hyprland" ''
