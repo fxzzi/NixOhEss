@@ -26,7 +26,7 @@
   commandLineArgs =
     [
       "--extension-mime-request-handling=always-prompt-for-install"
-      "--password-store=basic"
+      # "--password-store=basic"
     ]
     ++ optionals (enableFeatures != []) [
       "--enable-features=${concatStringsSep "," enableFeatures}"
