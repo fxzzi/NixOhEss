@@ -10,12 +10,12 @@ in {
     enable = mkEnableOption "git";
     name = mkOption {
       type = types.str;
-      default = false;
+      default = config.cfg.username;
       description = "Sets your username for git.";
     };
     email = mkOption {
       type = types.str;
-      default = false;
+      default = "${config.cfg.username}@example.com";
       description = "Sets your email for git.";
     };
   };
