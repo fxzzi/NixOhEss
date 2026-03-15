@@ -77,6 +77,7 @@
       printing.enable = true;
     };
     programs = {
+      gpu-screen-recorder.enable = true;
       # gamescope.enable = true;
       osu.enable = true;
       smoothScroll.enable = false;
