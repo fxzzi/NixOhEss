@@ -47,12 +47,18 @@ in {
     };
     nixpkgs.config = {
       allowUnfree = true; # not too fussed as long as app works on linux tbh
-      # these packages are marked as insecure but we still require them
-      # permittedInsecurePackages = [
-      #   "qtwebengine-5.15.19"
-      #   "mbedtls-2.28.10"
-      # ];
     };
-    documentation.nixos.enable = false; # remove useless docs .desktop
+    # remove useless docs .desktop
+    documentation.nixos.enable = false;
+    # thanks raf!
+    # <https://github.com/NotAShelf/nyx/blob/d407b4d6e5ab7f60350af61a3d73a62a5e9ac660/modules/core/common/system/nix/module.nix#L236>
+    systemd.services = {
+      nix-gc = {
+        unitConfig.ConditionACPower = true;
+      };
+      nh-clean = {
+        unitConfig.ConditionACPower = true;
+      };
+    };
   };
 }
