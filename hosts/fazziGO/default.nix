@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs',
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./options.nix
@@ -10,13 +14,7 @@
       packages = with pkgs; [
         telegram-desktop
         deluge
-        stremio-linux-shell
-        # uni stuff
-        onlyoffice-desktopeditors
-        processing
-        logisim-evolution
-        rars
-        vscodium
+        inputs'.azzipkgs.packages.stremio-linux-shell-rewrite-git
         (jetbrains.idea-oss.override {
           vmopts = "-Dawt.toolkit.name=WLToolkit";
         })
@@ -24,6 +22,7 @@
       xdg.config.files."hypr/hyprland.conf" = {
         value = {
           decoration = {
+            # muh battery
             shadow.enabled = 0;
             blur.enabled = 0;
           };
