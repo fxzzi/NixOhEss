@@ -21,7 +21,7 @@ in {
           volume-max=150
           keep-open=yes
           fs=yes
-          alang=en,eng
+          alang=ja,en,eng
           slang=en,eng
           sub-scale=0.75
           sub-color="#C9D1D6"
