@@ -14,6 +14,8 @@
 
   # Revert some security changes
   "webgl.disabled" = false;
+  # webgl isn't too big of an attack vector nowadays
+  "librewolf.webgl.prompt" = false;
   "privacy.resistFingerprinting" = false;
   "privacy.clearOnShutdown.history" = false;
   "privacy.clearOnShutdown.cookies" = false;
