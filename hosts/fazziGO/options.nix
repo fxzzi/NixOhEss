@@ -53,7 +53,7 @@
       printing.enable = true;
     };
     hardware = {
-      scanning.enable = false;
+      scanning.enable = true;
       amdgpu.enable = true;
     };
     programs = {
