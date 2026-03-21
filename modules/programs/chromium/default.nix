@@ -26,7 +26,6 @@
   commandLineArgs =
     [
       "--extension-mime-request-handling=always-prompt-for-install"
-      "--password-store=gnome-libsecret"
     ]
     ++ optionals (enableFeatures != []) [
       "--enable-features=${concatStringsSep "," enableFeatures}"

@@ -72,7 +72,6 @@
       xdph.enable = true;
       dunst.enable = true;
       greetd.enable = true;
-      # getty-tty1.onlyPassword = true;
 
       printing.enable = true;
     };
@@ -138,7 +137,6 @@
         defaultMonitor = "DP-3";
         secondaryMonitor = "DP-2";
         useGit = true;
-        # autoStart = true;
       };
       hyprlock.enable = true;
       wallust.enable = true;
