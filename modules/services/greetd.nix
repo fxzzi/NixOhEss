@@ -51,16 +51,6 @@ in {
         shutdown = "systemctl poweroff";
         reboot = "systemctl reboot";
       };
-      # outputs = optionalAttrs (config.cfg.programs.hyprland.secondaryMonitor != null) [
-      #   {
-      #     connector = config.cfg.programs.hyprland.defaultMonitor;
-      #     primary = true;
-      #   }
-      #   {
-      #     connector = config.cfg.programs.hyprland.secondaryMonitor;
-      #     enabled = false;
-      #   }
-      # ];
     };
   };
 }
