@@ -112,6 +112,7 @@ in {
                   --display-clan-tags: none;
                   --display-active-now: none;
                   --display-hover-reaction-emoji: none;
+                  --display-voice-status: none;
                   --bool-show-name-gradients: false;
                 }
 
