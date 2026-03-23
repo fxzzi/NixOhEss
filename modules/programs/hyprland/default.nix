@@ -29,12 +29,5 @@ in {
       portalPackage = hyprlandSet.xdg-desktop-portal-hyprland;
     };
     services.dbus.implementation = "broker";
-    systemd.user.targets.hyprland-session = {
-      description = "Hyprland compositor session";
-      documentation = ["man:systemd.special(7)"];
-      bindsTo = ["graphical-session.target"];
-      wants = ["graphical-session-pre.target"];
-      after = ["graphical-session-pre.target"];
-    };
   };
 }

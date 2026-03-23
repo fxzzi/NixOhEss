@@ -18,6 +18,8 @@
 in {
   options.cfg.programs.hyprlock.enable = mkEnableOption "hyprlock";
   config = mkIf cfg.enable {
+    # Hyprlock needs PAM access to authenticate, else it fallbacks to su
+    security.pam.services.hyprlock = {};
     hj = {
       packages = [
         pkgs.hyprlock

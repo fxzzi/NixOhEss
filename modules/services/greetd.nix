@@ -10,7 +10,8 @@
   tuigreet = pkgs.callPackage "${pins.tuigreet}/nix/package.nix" {};
   cmd = pkgs.writeShellScriptBin "greetd-hyprland" ''
     Hyprland
-    systemctl --user stop hyprland-session.target
+    systemctl --user stop nixos-fake-graphical-session.target
+    systemctl --user stop graphical-session.target
   '';
 in {
   options.cfg.services.greetd.enable = mkEnableOption "greetd";
