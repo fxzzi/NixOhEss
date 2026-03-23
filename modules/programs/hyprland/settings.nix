@@ -49,16 +49,15 @@ in {
         };
         value = {
           exec-once = [
+            "systemctl --user reset-failed"
             "dbus-update-activation-environment --systemd --all"
-            "systemctl --user start hyprland-session.target"
+            "systemctl --user start nixos-fake-graphical-session.target"
           ];
           exec = optionals multiMonitor [
             "${getExe pkgs.xrandr} --output ${cfg.defaultMonitor} --primary"
           ];
-
           exec-shutdown = [
-            "pkill -9 Discord" # discord loves to hang instead of close nicely.
-            "systemctl --user stop hyprland-session.target"
+            "pkill -9 Discord"
           ];
           # default settings for monitors
           monitor = [
@@ -210,6 +209,7 @@ in {
               "match:content video, idle_inhibit fullscreen, no_vrr 1"
 
               "match:class atril, idle_inhibit focus"
+
               # oled flicker is annoying on term
               "match:class foot, idle_inhibit fullscreen, no_vrr 1"
 
@@ -265,13 +265,10 @@ in {
                 "class UnleashedRecomp"
                 "class sober"
                 "class love, match:title Freesync test"
+                # launch waywall in fullscreen
+                "class waywall, fullscreen 1"
               ])
             ++ [
-              # enable tearing on vrrtest
-              "match:class love, match:title Freesync test, immediate 1"
-
-              # launch waywall in fullscreen
-              "match:class waywall, fullscreen 1"
             ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor (
