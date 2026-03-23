@@ -68,6 +68,8 @@ in {
             direct_scanout = mkDefault 2;
             # block cm if ds is active
             non_shader_cm = 2;
+            # fix washed out colors in winewayland, and SDL3 wayland (CS2)
+            cm_sdr_eotf = "gamma22force";
             cm_auto_hdr = 2; # use hdredid for autohdr
           };
           quirks = {
