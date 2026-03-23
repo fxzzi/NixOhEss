@@ -14,7 +14,7 @@ in {
         lutris
       ];
 
-      xdg.data.files."lutris/runners/proton/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
+      xdg.data.files."lutris/runners/wine/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
         source = pkgs.proton-ge-bin.steamcompattool;
       };
     };
