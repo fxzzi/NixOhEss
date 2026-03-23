@@ -11,7 +11,10 @@ in {
   config = mkIf cfg.enable {
     hj = {
       packages = with pkgs; [
-        lutris
+        (lutris.override {
+          # just use steam lol
+          steamSupport = false;
+        })
       ];
       xdg.data.files = {
         "lutris/runners/wine/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
