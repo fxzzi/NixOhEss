@@ -23,7 +23,7 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     hjem = {
-      url = "github:feel-co/hjem";
+      url = "github:feel-co/hjem/notashelf/push-qsxstrtuykru";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.smfh.follows = "";
     };
