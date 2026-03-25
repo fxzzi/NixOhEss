@@ -12,16 +12,14 @@
     "WebRtcAllowInputVolumeAdjustment"
     "ChromeWideEchoCancellation"
   ];
-  enableFeatures =
-    [
-      "AcceleratedVideoDecodeLinuxGL"
-      "AcceleratedVideoDecodeLinuxZeroCopyGL"
-      "VaapiIgnoreDriverChecks"
-    ]
-    ++ optionals config.cfg.hardware.nvidia.enable [
-      "WaylandLinuxDrmSyncobj" # fix flickering
-      "VaapiOnNvidiaGPUs"
-    ];
+  enableFeatures = [
+    # vaapi info: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/gpu/vaapi.md
+    "AcceleratedVideoDecodeLinuxGL"
+    "AcceleratedVideoDecodeLinuxZeroCopyGL"
+    "AcceleratedVideoEncoder"
+    "VaapiOnNvidiaGPUs"
+    "WaylandLinuxDrmSyncobj" # fix flickering on nvidia
+  ];
 
   commandLineArgs =
     [
