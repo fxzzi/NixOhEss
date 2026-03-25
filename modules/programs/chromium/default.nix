@@ -24,6 +24,7 @@
   commandLineArgs =
     [
       "--extension-mime-request-handling=always-prompt-for-install"
+      "--enable-experimental-web-platform-features" # hdr, wcg
     ]
     ++ optionals (enableFeatures != []) [
       "--enable-features=${concatStringsSep "," enableFeatures}"
