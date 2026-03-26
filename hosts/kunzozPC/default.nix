@@ -5,12 +5,6 @@
   ...
 }: {
   system.stateVersion = "25.05";
-  imports = [
-    ./hardware-configuration.nix
-    ./gtkBookmarks.nix
-    ./options.nix
-  ];
-
   hj = {
     packages = with pkgs; [
       losslesscut-bin
