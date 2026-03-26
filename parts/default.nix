@@ -2,6 +2,7 @@
   inputs,
   pins,
   lib,
+  self,
   ...
 }: let
   inherit (lib) packagesFromDirectoryRecursive fix;

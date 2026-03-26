@@ -3,11 +3,6 @@
   inputs',
   ...
 }: {
-  imports = [
-    ./hardware-configuration.nix
-    ./options.nix
-    ./secureboot.nix
-  ];
   config = {
     system.stateVersion = "25.05";
     hj = {

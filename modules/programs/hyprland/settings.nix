@@ -66,7 +66,7 @@ in {
           render = {
             direct_scanout = mkDefault 2;
             # block cm if ds is active
-            non_shader_cm = 2;
+            non_shader_cm = 1;
             # fix washed out colors in winewayland, and SDL3 wayland (CS2)
             cm_sdr_eotf = "gamma22force";
             cm_auto_hdr = 2; # use hdredid for autohdr
@@ -254,6 +254,7 @@ in {
                 "class .*_linux" # 32-bit source
                 "class .*_linux64" # 64-bit source
                 "class .*.x86_64" # native sdl games
+                "class momentum"
                 "class cs2"
                 "class Minecraft\*.*"
                 "initial_title Minecraft\*.*" # sometimes class isn't set
