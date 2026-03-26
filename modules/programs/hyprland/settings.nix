@@ -268,9 +268,7 @@ in {
                 "class love, match:title Freesync test"
                 # launch waywall in fullscreen
                 "class waywall, fullscreen 1"
-              ])
-            ++ [
-            ];
+              ]);
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor (
             genList (

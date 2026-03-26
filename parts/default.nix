@@ -2,7 +2,6 @@
   inputs,
   pins,
   lib,
-  self,
   ...
 }: let
   inherit (lib) packagesFromDirectoryRecursive fix;
@@ -42,5 +41,6 @@ in {
   imports = [
     ./lib
     ./fmt.nix
+    ./nixosConfigurations.nix
   ];
 }
