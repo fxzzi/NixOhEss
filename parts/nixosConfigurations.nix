@@ -6,12 +6,11 @@
   lib,
   ...
 }: let
-  inherit (lib) genAttrs nixosSystem filterAttrs;
+  inherit (lib) genAttrs nixosSystem;
   inherit (builtins) attrNames readDir;
 
   # Filter readDir to only include directories
   # This avoids pulling in this file (default.nix) as a host
-  hostnames = filterAttrs (_: type: type == "directory") (readDir ./.);
 
   # To be able to access some flake-parts features, like pre-selected
   # platform for inputs and self (inputs', self', etc), we need to enter
@@ -35,8 +34,8 @@
         };
         modules =
           self.lib.listRecursive ../modules # all modules
-          ++ self.lib.listRecursive (./. + "/${hostName}"); # host-specific
+          ++ self.lib.listRecursive (../hosts/. + "/${hostName}"); # host-specific
       });
 in {
-  flake.nixosConfigurations = genAttrs (attrNames hostnames) mkSystem;
+  flake.nixosConfigurations = genAttrs (attrNames (readDir ../hosts)) mkSystem;
 }
