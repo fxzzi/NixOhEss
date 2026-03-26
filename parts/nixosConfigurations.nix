@@ -6,7 +6,7 @@
   lib,
   ...
 }: let
-  inherit (lib) genAttrs nixosSystem;
+  inherit (lib) genAttrs nixosSystem flatten;
   inherit (builtins) attrNames readDir;
 
   # Filter readDir to only include directories
@@ -32,9 +32,10 @@
         specialArgs = {
           inherit self self' inputs inputs' hostName pins;
         };
-        modules =
-          self.lib.listRecursive ../modules # all modules
-          ++ self.lib.listRecursive (../hosts/. + "/${hostName}"); # host-specific
+        modules = flatten [
+          (self.lib.listRecursive ../modules) # all modules
+          (self.lib.listRecursive (../hosts/. + "/${hostName}")) # host-specific
+        ];
       });
 in {
   flake.nixosConfigurations = genAttrs (attrNames (readDir ../hosts)) mkSystem;
