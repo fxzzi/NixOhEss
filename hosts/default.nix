@@ -33,11 +33,9 @@
         specialArgs = {
           inherit self self' inputs inputs' hostName pins;
         };
-        modules = [
-          # we exposed our ${self}/modules directory as a nixosModule
-          self.nixosModules.default
-          ./${hostName}
-        ];
+        modules =
+          self.lib.listRecursive ../modules # all modules
+          ++ self.lib.listRecursive (./. + "/${hostName}"); # host-specific
       });
 in {
   flake.nixosConfigurations = genAttrs (attrNames hostnames) mkSystem;

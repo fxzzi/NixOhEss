@@ -6,13 +6,6 @@
   ...
 }: {
   system.stateVersion = "25.05";
-  imports = [
-    ./hardware-configuration.nix
-    ./networking.nix
-    ./fancontrol.nix
-    ./gtkBookmarks.nix
-    ./options.nix
-  ];
   age.secrets = {
     m27q = {
       file = "${self}/parts/secrets/mub-M27Q_v1.icm.age";

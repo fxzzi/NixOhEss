@@ -5,7 +5,6 @@
       systems = import inputs.systems;
       imports = [
         ./hosts
-        ./modules
         ./parts
       ];
     };
