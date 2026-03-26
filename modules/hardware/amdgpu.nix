@@ -28,5 +28,9 @@ in {
     # enable HIP for packages which use it
     # (blender for the most part lol)
     nixpkgs.config.hipSupport = true;
+    environment.sessionVariables = {
+      # Increase AMD's shader cache size to xGB
+      MESA_SHADER_CACHE_MAX_SIZE = "12G";
+    };
   };
 }
