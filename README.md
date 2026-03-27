@@ -23,6 +23,9 @@ is also used to modularize the flake.
 
 ## Structure
 
+This flake (accidentally) makes use of the
+[synaptic standard.](https://github.com/llakala/synaptic-standard)
+
 - [`flake.nix`](./flake.nix): The entrypoint to each module of my flake, using
   flake-parts.
 - [`parts/`](./parts/): My larger flake decomposed into smaller parts.
