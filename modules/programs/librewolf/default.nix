@@ -4,38 +4,18 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf concatMapAttrsStringSep optionalString;
-  inherit (builtins) toJSON isBool isInt isString toString;
+  inherit (lib) mkEnableOption mkIf;
+
   cfg = config.cfg.programs.librewolf;
-  newTabPage = "file://${config.hj.xdg.data.directory}/startpage/${config.cfg.programs.startpage.user}/index.html";
-  attrsToLines = f: attrs: concatMapAttrsStringSep "\n" f attrs;
-  # thank you diniamo for this cool pref setup!
-  # https://github.com/diniamo/niqs/blob/main/modules/workstation/librewolf/default.nix
-  # NOTE: this file begins with an _ so that my recursive importer in `../../default.nix` ignores it.
-  prefs = import ./_prefs.nix {inherit newTabPage config;};
-  prefValue = pref:
-    toJSON (
-      if isBool pref || isInt pref || isString pref
-      then pref
-      else toString pref
-    );
-  jsPrefs = attrsToLines (name: value: "lockPref(\"${name}\", ${prefValue value});") prefs;
   librewolf = pkgs.librewolf-bin.override {
     nativeMessagingHosts = [pkgs.ff2mpv-rust];
-    extraPrefs = ''
-      ${optionalString config.cfg.programs.startpage.enable ''
-        // sets the new tab page to our local newtab.
-        ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
-      ''}
-      ${jsPrefs}
-    '';
+    extraPrefs = cfg.prefs;
     extraPolicies = {
+      SearchSuggestEnabled = false;
       SearchEngines = {
         PreventInstalls = true;
         Add = [
-          {
-            Name = "Google";
-          }
+          {Name = "Google";}
         ];
         Remove = [
           "DuckDuckGo"
@@ -44,7 +24,6 @@
         ];
         Default = "Google";
       };
-      SearchSuggestEnabled = false;
     };
   };
 in {
