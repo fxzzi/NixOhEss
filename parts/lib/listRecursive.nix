@@ -1,12 +1,8 @@
 lib: let
-  inherit (lib) filesystem hasSuffix hasPrefix;
+  inherit (lib) filesystem hasSuffix;
 in
   path: let
-    allNixFiles = filesystem.listFilesRecursive path;
-    filterFile = file: let
-      name = baseNameOf file;
-    in
-      (hasSuffix ".nix" name)
-      && (!hasPrefix "_" name);
+    files = filesystem.listFilesRecursive path;
+    nixFilter = file: hasSuffix ".nix" (baseNameOf file);
   in
-    builtins.filter filterFile allNixFiles
+    builtins.filter nixFilter files
