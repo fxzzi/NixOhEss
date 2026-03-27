@@ -24,8 +24,6 @@ in {
           # according to nvidia it can cause issues in apps which
           # don't even use reflex, so enable it in here only for steam
           DXVK_NVAPI_VKREFLEX = mkIf config.cfg.hardware.nvidia.enable 1;
-          # FIXME: https://github.com/ValveSoftware/steam-for-linux/issues/13007
-          PRESSURE_VESSEL_FILESYSTEMS_RW = "/games";
         };
       };
       remotePlay.openFirewall = true;

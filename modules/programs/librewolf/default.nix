@@ -59,9 +59,8 @@ in {
       "librewolf-bin-unwrapped-${librewolf.version}"
       "librewolf-bin-${librewolf.version}"
     ];
-    environment.sessionVariables = mkIf config.cfg.hardware.nvidia.enable {
-      LIBVA_DRIVER_NAME = "nvidia";
-      MOZ_DISABLE_RDD_SANDBOX = "1";
+    environment.sessionVariables = {
+      MOZ_DISABLE_RDD_SANDBOX = 1;
     };
     xdg.mime.defaultApplications = {
       "application/xhtml+xml" = "librewolf.desktop";
