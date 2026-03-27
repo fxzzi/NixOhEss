@@ -5,12 +5,11 @@
 }: let
   inherit (lib) mkOption types concatMapAttrsStringSep optionalString;
   inherit (builtins) toJSON isBool isInt isString toString;
-  newTabPage = "file://${config.hj.xdg.data.directory}/startpage/${config.cfg.programs.startpage.user}/index.html";
   prefs = {
     # Set home page
     "browser.startup.homepage" =
       if config.cfg.programs.startpage.enable
-      then newTabPage
+      then config.cfg.programs.startpage.page
       else "about:home";
 
     # don't firefox sync the homepage, stops it overwriting on windows.
@@ -106,7 +105,7 @@ in {
   config.cfg.programs.librewolf.prefs = ''
     ${optionalString config.cfg.programs.startpage.enable ''
       // sets the new tab page to our local newtab.
-      ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${newTabPage}";
+      ChromeUtils.importESModule("resource:///modules/AboutNewTab.sys.mjs").AboutNewTab.newTabURL = "${config.cfg.programs.startpage.page}";
     ''}
     ${jsPrefs}
   '';
