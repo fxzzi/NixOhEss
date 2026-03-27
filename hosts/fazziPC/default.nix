@@ -52,7 +52,7 @@
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
           mode = "highres";
           bitdepth = 10;
-          cm = "dcip3";
+          # cm = "dcip3";
           # sdr_min_luminance = 0.005;
           # sdr_max_luminance = 203;
           # use the srgb mode on the monitor for now due to fw issues
