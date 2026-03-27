@@ -6,8 +6,6 @@
 }: let
   inherit (lib) mkEnableOption mkIf mkOption types optionals concatStringsSep;
   cfg = config.cfg.programs.chromium;
-  newTabPage = "file://${config.hj.xdg.data.directory}/startpage/${config.cfg.programs.startpage.user}/index.html";
-
   disableFeatures = [
     "WebRtcAllowInputVolumeAdjustment"
     "ChromeWideEchoCancellation"
@@ -38,7 +36,7 @@
       "--enable-experimental-web-platform-features" # hdr, wcg
     ]
     ++ optionals config.cfg.programs.startpage.enable [
-      "--custom-ntp=${newTabPage}"
+      "--custom-ntp=${config.cfg.programs.startpage.page}"
     ]
     ++ commonArgs;
 

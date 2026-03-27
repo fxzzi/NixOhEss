@@ -19,6 +19,11 @@ in {
       default = "fazzi";
       description = "Selects which startpage user to use.";
     };
+    page = mkOption {
+      type = types.str;
+      internal = true;
+      default = "file://${config.hj.xdg.data.directory}/startpage/${config.cfg.programs.startpage.user}/index.html";
+    };
   };
   config = mkIf cfg.enable {
     hj.xdg.data.files."startpage".source = pins.startpage; # startpage
