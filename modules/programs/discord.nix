@@ -4,33 +4,10 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf concatStringsSep optionals;
+  inherit (lib) mkEnableOption mkIf concatStringsSep;
   cfg = config.cfg.programs.discord;
-  disableFeatures = [
-    "WebRtcAllowInputVolumeAdjustment"
-    "ChromeWideEchoCancellation"
-  ];
-  enableFeatures = [
-    # vaapi info: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/gpu/vaapi.md
-    "AcceleratedVideoDecodeLinuxGL"
-    "AcceleratedVideoDecodeLinuxZeroCopyGL"
-    "AcceleratedVideoEncoder"
-    "VaapiOnNvidiaGPUs"
-    "WaylandLinuxDrmSyncobj" # fix flickering on nvidia
-  ];
 
-  commandLineArgs =
-    optionals (enableFeatures != []) [
-      "--enable-features=${concatStringsSep "," enableFeatures}"
-    ]
-    ++ optionals (disableFeatures != []) [
-      "--disable-features=${concatStringsSep "," disableFeatures}"
-    ]
-    ++ optionals (!config.cfg.programs.smoothScroll.enable) [
-      "--disable-smooth-scrolling"
-    ];
-
-  joinedArgs = concatStringsSep " " commandLineArgs;
+  commandLineArgs = concatStringsSep " " config.cfg.programs.chromium.commonArgs;
 
   # Use the below variables to create a list of fonts which can
   # be used in openasar quickcss.
@@ -41,16 +18,15 @@
   # as it wouldn't render correctly, i.e. no bold text, text was squished.
   # Explicity listing the fonts however seems to have worked.
   font = config.fonts.fontconfig.defaultFonts;
-  wrapFonts = fonts: concatStringsSep ", " (map (f: "\"${f}\"") fonts);
+  wrapFonts = fonts: concatStringsSep ", " fonts;
 
   primaryFont = wrapFonts (font.sansSerif ++ font.emoji);
-  monoFont = wrapFonts font.monospace;
+  monoFont = wrapFonts (font.monospace ++ font.emoji);
 in {
   options.cfg.programs.discord = {
     enable = mkEnableOption "discord";
     minimizeToTray =
-      mkEnableOption "Minimize to tray"
-      // {default = true;};
+      mkEnableOption "Minimize to tray" // {default = true;};
   };
 
   config = mkIf cfg.enable {
@@ -141,10 +117,10 @@ in {
         (pkgs.discord.override {
           # we disable updates in settings.json
           disableUpdates = false;
-          commandLineArgs = joinedArgs;
           withTTS = false;
           enableAutoscroll = true;
           withOpenASAR = true;
+          inherit commandLineArgs;
         })
       ];
     };

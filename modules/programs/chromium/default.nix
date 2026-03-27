@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf optionals concatStringsSep;
+  inherit (lib) mkEnableOption mkIf mkOption types optionals concatStringsSep;
   cfg = config.cfg.programs.chromium;
   newTabPage = "file://${config.hj.xdg.data.directory}/startpage/${config.cfg.programs.startpage.user}/index.html";
 
@@ -21,12 +21,8 @@
     "WaylandLinuxDrmSyncobj" # fix flickering on nvidia
   ];
 
-  commandLineArgs =
-    [
-      "--extension-mime-request-handling=always-prompt-for-install"
-      "--enable-experimental-web-platform-features" # hdr, wcg
-    ]
-    ++ optionals (enableFeatures != []) [
+  commonArgs =
+    optionals (enableFeatures != []) [
       "--enable-features=${concatStringsSep "," enableFeatures}"
     ]
     ++ optionals (disableFeatures != []) [
@@ -34,10 +30,17 @@
     ]
     ++ optionals (!config.cfg.programs.smoothScroll.enable) [
       "--disable-smooth-scrolling"
+    ];
+
+  commandLineArgs =
+    [
+      "--extension-mime-request-handling=always-prompt-for-install"
+      "--enable-experimental-web-platform-features" # hdr, wcg
     ]
     ++ optionals config.cfg.programs.startpage.enable [
       "--custom-ntp=${newTabPage}"
-    ];
+    ]
+    ++ commonArgs;
 
   wootility = pkgs.makeDesktopItem {
     name = "wootility";
@@ -66,9 +69,15 @@ in {
     wootility.enable = mkEnableOption "wootility";
     scyrox-s-center.enable = mkEnableOption "scyrox-s-center";
     via.enable = mkEnableOption "via";
+    commonArgs = mkOption {
+      type = types.listOf types.str;
+      internal = true;
+      description = "Common args for chromium and electron apps";
+    };
   };
-  config = mkIf cfg.enable {
-    hj = {
+  config = {
+    cfg.programs.chromium.commonArgs = commonArgs;
+    hj = mkIf cfg.enable {
       packages = [
         (pkgs.ungoogled-chromium.override {
           inherit commandLineArgs;
