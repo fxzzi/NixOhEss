@@ -24,7 +24,8 @@
       inputs.smfh.follows = "";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      # url = "github:hyprwm/Hyprland";
+      url = "github:UjinT34/Hyprland/refactor-8-cm-automation";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";

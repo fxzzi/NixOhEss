@@ -52,7 +52,7 @@
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
           mode = "highres";
           bitdepth = 10;
-          # cm = "dcip3";
+          cm = "edid";
           # sdr_min_luminance = 0.005;
           # sdr_max_luminance = 203;
           # use the srgb mode on the monitor for now due to fw issues
@@ -68,6 +68,7 @@
           supports_wide_color = -1;
           # this monitor doesn't flicker when using VRR at all
           vrr = 1;
+          cm = "edid";
           # icc = "${config.age.secrets.m27q.path}";
         };
       };
