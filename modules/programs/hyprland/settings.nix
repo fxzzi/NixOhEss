@@ -50,7 +50,6 @@ in {
         value = {
           exec-once = [
             "systemctl --user reset-failed"
-            "dbus-update-activation-environment --systemd --all"
             "systemctl --user start nixos-fake-graphical-session.target"
           ];
           exec = optionals multiMonitor [
@@ -58,6 +57,7 @@ in {
           ];
           exec-shutdown = [
             "pkill -9 Discord"
+            "systemctl stop --user nixos-fake-graphical-session.target"
           ];
           # default settings for monitors
           monitor = [
@@ -65,11 +65,12 @@ in {
           ];
           render = {
             direct_scanout = mkDefault 2;
-            # block cm if ds is active
+            # allow cm + ds at the same time
             non_shader_cm = 1;
             # fix washed out colors in winewayland, and SDL3 wayland (CS2)
             cm_sdr_eotf = "gamma22force";
             cm_auto_hdr = 2; # use hdredid for autohdr
+            # use_fp16 = true;
           };
           quirks = {
             # allow ds to activate with winewayland

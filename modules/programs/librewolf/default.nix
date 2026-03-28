@@ -21,6 +21,7 @@
           "DuckDuckGo"
           "Wikipedia (en)"
           "Bing"
+          "Perplexity"
         ];
         Default = "Google";
       };

@@ -10,8 +10,6 @@ in {
   options.cfg.services.xdph.enable = mkEnableOption "xdph";
   config = mkIf cfg.enable {
     xdg = {
-      # we don't use these files
-      autostart.enable = mkForce false;
       portal = {
         enable = true;
         # seems to help steam wanting to use chromium for some reason

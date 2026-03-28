@@ -53,16 +53,23 @@ in {
         __GL_VRR_ALLOWED = "1";
         # lowest frame buffering -> lower latency
         __GL_MaxFramesAllowed = "1";
+
+        # enable saving shaders to disk
+        __GL_SHADER_DISK_CACHE = 1;
+        # increase max size to xGB
+        __GL_SHADER_DISK_CACHE_SIZE = 12 * 1024 * 1024 * 1024;
+        # clean up ~
+        __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
+
         # fix hw acceleration and native wayland on losslesscut
         __EGL_VENDOR_LIBRARY_CONFIG_DIRS = "/run/opengl-driver/share/glvnd/egl_vendor.d/";
         # fix hw acceleration in bwrap (osu!lazer, wrapped appimages)
         __EGL_EXTERNAL_PLATFORM_CONFIG_DIRS = "/run/opengl-driver/share/egl/egl_external_platform.d/";
+
         # avoid creation of $HOME/.nv dir
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
         # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
-        # Increase Nvidia's shader cache size to xGB
-        __GL_SHADER_DISK_CACHE_SIZE = 12 * 1024 * 1024 * 1024;
       };
       etc = {
         "nvidia/nvidia-application-profiles-rc.d/50-vram-and-cuda-fixes.json".text = builtins.toJSON {
