@@ -60,12 +60,11 @@
         };
         # secondary monitor
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
-          mode = "highres";
+          mode = "2560x1440@120";
+          bitdepth = 10;
           position = "auto-center-left";
           # hdr sucks on this monitor lol
           supports_hdr = -1;
-          # only supports 10-bit at 120hz
-          supports_wide_color = -1;
           # this monitor doesn't flicker when using VRR at all
           vrr = 1;
           cm = "edid";
@@ -77,7 +76,7 @@
   # set resolutions early to avoid modeset when launching hyprland
   hardware.display.outputs = {
     "DP-3".mode = "2560x1440-30@280";
-    "DP-2".mode = "2560x1440-24@170";
+    "DP-2".mode = "2560x1440-30@120";
   };
   # fazziPC has a WOLED main monitor with subpixel layout RGWB,
   # and a secondary monitor of layout BGR. Therefore we shouldn't
