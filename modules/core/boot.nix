@@ -79,6 +79,7 @@ in {
         "nowatchdog" # unsafe!! but fine for desktops
         "mitigations=off" # also unsafe!!
         "fbcon=font:TER16x32" # make font size bigger
+        "preempt=full" # better for gaemin?
       ];
       tmp = {
         useTmpfs = true; # /tmp is not on tmpfs by default (why??)
