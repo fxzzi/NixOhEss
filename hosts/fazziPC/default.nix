@@ -70,6 +70,7 @@
           cm = "edid";
           # icc = "${config.age.secrets.m27q.path}";
         };
+        render.non_shader_cm = 1;
       };
     };
   };

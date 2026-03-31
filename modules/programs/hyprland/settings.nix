@@ -65,8 +65,6 @@ in {
           ];
           render = {
             direct_scanout = mkDefault 2;
-            # allow cm + ds at the same time
-            non_shader_cm = 1;
             # fix washed out colors in winewayland, and SDL3 wayland (CS2)
             cm_sdr_eotf = "gamma22force";
             cm_auto_hdr = 2; # use hdredid for autohdr

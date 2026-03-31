@@ -8,7 +8,7 @@
 
   cfg = config.cfg.programs.librewolf;
   librewolf = pkgs.librewolf-bin.override {
-    nativeMessagingHosts = [pkgs.ff2mpv-rust];
+    # nativeMessagingHosts = [pkgs.ff2mpv-rust];
     extraPrefs = cfg.prefs;
     extraPolicies = {
       SearchSuggestEnabled = false;
