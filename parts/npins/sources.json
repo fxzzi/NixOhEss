@@ -17,15 +17,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "Novattz",
+        "owner": "fxzzi",
         "repo": "creamlinux-installer"
       },
       "branch": "main",
       "submodules": false,
       "revision": "17ad517a459f1a41a40bef2642ee952859147ab5",
-      "url": "https://github.com/Novattz/creamlinux-installer/archive/17ad517a459f1a41a40bef2642ee952859147ab5.tar.gz",
-      "hash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
-      "frozen": true
+      "url": "https://github.com/fxzzi/creamlinux-installer/archive/17ad517a459f1a41a40bef2642ee952859147ab5.tar.gz",
+      "hash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4="
     },
     "lanzaboote": {
       "type": "GitRelease",
