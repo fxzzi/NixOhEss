@@ -81,6 +81,7 @@ in {
             default_monitor = mkIf multiMonitor cfg.defaultMonitor;
             sync_gsettings_theme = 0; # we handle this ourselves
             inactive_timeout = 4; # after x seconds of inactivity, hide the cursor
+            hide_on_key_press = true;
             no_break_fs_vrr = 2;
             # FIXME: https://github.com/hyprwm/Hyprland/pull/12665#discussion_r2837887558
             no_hardware_cursors = 0;
