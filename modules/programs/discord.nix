@@ -36,11 +36,14 @@ in {
         value = let
           endpoint = "https://inject.shelter.uwu.network/equicord";
         in {
+          # allow launching discord even if a new update is available
           SKIP_HOST_UPDATE = true;
           MINIMIZE_TO_TRAY = cfg.minimizeToTray;
           OPEN_ON_STARTUP = false;
           DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
           enableHardwareAcceleration = true;
+          offloadAdmControls = true;
+          openH264Enabled = true;
           # use vencord through sheltupdate instead of using nixpkgs vencord
           # this means we can get faster vencord updates outside of nixpkgs
           UPDATE_ENDPOINT = endpoint;
