@@ -14,22 +14,17 @@ writeShellApplication {
       dunstify -a "brightness" -u low -r "9999" -t 2000 -h int:value:"$brightness" -i "notification-display-brightness" "Brightness" "''${brightness}%"
     }
 
-    # Main script logic
     case $1 in
     up)
-      # Increase brightness by 10
-      current_brightness=$(hyprctl hyprsunset gamma | awk '{print int($1)}')
-      new_brightness=$((current_brightness + $2))
-      hyprctl hyprsunset gamma $new_brightness
+      hyprctl hyprsunset gamma +10
       ;;
     down)
       # Decrease brightness by 10, ensuring it does not go below 30
       current_brightness=$(hyprctl hyprsunset gamma | awk '{print int($1)}')
       new_brightness=$((current_brightness - $2))
-      if [ "$new_brightness" -lt 30 ]; then
-        new_brightness=30
+      if [ "$new_brightness" -gt 30 ]; then
+        hyprctl hyprsunset gamma -10
       fi
-      hyprctl hyprsunset gamma $new_brightness
       ;;
     *)
       echo "invalid cmd"
