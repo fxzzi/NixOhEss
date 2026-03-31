@@ -13,6 +13,8 @@
     then pkgs.linuxPackages
     else if cfg.type == "zen"
     then pkgs.linuxKernel.packages.linux_zen
+    else if cfg.type == "xanmod"
+    then pkgs.linuxKernel.packages.linux_xanmod_latest
     else throw "Unsupported kernel type.";
 in {
   options.cfg.core.kernel.type = mkOption {
@@ -20,6 +22,7 @@ in {
       "latest"
       "zen"
       "lts"
+      "xanmod"
     ];
     default = "latest";
     description = "Selects which kernel to use";
