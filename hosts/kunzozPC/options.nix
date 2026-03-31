@@ -37,7 +37,7 @@
 
       scx = {
         enable = true;
-        scheduler = "scx_bpfland";
+        scheduler = "scx_cosmos";
       };
 
       hyprsunset.enable = true;
