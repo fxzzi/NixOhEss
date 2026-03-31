@@ -3,7 +3,7 @@
     core = {
       username = "faaris";
       kernel = {
-        type = "latest";
+        type = "xanmod";
         zenergy.enable = true;
         v4l2.enable = true;
       };
