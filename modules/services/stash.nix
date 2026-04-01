@@ -21,7 +21,7 @@ in {
       serviceConfig = {
         ExecStart = "${getExe stash} --max-items 10 watch";
         Restart = "on-abort";
-        loadCredential = "clipboard_filter:${writeText "stash-regex" regex}";
+        LoadCredential = "clipboard_filter:${writeText "stash-regex" regex}";
       };
       restartTriggers = [
         stash
