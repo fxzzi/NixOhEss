@@ -23,6 +23,9 @@ in {
         Restart = "on-abort";
         loadCredential = "clipboard_filter:${writeText "stash-regex" regex}";
       };
+      restartTriggers = [
+        stash
+      ];
     };
   };
 }
