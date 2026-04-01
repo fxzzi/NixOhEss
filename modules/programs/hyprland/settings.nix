@@ -113,6 +113,7 @@ in {
           misc = {
             disable_hyprland_logo = 1; # Disable hyprland wallpapers etc
             disable_splash_rendering = 1; # Disable startup splashscreen
+            background_color = "0x000000";
             mouse_move_focuses_monitor = 0; # Disables hover for monitor focus
             focus_on_activate = 1; # Focuses windows which ask for activation
             enable_swallow = 1; # Enable window swalling
