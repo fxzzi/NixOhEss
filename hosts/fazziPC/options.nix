@@ -38,7 +38,6 @@
         powerLimit = 150;
       };
       stash.enable = true;
-      wl-clip-persist.enable = true;
       mullvad.enable = true;
       mediamtx.enable = true;
       mate-polkit.enable = true;
