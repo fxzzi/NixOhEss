@@ -25,6 +25,9 @@ in {
         RestartSec = 1;
         TimeoutStopSec = 10;
       };
+      restartTriggers = [
+        pkgs.mate-polkit
+      ];
     };
   };
 }
