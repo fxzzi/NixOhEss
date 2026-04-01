@@ -68,7 +68,6 @@ in {
             # fix washed out colors in winewayland, and SDL3 wayland (CS2)
             cm_sdr_eotf = "gamma22force";
             cm_auto_hdr = 2; # use hdredid for autohdr
-            # use_fp16 = true;
           };
           quirks = {
             # allow ds to activate with winewayland
