@@ -13,7 +13,7 @@ in {
   options.cfg = {
     services = {
       nvuv = {
-        enable = mkEnableOption "nvidia";
+        enable = mkEnableOption "nvidia overclock / undervolt";
         maxClock = mkOption {
           type = types.int;
           default = 0;
@@ -34,22 +34,49 @@ in {
           default = 0;
           description = "Changes the power limit passed into nvuv";
         };
+        tempMonitor = {
+          enable = mkEnableOption "nvidia temp monitoring";
+          path = mkOption {
+            type = types.str;
+            default = "/tmp/nvidia-temp";
+            description = "Path to the file";
+          };
+          interval = mkOption {
+            type = types.int;
+            default = 5;
+            description = "How often should we poll for temp";
+          };
+        };
       };
     };
   };
 
-  config = mkIf cfg.enable {
-    systemd.services.nvuv = {
-      description = "NVidia Undervolting script";
-      wantedBy = ["multi-user.target"];
-      serviceConfig = {
-        ExecStart = ''
-          ${getExe nvuv} \
-          ${toString cfg.maxClock} \
-          ${toString cfg.coreOffset} \
-          ${toString cfg.memOffset} \
-          ${toString cfg.powerLimit}
-        '';
+  config = {
+    systemd.services = {
+      nvuv = mkIf cfg.enable {
+        description = "NVidia Undervolting script";
+        wantedBy = ["multi-user.target"];
+        serviceConfig = {
+          ExecStart = ''
+            ${getExe nvuv} \
+            --max-clock ${toString cfg.maxClock} \
+            --core-offset ${toString cfg.coreOffset} \
+            --memory-offset ${toString cfg.memOffset} \
+            --power-limit ${toString cfg.powerLimit}
+          '';
+        };
+      };
+      nvuv-temp = mkIf cfg.tempMonitor.enable {
+        description = "NVidia Temperature monitoring script";
+        wantedBy = ["multi-user.target"];
+        serviceConfig = {
+          ExecStart = ''
+            ${getExe nvuv} \
+            --temp-daemon \
+            --temp-path ${cfg.tempMonitor.path} \
+            --temp-interval ${toString cfg.tempMonitor.interval}
+          '';
+        };
       };
     };
   };
