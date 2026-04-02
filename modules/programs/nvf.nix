@@ -11,12 +11,16 @@ in {
   imports = [inputs.nvf.nixosModules.default];
   config = mkIf cfg.enable {
     environment.sessionVariables = {
-      "EDITOR" = "nvim";
+      EDITOR = "nvim";
     };
     programs.nvf = {
       enable = true;
       settings = {
         vim = {
+          options = {
+            tabstop = 2;
+            shiftwidth = 2;
+          };
           preventJunkFiles = true; # stop those weird ~ files from appearing
           undoFile.enable = true; # multi-session undo
           enableLuaLoader = true;
@@ -188,23 +192,6 @@ in {
       "text/*" = "nvim.desktop";
       "application/x-shellscript" = "nvim.desktop";
       "application/xml" = "nvim.desktop";
-    };
-    # make indents normal lmfao
-    hj = {
-      files.".editorconfig" = {
-        generator = lib.generators.toINI {};
-        value = {
-          "*" = {
-            charset = "utf-8";
-            end_of_line = "lf";
-            indent_size = 2;
-            indent_style = "space";
-            insert_final_newline = true;
-            max_line_width = 80;
-            trim_trailing_whitespace = true;
-          };
-        };
-      };
     };
   };
 }
