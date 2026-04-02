@@ -17,10 +17,7 @@
       fonts.enable = true;
     };
     hardware = {
-      nvidia = {
-        enable = true;
-        exposeTemp = true;
-      };
+      nvidia.enable = true;
       bluetooth.enable = true;
       # scanning.enable = true;
     };
@@ -36,6 +33,9 @@
         coreOffset = 205;
         memOffset = 800;
         powerLimit = 150;
+        tempMonitor = {
+          enable = true;
+        };
       };
       stash.enable = true;
       mullvad.enable = true;
