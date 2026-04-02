@@ -118,23 +118,5 @@ in {
           "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
         ];
     };
-    systemd.services.nvidia-temp = let
-      getTemp = "${getExe' config.hardware.nvidia.package "nvidia-smi"} --query-gpu=temperature.gpu --format=csv,noheader,nounits";
-      writeTemp = pkgs.writers.writeDash "writeNvidiaTemp" ''
-        while :; do
-          printf '%d\n' $(($(${getTemp}) * 1000)) > /tmp/nvidia-temp
-          sleep 5
-        done
-      '';
-    in
-      mkIf cfg.exposeTemp {
-        description = "Nvidia GPU temperature monitoring";
-        wantedBy = ["multi-user.target"];
-        before = ["fancontrol.service"];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = writeTemp;
-        };
-      };
   };
 }
