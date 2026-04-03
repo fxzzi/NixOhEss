@@ -80,7 +80,7 @@ in {
             default_monitor = mkIf multiMonitor cfg.defaultMonitor;
             sync_gsettings_theme = 0; # we handle this ourselves
             inactive_timeout = 4; # after x seconds of inactivity, hide the cursor
-            hide_on_key_press = true;
+            # hide_on_key_press = true;
             no_break_fs_vrr = 2;
             # FIXME: https://github.com/hyprwm/Hyprland/pull/12665#discussion_r2837887558
             no_hardware_cursors = 0;
@@ -140,6 +140,7 @@ in {
             # show wayfreeze below slurp, but show both over notifs.
             "match:namespace selection, no_anim 1, order -2"
             "match:namespace wayfreeze, no_anim 1, order -1"
+            "match:namespace hyprpicker, no_anim 1, order -1"
           ];
           decoration = {
             rounding = 0;

@@ -5,12 +5,12 @@
   grim,
   slurp,
   wl-clipboard,
-  wayfreeze,
+  hyprpicker,
   dunst,
 }:
 writeShellApplication {
   name = "screenshot";
-  runtimeInputs = [libcanberra-gtk3 jq grim slurp wl-clipboard wayfreeze dunst];
+  runtimeInputs = [libcanberra-gtk3 jq grim slurp wl-clipboard hyprpicker dunst];
   excludeShellChecks = ["SC2016"];
   text = ''
     # Screenshot the entire monitor, a selection, or active window
@@ -32,7 +32,6 @@ writeShellApplication {
     case $1 in
     --monitor)
       monitorJson=$(hyprctl monitors -j | jq -r '.[] | select(.focused)')
-      monName=$(echo "$monitorJson" | jq -r '.name')
       activeWsId=$(echo "$monitorJson" | jq -r '.activeWorkspace.id')
 
       # find a fullscreen window on the active workspace, if any
@@ -43,6 +42,7 @@ writeShellApplication {
       if [ -n "$fsStableId" ]; then
         $grimCmd -T "$fsStableId" "$path"
       else
+        monName=$(echo "$monitorJson" | jq -r '.name')
         $grimCmd -o "$monName" "$path"
       fi
       ;;
@@ -51,9 +51,9 @@ writeShellApplication {
         echo "screenshot already in progress"
         exit 1
       fi
-      wayfreeze --hide-cursor &
+      hyprpicker -rz &
       PID=$!
-      sleep .1
+      sleep 0.2
       # don't allow multiple slurps at once
       # nicer colours on slurp too
       $grimCmd -g "$(slurp -b '#0a0a0a77' -c '#FFFFFF' -s '#FFFFFF17' -w 2)" "$path" || echo "selection cancelled"
