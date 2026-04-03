@@ -18,13 +18,13 @@ in {
         value = {
           main = {
             font = "monospace:size=17";
-            line-height = "30";
+            line-height = "28";
             prompt = "' '";
             layer = "overlay";
-            lines = "10";
+            lines = "12";
             icon-theme = "Papirus-Dark";
-            horizontal-pad = "10";
-            vertical-pad = "10";
+            horizontal-pad = "8";
+            vertical-pad = "8";
             inner-pad = "6";
             filter-desktop = true;
             terminal = "foot";
@@ -32,16 +32,12 @@ in {
             placeholder = "Search...";
             match-mode = "exact";
             dpi-aware = false;
+            # always sort alphabetically
+            cache = "/dev/null";
           };
           border = {
-            radius = "6";
+            radius = "0";
             width = "2";
-          };
-          key-bindings = {
-            prev-with-wrap = "Up";
-            next-with-wrap = "Down";
-            prev = "None";
-            next = "None";
           };
         };
       };
