@@ -97,6 +97,7 @@ in {
           [preset 2]
           ${common}
           core_load
+          winesync
         '';
       };
     };
