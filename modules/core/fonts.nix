@@ -34,7 +34,7 @@ in {
           ];
           monospace = [
             "JetBrains Mono"
-            "Symbols Nerd Font Mono"
+            "Symbols Nerd Font"
           ];
           emoji = [
             "Noto Color Emoji"
@@ -50,7 +50,6 @@ in {
         vista-fonts # more ms fonts including calibri and consolas
         inter
         jetbrains-mono
-        nerd-fonts.space-mono
       ];
     };
   };
