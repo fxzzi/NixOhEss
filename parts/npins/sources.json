@@ -77,9 +77,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "3d711130866bd4916878970372e872018065d646",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=3d711130866bd4916878970372e872018065d646",
-      "hash": "sha256-KsXJyHmhTnaoUuSQKba58zsChetuBpz9mdW9QjSO4e4="
+      "revision": "32fe6e7773c9cb0d136b1056afb70d4c60264a12",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=32fe6e7773c9cb0d136b1056afb70d4c60264a12",
+      "hash": "sha256-gATwh7Ew8zi8EMbSpyzRHoxAWh11I5E9t6+31CuPq3c="
     },
     "rags": {
       "type": "Git",
