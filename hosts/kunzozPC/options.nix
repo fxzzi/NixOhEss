@@ -58,6 +58,7 @@
       scanning.enable = false;
     };
     programs = {
+      gamescope.enable = true;
       gpu-screen-recorder.enable = true;
       adb.enable = true;
       mangohud = {
