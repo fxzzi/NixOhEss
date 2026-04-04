@@ -67,11 +67,12 @@ in {
               keyColor = "green";
               format = "{2}";
             }
+            # NOTE: just read from env var since it's much faster
             {
-              type = "wm";
+              type = "custom";
               key = " cm";
               keyColor = "blue";
-              format = "{1}";
+              format = "{$XDG_CURRENT_DESKTOP}";
             }
             {
               type = "terminal";
