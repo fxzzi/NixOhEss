@@ -69,6 +69,7 @@ in {
       nvuv-temp = mkIf cfg.tempMonitor.enable {
         description = "NVidia Temperature monitoring script";
         wantedBy = ["multi-user.target"];
+        before = mkIf config.hardware.fancontrol.enable ["fancontrol.service"];
         serviceConfig = {
           ExecStart = ''
             ${getExe nvuv} \
