@@ -244,16 +244,15 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1775245058,
-        "narHash": "sha256-unRNyMCiV4cnKmsC7u2oNfLS+1He4Rd+yAnpfBuHrQA=",
-        "owner": "UjinT34",
+        "lastModified": 1775328124,
+        "narHash": "sha256-4u1z6BosF/fLHYffZbezooZyPNXnwYnXREcg8fSYCGM=",
+        "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "c98e72d6254e3e65aaf8a0942369522eb4616269",
+        "rev": "97ee042757d07dad38b98546ddfb005354840c46",
         "type": "github"
       },
       "original": {
-        "owner": "UjinT34",
-        "ref": "refactor-8-cm-automation",
+        "owner": "hyprwm",
         "repo": "Hyprland",
         "type": "github"
       }
