@@ -21,6 +21,10 @@
             shadow.enabled = 0;
             blur.enabled = 0;
           };
+          render = {
+            # sidestep all cm issues by just disabling it
+            cm_enabled = 0;
+          };
         };
       };
     };
