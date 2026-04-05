@@ -28,8 +28,13 @@
           # this monitor does support 10bit, but only at 120Hz and lower.
           supports_wide_color = -1;
         };
-        # tearing and ds don't work on kunzozPC
-        render.direct_scanout = 0;
+        render = {
+          # sidestep all cm issues by just disabling it
+          cm_enabled = 0;
+          # same with ds
+          render.direct_scanout = 0;
+        };
+        # same with tearing
         general.allow_tearing = 0;
       };
     };
