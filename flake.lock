@@ -40,11 +40,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775403154,
-        "narHash": "sha256-QfG6TwDBlV0ugg64dCKlCcoiUOu1mejEnmMpd4gvVeE=",
+        "lastModified": 1775423676,
+        "narHash": "sha256-pyvIS7rkrKF1AM0rX6Q0HnMHC29ZQ49AcmTNoP4n1Kc=",
         "owner": "fazzi",
         "repo": "azzipkgs",
-        "rev": "b3205f0ab1360a133cfaa6cadecd7de123e8d8a4",
+        "rev": "0c73c5174a0a32fa177574e18362c93dd9292ade",
         "type": "gitlab"
       },
       "original": {
@@ -556,11 +556,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775122065,
-        "narHash": "sha256-ZlowJNkQOhpsXDuWbHgB1xY6W8kyzYn9coK9nJsqqNg=",
+        "lastModified": 1775424406,
+        "narHash": "sha256-ENSQFUK6zs4C5brC4MlrNRM2Krn8OsHdoxPLtezhFyU=",
         "owner": "NotAShelf",
         "repo": "nvf",
-        "rev": "d3304af3d5771e8d5bac6ee9bbdbce56086d54f7",
+        "rev": "3ffc800a01cbd1f2e68e78b527bb7d56078c6351",
         "type": "github"
       },
       "original": {

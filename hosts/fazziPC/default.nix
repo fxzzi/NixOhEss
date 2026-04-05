@@ -3,6 +3,7 @@
   inputs',
   pkgs,
   self,
+  config,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -52,32 +53,26 @@
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
           mode = "highres";
           bitdepth = 10;
-          # cm = "edid";
-          # sdr_min_luminance = 0.005;
-          # sdr_max_luminance = 203;
-          # use the srgb mode on the monitor for now due to fw issues
+          sdr_eotf = 1;
           # icc = "${config.age.secrets.mo27q28g.path}";
         };
         # secondary monitor
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
-          mode = "2560x1440@120";
-          bitdepth = 10;
+          mode = "2560x1440@170";
+          bitdepth = 8;
+          sdr_eotf = 1;
+          supports_hdr = -1; # hdr sucks on this monitor lol
+          icc = "${config.age.secrets.m27q.path}";
           position = "auto-center-left";
-          # hdr sucks on this monitor lol
-          supports_hdr = -1;
-          # this monitor doesn't flicker when using VRR at all
-          vrr = 1;
-          cm = "edid";
-          # icc = "${config.age.secrets.m27q.path}";
+          vrr = 1; # this monitor doesn't flicker when using VRR at all
         };
-        # render.use_fp16 = true;
       };
     };
   };
   # set resolutions early to avoid modeset when launching hyprland
   hardware.display.outputs = {
     "DP-3".mode = "2560x1440-30@280";
-    "DP-2".mode = "2560x1440-30@120";
+    "DP-2".mode = "2560x1440-24@170";
   };
   # fazziPC has a WOLED main monitor with subpixel layout RGWB,
   # and a secondary monitor of layout BGR. Therefore we shouldn't

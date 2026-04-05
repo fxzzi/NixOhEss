@@ -24,16 +24,16 @@ in {
         gsp.enable = isOpen; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = !isOpen;
         nvidiaSettings = false; # useless on wayland still
-        # package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "595.58.03";
-          sha256_64bit = "sha256-jA1Plnt5MsSrVxQnKu6BAzkrCnAskq+lVRdtNiBYKfk=";
-          sha256_aarch64 = "";
-          openSha256 = "sha256-6LvJyT0cMXGS290Dh8hd9rc+nYZqBzDIlItOFk8S4n8=";
-          settingsSha256 = "";
-          persistencedSha256 = "";
-        };
+        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        #   version = "595.58.03";
+        #   sha256_64bit = "sha256-jA1Plnt5MsSrVxQnKu6BAzkrCnAskq+lVRdtNiBYKfk=";
+        #   sha256_aarch64 = "";
+        #   openSha256 = "sha256-6LvJyT0cMXGS290Dh8hd9rc+nYZqBzDIlItOFk8S4n8=";
+        #   settingsSha256 = "";
+        #   persistencedSha256 = "";
+        # };
       };
       graphics = {
         enable = true;
