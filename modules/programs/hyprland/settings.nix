@@ -117,7 +117,6 @@ in {
             focus_on_activate = 1; # Focuses windows which ask for activation
             enable_swallow = 1; # Enable window swalling
             swallow_regex = "foot"; # Make foot swallow executed windows
-            swallow_exception_regex = "foot"; # Make foot not swallow itself
             vrr = 2;
             anr_missed_pings = 6; # by default, ANR dialog shows up way too aggressively.
             mouse_move_enables_dpms = true;
@@ -202,74 +201,70 @@ in {
             pseudotile = 1;
             preserve_split = 1;
           };
-          windowrule =
-            [
-              # hyprland shows anr dialog when stremio is in another workspace, so render_unfocused 1
-              "match:class .*stremio.*, render_unfocused 1, content video"
-              # no vrr on video content, like mpv
-              "match:content video, idle_inhibit fullscreen, no_vrr 1"
+          windowrule = let
+            game = "idle_inhibit fullscreen, content game, immediate 1";
+            fullscreengame = "${game}, fullscreen 1";
+          in [
+            # hyprland shows anr dialog when stremio is in another workspace, so render_unfocused 1
+            "match:class .*stremio.*, render_unfocused 1, content video"
+            # no vrr on video content, like mpv
+            "match:content video, idle_inhibit fullscreen, no_vrr 1"
 
-              "match:class atril, idle_inhibit focus"
+            "match:class atril, idle_inhibit focus"
 
-              # oled flicker is annoying on term
-              "match:class foot, idle_inhibit fullscreen, no_vrr 1"
+            # oled flicker is annoying on term
+            "match:class foot, idle_inhibit fullscreen, no_vrr 1"
 
-              # some apps, mostly games, are stupid and they fullscreen on the
-              # wrong monitor. so just don't listen to them lol
-              # also ignore maximize requests from apps. You'll probably like this.
-              # some games, like cs2, request tearing by default. disable this.
-              "match:class .*, suppress_event maximize fullscreenoutput"
+            # some apps, mostly games, are stupid and they fullscreen on the
+            # wrong monitor. so just don't listen to them lol
+            # also ignore maximize requests from apps. You'll probably like this.
+            # some games, like cs2, request tearing by default. disable this.
+            "match:class .*, suppress_event maximize fullscreenoutput"
 
-              # dialogs
-              "match:title File Operation Progress.*, float 1"
-              "match:title Confirm to replace files.*, float 1"
-              "match:title Select a File.*, float 1"
-              "match:title Save As.*, float 1"
-              "match:title Rename.*, float 1"
-              "match:class xdg-desktop-portal-gtk, float 1"
-              "match:class org.gnome.FileRoller, match:title Extract.*, float 1"
+            # dialogs
+            "match:title File Operation Progress.*, float 1"
+            "match:title Confirm to replace files.*, float 1"
+            "match:title Select a File.*, float 1"
+            "match:title Save As.*, float 1"
+            "match:title Rename.*, float 1"
+            "match:class xdg-desktop-portal-gtk, float 1"
+            "match:class org.gnome.FileRoller, match:title Extract.*, float 1"
 
-              # make some java apps launch tiled
-              "match:class rars-Launch, match:title RARS .*, tile 1"
-              "match:class com-cburch-logisim-Main, match:title .*Logisim-evolution v.*, tile 1"
+            # make some java apps launch tiled
+            "match:class rars-Launch, match:title RARS .*, tile 1"
+            "match:class com-cburch-logisim-Main, match:title .*Logisim-evolution v.*, tile 1"
 
-              # see: https://github.com/hyprwm/Hyprland/discussions/12786
-              "match:class steam, match:title Steam, tile 1"
+            # see: https://github.com/hyprwm/Hyprland/discussions/12786
+            "match:class steam, match:title Steam, tile 1"
 
-              # Window rules for games
-            ]
-            ++ (lib.concatMap (game: [
-                # for all game matches
-                "match:${game}, idle_inhibit fullscreen, content game, immediate 1"
-              ])
-              [
-                # wine, proton, etc
-                "xdg_tag proton-game" # modern proton versions set xdgTag
-                "class steam_app_.*" # all xwayland proton games
-                # emulators
-                "class info.cemu.Cemu"
-                "class org.eden_emu.eden"
-                "class com.libretro.RetroArch"
-                "class dolphin-emu"
-                # native
-                "class .*_linux" # 32-bit source
-                "class .*_linux64" # 64-bit source
-                "class .*.x86_64" # native sdl games
-                "class momentum"
-                "class cs2"
-                "class Minecraft\*.*"
-                "initial_title Minecraft\*.*" # sometimes class isn't set
-                "class org-prismlauncher-EntryPoint" # legacy mc versions
-                "class osu!"
-                "class gamescope"
-                "class Celeste"
-                "class sm64coopdx"
-                "class UnleashedRecomp"
-                "class sober"
-                "class love, match:title Freesync test"
-                # launch waywall in fullscreen
-                "class waywall, fullscreen 1"
-              ]);
+            # Window rules for games
+            # wine, proton, etc
+            "match:xdg_tag proton-game, ${fullscreengame}" # modern proton versions set xdgTag
+            "match:class steam_app_.*, ${fullscreengame}" # all xwayland proton games
+            # emulators
+            "match:class info.cemu.Cemu, ${game}"
+            "match:class org.eden_emu.eden, ${game}"
+            "match:class dev.eden_emu.eden, ${game}"
+            "match:class com.libretro.RetroArch, ${fullscreengame}"
+            "match:class dolphin-emu, ${game}"
+            # native
+            "match:class .*_linux, ${fullscreengame}" # 32-bit source
+            "match:class .*_linux64, ${fullscreengame}" # 64-bit source
+            "match:class .*.x86_64, ${fullscreengame}" # native sdl games
+            "match:class momentum, ${fullscreengame}"
+            "match:class cs2, ${fullscreengame}"
+            "match:class Minecraft\*.*, ${fullscreengame}"
+            "match:initial_title Minecraft\*.*, ${fullscreengame}" # sometimes class isn't set
+            "match:class org-prismlauncher-EntryPoint, ${fullscreengame}" # legacy mc versions
+            "match:class osu!, ${fullscreengame}"
+            "match:class gamescope, ${fullscreengame}"
+            "match:class Celeste, ${fullscreengame}"
+            "match:class sm64coopdx, ${fullscreengame}"
+            "match:class UnleashedRecomp, ${fullscreengame}"
+            "match:class sober, ${fullscreengame}"
+            "match:class love, match:title Freesync test, ${fullscreengame}"
+            "match:class waywall, ${fullscreengame}"
+          ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor (
             genList (

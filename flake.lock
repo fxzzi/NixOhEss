@@ -151,16 +151,15 @@
         "smfh": []
       },
       "locked": {
-        "lastModified": 1775162506,
-        "narHash": "sha256-IpQwWbJ8YHlvl3nGs2rHOIJcJQI8KGcQp3Y4gOInEzo=",
+        "lastModified": 1775390458,
+        "narHash": "sha256-43EY8aVpnrLLit2caHZ9spc8UQxD+L6QBNPkV5tjFhA=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "ba40ca4c7659800d095765a74cc6635d319a5996",
+        "rev": "d04301744814909fdc8c6e3d0db285e910893993",
         "type": "github"
       },
       "original": {
         "owner": "feel-co",
-        "ref": "notashelf/push-qsxstrtuykru",
         "repo": "hjem",
         "type": "github"
       }
@@ -244,15 +243,16 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1775343634,
-        "narHash": "sha256-y5X04LWh/RDH7FE3y1xEDD+RP8mkfGGiXXZ9u0hky2g=",
-        "owner": "hyprwm",
+        "lastModified": 1775393401,
+        "narHash": "sha256-MjrcVCazDpuplfkuy8G36HdBcK5fcTJJx1/pcy2MEys=",
+        "owner": "UjinT34",
         "repo": "Hyprland",
-        "rev": "3a7bd8fea2ca9711da5523dc185c05ea30ec0f35",
+        "rev": "29b6b03c06288fccf650f627c7ae31c4cdb53642",
         "type": "github"
       },
       "original": {
-        "owner": "hyprwm",
+        "owner": "UjinT34",
+        "ref": "refactor-8-cm-automation",
         "repo": "Hyprland",
         "type": "github"
       }
