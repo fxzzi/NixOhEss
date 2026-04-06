@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf;
+  inherit (lib) mkEnableOption mkOption types mkIf optionalAttrs;
   cfg = config.cfg.programs.steam;
 in {
   options.cfg.programs.steam = {
@@ -20,10 +20,12 @@ in {
       enable = true;
       package = pkgs.steam.override {
         extraEnv = {
+          OBS_VKCAPTURE = optionalAttrs config.cfg.programs.obs-studio.enable 1;
           # allow using the nvidia reflex layer.
           # according to nvidia it can cause issues in apps which
-          # don't even use reflex, so enable it in here only for steam
-          DXVK_NVAPI_VKREFLEX = mkIf config.cfg.hardware.nvidia.enable 1;
+          # don't even use reflex, so enable it in here only for lutris
+          DXVK_NVAPI_VKREFLEX = optionalAttrs config.cfg.hardware.nvidia.enable 1;
+          MANGOHUD = optionalAttrs config.cfg.programs.mangohud.enable 1;
         };
       };
       remotePlay.openFirewall = true;
