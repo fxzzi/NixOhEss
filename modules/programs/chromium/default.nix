@@ -17,10 +17,15 @@
     "AcceleratedVideoEncoder"
     "VaapiOnNvidiaGPUs"
     "WaylandLinuxDrmSyncobj" # fix flickering on nvidia
+    "MiddleClickAutoscroll"
   ];
 
   commonArgs =
-    optionals (enableFeatures != []) [
+    [
+      # hdr, wcg
+      "--enable-experimental-web-platform-features"
+    ]
+    ++ optionals (enableFeatures != []) [
       "--enable-features=${concatStringsSep "," enableFeatures}"
     ]
     ++ optionals (disableFeatures != []) [
@@ -33,7 +38,6 @@
   commandLineArgs =
     [
       "--extension-mime-request-handling=always-prompt-for-install"
-      "--enable-experimental-web-platform-features" # hdr, wcg
     ]
     ++ optionals config.cfg.programs.startpage.enable [
       "--custom-ntp=${config.cfg.programs.startpage.page}"
