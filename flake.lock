@@ -11,24 +11,23 @@
           "hyprwayland-scanner"
         ],
         "nixpkgs": [
-          "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "hyprland",
           "systems"
         ]
       },
       "locked": {
-        "lastModified": 1774211390,
-        "narHash": "sha256-sTtAgCCaX8VNNZlQFACd3i1IQ+DB0Wf3COgiFS152ds=",
-        "owner": "hyprwm",
+        "lastModified": 1775495348,
+        "narHash": "sha256-jJnAnNdsSJHamrgWPCc4rAAkdi9j4VzT4F82p3E6gE4=",
+        "owner": "gulafaran",
         "repo": "aquamarine",
-        "rev": "f62a4dbfa4e5584f14ad4c62afedf6e4b433cf70",
+        "rev": "de55d5601b1c91f23cfeea1baafe4957b0de1664",
         "type": "github"
       },
       "original": {
-        "owner": "hyprwm",
+        "owner": "gulafaran",
+        "ref": "commit",
         "repo": "aquamarine",
         "type": "github"
       }
@@ -243,11 +242,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1775469391,
-        "narHash": "sha256-i+zq7rEafM6QF9UUabds6g75ncEmUU8mvp/te5W+s98=",
+        "lastModified": 1775474867,
+        "narHash": "sha256-95VHvE4ubVSCisw+zqHCo41prCTYlBS7NCxjpGTQv6U=",
         "owner": "UjinT34",
         "repo": "Hyprland",
-        "rev": "349c391d9408750a00a26311d4998cfc4d62157b",
+        "rev": "30a83f523112cc9cab738eff89a6256ecde31429",
         "type": "github"
       },
       "original": {

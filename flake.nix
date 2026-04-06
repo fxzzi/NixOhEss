@@ -29,6 +29,14 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
+        aquamarine = {
+          url = "github:gulafaran/aquamarine/commit";
+          inputs = {
+            nixpkgs.follows = "nixpkgs";
+            systems.follows = "systems";
+            hyprutils.follows = "hyprland/hyprutils";
+          };
+        };
       };
     };
     nvf = {
