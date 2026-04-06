@@ -133,9 +133,8 @@ in {
             "match:namespace wleave, blur 1, xray 1"
             "match:namespace bar-.*, blur 1, xray 1, ignore_alpha 0"
             "match:namespace notifications, blur 1, animation slide"
-            # show wayfreeze below slurp, but show both over notifs.
+            # show hyprpicker below slurp, but show both over notifs.
             "match:namespace selection, no_anim 1, order -2"
-            "match:namespace wayfreeze, no_anim 1, order -1"
             "match:namespace hyprpicker, no_anim 1, order -1"
           ];
           decoration = {
@@ -151,7 +150,7 @@ in {
               enabled = mkDefault 1;
               size = 3;
               passes = 3;
-              contrast = 1; # fix blur in cm scenarios
+              contrast = 1; # fix blur in cm and fp16
               # fp16 makes blur lighter. so darken it here when fp16 is in use
               brightness =
                 if config.hj.xdg.config.files."hypr/hyprland.conf".value.render.use_fp16 == 1
