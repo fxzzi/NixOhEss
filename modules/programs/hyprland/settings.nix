@@ -72,8 +72,6 @@ in {
             # allow ds to activate with winewayland
             # also fix mpv freezing in fullscreen
             skip_non_kms_dmabuf_formats = 1;
-            # report hdr mode as preferred to gamescope
-            prefer_hdr = 2;
           };
           cursor = {
             default_monitor = mkIf multiMonitor cfg.defaultMonitor;
