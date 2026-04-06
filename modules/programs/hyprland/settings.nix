@@ -114,8 +114,8 @@ in {
             background_color = "0x000000";
             mouse_move_focuses_monitor = 0; # Disables hover for monitor focus
             focus_on_activate = 1; # Focuses windows which ask for activation
-            enable_swallow = 1; # Enable window swalling
-            swallow_regex = "foot"; # Make foot swallow executed windows
+            enable_swallow = 0;
+            swallow_regex = "foot"; # gui apps executed by foot will swallow it
             vrr = 2;
             anr_missed_pings = 6; # by default, ANR dialog shows up way too aggressively.
             mouse_move_enables_dpms = true;
