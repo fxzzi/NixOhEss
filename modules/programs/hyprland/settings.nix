@@ -158,7 +158,7 @@ in {
                 then 0.5
                 else 0.8;
               vibrancy = 0.15;
-              noise = 0.1;
+              noise = 0.05;
             };
           };
           animations = {
