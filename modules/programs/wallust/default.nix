@@ -46,6 +46,13 @@ in {
                 template = "99-wallust.conf";
                 target = "~/.config/dunst/dunstrc.d/99-wallust.conf";
               };
+              # contains one hex of the accent colour of current theme.
+              # currently used in screenshot script for the border colour.
+              # may be used for other things later.
+              accent = {
+                template = "accent.txt";
+                target = "~/.cache/wallust/accent.txt";
+              };
             };
           };
         };
