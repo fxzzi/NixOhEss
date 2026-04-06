@@ -1,5 +1,5 @@
 {
-  inputs',
+  pkgs,
   lib,
   config,
   ...
@@ -117,7 +117,11 @@ in {
         };
       };
       packages = [
-        (inputs'.azzipkgs.packages.discord-electron.override {
+        (pkgs.discord.override {
+          # we disable updates in settings.json
+          disableUpdates = false;
+          withTTS = false;
+          enableAutoscroll = true;
           withOpenASAR = true;
           inherit commandLineArgs;
         })
