@@ -3,7 +3,6 @@
   inputs',
   pkgs,
   self,
-  config,
   ...
 }: {
   system.stateVersion = "25.05";
