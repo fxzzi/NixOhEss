@@ -53,19 +53,22 @@
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
           mode = "highres";
           bitdepth = 10;
-          sdr_eotf = 1;
+          cm = "edid";
+          sdr_max_luminance = 203;
           # icc = "${config.age.secrets.mo27q28g.path}";
         };
         # secondary monitor
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
-          mode = "2560x1440@170";
+          mode = "highres";
           bitdepth = 8;
-          sdr_eotf = 1;
           supports_hdr = -1; # hdr sucks on this monitor lol
-          icc = "${config.age.secrets.m27q.path}";
+          supports_wide_color = -1; # only supports at lower 120Hz
+          # icc = "${config.age.secrets.m27q.path}";
+          cm = "edid";
           position = "auto-center-left";
           vrr = 1; # this monitor doesn't flicker when using VRR at all
         };
+        render.use_fp16 = 1;
       };
     };
   };
