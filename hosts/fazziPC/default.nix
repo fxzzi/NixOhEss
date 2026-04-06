@@ -60,7 +60,6 @@
         # secondary monitor
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001]" = {
           mode = "highres";
-          bitdepth = 8;
           supports_hdr = -1; # hdr sucks on this monitor lol
           supports_wide_color = -1; # only supports at lower 120Hz
           # icc = "${config.age.secrets.m27q.path}";
