@@ -4,7 +4,7 @@
   self,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkForce;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.xdph;
 in {
   options.cfg.services.xdph.enable = mkEnableOption "xdph";

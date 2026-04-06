@@ -5,7 +5,7 @@
   pins,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf optionals getExe';
+  inherit (lib) mkEnableOption mkIf optionals;
   cfg = config.cfg.hardware.nvidia;
   isOpen = config.hardware.nvidia.open;
 in {
