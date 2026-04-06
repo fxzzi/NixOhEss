@@ -54,9 +54,7 @@ writeShellApplication {
       hyprpicker -rz &
       PID=$!
       sleep 0.2
-      # don't allow multiple slurps at once
-      # nicer colours on slurp too
-      $grimCmd -g "$(slurp -b '#0a0a0a99' -c '#FFFFFF' -s '#FFFFFF03' -w 2)" "$path" || echo "selection cancelled"
+      $grimCmd -g "$(slurp -b '#0a0a0a99' -c "$(cat "$XDG_CACHE_HOME"/wallust/accent.txt)" -s '#FFFFFF03' -w 2)" "$path" || echo "selection cancelled"
       kill $PID
       ;;
     --active)
