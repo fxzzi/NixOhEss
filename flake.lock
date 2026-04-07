@@ -143,18 +143,17 @@
     },
     "hjem": {
       "inputs": {
-        "nix-darwin": "nix-darwin",
+        "nix-darwin": [],
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "smfh": []
+        ]
       },
       "locked": {
-        "lastModified": 1775446397,
-        "narHash": "sha256-Im0ZgWCO24H2z2RlQxK/Fu/y2c7AIjcKl9++cAk1wUQ=",
+        "lastModified": 1775569958,
+        "narHash": "sha256-W+kpLQ5J/DDaY1nUmvN9aIAfh5ixdyqYM76ZUdcvMBU=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "136908c4b336970d3c782026bcd6e3aafd88e264",
+        "rev": "32bd6d54d805a3eb41efa62a940eeceaf263c4a8",
         "type": "github"
       },
       "original": {
@@ -502,34 +501,13 @@
         "type": "github"
       }
     },
-    "nix-darwin": {
-      "inputs": {
-        "nixpkgs": [
-          "hjem",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1770922915,
-        "narHash": "sha256-6J/JoK9iL7sHvKJcGW2KId2agaKv1OGypsa7kN+ZBD4=",
-        "owner": "nix-darwin",
-        "repo": "nix-darwin",
-        "rev": "6c5a56295d2a24e43bcd8af838def1b9a95746b2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-darwin",
-        "repo": "nix-darwin",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1775036866,
-        "narHash": "sha256-ZojAnPuCdy657PbTq5V0Y+AHKhZAIwSIT2cb8UgAz/U=",
+        "lastModified": 1775423009,
+        "narHash": "sha256-vPKLpjhIVWdDrfiUM8atW6YkIggCEKdSAlJPzzhkQlw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
+        "rev": "68d8aa3d661f0e6bd5862291b5bb263b2a6595c9",
         "type": "github"
       },
       "original": {
@@ -555,11 +533,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775424406,
-        "narHash": "sha256-ENSQFUK6zs4C5brC4MlrNRM2Krn8OsHdoxPLtezhFyU=",
+        "lastModified": 1775567832,
+        "narHash": "sha256-jAnxLY0qPW+qR4f5GTLp2qbtku8b4E2XuJ8mavSIPfY=",
         "owner": "NotAShelf",
         "repo": "nvf",
-        "rev": "3ffc800a01cbd1f2e68e78b527bb7d56078c6351",
+        "rev": "d6746a7510ba15e9a3577322a2e5387ab983f970",
         "type": "github"
       },
       "original": {
