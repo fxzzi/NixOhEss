@@ -24,7 +24,7 @@
     services = {
       # sunshine.enable = true;
       # libvirt.enable = true;
-      # activate-linux.enable = true;
+      # quickshell.enable = true;
       ags.enable = true;
       # kdeconnect.enable = true;
       nvuv = {
