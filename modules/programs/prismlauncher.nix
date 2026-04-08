@@ -31,6 +31,8 @@ in {
           libxtst
           libxkbcommon
           libxinerama
+          # required for vulkan beta
+          wayland
         ];
       })
       (mkIf cfg.waywall.enable waywall)
