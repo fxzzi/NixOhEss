@@ -52,7 +52,7 @@
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
           mode = "highres";
           bitdepth = 10;
-          cm = "edid";
+          cm = "srgb"; # use srgb calibrated mode on monitor instead
           sdr_max_luminance = 203;
           # icc = "${config.age.secrets.mo27q28g.path}";
         };

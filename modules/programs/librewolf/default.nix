@@ -8,7 +8,6 @@
 
   cfg = config.cfg.programs.librewolf;
   librewolf = pkgs.librewolf-bin.override {
-    # nativeMessagingHosts = [pkgs.ff2mpv-rust];
     extraPrefs = cfg.prefs;
     extraPolicies = {
       SearchSuggestEnabled = false;
@@ -35,10 +34,11 @@ in {
     hj.packages = [librewolf];
 
     # some schmuck marked librewolf bin packages as insecure
-    nixpkgs.config.permittedInsecurePackages = [
-      "librewolf-bin-unwrapped-${librewolf.version}"
-      "librewolf-bin-${librewolf.version}"
+    nixpkgs.config.permittedInsecurePackages = with librewolf; [
+      "${pname}-${version}"
+      "${pname}-unwrapped-${version}"
     ];
+
     environment.sessionVariables = {
       MOZ_DISABLE_RDD_SANDBOX = 1;
     };
