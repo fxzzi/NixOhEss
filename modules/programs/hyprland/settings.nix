@@ -66,7 +66,7 @@ in {
           render = {
             direct_scanout = mkDefault 2;
             cm_auto_hdr = 2; # use hdredid for autohdr
-            use_fp16 = mkDefault 2;
+            use_fp16 = mkDefault 1;
           };
           quirks = {
             # allow ds to activate with winewayland
@@ -413,6 +413,7 @@ in {
           ];
           # use when bug reporting
           debug = {
+            invalidate_fp16 = 0;
             # disable_logs = 0;
             # watchdog_timeout = 0;
           };

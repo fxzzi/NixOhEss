@@ -11,6 +11,7 @@
     types
     mkIf
     mkDefault
+    optionals
     ;
   cfg = config.cfg.core.boot;
 in {
@@ -75,12 +76,15 @@ in {
         };
         efi.canTouchEfiVariables = true;
       };
-      kernelParams = [
-        "nowatchdog" # unsafe!! but fine for desktops
-        "mitigations=off" # also unsafe!!
-        "fbcon=font:TER16x32" # make font size bigger
-        "preempt=full" # better for gaemin?
-      ];
+      kernelParams =
+        [
+          "fbcon=font:TER16x32" # make font size bigger
+        ]
+        ++ optionals (!config.cfg.core.isLaptop) [
+          "nowatchdog" # unsafe!! but fine for desktops
+          "mitigations=off" # also unsafe!!
+          "preempt=full" # better for gaming?
+        ];
       tmp = {
         useTmpfs = true; # /tmp is not on tmpfs by default (why??)
         tmpfsSize = "50%"; # allow it to use x% of your RAM

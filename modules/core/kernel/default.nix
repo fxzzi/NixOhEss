@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption types mkIf;
   cfg = config.cfg.core.kernel;
   kernelType =
     if cfg.type == "latest"
@@ -24,7 +24,10 @@ in {
       "lts"
       "xanmod"
     ];
-    default = "latest";
+    default =
+      if config.cfg.core.isLaptop
+      then "lts"
+      else "latest";
     description = "Selects which kernel to use";
   };
   config = {
@@ -32,7 +35,7 @@ in {
       kernelPackages = kernelType; # Set kernel based on selection
       kernel.sysctl = {
         # Increase vm.max_map_count for gaming
-        "vm.max_map_count" = 2147483642;
+        "vm.max_map_count" = mkIf (!config.cfg.core.isLaptop) 2147483642;
       };
     };
   };
