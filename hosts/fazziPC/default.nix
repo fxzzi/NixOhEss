@@ -66,7 +66,7 @@
           position = "auto-center-left";
           vrr = 1; # this monitor doesn't flicker when using VRR at all
         };
-        # render.use_fp16 = 1;
+        render.use_fp16 = 0;
       };
     };
   };
