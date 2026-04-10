@@ -18,7 +18,6 @@
         value = {
           decoration = {
             # muh battery
-            shadow.enabled = 0;
             blur.enabled = 0;
           };
           render = {
