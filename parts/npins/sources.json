@@ -64,9 +64,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "3c545996db7b1dc05aaddc0cf667235e32c7c834",
-      "url": "https://github.com/fufexan/nix-gaming/archive/3c545996db7b1dc05aaddc0cf667235e32c7c834.tar.gz",
-      "hash": "sha256-Se4dxrfyPQR2+N16Cq6C6li0JVd1p+Oa8GWTPzzRiwg="
+      "revision": "feff81fb337e4fc23c730b51e9367e42a282e53e",
+      "url": "https://github.com/fufexan/nix-gaming/archive/feff81fb337e4fc23c730b51e9367e42a282e53e.tar.gz",
+      "hash": "sha256-uou25Y8kHz477am/W4b9mIrxYY+qxO5CEcjW/LJPs6w="
     },
     "nvuv": {
       "type": "Git",
