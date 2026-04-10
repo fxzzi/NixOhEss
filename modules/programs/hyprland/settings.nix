@@ -216,8 +216,9 @@ in {
 
             "match:class atril, idle_inhibit focus"
 
-            # oled flicker is annoying on term
+            # oled flicker is annoying on some apps
             "match:class foot, idle_inhibit fullscreen, no_vrr 1"
+            "match:class org.gnome.Loupe, no_vrr 1"
 
             # some apps, mostly games, are stupid and they fullscreen on the
             # wrong monitor. so just don't listen to them lol
