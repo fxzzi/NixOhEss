@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf mkEnableOption concatStringsSep;
   cfg = config.cfg.services.quickshell;
-  quickshell = pkgs.quickshell;
+  inherit (pkgs) quickshell;
 in {
   options.cfg.services.quickshell.enable = mkEnableOption "quickshell";
   config = mkIf cfg.enable {

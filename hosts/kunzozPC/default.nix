@@ -2,15 +2,14 @@
   pkgs,
   pins,
   inputs',
-  config,
   ...
 }: {
-  assertions = [
-    {
-      assertion = config.networking.hostName != "kunzozPC";
-      message = "kunzozPC has been deprecated.";
-    }
-  ];
+  # assertions = [
+  #   {
+  #     assertion = config.networking.hostName != "kunzozPC";
+  #     message = "kunzozPC has been deprecated.";
+  #   }
+  # ];
   system.stateVersion = "25.05";
   hj = {
     packages = with pkgs; [
