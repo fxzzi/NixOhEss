@@ -28,7 +28,7 @@
       olympus
       nicotine-plus
       sgdboop
-      # cemu
+      cemu
       dolphin-emu
       nvtopPackages.nvidia
       yt-dlp
