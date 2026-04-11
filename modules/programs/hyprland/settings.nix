@@ -415,7 +415,7 @@ in {
           debug = {
             # enable if nvidia GPU is in use. nvidia has some driver
             # issues, this works around them.
-            invalidate_fp16 = !config.cfg.hardware.nvidia.enable;
+            # invalidate_fp16 = !config.cfg.hardware.nvidia.enable;
             # disable_logs = 0;
             # watchdog_timeout = 0;
           };
