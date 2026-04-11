@@ -8,7 +8,7 @@ import { TimeWidget } from "./modules/Time.js";
 import { BatteryWidget } from "./modules/Battery.js";
 import { VolumeWidget } from "./modules/Volume.js";
 import { Workspaces } from "./modules/Workspaces.js";
-import { ClientTitleWidget } from "./modules/ClientTitle.js";
+// import { ClientTitleWidget } from "./modules/ClientTitle.js";
 import { CpuUsageWidget } from "./modules/CpuUsage.js";
 import { CpuTempWidget } from "./modules/CpuTemp.js";
 import { MemUsageWidget } from "./modules/MemUsage.js";
@@ -18,8 +18,8 @@ import { SysTrayWidget } from "./modules/SysTray.js";
 // Add svg icons from the ./icons directory
 App.addIcons(`${App.configDir}/icons/`);
 
-const createBox = (spacing, children, hpack = null) =>
-  Widget.Box({ spacing, children, hpack });
+const createBox = (spacing, children, hpack = null, vertical = true) =>
+  Widget.Box({ spacing, children, hpack, vertical });
 
 const Left = (monitorName) =>
   createBox(10, [
@@ -29,12 +29,13 @@ const Left = (monitorName) =>
     BatteryWidget(),
   ]);
 
-const Center = () => createBox(10, [ClientTitleWidget()]);
+// const Center = () => createBox(10, [ClientTitleWidget()]);
 
 const Right = () =>
-  createBox(
-    10,
-    [
+  Widget.Box({
+    class_name: "right-section",
+    spacing: 10,
+    children: [
       SysTrayWidget(),
       GpuTempWidget(),
       CpuTempWidget(),
@@ -42,8 +43,9 @@ const Right = () =>
       MemUsageWidget(),
       VolumeWidget(),
     ],
-    "end",
-  );
+    hpack: "center",
+    vertical: true,
+  });
 
 const Bar = (gdkMonitor) => {
   const monitorName = getMonitorName(gdkMonitor);
@@ -51,12 +53,12 @@ const Bar = (gdkMonitor) => {
     name: `bar-${monitorName}`,
     class_name: "bar",
     gdkmonitor: gdkMonitor,
-    anchor: ["top", "left", "right"],
+    anchor: ["top", "bottom", "right"],
     exclusivity: "exclusive",
-    child: Widget.CenterBox({
-      start_widget: Left(monitorName),
-      center_widget: Center(),
-      end_widget: Right(),
+    child: Widget.Box({
+      vertical: true,
+      width_request: 26,
+      children: [Left(monitorName), Widget.Box({ vexpand: true }), Right()],
     }),
   });
 };
@@ -80,8 +82,6 @@ const getMonitorByName = (name) => {
   }
   return null;
 };
-
-const removeAllWindows = () => App.windows.forEach(App.removeWindow);
 
 const InitBars = (wdg) => {
   hyprland.monitors.forEach((mon) => {

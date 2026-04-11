@@ -46,15 +46,26 @@ const gpuTemp = Variable("", {
   poll: [5000, () => {
     if (!gpuTempFilePath) return "N/A";
     const raw = readFile(gpuTempFilePath);
-    return raw ? `${(parseFloat(raw) / 1000).toFixed(0)}°C` : "N/A";
+    return raw ? `${(parseFloat(raw) / 1000).toFixed(0)}` : "N/A";
   }],
 });
 
 export function GpuTempWidget() {
   return Widget.Box({
+    vertical: true,
+    hpack: "center",
     children: [
-      Widget.Icon({ icon: "expansion-card-symbolic", class_name: "icon", size: 16 }),
-      Widget.Label({ class_name: "temperature-usage", label: gpuTemp.bind() }),
+      Widget.Icon({ icon: "expansion-card-symbolic", class_name: "icon", size: 20 }),
+      Widget.Label({
+        class_name: "metric-value temperature-usage",
+        label: gpuTemp.bind(),
+        justification: "center",
+      }),
+      Widget.Label({
+        class_name: "metric-unit",
+        label: gpuTemp.bind().as(t => t === "N/A" ? "" : "°C"),
+        justification: "center",
+      }),
     ],
   });
 }

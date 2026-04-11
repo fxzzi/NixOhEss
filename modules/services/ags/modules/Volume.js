@@ -11,16 +11,23 @@ function getVolumeIcon() {
 
 export function VolumeWidget() {
   return Widget.Box({
+    vertical: true,
+    hpack: "center",
     children: [
       Widget.Icon({
         icon: Utils.watch(getVolumeIcon(), audio.speaker, getVolumeIcon),
         class_name: "icon",
-        size: 16,
+        size: 20,
       }),
       Widget.Label({
-        hexpand: true,
-        label: audio.speaker.bind("volume").as(v => `${Math.round(v * 100)}%`),
-        class_name: "bar-button-label volume",
+        label: audio.speaker.bind("volume").as(v => `${Math.round(v * 100)}`),
+        class_name: "metric-value volume",
+        justification: "center",
+      }),
+      Widget.Label({
+        class_name: "metric-unit",
+        label: "%",
+        justification: "center",
       }),
     ],
   });

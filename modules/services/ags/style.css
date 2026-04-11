@@ -10,18 +10,18 @@
 
 window > box {
   background: @background;
-  font: 15px monospace;
-  font-weight: bold;
+  font: bold 15px sans;
+  font-feature-settings: "tnum";
   color: @foreground;
-  margin: 2px 2px 0 2px;
+  margin: 2px 2px 2px 0;
   border: 1px solid @color4;
-  min-height: 30px;
+  min-width: 26px;
 }
 
 button {
   background: transparent;
   box-shadow: none;
-  padding: 0 6px 0 6px;
+  padding: 0 2px;
 }
 
 menu {
@@ -36,25 +36,37 @@ menu menuitem {
 }
 
 .workspaces {
-  padding-top: 2px;
-  margin-left: 5px;
+  padding-top: 5px;
 }
 
-.volume {
-  margin-right: 5px;
+.metric-unit {
+  font-size: 10px;
+  font-weight: normal;
+  margin-top: -2px;
+  color: @foreground;
+}
+
+.date,
+.metric-value,
+.metric-unit {
+  padding: 0 2px;
+}
+
+.right-section {
+  margin-bottom: 4px;
 }
 
 .workspaces button {
   border-radius: 0;
-  padding: 0 1px;
+  padding: 1px 1px;
   box-shadow: none;
   color: @foreground;
   background-color: transparent;
-  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
 }
 
 .workspaces button.focused {
-  border-bottom: 2px solid @color6;
+  border-left: 2px solid @color6;
 }
 
 .workspaces button:hover {
@@ -62,14 +74,23 @@ menu menuitem {
   background: transparent;
 }
 
+.workspaces button.focused:hover {
+  border-left: 2px solid @color6;
+}
+
 .icon {
-  padding-right: 4px;
+  padding-right: 0;
+  padding-bottom: 1px;
   color: @color4;
 }
 
 .tray {
   background: transparent;
-  margin-right: -4px;
+  margin-bottom: 2px;
+}
+
+.tray button {
+  padding: 1px 0;
 }
 
 .charging {

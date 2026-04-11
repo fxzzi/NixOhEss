@@ -2,6 +2,7 @@ const hyprland = await Service.import("hyprland");
 
 export const Workspaces = (monitorName) => Widget.Box({
   class_name: "workspaces",
+  vertical: true,
   children: hyprland.bind("workspaces").as(ws => ws
     .filter(({ monitor }) => monitor === monitorName)
     .sort((a, b) => a.id - b.id)

@@ -66,15 +66,26 @@ const cpuTemp = Variable("", {
   poll: [5000, () => {
     if (!tempFilePath) return "N/A";
     const raw = readFile(tempFilePath);
-    return raw ? `${(parseFloat(raw) / 1000).toFixed(0)}°C` : "N/A";
+    return raw ? `${(parseFloat(raw) / 1000).toFixed(0)}` : "N/A";
   }],
 });
 
 export function CpuTempWidget() {
   return Widget.Box({
+    vertical: true,
+    hpack: "center",
     children: [
-      Widget.Icon({ icon: "thermometer-outline-symbolic", class_name: "icon", size: 16 }),
-      Widget.Label({ class_name: "temperature-usage", label: cpuTemp.bind() }),
+      Widget.Icon({ icon: "thermometer-outline-symbolic", class_name: "icon", size: 20 }),
+      Widget.Label({
+        class_name: "metric-value temperature-usage",
+        label: cpuTemp.bind(),
+        justification: "center",
+      }),
+      Widget.Label({
+        class_name: "metric-unit",
+        label: cpuTemp.bind().as(t => t === "N/A" ? "" : "°C"),
+        justification: "center",
+      }),
     ],
   });
 }

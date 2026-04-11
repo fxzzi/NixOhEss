@@ -9,7 +9,7 @@ const memUsage = Variable("", {
       try {
         GTop.glibtop_get_mem(mem);
         const usedRamGiB = mem.user / (1024 * 1024 * 1024);
-        return `${usedRamGiB.toFixed(2)}GiB`;
+        return `${usedRamGiB.toFixed(1)}`;
       } catch (error) {
         console.error("Error calculating RAM usage", error);
         return "N/A";
@@ -20,9 +20,20 @@ const memUsage = Variable("", {
 
 export function MemUsageWidget() {
   return Widget.Box({
+    vertical: true,
+    hpack: "center",
     children: [
-      Widget.Icon({ icon: "pie-chart-outline-symbolic", class_name: "icon", size: 16 }),
-      Widget.Label({ class_name: "memory-usage", label: memUsage.bind() }),
+      Widget.Icon({ icon: "pie-chart-outline-symbolic", class_name: "icon", size: 20 }),
+      Widget.Label({
+        class_name: "metric-value memory-usage",
+        label: memUsage.bind(),
+        justification: "center",
+      }),
+      Widget.Label({
+        class_name: "metric-unit",
+        label: memUsage.bind().as(v => v === "N/A" ? "" : "GiB"),
+        justification: "center",
+      }),
     ],
   });
 }

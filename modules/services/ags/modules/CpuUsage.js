@@ -22,7 +22,7 @@ const cpuUsage = Variable("", {
         lastIdle = currentIdle;
 
         const usage = totalDiff > 0 ? (100 * (totalDiff - idleDiff)) / totalDiff : 0;
-        return `${Math.round(usage)}%`;
+        return `${Math.round(usage)}`;
       } catch (error) {
         console.error("Error calculating CPU usage", error);
         return "N/A";
@@ -33,9 +33,20 @@ const cpuUsage = Variable("", {
 
 export function CpuUsageWidget() {
   return Widget.Box({
+    vertical: true,
+    hpack: "center",
     children: [
-      Widget.Icon({ icon: "activity-outline-symbolic", class_name: "icon", size: 16 }),
-      Widget.Label({ class_name: "cpu-usage", label: cpuUsage.bind() }),
+      Widget.Icon({ icon: "activity-outline-symbolic", class_name: "icon", size: 20 }),
+      Widget.Label({
+        class_name: "metric-value cpu-usage",
+        label: cpuUsage.bind(),
+        justification: "center",
+      }),
+      Widget.Label({
+        class_name: "metric-unit",
+        label: cpuUsage.bind().as(v => v === "N/A" ? "" : "%"),
+        justification: "center",
+      }),
     ],
   });
 }
