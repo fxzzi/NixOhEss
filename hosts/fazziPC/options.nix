@@ -53,7 +53,7 @@
       };
       scx = {
         enable = true;
-        scheduler = "scx_cosmos";
+        scheduler = "scx_bpfland";
       };
       syncthing.enable = true;
       mpd = {
