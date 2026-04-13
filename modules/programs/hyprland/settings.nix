@@ -269,6 +269,8 @@ in {
             "match:class sober, ${fullscreengame}"
             "match:class love, match:title Freesync test, ${fullscreengame}"
             "match:class waywall, ${fullscreengame}"
+
+            # "match:content game, match:fullscreen 1, confine_pointer 1"
           ];
           # NOTE: this sets workspaces to alternate if there are 2 monitors.
           workspace = optionalAttrs multiMonitor (
