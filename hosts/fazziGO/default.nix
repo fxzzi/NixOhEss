@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs',
+  inputs,
   ...
 }: {
   config = {
@@ -9,7 +9,7 @@
       packages = with pkgs; [
         telegram-desktop
         deluge
-        inputs'.azzipkgs.packages.stremio-linux-shell-rewrite-git
+        inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell-rewrite-git
         (jetbrains.idea-oss.override {
           vmopts = "-Dawt.toolkit.name=WLToolkit";
         })

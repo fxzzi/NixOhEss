@@ -5,8 +5,8 @@
 ## Overview
 
 This repo consists of a relatively simple multi-host configuration using NixOS
-and [hjem](https://github.com/feel-co/hjem). [flake-parts](https://flake.parts/)
-is also used to modularize the flake.
+and [hjem](https://github.com/feel-co/hjem). The flake outputs are split into
+modular `parts/` files without using flake-parts.
 
 > [!WARNING]
 > My configurations will likely not work OOTB on other devices, due to the use
@@ -26,8 +26,8 @@ is also used to modularize the flake.
 This flake (accidentally) makes use of the
 [synaptic standard.](https://github.com/llakala/synaptic-standard)
 
-- [`flake.nix`](./flake.nix): The entrypoint to each module of my flake, using
-  flake-parts.
+- [`flake.nix`](./flake.nix): The entrypoint that stitches together the split
+  flake outputs.
 - [`parts/`](./parts/): My larger flake decomposed into smaller parts.
 - [`modules/`](./modules/): This contains all host-agnostic modules which I use
   across all devices. A lot of the modules are optional, and can be configured

@@ -1,6 +1,5 @@
 {
   self,
-  self',
   lib,
   pkgs,
   config,
@@ -66,7 +65,7 @@ in {
           render = {
             direct_scanout = mkDefault 2;
             cm_auto_hdr = 2; # use hdredid for autohdr
-            use_fp16 = mkDefault 1;
+            use_fp16 = mkDefault 2;
           };
           quirks = {
             # allow ds to activate with winewayland
@@ -154,8 +153,8 @@ in {
               # fp16 makes blur lighter. so darken it here when fp16 is in use
               brightness =
                 if config.hj.xdg.config.files."hypr/hyprland.conf".value.render.use_fp16 == 1
-                then 0.5
-                else 0.8;
+                then 0.625
+                else 1;
               vibrancy = 0.15;
               noise = 0.05;
             };
@@ -287,7 +286,7 @@ in {
           );
           "$MOD" = "SUPER";
           bind = let
-            screenshot = getExe self'.packages.screenshot;
+            screenshot = getExe self.packages.${pkgs.stdenv.hostPlatform.system}.screenshot;
           in
             [
               # screenshot script
@@ -306,11 +305,11 @@ in {
               "$MOD SHIFT, E, exec, pkill wleave || wleave"
               "CTRL SHIFT, Escape, exec, foot btm"
               # extra schtuff
-              "$MOD, N, exec, ${getExe self'.packages.sunset} 3000"
-              "$MOD, R, exec, ${getExe self'.packages.random-wall}"
+              "$MOD, N, exec, ${getExe self.packages.${pkgs.stdenv.hostPlatform.system}.sunset} 3000"
+              "$MOD, R, exec, ${getExe self.packages.${pkgs.stdenv.hostPlatform.system}.random-wall}"
               "$MOD SHIFT, R, exec, hyprctl reload && ${getExe' pkgs.dunst "dunstify"} \"Hyprland\" \"Reloaded Successfully.\""
               "$MOD, K, exec, hyprctl kill"
-              "$MOD, J, exec, foot ${getExe self'.packages.wall-picker}"
+              "$MOD, J, exec, foot ${getExe self.packages.${pkgs.stdenv.hostPlatform.system}.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
               "$MOD, V, exec, pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"
 
@@ -378,11 +377,11 @@ in {
           ];
 
           bindel = let
-            audio = getExe self'.packages.audio;
+            audio = getExe self.packages.${pkgs.stdenv.hostPlatform.system}.audio;
             brightness =
               if config.cfg.core.isLaptop
-              then getExe self'.packages.brightness-laptop
-              else getExe self'.packages.brightness;
+              then getExe self.packages.${pkgs.stdenv.hostPlatform.system}.brightness-laptop
+              else getExe self.packages.${pkgs.stdenv.hostPlatform.system}.brightness;
           in [
             # volume script
             ", XF86AudioRaiseVolume, exec, ${audio} vol up 5"

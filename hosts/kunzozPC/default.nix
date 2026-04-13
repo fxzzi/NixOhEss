@@ -1,7 +1,7 @@
 {
   pkgs,
   pins,
-  inputs',
+  inputs,
   ...
 }: {
   # assertions = [
@@ -19,7 +19,7 @@
       sgdboop
       cemu
       # stremio-linux-shell
-      inputs'.azzipkgs.packages.stremio-linux-shell-rewrite-git
+      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell-rewrite-git
       (callPackage "${pins.creamlinux}" {})
     ];
     xdg.config.files."hypr/hyprland.conf" = {

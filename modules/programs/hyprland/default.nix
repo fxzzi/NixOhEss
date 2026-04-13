@@ -2,14 +2,14 @@
   lib,
   pkgs,
   config,
-  inputs',
+  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf;
   cfg = config.cfg.programs.hyprland;
   hyprlandSet =
     if cfg.useGit
-    then inputs'.hyprland.packages
+    then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}
     else pkgs;
 in {
   options.cfg.programs = {
