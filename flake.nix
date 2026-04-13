@@ -1,10 +1,8 @@
 {
   description = "fazzi's NixOS config";
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = import inputs.systems;
-      imports = [./parts];
-    };
+
+  # no flake-parts :)
+  outputs = inputs @ {self, ...}: import ./parts {inherit self inputs;};
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -13,10 +11,6 @@
     azzipkgs = {
       url = "gitlab:fazzi/azzipkgs";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     hjem = {
       url = "github:feel-co/hjem";
@@ -44,7 +38,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        flake-parts.follows = "flake-parts";
+        flake-compat.follows = "";
         ndg.follows = "";
       };
     };

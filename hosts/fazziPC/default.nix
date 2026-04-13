@@ -1,8 +1,7 @@
 {
-  self',
-  inputs',
   pkgs,
   self,
+  inputs,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -42,9 +41,9 @@
           melonds
           mupen64plus
         ]))
-      self'.packages.transcode
-      inputs'.azzipkgs.packages.stremio-linux-shell-rewrite-git
-      inputs'.azzipkgs.packages.flac2vorbis
+      self.packages.${pkgs.stdenv.hostPlatform.system}.transcode
+      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell-rewrite-git
+      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2vorbis
     ];
     xdg.config.files."hypr/hyprland.conf" = {
       value = {
@@ -66,7 +65,7 @@
           position = "auto-center-left";
           vrr = 1; # this monitor doesn't flicker when using VRR at all
         };
-        render.use_fp16 = 0;
+        # render.use_fp16 = 0;
       };
     };
   };
