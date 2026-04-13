@@ -54,11 +54,11 @@
     },
     "crane": {
       "locked": {
-        "lastModified": 1766194365,
-        "narHash": "sha256-4AFsUZ0kl6MXSm4BaQgItD0VGlEKR3iq7gIaL7TjBvc=",
+        "lastModified": 1775839657,
+        "narHash": "sha256-SPm9ck7jh3Un9nwPuMGbRU04UroFmOHjLP56T10MOeM=",
         "owner": "ipetkov",
         "repo": "crane",
-        "rev": "7d8ec2c71771937ab99790b45e6d9b93d15d9379",
+        "rev": "7cf72d978629469c4bd4206b95c402514c1f6000",
         "type": "github"
       },
       "original": {
@@ -241,11 +241,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1775942994,
-        "narHash": "sha256-nh8X4SDPFjYY3+pPxnzdd5D3+ZUdTukJOlP2nguR2Sw=",
+        "lastModified": 1776064493,
+        "narHash": "sha256-jvzkPZKarvgLuWfCZwDABeJsC2w0gl1JISSLwsjXCIU=",
         "owner": "UjinT34",
         "repo": "Hyprland",
-        "rev": "5afce31651838eeabfac036ac18a9a9107464ca2",
+        "rev": "b7904bd614f2e6fd708258c733f1be2288987887",
         "type": "github"
       },
       "original": {
@@ -594,11 +594,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775243632,
-        "narHash": "sha256-aN31z1Pf0Aaz1r0PgtHFYBBM3QFDtnd7hiL7xGGpQLM=",
+        "lastModified": 1776024448,
+        "narHash": "sha256-CY+9xOh62hu8c56ov4s03GjTi0xrtbs1lcDWfQqG+Vc=",
         "owner": "NotAShelf",
         "repo": "stash",
-        "rev": "f139bda7b296e66998cc3077026cf18abfc9709d",
+        "rev": "3c61cc19f662759601d11e0faa1553cb6eaafc5f",
         "type": "github"
       },
       "original": {
