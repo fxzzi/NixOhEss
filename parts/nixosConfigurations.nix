@@ -2,41 +2,21 @@
   self,
   inputs,
   pins,
-  withSystem,
   lib,
-  ...
 }: let
-  inherit (lib) genAttrs nixosSystem flatten;
-  inherit (builtins) attrNames readDir;
+  inherit (lib) attrNames flatten genAttrs nixosSystem;
+  inherit (builtins) readDir;
 
-  # Filter readDir to only include directories
-  # This avoids pulling in this file (default.nix) as a host
-
-  # To be able to access some flake-parts features, like pre-selected
-  # platform for inputs and self (inputs', self', etc), we need to enter
-  # the withSystem context. This requires, as expected, a system architecture.
-  # All of my hosts are x86_64-linux for now.
-  #
-  # This gives us some fancy features. For example:
-  # instead of `inputs.<input>.packages.${pkgs.stdenv.hostPlatform.system}.default`,
-  # we can just do `inputs'.<input>.packages.default`.
-  # instead of `self.packages.${pkgs.stdenv.hostPlatform.system}.default`,
-  # we can just do `self'.packages.default`.
+  hostNames = attrNames (readDir ../hosts);
   mkSystem = hostName:
-    withSystem "x86_64-linux" ({
-      inputs',
-      self',
-      ...
-    }:
-      nixosSystem {
-        specialArgs = {
-          inherit self self' inputs inputs' hostName pins;
-        };
-        modules = flatten [
-          (self.lib.listRecursive ../modules) # all modules
-          (self.lib.listRecursive (../hosts/. + "/${hostName}")) # host-specific
-        ];
-      });
-in {
-  flake.nixosConfigurations = genAttrs (attrNames (readDir ../hosts)) mkSystem;
-}
+    nixosSystem {
+      specialArgs = {
+        inherit self inputs hostName pins;
+      };
+      modules = flatten [
+        (self.lib.listRecursive ../modules) # all modules
+        (self.lib.listRecursive ../hosts/${hostName}) # host-specific
+      ];
+    };
+in
+  genAttrs hostNames mkSystem

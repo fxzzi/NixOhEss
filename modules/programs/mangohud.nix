@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs',
+  inputs,
   config,
   lib,
   ...
@@ -39,7 +39,7 @@ in {
     };
     hj = {
       # mangohud with some patches for hdr
-      packages = [inputs'.azzipkgs.packages.mangohud-patched];
+      packages = [inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.mangohud-patched];
       xdg.config.files = {
         "MangoHud/MangoHud.conf".text = ''
           blacklist=mpv
