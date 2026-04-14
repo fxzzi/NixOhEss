@@ -2,15 +2,8 @@
   pkgs,
   pins,
   inputs,
-  config,
   ...
 }: {
-  assertions = [
-    {
-      assertion = config.networking.hostName != "kunzozPC";
-      message = "kunzozPC has been deprecated. NixOhEss is no longer supported on this device.";
-    }
-  ];
   system.stateVersion = "25.05";
   hj = {
     packages = with pkgs; [
@@ -39,7 +32,7 @@
           # sidestep all cm issues by just disabling it
           cm_enabled = 0;
           # same with ds
-          render.direct_scanout = 0;
+          direct_scanout = 0;
         };
         # same with tearing
         general.allow_tearing = 0;
