@@ -27,12 +27,12 @@
           supports_hdr = -1;
           # this monitor does support 10bit, but only at 120Hz and lower.
           supports_wide_color = -1;
+          cm = "edid";
         };
         render = {
-          # sidestep all cm issues by just disabling it
-          cm_enabled = 0;
           # same with ds
           direct_scanout = 0;
+          use_fp16 = 1;
         };
         # same with tearing
         general.allow_tearing = 0;
