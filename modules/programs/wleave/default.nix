@@ -18,11 +18,10 @@ in {
           generator = lib.generators.toJSON {};
           value = {
             no-version-info = true;
-            # delay-command-ms = 0;
-            buttons-per-row = "1/1";
+            buttons-per-row = "1/1"; # all buttons on one row
+            button-aspect-ratio = "2/3"; # slightly rectangular buttons
             show-keybinds = true;
-            margin-top = 360;
-            margin-bottom = 360;
+            margin = 0;
 
             buttons = [
               {
@@ -63,30 +62,20 @@ in {
 
             window {
             	font-family: monospace;
-            	font-size: 20pt;
+            	font-size: 18pt;
             	color: #c0caf5;
             	background-color: @background;
             }
 
             button {
-            	border-radius: 10px;
-            	background-repeat: no-repeat;
-            	background-position: center;
-            	background-size: 50%;
+            	border-radius: 0px;
             	border: none;
             	background-color: transparent;
             	margin: 5px;
-            	transition:
-            		box-shadow 0.1s ease-in-out,
-            		background-color 0.1s ease-in-out;
             }
 
-            button:hover {
+            button:hover, button:focus {
             	background-color: @color0;
-            }
-
-            button:focus {
-            	background-color: @color1;
             	color: @foreground;
             }
           '';

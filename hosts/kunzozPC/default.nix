@@ -2,14 +2,15 @@
   pkgs,
   pins,
   inputs,
+  config,
   ...
 }: {
-  # assertions = [
-  #   {
-  #     assertion = config.networking.hostName != "kunzozPC";
-  #     message = "kunzozPC has been deprecated.";
-  #   }
-  # ];
+  assertions = [
+    {
+      assertion = config.networking.hostName != "kunzozPC";
+      message = "kunzozPC has been deprecated. NixOhEss is no longer supported on this device.";
+    }
+  ];
   system.stateVersion = "25.05";
   hj = {
     packages = with pkgs; [
