@@ -138,7 +138,6 @@ in {
           ];
           decoration = {
             rounding = 0;
-
             shadow = {
               enabled = 0;
               color = "0xdd1a1a1a";
@@ -307,7 +306,7 @@ in {
               # extra schtuff
               "$MOD, N, exec, ${getExe self.packages.${pkgs.stdenv.hostPlatform.system}.sunset} 3000"
               "$MOD, R, exec, ${getExe self.packages.${pkgs.stdenv.hostPlatform.system}.random-wall}"
-              "$MOD SHIFT, R, exec, hyprctl reload && ${getExe' pkgs.dunst "dunstify"} \"Hyprland\" \"Reloaded Successfully.\""
+              "$MOD SHIFT, R, exec, hyprctl reload && ${getExe' pkgs.dunst "dunstify"} 'Hyprland' 'Reloaded Successfully.'"
               "$MOD, K, exec, hyprctl kill"
               "$MOD, J, exec, foot ${getExe self.packages.${pkgs.stdenv.hostPlatform.system}.wall-picker}"
               "$MOD, L, exec, loginctl lock-session"
@@ -414,9 +413,6 @@ in {
           ];
           # use when bug reporting
           debug = {
-            # enable if nvidia GPU is in use. nvidia has some driver
-            # issues, this works around them.
-            # invalidate_fp16 = !config.cfg.hardware.nvidia.enable;
             # disable_logs = 0;
             # watchdog_timeout = 0;
           };
