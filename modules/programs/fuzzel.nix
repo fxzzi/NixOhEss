@@ -7,7 +7,10 @@
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.fuzzel;
 in {
-  options.cfg.programs.fuzzel.enable = mkEnableOption "fuzzel";
+  options.cfg.programs.fuzzel = {
+    enable = mkEnableOption "fuzzel";
+    disableCache = mkEnableOption "Disable fuzzel cache" // {default = true;};
+  };
   config = mkIf cfg.enable {
     hj = {
       packages = [
@@ -32,8 +35,8 @@ in {
             placeholder = "Search...";
             match-mode = "exact";
             dpi-aware = false;
-            # always sort alphabetically
-            cache = "/dev/null";
+            # by default fuzzel sorts by most frequent
+            cache = mkIf cfg.disableCache "/dev/null";
           };
           border = {
             radius = "0";
