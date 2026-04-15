@@ -75,6 +75,7 @@
       printing.enable = true;
     };
     programs = {
+      codium.enable = true;
       gpu-screen-recorder.enable = true;
       gamescope.enable = true;
       osu.enable = true;
