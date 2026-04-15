@@ -69,7 +69,10 @@
       heroic.enable = true;
       lutris.enable = true;
       wallust.enable = true;
-      fuzzel.enable = true;
+      fuzzel = {
+        enable = true;
+        disableCache = false;
+      };
       foot.enable = true;
       nvf.enable = true;
       steam = {
