@@ -58,6 +58,11 @@
       scanning.enable = false;
     };
     programs = {
+      codium = {
+        enable = true;
+        # kunzoz is noob and needs gui editor
+        defaultEditor = true;
+      };
       gamescope.enable = true;
       gpu-screen-recorder.enable = true;
       adb.enable = true;

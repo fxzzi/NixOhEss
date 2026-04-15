@@ -12,7 +12,6 @@
       nvtopPackages.amd
       sgdboop
       cemu
-      vscodium-fhs
       # stremio-linux-shell
       inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell-rewrite-git
       (callPackage "${pins.creamlinux}" {})
