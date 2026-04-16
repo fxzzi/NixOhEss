@@ -30,8 +30,8 @@
       nvuv = {
         enable = true;
         maxClock = 1830;
-        coreOffset = 205;
-        memOffset = 800;
+        coreOffset = 220;
+        memOffset = 850;
         powerLimit = 150;
         tempMonitor = {
           enable = true;
