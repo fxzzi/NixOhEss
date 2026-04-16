@@ -68,9 +68,9 @@ in {
             use_fp16 = mkDefault 2;
           };
           quirks = {
-            # allow ds to activate with winewayland
+            # allow ds to activate with winewayland on nvidia
             # also fix mpv freezing in fullscreen
-            skip_non_kms_dmabuf_formats = 1;
+            skip_non_kms_dmabuf_formats = mkIf config.cfg.hardware.nvidia.enable 1;
           };
           cursor = {
             default_monitor = mkIf multiMonitor cfg.defaultMonitor;

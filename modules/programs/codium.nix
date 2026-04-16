@@ -21,16 +21,12 @@ in {
       # mkForce to override nvim being the default (for noobs)
       defaultApplications = mkIf cfg.defaultEditor {
         "text/*" = mkForce "codium.desktop";
-        "applications/x-shellscript" = mkForce "codium.desktop";
-        "application/xml" = mkForce "codium.desktop";
       };
       removedAssociations = {
         "inode/directory" = "codium.desktop";
       };
       addedAssociations = {
         "text/*" = ["codium.desktop"];
-        "applications/x-shellscript" = ["codium.desktop"];
-        "application/xml" = ["codium.desktop"];
       };
     };
   };

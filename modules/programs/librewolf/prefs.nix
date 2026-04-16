@@ -43,9 +43,6 @@
     # Disable touchpad overscroll
     "apz.overscroll.enabled" = false;
 
-    # Don't limit frame rate
-    "layout.frame_rate" = -1;
-
     # Disable smooth scrolling
     "general.smoothScroll" = config.cfg.programs.smoothScroll.enable;
 
