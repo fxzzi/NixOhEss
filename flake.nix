@@ -29,6 +29,7 @@
             nixpkgs.follows = "nixpkgs";
             systems.follows = "systems";
             hyprutils.follows = "hyprland/hyprutils";
+            hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
           };
         };
       };
