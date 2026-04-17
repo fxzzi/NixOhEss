@@ -17,7 +17,7 @@
     lib = import ./lib lib;
 
     # hosts are configured in here
-    nixosConfigurations = import ./hosts.nix {
+    nixosConfigurations = import ./hosts {
       inherit self inputs pins lib;
     };
 
