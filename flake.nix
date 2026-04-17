@@ -18,20 +18,11 @@
       inputs.nix-darwin.follows = "";
     };
     hyprland = {
-      # url = "github:hyprwm/Hyprland";
-      url = "github:UjinT34/Hyprland/refactor-8-cm-automation";
+      url = "github:hyprwm/Hyprland";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        aquamarine = {
-          url = "github:gulafaran/aquamarine/commit";
-          inputs = {
-            nixpkgs.follows = "nixpkgs";
-            systems.follows = "systems";
-            hyprutils.follows = "hyprland/hyprutils";
-            hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-          };
-        };
+        aquamarine.url = "github:gulafaran/aquamarine/commit";
       };
     };
     nvf = {
