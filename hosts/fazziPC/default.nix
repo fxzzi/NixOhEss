@@ -5,16 +5,16 @@
   ...
 }: {
   system.stateVersion = "25.05";
-  age.secrets = {
-    m27q = {
-      file = "${self}/parts/secrets/mub-M27Q_v1.icm.age";
-      mode = "744";
-    };
-    mo27q28g = {
-      file = "${self}/parts/secrets/tft-gigabyte_mo27q28g.icm.age";
-      mode = "744";
-    };
-  };
+  # age.secrets = {
+  #   m27q = {
+  #     file = "${self}/secrets/mub-M27Q_v1.icm.age";
+  #     mode = "744";
+  #   };
+  #   mo27q28g = {
+  #     file = "${self}/secrets/tft-gigabyte_mo27q28g.icm.age";
+  #     mode = "744";
+  #   };
+  # };
   # host specific packages
   hj = {
     packages = with pkgs; [
