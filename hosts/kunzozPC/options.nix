@@ -3,7 +3,7 @@
     core = {
       username = "kunzoz";
       kernel = {
-        type = "xanmod";
+        type = "amd-staging";
         zenergy.enable = true;
       };
       boot = {
