@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  self,
   ...
 }: let
   inherit (lib) mkOption types mkIf;
@@ -15,6 +16,8 @@
     then pkgs.linuxKernel.packages.linux_zen
     else if cfg.type == "xanmod"
     then pkgs.linuxKernel.packages.linux_xanmod_latest
+    else if cfg.type == "amd-staging"
+    then pkgs.linuxPackagesFor self.packages.${pkgs.stdenv.hostPlatform.system}.linux-amd-staging
     else throw "Unsupported kernel type.";
 in {
   options.cfg.core.kernel.type = mkOption {
@@ -23,6 +26,7 @@ in {
       "zen"
       "lts"
       "xanmod"
+      "amd-staging"
     ];
     default =
       if config.cfg.core.isLaptop

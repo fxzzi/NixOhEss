@@ -3,7 +3,7 @@
 
   outputs = inputs @ {self, ...}: let
     inherit (inputs.nixpkgs) lib;
-    inherit (lib) genAttrs packagesFromDirectoryRecursive filterAttrs isDerivation;
+    inherit (lib) genAttrs packagesFromDirectoryRecursive fix;
     pins = import ./npins;
 
     # we only use x86_64-linux for now but this is good practice
@@ -21,19 +21,15 @@
       inherit self inputs pins lib;
     };
 
-    # some of our packages rely on each other, so we need to
-    # pass through newScope to allow for this. This litters
-    # our packages output with a few things which aren't drvs.
-    # so filter them out.
-    packages = forAllSystems (
-      pkgs:
-        filterAttrs (_: isDerivation) (
-          packagesFromDirectoryRecursive {
-            inherit (pkgs) callPackage newScope;
-            directory = ./pkgs;
-          }
-        )
-    );
+    packages = forAllSystems (pkgs:
+      # some of our pkgs depend on each other, so use fix and pass self through
+        fix (selfPkgs:
+          # recursively callPackage every drv in ./pkgs
+            packagesFromDirectoryRecursive {
+              # pass through our npins sources as well
+              callPackage = pkgs.lib.callPackageWith (pkgs // selfPkgs // {inherit pins;});
+              directory = ./pkgs;
+            }));
 
     formatter = forAllSystems (pkgs: import ./fmt.nix {inherit pkgs;});
   };
