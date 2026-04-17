@@ -42,6 +42,19 @@
       "url": "https://api.github.com/repos/nix-community/lanzaboote/tarball/refs/tags/v1.0.0",
       "hash": "sha256-RJmgVDzjRI18BWVogG6wpsl1UCuV6ui8qr4DJ1LfWZ8="
     },
+    "linux-amd-staging": {
+      "type": "Git",
+      "repository": {
+        "type": "GitLab",
+        "repo_path": "agd5f/linux",
+        "server": "https://gitlab.freedesktop.org/"
+      },
+      "branch": "amd-staging-drm-next",
+      "submodules": false,
+      "revision": "a1404287ad4cc349ce3f5d94ac81903db9e0351f",
+      "url": "https://gitlab.freedesktop.org/api/v4/projects/agd5f%2Flinux/repository/archive.tar.gz?sha=a1404287ad4cc349ce3f5d94ac81903db9e0351f",
+      "hash": "sha256-q1TyXTGczeJMtXOrVyNhe3vesuQCGRg/2r5hHKo9io8="
+    },
     "niqspkgs": {
       "type": "Git",
       "repository": {
