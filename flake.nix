@@ -3,7 +3,7 @@
 
   outputs = inputs @ {self, ...}: let
     inherit (inputs.nixpkgs) lib;
-    inherit (lib) genAttrs packagesFromDirectoryRecursive fix;
+    inherit (lib) genAttrs packagesFromDirectoryRecursive callPackageWith fix;
     pins = import ./npins;
 
     # we only use x86_64-linux for now but this is good practice
@@ -13,7 +13,7 @@
       supportedSystems
       (system: apply inputs.nixpkgs.legacyPackages.${system});
   in {
-    # our private lib which has some generators and useful funcs
+    # our internal lib which has some generators and useful funcs
     lib = import ./lib lib;
 
     # hosts are configured in here
@@ -27,11 +27,11 @@
           # recursively callPackage every drv in ./pkgs
             packagesFromDirectoryRecursive {
               # pass through our npins sources as well
-              callPackage = pkgs.lib.callPackageWith (pkgs // selfPkgs // {inherit pins;});
+              callPackage = callPackageWith (pkgs // selfPkgs // {inherit pins;});
               directory = ./pkgs;
             }));
 
-    formatter = forAllSystems (pkgs: import ./fmt.nix {inherit pkgs;});
+    formatter = forAllSystems (pkgs: pkgs.callPackage ./fmt.nix {});
   };
 
   inputs = {

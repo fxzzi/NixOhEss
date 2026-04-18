@@ -1,12 +1,18 @@
-{pkgs}: let
+{
+  writeShellApplication,
+  alejandra,
+  deadnix,
+  statix,
+  fd,
+}: let
   exclusionList = [
     "**/npins/*"
   ];
   excludeArgs = builtins.concatStringsSep " " (map (pattern: "--exclude '${pattern}'") exclusionList);
 in
-  pkgs.writeShellApplication {
+  writeShellApplication {
     name = "nix-formatter";
-    runtimeInputs = with pkgs; [
+    runtimeInputs = [
       alejandra
       deadnix
       statix
