@@ -7,7 +7,7 @@
   inherit (lib) mkEnableOption mkIf;
   inherit (builtins) toString;
   cfg = config.cfg.programs.nh;
-  keepCount = toString config.boot.loader.systemd-boot.configurationLimit;
+  keepCount = toString config.boot.loader.limine.maxGenerations;
 in {
   options.cfg.programs.nh.enable = mkEnableOption "nh";
   config = mkIf cfg.enable {

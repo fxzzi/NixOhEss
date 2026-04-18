@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  pins,
   ...
 }: let
   inherit
@@ -68,12 +69,54 @@ in {
       initrd.systemd.enable = true;
       loader = {
         inherit (cfg) timeout;
-        systemd-boot = {
-          enable = true; # Enable systemd-boot
-          configurationLimit = 5; # shouldn't really need any more than that.
-          editor = false; # Disable editor for security
-          consoleMode = "max"; # Set console mode to max resolution
+        limine = {
+          enable = true;
+          maxGenerations = 8;
+          style = {
+            wallpaperStyle = "centered";
+            wallpapers = [
+              "${pins.walls}/images/fuji.jpg"
+              "${pins.walls}/images/cherry-blossom.jpg"
+              "${pins.walls}/images/clouds.jpg"
+              "${pins.walls}/images/austria_landscape.jpg"
+              "${pins.walls}/images/pink_flowers.jpg"
+              "${pins.walls}/images/wallhaven-9oxkwk_3840x2160.jpg"
+              "${pins.walls}/images/wallhaven-28v3mm_3840x2160.jpg"
+              "${pins.walls}/images/wallhaven-rqy1mm.jpg"
+              "${pins.walls}/images/wallhaven-og39mm.jpg"
+              "${pins.walls}/images/wallhaven-21dlrg.jpg"
+              "${pins.walls}/images/norway-lofoten-island.jpg"
+            ];
+            interface = {
+              resolution = "max";
+              helpHidden = true;
+              branding = "Limine Bootloader";
+            };
+            graphicalTerminal = {
+              font.scale = "2x2";
+              # don't have any margin around the background colour
+              margin = -1;
+              marginGradient = -1;
+              # darken the wallpapers
+              background = "33080808";
+              foreground = "B9C1D6";
+            };
+          };
+          extraEntries = ''
+            /Windoesn't
+                protocol: efi
+                path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+          '';
+          extraConfig = mkIf (cfg.timeout <= 1) ''
+            quiet: yes
+          '';
         };
+        # systemd-boot = {
+        #   enable = true; # Enable systemd-boot
+        #   configurationLimit = 5; # shouldn't really need any more than that.
+        #   editor = false; # Disable editor for security
+        #   consoleMode = "max"; # Set console mode to max resolution
+        # };
         efi.canTouchEfiVariables = true;
       };
       kernelParams =
