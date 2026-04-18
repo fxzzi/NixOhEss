@@ -27,6 +27,7 @@
         };
       };
     };
+    boot.loader.limine.secureBoot.enable = true;
     # set these when travelling
     # services = {
     #   geoclue2.enable = true;

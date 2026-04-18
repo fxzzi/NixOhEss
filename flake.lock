@@ -228,11 +228,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1776505396,
-        "narHash": "sha256-E6k/JzalLy+vuVQbQGSOLMKQYaZkYxP5iGzacnWquP8=",
+        "lastModified": 1776508516,
+        "narHash": "sha256-gQgAB0jGCCZebYXgF99Olef6+qrT2tJ6YJVvlioo8ME=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "593fd5650a89863071d4e224bf4370e95da2c0f0",
+        "rev": "d50ad2475c45de0bcf14a2476b194de7322a35f7",
         "type": "github"
       },
       "original": {
@@ -556,10 +556,6 @@
     "root": {
       "inputs": {
         "azzipkgs": "azzipkgs",
-        "crane": [
-          "stash",
-          "crane"
-        ],
         "hjem": "hjem",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs",
