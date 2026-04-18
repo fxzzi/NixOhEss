@@ -11,7 +11,7 @@
       boot = {
         enable = true;
         keyLayout = "us";
-        timeout = 0;
+        timeout = 1;
       };
       networking.enable = true;
       fonts.enable = true;
