@@ -32,7 +32,7 @@
           # sidestep all cm issues by just disabling it
           cm_enabled = 0;
           # same with ds
-          # direct_scanout = 0;
+          direct_scanout = 0;
         };
         # same with tearing
         general.allow_tearing = 0;
