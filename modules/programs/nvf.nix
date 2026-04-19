@@ -78,7 +78,7 @@ in {
             clang.enable = true;
             css.enable = true;
             html.enable = true;
-            ts.enable = true;
+            typescript.enable = true;
             lua.enable = true;
             python.enable = true;
             typst.enable = true;
