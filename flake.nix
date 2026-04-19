@@ -21,15 +21,14 @@
       inherit self inputs pins lib;
     };
 
+    # some of our pkgs depend on each other, so use fix and pass self through
     packages = forAllSystems (pkgs:
-      # some of our pkgs depend on each other, so use fix and pass self through
-        fix (selfPkgs:
-          # recursively callPackage every drv in ./pkgs
-            packagesFromDirectoryRecursive {
-              # pass through our npins sources as well
-              callPackage = callPackageWith (pkgs // selfPkgs // {inherit pins;});
-              directory = ./pkgs;
-            }));
+      fix (selfPkgs:
+        packagesFromDirectoryRecursive {
+          # pass through our npins sources
+          callPackage = callPackageWith (pkgs // selfPkgs // {inherit pins;});
+          directory = ./pkgs;
+        }));
 
     formatter = forAllSystems (pkgs: pkgs.callPackage ./fmt.nix {});
   };
