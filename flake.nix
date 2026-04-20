@@ -63,13 +63,20 @@
         ndg.follows = "";
       };
     };
-    stash = {
-      url = "github:NotAShelf/stash";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     watt = {
       url = "github:NotAShelf/watt";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    crane.url = "github:ipetkov/crane";
+    stash = {
+      url = "github:NotAShelf/stash";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.crane.follows = "crane";
+    };
+    tuigreet = {
+      url = "github:NotAShelf/tuigreet";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.crane.follows = "crane";
     };
   };
 }
