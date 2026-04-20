@@ -1,4 +1,7 @@
-lib: {
-  generators = import ./generators lib;
+{
+  lib,
+  inputs,
+}: {
+  generators = import ./generators {inherit lib inputs;};
   listRecursive = import ./listRecursive.nix lib;
 }
