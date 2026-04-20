@@ -14,7 +14,7 @@
       (system: apply inputs.nixpkgs.legacyPackages.${system});
   in {
     # our internal lib which has some generators and useful funcs
-    lib = import ./lib lib;
+    lib = import ./lib {inherit lib inputs;};
 
     # hosts are configured in here
     nixosConfigurations = import ./hosts {
