@@ -2,12 +2,12 @@
   lib,
   config,
   pkgs,
-  pins,
+  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.greetd;
-  tuigreet = pkgs.callPackage "${pins.tuigreet}/nix/package.nix" {};
+  tuigreet = inputs.tuigreet.packages.${pkgs.stdenv.hostPlatform.system}.default;
   cmd = pkgs.writeShellScriptBin "greetd-hyprland" ''
     Hyprland
     systemctl --user stop nixos-fake-graphical-session.target
