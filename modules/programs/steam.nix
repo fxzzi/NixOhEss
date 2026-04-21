@@ -29,17 +29,6 @@ in {
           # FIXME: https://github.com/ValveSoftware/steam-for-linux/issues/13007
           PRESSURE_VESSEL_FILESYSTEMS_RW = optionalAttrs (builtins.hasAttr "/games" config.fileSystems) "/games";
         };
-        # also FIXME: https://github.com/NixOS/nixpkgs/issues/505824#issuecomment-4277025012
-        buildFHSEnv = args:
-          pkgs.buildFHSEnv (args
-            // {
-              extraBuildCommands =
-                (args.extraBuildCommands or "")
-                + ''
-                  rm -f $out/usr/sbin/ldconfig
-                  cp ${pkgs.pkgsi686Linux.glibc.bin}/bin/ldconfig $out/usr/sbin/ldconfig
-                '';
-            });
       };
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
