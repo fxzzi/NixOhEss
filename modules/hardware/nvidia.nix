@@ -5,24 +5,24 @@
   pins,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf optionals;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.hardware.nvidia;
-  isOpen = config.hardware.nvidia.open;
 in {
-  options.cfg.hardware.nvidia = {
-    exposeTemp = mkEnableOption "nvidia-temp";
-    enable = mkEnableOption "nvidia";
-  };
+  options.cfg.hardware.nvidia.enable = mkEnableOption "nvidia";
 
   config = mkIf cfg.enable {
     nixpkgs.config.cudaSupport = true; # enable cuda support in packages which need it
     services.xserver.videoDrivers = ["nvidia"];
 
     hardware = {
+      graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
       nvidia = {
         open = true;
-        gsp.enable = isOpen; # if using closed drivers, lets assume you don't want gsp
-        powerManagement.enable = !isOpen;
+        gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
+        powerManagement.enable = true;
         nvidiaSettings = false; # useless on wayland still
         package = config.boot.kernelPackages.nvidiaPackages.beta;
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
@@ -34,10 +34,6 @@ in {
         #   settingsSha256 = "";
         #   persistencedSha256 = "";
         # };
-      };
-      graphics = {
-        enable = true;
-        enable32Bit = true;
       };
     };
     environment = {
@@ -102,22 +98,12 @@ in {
         "nvidia_uvm"
         "nvidia_drm"
       ];
-      blacklistedKernelModules = ["nouveau"];
-
-      kernelParams =
-        [
-          "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
-          "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
-          "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-          "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
-          "nvidia-modeset.disable_vrr_memclk_switch=1" # don't force P0 when VRR is active
-        ]
-        ++ optionals isOpen [
-          "nvidia.NVreg_UseKernelSuspendNotifiers=1"
-        ]
-        ++ optionals (!config.zramSwap.enable) [
-          "nvidia.NVreg_TemporaryFilePath=/var/tmp" # store on disk, not /tmp which is on RAM
-        ];
+      kernelParams = [
+        "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
+        "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
+        "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
+        "nvidia-modeset.disable_vrr_memclk_switch=1" # don't force P0 when VRR is active
+      ];
     };
   };
 }
