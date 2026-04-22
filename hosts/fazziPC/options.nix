@@ -46,8 +46,8 @@
         enable = true;
         rnnoise = {
           enable = true;
-          vadThreshold = 95;
-          vadGracePeriod = 100;
+          vadThreshold = 97;
+          vadGracePeriod = 50;
           retroactiveVadGrace = 0;
         };
       };
@@ -71,11 +71,9 @@
       xdph.enable = true;
       dunst.enable = true;
       greetd.enable = true;
-
       printing.enable = true;
     };
     programs = {
-      codium.enable = true;
       gpu-screen-recorder.enable = true;
       gamescope.enable = true;
       osu.enable = true;
@@ -98,7 +96,7 @@
       };
       prismlauncher = {
         enable = true;
-        waywall.enable = true;
+        # waywall.enable = true;
       };
       lutris.enable = true;
       heroic.enable = true;

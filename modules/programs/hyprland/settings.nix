@@ -65,7 +65,7 @@ in {
           render = {
             direct_scanout = mkDefault 2;
             cm_auto_hdr = 2; # use hdredid for autohdr
-            use_fp16 = mkDefault 2;
+            # use_fp16 = mkDefault 2;
           };
           quirks = {
             # allow ds to activate with winewayland on nvidia
@@ -150,10 +150,10 @@ in {
               passes = 3;
               contrast = 1; # fix blur in cm and fp16
               # fp16 makes blur lighter. so darken it here when fp16 is in use
-              brightness =
-                if config.hj.xdg.config.files."hypr/hyprland.conf".value.render.use_fp16 == 1
-                then 0.625
-                else 1;
+              # brightness =
+              #   if config.hj.xdg.config.files."hypr/hyprland.conf".value.render.use_fp16 == 1
+              #   then 0.625
+              #   else 1;
               vibrancy = 0.15;
               noise = 0.05;
             };

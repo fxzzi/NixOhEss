@@ -28,8 +28,8 @@
         enable = true;
         rnnoise = {
           enable = true;
-          vadThreshold = 95;
-          vadGracePeriod = 100;
+          vadThreshold = 97;
+          vadGracePeriod = 50;
           retroactiveVadGrace = 0;
         };
       };
