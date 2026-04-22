@@ -41,11 +41,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776428499,
-        "narHash": "sha256-JFZ140VM4NgQrJJDuW6guFCxVCBfWdCps2dO5A53SGA=",
+        "lastModified": 1776862190,
+        "narHash": "sha256-8oVTPl8ST7J7YQl0rDnP5rB84gDB/sAsHED4GMk91Uw=",
         "owner": "fazzi",
         "repo": "azzipkgs",
-        "rev": "9549e8872b5390c755a43fb4195de42a81ad3c37",
+        "rev": "885184ab043fada6663e73ba5d90e419547d7bc2",
         "type": "gitlab"
       },
       "original": {
