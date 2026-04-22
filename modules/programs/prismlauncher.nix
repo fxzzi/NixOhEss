@@ -37,43 +37,44 @@ in {
       })
       (mkIf cfg.waywall.enable waywall)
     ];
-    hj.xdg.config.files."waywall/init.lua".text =
-      mkIf cfg.waywall.enable
-      #lua
-      ''
-        local waywall = require("waywall")
-        local helpers = require("waywall.helpers")
-        local config = {
-          theme = {
-            background = "#303030ff",
-            ninb_opacity = 0.9,
-            ninb_anchor = {
-              position = "topleft",
-              x = 300,
-              y = 60,
+    hj.xdg.config.files."waywall/init.lua" = mkIf cfg.waywall.enable {
+      text =
+        #lua
+        ''
+          local waywall = require("waywall")
+          local helpers = require("waywall.helpers")
+          local config = {
+            theme = {
+              background = "#303030ff",
+              ninb_opacity = 0.9,
+              ninb_anchor = {
+                position = "topleft",
+                x = 300,
+                y = 60,
+              },
             },
-          },
-          experimental = {
-            tearing = true,
-          },
-          input = {
-            repeat_rate = 55,
-            repeat_delay = 375,
-            confine_pointer = true,
-          },
-          actions = {
-            -- run ninjabrain-bot
-            ["Ctrl-Shift-N"] = function()
-              waywall.exec("${getExe pkgs.temurin-jre-bin} -jar ${ninjabrain-bot}")
-            end,
-            -- show / hide it
-            ["F7"] = function()
-              helpers.toggle_floating()
-            end,
+            experimental = {
+              tearing = true,
+            },
+            input = {
+              repeat_rate = 55,
+              repeat_delay = 375,
+              confine_pointer = true,
+            },
+            actions = {
+              -- run ninjabrain-bot
+              ["Ctrl-Shift-N"] = function()
+                waywall.exec("${getExe pkgs.temurin-jre-bin} -jar ${ninjabrain-bot}")
+              end,
+              -- show / hide it
+              ["F7"] = function()
+                helpers.toggle_floating()
+              end,
+            }
           }
-        }
 
-        return config
-      '';
+          return config
+        '';
+    };
   };
 }
