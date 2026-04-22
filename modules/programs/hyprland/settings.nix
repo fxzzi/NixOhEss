@@ -317,12 +317,16 @@ in {
               ", XF86AudioPlay, exec, ${getExe pkgs.mpc} toggle"
               ", XF86AudioNext, exec, ${getExe pkgs.mpc} next"
 
-              # passthrough binds for obs
-              "Control_L, grave, pass, class:com.obsproject.Studio"
-              "Control_L SHIFT, grave, pass, class:com.obsproject.Studio"
-              # also for gpu-screen-recorder. SIGUSR1 saves the replay
+              # shortcuts for OBS
+              "Control_L SHIFT, grave, global, :OBSBasic.StartRecording"
+              "Control_L SHIFT, grave, global, :OBSBasic.StopRecording"
+              "Control_L, grave, global, :ReplayBuffer.Save"
+
+              # also for gpu-screen-recorder.
+              # SIGINT saves the recording (wont start a recording for now)
+              "Control_L SHIFT, grave, exec, ${getExe pkgs.killall} -SIGINT gpu-screen-recorder"
+              # SIGUSR1 saves the replay
               "Control_L, grave, exec, ${getExe pkgs.killall} -SIGUSR1 gpu-screen-recorder"
-              "Control_L SHIFT, grave, exec, ${getExe pkgs.killall} -SIGUSR1 gpu-screen-recorder"
 
               # window management
               "$MOD, Q, killactive"
