@@ -91,7 +91,7 @@ in {
               type = "disk";
               key = "󱦟 dy";
               keyColor = "yellow";
-              folders = "/";
+              folders = "/home";
               format = "{days} days";
             }
             "break"
