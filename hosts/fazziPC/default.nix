@@ -19,7 +19,7 @@
   hj = {
     packages = with pkgs; [
       qbittorrent-enhanced
-      telegram-desktop
+      # telegram-desktop
       losslesscut-bin
       steamguard-cli
       picard
@@ -46,6 +46,7 @@
     ];
     xdg.config.files."hypr/hyprland.conf" = {
       value = {
+        render.use_fp16 = 1;
         # main monitor
         "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917]" = {
           mode = "highres";
@@ -64,7 +65,6 @@
           position = "auto-center-left";
           vrr = 1; # this monitor doesn't flicker when using VRR at all
         };
-        # render.use_fp16 = 0;
       };
     };
   };
