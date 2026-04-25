@@ -26,7 +26,7 @@
       fix (selfPkgs:
         packagesFromDirectoryRecursive {
           # pass through our npins sources
-          callPackage = callPackageWith (pkgs // selfPkgs // {inherit pins;});
+          callPackage = callPackageWith (pkgs // selfPkgs // {inherit pins inputs;});
           directory = ./pkgs;
         }));
 
