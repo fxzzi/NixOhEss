@@ -7,7 +7,6 @@
     system.stateVersion = "25.05";
     hj = {
       packages = with pkgs; [
-        telegram-desktop
         deluge
         inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell-rewrite-git
         (jetbrains.idea-oss.override {

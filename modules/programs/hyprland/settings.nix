@@ -417,6 +417,7 @@ in {
           ];
           # use when bug reporting
           debug = {
+            invalidate_fp16 = 1;
             # disable_logs = 0;
             # watchdog_timeout = 0;
           };
