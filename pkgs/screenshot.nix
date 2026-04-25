@@ -5,13 +5,22 @@
   grim,
   slurp,
   wl-clipboard,
-  hyprpicker,
   dunst,
+  stdenv,
+  inputs,
 }:
 writeShellApplication {
   name = "screenshot";
-  runtimeInputs = [libcanberra-gtk3 jq grim slurp wl-clipboard hyprpicker dunst];
-  excludeShellChecks = ["SC2016"];
+  runtimeInputs = [
+    libcanberra-gtk3
+    jq
+    grim
+    slurp
+    wl-clipboard
+    dunst
+    inputs.azzipkgs.packages.${stdenv.hostPlatform.system}.still
+  ];
+  excludeShellChecks = ["SC2027" "SC2086"];
   text = ''
     # Screenshot the entire monitor, a selection, or active window
     # and then copies the image to your clipboard.
@@ -47,15 +56,13 @@ writeShellApplication {
       fi
       ;;
     --selection)
-      if pgrep -x slurp > /dev/null; then
+      if pgrep -x still > /dev/null; then
         echo "screenshot already in progress"
         exit 1
       fi
-      hyprpicker -rz &
-      PID=$!
-      sleep 0.2
-      $grimCmd -g "$(slurp -b '#0a0a0a99' -c "$(cat "$XDG_CACHE_HOME"/wallust/accent.txt)" -s '#FFFFFF03' -w 2)" "$path" || echo "selection cancelled"
-      kill $PID
+      still -c "slurp -b '#0a0a0a99' \
+        -c \"$(cat "$XDG_CACHE_HOME"/wallust/accent.txt)\" \
+        -s '#FFFFFF03' -w 2 | grim -g - \"$path\""
       ;;
     --active)
       stableId=$(hyprctl activewindow -j | jq -r '.stableId')

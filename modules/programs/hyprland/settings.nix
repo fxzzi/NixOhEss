@@ -132,9 +132,10 @@ in {
             "match:namespace wleave, blur 1, xray 1"
             "match:namespace bar-.*, blur 1, xray 1, ignore_alpha 0"
             "match:namespace notifications, blur 1, animation slide"
-            # show hyprpicker below slurp, but show both over notifs.
+            # show `still` below `slurp`, but show both over notifs.
+            # we use `still` to freeze the screen during selection screenshots.
             "match:namespace selection, no_anim 1, order -2"
-            "match:namespace hyprpicker, no_anim 1, order -1"
+            "match:namespace still, no_anim 1, order -1"
           ];
           decoration = {
             rounding = 0;
