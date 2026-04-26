@@ -7,13 +7,8 @@
 }: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.hyprlock;
-  hyprlandAnimations = config.hj.xdg.config.files."hypr/hyprland.conf".value.animations.enabled;
-  animations =
-    if hyprlandAnimations == 0
-    then false
-    else if hyprlandAnimations == 1
-    then true
-    else hyprlandAnimations;
+  # enable anims if not on laptop
+  animations = !config.cfg.core.isLaptop;
   land = config.cfg.programs.hyprland;
 in {
   options.cfg.programs.hyprlock.enable = mkEnableOption "hyprlock";
