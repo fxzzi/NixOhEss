@@ -9,27 +9,16 @@
 in {
   options.cfg.programs.lutris.enable = mkEnableOption "lutris";
   config = mkIf cfg.enable {
+    # FIXME: https://github.com/NixOS/nixpkgs/issues/513245
+    nixpkgs.overlays = [
+      (_: prev: {
+        openldap = prev.openldap.overrideAttrs {
+          doCheck = !prev.stdenv.hostPlatform.isi686;
+        };
+      })
+    ];
     hj = {
-      packages = [
-        # FIXME: https://github.com/NixOS/nixpkgs/issues/513245
-        (pkgs.lutris.override {
-          steamSupport = false;
-          # Intercept buildFHSEnv to modify target packages
-          buildFHSEnv = args:
-            pkgs.buildFHSEnv (args
-              // {
-                multiPkgs = envPkgs: let
-                  # Fetch original package list
-                  originalPkgs = args.multiPkgs envPkgs;
-
-                  # Disable tests for openldap
-                  customLdap = envPkgs.openldap.overrideAttrs (_: {doCheck = false;});
-                in
-                  # Replace broken openldap with the custom one
-                  builtins.filter (p: (p.pname or "") != "openldap") originalPkgs ++ [customLdap];
-              });
-        })
-      ];
+      packages = [pkgs.lutris-free];
       xdg.data.files = {
         "lutris/runners/wine/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
           source = pkgs.proton-ge-bin.steamcompattool;
