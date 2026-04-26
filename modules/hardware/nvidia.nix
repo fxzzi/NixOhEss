@@ -101,7 +101,7 @@ in {
       kernelParams = [
         "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
         "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
-        "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
+        # "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
         "nvidia-modeset.disable_vrr_memclk_switch=1" # don't force P0 when VRR is active
       ];
     };
