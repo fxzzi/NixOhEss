@@ -47,8 +47,4 @@
     allowedUDPPorts = [25565];
     allowedTCPPorts = [25565];
   };
-  services.lact = {
-    enable = true;
-    # settings = {};
-  };
 }
