@@ -408,9 +408,9 @@ in {
           gesture = mkIf config.cfg.core.isLaptop [
             "3, horizontal, workspace"
           ];
-          # use when bug reporting
           debug = {
             invalidate_fp16 = 1;
+            # use when bug reporting
             # disable_logs = 0;
             # watchdog_timeout = 0;
           };
