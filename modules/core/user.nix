@@ -43,6 +43,11 @@ in {
           hunspellDicts.en_GB-ise
           nix-tree
         ];
+        xdg = {
+          # apps love to leave crap in these dirs. delete them.
+          config.files."autostart".type = "delete";
+          data.files."applications".type = "delete";
+        };
       };
     };
     users.users.${username} = {
