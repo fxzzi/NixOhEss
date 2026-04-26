@@ -193,7 +193,7 @@ in {
           ];
 
           dwindle = {
-            pseudotile = 1;
+            # pseudotile = 1;
             preserve_split = 1;
           };
           windowrule = let
