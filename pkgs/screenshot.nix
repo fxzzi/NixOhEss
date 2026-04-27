@@ -60,9 +60,9 @@ writeShellApplication {
         echo "screenshot already in progress"
         exit 1
       fi
-      still -c "slurp -b '#0a0a0a99' \
+      still -c "slurp -b '#0a0a0a99' -s '#FFFFFF03' \
         -c \"$(cat "$XDG_CACHE_HOME"/wallust/accent.txt)\" \
-        -s '#FFFFFF03' -w 2 | grim -g - \"$path\""
+        -w 2 | $grimCmd -g - \"$path\""
       ;;
     --active)
       stableId=$(hyprctl activewindow -j | jq -r '.stableId')

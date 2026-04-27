@@ -26,7 +26,7 @@ in {
           # don't even use reflex, so enable it in here only for lutris
           DXVK_NVAPI_VKREFLEX = optionalAttrs config.cfg.hardware.nvidia.enable 1;
           MANGOHUD = optionalAttrs config.cfg.programs.mangohud.enable 1;
-          # FIXME: https://github.com/ValveSoftware/steam-for-linux/issues/13007
+          # HACK: https://github.com/ValveSoftware/steam-for-linux/issues/13007
           PRESSURE_VESSEL_FILESYSTEMS_RW = optionalAttrs (builtins.hasAttr "/games" config.fileSystems) "/games";
         };
       };

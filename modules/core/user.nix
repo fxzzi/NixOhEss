@@ -20,13 +20,9 @@ in {
     # easily configure hjem in any file.
     # This pretty much makes or breaks my config.
     (mkAliasOptionModule ["hj"] ["hjem" "users" username])
-    # "${pins.patchix}/nix/module.nix"
-    # same as above but for patchix
-    # (mkAliasOptionModule ["ptx"] ["patchix" "users" username "patches"])
   ];
   config = {
     hjem = {
-      # linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
       clobberByDefault = true;
       users.${username} = {
         enable = true;
