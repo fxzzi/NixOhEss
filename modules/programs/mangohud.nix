@@ -12,10 +12,8 @@
   fpsLimit = let
     rr = cfg.refreshRate;
   in
-    if config.hj.xdg.config.files."hypr/hyprland.conf".value.misc.vrr == 0
-    then rr
     # NOTE: https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
-    else floor (rr - (rr * rr / 4096.0));
+    floor (rr - (rr * rr / 4096.0));
 in {
   options.cfg.programs.mangohud = {
     enable = mkEnableOption "mangohud";
@@ -28,8 +26,7 @@ in {
       type = types.int;
       default = 170;
       description = ''
-        If VRR is disabled in Hyprland, games will be locked to this refresh rate.
-        With VRR enabled, games will be locked to a refresh rate slightly lower than this value.
+        Games will be locked to a refresh rate slightly lower than this value.
       '';
     };
   };

@@ -8,12 +8,18 @@ const readFile = (path) => {
 
 function listDir(path) {
   try {
-    const iter = Gio.File.new_for_path(path).enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
+    const iter = Gio.File.new_for_path(path).enumerate_children(
+      "standard::name",
+      Gio.FileQueryInfoFlags.NONE,
+      null,
+    );
     const names = [];
     let info;
     while ((info = iter.next_file(null)) !== null) names.push(info.get_name());
     return names;
-  } catch (e) { return []; }
+  } catch (e) {
+    return [];
+  }
 }
 
 function findAmdGpuTempFile() {
@@ -43,17 +49,24 @@ const gpuTempFilePath = (() => {
 })();
 
 const gpuTemp = Variable("", {
-  poll: [5000, () => {
-    if (!gpuTempFilePath) return "N/A";
-    const raw = readFile(gpuTempFilePath);
-    return raw ? `${(parseFloat(raw) / 1000).toFixed(0)}°C` : "N/A";
-  }],
+  poll: [
+    5000,
+    () => {
+      if (!gpuTempFilePath) return "N/A";
+      const raw = readFile(gpuTempFilePath);
+      return raw ? `${(parseFloat(raw) / 1000).toFixed(0)}°C` : "N/A";
+    },
+  ],
 });
 
 export function GpuTempWidget() {
   return Widget.Box({
     children: [
-      Widget.Icon({ icon: "expansion-card-symbolic", class_name: "icon", size: 16 }),
+      Widget.Icon({
+        icon: "expansion-card-symbolic",
+        class_name: "icon",
+        size: 16,
+      }),
       Widget.Label({ class_name: "temperature-usage", label: gpuTemp.bind() }),
     ],
   });

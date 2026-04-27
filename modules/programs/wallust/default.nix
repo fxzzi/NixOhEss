@@ -27,8 +27,8 @@ in {
                 target = "~/.cache/wallust/colors_fuzzel.ini";
               };
               hyprland = optionalAttrs config.cfg.programs.hyprland.enable {
-                template = "colors_hyprland.conf";
-                target = "~/.cache/wallust/colors_hyprland.conf";
+                template = "colors_hyprland.lua";
+                target = "~/.config/hypr/colors_hyprland.lua";
               };
               ags = optionalAttrs config.cfg.services.ags.enable {
                 template = "colors_ags.css";

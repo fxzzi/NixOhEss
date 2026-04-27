@@ -5,7 +5,11 @@ const time = Variable("", {
 export function TimeWidget() {
   return Widget.Box({
     children: [
-      Widget.Icon({ icon: "clock-analog-outline-symbolic", class_name: "icon", size: 16 }),
+      Widget.Icon({
+        icon: "clock-analog-outline-symbolic",
+        class_name: "icon",
+        size: 16,
+      }),
       Widget.Label({ class_name: "time", label: time.bind() }),
     ],
   });
