@@ -2,6 +2,7 @@
   pkgs,
   pins,
   inputs,
+  lib,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -16,28 +17,35 @@
       inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell-rewrite-git
       (callPackage "${pins.creamlinux}" {})
     ];
-    xdg.config.files."hypr/hyprland.conf" = {
-      value = {
-        "monitorv2[desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543]" = {
-          # this monitor is weird and has a 4k60 downscale mode.
-          # highrr will prefer the mode with highest rr, then highest res
-          # so effectively 1440p170
-          mode = "highrr";
-          # bad hdr
-          supports_hdr = -1;
-          # this monitor does support 10bit, but only at 120Hz and lower.
-          supports_wide_color = -1;
-        };
-        render = {
-          # sidestep all cm issues by just disabling it
-          cm_enabled = 0;
-          # same with ds
-          direct_scanout = 0;
-        };
-        # same with tearing
-        general.allow_tearing = 0;
-      };
-    };
+    xdg.config.files."hypr/hyprland.lua".text =
+      lib.mkAfter
+      # lua
+      ''
+        hl.monitor({
+        	output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543",
+        	-- this monitor is weird and has a 4k60 downscale mode.
+        	-- highrr will prefer the mode with highest rr, then highest res
+        	-- so effectively 1440p170
+        	mode = "highrr",
+        	-- bad hdr
+        	supports_hdr = -1,
+        	-- this monitor does support 10bit, but only at 120Hz and lower.
+        	supports_wide_color = -1,
+        })
+
+        hl.config({
+        	render = {
+        		-- sidestep all cm issues by just disabling it
+        		cm_enabled = 0,
+        		-- same with ds
+        		direct_scanout = 0,
+        	},
+        	-- same with tearing
+        	general = {
+        		allow_tearing = 0,
+        	},
+        })
+      '';
   };
   hardware.display = {
     outputs."DP-3".mode = "2560x1440@170";
