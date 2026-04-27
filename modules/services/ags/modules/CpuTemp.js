@@ -8,12 +8,18 @@ const readFile = (path) => {
 
 function listDir(path) {
   try {
-    const iter = Gio.File.new_for_path(path).enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
+    const iter = Gio.File.new_for_path(path).enumerate_children(
+      "standard::name",
+      Gio.FileQueryInfoFlags.NONE,
+      null,
+    );
     const names = [];
     let info;
     while ((info = iter.next_file(null)) !== null) names.push(info.get_name());
     return names;
-  } catch (e) { return []; }
+  } catch (e) {
+    return [];
+  }
 }
 
 const sensorLabelPriority = [
@@ -30,16 +36,22 @@ const sensorLabelPriority = [
 function determineTempFilePath() {
   try {
     const candidates = listDir("/sys/class/hwmon")
-      .map(h => {
+      .map((h) => {
         const path = `/sys/class/hwmon/${h}`;
-        const i = sensorLabelPriority.findIndex(({ regex }) => regex.test(readFile(`${path}/name`)));
-        return i !== -1 ? { path, priority: i, labels: sensorLabelPriority[i].labels } : null;
+        const i = sensorLabelPriority.findIndex(({ regex }) =>
+          regex.test(readFile(`${path}/name`)),
+        );
+        return i !== -1
+          ? { path, priority: i, labels: sensorLabelPriority[i].labels }
+          : null;
       })
       .filter(Boolean)
       .sort((a, b) => a.priority - b.priority);
 
     for (const { path, labels } of candidates) {
-      const labelFiles = listDir(path).filter(f => f.startsWith("temp") && f.endsWith("_label"));
+      const labelFiles = listDir(path).filter(
+        (f) => f.startsWith("temp") && f.endsWith("_label"),
+      );
       for (const label of labels) {
         for (const file of labelFiles) {
           const filePath = `${path}/${file}`;
@@ -63,17 +75,24 @@ function determineTempFilePath() {
 const tempFilePath = determineTempFilePath();
 
 const cpuTemp = Variable("", {
-  poll: [5000, () => {
-    if (!tempFilePath) return "N/A";
-    const raw = readFile(tempFilePath);
-    return raw ? `${(parseFloat(raw) / 1000).toFixed(0)}°C` : "N/A";
-  }],
+  poll: [
+    5000,
+    () => {
+      if (!tempFilePath) return "N/A";
+      const raw = readFile(tempFilePath);
+      return raw ? `${(parseFloat(raw) / 1000).toFixed(0)}°C` : "N/A";
+    },
+  ],
 });
 
 export function CpuTempWidget() {
   return Widget.Box({
     children: [
-      Widget.Icon({ icon: "thermometer-outline-symbolic", class_name: "icon", size: 16 }),
+      Widget.Icon({
+        icon: "thermometer-outline-symbolic",
+        class_name: "icon",
+        size: 16,
+      }),
       Widget.Label({ class_name: "temperature-usage", label: cpuTemp.bind() }),
     ],
   });

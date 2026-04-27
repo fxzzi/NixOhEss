@@ -47,7 +47,7 @@ in {
               }
               {
                 label = "logout";
-                action = "hyprctl dispatch exit";
+                action = "hyprctl dispatch 'hl.dsp.exit()'";
                 text = "Logout";
                 keybind = "e";
                 icon = ./icons/logout.png;

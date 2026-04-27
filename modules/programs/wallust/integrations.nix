@@ -3,16 +3,16 @@
   config,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkBefore;
   cfg = config.cfg.programs.wallust;
 in {
   config = mkIf cfg.enable {
     hj = {
       xdg.config.files = {
-        "hypr/hyprland.conf" = {
-          value.source = [
-            "~/.cache/wallust/colors_hyprland.conf"
-          ];
+        "hypr/hyprland.lua" = {
+          text = mkBefore ''
+            require("colors_hyprland")
+          '';
         };
         "fuzzel/fuzzel.ini" = {
           value = {
