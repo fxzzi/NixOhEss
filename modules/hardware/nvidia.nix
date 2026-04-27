@@ -68,7 +68,7 @@ in {
         __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
 
         # fix hw acceleration in bwrap (osu!lazer, wrapped appimages, losslesscut)
-        __EGL_EXTERNAL_PLATFORM_CONFIG_DIRS = "/etc/egl/egl_external_platform.d";
+        __EGL_EXTERNAL_PLATFORM_CONFIG_DIRS = "/run/current-system/etc/egl/egl_external_platform.d";
 
         # avoid creation of $HOME/.nv dir
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";

@@ -226,7 +226,10 @@ in {
             hl.window_rule({ match = { class = "waywall" }, content = "game", fullscreen = true })
             hl.window_rule({ match = { class = "love", title = "Freesync test" }, content = "game", fullscreen = true })
 
+            -- this applies to all clients with content type game.
             hl.window_rule({ match = { content = "game" }, idle_inhibit = "fullscreen", immediate = true })
+            -- confine cursor to the monitor when a game is in fullscreen.
+            -- hl.window_rule({ match = { content = "game", fullscreen = true }, confine_pointer = true })
 
             -- Curves
             hl.curve("easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
