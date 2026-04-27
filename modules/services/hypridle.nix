@@ -42,7 +42,7 @@ in {
             general = {
               lock_cmd = "${getExe' pkgs.procps "pidof"} hyprlock || ${getExe pkgs.hyprlock}";
               before_sleep_cmd = "${getExe' pkgs.systemd "loginctl"} lock-session";
-              after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
+              after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
               ignore_dbus_inhibit = false;
               ignore_systemd_inhibit = false;
             };
@@ -50,8 +50,8 @@ in {
               optionals (cfg.dpmsTimeout != 0) [
                 {
                   timeout = cfg.dpmsTimeout;
-                  on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'";
-                  on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
+                  on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"off\" })'";
+                  on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
                 }
               ]
               ++ optionals (cfg.lockTimeout != 0) [
@@ -62,8 +62,8 @@ in {
                 {
                   timeout = 30;
                   # dpms off screen if hyprlock is running
-                  on-timeout = "${getExe' pkgs.procps "pidof"} hyprlock && hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'";
-                  on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'";
+                  on-timeout = "${getExe' pkgs.procps "pidof"} hyprlock && hyprctl dispatch 'hl.dsp.dpms({ action = \"off\" })'";
+                  on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
                   # no matter what, dimming screen on lockscreen shouldn't be a problem
                   ignore_inhibit = true;
                 }

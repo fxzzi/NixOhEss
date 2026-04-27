@@ -16,11 +16,10 @@
     "HIST_EXPIRE_DUPS_FIRST"
     "HIST_IGNORE_ALL_DUPS"
     "HIST_FIND_NO_DUPS"
-    "HIST_SAVE_NO_DUPS"
     "HIST_IGNORE_SPACE"
 
-    # make all opened shells share history
-    "SHARE_HISTORY"
+    "INC_APPEND_HISTORY"
+    "HIST_FCNTL_LOCK"
   ];
   aliases = {
     grep = "${getExe pkgs.ripgrep}";
