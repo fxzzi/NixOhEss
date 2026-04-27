@@ -327,8 +327,7 @@ in {
             hl.bind("XF86AudioNext", hl.dsp.exec_cmd("${mpc} next"))
 
             -- shortcuts for OBS
-            hl.bind("CTRL + SHIFT + grave", hl.dsp.global(":OBSBasic.StartRecording"))
-            hl.bind("CTRL + SHIFT + grave", hl.dsp.global(":OBSBasic.StopRecording"))
+            hl.bind("CTRL + SHIFT + grave", hl.dsp.global(":_toggle_recording"))
             hl.bind("CTRL + grave", hl.dsp.global(":ReplayBuffer.Save"))
 
             -- also for gpu-screen-recorder.
@@ -356,13 +355,10 @@ in {
             hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.move({ direction = "up" }))
             hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.move({ direction = "down" }))
 
-            -- binds SUPER + [1..0] to workspace [1..10]
-            -- and SUPER + SHIFT + [1..0] to move active window to workspace [1..10]
             for i = 1, 10 do
-              local key = tostring(i % 10) -- 10 maps to key 0
-              local workspace = tostring(i)
-              hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = workspace }))
-              hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = workspace }))
+                local key = i % 10 -- 10 maps to key 0
+                hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i}))
+                hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
             end
 
             -- navigate through workspaces on mouse

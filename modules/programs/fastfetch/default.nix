@@ -67,7 +67,7 @@ in {
               keyColor = "green";
               format = "{2}";
             }
-            # NOTE: just read from env var since it's much faster
+            # HACK: just read from env var since it's much faster
             {
               type = "custom";
               key = " cm";

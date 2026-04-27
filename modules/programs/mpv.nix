@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf generators;
   inherit (builtins) head;
 in {
   options.cfg.programs.mpv.enable = mkEnableOption "mpv";
@@ -12,23 +12,25 @@ in {
     hj = {
       packages = [pkgs.mpv];
       xdg.config.files = {
-        "mpv/mpv.conf".text = ''
-          save-position-on-quit=yes
-          target-colorspace-hint-mode=source
-          # FIXME: https://github.com/mpv-player/mpv/issues/16782
-          hwdec=nvdec,auto
-          video-sync=display-resample
-          volume-max=150
-          keep-open=yes
-          fs=yes
-          alang=ja,en,eng
-          slang=en,eng
-          sub-scale=0.75
-          sub-color="#C9D1D6"
-          sub-font=${head config.fonts.fontconfig.defaultFonts.sansSerif}
-          sub-scale-with-window=yes
-          cursor-autohide=1000
-        '';
+        "mpv/mpv.conf" = {
+          generator = generators.toINIWithGlobalSection {};
+          value.globalSection = {
+            save-position-on-quit = "yes";
+            target-colorspace-hint-mode = "source";
+            hwdec = "auto";
+            video-sync = "display-resample";
+            volume-max = 150;
+            keep-open = "yes";
+            fs = "yes";
+            alang = "ja,en,eng";
+            slang = "en,eng";
+            sub-scale = 0.75;
+            sub-color = "#C9D1D6";
+            sub-font = head config.fonts.fontconfig.defaultFonts.sansSerif;
+            sub-scale-with-window = "yes";
+            cursor-autohide = 1000;
+          };
+        };
         "mpv/input.conf".text = ''
           MOUSE_BTN0 show-progress
           MOUSE_BTN0_DBL cycle fullscreen
@@ -66,15 +68,8 @@ in {
       };
     };
     xdg.mime.defaultApplications = {
-      "video/mp4" = "mpv.desktop";
-      "video/x-matroska" = "mpv.desktop"; # MKV
-      "video/webm" = "mpv.desktop";
-      "video/ogg" = "mpv.desktop";
-      "audio/mpeg" = "mpv.desktop"; # MP3
-      "audio/ogg" = "mpv.desktop";
-      "audio/flac" = "mpv.desktop";
-      "audio/wav" = "mpv.desktop";
-      "audio/aac" = "mpv.desktop";
+      "video/*" = "mpv.desktop";
+      "audio/*" = "mpv.desktop";
     };
   };
 }
