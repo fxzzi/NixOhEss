@@ -32,7 +32,7 @@ in {
       qpwgraph
       pwvucontrol
     ];
-    # NOTE: If we're using sched-ext, we shouldn't use rt in any way.
+    # If we're using sched-ext, we shouldn't use rt in any way.
     # see: https://github.com/sched-ext/scx/issues/2496
     security.rtkit = mkIf (!config.cfg.services.scx.enable) {
       enable = true;

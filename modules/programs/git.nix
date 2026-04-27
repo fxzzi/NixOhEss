@@ -39,6 +39,8 @@ in {
         init = {
           defaultBranch = "main";
         };
+        push.autoSetupRemote = true;
+        pull.rebase = true;
         url = {
           "https://github.com/" = {
             insteadOf = [

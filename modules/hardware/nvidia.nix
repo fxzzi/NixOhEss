@@ -24,7 +24,7 @@ in {
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true;
         nvidiaSettings = false; # useless on wayland still
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        branch = "bleeding_edge"; # newest of latest and beta
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
         #   version = "595.58.03";
@@ -34,6 +34,16 @@ in {
         #   settingsSha256 = "";
         #   persistencedSha256 = "";
         # };
+        moduleParams = {
+          nvidia = {
+            NVreg_UsePageAttributeTable = 1; # why this isn't default is beyond me.
+            NVreg_EnableResizableBar = 1; # enable reBAR
+            "NVreg_RegistryDwords=RmEnableAggressiveVblank" = 1; # low-latency stuff
+          };
+          nvidia-modeset = {
+            disable_vrr_memclk_switch = 1; # don't force P0 when VRR is active
+          };
+        };
       };
     };
     environment = {
@@ -57,10 +67,8 @@ in {
         # clean up ~
         __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
 
-        # fix hw acceleration and native wayland on losslesscut
-        __EGL_VENDOR_LIBRARY_CONFIG_DIRS = "/run/opengl-driver/share/glvnd/egl_vendor.d/";
-        # fix hw acceleration in bwrap (osu!lazer, wrapped appimages)
-        __EGL_EXTERNAL_PLATFORM_CONFIG_DIRS = "/run/opengl-driver/share/egl/egl_external_platform.d/";
+        # fix hw acceleration in bwrap (osu!lazer, wrapped appimages, losslesscut)
+        __EGL_EXTERNAL_PLATFORM_CONFIG_DIRS = "/etc/egl/egl_external_platform.d";
 
         # avoid creation of $HOME/.nv dir
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
@@ -68,7 +76,7 @@ in {
         CUDA_DISABLE_PERF_BOOST = 1;
       };
       etc = {
-        "nvidia/nvidia-application-profiles-rc.d/50-vram-and-cuda-fixes.json".text = builtins.toJSON {
+        "nvidia/nvidia-application-profiles-rc.d/50-vram-alloc-fixes.json".text = builtins.toJSON {
           rules = [
             {
               pattern = {
@@ -78,6 +86,10 @@ in {
               # fix high vram usage on some apps. nvidia tries to do this automatically but only for select programs
               profile = "No VidMem Reuse";
             }
+          ];
+        };
+        "nvidia/nvidia-application-profiles-rc.d/51-dont-nerf-cuda-perf.json".text = builtins.toJSON {
+          rules = [
             {
               pattern = {
                 feature = "true";
@@ -90,20 +102,12 @@ in {
         };
       };
     };
-    boot = {
-      # early load / early kms
-      initrd.kernelModules = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
-      ];
-      kernelParams = [
-        "nvidia.NVreg_UsePageAttributeTable=1" # why this isn't default is beyond me.
-        "nvidia.NVreg_EnableResizableBar=1" # enable reBAR
-        # "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # low-latency stuff
-        "nvidia-modeset.disable_vrr_memclk_switch=1" # don't force P0 when VRR is active
-      ];
-    };
+    # early load / early kms
+    boot.initrd.kernelModules = [
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
+    ];
   };
 }

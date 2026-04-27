@@ -3,20 +3,9 @@
   self,
   inputs,
   lib,
-  config,
   ...
 }: {
   system.stateVersion = "25.05";
-  age.secrets = {
-    m27q = {
-      file = "${self}/secrets/mub-M27Q_v1.icm.age";
-      mode = "744";
-    };
-    mo27q28g = {
-      file = "${self}/secrets/tft-gigabyte_mo27q28g.icm.age";
-      mode = "744";
-    };
-  };
   # host specific packages
   hj = {
     packages = with pkgs; [
@@ -50,11 +39,11 @@
       lib.mkAfter
       #lua
       ''
-        hl.config({
-        	render = {
-        		use_fp16 = 1,
-        	},
-        })
+        -- hl.config({
+        -- 	render = {
+        -- 		use_fp16 = 1,
+        -- 	},
+        -- })
 
         -- main monitor
         hl.monitor({
@@ -63,7 +52,6 @@
         	bitdepth = 10,
         	cm = "srgb", -- use srgb calibrated mode on monitor instead
         	sdr_max_luminance = 203,
-        	-- icc = "${config.age.secrets.mo27q28g.path}",
         })
 
         -- secondary monitor
@@ -72,7 +60,6 @@
         	mode = "highres",
         	supports_hdr = -1, -- hdr sucks on this monitor lol
         	supports_wide_color = -1, -- only supports at lower 120Hz
-        	-- icc = "${config.age.secrets.m27q.path}",
         	cm = "edid",
         	position = "auto-center-left",
         	vrr = 1, -- this monitor doesn't flicker when using VRR at all

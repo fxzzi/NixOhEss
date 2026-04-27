@@ -20,6 +20,10 @@
         # covers wooting keyboards, and scyrox mice.
         pkgs.via
       ];
+      # use the kyber i/o scheduler on ssd's.
+      extraRules = ''
+        ACTION=="add|change", KERNEL=="nvme*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="kyber"
+      '';
     };
   };
 }
