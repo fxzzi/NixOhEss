@@ -26,14 +26,13 @@ in {
         nvidiaSettings = false; # useless on wayland still
         branch = "bleeding_edge"; # newest of latest and beta
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        #   version = "595.58.03";
-        #   sha256_64bit = "sha256-jA1Plnt5MsSrVxQnKu6BAzkrCnAskq+lVRdtNiBYKfk=";
-        #   sha256_aarch64 = "";
-        #   openSha256 = "sha256-6LvJyT0cMXGS290Dh8hd9rc+nYZqBzDIlItOFk8S4n8=";
-        #   settingsSha256 = "";
-        #   persistencedSha256 = "";
-        # };
+        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          version = "595.71.05";
+          sha256_64bit = "sha256-NiA7iWC35JyKQva6H1hjzeNKBek9KyS3mK8G3YRva4I=";
+          openSha256 = "sha256-Lfz71QWKM6x/jD2B22SWpUi7/og30HRlXg1kL3EWzEw=";
+          usePersistenced = false;
+          useSettings = false;
+        };
         moduleParams = {
           nvidia = {
             NVreg_UsePageAttributeTable = 1; # why this isn't default is beyond me.
