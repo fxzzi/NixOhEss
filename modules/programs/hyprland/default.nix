@@ -20,6 +20,16 @@ in {
         default = false;
         description = "Use Hyprland from the flake.";
       };
+      defaultMonitor = mkOption {
+        type = types.str;
+        default = "DP-1";
+        description = "Sets the default monitor for hypr*";
+      };
+      secondaryMonitor = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        description = "Sets the secondary monitor for hypr*.";
+      };
     };
   };
   config = mkIf cfg.enable {
