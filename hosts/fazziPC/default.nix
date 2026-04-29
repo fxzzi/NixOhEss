@@ -33,7 +33,7 @@
           mupen64plus
         ]))
       self.packages.${pkgs.stdenv.hostPlatform.system}.transcode
-      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell-rewrite-git
+      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.losange
     ];
     xdg.config.files."hypr/hyprland.lua".text =
       lib.mkAfter

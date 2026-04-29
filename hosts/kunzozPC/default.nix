@@ -14,7 +14,7 @@
       sgdboop
       cemu
       # stremio-linux-shell
-      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.stremio-linux-shell-rewrite-git
+      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.losange
       (callPackage "${pins.creamlinux}" {})
     ];
     xdg.config.files."hypr/hyprland.lua".text =
