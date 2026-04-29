@@ -66,7 +66,7 @@ in {
   };
   config = {
     services.pipewire = mkIf cfg.enable {
-      extraLadspaPackages = [pkgs.rnnoise-plugin];
+      extraLadspaPackages = [pkgs.rnnoise-plugin.ladspa];
       extraConfig.pipewire."99-input-denoising" = pw_rnnoise_config;
     };
   };
