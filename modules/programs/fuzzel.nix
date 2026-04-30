@@ -31,7 +31,7 @@ in {
             inner-pad = "6";
             filter-desktop = true;
             terminal = "foot";
-            fields = "name,exec";
+            fields = "name,exec,keywords";
             placeholder = "Search...";
             match-mode = "exact";
             dpi-aware = false;
