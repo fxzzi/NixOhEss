@@ -47,7 +47,7 @@ in {
 
           hl.on("hyprland.shutdown", function()
             hl.exec_cmd("pkill -9 Discord")
-            hl.exec_cmd("systemctl stop --user nixos-fake-graphical-session.target")
+            hl.exec_cmd("systemctl --user stop nixos-fake-graphical-session.target")
           end)
 
           -- set primary monitor in both monitor events to be safe
