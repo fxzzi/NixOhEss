@@ -50,11 +50,11 @@ in {
             hl.exec_cmd("systemctl stop --user nixos-fake-graphical-session.target")
           end)
 
-          -- set primary monitor in all 3 events to be safe
-          local function set_primary()
-            hl.exec_cmd("${lib.getExe pkgs.xrandr} --output ${cfg.defaultMonitor} --primary")
-          end
+          -- set primary monitor in both monitor events to be safe
           if ${boolToString multiMonitor} then
+            local function set_primary()
+              hl.exec_cmd("${lib.getExe pkgs.xrandr} --output ${cfg.defaultMonitor} --primary")
+            end
             hl.on("monitor.added", set_primary)
             hl.on("monitor.removed", set_primary)
           end
@@ -223,7 +223,9 @@ in {
           hl.window_rule({ match = { tag = "game" }, content = "game", idle_inhibit = "fullscreen", immediate = true})
 
           -- confine cursor to the monitor when a game is in fullscreen.
-          -- hl.window_rule({ match = { tag = "game-fullscreen", fullscreen = true }, confine_pointer = true })
+          if ${boolToString multiMonitor} then
+            -- hl.window_rule({ match = { tag = "game-fullscreen", fullscreen = true }, confine_pointer = true })
+          end
 
           local function curves(items)
             for name, points in pairs(items) do
@@ -313,33 +315,33 @@ in {
           local mainMod = "SUPER"
 
           -- screenshot script
-          bind({ "Print" }, hl.dsp.exec_cmd("${screenshot} --monitor"))
-          bind({ "SHIFT", "Print" }, hl.dsp.exec_cmd("${screenshot} --selection"))
-          bind({ mainMod, "SHIFT", "S" }, hl.dsp.exec_cmd("${screenshot} --selection"))
-          bind({ mainMod, "Print" }, hl.dsp.exec_cmd("${screenshot} --active"))
+          bind({ "Print" }, hl.dsp.exec_raw("${screenshot} --monitor"))
+          bind({ "SHIFT", "Print" }, hl.dsp.exec_raw("${screenshot} --selection"))
+          bind({ mainMod, "SHIFT", "S" }, hl.dsp.exec_raw("${screenshot} --selection"))
+          bind({ mainMod, "Print" }, hl.dsp.exec_raw("${screenshot} --active"))
 
           -- binds for apps
-          bind({ mainMod, "F" }, hl.dsp.exec_cmd("thunar"))
-          bind({ mainMod, "T" }, hl.dsp.exec_cmd("foot"))
-          bind({ mainMod, "B" }, hl.dsp.exec_cmd("librewolf"))
-          bind({ mainMod, "SHIFT", "P" }, hl.dsp.exec_cmd("librewolf --private-window"))
-          bind({ mainMod, "W" }, hl.dsp.exec_cmd("Discord"))
-          bind({ mainMod, "D" }, hl.dsp.exec_cmd("pkill fuzzel || fuzzel"))
-          bind({ mainMod, "SHIFT", "E" }, hl.dsp.exec_cmd("pkill wleave || wleave"))
-          bind({ "CTRL", "SHIFT", "Escape" }, hl.dsp.exec_cmd("foot btm"))
+          bind({ mainMod, "F" }, hl.dsp.exec_raw("thunar"))
+          bind({ mainMod, "T" }, hl.dsp.exec_raw("foot"))
+          bind({ mainMod, "B" }, hl.dsp.exec_raw("librewolf"))
+          bind({ mainMod, "SHIFT", "P" }, hl.dsp.exec_raw("librewolf --private-window"))
+          bind({ mainMod, "W" }, hl.dsp.exec_raw("Discord"))
+          bind({ mainMod, "D" }, hl.dsp.exec_raw("pkill fuzzel || fuzzel"))
+          bind({ mainMod, "SHIFT", "E" }, hl.dsp.exec_raw("pkill wleave || wleave"))
+          bind({ "CTRL", "SHIFT", "Escape" }, hl.dsp.exec_raw("foot btm"))
           -- extra schtuff
-          bind({ mainMod, "N" }, hl.dsp.exec_cmd("${getExe self.packages.${system}.sunset} 3000"))
-          bind({ mainMod, "R" }, hl.dsp.exec_cmd("${getExe self.packages.${system}.random-wall}"))
-          bind({ mainMod, "SHIFT", "R" }, hl.dsp.exec_cmd("hyprctl reload && ${getExe' pkgs.dunst "dunstify"} 'Hyprland' 'Reloaded Successfully.'"))
-          bind({ mainMod, "K" }, hl.dsp.exec_cmd("hyprctl kill"))
-          bind({ mainMod, "J" }, hl.dsp.exec_cmd("foot ${getExe self.packages.${system}.wall-picker}"))
-          bind({ mainMod, "L" }, hl.dsp.exec_cmd("loginctl lock-session"))
-          bind({ mainMod, "V" }, hl.dsp.exec_cmd("pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"))
+          bind({ mainMod, "N" }, hl.dsp.exec_raw("${getExe self.packages.${system}.sunset} 3000"))
+          bind({ mainMod, "R" }, hl.dsp.exec_raw("${getExe self.packages.${system}.random-wall}"))
+          bind({ mainMod, "SHIFT", "R" }, hl.dsp.exec_raw("hyprctl reload && ${getExe' pkgs.dunst "dunstify"} 'Hyprland' 'Reloaded Successfully.'"))
+          bind({ mainMod, "K" }, hl.dsp.exec_raw("hyprctl kill"))
+          bind({ mainMod, "J" }, hl.dsp.exec_raw("foot ${getExe self.packages.${system}.wall-picker}"))
+          bind({ mainMod, "L" }, hl.dsp.exec_raw("loginctl lock-session"))
+          bind({ mainMod, "V" }, hl.dsp.exec_raw("pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"))
 
           -- mpd media controls
-          bind({ "XF86AudioPrev" }, hl.dsp.exec_cmd("${mpc} prev"))
-          bind({ "XF86AudioPlay" }, hl.dsp.exec_cmd("${mpc} toggle"))
-          bind({ "XF86AudioNext" }, hl.dsp.exec_cmd("${mpc} next"))
+          bind({ "XF86AudioPrev" }, hl.dsp.exec_raw("${mpc} prev"))
+          bind({ "XF86AudioPlay" }, hl.dsp.exec_raw("${mpc} toggle"))
+          bind({ "XF86AudioNext" }, hl.dsp.exec_raw("${mpc} next"))
 
           -- shortcuts for OBS
           bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.global(":_toggle_recording"))
@@ -347,9 +349,9 @@ in {
 
           -- also for gpu-screen-recorder.
           -- SIGINT saves the recording (wont start a recording for now)
-          bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.exec_cmd("${killall} -SIGINT gpu-screen-recorder"))
+          bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.exec_raw("${killall} -SIGINT gpu-screen-recorder"))
           -- SIGUSR1 saves the replay
-          bind({ "CTRL", "grave" }, hl.dsp.exec_cmd("${killall} -SIGUSR1 gpu-screen-recorder"))
+          bind({ "CTRL", "grave" }, hl.dsp.exec_raw("${killall} -SIGUSR1 gpu-screen-recorder"))
 
           -- window management
           bind({ mainMod, "Q" }, hl.dsp.window.close())
@@ -403,7 +405,7 @@ in {
             { { mainMod, "SHIFT", "M" }, "${audio} mic toggle" },
             { { "F20" }, "${audio} mic toggle" },
           }) do
-            bind(a[1], hl.dsp.exec_cmd(a[2]), { locked = true, repeating = true })
+            bind(a[1], hl.dsp.exec_raw(a[2]), { locked = true, repeating = true })
           end
 
           -- brightness binds
@@ -411,7 +413,7 @@ in {
             { "XF86MonBrightnessUp", "up" },
             { "XF86MonBrightnessDown", "down" },
           }) do
-            bind({ b[1] }, hl.dsp.exec_cmd("${brightness} " .. b[2] .. " 5"), { locked = true, repeating = true })
+            bind({ b[1] }, hl.dsp.exec_raw("${brightness} " .. b[2] .. " 5"), { locked = true, repeating = true })
           end
 
           -- mouse binds
