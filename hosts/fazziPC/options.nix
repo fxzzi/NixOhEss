@@ -22,18 +22,18 @@
       # scanning.enable = true;
     };
     services = {
-      lact.enable = true;
+      # lact.enable = true;
       # sunshine.enable = true;
       # libvirt.enable = true;
       # quickshell.enable = true;
       ags.enable = true;
       # kdeconnect.enable = true;
       nvuv = {
-        # enable = true;
-        # maxClock = 1830;
-        # coreOffset = 205;
-        # memOffset = 850;
-        # powerLimit = 150;
+        enable = true;
+        maxClock = 1830;
+        coreOffset = 205;
+        memOffset = 850;
+        powerLimit = 150;
         tempMonitor = {
           enable = true;
         };
