@@ -122,7 +122,7 @@ in {
               },
             },
             animations = {
-               enabled = ${boolToString (!isLaptop)},
+               enabled = 1,
             },
             dwindle = {
               preserve_split = true, -- You probably want this
