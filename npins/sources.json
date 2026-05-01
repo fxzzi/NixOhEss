@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "1105d4986699c890cc62c58b73c8eafbe38d9617",
-      "url": "https://github.com/NotAShelf/rags/archive/1105d4986699c890cc62c58b73c8eafbe38d9617.tar.gz",
-      "hash": "sha256-2ULusze73vJRi4/0dCag92ZMitrVcyaNgoQnIJquWqM="
+      "revision": "ba6e8e09a12006599687ef2d579c246b736205dc",
+      "url": "https://github.com/NotAShelf/rags/archive/ba6e8e09a12006599687ef2d579c246b736205dc.tar.gz",
+      "hash": "sha256-bS1oNGlxlIx0HcW82hiSddBmYwosanQzBrPxLwlErdg="
     },
     "startpage": {
       "type": "Git",
@@ -100,8 +100,8 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "80f1edf15466e38f08ab8bfae669f6fcb4c6221b",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=80f1edf15466e38f08ab8bfae669f6fcb4c6221b",
+      "revision": "679d1abecdc4db684abe19caa3d4b999c4dd94f7",
+      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=679d1abecdc4db684abe19caa3d4b999c4dd94f7",
       "hash": "sha256-Kqal0R2koaR8qlL4z0ls9eNfwDec02QRK6nwGHYYNaI="
     }
   },
