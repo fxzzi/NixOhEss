@@ -184,47 +184,51 @@ in {
 
           -- Window rules for games
           -- emulators and similar apps that should be tagged as games, but not forced fullscreen
-          for _, class in ipairs({
-            "info.cemu.Cemu",
-            "org.eden_emu.eden",
-            "dev.eden_emu.eden",
-            "dolphin-emu",
+          for _, match in ipairs({
+            { class = "info.cemu.Cemu" },
+            { class = "org.eden_emu.eden" },
+            { class = "dev.eden_emu.eden" },
+            { class = "dolphin-emu" },
           }) do
-            hl.window_rule({ match = { class = class }, tag = "+game" })
+            hl.window_rule({ match = match, tag = "+game" })
           end
 
           -- wine/proton/native titles that should launch fullscreen
-          hl.window_rule({ match = { xdg_tag = "proton-game" }, tag = "+game-fullscreen" })
-          for _, class in ipairs({
-            "steam_app_.*",
-            "com.libretro.RetroArch",
-            ".*_linux", -- 32-bit source
-            ".*_linux64", -- 64-bit source
-            ".*.x86_64", -- native sdl games
-            "momentum",
-            "cs2",
-            "Minecraft\\*.*",
-            "org-prismlauncher-EntryPoint", -- legacy mc versions
-            "osu!",
-            "gamescope",
-            "Celeste",
-            "sm64coopdx",
-            "UnleashedRecomp",
-            "sober",
-            "waywall",
+          for _, match in ipairs({
+            { xdg_tag = "proton-game" }, -- proton w/ wine-wayland sets this
+            { class = "steam_app_.*" }, -- umu / proton xwayland set this
+            { class = "com.libretro.RetroArch" },
+            { class = ".*_linux" }, -- 32-bit source
+            { class = ".*_linux64" }, -- 64-bit source
+            { class = ".*.x86_64" }, -- native sdl games
+            { class = "momentum" }, -- momentum mod
+            { class = "cs2" },
+            -- we need 3 rules for mc. when running in native wayland, class is empty.
+            -- older versions of minecraft have their class set by prismlauncher.
+            -- and the rest can be checked with the regular class.
+            -- titles are for some reason in the form "Minecraft* 1.69.420" so we
+            -- need to match with that extra *
+            { class = "Minecraft .*" },
+            { initial_title = "Minecraft\\*.*" },
+            { class = "org-prismlauncher-EntryPoint" },
+            { class = "osu!" },
+            { class = "gamescope" },
+            { class = "Celeste" },
+            { class = "sm64coopdx" },
+            { class = "UnleashedRecomp" },
+            { class = "sober" },
+            { class = "waywall" },
+            { class = "love", title = "Freesync test" },
           }) do
-            hl.window_rule({ match = { class = class }, tag = "+game-fullscreen" })
+            hl.window_rule({ match = match, tag = "+game", fullscreen = true })
           end
-          hl.window_rule({ match = { initial_title = "Minecraft\\*.*" }, tag = "+game-fullscreen" }) -- sometimes class isn't set
-          hl.window_rule({ match = { class = "love", title = "Freesync test" }, tag = "+game-fullscreen" })
 
           -- apply behavior by tag
-          hl.window_rule({ match = { tag = "game-fullscreen" }, fullscreen = true, tag = "+game" })
           hl.window_rule({ match = { tag = "game" }, content = "game", idle_inhibit = "fullscreen", immediate = true})
 
           -- confine cursor to the monitor when a game is in fullscreen.
           if ${boolToString multiMonitor} then
-            -- hl.window_rule({ match = { tag = "game-fullscreen", fullscreen = true }, confine_pointer = true })
+            -- hl.window_rule({ match = { tag = "game", fullscreen = true }, confine_pointer = true })
           end
 
           local function curves(items)
