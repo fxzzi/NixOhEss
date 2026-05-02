@@ -69,7 +69,9 @@ in {
             render = {
               direct_scanout = 2, -- only activate DS for games
               cm_auto_hdr = 2, -- use values from edid for HDR
-              use_fp16 = 2,
+              use_fp16 = 1,
+              fp16_sdr_tf = 2,
+
             },
             cursor = {
               default_monitor = "${cfg.defaultMonitor}",
