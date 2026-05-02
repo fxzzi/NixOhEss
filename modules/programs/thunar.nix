@@ -88,6 +88,34 @@ in {
         '';
       };
     };
+    # most useful options are the two bottom ones, which ensures that all new directories open sorted by name ascending.
+    environment.etc."xdg/xfce4/xfconf/xfce-perchannel-xml/thunar.xml".text = ''
+      <?xml version="1.1" encoding="UTF-8"?>
+
+      <channel name="thunar" version="1.0">
+        <property name="last-view" type="string" value="ThunarIconView" locked="*" unlocked="root"/>
+        <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_100_PERCENT" locked="*" unlocked="root"/>
+        <property name="last-window-maximized" type="bool" value="true" locked="*" unlocked="root"/>
+        <property name="last-show-hidden" type="bool" value="true" locked="*" unlocked="root"/>
+        <property name="hidden-bookmarks" type="array" locked="*" unlocked="root">
+          <value type="string" value="network:///"/>
+        </property>
+        <property name="misc-single-click" type="bool" value="false" locked="*" unlocked="root"/>
+        <property name="misc-directory-specific-settings" type="bool" value="true" locked="*" unlocked="root"/>
+        <property name="misc-date-style" type="string" value="THUNAR_DATE_STYLE_SHORT" locked="*" unlocked="root"/>
+        <property name="misc-use-csd" type="bool" value="false" locked="*" unlocked="root"/>
+        <property name="misc-symbolic-icons-in-sidepane" type="bool" value="false" locked="*" unlocked="root"/>
+        <property name="misc-show-delete-action" type="bool" value="false" locked="*" unlocked="root"/>
+        <property name="misc-volume-management" type="bool" value="false" locked="*" unlocked="root"/>
+        <property name="misc-exec-shell-scripts-by-default" type="string" value="THUNAR_EXECUTE_SHELL_SCRIPT_ASK" locked="*" unlocked="root"/>
+        <property name="misc-folders-first" type="bool" value="true" locked="*" unlocked="root"/>
+
+        <property name="default-view" type="string" value="ThunarIconView" locked="*" unlocked="root"/>
+        <property name="misc-highlighting-enabled" type="bool" value="false" locked="*" unlocked="root"/>
+        <property name="last-sort-order" type="string" value="GTK_SORT_ASCENDING" locked="*" unlocked="root"/>
+        <property name="last-sort-column" type="string" value="THUNAR_COLUMN_NAME" locked="*" unlocked="root"/>
+      </channel>
+    '';
     xdg.mime.defaultApplications = {
       "inode/directory" = "thunar.desktop";
 
