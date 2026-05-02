@@ -69,8 +69,8 @@ in {
             render = {
               direct_scanout = 2, -- only activate DS for games
               cm_auto_hdr = 2, -- use values from edid for HDR
-              use_fp16 = 1,
-              fp16_sdr_tf = 2,
+              -- use_fp16 = 1,
+              -- fp16_sdr_tf = 2,
 
             },
             cursor = {
@@ -230,7 +230,7 @@ in {
 
           -- confine cursor to the monitor when a game is in fullscreen.
           if ${boolToString multiMonitor} then
-            -- hl.window_rule({ match = { tag = "game", fullscreen = true }, confine_pointer = true })
+            hl.window_rule({ match = { content = "game", fullscreen = true }, confine_pointer = true })
           end
 
           local function curves(items)
