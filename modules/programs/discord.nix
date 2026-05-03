@@ -112,6 +112,11 @@ in {
                 div.container__37e49 > div.buttons__37e49 {
                   gap: 1px;
                 }
+
+                /* hide the stupid "was here" thing on voice chats */
+                .row__70e41:has(.wasHere__70e41) {
+                  display: none !important;
+                }
               '';
           };
         };
