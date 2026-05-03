@@ -77,7 +77,7 @@ in {
               default_monitor = "${cfg.defaultMonitor}",
               sync_gsettings_theme = 0, -- we handle this ourselves
               inactive_timeout = 4, -- hide cursor after x seconds of inactivity
-              no_break_fs_vrr = 2, -- vrr fixes for games only
+              no_break_fs_vrr = 0, -- allow cursor to run at full fps in games
               -- always try to use hw cursors whenever possible
               no_hardware_cursors = 0,
             },
