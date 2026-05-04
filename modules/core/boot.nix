@@ -119,15 +119,11 @@ in {
         # };
         efi.canTouchEfiVariables = true;
       };
-      kernelParams =
-        [
-          "fbcon=font:TER16x32" # make font size bigger
-        ]
-        ++ optionals (!config.cfg.core.isLaptop) [
-          "nowatchdog" # unsafe!! but fine for desktops
-          "mitigations=off" # also unsafe!!
-          "preempt=full" # better for gaming?
-        ];
+      kernelParams = [
+        "fbcon=font:TER16x32" # make font size bigger
+        "nowatchdog" # unsafe!! but fine for personal computers
+        "mitigations=off" # also unsafe!!
+      ];
       tmp = {
         useTmpfs = true; # /tmp is not on tmpfs by default (why??)
         tmpfsSize = "50%"; # allow it to use x% of your RAM
@@ -136,7 +132,7 @@ in {
         blacklist sp5100_tco
       '';
       # zram is fast enough that we can be aggressive with swappiness
-      kernel.sysctl."vm.swappiness" = 130;
+      kernel.sysctl."vm.swappiness" = 100;
       kernel.sysctl."kernel.sysrq" = 1; # enable sysrq / reisub
     };
   };
