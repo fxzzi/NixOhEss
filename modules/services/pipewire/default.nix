@@ -27,6 +27,20 @@ in {
           }
         ];
       };
+      extraConfig.pipewire.adjust-allowed-rates = {
+        "context.properties" = {
+          # allow pw to select the best rate
+          "default.clock.allowed-rates" = [
+            96000
+            88200
+            48000
+            44100
+          ];
+          "default.clock.min-quantum" = 32;
+          "default.clock.max-quantum" = 2048;
+          "default.clock.quantum" = 512;
+        };
+      };
     };
     hj.packages = with pkgs; [
       qpwgraph
