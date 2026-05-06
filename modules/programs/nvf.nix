@@ -50,12 +50,13 @@ in {
               })
             '';
           };
-
           lsp = {
+            enable = true;
             formatOnSave = true;
             trouble.enable = true;
             lspSignature.enable = true;
             lightbulb.enable = true;
+            otter-nvim.enable = true;
           };
 
           debugger = {
@@ -64,8 +65,6 @@ in {
               ui.enable = true;
             };
           };
-
-          lsp.enable = true;
 
           languages = {
             enableFormat = true;
