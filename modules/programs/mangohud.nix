@@ -51,7 +51,7 @@ in {
             # normally this is #000000, but it isn't correctly
             # tonemapped in HDR. So lighten it ourselves
             text_outline_color = 262626;
-            # cellpadding_y = -0.3;
+            cellpadding_y = -0.3;
             fps_limit = "${toString fpsLimit},0";
             vsync = 1;
             gl_vsync = 0;
