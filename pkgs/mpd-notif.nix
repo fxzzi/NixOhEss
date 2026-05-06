@@ -11,7 +11,7 @@ writeShellApplication {
     music_dir="$HOME/Music"
     previewdir="$XDG_STATE_HOME/ncmpcpp/previews"
     filename="$(mpc --format "$music_dir"/%file% current)"
-    previewname="$previewdir/$(mpc --format %album% current | base64).png"
+    previewname="$previewdir/$(mpc --format "%artist% %album%" current | base64).png"
 
     # Create preview directory if it doesn't exist
     if [ ! -d "$previewdir" ]; then
