@@ -55,6 +55,7 @@ in {
             fps_limit = "${toString fpsLimit},0";
             vsync = 1;
             gl_vsync = 0;
+            vulkan_present_mode = "fifo_latest_ready";
             preset = "0,1,2";
             toggle_hud = "Shift_R+F12";
             toggle_hud_position = "Shift_R+F11";
@@ -101,6 +102,7 @@ in {
               common
               // {
                 core_load = 1;
+                present_mode = 1;
                 winesync = 1;
               };
           };
