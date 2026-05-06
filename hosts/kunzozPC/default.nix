@@ -23,10 +23,7 @@
       ''
         hl.monitor({
         	output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543",
-        	-- this monitor is weird and has a 4k60 downscale mode.
-        	-- highrr will prefer the mode with highest rr, then highest res
-        	-- so effectively 1440p170
-        	mode = "highrr",
+        	mode = "2560x1440@170",
         	-- bad hdr
         	supports_hdr = -1,
         	-- this monitor does support 10bit, but only at 120Hz and lower.
@@ -48,7 +45,11 @@
       '';
   };
   hardware.display = {
-    outputs."DP-3".mode = "2560x1440@170";
+    outputs = {
+      "DP-3" = {
+        mode = "2560x1440@165";
+      };
+    };
   };
   networking.firewall = {
     # minecraft
