@@ -25,7 +25,6 @@ in {
             alang = "ja,en,eng";
             slang = "en,eng";
             sub-scale = 0.75;
-            sub-color = "#C9D1D6";
             sub-font = head config.fonts.fontconfig.defaultFonts.sansSerif;
             sub-scale-with-window = "yes";
             cursor-autohide = 1000;
