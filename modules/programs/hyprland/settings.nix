@@ -17,13 +17,13 @@
     else "hereBeDragons"; # things using secondaryMonitor should always be gated
 
   # pkgs
-  inherit (pkgs.stdenv.hostPlatform) system;
-  screenshot = getExe self.packages.${system}.screenshot;
-  audio = getExe self.packages.${system}.audio;
+  selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+  screenshot = getExe selfPkgs.screenshot;
+  audio = getExe selfPkgs.audio;
   brightness =
     if isLaptop
-    then getExe self.packages.${system}.brightness-laptop
-    else getExe self.packages.${system}.brightness;
+    then getExe selfPkgs.brightness-laptop # uses brightnessctl
+    else getExe selfPkgs.brightness; # uses hyprsunset instead
   mpc = getExe pkgs.mpc;
   killall = getExe pkgs.killall;
 in {
@@ -64,14 +64,11 @@ in {
               gaps_out = 2, -- Outer monitor gaps
               gaps_in = 1, -- Inner window gaps
               border_size = 1, -- Set window border width
-              allow_tearing = 0,
+              allow_tearing = 0, -- tearing causes problems and is honestly useless most the time
             },
             render = {
               direct_scanout = 2, -- only activate DS for games
               cm_auto_hdr = 2, -- use values from edid for HDR
-              -- use_fp16 = 1,
-              -- fp16_sdr_tf = 2,
-
             },
             cursor = {
               default_monitor = "${cfg.defaultMonitor}",
@@ -130,7 +127,8 @@ in {
               preserve_split = true, -- You probably want this
             },
             debug = {
-              invalidate_fp16 = 1,
+              -- enable when debugging
+              -- disable_logs = 0,
             },
           })
 
@@ -336,11 +334,11 @@ in {
           bind({ mainMod, "SHIFT", "E" }, hl.dsp.exec_raw("pkill wleave || wleave"))
           bind({ "CTRL", "SHIFT", "Escape" }, hl.dsp.exec_raw("foot btm"))
           -- extra schtuff
-          bind({ mainMod, "N" }, hl.dsp.exec_raw("${getExe self.packages.${system}.sunset} 3000"))
-          bind({ mainMod, "R" }, hl.dsp.exec_raw("${getExe self.packages.${system}.random-wall}"))
+          bind({ mainMod, "N" }, hl.dsp.exec_raw("${getExe selfPkgs.sunset} 3000"))
+          bind({ mainMod, "R" }, hl.dsp.exec_raw("${getExe selfPkgs.random-wall}"))
           bind({ mainMod, "SHIFT", "R" }, hl.dsp.exec_raw("hyprctl reload && ${getExe' pkgs.dunst "dunstify"} 'Hyprland' 'Reloaded Successfully.'"))
           bind({ mainMod, "K" }, hl.dsp.exec_raw("hyprctl kill"))
-          bind({ mainMod, "J" }, hl.dsp.exec_raw("foot ${getExe self.packages.${system}.wall-picker}"))
+          bind({ mainMod, "J" }, hl.dsp.exec_raw("foot ${getExe selfPkgs.wall-picker}"))
           bind({ mainMod, "L" }, hl.dsp.exec_raw("loginctl lock-session"))
           bind({ mainMod, "V" }, hl.dsp.exec_raw("pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"))
 
