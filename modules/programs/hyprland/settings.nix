@@ -57,6 +57,7 @@ in {
             end
             hl.on("monitor.added", set_primary)
             hl.on("monitor.removed", set_primary)
+            hl.on("config.reloaded", set_primary)
           end
 
           hl.config({
