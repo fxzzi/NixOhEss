@@ -10,9 +10,9 @@
       packages = with pkgs; [
         deluge
         inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.losange
-        (jetbrains.idea-oss.override {
-          vmopts = "-Dawt.toolkit.name=WLToolkit";
-        })
+        # (jetbrains.idea-oss.override {
+        #   vmopts = "-Dawt.toolkit.name=WLToolkit";
+        # })
       ];
       xdg.config.files."hypr/hyprland.lua".text =
         lib.mkAfter
