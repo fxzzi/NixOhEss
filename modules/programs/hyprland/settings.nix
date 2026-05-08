@@ -210,7 +210,9 @@ in {
             -- titles are for some reason in the form "Minecraft* 1.69.420" so we
             -- need to match with that extra *
             { class = "Minecraft .*" },
-            { initial_title = "Minecraft\\*.*" },
+            { initial_title = "Minecraft\\* .*" },
+            -- versions after 26.1 don't sent a class, and also remove the * in the title.
+            {initial_title = "Minecraft .*"},
             { class = "org-prismlauncher-EntryPoint" },
             { class = "osu!" },
             { class = "gamescope" },
