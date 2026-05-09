@@ -70,6 +70,7 @@ in {
             render = {
               direct_scanout = 2, -- only activate DS for games
               cm_auto_hdr = 2, -- use values from edid for HDR
+              use_fp16 = 1,
             },
             cursor = {
               default_monitor = "${cfg.defaultMonitor}",
@@ -204,16 +205,9 @@ in {
             { class = ".*.x86_64" }, -- native sdl games
             { class = "momentum" }, -- momentum mod
             { class = "cs2" },
-            -- we need 3 rules for mc. when running in native wayland, class is empty.
-            -- older versions of minecraft have their class set by prismlauncher.
-            -- and the rest can be checked with the regular class.
-            -- titles are for some reason in the form "Minecraft* 1.69.420" so we
-            -- need to match with that extra *
-            { class = "Minecraft .*" },
-            { initial_title = "Minecraft\\* .*" },
-            -- versions after 26.1 don't sent a class, and also remove the * in the title.
-            {initial_title = "Minecraft .*"},
-            { class = "org-prismlauncher-EntryPoint" },
+            { class = "org-prismlauncher-EntryPoint" }, -- legacy mc
+            { initial_title = "Minecraft\\* .*" }, -- mc up to v26.1
+            { initial_title = "Minecraft .*" }, -- v26.2+ mc
             { class = "osu!" },
             { class = "gamescope" },
             { class = "Celeste" },

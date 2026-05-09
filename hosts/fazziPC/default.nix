@@ -39,12 +39,6 @@
       lib.mkAfter
       #lua
       ''
-        -- hl.config({
-        -- 	render = {
-        -- 		use_fp16 = 1,
-        -- 	},
-        -- })
-
         -- main monitor
         hl.monitor({
         	output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917",
