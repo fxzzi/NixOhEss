@@ -32,6 +32,8 @@ in {
         }
 
         replaygain "track"
+        replaygain_preamp "4"
+        replaygain_missing_preamp "-10"
         restore_paused "yes"
       '';
     };
