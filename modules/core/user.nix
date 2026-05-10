@@ -32,6 +32,7 @@ in {
           loupe
           wget
           ffmpeg
+          jq
           imagemagick
           atril
           libreoffice-fresh

@@ -39,7 +39,7 @@ in {
         file-roller
         unrar
         rar
-        # p7zip
+        p7zip
       ];
       xdg.config.files = {
         "gtk-3.0/bookmarks".text = concatMapStrings (l: l + "\n") bookmarks;

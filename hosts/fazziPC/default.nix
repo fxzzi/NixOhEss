@@ -9,8 +9,7 @@
   # host specific packages
   hj = {
     packages = with pkgs; [
-      qbittorrent-enhanced
-      # telegram-desktop
+      qbittorrent
       losslesscut-bin
       steamguard-cli
       picard
