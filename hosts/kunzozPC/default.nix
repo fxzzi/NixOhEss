@@ -9,7 +9,7 @@
   hj = {
     packages = with pkgs; [
       losslesscut-bin
-      qbittorrent-enhanced
+      qbittorrent
       nvtopPackages.amd
       sgdboop
       cemu
@@ -46,9 +46,7 @@
   };
   hardware.display = {
     outputs = {
-      "DP-3" = {
-        mode = "2560x1440@165";
-      };
+      "DP-3".mode = "2560x1440@170";
     };
   };
   networking.firewall = {
