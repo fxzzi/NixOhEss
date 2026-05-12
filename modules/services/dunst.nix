@@ -82,11 +82,17 @@ in {
             appname = "brightness";
             timeout = 2;
           };
-          mpd = {
-            appname = "mpd";
+          mpd-notification = {
+            summary = "Now Playing";
             max_icon_size = 96;
             word_wrap = false;
             timeout = 3;
+          };
+          mpd-notification-hide = {
+            summary = "Now Playing";
+            body = "dontshow";
+            skip_display = true;
+            history_ignore = true;
           };
         };
       };
