@@ -7,7 +7,7 @@
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.cfg.programs.librewolf;
-  librewolf = pkgs.librewolf-bin.override {
+  librewolf = pkgs.librewolf.override {
     extraPrefs = cfg.prefs;
     extraPolicies = {
       SearchSuggestEnabled = false;

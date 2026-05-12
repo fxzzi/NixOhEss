@@ -27,12 +27,6 @@
     "browser.sessionstore.resume_from_crash" = false;
     "browser.startup.couldRestoreSession.count" = 0;
 
-    # Don't hide http or https in URL bar
-    "browser.urlbar.trimURLs" = false;
-
-    # Show full URL on search results pages
-    "browser.urlbar.showSearchTerms.enabled" = false;
-
     # Force hardware acceleration (NVIDIA)
     "media.hardware-video-decoding.force-enabled" = true;
 

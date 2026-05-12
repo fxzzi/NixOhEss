@@ -10,72 +10,74 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "ahci"
-    "xhci_pci"
-    "usb_storage"
-    "usbhid"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-  boot.supportedFilesystems = lib.mkDefault ["btrfs" "vfat" "ntfs"];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
-    fsType = "btrfs";
-    options = ["noatime,ssd,discard=async,subvol=@"];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
-    fsType = "btrfs";
-    options = ["noatime,ssd,discard=async,subvol=@home"];
-    neededForBoot = true;
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
-    fsType = "btrfs";
-    options = ["noatime,ssd,discard=async,subvol=@nix"];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/4638-FB30";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
+  boot = {
+    initrd.availableKernelModules = [
+      "nvme"
+      "ahci"
+      "xhci_pci"
+      "usb_storage"
+      "usbhid"
+      "sd_mod"
     ];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
+    supportedFilesystems = lib.mkDefault ["btrfs" "vfat" "ntfs"];
   };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
+      fsType = "btrfs";
+      options = ["noatime,ssd,discard=async,subvol=@"];
+    };
 
-  fileSystems."/mnt/windows-kunzoz" = {
-    device = "/dev/disk/by-uuid/DC2C38A72C387F18";
-    fsType = "ntfs-3g";
-    options = [
-      "rw"
-      "uid=1000"
-      # don't fail boot if the drives fail to mount
-      "nofail"
-      # continue boot after 10s
-      "x-systemd.mount-timeout=10"
-    ];
-  };
+    "/home" = {
+      device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
+      fsType = "btrfs";
+      options = ["noatime,ssd,discard=async,subvol=@home"];
+      neededForBoot = true;
+    };
 
-  fileSystems."/mnt/windows-dad" = {
-    device = "/dev/disk/by-uuid/84B25357B2534CB4";
-    fsType = "ntfs-3g";
-    options = [
-      "rw"
-      "uid=1000"
-      # don't fail boot if the drives fail to mount
-      "nofail"
-      # continue boot after 10s
-      "x-systemd.mount-timeout=10"
-    ];
+    "/nix" = {
+      device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
+      fsType = "btrfs";
+      options = ["noatime,ssd,discard=async,subvol=@nix"];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/4638-FB30";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
+    };
+
+    "/mnt/windows-kunzoz" = {
+      device = "/dev/disk/by-uuid/DC2C38A72C387F18";
+      fsType = "ntfs";
+      options = [
+        "rw"
+        "uid=1000"
+        # don't fail boot if the drives fail to mount
+        "nofail"
+        # continue boot after 10s
+        "x-systemd.mount-timeout=10"
+      ];
+    };
+
+    "/mnt/windows-dad" = {
+      device = "/dev/disk/by-uuid/84B25357B2534CB4";
+      fsType = "ntfs";
+      options = [
+        "rw"
+        "uid=1000"
+        # don't fail boot if the drives fail to mount
+        "nofail"
+        # continue boot after 10s
+        "x-systemd.mount-timeout=10"
+      ];
+    };
   };
 
   swapDevices = [];
