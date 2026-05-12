@@ -60,6 +60,7 @@
       mpd = {
         enable = true;
         discord-rpc.enable = true;
+        notification.enable = true;
       };
       hypridle = {
         enable = true;
