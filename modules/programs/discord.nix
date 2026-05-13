@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  pins,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf concatStringsSep;
@@ -22,6 +23,66 @@
 
   primaryFont = wrapFonts (font.sansSerif ++ font.emoji);
   monoFont = wrapFonts (font.monospace ++ font.emoji);
+
+  css =
+    # this css is made for discord compact mode. if you're not using that, stuff won't align!!
+    # css
+    ''
+      /* Hide nitro begging */
+      @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css");
+
+      /* Hide the Visual Refresh title bar */
+      .visual-refresh {
+        /* Hide the bar itself */
+        --custom-app-top-bar-height: 0px !important;
+
+        /* Title bar buttons are still visible so hide them too */
+        div.base__5e434 > div.bar_c38106 {
+          display: none;
+        }
+
+        /* Bring the server list down a few pixels */
+        ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
+          margin-top: 8px;
+        }
+      }
+
+      :root {
+        /* Use system fonts for UI */
+        --font-primary: ${primaryFont} !important;
+        --font-display: ${primaryFont} !important;
+        --font-headline: ${primaryFont} !important;
+        --font-code: ${monoFont} !important;
+
+        /* Disblock settings */
+        --display-clan-tags: none;
+        --display-active-now: none;
+        --display-hover-reaction-emoji: none;
+        --display-voice-status: none;
+        --bool-show-name-gradients: false;
+      }
+
+      /* Make "Read All" vencord button text smaller */
+      button.vc-ranb-button {
+        font-size: 9.5pt;
+        font-weight: normal;
+      }
+
+      /* Hide Discover button */
+      div[data-list-item-id="guildsnav___guild-discover-button"] {
+        display: none !important;
+      }
+
+      /* Hide voice settings menus in user panel */
+      div[class^="audioButtonParent__"] button[role="switch"] {
+        border-radius: var(--radius-sm);
+        & ~ button { display: none; }
+      }
+      /* Also reduce the gap between the buttons */
+      div.container__37e49 > div.buttons__37e49 {
+        gap: 1px;
+      }
+    '';
 in {
   options.cfg.programs.discord = {
     enable = mkEnableOption "discord";
@@ -38,82 +99,32 @@ in {
         in {
           # allow launching discord even if a new update is available
           SKIP_HOST_UPDATE = true;
+          SKIP_MODULE_UPDATE = true;
+
+          # use equicord through sheltupdate instead of through nixpkgs
+          # this means we can get faster updates
+          # UPDATE_ENDPOINT = endpoint;
+          # NEW_UPDATE_ENDPOINT = "${endpoint}/";
+
+          # access to inspect element
+          DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
+
           MINIMIZE_TO_TRAY = cfg.minimizeToTray;
           OPEN_ON_STARTUP = false;
-          DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
+          BACKGROUND_COLOR = "#121214";
+
           enableHardwareAcceleration = true;
           offloadAdmControls = true;
           openH264Enabled = true;
-          # use equicord through sheltupdate instead of through nixpkgs
-          # this means we can get faster updates
-          # FIXME: doesn't work
-          # UPDATE_ENDPOINT = endpoint;
-          # NEW_UPDATE_ENDPOINT = "${endpoint}/";
+          chromiumSwitches = {};
+
           openasar = {
             setup = true;
             # using the performance preset breaks vaapi
             cmdPreset = "balanced";
             # quickstart is buggy and breaks discord sometimes.
             quickstart = false;
-            # this css is made for discord compact mode. if you're not using that, stuff won't align!!
-            css =
-              # css
-              ''
-                /* Hide nitro begging */
-                @import url("https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css");
-
-                /* Hide the Visual Refresh title bar */
-                .visual-refresh {
-                  /* Hide the bar itself */
-                  --custom-app-top-bar-height: 0px !important;
-
-                  /* Title bar buttons are still visible so hide them too */
-                  div.base__5e434 > div.bar_c38106 {
-                    display: none;
-                  }
-
-                  /* Bring the server list down a few pixels */
-                  ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
-                    margin-top: 8px;
-                  }
-                }
-
-                :root {
-                  /* Use system fonts for UI */
-                  --font-primary: ${primaryFont} !important;
-                  --font-display: ${primaryFont} !important;
-                  --font-headline: ${primaryFont} !important;
-                  --font-code: ${monoFont} !important;
-
-                  /* Disblock settings */
-                  --display-clan-tags: none;
-                  --display-active-now: none;
-                  --display-hover-reaction-emoji: none;
-                  --display-voice-status: none;
-                  --bool-show-name-gradients: false;
-                }
-
-                /* Make "Read All" vencord button text smaller */
-                button.vc-ranb-button {
-                  font-size: 9.5pt;
-                  font-weight: normal;
-                }
-
-                /* Hide Discover button */
-                div[data-list-item-id="guildsnav___guild-discover-button"] {
-                  display: none !important;
-                }
-
-                /* Hide voice settings menus in user panel */
-                div[class^="audioButtonParent__"] button[role="switch"] {
-                  border-radius: var(--radius-sm);
-                  & ~ button { display: none; }
-                }
-                /* Also reduce the gap between the buttons */
-                div.container__37e49 > div.buttons__37e49 {
-                  gap: 1px;
-                }
-              '';
+            inherit css;
           };
         };
       };
@@ -122,8 +133,24 @@ in {
           disableUpdates = false;
           withTTS = false;
           enableAutoscroll = true;
-          # FIXME: OA currently broken
-          # withOpenASAR = true;
+          withOpenASAR = true;
+          withEquicord = true;
+          # equicord can break easily with server-side discord updates.
+          # so we need to keep it as up to date as possible outside of
+          # nixpkgs.
+          equicord = let
+            inherit (pins.Equicord) version hash;
+            inherit (pkgs) fetchFromGitHub equicord;
+          in
+            equicord.overrideAttrs {
+              inherit version;
+              src = fetchFromGitHub {
+                owner = "Equicord";
+                repo = "Equicord";
+                tag = version;
+                inherit hash;
+              };
+            };
           inherit commandLineArgs;
         })
       ];
