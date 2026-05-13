@@ -8,12 +8,19 @@
   inherit (lib) mkEnableOption mkIf getExe;
   inherit (pkgs) callPackage;
   cfg = config.cfg.services.ags;
-  pkg = callPackage "${pins.rags}/nix/package.nix" {
-    buildTypes = false;
-    extraPackages = [
-      pkgs.libgtop
-    ];
-  };
+  pkg =
+    (callPackage "${pins.rags}/nix/package.nix" {
+      buildTypes = false;
+      extraPackages = [
+        pkgs.libgtop
+      ];
+    }).overrideAttrs (oldAttrs: {
+      pnpmDeps = pkgs.fetchPnpmDeps {
+        inherit (oldAttrs) pname src pnpmInstallFlags;
+        hash = "sha256-NNkbOBHRx13w6EwpEl+a8YucDuVja94Kj2vewvhu+wA=";
+        fetcherVersion = 3; # https://nixos.org/manual/nixpkgs/stable/#javascript-pnpm-fetcherVersion
+      };
+    });
 in {
   options.cfg.services.ags.enable = mkEnableOption "ags";
   config = mkIf cfg.enable {
