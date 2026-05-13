@@ -44,10 +44,11 @@ in {
           enableHardwareAcceleration = true;
           offloadAdmControls = true;
           openH264Enabled = true;
-          # use vencord through sheltupdate instead of using nixpkgs vencord
-          # this means we can get faster vencord updates outside of nixpkgs
-          UPDATE_ENDPOINT = endpoint;
-          NEW_UPDATE_ENDPOINT = "${endpoint}/";
+          # use equicord through sheltupdate instead of through nixpkgs
+          # this means we can get faster updates
+          # FIXME: doesn't work
+          # UPDATE_ENDPOINT = endpoint;
+          # NEW_UPDATE_ENDPOINT = "${endpoint}/";
           openasar = {
             setup = true;
             # using the performance preset breaks vaapi
@@ -112,22 +113,17 @@ in {
                 div.container__37e49 > div.buttons__37e49 {
                   gap: 1px;
                 }
-
-                /* hide the stupid "was here" thing on voice chats */
-                .row__70e41:has(.wasHere__70e41) {
-                  display: none !important;
-                }
               '';
           };
         };
       };
       packages = [
         (pkgs.discord.override {
-          # we disable updates in settings.json
           disableUpdates = false;
           withTTS = false;
           enableAutoscroll = true;
-          withOpenASAR = true;
+          # FIXME: OA currently broken
+          # withOpenASAR = true;
           inherit commandLineArgs;
         })
       ];
