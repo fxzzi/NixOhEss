@@ -321,6 +321,9 @@ in {
           bind({ mainMod, "SHIFT", "S" }, hl.dsp.exec_raw("${screenshot} --selection"))
           bind({ mainMod, "Print" }, hl.dsp.exec_raw("${screenshot} --active"))
 
+          -- annotate the image in clipboard
+          bind({mainMod, "A"}, hl.dsp.exec_raw("wl-paste | ${getExe pkgs.swappy} -f -"))
+
           -- binds for apps
           bind({ mainMod, "F" }, hl.dsp.exec_raw("thunar"))
           bind({ mainMod, "T" }, hl.dsp.exec_raw("foot"))
