@@ -103,6 +103,7 @@ in {
 
           # use equicord through sheltupdate instead of through nixpkgs
           # this means we can get faster updates
+          # FIXME: broken for now. see: https://github.com/NixOS/nixpkgs/issues/519923
           # UPDATE_ENDPOINT = endpoint;
           # NEW_UPDATE_ENDPOINT = "${endpoint}/";
 
@@ -129,30 +130,40 @@ in {
         };
       };
       packages = [
-        (pkgs.discord.override {
-          disableUpdates = false;
-          withTTS = false;
-          enableAutoscroll = true;
-          withOpenASAR = true;
-          withEquicord = true;
-          # equicord can break easily with server-side discord updates.
-          # so we need to keep it as up to date as possible outside of
-          # nixpkgs.
-          equicord = let
-            inherit (pins.Equicord) version hash;
-            inherit (pkgs) fetchFromGitHub equicord;
-          in
-            equicord.overrideAttrs {
-              inherit version;
-              src = fetchFromGitHub {
-                owner = "Equicord";
-                repo = "Equicord";
-                tag = version;
-                inherit hash;
+        ((pkgs.discord.override {
+            inherit commandLineArgs;
+            disableUpdates = false;
+            withTTS = false;
+            enableAutoscroll = true;
+            withOpenASAR = true;
+            withEquicord = true;
+            # equicord can break easily with server-side discord updates.
+            # so we need to keep it as up to date as possible outside of
+            # nixpkgs.
+            equicord = let
+              inherit (pins.Equicord) version hash;
+              inherit (pkgs) fetchFromGitHub equicord;
+            in
+              equicord.overrideAttrs {
+                inherit version;
+                src = fetchFromGitHub {
+                  owner = "Equicord";
+                  repo = "Equicord";
+                  tag = version;
+                  inherit hash;
+                };
               };
-            };
-          inherit commandLineArgs;
-        })
+          }).overrideAttrs (oldAttrs: {
+            # this is disgusting, but it allows nvenc to work.
+            # hopefully this gets nicely upstreamed to nixpkgs.
+            # see: https://github.com/FlameFlag/nixcord/commit/488d20a1bbcb9bb65f0048bb9b77356ef064ea39
+            postFixup =
+              (oldAttrs.postFixup or "")
+              + ''
+                wrapProgramShell $out/opt/Discord/Discord \
+                --prefix LD_LIBRARY_PATH : /run/opengl-driver/lib
+              '';
+          }))
       ];
     };
   };
