@@ -18,6 +18,7 @@ in {
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;
+      extest.enable = true;
       package = pkgs.steam.override {
         extraEnv = {
           OBS_VKCAPTURE = optionalAttrs config.cfg.programs.obs-studio.enable 1;

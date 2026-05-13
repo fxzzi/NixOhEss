@@ -33,6 +33,8 @@
         ]))
       self.packages.${pkgs.stdenv.hostPlatform.system}.transcode
       inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.losange
+      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2vorbis
+      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2opus
     ];
     xdg.config.files."hypr/hyprland.lua".text =
       lib.mkAfter
