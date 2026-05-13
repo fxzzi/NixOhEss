@@ -99,7 +99,7 @@
         enable = true;
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
-        useGit = true;
+        # useGit = true;
       };
       hyprlock.enable = true;
     };

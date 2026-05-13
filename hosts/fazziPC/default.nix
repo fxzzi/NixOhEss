@@ -46,7 +46,7 @@
         	mode = "highres",
         	bitdepth = 10,
         	cm = "srgb", -- use srgb calibrated mode on monitor instead
-        	sdr_max_luminance = 203,
+        	-- sdr_max_luminance = 203,
         })
 
         -- secondary monitor
