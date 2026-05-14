@@ -51,7 +51,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        aquamarine.url = "github:gulafaran/aquamarine/commit";
       };
     };
     nvf = {
