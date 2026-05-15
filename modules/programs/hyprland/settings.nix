@@ -11,10 +11,6 @@
   inherit (config.cfg.core) isLaptop;
   isNvidia = config.cfg.hardware.nvidia.enable;
   multiMonitor = cfg.secondaryMonitor != null;
-  secondaryMonitor =
-    if cfg.secondaryMonitor != null
-    then cfg.secondaryMonitor
-    else "hereBeDragons"; # things using secondaryMonitor should always be gated
 
   # pkgs
   selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
@@ -311,7 +307,7 @@ in {
           -- set workspaces to alternate between monitors when there are 2 monitors.
           if ${boolToString multiMonitor} then
             for i = 1, 10 do
-              local monitor = (i % 2 == 1) and "${cfg.defaultMonitor}" or "${secondaryMonitor}"
+              local monitor = (i % 2 == 1) and "${cfg.defaultMonitor}" or "${cfg.secondaryMonitor}"
               hl.workspace_rule({
                 workspace = tostring(i),
                 monitor = monitor,
