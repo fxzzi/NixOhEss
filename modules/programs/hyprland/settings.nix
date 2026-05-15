@@ -46,6 +46,8 @@ in {
         cm_auto_hdr = 2;
         use_fp16 = 1;
       };
+      # allows DS to activate with winewayland on nvidia,
+      # and also fixes mpv freezing in fullscreen with DS
       quirks.skip_non_kms_dmabuf_formats = isNvidia;
       animations.enabled = 1;
       decoration = {
@@ -143,15 +145,8 @@ in {
             hl.on("config.reloaded", set_primary)
           end
 
+          -- apply the config block from nix
           hl.config(${generators.toLua {} cfg.config})
-
-          if ${boolToString isNvidia} then
-            hl.config({
-              -- allow DS to activate with winewayland on nvidia
-              -- also fix mpv freezing in fullscreen with DS
-              quirks = { skip_non_kms_dmabuf_formats = 1 },
-            })
-          end
 
           hl.layer_rule({ match = { namespace = "launcher" }, blur = true, ignore_alpha = 0 })
           hl.layer_rule({ match = { namespace = "wleave" }, blur = true, xray = true })
