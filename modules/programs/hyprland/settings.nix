@@ -6,7 +6,8 @@
   ...
 }: let
   cfg = config.cfg.programs.hyprland;
-  inherit (lib) boolToString generators getExe getExe' mkIf mkDefault;
+  inherit (lib) boolToString generators getExe getExe' mkIf mkDefault mapAttrsRecursive;
+  mkDefaultRecursive = mapAttrsRecursive (_: mkDefault);
 
   multiMonitor = cfg.secondaryMonitor != null;
   secondaryMonitor =
@@ -26,7 +27,7 @@
   killall = getExe pkgs.killall;
 in {
   config = mkIf cfg.enable {
-    cfg.programs.hyprland.config = {
+    cfg.programs.hyprland.config = mkDefaultRecursive {
       general = {
         # Outer monitor gaps
         gaps_out = 2;
@@ -35,12 +36,12 @@ in {
         # Set window border width
         border_size = 1;
         # tearing causes problems and is honestly useless most the time
-        allow_tearing = mkDefault 0;
+        allow_tearing = 0;
       };
       render = {
-        cm_enabled = mkDefault 1;
+        cm_enabled = 1;
         # only activate DS for games
-        direct_scanout = mkDefault 2;
+        direct_scanout = 2;
         # use values from edid for HDR
         cm_auto_hdr = 2;
         use_fp16 = 1;
