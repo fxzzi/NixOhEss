@@ -12,7 +12,6 @@
     name = "hyprland-session";
     runtimeInputs = [
       config.programs.hyprland.package
-      config.systemd.package
       config.services.dbus.dbusPackage
     ];
     text = ''
