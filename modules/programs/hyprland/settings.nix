@@ -6,7 +6,7 @@
   ...
 }: let
   cfg = config.cfg.programs.hyprland;
-  inherit (lib) boolToString generators getExe getExe' mkIf mkDefault mapAttrs;
+  inherit (lib) boolToString generators getExe getExe' mkIf optional mkDefault mapAttrsRecursive;
 
   multiMonitor = cfg.secondaryMonitor != null;
   secondaryMonitor =
@@ -29,7 +29,7 @@ in {
     # use mapAttrs here to make every attr in the config a low prio
     # this means we can override / add any attr below without
     # erroneous mkDefault's or mkForce's everywhere
-    cfg.programs.hyprland.config = mapAttrs (_: mkDefault) {
+    cfg.programs.hyprland.config = mapAttrsRecursive (_: mkDefault) {
       general = {
         # Outer monitor gaps
         gaps_out = 2;
@@ -85,8 +85,7 @@ in {
         float_switch_override_focus = 0;
         # set f13-f24 to their expected keysyms instead of xf86 stuff.
         # this allows them to be binded in apps like OBS, and CS2
-        # on laptops we want the xf86 stuff though.
-        kb_options = mkIf (!config.cfg.core.isLaptop) "fkeys:basic_13-24";
+        kb_options = "fkeys:basic_13-24";
         # make touchpad scroll in the expected directions
         touchpad.natural_scroll = true;
       };
