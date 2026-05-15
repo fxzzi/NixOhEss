@@ -40,14 +40,8 @@ in {
             scale = "1",
           })
 
-          hl.on("hyprland.start", function()
-            hl.exec_cmd("systemctl --user reset-failed")
-            hl.exec_cmd("systemctl --user start nixos-fake-graphical-session.target")
-          end)
-
           hl.on("hyprland.shutdown", function()
             hl.exec_cmd("pkill -9 Discord")
-            hl.exec_cmd("systemctl --user stop nixos-fake-graphical-session.target")
           end)
 
           -- set primary monitor in both monitor events to be safe
