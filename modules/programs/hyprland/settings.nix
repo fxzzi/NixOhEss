@@ -8,8 +8,6 @@
   cfg = config.cfg.programs.hyprland;
   inherit (lib) getExe mkIf getExe' boolToString generators;
 
-  inherit (config.cfg.core) isLaptop;
-  isNvidia = config.cfg.hardware.nvidia.enable;
   multiMonitor = cfg.secondaryMonitor != null;
 
   # pkgs
@@ -17,7 +15,7 @@
   screenshot = getExe selfPkgs.screenshot;
   audio = getExe selfPkgs.audio;
   brightness =
-    if isLaptop
+    if config.cfg.core.isLaptop
     then getExe selfPkgs.brightness-laptop # uses brightnessctl
     else getExe selfPkgs.brightness; # uses hyprsunset instead
   mpc = getExe pkgs.mpc;
@@ -44,7 +42,7 @@ in {
       };
       # allows DS to activate with winewayland on nvidia,
       # and also fixes mpv freezing in fullscreen with DS
-      quirks.skip_non_kms_dmabuf_formats = isNvidia;
+      quirks.skip_non_kms_dmabuf_formats = config.cfg.hardware.nvidia.enable;
       animations.enabled = 1;
       decoration = {
         rounding = 0;
@@ -128,6 +126,8 @@ in {
           })
 
           hl.on("hyprland.shutdown", function()
+            -- discord literally shits itself and coredumps if the graphical env
+            -- is shut down whilst it's still open. kill it to avoid the coredump.
             hl.exec_cmd("pkill -9 Discord")
           end)
 
@@ -425,7 +425,8 @@ in {
           -- mouse binds
           bind({ mainMod, "mouse:272" }, hl.dsp.window.drag(), { mouse = true }) -- left click
           bind({ mainMod, "mouse:273" }, hl.dsp.window.resize(), { mouse = true }) -- right click
-          if ${boolToString isLaptop} then
+          -- these binds allow you to easily drag and resize on touchpad
+          if ${boolToString config.cfg.core.isLaptop} then
             bind({ mainMod, "CTRL" }, hl.dsp.window.drag(), { mouse = true })
             bind({ mainMod, "ALT" }, hl.dsp.window.resize(), { mouse = true })
           end
