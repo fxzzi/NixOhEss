@@ -46,8 +46,8 @@ in {
       packages = [inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.mangohud-patched];
       xdg.config.files = {
         "MangoHud/MangoHud.conf" = {
-          generator = generators.toINIWithGlobalSection {};
-          value.globalSection = {
+          generator = generators.toKeyValue {};
+          value = {
             blacklist = "mpv";
             text_outline_thickness = 1;
             font_size_small = 14;
