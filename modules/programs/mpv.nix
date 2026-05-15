@@ -13,8 +13,8 @@ in {
       packages = [pkgs.mpv];
       xdg.config.files = {
         "mpv/mpv.conf" = {
-          generator = generators.toINIWithGlobalSection {};
-          value.globalSection = {
+          generator = generators.toKeyValue {};
+          value = {
             save-position-on-quit = "yes";
             target-colorspace-hint-mode = "source";
             hwdec = "auto";
