@@ -85,7 +85,9 @@ in {
         float_switch_override_focus = 0;
         # set f13-f24 to their expected keysyms instead of xf86 stuff.
         # this allows them to be binded in apps like OBS, and CS2
-        kb_options = "fkeys:basic_13-24";
+        # on laptops we want the xf86 stuff though.
+        kb_options = mkIf (!config.cfg.core.isLaptop) "fkeys:basic_13-24";
+        # make touchpad scroll in the expected directions
         touchpad.natural_scroll = true;
       };
       misc = {
@@ -412,12 +414,14 @@ in {
           for _, a in ipairs({
             { { "XF86AudioRaiseVolume" }, "${audio} vol up 5" },
             { { "SHIFT", "XF86AudioRaiseVolume" }, "${audio} vol up 1" },
+
             { { "XF86AudioLowerVolume" }, "${audio} vol down 5" },
             { { "SHIFT", "XF86AudioLowerVolume" }, "${audio} vol down 1" },
+
             { { "XF86AudioMute" }, "${audio} vol toggle" },
+
             { { "XF86AudioMicMute" }, "${audio} mic toggle" },
             { { mainMod, "SHIFT", "M" }, "${audio} mic toggle" },
-            { { "F20" }, "${audio} mic toggle" },
           }) do
             bind(a[1], hl.dsp.exec_raw(a[2]), { locked = true, repeating = true })
           end
