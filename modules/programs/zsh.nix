@@ -9,17 +9,19 @@
   options = [
     # cd without explicit `cd`
     "AUTOCD"
+
     # match files beginning with . without explicitly specifying the dot
     "GLOBDOTS"
-    # history options to ignore dups and stuff
-    "EXTENDED_HISTORY"
+
+    # history options to ignore dups
     "HIST_EXPIRE_DUPS_FIRST"
     "HIST_IGNORE_ALL_DUPS"
     "HIST_FIND_NO_DUPS"
     "HIST_IGNORE_SPACE"
 
+    # share history between open shells
+    "SHARE_HISTORY"
     "INC_APPEND_HISTORY"
-    "HIST_FCNTL_LOCK"
   ];
   aliases = {
     grep = "${getExe pkgs.ripgrep}";
@@ -53,8 +55,8 @@ in {
       xdg.config.files."zsh/.zshrc".text =
         # sh
         ''
-          SAVEHIST=50000
-          HISTSIZE=50000
+          HISTSIZE=9999999
+          SAVEHIST=$HISTSIZE
           HISTFILE="$XDG_DATA_HOME/zsh/zsh_history"
           PROMPT="%F{yellow}%3~%f $ "
 
