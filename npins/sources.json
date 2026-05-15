@@ -11,9 +11,9 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "2026-05-14",
+      "version": "2026-05-15",
       "revision": "3a4552843e6ff2a05760577551e157209467dcee",
-      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-05-14",
+      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-05-15",
       "hash": "sha256-guBFjRq62aYrgNg0IRIzhkw5E+nusM0paJoxtriqAF0="
     },
     "agenix": {
