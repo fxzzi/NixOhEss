@@ -6,8 +6,7 @@
   ...
 }: let
   cfg = config.cfg.programs.hyprland;
-  inherit (lib) boolToString generators getExe getExe' mkIf mkDefault mapAttrsRecursive;
-  mkDefaultRecursive = mapAttrsRecursive (_: mkDefault);
+  inherit (lib) boolToString generators getExe getExe' mkIf mkDefault mapAttrs;
 
   multiMonitor = cfg.secondaryMonitor != null;
   secondaryMonitor =
@@ -27,7 +26,10 @@
   killall = getExe pkgs.killall;
 in {
   config = mkIf cfg.enable {
-    cfg.programs.hyprland.config = mkDefaultRecursive {
+    # use mapAttrs here to make every attr in the config a low prio
+    # this means we can override / add any attr below without
+    # erroneous mkDefault's or mkForce's everywhere
+    cfg.programs.hyprland.config = mapAttrs (_: mkDefault) {
       general = {
         # Outer monitor gaps
         gaps_out = 2;
