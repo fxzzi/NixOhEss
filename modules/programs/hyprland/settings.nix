@@ -6,7 +6,7 @@
   ...
 }: let
   cfg = config.cfg.programs.hyprland;
-  inherit (lib) getExe mkIf getExe' boolToString;
+  inherit (lib) getExe mkIf getExe' boolToString generators;
 
   inherit (config.cfg.core) isLaptop;
   isNvidia = config.cfg.hardware.nvidia.enable;
@@ -28,6 +28,95 @@
   killall = getExe pkgs.killall;
 in {
   config = mkIf cfg.enable {
+    cfg.programs.hyprland.config = {
+      general = {
+        # Outer monitor gaps
+        gaps_out = 2;
+        # Inner window gaps
+        gaps_in = 1;
+        # Set window border width
+        border_size = 1;
+        # tearing causes problems and is honestly useless most the time
+        allow_tearing = 0;
+      };
+      render = {
+        # only activate DS for games
+        direct_scanout = 2;
+        # use values from edid for HDR
+        cm_auto_hdr = 2;
+        use_fp16 = 1;
+      };
+      quirks.skip_non_kms_dmabuf_formats = isNvidia;
+      animations.enabled = 1;
+      decoration = {
+        rounding = 0;
+        shadow.enabled = 0;
+        blur = {
+          enabled = 1;
+          size = 3;
+          passes = 3;
+        };
+      };
+      cursor = {
+        default_monitor = cfg.defaultMonitor;
+        # we handle this ourselves
+        sync_gsettings_theme = 0;
+        # hide cursor after x seconds of inactivity
+        inactive_timeout = 4;
+        # allow cursor to run at full fps in games
+        no_break_fs_vrr = 0;
+        # always try to use hw cursors whenever possible
+        no_hardware_cursors = 0;
+      };
+      input = {
+        # Set characters to repeat on hold every Xms
+        repeat_rate = 55;
+        # Set repeat timeout to Xms
+        repeat_delay = 375;
+        # Follow mouse clicks for window focus
+        follow_mouse = 2;
+        # disable all mouse accel by default
+        accel_profile = "flat";
+        # Stop floating windows from stealing focus
+        float_switch_override_focus = 0;
+        # set f13-f24 to their expected keysyms instead of xf86 stuff.
+        # this allows them to be binded in apps like OBS, and CS2
+        kb_options = "fkeys:basic_13-24";
+        touchpad.natural_scroll = true;
+      };
+      misc = {
+        # Disable hyprland wallpapers etc
+        disable_hyprland_logo = 1;
+        # Disable startup splashscreen
+        disable_splash_rendering = 1;
+        background_color = "0x000000";
+        # Disables hover for monitor focus
+        mouse_move_focuses_monitor = 0;
+        # Focuses windows which ask for activation
+        focus_on_activate = 1;
+        enable_swallow = 0;
+        # gui apps executed by foot will swallow it
+        swallow_regex = "foot";
+        vrr = 2;
+        # by default, ANR dialog shows up way too aggressively.
+        anr_missed_pings = 6;
+        mouse_move_enables_dpms = true;
+        key_press_enables_dpms = true;
+        middle_click_paste = 0;
+        # we launch with Hyprland, not start-hyprland.
+        disable_watchdog_warning = 1;
+      };
+      ecosystem = {
+        no_update_news = 1;
+        no_donation_nag = 1;
+      };
+      dwindle.preserve_split = true; # You probably want this
+      debug = {
+        # make sure to uncomment when debugging
+        # disable_logs = false;
+      };
+    };
+
     hj.xdg.config.files."hypr/hyprland.lua" = {
       text =
         # lua
@@ -47,86 +136,14 @@ in {
           -- set primary monitor in both monitor events to be safe
           if ${boolToString multiMonitor} then
             local function set_primary()
-              hl.exec_cmd("${lib.getExe pkgs.xrandr} --output ${cfg.defaultMonitor} --primary")
+              hl.exec_cmd("${getExe pkgs.xrandr} --output ${cfg.defaultMonitor} --primary")
             end
             hl.on("monitor.added", set_primary)
             hl.on("monitor.removed", set_primary)
             hl.on("config.reloaded", set_primary)
           end
 
-          hl.config({
-            general = {
-              gaps_out = 2, -- Outer monitor gaps
-              gaps_in = 1, -- Inner window gaps
-              border_size = 1, -- Set window border width
-              allow_tearing = 0, -- tearing causes problems and is honestly useless most the time
-            },
-            render = {
-              direct_scanout = 2, -- only activate DS for games
-              cm_auto_hdr = 2, -- use values from edid for HDR
-              use_fp16 = 1,
-            },
-            cursor = {
-              default_monitor = "${cfg.defaultMonitor}",
-              sync_gsettings_theme = 0, -- we handle this ourselves
-              inactive_timeout = 4, -- hide cursor after x seconds of inactivity
-              no_break_fs_vrr = 0, -- allow cursor to run at full fps in games
-              -- always try to use hw cursors whenever possible
-              no_hardware_cursors = 0,
-            },
-            input = {
-              repeat_rate = 55, -- Set characters to repeat on hold every Xms
-              repeat_delay = 375, -- Set repeat timeout to Xms
-              follow_mouse = 2, -- Follow mouse clicks for window focus
-              accel_profile = "flat", -- disable all mouse accel by default
-              float_switch_override_focus = 0, -- Stop floating windows from stealing focus
-              -- set f13-f24 to their expected keysyms instead of xf86 stuff.
-              -- this allows them to be binded in apps like OBS, and CS2
-              kb_options = "fkeys:basic_13-24",
-              touchpad = {
-                natural_scroll = true,
-              },
-            },
-            misc = {
-              disable_hyprland_logo = 1, -- Disable hyprland wallpapers etc
-              disable_splash_rendering = 1, -- Disable startup splashscreen
-              background_color = "0x000000",
-              mouse_move_focuses_monitor = 0, -- Disables hover for monitor focus
-              focus_on_activate = 1, -- Focuses windows which ask for activation
-              enable_swallow = 0,
-              swallow_regex = "foot", -- gui apps executed by foot will swallow it
-              vrr = 2,
-              anr_missed_pings = 6, -- by default, ANR dialog shows up way too aggressively.
-              mouse_move_enables_dpms = true,
-              key_press_enables_dpms = true,
-              middle_click_paste = 0,
-              -- we launch with Hyprland, not start-hyprland.
-              disable_watchdog_warning = 1,
-            },
-            ecosystem = {
-              no_update_news = 1,
-              no_donation_nag = 1,
-            },
-            decoration = {
-              rounding = 0,
-              shadow = { enabled = 0 },
-              blur = {
-                enabled = 1,
-                size = 3,
-                passes = 3,
-              },
-            },
-            animations = {
-               enabled = 1,
-            },
-            dwindle = {
-              preserve_split = true, -- You probably want this
-            },
-            debug = {
-              -- enable when debugging
-              -- disable_logs = 0,
-            },
-          })
+          hl.config(${generators.toLua {} cfg.config})
 
           if ${boolToString isNvidia} then
             hl.config({
