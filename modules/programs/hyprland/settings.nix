@@ -9,6 +9,10 @@
   inherit (lib) getExe mkIf getExe' boolToString generators;
 
   multiMonitor = cfg.secondaryMonitor != null;
+  secondaryMonitor =
+    if multiMonitor
+    then cfg.secondaryMonitor
+    else cfg.defaultMonitor;
 
   # pkgs
   selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
@@ -307,7 +311,7 @@ in {
           -- set workspaces to alternate between monitors when there are 2 monitors.
           if ${boolToString multiMonitor} then
             for i = 1, 10 do
-              local monitor = (i % 2 == 1) and "${cfg.defaultMonitor}" or "${cfg.secondaryMonitor}"
+              local monitor = (i % 2 == 1) and "${cfg.defaultMonitor}" or "${secondaryMonitor}"
               hl.workspace_rule({
                 workspace = tostring(i),
                 monitor = monitor,
