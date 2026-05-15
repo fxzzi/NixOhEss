@@ -7,8 +7,6 @@
 }: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.hyprlock;
-  # enable anims if not on laptop
-  animations = !config.cfg.core.isLaptop;
   land = config.cfg.programs.hyprland;
 in {
   options.cfg.programs.hyprlock.enable = mkEnableOption "hyprlock";
@@ -27,14 +25,14 @@ in {
             general = {
               hide_cursor = true;
               ignore_empty_input = true;
-              immediate_render = !animations;
+              immediate_render = land.config.animations.enabled;
             };
             bezier = [
               "easeOut, 0.61, 1, 0.88, 1"
               "easeIn, 0.12, 0, 0.39, 0"
             ];
             animations = {
-              enabled = animations;
+              inherit (land.config.animations) enabled;
 
               animation = [
                 "fadeIn, 1, 3, easeIn"

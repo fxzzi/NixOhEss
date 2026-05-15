@@ -14,17 +14,12 @@
         #   vmopts = "-Dawt.toolkit.name=WLToolkit";
         # })
       ];
-      xdg.config.files."hypr/hyprland.lua".text =
-        lib.mkAfter
-        # lua
-        ''
-          hl.config({
-          	render = {
-          		-- sidestep all cm issues by just disabling it
-          		cm_enabled = 0,
-          	},
-          })
-        '';
+    };
+    cfg.programs.hyprland.config = {
+      render = {
+        # sidestep all cm issues by just disabling it
+        cm_enabled = 0;
+      };
     };
     boot.loader.limine.secureBoot.enable = true;
     # set these when travelling

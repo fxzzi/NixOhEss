@@ -30,6 +30,11 @@ in {
         default = null;
         description = "Sets the secondary monitor for hypr*.";
       };
+      config = mkOption {
+        type = types.attrs;
+        internal = true;
+        description = "Base hl.config table rendered into hyprland.lua.";
+      };
     };
   };
   config = mkIf cfg.enable {
