@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf;
+  inherit (lib) mkEnableOption mkOption types mkIf getExe' mkForce;
   cfg = config.cfg.programs.hyprland;
   hyprlandSet =
     if cfg.useGit
@@ -39,5 +39,49 @@ in {
       portalPackage = hyprlandSet.xdg-desktop-portal-hyprland;
     };
     services.dbus.implementation = "broker";
+    hj.systemd = {
+      services = {
+        hyprland = {
+          unitConfig = {
+            Description = "An independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks";
+            BindsTo = "graphical-session.target";
+            Before = [
+              "graphical-session.target"
+              "xdg-desktop-autostart.target"
+            ];
+            Wants = [
+              "graphical-session-pre.target"
+              "xdg-desktop-autostart.target"
+            ];
+            After = "graphical-session-pre.target";
+          };
+          serviceConfig = {
+            Slice = "session.slice";
+            Type = "notify";
+            ExecStart = getExe' hyprlandSet.hyprland "Hyprland";
+          };
+          # by default, nix sets path for the systemd service, which clears the default one.
+          # this means that pretty much nothing works LOL, so disable this behaviour
+          enableDefaultPath = false;
+        };
+      };
+      targets = {
+        hyprland-shutdown = {
+          unitConfig = {
+            Description = "Shutdown running Hyprland session";
+            DefaultDependencies = "no";
+            StopWhenUnneeded = "true";
+            Conflicts = [
+              "graphical-session.target"
+              "graphical-session-pre.target"
+            ];
+            After = [
+              "graphical-session.target"
+              "graphical-session-pre.target"
+            ];
+          };
+        };
+      };
+    };
   };
 }
