@@ -6,7 +6,17 @@
   ...
 }: let
   cfg = config.cfg.programs.hyprland;
-  inherit (lib) boolToString generators getExe getExe' mkIf optional mkDefault mapAttrsRecursive;
+  inherit
+    (lib)
+    boolToString
+    generators
+    getExe
+    getExe'
+    mkIf
+    mkDefault
+    mapAttrsRecursive
+    optionalString
+    ;
 
   multiMonitor = cfg.secondaryMonitor != null;
   secondaryMonitor =
@@ -44,9 +54,6 @@ in {
         cm_enabled = 1;
         # only activate DS for games
         direct_scanout = 2;
-        # use values from edid for HDR
-        cm_auto_hdr = 2;
-        use_fp16 = 1;
       };
       # allows DS to activate with winewayland on nvidia,
       # and also fixes mpv freezing in fullscreen with DS
@@ -83,11 +90,13 @@ in {
         accel_profile = "flat";
         # Stop floating windows from stealing focus
         float_switch_override_focus = 0;
-        # set f13-f24 to their expected keysyms instead of xf86 stuff.
-        # this allows them to be binded in apps like OBS, and CS2
-        kb_options = "fkeys:basic_13-24";
         # make touchpad scroll in the expected directions
         touchpad.natural_scroll = true;
+        # set f13-f24 to their expected keysyms instead of xf86 stuff.
+        # this allows them to be binded in apps like OBS, and CS2
+        # don't apply this on laptops though, because it'll mess with
+        # keys like brightness, micmute, etc.
+        kb_options = optionalString (!config.cfg.core.isLaptop) "fkeys:basic_13-24";
       };
       misc = {
         # Disable hyprland wallpapers etc
