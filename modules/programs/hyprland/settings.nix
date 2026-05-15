@@ -36,9 +36,9 @@
   killall = getExe pkgs.killall;
 in {
   config = mkIf cfg.enable {
-    # use mapAttrs here to make every attr in the config a low prio
-    # this means we can override / add any attr below without
-    # erroneous mkDefault's or mkForce's everywhere
+    # use mapAttrsRecursive here to make every attr in the config
+    # a low prio. this means we can override / add any attr below
+    # without erroneous mkDefault's or mkForce's everywhere
     cfg.programs.hyprland.config = mapAttrsRecursive (_: mkDefault) {
       general = {
         # Outer monitor gaps
