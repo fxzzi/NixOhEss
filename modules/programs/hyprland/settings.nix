@@ -6,7 +6,7 @@
   ...
 }: let
   cfg = config.cfg.programs.hyprland;
-  inherit (lib) getExe mkIf getExe' boolToString generators;
+  inherit (lib) boolToString generators getExe getExe' mkIf mkDefault;
 
   multiMonitor = cfg.secondaryMonitor != null;
   secondaryMonitor =
@@ -35,11 +35,12 @@ in {
         # Set window border width
         border_size = 1;
         # tearing causes problems and is honestly useless most the time
-        allow_tearing = 0;
+        allow_tearing = mkDefault 0;
       };
       render = {
+        cm_enabled = mkDefault 1;
         # only activate DS for games
-        direct_scanout = 2;
+        direct_scanout = mkDefault 2;
         # use values from edid for HDR
         cm_auto_hdr = 2;
         use_fp16 = 1;
