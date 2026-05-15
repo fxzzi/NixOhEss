@@ -227,11 +227,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1778798629,
-        "narHash": "sha256-m6gp6RBEg33+LorxWcDWyLZ5+N2RnOkITZNaS4lFItQ=",
+        "lastModified": 1778841351,
+        "narHash": "sha256-a52shxptMqdBLiDkUq1rT7IQB3jRgZLWLvcZaMYX+Gg=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "805f7bf48e46dcab20c0b45844ae36aac354b4bd",
+        "rev": "b74b1f934f03b74df2214e06e26a8c9098236602",
         "type": "github"
       },
       "original": {
@@ -516,11 +516,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778784436,
-        "narHash": "sha256-YZtyd/3pdFcei72GtffA0OFjBf6x2cJQ1LEBIAcNMCk=",
+        "lastModified": 1778844551,
+        "narHash": "sha256-FerL73iPCg3FTGMmWyXUxk1qw+YP9bA9KTrsZ8uWZKk=",
         "owner": "NotAShelf",
         "repo": "nvf",
-        "rev": "8b000238aa8c4727296c456a734f7ad63c2e236e",
+        "rev": "1a482a24375f8adf67336b5badd4762a9169bff5",
         "type": "github"
       },
       "original": {
@@ -636,11 +636,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1778591360,
-        "narHash": "sha256-WfBbaF8y3Gr3eYZAHxpwYZausqo/aOgHXS72YYXpdSQ=",
+        "lastModified": 1778842706,
+        "narHash": "sha256-clofLNZWBununCewLVQr86TpVgI/oeAWuIZpE28R1RY=",
         "owner": "NotAShelf",
         "repo": "tuigreet",
-        "rev": "1f68a14f92d00e9d3fa3ca9bf85b2f0036df4d3d",
+        "rev": "8e77e88b3d08298e3a369e4a8ebf574ea5d49679",
         "type": "github"
       },
       "original": {

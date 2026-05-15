@@ -16,8 +16,11 @@
   # see: https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
   fpsLimit = let
     rr = cfg.refreshRate;
+    inherit (config.cfg.programs.hyprland.config.misc) vrr;
   in
-    rr - (rr * rr / 4096);
+    if vrr != 0
+    then rr - (rr * rr / 4096)
+    else rr;
 in {
   options.cfg.programs.mangohud = {
     enable = mkEnableOption "mangohud";

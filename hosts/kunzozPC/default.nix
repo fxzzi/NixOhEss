@@ -29,20 +29,19 @@
         	-- this monitor does support 10bit, but only at 120Hz and lower.
         	supports_wide_color = -1,
         })
-
-        hl.config({
-        	render = {
-        		-- sidestep all cm issues by just disabling it
-        		cm_enabled = 0,
-        		-- same with ds
-        		direct_scanout = 0,
-        	},
-        	-- same with tearing
-        	general = {
-        		allow_tearing = 0,
-        	},
-        })
       '';
+  };
+  cfg.programs.hyprland.config = {
+    render = {
+      # sidestep all cm issues by just disabling it
+      cm_enabled = 0;
+      # same with ds
+      direct_scanout = 0;
+    };
+    # same with tearing
+    general = {
+      allow_tearing = 0;
+    };
   };
   hardware.display = {
     outputs = {
