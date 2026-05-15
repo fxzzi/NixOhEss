@@ -60,22 +60,6 @@ in {
           function chpwd-osc7-pwd() {
               (( ZSH_SUBSHELL )) || osc7-pwd
           }
-
-          precmd() {
-              print -Pn "\e]133;A\e\\"
-          }
-
-          function precmd {
-              if ! builtin zle; then
-                  print -n "\e]133;D\e\\"
-              fi
-          }
-
-          function preexec {
-              print -n "\e]133;C\e\\"
-          }
-
-          autoload -U add-zsh-hook
           add-zsh-hook -Uz chpwd chpwd-osc7-pwd
         '';
     };
