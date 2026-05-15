@@ -94,9 +94,7 @@ in {
     hj = {
       xdg.config.files."discord/settings.json" = {
         generator = lib.generators.toJSON {};
-        value = let
-          endpoint = "https://inject.shelter.uwu.network/equicord";
-        in {
+        value = {
           # allow launching discord even if a new update is available
           SKIP_HOST_UPDATE = true;
           SKIP_MODULE_UPDATE = true;

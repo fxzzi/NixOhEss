@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf getExe' mkForce;
+  inherit (lib) mkEnableOption mkOption types mkIf getExe';
   cfg = config.cfg.programs.hyprland;
   hyprlandSet =
     if cfg.useGit

@@ -12,7 +12,6 @@
     types
     mkIf
     mkDefault
-    optionals
     ;
   cfg = config.cfg.core.boot;
 in {
