@@ -31,7 +31,7 @@ in {
         description = "Sets the secondary monitor for hypr*.";
       };
       config = mkOption {
-        type = types.attrs;
+        type = types.attrsOf types.anything;
         internal = true;
         description = "Base hl.config table rendered into hyprland.lua.";
       };
