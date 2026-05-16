@@ -182,11 +182,8 @@ in {
           hl.window_rule({ match = { class = "foot" }, idle_inhibit = "fullscreen", no_vrr = true })
           hl.window_rule({ match = { class = "org.gnome.Loupe" }, no_vrr = true })
 
-          -- some apps, mostly games, are stupid and they fullscreen on the
-          -- wrong monitor. so just don't listen to them lol
-          -- also ignore maximize requests from apps. You'll probably like this.
-          -- some games, like cs2, request tearing by default. disable this.
-          hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize fullscreenoutput" })
+          -- ignore maximize requests from apps. You'll probably like this.
+          hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 
           -- dialogs
           hl.window_rule({ match = { title = "File Operation Progress.*" }, float = true })
@@ -196,13 +193,6 @@ in {
           hl.window_rule({ match = { title = "Rename.*" }, float = true })
           hl.window_rule({ match = { class = "xdg-desktop-portal-gtk" }, float = true })
           hl.window_rule({ match = { class = "org.gnome.FileRoller", title = "Extract.*" }, float = true })
-
-          -- make some java apps launch tiled
-          hl.window_rule({ match = { class = "rars-Launch", title = "RARS .*" }, tile = true })
-          hl.window_rule({ match = { class = "com-cburch-logisim-Main", title = ".*Logisim-evolution v.*" }, tile = true })
-
-          -- see: https://github.com/hyprwm/Hyprland/discussions/12786
-          hl.window_rule({ match = { class = "steam", title = "Steam" }, tile = true })
 
           -- Window rules for games
           -- emulators and similar apps that should be tagged as games, but not forced fullscreen
@@ -273,7 +263,6 @@ in {
             hl.bind(table.concat(keys, " + "), action, opts)
           end
 
-          -- Curves
           curves({
             easeOutQuint = { { 0.23, 1 }, { 0.32, 1 } },
             easeInOutCubic = { { 0.65, 0.05 }, { 0.36, 1 } },
@@ -282,7 +271,6 @@ in {
             quick = { { 0.15, 0 }, { 0.1, 1 } },
           })
 
-          -- Animations
           animations({
             { "windowsIn", true, 3, "easeOutQuint", "slide" },
             { "windowsOut", true, 3, "easeOutQuint", "slide" },
@@ -307,12 +295,14 @@ in {
           })
 
           hl.device({
-            name = "at-translated-set-2-keyboard", -- thinkpad l14 keyboard
+            -- thinkpad l14 keyboard
+            name = "at-translated-set-2-keyboard",
             kb_layout = "gb",
           })
 
           hl.device({
-            name = "elan0680:00-04f3:320a-touchpad", -- thinkpad l14 touchpad
+            -- thinkpad l14 touchpad
+            name = "elan0680:00-04f3:320a-touchpad",
             accel_profile = "adaptive",
           })
 
