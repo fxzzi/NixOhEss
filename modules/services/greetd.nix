@@ -14,6 +14,13 @@
       config.programs.hyprland.package
       config.services.dbus.dbusPackage
     ];
+    # normally this has `errexit` too. but this is problematic here as
+    # Hyprland may crash, causing the hyprland-shutdown.target to never
+    # be triggered.
+    bashOptions = [
+      "nounset"
+      "pipefail"
+    ];
     text = ''
       # Make sure there's no already running session.
       if systemctl --user -q is-active hyprland.service; then
