@@ -18,7 +18,6 @@
         ];
         Remove = [
           "DuckDuckGo"
-          "Wikipedia (en)"
           "Bing"
           "Perplexity"
         ];

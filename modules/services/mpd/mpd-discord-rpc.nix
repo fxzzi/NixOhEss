@@ -20,14 +20,14 @@ in {
             state = "$artist";
             timestamp = "both";
             large_image = "notes";
-            small_image = "";
             large_text = "$album";
+            small_image = "";
             small_text = "";
             display_type = "state";
             # button1_text = "Listen on YouTube";
-            # button1_link = "https://www.youtube.com/results?search_query=$artist%20-%20$title";
+            # button1_link = "https://www.youtube.com/results?search_query=$artist\ -\ $title";
             # button2_text = "Album on MusicBrainz";
-            # button2_url = "https://musicbrainz.org/search?query=$albumartist%20$artist&type=release&method=indexed";
+            # button2_url = "https://musicbrainz.org/search?query=$albumartist\ $album&type=release&method=indexed";
           };
         };
       };
@@ -42,7 +42,7 @@ in {
       serviceConfig = {
         Type = "simple";
         Restart = "on-failure";
-        ExecStart = "${getExe pkg}";
+        ExecStart = getExe pkg;
       };
       restartTriggers = [
         config.hj.xdg.config.files."discord-rpc/config.toml".source
