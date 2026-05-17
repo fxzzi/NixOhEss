@@ -40,6 +40,7 @@ in {
             hide-when-typing = true;
           };
           colors-dark = {
+            blur = "yes";
             alpha = 0.85;
             alpha-mode = "matching";
           };

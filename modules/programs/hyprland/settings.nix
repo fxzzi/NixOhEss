@@ -70,7 +70,6 @@ in {
       };
       cursor = {
         default_monitor = cfg.defaultMonitor;
-        # we handle this ourselves
         sync_gsettings_theme = 0;
         # hide cursor after x seconds of inactivity
         inactive_timeout = 4;
@@ -101,7 +100,7 @@ in {
       misc = {
         # Disable hyprland wallpapers etc
         disable_hyprland_logo = 1;
-        # Disable startup splashscreen
+        # Disable text on wallpaper
         disable_splash_rendering = 1;
         background_color = "0x000000";
         # Disables hover for monitor focus
@@ -111,7 +110,8 @@ in {
         enable_swallow = 0;
         # gui apps executed by foot will swallow it
         swallow_regex = "foot";
-        vrr = 2;
+        vrr = 2; # only apply VRR in fullscreen
+        screencopy_force_8b = false;
         # by default, ANR dialog shows up way too aggressively.
         anr_missed_pings = 6;
         mouse_move_enables_dpms = true;
