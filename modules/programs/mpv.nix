@@ -5,7 +5,6 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf generators;
-  inherit (builtins) head;
 in {
   options.cfg.programs.mpv.enable = mkEnableOption "mpv";
   config = mkIf config.cfg.programs.mpv.enable {
@@ -25,7 +24,7 @@ in {
             alang = "ja,en,eng";
             slang = "en,eng";
             sub-scale = 0.75;
-            sub-font = head config.fonts.fontconfig.defaultFonts.sansSerif;
+            sub-font = "sans-serif";
             sub-scale-with-window = "yes";
             cursor-autohide = 1000;
           };

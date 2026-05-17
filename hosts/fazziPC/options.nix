@@ -64,9 +64,9 @@
       };
       hypridle = {
         enable = true;
-        dpmsTimeout = 180;
-        lockTimeout = 300;
-        suspendTimeout = 600;
+        dpmsTimeout = 300;
+        lockTimeout = 480;
+        suspendTimeout = 900;
       };
       hyprpaper.enable = true;
       hyprsunset.enable = true;
