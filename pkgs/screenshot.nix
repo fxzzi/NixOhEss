@@ -6,8 +6,7 @@
   slurp,
   wl-clipboard,
   dunst,
-  stdenv,
-  inputs,
+  still,
 }:
 writeShellApplication {
   name = "screenshot";
@@ -18,7 +17,7 @@ writeShellApplication {
     slurp
     wl-clipboard
     dunst
-    inputs.azzipkgs.packages.${stdenv.hostPlatform.system}.still
+    still
   ];
   excludeShellChecks = ["SC2027" "SC2086"];
   text = ''
