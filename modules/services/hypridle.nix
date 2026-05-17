@@ -5,8 +5,9 @@
   self,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkOption types optionals getExe getExe';
+  inherit (lib) mkEnableOption mkIf mkOption types optionals getExe;
   cfg = config.cfg.services.hypridle;
+  dpms = state: "hyprctl dispatch 'hl.dsp.dpms({ action = \"${state}\" })'";
 in {
   options.cfg.services.hypridle = {
     enable = mkEnableOption "hypridle";
@@ -40,18 +41,16 @@ in {
         value = {
           attrs = {
             general = {
-              lock_cmd = "${getExe' pkgs.procps "pidof"} hyprlock || ${getExe pkgs.hyprlock}";
-              before_sleep_cmd = "${getExe' pkgs.systemd "loginctl"} lock-session";
-              after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
-              ignore_dbus_inhibit = false;
-              ignore_systemd_inhibit = false;
+              lock_cmd = "pidof hyprlock || hyprlock";
+              before_sleep_cmd = "loginctl lock-session";
+              after_sleep_cmd = dpms "on";
             };
             listener =
               optionals (cfg.dpmsTimeout != 0) [
                 {
                   timeout = cfg.dpmsTimeout;
-                  on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"off\" })'";
-                  on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
+                  on-timeout = dpms "off";
+                  on-resume = dpms "on";
                 }
               ]
               ++ optionals (cfg.lockTimeout != 0) [
@@ -60,10 +59,10 @@ in {
                   on-timeout = "loginctl lock-session";
                 }
                 {
-                  timeout = 30;
+                  timeout = 60;
                   # dpms off screen if hyprlock is running
-                  on-timeout = "${getExe' pkgs.procps "pidof"} hyprlock && hyprctl dispatch 'hl.dsp.dpms({ action = \"off\" })'";
-                  on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
+                  on-timeout = "pidof hyprlock && ${dpms "off"}";
+                  on-resume = dpms "on";
                   # no matter what, dimming screen on lockscreen shouldn't be a problem
                   ignore_inhibit = true;
                 }
@@ -89,11 +88,12 @@ in {
       serviceConfig = {
         Type = "simple";
         Restart = "always";
-        ExecStart = "${getExe pkgs.hypridle}";
+        ExecStart = getExe pkgs.hypridle;
       };
       path = [
         config.programs.hyprland.package # for hyprctl
-        pkgs.systemd # for loginctl
+        pkgs.procps # for pidof
+        pkgs.hyprlock
       ];
       restartTriggers = [
         config.hj.xdg.config.files."hypr/hypridle.conf".source
