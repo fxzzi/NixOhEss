@@ -162,9 +162,8 @@ in {
                 };
               };
           }).overrideAttrs (oldAttrs: {
-            # this is disgusting, but it allows nvenc to work.
-            # hopefully this gets nicely upstreamed to nixpkgs.
-            # see: https://github.com/FlameFlag/nixcord/commit/488d20a1bbcb9bb65f0048bb9b77356ef064ea39
+            # add the library path for nvenc stuff so that we can have hw accel streams
+            # FIXME: remove on merge of https://github.com/NixOS/nixpkgs/pull/521343
             postFixup =
               (oldAttrs.postFixup or "")
               + ''

@@ -90,9 +90,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "fae41a732aad3fe6d2da4dce7e89c1fd0a013a7d",
-      "url": "https://github.com/NotAShelf/rags/archive/fae41a732aad3fe6d2da4dce7e89c1fd0a013a7d.tar.gz",
-      "hash": "sha256-v6dh2RLu8XtvI5CLy87e8jrlGh8y0Ogg3NGH9a/snI0="
+      "revision": "c2fd9a805e6de99863cd5e6c53cf35814df252e1",
+      "url": "https://github.com/NotAShelf/rags/archive/c2fd9a805e6de99863cd5e6c53cf35814df252e1.tar.gz",
+      "hash": "sha256-zKSrSyp0sbPyvZ+sW3sNhZUOiPZ2n8kg9z9lPqTvpCA="
     },
     "startpage": {
       "type": "Git",
