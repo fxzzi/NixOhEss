@@ -31,9 +31,11 @@ in {
           PRESSURE_VESSEL_FILESYSTEMS_RW = optionalAttrs (builtins.hasAttr "/games" config.fileSystems) "/games";
         };
       };
+      extraCompatPackages = mkIf config.cfg.programs.proton-ge.enable [pkgs.proton-ge-bin];
+
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
-      extraCompatPackages = mkIf config.cfg.programs.proton-ge.enable [pkgs.proton-ge-bin];
+      localNetworkGameTransfers.openFirewall = true;
     };
     hj = {
       xdg.data.files."Steam/steam_dev.cfg".text = ''
