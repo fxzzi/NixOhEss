@@ -3,6 +3,7 @@
   self,
   inputs,
   lib,
+  config,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -46,6 +47,7 @@
         	mode = "highres",
         	bitdepth = 10,
         	cm = "srgb", -- use srgb calibrated mode on monitor instead
+          -- icc = "${config.age.secrets.mo27q28g.path}",
           sdr_min_luminance = 0.005,
         	sdr_max_luminance = 203,
         })
@@ -56,11 +58,21 @@
         	mode = "highres",
         	supports_hdr = -1, -- hdr sucks on this monitor lol
         	supports_wide_color = -1, -- only supports at lower 120Hz
-        	cm = "edid",
+          icc = "${config.age.secrets.m27q.path}",
         	position = "auto-center-left",
         	vrr = 1, -- this monitor doesn't flicker when using VRR at all
         })
       '';
+  };
+  age.secrets = {
+    m27q = {
+      file = "${self}/secrets/mub-M27Q_v1.icm.age";
+      mode = "744";
+    };
+    mo27q28g = {
+      file = "${self}/secrets/tft-gigabyte_mo27q28g.icm.age";
+      mode = "744";
+    };
   };
   # set resolutions early to avoid modeset when launching hyprland
   hardware.display.outputs = {

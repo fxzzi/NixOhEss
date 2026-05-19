@@ -33,8 +33,7 @@ in {
             "Inter"
           ];
           monospace = [
-            "JetBrains Mono"
-            "Symbols Nerd Font"
+            "JetBrainsMono Nerd Font"
           ];
           emoji = [
             "Noto Color Emoji"
@@ -42,14 +41,18 @@ in {
         };
       };
       packages = with pkgs; [
-        nerd-fonts.symbols-only # symbols for terminal, bar, lock, etc
+        nerd-fonts.jetbrains-mono
+        # nerd-fonts.symbols-only
+        # jetbrains-mono
+
+        inter
+
         noto-fonts # Google Noto Fonts
         noto-fonts-color-emoji # Emoji Font
         noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
+
         corefonts # ms fonts
         vista-fonts # more ms fonts including calibri and consolas
-        inter
-        jetbrains-mono
       ];
     };
   };

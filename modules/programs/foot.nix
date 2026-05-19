@@ -29,7 +29,7 @@ in {
         generator = lib.generators.toINI {};
         value = {
           main = {
-            font = "monospace:size=12";
+            font = "monospace:size=12.5";
             pad = "6x6";
             transparent-fullscreen = true; # option added by my fork
           };
