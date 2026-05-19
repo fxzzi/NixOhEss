@@ -182,6 +182,12 @@ in {
           hl.window_rule({ match = { class = "foot" }, idle_inhibit = "fullscreen", no_vrr = true })
           hl.window_rule({ match = { class = "org.gnome.Loupe" }, no_vrr = true })
 
+          -- no_auto_hdr only available on hyprland-git for now
+          ${optionalString cfg.useGit ''
+            -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
+            hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
+          ''}
+
           -- ignore maximize requests from apps. You'll probably like this.
           hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 
