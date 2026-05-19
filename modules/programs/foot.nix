@@ -16,6 +16,7 @@ in {
       (symlinkJoin {
         inherit (foot) name pname version meta;
         paths = [foot];
+
         # remove foot desktop files for server and client, as
         # we just use standalone anyway
         postBuild = ''
@@ -29,9 +30,10 @@ in {
         generator = lib.generators.toINI {};
         value = {
           main = {
-            font = "monospace:size=12.5";
+            font = "JetBrainsMono Nerd Font:size=12.5";
             pad = "6x6";
             transparent-fullscreen = true; # option added by my fork
+            gamma-correct-blending = true;
           };
           cursor = {
             style = "beam";
@@ -43,6 +45,13 @@ in {
             blur = "yes";
             alpha = 0.85;
             alpha-mode = "matching";
+          };
+          tweak = {
+            surface-bit-depth = "8-bit";
+            font-monospace-warn = false; # slightly faster startup times
+          };
+          environment = {
+            FREETYPE_PROPERTIES = "cff:no-stem-darkening=0";
           };
         };
       };
