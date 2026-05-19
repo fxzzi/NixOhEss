@@ -33,7 +33,9 @@ in {
             "Inter"
           ];
           monospace = [
-            "JetBrainsMono Nerd Font"
+            # "JetBrainsMono Nerd Font"
+            "JetBrains Mono"
+            "Symbols Nerd Font"
           ];
           emoji = [
             "Noto Color Emoji"
@@ -41,9 +43,9 @@ in {
         };
       };
       packages = with pkgs; [
+        nerd-fonts.symbols-only
+        jetbrains-mono
         nerd-fonts.jetbrains-mono
-        # nerd-fonts.symbols-only
-        # jetbrains-mono
 
         inter
 
