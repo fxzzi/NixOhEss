@@ -58,7 +58,6 @@
     programs = {
       mangohud.enable = true;
       steam.enable = true;
-      osu.enable = true;
       smoothScroll.enable = false;
       nvf.enable = true;
       adb.enable = true;
@@ -102,7 +101,7 @@
         enable = true;
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
-        useGit = true;
+        # useGit = true;
       };
       hyprlock.enable = true;
     };
