@@ -15,22 +15,31 @@
     ;
   cfg = config.cfg.core.boot;
 in {
-  options.cfg.core = {
-    isLaptop = mkEnableOption "laptop";
-    boot = {
-      enable = mkEnableOption "boot";
-      keyLayout = mkOption {
-        type = types.str;
-        default = "us";
-        description = "Sets the keyboard layout for ttys";
-      };
-      timeout = mkOption {
-        type = types.either types.int types.float;
-        default = 5;
-        description = ''
-          Sets the timeout in seconds for the boot menu to automatically continue.
-          Setting to < 1 will also enable quiet boot.
-        '';
+  options = {
+    boot.loader.timeout = mkOption {
+      default = 5;
+      type = types.nullOr types.number;
+      description = ''
+        Timeout (in seconds) until loader boots the default menu item. Use null if the loader menu should be displayed indefinitely.
+      '';
+    };
+    cfg.core = {
+      isLaptop = mkEnableOption "laptop";
+      boot = {
+        enable = mkEnableOption "boot";
+        keyLayout = mkOption {
+          type = types.str;
+          default = "us";
+          description = "Sets the keyboard layout for ttys";
+        };
+        timeout = mkOption {
+          type = types.either types.int types.float;
+          default = 5;
+          description = ''
+            Sets the timeout in seconds for the boot menu to automatically continue.
+            Setting to < 1 will also enable quiet boot.
+          '';
+        };
       };
     };
   };
@@ -68,7 +77,7 @@ in {
       initrd.systemd.enable = true;
       loader = {
         efi.canTouchEfiVariables = true;
-        timeout = null; # can't be a float
+        inherit (cfg) timeout;
         limine = {
           enable = true;
           maxGenerations = 8;
@@ -108,7 +117,6 @@ in {
                 path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
           '';
           extraConfig = mkIf (cfg.timeout < 1) ''
-            timeout: ${builtins.toString cfg.timeout}
             quiet: yes
           '';
         };
