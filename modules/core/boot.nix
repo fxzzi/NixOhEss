@@ -25,11 +25,11 @@ in {
         description = "Sets the keyboard layout for ttys";
       };
       timeout = mkOption {
-        type = types.int;
+        type = types.either types.int types.float;
         default = 5;
         description = ''
-          Sets the timeout for the boot menu to automatically continue.
-          If set to 0, the boot menu will be hidden unless space is spammed during boot.
+          Sets the timeout in seconds for the boot menu to automatically continue.
+          Setting to < 1 will also enable quiet boot.
         '';
       };
     };
@@ -67,7 +67,8 @@ in {
     boot = {
       initrd.systemd.enable = true;
       loader = {
-        inherit (cfg) timeout;
+        efi.canTouchEfiVariables = true;
+        timeout = null; # can't be a float
         limine = {
           enable = true;
           maxGenerations = 8;
@@ -106,17 +107,11 @@ in {
                 protocol: efi
                 path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
           '';
-          extraConfig = mkIf (cfg.timeout <= 1) ''
+          extraConfig = mkIf (cfg.timeout < 1) ''
+            timeout: ${builtins.toString cfg.timeout}
             quiet: yes
           '';
         };
-        # systemd-boot = {
-        #   enable = true; # Enable systemd-boot
-        #   configurationLimit = 5; # shouldn't really need any more than that.
-        #   editor = false; # Disable editor for security
-        #   consoleMode = "max"; # Set console mode to max resolution
-        # };
-        efi.canTouchEfiVariables = true;
       };
       kernelParams = [
         "fbcon=font:TER16x32" # make font size bigger
