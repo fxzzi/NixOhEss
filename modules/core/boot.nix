@@ -15,6 +15,7 @@
     ;
   cfg = config.cfg.core.boot;
 in {
+  disabledModules = ["system/boot/loader/loader.nix"];
   options = {
     boot.loader.timeout = mkOption {
       default = 5;
