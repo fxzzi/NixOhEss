@@ -100,7 +100,10 @@
       heroic.enable = true;
       adb.enable = true;
       mpv.enable = true;
-      obs-studio.enable = true;
+      obs-studio = {
+        enable = true;
+        vkcapture.enable = true;
+      };
       thunar.enable = true;
       discord.enable = true;
       librewolf.enable = true;
