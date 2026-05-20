@@ -11,7 +11,7 @@
       boot = {
         enable = true;
         keyLayout = "us";
-        timeout = 1;
+        timeout = 0.25;
       };
       networking.enable = true;
       fonts.enable = true;
@@ -22,10 +22,6 @@
       # scanning.enable = true;
     };
     services = {
-      # lact.enable = true;
-      # sunshine.enable = true;
-      # libvirt.enable = true;
-      # quickshell.enable = true;
       ags.enable = true;
       # kdeconnect.enable = true;
       nvuv = {

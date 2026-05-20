@@ -36,7 +36,7 @@ in {
   };
   config = mkIf cfg.enable {
     hj = {
-      packages = [pkgs.fastfetchMinimal];
+      packages = [pkgs.fastfetch.minimal];
       xdg.config.files."fastfetch/config.jsonc" = {
         generator = lib.generators.toJSON {};
         value = {
@@ -107,7 +107,7 @@ in {
       text = mkAfter ''
         # only run fastfetch if term is large enough
         if [[ $COLUMNS -ge 45 && $LINES -ge 15 ]]; then
-          ${getExe pkgs.fastfetchMinimal}
+          ${getExe pkgs.fastfetch.minimal}
         fi
       '';
     };
