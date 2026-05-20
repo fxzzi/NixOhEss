@@ -2,9 +2,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  fazziPC = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIhE7wYZ6juPg1uPs8hTJJMjzWVlMB4maX2K7rE9X84I agenix";
-in {
+}: {
   config = {
     system.stateVersion = "25.05";
     hj = {
@@ -23,21 +21,10 @@ in {
       };
     };
     boot.loader.limine.secureBoot.enable = true;
-    services.openssh = {
-      enable = true;
-      openFirewall = true;
-      settings = {
-        PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-        PermitRootLogin = "prohibit-password";
-      };
-    };
-    users.users.root.openssh.authorizedKeys.keys = [fazziPC];
-    users.users.faaris.openssh.authorizedKeys.keys = [fazziPC];
     # set these when travelling
-    # services = {
-    #   geoclue2.enable = true;
-    #   localtimed.enable = true;
-    # };
+    services = {
+      geoclue2.enable = true;
+      localtimed.enable = true;
+    };
   };
 }

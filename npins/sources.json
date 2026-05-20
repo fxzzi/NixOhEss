@@ -11,10 +11,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "2026-05-19",
-      "revision": "3a4552843e6ff2a05760577551e157209467dcee",
-      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-05-19",
-      "hash": "sha256-guBFjRq62aYrgNg0IRIzhkw5E+nusM0paJoxtriqAF0="
+      "version": "2026-05-20",
+      "revision": "8a2f4633cfd2e9dc86e1b8820c95cd03066b789e",
+      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-05-20",
+      "hash": "sha256-XDT11ihM6uAmyL+9nmptDrc6vYimm1VMpSsvBcehh2c="
     },
     "agenix": {
       "type": "Git",
@@ -90,9 +90,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "bc9e91fd252a248d45258e3758dd19152c57ab03",
-      "url": "https://github.com/NotAShelf/rags/archive/bc9e91fd252a248d45258e3758dd19152c57ab03.tar.gz",
-      "hash": "sha256-W+WL/rkQghZqjUuROfnugm5bnU9oefD4Cpbzceq9+2w="
+      "revision": "2cbb492c1d84138e74856c87c634d75fde024c32",
+      "url": "https://github.com/NotAShelf/rags/archive/2cbb492c1d84138e74856c87c634d75fde024c32.tar.gz",
+      "hash": "sha256-DYc2V2GfoaHAkwejoCVmMgd1GnMsuzOvXK1TZflUCO4="
     },
     "startpage": {
       "type": "Git",
