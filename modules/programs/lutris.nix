@@ -9,14 +9,6 @@
 in {
   options.cfg.programs.lutris.enable = mkEnableOption "lutris";
   config = mkIf cfg.enable {
-    # FIXME: https://github.com/NixOS/nixpkgs/issues/513245
-    nixpkgs.overlays = [
-      (_: prev: {
-        openldap = prev.openldap.overrideAttrs {
-          doCheck = !prev.stdenv.hostPlatform.isi686;
-        };
-      })
-    ];
     hj = {
       packages = [pkgs.lutris-free];
       xdg.data.files = {
@@ -34,7 +26,7 @@ in {
                 # don't even use reflex, so enable it in here only for lutris
                 DXVK_NVAPI_VKREFLEX = optionalAttrs config.cfg.hardware.nvidia.enable 1;
                 # https://github.com/Korthos-Software/low_latency_layer
-                DISABLE_LOW_LATENCY_LAYER = optionalAttrs config.cfg.hardware.amdgpu.enable 0;
+                LOW_LATENCY_LAYER = optionalAttrs config.cfg.hardware.amdgpu.enable 1;
               };
               # useful to add mangohud here, as lutris can
               # apply it to opengl games too.
