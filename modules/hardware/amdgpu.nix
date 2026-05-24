@@ -34,11 +34,10 @@ in {
       sessionVariables = {
         # Increase AMD's shader cache size to xGB
         MESA_SHADER_CACHE_MAX_SIZE = "12G";
-        DISABLE_LOW_LATENCY_LAYER = 1; # set back to 0 in lutris and steam
       };
       systemPackages = [
         (pkgs.callPackage "${pins.nix-gaming}/pkgs/low-latency-layer" {
-          pins = import "${pins.nix-gaming}/npins";
+          inherit pins;
         })
       ];
     };
