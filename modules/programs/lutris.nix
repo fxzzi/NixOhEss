@@ -9,6 +9,14 @@
 in {
   options.cfg.programs.lutris.enable = mkEnableOption "lutris";
   config = mkIf cfg.enable {
+    # FIXME: https://github.com/NixOS/nixpkgs/issues/513245
+    nixpkgs.overlays = [
+      (_: prev: {
+        openldap = prev.openldap.overrideAttrs {
+          doCheck = !prev.stdenv.hostPlatform.isi686;
+        };
+      })
+    ];
     hj = {
       packages = [pkgs.lutris-free];
       xdg.data.files = {
