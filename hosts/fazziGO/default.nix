@@ -24,10 +24,7 @@
       };
     };
     boot.loader.limine.secureBoot.enable = true;
-    # set these when travelling
-    services = {
-      geoclue2.enable = true;
-      localtimed.enable = true;
-    };
+    # set timezone automatically for travelling
+    services.automatic-timezoned.enable = true;
   };
 }

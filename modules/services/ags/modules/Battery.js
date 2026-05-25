@@ -13,7 +13,7 @@ export const BatteryWidget = () =>
       }),
       Widget.Label({
         class_name: "battery",
-        label: battery.bind("percent").as((p) => `${p}%`),
+        label: battery.bind("percent").as((p) => `${p > 0 ? p : 0}%`),
       }),
     ],
   });
