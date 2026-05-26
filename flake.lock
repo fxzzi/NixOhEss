@@ -486,6 +486,26 @@
         "type": "github"
       }
     },
+    "nixos-core": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779759427,
+        "narHash": "sha256-jzDtpuYDjoE6Ea5v1J9UUM7m8l+sSLCBh/aAVRaM/fA=",
+        "owner": "sisyphean-group",
+        "repo": "nixos-core",
+        "rev": "3afd67a0afb387ecededb5bc078cba88d44871f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sisyphean-group",
+        "repo": "nixos-core",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1779508470,
@@ -558,6 +578,7 @@
         "crane": "crane",
         "hjem": "hjem",
         "hyprland": "hyprland",
+        "nixos-core": "nixos-core",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
         "stash": "stash",
