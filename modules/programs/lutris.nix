@@ -34,7 +34,7 @@ in {
                 # don't even use reflex, so enable it in here only for lutris
                 DXVK_NVAPI_VKREFLEX = optionalAttrs config.cfg.hardware.nvidia.enable 1;
                 # https://github.com/Korthos-Software/low_latency_layer
-                LOW_LATENCY_LAYER = optionalAttrs config.cfg.hardware.amdgpu.enable 1;
+                # LOW_LATENCY_LAYER = optionalAttrs config.cfg.hardware.amdgpu.enable 1;
               };
               # useful to add mangohud here, as lutris can
               # apply it to opengl games too.

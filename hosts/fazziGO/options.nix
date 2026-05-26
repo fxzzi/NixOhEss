@@ -65,9 +65,9 @@
       foot.enable = true;
       fuzzel.enable = true;
       mpv.enable = true;
-      thunar = {
-        enable = true;
-      };
+
+      thunar.enable = true;
+
       discord = {
         enable = true;
         minimizeToTray = false;
