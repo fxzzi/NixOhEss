@@ -14,13 +14,6 @@
       config.programs.hyprland.package
       config.services.dbus.dbusPackage
     ];
-    # normally this has `errexit` too. but this is problematic here as
-    # Hyprland may crash, causing the hyprland-shutdown.target to never
-    # be triggered.
-    bashOptions = [
-      "nounset"
-      "pipefail"
-    ];
     text = ''
       # Make sure there's no already running session.
       if systemctl --user -q is-active hyprland.service; then
@@ -35,10 +28,11 @@
       # dbus-activated services are already using `SystemdService` directive, some
       # still don't and thus we should set the dbus environment with a separate
       # command.
-      dbus-update-activation-environment --all
+      dbus-update-activation-environment --all --systemd
 
       # Start Hyprland and wait for it to terminate.
-      systemctl --user --wait start hyprland.service
+      # `|| true` here because Hyprland may crash and we want the script to continue.
+      systemctl --user --wait start hyprland.service || true
 
       # Force stop of graphical-session.target.
       systemctl --user start --job-mode=replace-irreversibly hyprland-shutdown.target
