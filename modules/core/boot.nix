@@ -3,6 +3,7 @@
   lib,
   config,
   pins,
+  inputs,
   ...
 }: let
   inherit
@@ -15,6 +16,8 @@
     ;
   cfg = config.cfg.core.boot;
 in {
+  # HACK: limine lets you do a float for the timeout.
+  # by default the nix timeout option can only be an int though.
   disabledModules = ["system/boot/loader/loader.nix"];
   options = {
     boot.loader.timeout = mkOption {
@@ -44,7 +47,11 @@ in {
       };
     };
   };
+  imports = [
+    inputs.nixos-core.nixosModules.default
+  ];
   config = mkIf cfg.enable {
+    system.nixos-core.enable = true;
     console = {
       earlySetup = true;
       font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";

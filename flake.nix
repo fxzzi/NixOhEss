@@ -41,6 +41,10 @@
       url = "gitlab:fazzi/azzipkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-core = {
+      url = "github:sisyphean-group/nixos-core";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
