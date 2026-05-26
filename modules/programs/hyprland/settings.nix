@@ -111,7 +111,7 @@ in {
         # gui apps executed by foot will swallow it
         swallow_regex = "foot";
         vrr = 2; # only apply VRR in fullscreen
-        screencopy_force_8b = false;
+        # screencopy_force_8b = false;
         # by default, ANR dialog shows up way too aggressively.
         anr_missed_pings = 6;
         mouse_move_enables_dpms = true;

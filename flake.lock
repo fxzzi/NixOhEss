@@ -495,13 +495,13 @@
       "locked": {
         "lastModified": 1779759427,
         "narHash": "sha256-jzDtpuYDjoE6Ea5v1J9UUM7m8l+sSLCBh/aAVRaM/fA=",
-        "owner": "sisyphean-group",
+        "owner": "manic-systems",
         "repo": "nixos-core",
         "rev": "3afd67a0afb387ecededb5bc078cba88d44871f0",
         "type": "github"
       },
       "original": {
-        "owner": "sisyphean-group",
+        "owner": "manic-systems",
         "repo": "nixos-core",
         "type": "github"
       }
