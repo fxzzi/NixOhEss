@@ -94,7 +94,7 @@ in {
       <?xml version="1.1" encoding="UTF-8"?>
 
       <channel name="thunar" version="1.0">
-        <property name="last-view" type="string" value="ThunarIconView" locked="*" unlocked="root"/>
+        <property name="last-view" type="string" value="ThunarDetailsView" locked="*" unlocked="root"/>
         <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_100_PERCENT" locked="*" unlocked="root"/>
         <property name="last-window-maximized" type="bool" value="true" locked="*" unlocked="root"/>
         <property name="last-show-hidden" type="bool" value="true" locked="*" unlocked="root"/>
@@ -111,7 +111,7 @@ in {
         <property name="misc-exec-shell-scripts-by-default" type="string" value="THUNAR_EXECUTE_SHELL_SCRIPT_ASK" locked="*" unlocked="root"/>
         <property name="misc-folders-first" type="bool" value="true" locked="*" unlocked="root"/>
 
-        <property name="default-view" type="string" value="ThunarIconView" locked="*" unlocked="root"/>
+        <property name="default-view" type="string" value="ThunarDetailsView" locked="*" unlocked="root"/>
         <property name="misc-highlighting-enabled" type="bool" value="false" locked="*" unlocked="root"/>
         <property name="last-sort-order" type="string" value="GTK_SORT_ASCENDING" locked="*" unlocked="root"/>
         <property name="last-sort-column" type="string" value="THUNAR_COLUMN_NAME" locked="*" unlocked="root"/>
