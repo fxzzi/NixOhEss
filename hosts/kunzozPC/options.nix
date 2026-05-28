@@ -95,7 +95,10 @@
       };
       mpv.enable = true;
       obs-studio.enable = true;
-      thunar.enable = true;
+      thunar = {
+        enable = true;
+        view = "Details"; # weirdo...
+      };
       discord.enable = true;
       librewolf = {
         enable = true;
