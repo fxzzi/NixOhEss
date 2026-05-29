@@ -73,6 +73,14 @@ in {
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
         # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
+
+        # Report support for D3D12 NVIDIA shader extensions when being supported by VKD3D-Proton.
+        # This also requires VKD3D-Proton 3.0.1 or newer. Furthermore this is an experimental feature
+        # and requires DXVK_NVAPI_D3D12_NV_SHADER_EXTN=1 to be set. At the time of writing,
+        # VKD3D-Proton supports vendor extensions for Shader Execution Reordering. This benefits Alan
+        # Wake 2, Cyberpunk 2077 (with some known issues), and many UE5 titles, most notably Black Myth: Wukong.
+        # https://github.com/jp7677/dxvk-nvapi/releases/tag/v0.9.2
+        DXVK_NVAPI_D3D12_NV_SHADER_EXTN = 1;
       };
       etc = {
         "nvidia/nvidia-application-profiles-rc.d/50-vram-alloc-fixes.json".text = builtins.toJSON {
