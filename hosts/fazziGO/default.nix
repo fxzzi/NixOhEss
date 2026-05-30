@@ -15,14 +15,6 @@
         # })
       ];
     };
-    cfg.programs.hyprland.config = {
-      # tearing kinda useful on 60hz
-      general.allow_tearing = 1;
-      render = {
-        # sidestep all cm issues by just disabling it
-        cm_enabled = 0;
-      };
-    };
     boot.loader.limine.secureBoot.enable = true;
     # set timezone automatically for travelling
     services.automatic-timezoned.enable = true;

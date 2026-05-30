@@ -16,24 +16,21 @@
   # see: https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
   fpsLimit = let
     rr = cfg.refreshRate;
-    inherit (config.cfg.programs.hyprland.config.misc) vrr;
+    inherit (config.cfg.programs.hyprland.extraConfig.misc) vrr;
   in
     if vrr != 0
     then rr - (rr * rr / 4096)
     else rr;
 in {
   options.cfg.programs.mangohud = {
-    enable = mkEnableOption "mangohud";
-    enableSessionWide = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable MangoHud for all Vulkan apps.";
-    };
+    enable = mkEnableOption "MangoHud";
+    enableSessionWide = mkEnableOption "MangoHud for all Vulkan apps";
     refreshRate = mkOption {
-      type = types.int;
-      default = 170;
+      type = types.nullOr types.int;
+      default = null;
       description = ''
         Games will be locked to a refresh rate slightly lower than this value.
+        If this option is left at `null`, no FPS limit will be set.
       '';
     };
   };
@@ -55,7 +52,7 @@ in {
             # tonemapped in HDR. So lighten it ourselves
             text_outline_color = 262626;
             cellpadding_y = -0.3;
-            fps_limit = "${toString fpsLimit},0";
+            fps_limit = mkIf (cfg.refreshRate != null) "${toString fpsLimit},0";
             vsync = 1;
             gl_vsync = 0;
             vulkan_present_mode = "fifo_latest_ready";

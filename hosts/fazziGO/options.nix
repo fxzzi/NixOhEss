@@ -101,7 +101,15 @@
         enable = true;
         defaultMonitor = "eDP-1";
         secondaryMonitor = null;
-        # useGit = true;
+        useGit = true;
+        extraConfig = {
+          # tearing kinda useful on 60hz
+          general.allow_tearing = 1;
+          render = {
+            # sidestep all cm issues by just disabling it
+            cm_enabled = 0;
+          };
+        };
       };
       hyprlock.enable = true;
     };
