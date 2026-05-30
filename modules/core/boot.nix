@@ -77,9 +77,15 @@ in {
     # Set a percentage of RAM to zstd compressed swap
     zramSwap = {
       enable = true;
-      # maximum amount of COMPRESSED data
-      # so this can safely be over 100%
-      memoryPercent = 200;
+      # laptop only has 16GB of RAM, so use zstd at level -1. This has better compression ratio than lz4, and can therefore also have a higher memory %. At the time of writing both desktops on NixOhEss have > 32GB of RAM, so they can use the faster lz4 with a lower memory %.
+      memoryPercent =
+        if config.cfg.core.isLaptop
+        then 200
+        else 150;
+      algorithm =
+        if config.cfg.core.isLaptop
+        then "zstd(level=-1)"
+        else "lz4";
     };
     boot = {
       initrd.systemd.enable = true;
@@ -141,9 +147,12 @@ in {
       extraModprobeConfig = ''
         blacklist sp5100_tco
       '';
-      # zram is fast enough that we can be aggressive with swappiness
-      kernel.sysctl."vm.swappiness" = 100;
-      kernel.sysctl."kernel.sysrq" = 1; # enable sysrq / reisub
+      kernel.sysctl = {
+        # zram is fast enough that we can be aggressive with swappiness
+        "vm.swappiness" = 100;
+        # enable sysrq / reisub
+        "kernel.sysrq" = 1;
+      };
     };
   };
 }
