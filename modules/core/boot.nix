@@ -77,9 +77,9 @@ in {
     # Set a percentage of RAM to zstd compressed swap
     zramSwap = {
       enable = true;
-      memoryPercent = 50;
-      # in bytes
-      memoryMax = 8 * 1024 * 1024 * 1024;
+      # maximum amount of COMPRESSED data
+      # so this can safely be over 100%
+      memoryPercent = 200;
     };
     boot = {
       initrd.systemd.enable = true;
