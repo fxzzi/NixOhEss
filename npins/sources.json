@@ -101,14 +101,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "NotAShelf",
+        "owner": "fxzzi",
         "repo": "rags"
       },
-      "branch": "master",
+      "branch": "fix-battery-icon-caching",
       "submodules": false,
-      "revision": "2cbb492c1d84138e74856c87c634d75fde024c32",
-      "url": "https://github.com/NotAShelf/rags/archive/2cbb492c1d84138e74856c87c634d75fde024c32.tar.gz",
-      "hash": "sha256-DYc2V2GfoaHAkwejoCVmMgd1GnMsuzOvXK1TZflUCO4="
+      "revision": "770e411917156e14a8c7fdc31e78ad931e67f476",
+      "url": "https://github.com/fxzzi/rags/archive/770e411917156e14a8c7fdc31e78ad931e67f476.tar.gz",
+      "hash": "sha256-5iPTUIsB/tvw7ORyZNswWx4v3JASfLhcax76LaJsSuI="
     },
     "startpage": {
       "type": "Git",
