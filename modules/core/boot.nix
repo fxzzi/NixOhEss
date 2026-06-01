@@ -74,10 +74,12 @@ in {
     # Select internationalisation properties.
     i18n.defaultLocale = mkDefault "en_GB.UTF-8";
 
-    # Set a percentage of RAM to zstd compressed swap
     zramSwap = {
       enable = true;
-      # laptop only has 16GB of RAM, so use zstd at level -1. This has better compression ratio than lz4, and can therefore also have a higher memory %. At the time of writing both desktops on NixOhEss have > 32GB of RAM, so they can use the faster lz4 with a lower memory %.
+      # laptop only has 16GB of RAM, so use zstd at level -1. This has better
+      # compression ratio than lz4, and can therefore also have a higher memory %.
+      # At the time of writing both desktops on NixOhEss have > 32GB of RAM,
+      # so they can use the faster lz4 with a lower memory %.
       memoryPercent =
         if config.cfg.core.isLaptop
         then 200
@@ -86,6 +88,9 @@ in {
         if config.cfg.core.isLaptop
         then "zstd(level=-1)"
         else "lz4";
+      # memoryPercent = 50;
+      # # in bytes
+      # memoryMax = 8 * 1024 * 1024 * 1024;
     };
     boot = {
       initrd.systemd.enable = true;
