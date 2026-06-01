@@ -39,9 +39,7 @@ in {
             NVreg_EnableResizableBar = 1; # enable reBAR
             "NVreg_RegistryDwords=RmEnableAggressiveVblank" = 1; # low-latency stuff
           };
-          nvidia-modeset = {
-            disable_vrr_memclk_switch = 1; # don't force P0 when VRR is active
-          };
+          nvidia-modeset.disable_vrr_memclk_switch = 1; # don't force P0 when VRR is active
         };
       };
     };
@@ -75,12 +73,11 @@ in {
         CUDA_DISABLE_PERF_BOOST = 1;
 
         # Report support for D3D12 NVIDIA shader extensions when being supported by VKD3D-Proton.
-        # This also requires VKD3D-Proton 3.0.1 or newer. Furthermore this is an experimental feature
-        # and requires DXVK_NVAPI_D3D12_NV_SHADER_EXTN=1 to be set. At the time of writing,
-        # VKD3D-Proton supports vendor extensions for Shader Execution Reordering. This benefits Alan
-        # Wake 2, Cyberpunk 2077 (with some known issues), and many UE5 titles, most notably Black Myth: Wukong.
         # https://github.com/jp7677/dxvk-nvapi/releases/tag/v0.9.2
         DXVK_NVAPI_D3D12_NV_SHADER_EXTN = 1;
+        # also enable descriptor heap
+        VKD3D_CONFIG = "descriptor_heap";
+        DXVK_CONFIG = "dxvk.enableDescriptorHeap = True;";
       };
       etc = {
         "nvidia/nvidia-application-profiles-rc.d/50-vram-alloc-fixes.json".text = builtins.toJSON {
