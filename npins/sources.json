@@ -11,10 +11,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "2026-05-29",
-      "revision": "f814e6c59947598cc5ad6514951119f5c5be2600",
-      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-05-29",
-      "hash": "sha256-Q00qZWzAkKbbTbe82VS5JA8PB18zRwD0jfF278reWlM="
+      "version": "2026-06-01",
+      "revision": "0f1788117c5fbb0ed8365895509f974ac243cbab",
+      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-01",
+      "hash": "sha256-A1Nrw/sQwN0ZghDcmZDNFi77kn8EZhoZkFqnlHS/FcU="
     },
     "agenix": {
       "type": "Git",
@@ -80,9 +80,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "6e7a8414c0f547a86646eb0b56ebf89e7cc217a2",
-      "url": "https://github.com/fufexan/nix-gaming/archive/6e7a8414c0f547a86646eb0b56ebf89e7cc217a2.tar.gz",
-      "hash": "sha256-/dRavNAx/Mp67xcQQ3JBIMyf0cLoXqKedafB1+wksAE="
+      "revision": "0263c951257e322e2ab8ca751a3b5b18f688ea26",
+      "url": "https://github.com/fufexan/nix-gaming/archive/0263c951257e322e2ab8ca751a3b5b18f688ea26.tar.gz",
+      "hash": "sha256-fAnLGQK7TqShTVUZmXPWkwOjuMvvq0d3hSrpdV4Vgs0="
     },
     "nvuv": {
       "type": "Git",
@@ -98,17 +98,20 @@
       "hash": "sha256-gATwh7Ew8zi8EMbSpyzRHoxAWh11I5E9t6+31CuPq3c="
     },
     "rags": {
-      "type": "Git",
+      "type": "GitRelease",
       "repository": {
         "type": "GitHub",
-        "owner": "fxzzi",
+        "owner": "NotAShelf",
         "repo": "rags"
       },
-      "branch": "fix-battery-icon-caching",
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
       "submodules": false,
-      "revision": "770e411917156e14a8c7fdc31e78ad931e67f476",
-      "url": "https://github.com/fxzzi/rags/archive/770e411917156e14a8c7fdc31e78ad931e67f476.tar.gz",
-      "hash": "sha256-5iPTUIsB/tvw7ORyZNswWx4v3JASfLhcax76LaJsSuI="
+      "version": "v1.11.0",
+      "revision": "5848f77e5350fc5cefe78ef4071bc42927954fc8",
+      "url": "https://api.github.com/repos/NotAShelf/rags/tarball/refs/tags/v1.11.0",
+      "hash": "sha256-DYc2V2GfoaHAkwejoCVmMgd1GnMsuzOvXK1TZflUCO4="
     },
     "startpage": {
       "type": "Git",
@@ -137,5 +140,5 @@
       "hash": "sha256-Kqal0R2koaR8qlL4z0ls9eNfwDec02QRK6nwGHYYNaI="
     }
   },
-  "version": 7
+  "version": 8
 }
