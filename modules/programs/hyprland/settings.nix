@@ -58,12 +58,12 @@ in {
       # allows DS to activate with winewayland on nvidia,
       # and also fixes mpv freezing in fullscreen with DS
       quirks.skip_non_kms_dmabuf_formats = config.cfg.hardware.nvidia.enable;
-      animations.enabled = 1;
+      animations.enabled = false;
       decoration = {
         rounding = 0;
-        shadow.enabled = 0;
+        shadow.enabled = false;
         blur = {
-          enabled = 1;
+          enabled = true;
           size = 3;
           passes = 3;
         };
