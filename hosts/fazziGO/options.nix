@@ -2,7 +2,7 @@
   cfg = {
     core = {
       username = "faaris";
-      kernel.type = "lts";
+      kernel.type = "latest";
       isLaptop = true;
       boot = {
         enable = true;
