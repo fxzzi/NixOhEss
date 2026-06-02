@@ -13,7 +13,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    hj.packages = [pkgs.vscodium-fhs];
+    hj.packages = [
+      (pkgs.vscodium.override {
+        commandLineArgs = config.cfg.programs.chromium.commonArgs;
+      }).fhs
+    ];
     environment.sessionVariables = mkIf cfg.defaultEditor {
       EDITOR = mkForce "codium";
     };
