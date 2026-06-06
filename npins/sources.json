@@ -11,10 +11,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "2026-06-04",
-      "revision": "0f1788117c5fbb0ed8365895509f974ac243cbab",
-      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-04",
-      "hash": "sha256-A1Nrw/sQwN0ZghDcmZDNFi77kn8EZhoZkFqnlHS/FcU="
+      "version": "2026-06-06",
+      "revision": "386d03ae6983e7c3bd13e6a4052d3f0bd6cddf76",
+      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-06",
+      "hash": "sha256-L7MrLJKcvb9GtDNwOfW+GJ+ZRwpucsUAq8Bs0BygoTY="
     },
     "agenix": {
       "type": "Git",
@@ -80,9 +80,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "193620288f9b064eb0f8ce80ad36991a895f6a01",
-      "url": "https://github.com/fufexan/nix-gaming/archive/193620288f9b064eb0f8ce80ad36991a895f6a01.tar.gz",
-      "hash": "sha256-kgr+QJ5Mgu3NnMdP8kedbbeOKJUy4Iw8O/1Mw4qc7kI="
+      "revision": "b7ca7b683fded9623dc5f2e7f1a8d111c4a5d215",
+      "url": "https://github.com/fufexan/nix-gaming/archive/b7ca7b683fded9623dc5f2e7f1a8d111c4a5d215.tar.gz",
+      "hash": "sha256-l800yeumkT92AlTl7trOEeh2Of6Lx2nU6l55uWt0kxk="
     },
     "nvuv": {
       "type": "Git",
