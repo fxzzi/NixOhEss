@@ -139,8 +139,6 @@
           };
           # same with tearing
           general.allow_tearing = 0;
-          # idk why this option is so controversial but ok garmin video speichern
-          binds.workspace_back_and_forth = false;
         };
       };
       hyprlock.enable = true;
