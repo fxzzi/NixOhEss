@@ -97,9 +97,6 @@ in {
         # keys like brightness, micmute, etc.
         kb_options = optionalString (!config.cfg.core.isLaptop) "fkeys:basic_13-24";
       };
-      binds = {
-        workspace_back_and_forth = true;
-      };
       misc = {
         # Disable hyprland wallpapers etc
         disable_hyprland_logo = 1;
