@@ -13,6 +13,10 @@
         # (jetbrains.idea-oss.override {
         #   vmopts = "-Dawt.toolkit.name=WLToolkit";
         # })
+        (retroarch.withCores (cores:
+          with cores; [
+            bsnes
+          ]))
       ];
     };
     boot.loader.limine.secureBoot.enable = true;

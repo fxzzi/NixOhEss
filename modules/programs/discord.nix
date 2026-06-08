@@ -134,16 +134,6 @@ in {
           withTTS = false;
           enableAutoscroll = true;
           withOpenASAR = true;
-          # FIXME: remove when bumped in nixpkgs
-          openasar = pkgs.openasar.overrideAttrs {
-            version = "0-unstable-2026-05-08";
-            src = pkgs.fetchFromGitHub {
-              owner = "GooseMod";
-              repo = "OpenAsar";
-              rev = "4b47bb79f45e2c50fbeb5d86e4846c1a41ef0bef";
-              hash = "sha256-5LJ6Fm27tV2A+oqve3UJSA/rICpHhgHf79PZBJriyg0=";
-            };
-          };
           withEquicord = true;
           # equicord can break easily with server-side discord updates.
           # so we need to keep it as up to date as possible outside of
