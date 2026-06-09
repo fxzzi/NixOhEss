@@ -84,6 +84,19 @@
       "url": "https://github.com/fufexan/nix-gaming/archive/26aa8174cab36e58c8e93774b5d5ec43331fae59.tar.gz",
       "hash": "sha256-skM5Lf+QfqllrCQnzAAo43QS8IXlGYFCyn1y9L8wKqk="
     },
+    "nvidia-vaapi-driver": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "imperishableSecret",
+        "repo": "nvidia-vaapi-driver"
+      },
+      "branch": "fix/chrome-stream-format-switch",
+      "submodules": false,
+      "revision": "288a7ba79d47219ea6dea737ec8d684b53a8de36",
+      "url": "https://github.com/imperishableSecret/nvidia-vaapi-driver/archive/288a7ba79d47219ea6dea737ec8d684b53a8de36.tar.gz",
+      "hash": "sha256-wxgdf+Gln1Tv7S/EbVUNOpxJ4Z0Ew4VudBglX7d5XD8="
+    },
     "nvuv": {
       "type": "Git",
       "repository": {
