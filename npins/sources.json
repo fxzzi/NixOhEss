@@ -11,10 +11,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "2026-06-08",
-      "revision": "df673d738f71235a47c169ac3c9c5eb0e903e320",
-      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-08",
-      "hash": "sha256-QaFRPasy2QlJKy28FsDKKPD205AViZLXNSiYSMHCY2U="
+      "version": "2026-06-09",
+      "revision": "d7567396ff3834cb2a68f7024a18bbb995d7310c",
+      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-09",
+      "hash": "sha256-inLli2is0GUWOZlLTGA3E8dIzCnkWWYGhu7ebXiZAl0="
     },
     "agenix": {
       "type": "Git",
