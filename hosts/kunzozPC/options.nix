@@ -91,7 +91,6 @@
       };
       proton-ge = {
         enable = true;
-        ntsync = true;
       };
       mpv.enable = true;
       obs-studio.enable = true;

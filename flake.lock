@@ -264,11 +264,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1781118082,
-        "narHash": "sha256-GQFzX6qmMdHV/lXpA5iekkae8+GiHiK+YZT/WWBQeI8=",
+        "lastModified": 1781187728,
+        "narHash": "sha256-7zj2czAicMHPmpJVvibLTTDOsxZ5MjltwKlIOcViXDM=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "68e3e40491d3f87a388ddb11ea1966ed7c3e9612",
+        "rev": "6d6d1ca558d1cbc470183cd769670d3b1afbbb8b",
         "type": "github"
       },
       "original": {
@@ -530,16 +530,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1781169691,
-        "narHash": "sha256-uZf1LcBizmAH3UMzuch4cDfrjJ58kFp9MD+/k0Nc60I=",
+        "lastModified": 1780223676,
+        "narHash": "sha256-7x7KzH5p+VDBvvzpCjkRcVhNm6fIty7WYgI7sPq1SCw=",
         "owner": "manic-systems",
         "repo": "nixos-core",
-        "rev": "07d7b88686ccfdd60710a77d9b7138bdac850ac9",
+        "rev": "20b5f8916a3fde2f02bccd2e1f2795ab511aab5b",
         "type": "github"
       },
       "original": {
         "owner": "manic-systems",
         "repo": "nixos-core",
+        "rev": "20b5f8916a3fde2f02bccd2e1f2795ab511aab5b",
         "type": "github"
       }
     },
