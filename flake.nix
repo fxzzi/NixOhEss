@@ -42,7 +42,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-core = {
-      url = "github:manic-systems/nixos-core";
+      url = "github:manic-systems/nixos-core/20b5f8916a3fde2f02bccd2e1f2795ab511aab5b";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hjem = {
