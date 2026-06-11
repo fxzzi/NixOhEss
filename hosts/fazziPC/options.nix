@@ -78,7 +78,6 @@
       smoothScroll.enable = false;
       proton-ge = {
         enable = true;
-        ntsync = true;
         # nativeWayland = true;
       };
       mangohud = {

@@ -281,11 +281,18 @@ in {
           end
 
           -- apply behavior by tag
-          hl.window_rule({ match = { tag = "game" }, content = "game", idle_inhibit = "fullscreen", immediate = true})
+          hl.window_rule({
+            match = { tag = "game" },
+            content = "game",
+            idle_inhibit = "fullscreen",
+            -- uses a dynamic curve to tonemap only the top end out of bounds content
+            -- tonemap = "limited",
+            immediate = true
+          })
 
           -- confine cursor to the monitor when a game is in fullscreen.
           if ${boolToString multiMonitor} then
-            hl.window_rule({ match = { content = "game", fullscreen = true }, confine_pointer = true })
+            -- hl.window_rule({ match = {match, fullscreen = true}, confine_pointer = true;})
           end
 
           local function curves(items)
