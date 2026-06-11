@@ -33,6 +33,22 @@
         "type": "github"
       }
     },
+    "audient-evo-py": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775985029,
+        "narHash": "sha256-MGWfICbw57ymoBhgxhbh8TQYpOwEEtkypygnTyz2L0E=",
+        "owner": "vanzaho",
+        "repo": "audient-evo-py",
+        "rev": "d54c2c6eca7b219ff550218ab8b016c5da692ebc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vanzaho",
+        "repo": "audient-evo-py",
+        "type": "github"
+      }
+    },
     "azzipkgs": {
       "inputs": {
         "nixpkgs": [
@@ -40,11 +56,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781021268,
-        "narHash": "sha256-hjsdzklrdBusBRj3bH7KzVvQDQa2Cn+3sacFH4JonAQ=",
+        "lastModified": 1781178200,
+        "narHash": "sha256-MT7ZJj1x2aXS+07gtgPYernhadTQF5wLIvUaScX+nuw=",
         "owner": "fazzi",
         "repo": "azzipkgs",
-        "rev": "f71495bdbd37c91291643942d2fa490dc63b27ef",
+        "rev": "b700a13307546e74175fc8501fe53cf92e666646",
         "type": "gitlab"
       },
       "original": {
@@ -66,6 +82,27 @@
         "owner": "ipetkov",
         "repo": "crane",
         "type": "github"
+      }
+    },
+    "evoctl-nix": {
+      "inputs": {
+        "audient-evo-py": "audient-evo-py",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781178164,
+        "narHash": "sha256-7DBnyqw/fTrYBSmlLvbdzmCM6CP2cub4bh3bP1VYnyg=",
+        "owner": "fazzi",
+        "repo": "evoctl-nix",
+        "rev": "e76f9db4c5e0aad26950cb395734782fe3a65fdc",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "fazzi",
+        "repo": "evoctl-nix",
+        "type": "gitlab"
       }
     },
     "flake-compat": {
@@ -227,11 +264,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1780990983,
-        "narHash": "sha256-cRDQOzybhksNB1YFtXmP5aTkpC8HygnWGHJXsGA73Gw=",
+        "lastModified": 1781118082,
+        "narHash": "sha256-GQFzX6qmMdHV/lXpA5iekkae8+GiHiK+YZT/WWBQeI8=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "4aff8ba45156333e80b97579c88ba1c03d2f59c1",
+        "rev": "68e3e40491d3f87a388ddb11ea1966ed7c3e9612",
         "type": "github"
       },
       "original": {
@@ -493,11 +530,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780223676,
-        "narHash": "sha256-7x7KzH5p+VDBvvzpCjkRcVhNm6fIty7WYgI7sPq1SCw=",
+        "lastModified": 1781169691,
+        "narHash": "sha256-uZf1LcBizmAH3UMzuch4cDfrjJ58kFp9MD+/k0Nc60I=",
         "owner": "manic-systems",
         "repo": "nixos-core",
-        "rev": "20b5f8916a3fde2f02bccd2e1f2795ab511aab5b",
+        "rev": "07d7b88686ccfdd60710a77d9b7138bdac850ac9",
         "type": "github"
       },
       "original": {
@@ -508,11 +545,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1780981259,
-        "narHash": "sha256-GVdFp/OsVrwtvNe5f/o4PAv31sjxykYH3Kp2zIyJTeg=",
+        "lastModified": 1781160751,
+        "narHash": "sha256-dBIyf+gg33Fr1jdITRfENTALHUtMtLxBAyMqSq5ZGus=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "58f254b2fae09cec435a9480741ba3c749c4e1b6",
+        "rev": "e4ade1db48ff481708436f206a377be351a38974",
         "type": "github"
       },
       "original": {
@@ -576,6 +613,7 @@
       "inputs": {
         "azzipkgs": "azzipkgs",
         "crane": "crane",
+        "evoctl-nix": "evoctl-nix",
         "hjem": "hjem",
         "hyprland": "hyprland",
         "nixos-core": "nixos-core",
@@ -677,11 +715,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780370420,
-        "narHash": "sha256-ob61UAfEMYw9r5CCsnmhEKVtX5843h/MRiFquchOaPg=",
+        "lastModified": 1781169972,
+        "narHash": "sha256-gbgz/MSjLDEmh32NdAPIz9HVhImhY26MV2fMzjGeMeQ=",
         "owner": "NotAShelf",
         "repo": "watt",
-        "rev": "cd8a771c8fa85436c6343be4a1848a3f3e15caf8",
+        "rev": "8421fe19c067af912b1be046cfdab199d460eb7b",
         "type": "github"
       },
       "original": {

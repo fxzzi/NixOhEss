@@ -9,7 +9,7 @@
       packages = with pkgs; [
         deluge
         olympus
-        inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.losange
+        losange
         # (jetbrains.idea-oss.override {
         #   vmopts = "-Dawt.toolkit.name=WLToolkit";
         # })

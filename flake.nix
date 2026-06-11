@@ -81,5 +81,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.crane.follows = "crane";
     };
+    evoctl-nix = {
+      url = "gitlab:fazzi/evoctl-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

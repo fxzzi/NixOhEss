@@ -11,14 +11,13 @@
   otd = config.cfg.services.opentabletdriver.enable;
   envVars = [
     "OSU_SDL3=1"
-    # "PIPEWIRE_ALSA=\"{ alsa.format=S32_LE alsa.channels=2 alsa.buffer-bytes=768 alsa.period-bytes=128 }\""
   ];
   # osu!lazer needs to be up to date. fuf's nix-gaming repo
   # updates it faster and more regularly than nixpkgs.
   osu = callPackage "${pins.nix-gaming}/pkgs/osu-lazer-bin" {
     osu-mime = callPackage "${pins.nix-gaming}/pkgs/osu-mime" {};
-    # allows for really low latency. if audio is glitching, increase
-    pipewire_latency = "32/44100";
+    # lower audio latency
+    pipewire_latency = "256/44100";
     command_prefix = "env ${concatStringsSep " " envVars} ${optionalString config.cfg.programs.mangohud.enable "mangohud"}";
   };
 in {
