@@ -128,7 +128,7 @@
         enable = true;
         defaultMonitor = "DP-3";
         secondaryMonitor = null;
-        # useGit = true;
+        useGit = true;
         extraConfig = {
           render = {
             # sidestep all cm issues by just disabling it
