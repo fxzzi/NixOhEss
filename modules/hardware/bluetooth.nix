@@ -8,8 +8,8 @@
   cfg = config.cfg.hardware.bluetooth;
 in {
   options.cfg.hardware.bluetooth.enable = mkEnableOption "bluetooth";
-  config = mkIf cfg.enable {
-    hardware.bluetooth.enable = true;
-    environment.systemPackages = [pkgs.bluetuith];
+  config = {
+    hardware.bluetooth.enable = cfg.enable;
+    environment.systemPackages = mkIf cfg.enable [pkgs.bluetuith];
   };
 }

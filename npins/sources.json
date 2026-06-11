@@ -11,10 +11,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "2026-06-11",
-      "revision": "d7567396ff3834cb2a68f7024a18bbb995d7310c",
-      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-11",
-      "hash": "sha256-inLli2is0GUWOZlLTGA3E8dIzCnkWWYGhu7ebXiZAl0="
+      "version": "2026-06-13",
+      "revision": "02b56940cfaca548eebd0457a0e469f2a2ec8f0e",
+      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-13",
+      "hash": "sha256-+3DvnoLwVOL0uJD5nuhfyXnnc4dnXXZrf3q4SqZFZsY="
     },
     "agenix": {
       "type": "Git",
@@ -80,9 +80,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "7149d77f66536aaf02c845a9c2a08eb7e57a04c3",
-      "url": "https://github.com/fufexan/nix-gaming/archive/7149d77f66536aaf02c845a9c2a08eb7e57a04c3.tar.gz",
-      "hash": "sha256-KLhF1KXXGNFXQBLEZWoeMSbxHimMTYZfEilMs6azeY4="
+      "revision": "3b8dfefc46bcf4733720c9a6ec002dd23db7e354",
+      "url": "https://github.com/fufexan/nix-gaming/archive/3b8dfefc46bcf4733720c9a6ec002dd23db7e354.tar.gz",
+      "hash": "sha256-RkGCo46Ra029SCFB2wvd90Mvxltqx88bWZfUeFs2Eqc="
     },
     "nvidia-vaapi-driver": {
       "type": "Git",

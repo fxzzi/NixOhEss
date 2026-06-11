@@ -1,7 +1,7 @@
 {
   pkgs,
-  self,
   inputs,
+  self,
   ...
 }: {
   system.stateVersion = "25.05";

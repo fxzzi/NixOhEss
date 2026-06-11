@@ -84,7 +84,8 @@ in {
         DXVK_NVAPI_D3D12_NV_SHADER_EXTN = 1;
         # also enable descriptor heap
         VKD3D_CONFIG = "descriptor_heap";
-        DXVK_CONFIG = "dxvk.enableDescriptorHeap = True;";
+        # only really helps on dx12 for now
+        # DXVK_CONFIG = "dxvk.enableDescriptorHeap = True;";
       };
       etc = {
         "nvidia/nvidia-application-profiles-rc.d/50-vram-alloc-fixes.json".text = builtins.toJSON {
