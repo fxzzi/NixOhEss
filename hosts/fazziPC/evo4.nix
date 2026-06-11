@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   pkgs,
   lib,
   ...
@@ -16,11 +15,7 @@
   systemWide = config.services.pipewire.systemWide;
   extraEnv.ALSA_CONFIG_UCM2 = "${alsa-ucm-conf'}/share/alsa/ucm2";
 in {
-  imports = [
-    inputs.evoctl-nix.nixosModules.default
-  ];
   config = {
-    hardware.audient-evo.enable = true;
     environment.variables = {
       ALSA_CONFIG_UCM2 = "${alsa-ucm-conf'}/share/alsa/ucm2";
     };

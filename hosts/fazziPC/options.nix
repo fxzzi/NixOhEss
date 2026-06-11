@@ -17,8 +17,9 @@
       fonts.enable = true;
     };
     hardware = {
+      evoctl.enable = true;
       nvidia.enable = true;
-      bluetooth.enable = true;
+      # bluetooth.enable = true;
       # scanning.enable = true;
     };
     services = {

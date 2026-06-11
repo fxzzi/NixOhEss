@@ -29,17 +29,16 @@
             ];
           };
           "audio.rate" = 48000;
+          "audio.channels" = 1;
           "audio.position" = ["MONO"];
           "capture.props" = {
             "node.name" = "capture.rnnoise_source";
             "node.passive" = true;
             "audio.rate" = 48000;
-            "audio.channels" = 1;
           };
           "playback.props" = {
             "node.name" = "rnnoise_source";
             "media.class" = "Audio/Source";
-            "audio.channels" = 1;
           };
         };
       }
