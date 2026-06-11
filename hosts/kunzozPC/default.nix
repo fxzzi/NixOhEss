@@ -13,7 +13,7 @@
       sgdboop
       cemu
       # stremio-linux-shell
-      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.losange
+      losange
       (callPackage "${pins.creamlinux}" {})
     ];
   };

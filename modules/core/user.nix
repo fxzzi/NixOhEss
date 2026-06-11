@@ -41,8 +41,12 @@ in {
           nix-tree
         ];
         xdg = {
-          # apps love to leave crap in these dirs. delete them.
-          config.files."autostart".type = "delete";
+          config.files = {
+            # these don't even work
+            "autostart".type = "delete";
+            # don't allow chromium to set itself as the DEFAULT BROWSER LMAO
+            "mimeapps.list".text = "";
+          };
           data.files."applications".type = "delete";
         };
       };

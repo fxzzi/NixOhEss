@@ -16,25 +16,11 @@ in {
         support32Bit = true;
       };
       pulse.enable = true;
-      wireplumber.extraConfig = {
-        "99-disable-suspend-MAX97220"."monitor.alsa.rules" = [
-          {
-            # don't sleep dacs with the MAX97220 amp
-            matches = [{"node.name" = "~alsa_output.*MAX97220.*";}];
-            actions.update-props = {
-              "session.suspend-timeout-seconds" = 0;
-            };
-          }
-        ];
-      };
-      extraConfig.pipewire.adjust-allowed-rates = {
+      extraConfig.pipewire."10-adjust-allowed-rates" = {
         "context.properties" = {
-          # allow pw to select the best rate
           "default.clock.allowed-rates" = [
             96000
-            88200
             48000
-            44100
           ];
         };
       };

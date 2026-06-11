@@ -21,6 +21,7 @@
       nvtopPackages.nvidia
       yt-dlp
       eden
+      losange
       # stremio-linux-shell
       (retroarch.withCores (cores:
         with cores; [
@@ -31,9 +32,8 @@
           mupen64plus
         ]))
       self.packages.${pkgs.stdenv.hostPlatform.system}.transcode
-      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.losange
-      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2vorbis
-      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2opus
+      # inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2vorbis
+      # inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2opus
     ];
   };
 
