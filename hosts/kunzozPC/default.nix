@@ -1,7 +1,6 @@
 {
   pkgs,
   pins,
-  inputs,
   ...
 }: {
   system.stateVersion = "25.05";

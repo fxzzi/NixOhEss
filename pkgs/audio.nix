@@ -21,7 +21,7 @@ writeShellApplication {
       fi
 
     	dunstify -a "audio" -r "9997" -h int:value:"$volume" -i "$icon" "Volume" "''${volume}%"
-    	canberra-gtk-play -i audio-volume-change &
+    	pgrep -f canberra-gtk-play > /dev/null || canberra-gtk-play -i audio-volume-change &
     }
 
     # Function to handle sink notifications
