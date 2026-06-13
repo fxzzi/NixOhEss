@@ -25,14 +25,14 @@ in {
             general = {
               hide_cursor = true;
               ignore_empty_input = true;
-              immediate_render = land.extraConfig.animations.enabled;
+              immediate_render = land.extraHlConfig.animations.enabled;
             };
             bezier = [
               "easeOut, 0.61, 1, 0.88, 1"
               "easeIn, 0.12, 0, 0.39, 0"
             ];
             animations = {
-              inherit (land.extraConfig.animations) enabled;
+              inherit (land.extraHlConfig.animations) enabled;
 
               animation = [
                 "fadeIn, 1, 3, easeIn"

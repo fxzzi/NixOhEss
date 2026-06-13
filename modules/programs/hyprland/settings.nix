@@ -39,7 +39,7 @@ in {
     # use mapAttrsRecursive here to make every attr in the config
     # a low prio. this means we can override / add any attr below
     # without erroneous mkDefault's or mkForce's everywhere
-    cfg.programs.hyprland.extraConfig = mapAttrsRecursive (_: mkDefault) {
+    cfg.programs.hyprland.extraHlConfig = mapAttrsRecursive (_: mkDefault) {
       general = {
         # Outer monitor gaps
         gaps_out = 2;
@@ -131,18 +131,6 @@ in {
       };
     };
 
-    # icc files for fazziPC
-    age.secrets = mkIf (config.networking.hostName == "fazziPC") {
-      m27q = {
-        file = "${self}/secrets/mub-M27Q_v1.icm.age";
-        mode = "744";
-      };
-      mo27q28g = {
-        file = "${self}/secrets/tft-gigabyte_mo27q28g.icm.age";
-        mode = "744";
-      };
-    };
-
     hj.xdg.config.files."hypr/hyprland.lua" = {
       text =
         # lua
@@ -153,38 +141,6 @@ in {
             mode = "highres",
             position = "auto",
             scale = "1",
-          })
-
-          -- fazziPC main monitor
-          hl.monitor({
-            output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917",
-            mode = "highres",
-            bitdepth = 10,
-            cm = "srgb", -- use srgb calibrated mode on monitor instead
-            -- icc = "${config.age.secrets.mo27q28g.path or "/dev/null"}",
-            sdr_min_luminance = 0.005,
-            sdr_max_luminance = 203,
-          })
-
-          -- fazziPC secondary monitor
-          hl.monitor({
-            output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001",
-            mode = "highres",
-            supports_hdr = -1, -- hdr sucks on this monitor lol
-            supports_wide_color = -1, -- only supports at lower 120Hz
-            icc = "${config.age.secrets.m27q.path or "/dev/null"}",
-            position = "auto-center-left",
-            vrr = 1, -- this monitor doesn't flicker when using VRR at all
-          })
-
-          -- kunzozPC main monitor
-          hl.monitor({
-            output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543",
-            mode = "2560x1440@170",
-            -- bad hdr
-            supports_hdr = -1,
-            -- this monitor does support 10bit, but only at 120Hz and lower.
-            supports_wide_color = -1,
           })
 
           hl.on("hyprland.start", function()
@@ -207,9 +163,6 @@ in {
             hl.on("monitor.removed", set_primary)
             hl.on("config.reloaded", set_primary)
           end
-
-          -- apply the config block from nix
-          hl.config(${generators.toLua {} cfg.extraConfig})
 
           hl.layer_rule({ match = { namespace = "launcher" }, blur = true, ignore_alpha = 0 })
           hl.layer_rule({ match = { namespace = "wleave" }, blur = true, xray = true })
@@ -502,6 +455,11 @@ in {
             bind({ mainMod, "CTRL" }, hl.dsp.window.drag(), { mouse = true })
             bind({ mainMod, "ALT" }, hl.dsp.window.resize(), { mouse = true })
           end
+
+          -- apply the hl.config block from nix
+          hl.config(${generators.toLua {} cfg.extraHlConfig})
+          -- extra text config
+          ${cfg.extraConfig}
         '';
     };
   };

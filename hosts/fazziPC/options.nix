@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   cfg = {
     core = {
       username = "faaris";
@@ -136,6 +136,27 @@
         defaultMonitor = "DP-3";
         secondaryMonitor = "DP-2";
         useGit = true;
+        extraConfig = ''
+          hl.monitor({
+            output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917",
+            mode = "highres",
+            bitdepth = 10,
+            cm = "srgb", -- use srgb calibrated mode on monitor instead
+            -- icc = "${config.age.secrets.mo27q28g.path}",
+            sdr_min_luminance = 0.005,
+            sdr_max_luminance = 203,
+          })
+
+          hl.monitor({
+            output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001",
+            mode = "highres",
+            supports_hdr = -1, -- hdr sucks on this monitor lol
+            supports_wide_color = -1, -- only supports at lower 120Hz
+            icc = "${config.age.secrets.m27q.path}",
+            position = "auto-center-left",
+            vrr = 1, -- this monitor doesn't flicker when using VRR at all
+          })
+        '';
       };
       hyprlock.enable = true;
       wallust.enable = true;
