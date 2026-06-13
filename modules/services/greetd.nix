@@ -54,12 +54,20 @@ in {
         greeting = "Welcome to the fold of ${config.system.nixos.distroName}.";
         show_time = true;
         show_title = false;
+        battery = true;
       };
       layout = {
         window_padding = 1;
         widgets = {
           time_position = "top";
-          status_position = "hidden";
+          status_position = "bottom";
+          status_bar = {
+            show_reset = false;
+            show_command = false;
+            show_session = false;
+            show_session_status = false;
+            show_background = false;
+          };
         };
       };
       # silence cmd output also
