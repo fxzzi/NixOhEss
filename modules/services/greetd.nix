@@ -55,10 +55,6 @@ in {
         mode = "characters";
         characters = "*";
       };
-      remember = {
-        default_user = config.cfg.core.username;
-        username = true;
-      };
       power = {
         use_setsid = false;
         shutdown = "systemctl poweroff";
