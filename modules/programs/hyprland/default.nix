@@ -30,9 +30,14 @@ in {
         default = null;
         description = "Sets the secondary monitor for hypr*.";
       };
-      extraConfig = mkOption {
+      extraHlConfig = mkOption {
         type = types.attrsOf types.anything;
         description = "Extra configuration for hl.config";
+      };
+      extraConfig = mkOption {
+        type = types.str;
+        default = "";
+        description = "Extra lua configuration for Hyprland";
       };
     };
   };

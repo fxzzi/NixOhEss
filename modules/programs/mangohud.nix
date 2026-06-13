@@ -16,7 +16,7 @@
   # see: https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
   fpsLimit = let
     rr = cfg.refreshRate;
-    inherit (config.cfg.programs.hyprland.extraConfig.misc) vrr;
+    inherit (config.cfg.programs.hyprland.extraHlConfig.misc) vrr;
   in
     if vrr != 0
     then rr - (rr * rr / 4096)
