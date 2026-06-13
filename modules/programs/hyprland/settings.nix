@@ -187,10 +187,15 @@ in {
             supports_wide_color = -1,
           })
 
+          hl.on("hyprland.start", function()
+            hl.exec_cmd("systemctl --user start nixos-fake-graphical-session.target")
+          end)
+
           hl.on("hyprland.shutdown", function()
-            -- discord literally shits itself and coredumps if the graphical env
+            -- discord literally craps itself and coredumps if the graphical env
             -- is shut down whilst it's still open. kill it to avoid the coredump.
             hl.exec_cmd("pkill -9 Discord")
+            hl.exec_cmd("systemctl --user stop nixos-fake-graphical-session.target")
           end)
 
           -- set primary monitor in both monitor events to be safe
