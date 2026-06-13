@@ -127,7 +127,7 @@
         enable = true;
         defaultMonitor = "DP-3";
         secondaryMonitor = null;
-        useGit = true;
+        # useGit = true;
         extraConfig = ''
           hl.monitor({
             output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543",
