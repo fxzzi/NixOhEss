@@ -16,11 +16,9 @@
       (callPackage "${pins.creamlinux}" {})
     ];
   };
-  hardware.display = {
-    outputs = {
-      "DP-3".mode = "2560x1440@170";
-    };
-  };
+
+  hardware.display.outputs."DP-3".mode = "2560x1440@170";
+
   networking.firewall = {
     # minecraft
     allowedUDPPorts = [25565];
