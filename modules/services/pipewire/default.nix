@@ -42,7 +42,9 @@ in {
                 {"node.description" = "~EVO4 Loopback.*";}
                 {"node.description" = "EVO4 Mic 2 / Line 2";}
               ];
-              actions.update-props."node.disabled" = true;
+              actions.update-props = {
+                "node.disabled" = true;
+              };
             }
           ];
         };
@@ -51,6 +53,7 @@ in {
     hj.packages = with pkgs; [
       qpwgraph
       pwvucontrol
+      alsa-utils
     ];
     # If we're using sched-ext, we shouldn't use rt in any way.
     # see: https://github.com/sched-ext/scx/issues/2496
