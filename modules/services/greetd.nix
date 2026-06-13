@@ -8,36 +8,16 @@
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.greetd;
   tuigreet = inputs.tuigreet.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  hyprland-session = pkgs.writeShellApplication {
-    name = "hyprland-session";
-    runtimeInputs = [
-      config.programs.hyprland.package
-      config.services.dbus.dbusPackage
-    ];
-    text = ''
-      # Make sure there's no already running session.
-      if systemctl --user -q is-active hyprland.service; then
-        echo 'A Hyprland session is already running.'
-        exit 1
-      fi
-
-      # Reset failed state of all user units.
-      systemctl --user reset-failed
-
-      # DBus activation environment is independent from systemd. While most of
-      # dbus-activated services are already using `SystemdService` directive, some
-      # still don't and thus we should set the dbus environment with a separate
-      # command.
-      dbus-update-activation-environment --all --systemd
-
-      # Start Hyprland and wait for it to terminate.
-      # `|| true` here because Hyprland may crash and we want the script to continue.
-      systemctl --user --wait start hyprland.service || true
-
-      # Force stop of graphical-session.target.
-      systemctl --user start --job-mode=replace-irreversibly hyprland-shutdown.target
+  hyprland-session =
+    pkgs.writers.writeDashBin "hyprland-session"
+    # sh
+    ''
+      # launch hyprland without any stdout
+      Hyprland >/dev/null 2>&1
+      # we run this in hyprland on shutdown too, but if Hyprland
+      # crashes it isn't able to. run it again here to be safe.
+      systemctl --user stop nixos-fake-graphical-session.target
     '';
-  };
 in {
   options.cfg.services.greetd.enable = mkEnableOption "greetd";
   config = mkIf cfg.enable {
@@ -70,7 +50,6 @@ in {
           };
         };
       };
-      # silence cmd output also
       session.command = getExe hyprland-session;
       secret = {
         mode = "characters";
