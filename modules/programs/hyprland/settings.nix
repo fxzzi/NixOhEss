@@ -184,12 +184,6 @@ in {
           hl.window_rule({ match = { class = "foot" }, idle_inhibit = "fullscreen", no_vrr = true })
           hl.window_rule({ match = { class = "org.gnome.Loupe" }, no_vrr = true })
 
-          -- no_auto_hdr only available on hyprland-git for now
-          ${optionalString cfg.useGit ''
-            -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
-            hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
-          ''}
-
           -- ignore maximize requests from apps. You'll probably like this.
           hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 
@@ -243,8 +237,6 @@ in {
             match = { tag = "game" },
             content = "game",
             idle_inhibit = "fullscreen",
-            -- uses a dynamic curve to tonemap only the top end out of bounds content
-            -- tonemap = "limited",
             immediate = true
           })
 
@@ -455,6 +447,12 @@ in {
             bind({ mainMod, "CTRL" }, hl.dsp.window.drag(), { mouse = true })
             bind({ mainMod, "ALT" }, hl.dsp.window.resize(), { mouse = true })
           end
+
+          -- git only stuff here :P
+          ${optionalString cfg.useGit ''
+            -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
+            hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
+          ''}
 
           -- apply the hl.config block from nix
           hl.config(${generators.toLua {} cfg.extraHlConfig})
