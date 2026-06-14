@@ -152,6 +152,9 @@ in {
             -- is shut down whilst it's still open. kill it to avoid the coredump.
             hl.exec_cmd("pkill -9 Discord")
             hl.exec_cmd("systemctl --user stop nixos-fake-graphical-session.target")
+            -- allow a small buffer for stuff to close
+            -- exec_cmd runs async, so to delay shutdown we need os.execute()
+            os.execute("sleep 1")
           end)
 
           -- set primary monitor in both monitor events to be safe
@@ -230,6 +233,7 @@ in {
             { class = "love", title = "Freesync test" },
           }) do
             hl.window_rule({ match = match, tag = "+game", fullscreen = true })
+            hl.window_rule({ match = match, tag = "+confine" })
           end
 
           -- apply behavior by tag
@@ -242,7 +246,7 @@ in {
 
           -- confine cursor to the monitor when a game is in fullscreen.
           if ${boolToString multiMonitor} then
-            -- hl.window_rule({ match = {match, fullscreen = true}, confine_pointer = true;})
+            hl.window_rule({ match = {tag = "+confine", fullscreen = true}, confine_pointer = true;})
           end
 
           local function curves(items)
