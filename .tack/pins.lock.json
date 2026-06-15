@@ -1,194 +1,194 @@
 {
   "agenix": {
-    "lastModified": 1770165109,
-    "narHash": "sha256-9VnK6Oqai65puVJ4WYtCTvlJeXxMzAp/69HhQuTdl/I=",
+    "type": "github",
     "owner": "ryantm",
     "repo": "agenix",
     "rev": "b027ee29d959fda4b60b57566d64c98a202e0feb",
-    "type": "github"
+    "narHash": "sha256-9VnK6Oqai65puVJ4WYtCTvlJeXxMzAp/69HhQuTdl/I=",
+    "lastModified": 1770165109
   },
   "azzipkgs": {
-    "lastModified": 1781340105,
-    "narHash": "sha256-FrmPZ6zfXrHTDDSNkCAJMC3MXfS6S5/WKIOs+RxFYxo=",
-    "ref": "refs/heads/main",
-    "rev": "f8b340c4b8bef1f2b5b42dfd6089974816a7d10c",
     "type": "git",
-    "url": "https://gitlab.com/fazzi/azzipkgs.git"
+    "url": "https://gitlab.com/fazzi/azzipkgs.git",
+    "ref": "HEAD",
+    "rev": "3e0b30d652909eac84be0b2c452c679e338c321b",
+    "narHash": "sha256-CshENnrFzQ1uQINQrlIzMBX5tEN4cl0J3xD5fFMtvwk=",
+    "lastModified": 1781555436
   },
   "crane": {
-    "lastModified": 1780532242,
-    "narHash": "sha256-D+BsdpxmtUwtqGoY0IXPhHgTlmqgcZKCEo1oMyn7ep0=",
+    "type": "github",
     "owner": "ipetkov",
     "repo": "crane",
     "rev": "59a82a1222dd3b2080b5cc52a1a2e8d5f1b77f37",
-    "type": "github"
+    "narHash": "sha256-D+BsdpxmtUwtqGoY0IXPhHgTlmqgcZKCEo1oMyn7ep0=",
+    "lastModified": 1780532242
   },
   "creamlinux": {
-    "lastModified": 1744901658,
-    "narHash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
+    "type": "github",
     "owner": "fxzzi",
     "repo": "creamlinux-installer",
     "rev": "17ad517a459f1a41a40bef2642ee952859147ab5",
-    "type": "github"
+    "narHash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
+    "lastModified": 1744901658
   },
   "equicord": {
-    "lastModified": 1781182167,
-    "narHash": "sha256-+3DvnoLwVOL0uJD5nuhfyXnnc4dnXXZrf3q4SqZFZsY=",
+    "type": "github",
     "owner": "Equicord",
     "repo": "Equicord",
     "rev": "02b56940cfaca548eebd0457a0e469f2a2ec8f0e",
-    "type": "github"
+    "narHash": "sha256-+3DvnoLwVOL0uJD5nuhfyXnnc4dnXXZrf3q4SqZFZsY=",
+    "lastModified": 1781182167
   },
   "evoctl-nix": {
-    "lastModified": 1781521610,
-    "narHash": "sha256-+v479izuxPyWRPaafQXENU+m7jQ/jwBDKvTk555O99o=",
+    "type": "git",
+    "url": "https://gitlab.com/fazzi/evoctl-nix.git",
     "ref": "refs/heads/main",
     "rev": "71bc1a9a9c6f8b723ace90c8c9e51ee7e3bd2c2a",
-    "type": "git",
-    "url": "https://gitlab.com/fazzi/evoctl-nix.git"
+    "narHash": "sha256-+v479izuxPyWRPaafQXENU+m7jQ/jwBDKvTk555O99o=",
+    "lastModified": 1781521610
   },
   "hjem": {
-    "lastModified": 1781430841,
-    "narHash": "sha256-5uEX8TEZ5kI+bnil/T2jtRlxiADcyeD9mX8gOwQIEVs=",
+    "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
     "rev": "89d0beea9068903aeb9998f52b741c69d4e32aa1",
-    "type": "github"
+    "narHash": "sha256-5uEX8TEZ5kI+bnil/T2jtRlxiADcyeD9mX8gOwQIEVs=",
+    "lastModified": 1781430841
   },
   "hyprland": {
-    "lastModified": 1781462409,
-    "narHash": "sha256-YJ7lWxGXD789bZFzOhwYk8bcwaiYgyq68OWs/HUuzjA=",
+    "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
     "rev": "e5c721f29ae035881aef1620b2d714da97067883",
-    "type": "github"
+    "narHash": "sha256-YJ7lWxGXD789bZFzOhwYk8bcwaiYgyq68OWs/HUuzjA=",
+    "lastModified": 1781462409
   },
   "low_latency_layer": {
-    "lastModified": 1779601987,
-    "narHash": "sha256-mnGAH0m19wOkWEowpcPRHXQSc6HGYW+CFYxjPF2onk4=",
+    "type": "github",
     "owner": "Korthos-Software",
     "repo": "low_latency_layer",
     "rev": "4e7fe12b797d89be07919acf3d2df5cda3f4d89f",
-    "type": "github"
+    "narHash": "sha256-mnGAH0m19wOkWEowpcPRHXQSc6HGYW+CFYxjPF2onk4=",
+    "lastModified": 1779601987
   },
   "niqspkgs": {
-    "lastModified": 1770459190,
-    "narHash": "sha256-WQLwbfnl1NsSUpF08KmGgY0TgX93qXbBc2H4Fxqp7zM=",
+    "type": "github",
     "owner": "diniamo",
     "repo": "niqspkgs",
     "rev": "d3ecf69607638ff323ea735d71cca826d4e70098",
-    "type": "github"
+    "narHash": "sha256-WQLwbfnl1NsSUpF08KmGgY0TgX93qXbBc2H4Fxqp7zM=",
+    "lastModified": 1770459190
   },
   "nix-gaming": {
-    "lastModified": 1781499552,
-    "narHash": "sha256-Ao5OpNE9IiJKFsVvKshKJWU1fILlqKfCyGl0JL/4Ilk=",
+    "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
     "rev": "c1b1b002a0ebb06c82a0033e752c43e4903de2f4",
-    "type": "github"
+    "narHash": "sha256-Ao5OpNE9IiJKFsVvKshKJWU1fILlqKfCyGl0JL/4Ilk=",
+    "lastModified": 1781499552
   },
   "nixos-core": {
-    "lastModified": 1780223676,
-    "narHash": "sha256-7x7KzH5p+VDBvvzpCjkRcVhNm6fIty7WYgI7sPq1SCw=",
+    "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
     "rev": "20b5f8916a3fde2f02bccd2e1f2795ab511aab5b",
-    "type": "github"
+    "narHash": "sha256-7x7KzH5p+VDBvvzpCjkRcVhNm6fIty7WYgI7sPq1SCw=",
+    "lastModified": 1780223676
   },
   "nixpkgs": {
-    "lastModified": 1781481343,
-    "narHash": "sha256-nkmQPMnFcPRxqxMCDZpJOtRC8DfEAXULLSaioC+++qg=",
+    "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
     "rev": "0e3fea1fa82dcc6c0de9ca89697d89a1ec1992d2",
-    "type": "github"
+    "narHash": "sha256-nkmQPMnFcPRxqxMCDZpJOtRC8DfEAXULLSaioC+++qg=",
+    "lastModified": 1781481343
   },
   "nvf": {
-    "lastModified": 1781534482,
-    "narHash": "sha256-d3UIqXuigQhsc7amQkZ7F+SWnaJFAxIROE2f2X+pzUs=",
+    "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
     "rev": "63d8fc82d652c23419a837e2b2934dd4bead04f3",
-    "type": "github"
+    "narHash": "sha256-d3UIqXuigQhsc7amQkZ7F+SWnaJFAxIROE2f2X+pzUs=",
+    "lastModified": 1781534482
   },
   "nvidia-vaapi-driver": {
-    "lastModified": 1777746192,
-    "narHash": "sha256-wxgdf+Gln1Tv7S/EbVUNOpxJ4Z0Ew4VudBglX7d5XD8=",
+    "type": "github",
     "owner": "imperishableSecret",
     "repo": "nvidia-vaapi-driver",
     "rev": "288a7ba79d47219ea6dea737ec8d684b53a8de36",
-    "type": "github"
+    "narHash": "sha256-wxgdf+Gln1Tv7S/EbVUNOpxJ4Z0Ew4VudBglX7d5XD8=",
+    "lastModified": 1777746192
   },
   "nvuv": {
-    "lastModified": 1775345734,
-    "narHash": "sha256-gATwh7Ew8zi8EMbSpyzRHoxAWh11I5E9t6+31CuPq3c=",
+    "type": "git",
+    "url": "https://gitlab.com/fazzi/nvuv.git",
     "ref": "refs/heads/main",
     "rev": "32fe6e7773c9cb0d136b1056afb70d4c60264a12",
-    "type": "git",
-    "url": "https://gitlab.com/fazzi/nvuv.git"
+    "narHash": "sha256-gATwh7Ew8zi8EMbSpyzRHoxAWh11I5E9t6+31CuPq3c=",
+    "lastModified": 1775345734
   },
   "rags": {
-    "lastModified": 1779277625,
-    "narHash": "sha256-DYc2V2GfoaHAkwejoCVmMgd1GnMsuzOvXK1TZflUCO4=",
+    "type": "github",
     "owner": "NotAShelf",
     "repo": "rags",
     "rev": "2cbb492c1d84138e74856c87c634d75fde024c32",
-    "type": "github"
+    "narHash": "sha256-DYc2V2GfoaHAkwejoCVmMgd1GnMsuzOvXK1TZflUCO4=",
+    "lastModified": 1779277625
   },
   "startpage": {
-    "lastModified": 1765317058,
-    "narHash": "sha256-gqNLZg6W5Z2Svu3ri/MxUS95DLNQXBKka6B883xXklo=",
+    "type": "git",
+    "url": "https://gitlab.com/fazzi/startpage.git",
     "ref": "refs/heads/main",
     "rev": "31c681720da00c313c41b816ba8fc4ffe96f4f16",
-    "type": "git",
-    "url": "https://gitlab.com/fazzi/startpage.git"
+    "narHash": "sha256-gqNLZg6W5Z2Svu3ri/MxUS95DLNQXBKka6B883xXklo=",
+    "lastModified": 1765317058
   },
   "stash": {
-    "lastModified": 1780680185,
-    "narHash": "sha256-+1uQWB/Lo1EDMTQGap246klRWCnESkkzl+uS3FJOrsQ=",
+    "type": "github",
     "owner": "NotAShelf",
     "repo": "stash",
     "rev": "2f5cf1dd2ec964e545ad5795d69f27941d9eedfe",
-    "type": "github"
+    "narHash": "sha256-+1uQWB/Lo1EDMTQGap246klRWCnESkkzl+uS3FJOrsQ=",
+    "lastModified": 1780680185
   },
   "systems": {
-    "lastModified": 1680978846,
-    "narHash": "sha256-Gtqg8b/v49BFDpDetjclCYXm8mAnTrUzR0JnE2nv5aw=",
+    "type": "github",
     "owner": "nix-systems",
     "repo": "x86_64-linux",
     "rev": "2ecfcac5e15790ba6ce360ceccddb15ad16d08a8",
-    "type": "github"
+    "narHash": "sha256-Gtqg8b/v49BFDpDetjclCYXm8mAnTrUzR0JnE2nv5aw=",
+    "lastModified": 1680978846
   },
   "tack": {
-    "lastModified": 1781408015,
-    "narHash": "sha256-nP2++i14l0TNH1lp6LrUM3uXYjoTmOqQKXqwZcG6lUQ=",
+    "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
     "rev": "7d1f4757516a0425dbe7088b78366f88ccd1428b",
-    "type": "github"
+    "narHash": "sha256-nP2++i14l0TNH1lp6LrUM3uXYjoTmOqQKXqwZcG6lUQ=",
+    "lastModified": 1781408015
   },
   "tuigreet": {
-    "lastModified": 1781431755,
-    "narHash": "sha256-4DB4Pl2UwIeab/MJaX3VfVNMsPWE6Q513z1NDdxvG3o=",
+    "type": "github",
     "owner": "NotAShelf",
     "repo": "tuigreet",
     "rev": "6fb15fffb794c6bd357164347d8b6d9e0aa92bbc",
-    "type": "github"
+    "narHash": "sha256-4DB4Pl2UwIeab/MJaX3VfVNMsPWE6Q513z1NDdxvG3o=",
+    "lastModified": 1781431755
   },
   "walls": {
-    "lastModified": 1777658201,
-    "narHash": "sha256-Kqal0R2koaR8qlL4z0ls9eNfwDec02QRK6nwGHYYNaI=",
+    "type": "git",
+    "url": "https://gitlab.com/fazzi/walls.git",
     "ref": "refs/heads/main",
     "rev": "679d1abecdc4db684abe19caa3d4b999c4dd94f7",
-    "type": "git",
-    "url": "https://gitlab.com/fazzi/walls.git"
+    "narHash": "sha256-Kqal0R2koaR8qlL4z0ls9eNfwDec02QRK6nwGHYYNaI=",
+    "lastModified": 1777658201
   },
   "watt": {
-    "lastModified": 1781511233,
-    "narHash": "sha256-3TZP9+yY5oRUYraxYOvbluaHr1/gqgXrLMmXtIINMik=",
+    "type": "github",
     "owner": "NotAShelf",
     "repo": "watt",
     "rev": "396b3034f3f7a7cba3fe84831f16cbc153f519b3",
-    "type": "github"
+    "narHash": "sha256-3TZP9+yY5oRUYraxYOvbluaHr1/gqgXrLMmXtIINMik=",
+    "lastModified": 1781511233
   }
 }
