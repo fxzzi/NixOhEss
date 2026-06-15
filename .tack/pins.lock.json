@@ -31,14 +31,6 @@
     "narHash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
     "lastModified": 1744901658
   },
-  "equicord": {
-    "type": "github",
-    "owner": "Equicord",
-    "repo": "Equicord",
-    "rev": "02b56940cfaca548eebd0457a0e469f2a2ec8f0e",
-    "narHash": "sha256-+3DvnoLwVOL0uJD5nuhfyXnnc4dnXXZrf3q4SqZFZsY=",
-    "lastModified": 1781182167
-  },
   "evoctl-nix": {
     "type": "git",
     "url": "https://gitlab.com/fazzi/evoctl-nix.git",
@@ -59,17 +51,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "e5c721f29ae035881aef1620b2d714da97067883",
-    "narHash": "sha256-YJ7lWxGXD789bZFzOhwYk8bcwaiYgyq68OWs/HUuzjA=",
-    "lastModified": 1781462409
-  },
-  "low_latency_layer": {
-    "type": "github",
-    "owner": "Korthos-Software",
-    "repo": "low_latency_layer",
-    "rev": "4e7fe12b797d89be07919acf3d2df5cda3f4d89f",
-    "narHash": "sha256-mnGAH0m19wOkWEowpcPRHXQSc6HGYW+CFYxjPF2onk4=",
-    "lastModified": 1779601987
+    "rev": "88262e1f860adc56f528ef68b2909ee33a27186b",
+    "narHash": "sha256-6cHkPGrQmd8RI/YdEgHmY3ebnPHHq07DxOxST70jYhI=",
+    "lastModified": 1781551294
   },
   "niqspkgs": {
     "type": "github",
@@ -110,14 +94,6 @@
     "rev": "63d8fc82d652c23419a837e2b2934dd4bead04f3",
     "narHash": "sha256-d3UIqXuigQhsc7amQkZ7F+SWnaJFAxIROE2f2X+pzUs=",
     "lastModified": 1781534482
-  },
-  "nvidia-vaapi-driver": {
-    "type": "github",
-    "owner": "imperishableSecret",
-    "repo": "nvidia-vaapi-driver",
-    "rev": "288a7ba79d47219ea6dea737ec8d684b53a8de36",
-    "narHash": "sha256-wxgdf+Gln1Tv7S/EbVUNOpxJ4Z0Ew4VudBglX7d5XD8=",
-    "lastModified": 1777746192
   },
   "nvuv": {
     "type": "git",
