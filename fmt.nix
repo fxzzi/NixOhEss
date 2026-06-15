@@ -6,7 +6,7 @@
   fd,
 }: let
   exclusionList = [
-    "**/npins/*"
+    "**/.tack/*"
   ];
   excludeArgs = builtins.concatStringsSep " " (map (pattern: "--exclude '${pattern}'") exclusionList);
 in

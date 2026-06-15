@@ -1,8 +1,8 @@
 {
   self,
   inputs,
-  pins,
   lib,
+  npinsSources,
 }: let
   inherit (lib) attrNames flatten genAttrs nixosSystem filterAttrs;
   inherit (builtins) readDir;
@@ -13,7 +13,7 @@
   mkSystem = hostName:
     nixosSystem {
       specialArgs = {
-        inherit self inputs hostName pins;
+        inherit self inputs hostName npinsSources;
       };
       modules = flatten [
         (self.lib.listRecursive ../modules) # all modules

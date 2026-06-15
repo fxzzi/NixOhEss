@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   self,
   ...
 }: {
@@ -61,9 +60,9 @@
   fonts.fontconfig.subpixel.rgba = "none";
 
   hardware.audient-evo.config = {
-    monitor = 65;
+    monitor = 55;
     input1 = {
-      gain = 45;
+      gain = 40;
       phantom = true;
     };
   };
