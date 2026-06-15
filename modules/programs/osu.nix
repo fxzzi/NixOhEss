@@ -2,11 +2,10 @@
   lib,
   config,
   pkgs,
-  pins,
+  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf concatStringsSep optionalString;
-  inherit (pkgs) callPackage;
   cfg = config.cfg.programs.osu;
   otd = config.cfg.services.opentabletdriver.enable;
   envVars = [
@@ -15,8 +14,7 @@
   ];
   # osu!lazer needs to be up to date. fuf's nix-gaming repo
   # updates it faster and more regularly than nixpkgs.
-  osu = callPackage "${pins.nix-gaming}/pkgs/osu-lazer-bin" {
-    osu-mime = callPackage "${pins.nix-gaming}/pkgs/osu-mime" {};
+  osu = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
     # lower audio latency
     pipewire_latency = "32/44100";
     command_prefix = "env ${concatStringsSep " " envVars} ${optionalString config.cfg.programs.mangohud.enable "mangohud"}";

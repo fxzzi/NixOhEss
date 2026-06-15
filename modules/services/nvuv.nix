@@ -2,13 +2,13 @@
   config,
   pkgs,
   lib,
-  pins,
+  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf getExe;
   inherit (builtins) toString;
   cfg = config.cfg.services.nvuv;
-  nvuv = pkgs.callPackage "${pins.nvuv}" {};
+  inherit (inputs.nvuv.packages.${pkgs.stdenv.hostPlatform.system}) nvuv;
 in {
   options.cfg = {
     services = {

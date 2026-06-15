@@ -16,32 +16,6 @@
       "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-15",
       "hash": "sha256-+3DvnoLwVOL0uJD5nuhfyXnnc4dnXXZrf3q4SqZFZsY="
     },
-    "agenix": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "ryantm",
-        "repo": "agenix"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "b027ee29d959fda4b60b57566d64c98a202e0feb",
-      "url": "https://github.com/ryantm/agenix/archive/b027ee29d959fda4b60b57566d64c98a202e0feb.tar.gz",
-      "hash": "sha256-9VnK6Oqai65puVJ4WYtCTvlJeXxMzAp/69HhQuTdl/I="
-    },
-    "creamlinux": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "fxzzi",
-        "repo": "creamlinux-installer"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "17ad517a459f1a41a40bef2642ee952859147ab5",
-      "url": "https://github.com/fxzzi/creamlinux-installer/archive/17ad517a459f1a41a40bef2642ee952859147ab5.tar.gz",
-      "hash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4="
-    },
     "low_latency_layer": {
       "type": "GitRelease",
       "repository": {
@@ -58,32 +32,6 @@
       "url": "https://api.github.com/repos/Korthos-Software/low_latency_layer/tarball/refs/tags/v0.2.0",
       "hash": "sha256-mnGAH0m19wOkWEowpcPRHXQSc6HGYW+CFYxjPF2onk4="
     },
-    "niqspkgs": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "diniamo",
-        "repo": "niqspkgs"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "d3ecf69607638ff323ea735d71cca826d4e70098",
-      "url": "https://github.com/diniamo/niqspkgs/archive/d3ecf69607638ff323ea735d71cca826d4e70098.tar.gz",
-      "hash": "sha256-WQLwbfnl1NsSUpF08KmGgY0TgX93qXbBc2H4Fxqp7zM="
-    },
-    "nix-gaming": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "fufexan",
-        "repo": "nix-gaming"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "c1b1b002a0ebb06c82a0033e752c43e4903de2f4",
-      "url": "https://github.com/fufexan/nix-gaming/archive/c1b1b002a0ebb06c82a0033e752c43e4903de2f4.tar.gz",
-      "hash": "sha256-Ao5OpNE9IiJKFsVvKshKJWU1fILlqKfCyGl0JL/4Ilk="
-    },
     "nvidia-vaapi-driver": {
       "type": "Git",
       "repository": {
@@ -96,58 +44,6 @@
       "revision": "288a7ba79d47219ea6dea737ec8d684b53a8de36",
       "url": "https://github.com/imperishableSecret/nvidia-vaapi-driver/archive/288a7ba79d47219ea6dea737ec8d684b53a8de36.tar.gz",
       "hash": "sha256-wxgdf+Gln1Tv7S/EbVUNOpxJ4Z0Ew4VudBglX7d5XD8="
-    },
-    "nvuv": {
-      "type": "Git",
-      "repository": {
-        "type": "GitLab",
-        "repo_path": "fazzi/nvuv",
-        "server": "https://gitlab.com/"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "32fe6e7773c9cb0d136b1056afb70d4c60264a12",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fnvuv/repository/archive.tar.gz?sha=32fe6e7773c9cb0d136b1056afb70d4c60264a12",
-      "hash": "sha256-gATwh7Ew8zi8EMbSpyzRHoxAWh11I5E9t6+31CuPq3c="
-    },
-    "rags": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "NotAShelf",
-        "repo": "rags"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "2cbb492c1d84138e74856c87c634d75fde024c32",
-      "url": "https://github.com/NotAShelf/rags/archive/2cbb492c1d84138e74856c87c634d75fde024c32.tar.gz",
-      "hash": "sha256-DYc2V2GfoaHAkwejoCVmMgd1GnMsuzOvXK1TZflUCO4="
-    },
-    "startpage": {
-      "type": "Git",
-      "repository": {
-        "type": "GitLab",
-        "repo_path": "fazzi/startpage",
-        "server": "https://gitlab.com/"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "31c681720da00c313c41b816ba8fc4ffe96f4f16",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fstartpage/repository/archive.tar.gz?sha=31c681720da00c313c41b816ba8fc4ffe96f4f16",
-      "hash": "sha256-gqNLZg6W5Z2Svu3ri/MxUS95DLNQXBKka6B883xXklo="
-    },
-    "walls": {
-      "type": "Git",
-      "repository": {
-        "type": "GitLab",
-        "repo_path": "fazzi/walls",
-        "server": "https://gitlab.com/"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "679d1abecdc4db684abe19caa3d4b999c4dd94f7",
-      "url": "https://gitlab.com/api/v4/projects/fazzi%2Fwalls/repository/archive.tar.gz?sha=679d1abecdc4db684abe19caa3d4b999c4dd94f7",
-      "hash": "sha256-Kqal0R2koaR8qlL4z0ls9eNfwDec02QRK6nwGHYYNaI="
     }
   },
   "version": 8

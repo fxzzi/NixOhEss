@@ -1,20 +1,9 @@
-{
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: let
-  inherit (lib) mapAttrsToList;
-  inherit (builtins) mapAttrs;
-  nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
-in {
+{pkgs, ...}: {
   config = {
     nix = {
       package = pkgs.nixVersions.latest;
       # Disable channels and add the inputs to the registry
       channel.enable = false;
-      registry = mapAttrs (_: flake: {inherit flake;}) inputs;
-      inherit nixPath;
       settings = {
         experimental-features = [
           "nix-command"
@@ -28,8 +17,6 @@ in {
         download-buffer-size = 500 * 1024 * 1024; # 500MiB. avoids warnings with full buffer
         allowed-users = ["@wheel"];
         trusted-users = ["@wheel"];
-        # Disable channels and add the inputs to the registry
-        nix-path = nixPath;
         flake-registry = "";
         extra-substituters = [
           "https://nix-community.cachix.org"

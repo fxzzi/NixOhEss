@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  pins,
+  npinsSources,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf concatStringsSep;
@@ -139,7 +139,7 @@ in {
           # so we need to keep it as up to date as possible outside of
           # nixpkgs.
           equicord = let
-            inherit (pins.Equicord) version hash;
+            inherit (npinsSources.Equicord) version hash;
             inherit (pkgs) fetchFromGitHub equicord;
           in
             equicord.overrideAttrs {

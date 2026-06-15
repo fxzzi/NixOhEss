@@ -1,6 +1,6 @@
 {
   pkgs,
-  pins,
+  inputs,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -13,7 +13,7 @@
       cemu
       # stremio-linux-shell
       losange
-      (callPackage "${pins.creamlinux}" {})
+      inputs.creamlinux.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
 

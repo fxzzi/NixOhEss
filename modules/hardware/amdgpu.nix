@@ -2,7 +2,8 @@
   lib,
   config,
   pkgs,
-  pins,
+  inputs,
+  npinsSources,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -36,8 +37,8 @@ in {
         MESA_SHADER_CACHE_MAX_SIZE = "12G";
       };
       systemPackages = [
-        (pkgs.callPackage "${pins.nix-gaming}/pkgs/low-latency-layer" {
-          inherit pins;
+        (inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.low-latency-layer.override {
+          pins = npinsSources;
         })
       ];
     };

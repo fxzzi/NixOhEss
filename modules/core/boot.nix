@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  pins,
   inputs,
   ...
 }: let
@@ -103,17 +102,17 @@ in {
           style = {
             wallpaperStyle = "centered";
             wallpapers = [
-              "${pins.walls}/images/fuji.jpg"
-              "${pins.walls}/images/cherry-blossom.jpg"
-              "${pins.walls}/images/clouds.jpg"
-              "${pins.walls}/images/austria_landscape.jpg"
-              "${pins.walls}/images/pink_flowers.jpg"
-              "${pins.walls}/images/wallhaven-9oxkwk_3840x2160.jpg"
-              "${pins.walls}/images/wallhaven-28v3mm_3840x2160.jpg"
-              "${pins.walls}/images/wallhaven-rqy1mm.jpg"
-              "${pins.walls}/images/wallhaven-og39mm.jpg"
-              "${pins.walls}/images/wallhaven-21dlrg.jpg"
-              "${pins.walls}/images/norway-lofoten-island.jpg"
+              "${inputs.walls}/images/fuji.jpg"
+              "${inputs.walls}/images/cherry-blossom.jpg"
+              "${inputs.walls}/images/clouds.jpg"
+              "${inputs.walls}/images/austria_landscape.jpg"
+              "${inputs.walls}/images/pink_flowers.jpg"
+              "${inputs.walls}/images/wallhaven-9oxkwk_3840x2160.jpg"
+              "${inputs.walls}/images/wallhaven-28v3mm_3840x2160.jpg"
+              "${inputs.walls}/images/wallhaven-rqy1mm.jpg"
+              "${inputs.walls}/images/wallhaven-og39mm.jpg"
+              "${inputs.walls}/images/wallhaven-21dlrg.jpg"
+              "${inputs.walls}/images/norway-lofoten-island.jpg"
             ];
             interface = {
               resolution = "max";

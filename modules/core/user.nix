@@ -28,7 +28,6 @@ in {
         enable = true;
         # These are available no matter the host.
         packages = with pkgs; [
-          npins
           loupe
           wget
           ffmpeg
@@ -39,6 +38,7 @@ in {
           hunspell
           hunspellDicts.en_GB-ise
           nix-tree
+          npins
         ];
         xdg = {
           config.files = {

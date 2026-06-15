@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pins,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf mkEnableOption mkOption types;
@@ -26,6 +26,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    hj.xdg.data.files."startpage".source = pins.startpage; # startpage
+    hj.xdg.data.files."startpage".source = inputs.startpage; # startpage
   };
 }
