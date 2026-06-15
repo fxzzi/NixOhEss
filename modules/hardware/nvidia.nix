@@ -2,7 +2,8 @@
   config,
   lib,
   pkgs,
-  pins,
+  inputs,
+  npinsSources,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -20,8 +21,8 @@ in {
         enable32Bit = true;
         extraPackages = [
           (pkgs.nvidia-vaapi-driver.overrideAttrs {
-            src = pins.nvidia-vaapi-driver;
-            version = "0-unstable-${builtins.substring 0 8 pins.nvidia-vaapi-driver.revision}";
+            src = npinsSources.nvidia-vaapi-driver;
+            version = "0-unstable-${builtins.substring 0 8 npinsSources.nvidia-vaapi-driver.revision}";
           })
         ];
       };
@@ -52,9 +53,7 @@ in {
     };
     environment = {
       systemPackages = [
-        (pkgs.callPackage "${pins.nix-gaming}/pkgs/dxvk-nvapi/vkreflex-layer.nix" {
-          pins = import "${pins.nix-gaming}/npins";
-        })
+        inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.dxvk-nvapi-vkreflex-layer
       ];
       sessionVariables = {
         # disable vsync
