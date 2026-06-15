@@ -246,7 +246,7 @@ in {
 
           -- confine cursor to the monitor when a game is in fullscreen.
           if ${boolToString multiMonitor} then
-            hl.window_rule({ match = {tag = "+confine", fullscreen = true}, confine_pointer = true;})
+            hl.window_rule({ match = {tag = "confine", fullscreen = true}, confine_pointer = true;})
           end
 
           local function curves(items)

@@ -14,13 +14,13 @@
           "node.description" = "Noise Cancelling source";
           "media.name" = "Noise Cancelling source";
           "filter.graph" = {
-            "nodes" = [
+            nodes = [
               {
-                "type" = "ladspa";
-                "name" = "rnnoise";
-                "plugin" = "librnnoise_ladspa";
-                "label" = "noise_suppressor_mono";
-                "control" = {
+                type = "ladspa";
+                name = "rnnoise";
+                plugin = "librnnoise_ladspa";
+                label = "noise_suppressor_mono";
+                control = {
                   "VAD Threshold (%)" = cfg.vadThreshold;
                   "VAD Grace Period (ms)" = cfg.vadGracePeriod;
                   "Retroactive VAD Grace (ms)" = cfg.retroactiveVadGrace;
