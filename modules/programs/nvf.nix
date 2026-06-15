@@ -81,6 +81,8 @@ in {
             lua.enable = true;
             python.enable = true;
             typst.enable = true;
+            toml.enable = true;
+            yaml.enable = true;
           };
 
           notes = {
