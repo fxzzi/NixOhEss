@@ -8,20 +8,12 @@
     "lastModified": 1770165109
   },
   "azzipkgs": {
-    "type": "git",
-    "url": "https://gitlab.com/fazzi/azzipkgs.git",
-    "ref": "HEAD",
+    "type": "gitlab",
+    "owner": "fazzi",
+    "repo": "azzipkgs",
     "rev": "3e0b30d652909eac84be0b2c452c679e338c321b",
     "narHash": "sha256-CshENnrFzQ1uQINQrlIzMBX5tEN4cl0J3xD5fFMtvwk=",
     "lastModified": 1781555436
-  },
-  "crane": {
-    "type": "github",
-    "owner": "ipetkov",
-    "repo": "crane",
-    "rev": "59a82a1222dd3b2080b5cc52a1a2e8d5f1b77f37",
-    "narHash": "sha256-D+BsdpxmtUwtqGoY0IXPhHgTlmqgcZKCEo1oMyn7ep0=",
-    "lastModified": 1780532242
   },
   "creamlinux": {
     "type": "github",
@@ -32,12 +24,28 @@
     "lastModified": 1744901658
   },
   "evoctl-nix": {
-    "type": "git",
-    "url": "https://gitlab.com/fazzi/evoctl-nix.git",
-    "ref": "refs/heads/main",
+    "type": "gitlab",
+    "owner": "fazzi",
+    "repo": "evoctl-nix",
     "rev": "71bc1a9a9c6f8b723ace90c8c9e51ee7e3bd2c2a",
     "narHash": "sha256-+v479izuxPyWRPaafQXENU+m7jQ/jwBDKvTk555O99o=",
     "lastModified": 1781521610
+  },
+  "fenix": {
+    "type": "github",
+    "owner": "nix-community",
+    "repo": "fenix",
+    "rev": "1dd2e6a479e1d6210d67bf10a119e10c508d9b5f",
+    "narHash": "sha256-Kn5J8HDd+k51c72upNc9IKmIaqN+AqrZfhcU5rDEMHo=",
+    "lastModified": 1753598717
+  },
+  "flake-parts": {
+    "type": "github",
+    "owner": "hercules-ci",
+    "repo": "flake-parts",
+    "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
+    "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
+    "lastModified": 1778716662
   },
   "hjem": {
     "type": "github",
@@ -67,9 +75,9 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "c1b1b002a0ebb06c82a0033e752c43e4903de2f4",
-    "narHash": "sha256-Ao5OpNE9IiJKFsVvKshKJWU1fILlqKfCyGl0JL/4Ilk=",
-    "lastModified": 1781499552
+    "rev": "a0a9d5a7a147044553d146e80e6a09d4fd045093",
+    "narHash": "sha256-Jxy8cO5gkixVBKtlcDSAKk9aEiof9L+96ttJJCJ3FwE=",
+    "lastModified": 1781585853
   },
   "nixos-core": {
     "type": "github",
@@ -83,9 +91,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "0e3fea1fa82dcc6c0de9ca89697d89a1ec1992d2",
-    "narHash": "sha256-nkmQPMnFcPRxqxMCDZpJOtRC8DfEAXULLSaioC+++qg=",
-    "lastModified": 1781481343
+    "rev": "352426357cd8843ab221b585a2bf6720d4a9bb74",
+    "narHash": "sha256-KqIK9kkpi7h1Qo1mZFlPwbIJ5SBR7peUKba+5ammuDY=",
+    "lastModified": 1781523379
   },
   "nvf": {
     "type": "github",
@@ -96,9 +104,9 @@
     "lastModified": 1781534482
   },
   "nvuv": {
-    "type": "git",
-    "url": "https://gitlab.com/fazzi/nvuv.git",
-    "ref": "refs/heads/main",
+    "type": "gitlab",
+    "owner": "fazzi",
+    "repo": "nvuv",
     "rev": "32fe6e7773c9cb0d136b1056afb70d4c60264a12",
     "narHash": "sha256-gATwh7Ew8zi8EMbSpyzRHoxAWh11I5E9t6+31CuPq3c=",
     "lastModified": 1775345734
@@ -111,10 +119,18 @@
     "narHash": "sha256-DYc2V2GfoaHAkwejoCVmMgd1GnMsuzOvXK1TZflUCO4=",
     "lastModified": 1779277625
   },
+  "rust-analyzer": {
+    "type": "github",
+    "owner": "rust-lang",
+    "repo": "rust-analyzer",
+    "rev": "ea413f67a8f730b4211c09e103f8207c62e7dbc3",
+    "narHash": "sha256-BB8YntBL5sv6ZwuPz5bz7vL6f6LOHUHDct9yWvcQvvI=",
+    "lastModified": 1753540496
+  },
   "startpage": {
-    "type": "git",
-    "url": "https://gitlab.com/fazzi/startpage.git",
-    "ref": "refs/heads/main",
+    "type": "gitlab",
+    "owner": "fazzi",
+    "repo": "startpage",
     "rev": "31c681720da00c313c41b816ba8fc4ffe96f4f16",
     "narHash": "sha256-gqNLZg6W5Z2Svu3ri/MxUS95DLNQXBKka6B883xXklo=",
     "lastModified": 1765317058
@@ -126,14 +142,6 @@
     "rev": "2f5cf1dd2ec964e545ad5795d69f27941d9eedfe",
     "narHash": "sha256-+1uQWB/Lo1EDMTQGap246klRWCnESkkzl+uS3FJOrsQ=",
     "lastModified": 1780680185
-  },
-  "systems": {
-    "type": "github",
-    "owner": "nix-systems",
-    "repo": "x86_64-linux",
-    "rev": "2ecfcac5e15790ba6ce360ceccddb15ad16d08a8",
-    "narHash": "sha256-Gtqg8b/v49BFDpDetjclCYXm8mAnTrUzR0JnE2nv5aw=",
-    "lastModified": 1680978846
   },
   "tack": {
     "type": "github",
@@ -152,9 +160,9 @@
     "lastModified": 1781431755
   },
   "walls": {
-    "type": "git",
-    "url": "https://gitlab.com/fazzi/walls.git",
-    "ref": "refs/heads/main",
+    "type": "gitlab",
+    "owner": "fazzi",
+    "repo": "walls",
     "rev": "679d1abecdc4db684abe19caa3d4b999c4dd94f7",
     "narHash": "sha256-Kqal0R2koaR8qlL4z0ls9eNfwDec02QRK6nwGHYYNaI=",
     "lastModified": 1777658201
