@@ -148,13 +148,11 @@ in {
           end)
 
           hl.on("hyprland.shutdown", function()
+            -- exec_cmd runs async, so to delay shutdown we need os.execute()
             -- discord literally craps itself and coredumps if the graphical env
             -- is shut down whilst it's still open. kill it to avoid the coredump.
-            hl.exec_cmd("pkill -9 Discord")
-            hl.exec_cmd("systemctl --user stop nixos-fake-graphical-session.target")
             -- allow a small buffer for stuff to close
-            -- exec_cmd runs async, so to delay shutdown we need os.execute()
-            os.execute("sleep 1")
+            os.execute("pkill -9 Discord systemctl --user stop nixos-fake-graphical-session.target && sleep 0.5")
           end)
 
           -- set primary monitor in both monitor events to be safe
