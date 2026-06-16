@@ -9,7 +9,7 @@
     inherit (lib) genAttrs packagesFromDirectoryRecursive callPackageWith fix;
 
     # we only use x86_64-linux for now but this is good practice
-    supportedSystems = import inputs.systems;
+    supportedSystems = ["x86_64-linux"];
     forAllSystems = apply:
       genAttrs
       supportedSystems
