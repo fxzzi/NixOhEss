@@ -60,7 +60,7 @@
   fonts.fontconfig.subpixel.rgba = "none";
 
   hardware.audient-evo.config = {
-    monitor = 55;
+    monitor = 50;
     input1 = {
       gain = 40;
       phantom = true;
