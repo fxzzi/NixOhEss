@@ -11,9 +11,9 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "2026-06-15",
+      "version": "2026-06-16",
       "revision": "02b56940cfaca548eebd0457a0e469f2a2ec8f0e",
-      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-15",
+      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-16",
       "hash": "sha256-+3DvnoLwVOL0uJD5nuhfyXnnc4dnXXZrf3q4SqZFZsY="
     },
     "low_latency_layer": {
