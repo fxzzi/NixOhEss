@@ -1,5 +1,3 @@
-[shorturls]
-gitlab = "git+https://gitlab.com/{path}.git"
 # tack pins. edit by hand or with tack add / rm / alias
 # nix reads pins.lock.json; this file drives tack update
 
@@ -7,8 +5,12 @@ gitlab = "git+https://gitlab.com/{path}.git"
 # opt out per-input with exclude_follow
 [all_follow]
 nixpkgs = "nixpkgs"
-systems = "systems"
-crane = "crane"
+watt = "watt"
+
+# auto-dedup (no top-level pin needed):
+fenix = "fenix"
+flake-parts = "flake-parts"
+rust-analyzer-src = "rust-analyzer"
 
 # [inputs.<name>] fields
 #   url             required, shorturl ok; ?rev=<sha> pins an exact commit
@@ -20,9 +22,7 @@ crane = "crane"
 #   submodules      fetch git submodules
 #   unpack          fixed-only: tarball or file
 [inputs.nixpkgs]
-url = "github:NixOS/nixpkgs/nixos-unstable"
-[inputs.systems]
-url = "github:nix-systems/x86_64-linux"
+url = "github:NixOS/nixpkgs/nixos-unstable-small"
 
 [inputs.azzipkgs]
 url = "gitlab:fazzi/azzipkgs"
@@ -44,25 +44,22 @@ url = "github:manic-systems/nixos-core/20b5f8916a3fde2f02bccd2e1f2795ab511aab5b"
 [inputs.tack]
 url = "github:manic-systems/tack/next"
 
-[inputs.hjem]
-url = "github:feel-co/hjem"
-
-[inputs.hyprland]
-url = "github:hyprwm/Hyprland"
-
 [inputs.nvf]
 url = "github:NotAShelf/nvf"
 [inputs.rags]
 url = "github:NotAShelf/rags"
 [inputs.watt]
 url = "github:NotAShelf/watt"
-
-[inputs.crane]
-url = "github:ipetkov/crane"
 [inputs.stash]
 url = "github:NotAShelf/stash"
 [inputs.tuigreet]
 url = "github:NotAShelf/tuigreet"
+
+[inputs.hjem]
+url = "github:feel-co/hjem"
+
+[inputs.hyprland]
+url = "github:hyprwm/Hyprland"
 
 [inputs.agenix]
 url = "github:ryantm/agenix"
