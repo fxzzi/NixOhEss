@@ -32,7 +32,7 @@ in {
   config = mkIf cfg.enable {
     hj.packages = [librewolf];
 
-    # some schmuck marked librewolf bin packages as insecure
+    # some schmuck marked librewolf packages as insecure
     nixpkgs.config.permittedInsecurePackages = with librewolf; [
       "${pname}-${version}"
       "${pname}-unwrapped-${version}"
