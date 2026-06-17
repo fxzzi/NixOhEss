@@ -2,15 +2,9 @@
   cfg = {
     core = {
       username = "kunzoz";
-      kernel = {
-        type = "xanmod";
-        zenergy.enable = true;
-      };
-      boot = {
-        enable = true;
-        keyLayout = "us";
-        timeout = 30;
-      };
+      kernel.type = "xanmod";
+
+      limine.timeout = 15;
       networking = {
         enable = true;
         networkmanager.enable = true;
@@ -55,7 +49,8 @@
     };
     hardware = {
       amdgpu.enable = true;
-      scanning.enable = false;
+      # scanning.enable = true;
+      zenergy.enable = true;
     };
     programs = {
       codium = {

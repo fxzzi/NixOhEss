@@ -58,12 +58,4 @@
   # and a secondary monitor of layout BGR. Therefore we shouldn't
   # use subpixel rendering.
   fonts.fontconfig.subpixel.rgba = "none";
-
-  hardware.audient-evo.config = {
-    monitor = 50;
-    input1 = {
-      gain = 40;
-      phantom = true;
-    };
-  };
 }

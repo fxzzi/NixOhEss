@@ -34,6 +34,8 @@ in {
     boot = {
       kernelPackages = kernelType; # Set kernel based on selection
       kernel.sysctl = {
+        # enable sysrq / reisub
+        "kernel.sysrq" = 1;
         # Increase vm.max_map_count for gaming
         "vm.max_map_count" = mkIf (!config.cfg.core.isLaptop) 2147483642;
       };
