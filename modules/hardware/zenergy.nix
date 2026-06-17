@@ -4,9 +4,9 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.cfg.core.kernel.zenergy;
+  cfg = config.cfg.hardware.zenergy;
 in {
-  options.cfg.core.kernel.zenergy.enable = mkEnableOption "zenergy";
+  options.cfg.hardware.zenergy.enable = mkEnableOption "zenergy";
   config = mkIf cfg.enable {
     boot = {
       kernelModules = ["nct6775"]; # provides temp readings
