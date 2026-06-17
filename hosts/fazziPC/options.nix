@@ -2,23 +2,16 @@
   cfg = {
     core = {
       username = "faaris";
-      kernel = {
-        type = "xanmod";
-        zenergy.enable = true;
-        v4l2.enable = true;
-      };
-
-      boot = {
-        enable = true;
-        keyLayout = "us";
-        timeout = 0.25;
-      };
+      kernel.type = "xanmod";
       networking.enable = true;
       fonts.enable = true;
+      limine.timeout = 0.25;
     };
     hardware = {
       evoctl.enable = true;
       nvidia.enable = true;
+      zenergy.enable = true;
+      v4l2.enable = true;
       # bluetooth.enable = true;
       # scanning.enable = true;
     };

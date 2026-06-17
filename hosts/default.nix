@@ -16,7 +16,7 @@
         inherit self inputs hostName npinsSources;
       };
       modules = flatten [
-        (self.lib.listRecursive ../modules) # all modules
+        self.nixosModules.default # all modules
         (self.lib.listRecursive ./${hostName}) # host-specific
       ];
     };

@@ -4,12 +4,9 @@
       username = "faaris";
       kernel.type = "latest";
       isLaptop = true;
-      boot = {
-        enable = true;
-        keyLayout = "uk";
-        timeout = 0.25;
-      };
+      keyLayout = "uk";
       fonts.enable = true;
+      limine.timeout = 0.25;
 
       networking = {
         enable = true;

@@ -23,6 +23,8 @@
       inherit self inputs lib npinsSources;
     };
 
+    nixosModules.default = self.lib.listRecursive ./modules;
+
     # some of our pkgs depend on each other, so use fix and pass self through
     packages = forAllSystems (pkgs:
       fix (selfPkgs:
