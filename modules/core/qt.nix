@@ -4,11 +4,7 @@
   ...
 }: {
   config = {
-    environment = {
-      sessionVariables = {
-        QT_QPA_PLATFORMTHEME = "qt6ct";
-      };
-    };
+    environment.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";
     hj = {
       xdg.config.files."qt6ct/qt6ct.conf" = {
         generator = lib.generators.toINI {};
