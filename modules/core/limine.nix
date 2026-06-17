@@ -18,7 +18,7 @@ in {
       '';
     };
     cfg.core.limine.timeout = mkOption {
-      type = types.either types.int types.float;
+      type = types.number;
       default = 5;
       description = ''
         Sets the timeout in seconds for the boot menu to automatically continue.
@@ -37,19 +37,22 @@ in {
           maxGenerations = 8;
           style = {
             wallpaperStyle = "centered";
-            wallpapers = [
-              "${inputs.walls}/images/fuji.jpg"
-              "${inputs.walls}/images/cherry-blossom.jpg"
-              "${inputs.walls}/images/clouds.jpg"
-              "${inputs.walls}/images/austria_landscape.jpg"
-              "${inputs.walls}/images/pink_flowers.jpg"
-              "${inputs.walls}/images/wallhaven-9oxkwk_3840x2160.jpg"
-              "${inputs.walls}/images/wallhaven-28v3mm_3840x2160.jpg"
-              "${inputs.walls}/images/wallhaven-rqy1mm.jpg"
-              "${inputs.walls}/images/wallhaven-og39mm.jpg"
-              "${inputs.walls}/images/wallhaven-21dlrg.jpg"
-              "${inputs.walls}/images/norway-lofoten-island.jpg"
-            ];
+            wallpapers =
+              map
+              (file: "${inputs.walls}/images/${file}")
+              [
+                "fuji.jpg"
+                "cherry-blossom.jpg"
+                "clouds.jpg"
+                "austria_landscape.jpg"
+                "pink_flowers.jpg"
+                "wallhaven-9oxkwk_3840x2160.jpg"
+                "wallhaven-28v3mm_3840x2160.jpg"
+                "wallhaven-rqy1mm.jpg"
+                "wallhaven-og39mm.jpg"
+                "wallhaven-21dlrg.jpg"
+                "norway-lofoten-island.jpg"
+              ];
             interface = {
               resolution = "max";
               helpHidden = true;
