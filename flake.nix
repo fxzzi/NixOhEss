@@ -1,7 +1,7 @@
 {
   description = "fazzi's NixOS config";
 
-  outputs = {self, ...}: let
+  outputs = {self}: let
     inputs = import ./.tack;
     npinsSources = import ./npins;
 
