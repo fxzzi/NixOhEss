@@ -48,5 +48,13 @@ in {
       portalPackage = hyprlandSet.xdg-desktop-portal-hyprland;
     };
     services.dbus.implementation = "broker";
+
+    systemd.user.targets.nixos-fake-graphical-session = {
+      unitConfig = {
+        Wants = "graphical-session-pre.target";
+        After = "graphical-session-pre.target";
+        PropagatesStopTo = "graphical-session.target";
+      };
+    };
   };
 }
