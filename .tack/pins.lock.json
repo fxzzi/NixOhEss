@@ -139,9 +139,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "stash",
-    "rev": "2f5cf1dd2ec964e545ad5795d69f27941d9eedfe",
-    "narHash": "sha256-+1uQWB/Lo1EDMTQGap246klRWCnESkkzl+uS3FJOrsQ=",
-    "lastModified": 1780680185
+    "rev": "6413449c45333a64968bb338b35a00ecb05b1ed7",
+    "narHash": "sha256-vS9VAkDHYAM+G+UTXKg7STe1XwrbSlsTQ6UhDaVDWfE=",
+    "lastModified": 1781683908
   },
   "tack": {
     "type": "github",

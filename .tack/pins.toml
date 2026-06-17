@@ -22,7 +22,8 @@ rust-analyzer-src = "rust-analyzer"
 #   submodules      fetch git submodules
 #   unpack          fixed-only: tarball or file
 [inputs.nixpkgs]
-url = "github:NixOS/nixpkgs/nixos-unstable"
+# url = "github:NixOS/nixpkgs/nixos-unstable"
+url = "github:NixOS/nixpkgs/352426357cd8843ab221b585a2bf6720d4a9bb74"
 
 [inputs.azzipkgs]
 url = "gitlab:fazzi/azzipkgs"
