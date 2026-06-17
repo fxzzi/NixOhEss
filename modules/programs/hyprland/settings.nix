@@ -152,7 +152,7 @@ in {
             -- discord literally craps itself and coredumps if the graphical env
             -- is shut down whilst it's still open. kill it to avoid the coredump.
             -- allow a small buffer for stuff to close
-            os.execute("pkill -9 Discord systemctl --user stop nixos-fake-graphical-session.target && sleep 0.5")
+            os.execute("pkill -9 Discord; systemctl --user stop nixos-fake-graphical-session.target && sleep 0.1")
           end)
 
           -- set primary monitor in both monitor events to be safe
