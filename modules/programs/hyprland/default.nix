@@ -47,13 +47,19 @@ in {
       package = hyprlandSet.hyprland;
       portalPackage = hyprlandSet.xdg-desktop-portal-hyprland;
     };
-    services.dbus.implementation = "broker";
-
-    systemd.user.targets.nixos-fake-graphical-session = {
-      unitConfig = {
-        Wants = "graphical-session-pre.target";
-        After = "graphical-session-pre.target";
-        PropagatesStopTo = "graphical-session.target";
+    systemd.user = {
+      # the document portal breaks itself when i log out and back in.
+      # is it even needed outside of flatpaks?? mask it.
+      services.xdg-document-portal.enable = false;
+      # the nixos-fake-graphical-session is quite bare by default.
+      # add some other attributes like listed here:
+      # https://wiki.hypr.land/Useful-Utilities/Systemd-start/#hyprland-sessiontarget
+      targets.nixos-fake-graphical-session = {
+        unitConfig = {
+          Wants = "graphical-session-pre.target";
+          After = "graphical-session-pre.target";
+          PropagatesStopTo = "graphical-session.target";
+        };
       };
     };
   };
