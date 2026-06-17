@@ -12,9 +12,7 @@
         auto-optimise-store = true; # save some storage space
         warn-dirty = false;
         allow-import-from-derivation = false; # don't allow IFD, they're slow asf
-        accept-flake-config = true; # allow using substituters from flake.nix
         use-xdg-base-directories = true; # clean up ~
-        download-buffer-size = 500 * 1024 * 1024; # 500MiB. avoids warnings with full buffer
         allowed-users = ["@wheel"];
         trusted-users = ["@wheel"];
         flake-registry = "";
@@ -33,6 +31,7 @@
     nixpkgs.config = {
       allowUnfree = true; # not too fussed as long as app works on linux tbh
     };
+
     # remove useless docs .desktop
     documentation.nixos.enable = false;
 
