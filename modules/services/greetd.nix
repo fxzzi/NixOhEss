@@ -63,6 +63,9 @@ in {
         use_setsid = false;
         shutdown = "systemctl poweroff";
         reboot = "systemctl reboot";
+        suspend = "systemctl suspend";
+        # no hibernate smh
+        hibernate = "";
       };
     };
   };
