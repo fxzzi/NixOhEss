@@ -59,9 +59,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "5b47c782c9f83539a6c642d83844cdc9130a2873",
-    "narHash": "sha256-qqFd1ufiH/oBB2RCmt7dg5Kyca7grJguIJrNPsD91zk=",
-    "lastModified": 1781627558
+    "rev": "2d190ba79aeec55174bda98f6202634c97370bc6",
+    "narHash": "sha256-376vBgX1S5J8qnQo+yIiHkkY1u7sZK3r8zE/Q85tlPM=",
+    "lastModified": 1781704531
   },
   "niqspkgs": {
     "type": "github",
@@ -91,9 +91,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "352426357cd8843ab221b585a2bf6720d4a9bb74",
-    "narHash": "sha256-KqIK9kkpi7h1Qo1mZFlPwbIJ5SBR7peUKba+5ammuDY=",
-    "lastModified": 1781523379
+    "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
+    "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
+    "lastModified": 1781577229
   },
   "nvf": {
     "type": "github",
