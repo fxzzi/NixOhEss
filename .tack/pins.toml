@@ -22,8 +22,7 @@ rust-analyzer-src = "rust-analyzer"
 #   submodules      fetch git submodules
 #   unpack          fixed-only: tarball or file
 [inputs.nixpkgs]
-# url = "github:NixOS/nixpkgs/nixos-unstable"
-url = "github:NixOS/nixpkgs/352426357cd8843ab221b585a2bf6720d4a9bb74"
+url = "github:NixOS/nixpkgs/nixos-unstable"
 
 [inputs.azzipkgs]
 url = "gitlab:fazzi/azzipkgs"
@@ -31,14 +30,14 @@ url = "gitlab:fazzi/azzipkgs"
 url = "gitlab:fazzi/evoctl-nix"
 [inputs.nvuv]
 url = "gitlab:fazzi/nvuv"
+[inputs.creamlinux]
+url = "github:fxzzi/creamlinux-installer"
 [inputs.startpage]
 url = "gitlab:fazzi/startpage"
 type = "fetch"
 [inputs.walls]
 url = "gitlab:fazzi/walls"
 type = "fetch"
-[inputs.creamlinux]
-url = "github:fxzzi/creamlinux-installer"
 
 [inputs.nixos-core]
 url = "github:manic-systems/nixos-core/20b5f8916a3fde2f02bccd2e1f2795ab511aab5b"
