@@ -76,6 +76,9 @@
 
     # allow theming
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+    # by default ff hides "http(s)://" in the URL bar. why??
+    "browser.urlbar.trimURLs" = false;
   };
   attrsToLines = f: attrs: concatMapAttrsStringSep "\n" f attrs;
   prefValue = pref:
