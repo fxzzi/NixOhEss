@@ -1,6 +1,7 @@
 {
   pkgs,
   self,
+  inputs,
   ...
 }: {
   system.stateVersion = "25.05";
@@ -31,8 +32,8 @@
           mupen64plus
         ]))
       self.packages.${pkgs.stdenv.hostPlatform.system}.transcode
-      # inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2vorbis
-      # inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2opus
+      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2vorbis
+      inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2opus
     ];
   };
 

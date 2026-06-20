@@ -2,8 +2,7 @@
   config = {
     nix = {
       package = pkgs.nixVersions.latest;
-      # Disable channels and add the inputs to the registry
-      channel.enable = false;
+      channel.enable = false; # we use le flakes
       settings = {
         experimental-features = [
           "nix-command"
