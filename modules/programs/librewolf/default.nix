@@ -7,7 +7,7 @@
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.cfg.programs.librewolf;
-  librewolf = pkgs.librewolf-bin.override {
+  librewolf = pkgs.librewolf.override {
     extraPrefs = cfg.prefs;
     extraPolicies = {
       SearchSuggestEnabled = false;
@@ -33,25 +33,25 @@ in {
     # ...
     # librewolf re-enabled the sandbox recently, which broke my new tab override setup.
     # this jank solution below is able to re-disable it again. maybe don't do this???
-    nixpkgs.overlays = [
-      (_: prev: {
-        librewolf-bin-unwrapped = prev.librewolf-bin-unwrapped.overrideAttrs (old: {
-          postInstall =
-            (old.postInstall or "")
-            + ''
-              echo 'pref("general.config.sandbox_enabled", false);' \
-                >> "$out/lib/librewolf-bin-${prev.librewolf-bin-unwrapped.version}/defaults/pref/local-settings.js"
-            '';
-        });
-      })
-    ];
+    # nixpkgs.overlays = [
+    #   (_: prev: {
+    #     librewolf-bin-unwrapped = prev.librewolf-bin-unwrapped.overrideAttrs (old: {
+    #       postInstall =
+    #         (old.postInstall or "")
+    #         + ''
+    #           echo 'pref("general.config.sandbox_enabled", false);' \
+    #             >> "$out/lib/librewolf-bin-${prev.librewolf-bin-unwrapped.version}/defaults/pref/local-settings.js"
+    #         '';
+    #     });
+    #   })
+    # ];
     hj.packages = [librewolf];
 
     # some schmuck marked librewolf packages as insecure
-    nixpkgs.config.permittedInsecurePackages = with librewolf; [
-      "${pname}-${version}"
-      "${pname}-unwrapped-${version}"
-    ];
+    # nixpkgs.config.permittedInsecurePackages = with librewolf; [
+    #   "${pname}-${version}"
+    #   "${pname}-unwrapped-${version}"
+    # ];
 
     environment.sessionVariables = {
       MOZ_DISABLE_RDD_SANDBOX = 1;
