@@ -5,21 +5,19 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.cfg.core.networking.networkmanager;
+  cfg = config.cfg.core.networkmanager;
 in {
-  options.cfg.core.networking.networkmanager = {
+  options.cfg.core.networkmanager = {
     enable = mkEnableOption "NetworkManager";
   };
   config = mkIf cfg.enable {
     programs.nm-applet.enable = true; # enable the nice lil applet
     networking = {
-      dhcpcd.enable = false; # networkmanager uses its own dhcp client
       networkmanager = {
         enable = true;
-        wifi = {
-          powersave = config.cfg.core.isLaptop;
-        };
+        wifi.powersave = config.cfg.core.isLaptop;
         dns = "systemd-resolved";
+        dhcp = "dhcpcd";
         plugins = with pkgs; [
           networkmanager-openvpn
         ];

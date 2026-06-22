@@ -1,16 +1,11 @@
 {
   pkgs,
-  config,
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkDefault;
-  cfg = config.cfg.core.fonts;
+  inherit (lib) mkDefault;
 in {
-  options.cfg.core.fonts = {
-    enable = mkEnableOption "fonts";
-  };
-  config = mkIf cfg.enable {
+  config = {
     fonts = {
       enableDefaultPackages = false;
       fontconfig = {
