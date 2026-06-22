@@ -34,7 +34,6 @@
           "capture.props" = {
             "node.name" = "capture.rnnoise_source";
             "node.passive" = true;
-            "audio.rate" = 48000;
           };
           "playback.props" = {
             "node.name" = "rnnoise_source";
