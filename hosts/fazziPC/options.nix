@@ -3,8 +3,6 @@
     core = {
       username = "faaris";
       kernel.type = "xanmod";
-      networking.enable = true;
-      fonts.enable = true;
       limine.timeout = 0.25;
     };
     hardware = {

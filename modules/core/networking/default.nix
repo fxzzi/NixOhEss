@@ -1,14 +1,5 @@
-{
-  lib,
-  config,
-  hostName,
-  ...
-}: let
-  inherit (lib) mkEnableOption mkIf;
-  cfg = config.cfg.core.networking;
-in {
-  options.cfg.core.networking.enable = mkEnableOption "networking";
-  config = mkIf cfg.enable {
+{hostName, ...}: {
+  config = {
     networking = {
       inherit hostName;
       dhcpcd.wait = "background"; # fork to background immediately.
