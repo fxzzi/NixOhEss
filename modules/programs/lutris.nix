@@ -38,7 +38,7 @@ in {
           generator = lib.generators.toYAML {};
           value = {
             wine = {
-              # we use NTSYNC
+              # we use ntsync
               esync = false;
               fsync = false;
               fsr = false;
