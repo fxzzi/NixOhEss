@@ -3,7 +3,6 @@
   config,
   pkgs,
   inputs,
-  npinsSources,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;

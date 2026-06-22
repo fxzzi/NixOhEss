@@ -79,10 +79,7 @@
       };
 
       nvf.enable = true;
-      steam = {
-        enable = true;
-        shaderThreads = 6;
-      };
+      steam.enable = true;
       prismlauncher = {
         enable = true;
         # waywall.enable = true;

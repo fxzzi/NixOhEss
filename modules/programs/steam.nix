@@ -4,16 +4,11 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkOption types mkIf optionalAttrs;
+  inherit (lib) mkEnableOption mkIf optionalAttrs;
   cfg = config.cfg.programs.steam;
 in {
   options.cfg.programs.steam = {
     enable = mkEnableOption "steam";
-    shaderThreads = mkOption {
-      type = types.int;
-      default = 1;
-      description = "Number of threads to use for shader processing in Steam.";
-    };
   };
   config = mkIf cfg.enable {
     programs.steam = {
@@ -28,8 +23,6 @@ in {
           # https://github.com/Korthos-Software/low_latency_layer
           # LOW_LATENCY_LAYER = optionalAttrs config.cfg.hardware.amdgpu.enable 1;
           MANGOHUD = optionalAttrs config.cfg.programs.mangohud.enable 1;
-          # HACK: https://github.com/ValveSoftware/steam-for-linux/issues/13007
-          PRESSURE_VESSEL_FILESYSTEMS_RW = optionalAttrs (builtins.hasAttr "/games" config.fileSystems) "/games";
         };
       };
       extraCompatPackages = mkIf config.cfg.programs.proton-ge.enable [pkgs.proton-ge-bin];
@@ -38,11 +31,5 @@ in {
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
     };
-    hj = {
-      xdg.data.files."Steam/steam_dev.cfg".text = ''
-        unShaderBackgroundProcessingThreads ${toString cfg.shaderThreads}
-      '';
-    };
-    hardware.steam-hardware.enable = true;
   };
 }
