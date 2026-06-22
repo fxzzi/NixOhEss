@@ -20,14 +20,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "imperishableSecret",
+        "owner": "AoTofu",
         "repo": "nvidia-vaapi-driver"
       },
-      "branch": "fix/chrome-stream-format-switch",
+      "branch": "pr/chromium-direct-backend",
       "submodules": false,
-      "revision": "288a7ba79d47219ea6dea737ec8d684b53a8de36",
-      "url": "https://github.com/imperishableSecret/nvidia-vaapi-driver/archive/288a7ba79d47219ea6dea737ec8d684b53a8de36.tar.gz",
-      "hash": "sha256-wxgdf+Gln1Tv7S/EbVUNOpxJ4Z0Ew4VudBglX7d5XD8="
+      "revision": "eb102da334507e3f157af5f616631947ac57538f",
+      "url": "https://github.com/AoTofu/nvidia-vaapi-driver/archive/eb102da334507e3f157af5f616631947ac57538f.tar.gz",
+      "hash": "sha256-86Y5y6agqaCK3kNscjug5CoGcSEtEl7VzEKnOK7opOw="
     }
   },
   "version": 8
