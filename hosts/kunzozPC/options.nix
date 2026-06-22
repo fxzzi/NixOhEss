@@ -3,13 +3,8 @@
     core = {
       username = "kunzoz";
       kernel.type = "xanmod";
-
       limine.timeout = 15;
-      networking = {
-        enable = true;
-        networkmanager.enable = true;
-      };
-      fonts.enable = true;
+      networkmanager.enable = true;
     };
     services = {
       lact.enable = true;

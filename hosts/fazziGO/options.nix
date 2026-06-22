@@ -5,13 +5,8 @@
       kernel.type = "latest";
       isLaptop = true;
       keyLayout = "uk";
-      fonts.enable = true;
       limine.timeout = 0.25;
-
-      networking = {
-        enable = true;
-        networkmanager.enable = true;
-      };
+      networkmanager.enable = true;
     };
     services = {
       ags.enable = true;
