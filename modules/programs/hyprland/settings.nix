@@ -219,6 +219,7 @@ in {
             { class = "momentum" }, -- momentum mod
             { class = "cs2" },
             { class = "org-prismlauncher-EntryPoint" }, -- legacy mc
+            { class = "minecraft" }, -- gregtech:nh ?
             { initial_title = "Minecraft\\* .*" }, -- mc up to v26.1
             { initial_title = "Minecraft .*" }, -- v26.2+ mc
             { class = "osu!" },

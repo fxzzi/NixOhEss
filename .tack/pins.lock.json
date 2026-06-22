@@ -51,17 +51,17 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "89d0beea9068903aeb9998f52b741c69d4e32aa1",
-    "narHash": "sha256-5uEX8TEZ5kI+bnil/T2jtRlxiADcyeD9mX8gOwQIEVs=",
-    "lastModified": 1781430841
+    "rev": "3b110d0e7c07a5652019223bd7f7b872b86f06a4",
+    "narHash": "sha256-1cMArpPnPvjKYNMsMRwtAxQ6ngPnIg/Wt3ohS95fbwY=",
+    "lastModified": 1782071069
   },
   "hyprland": {
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "d486a5fe69c9800e75aed76ae4beb3183ac8886d",
-    "narHash": "sha256-TmrOChAzMwvktV2xM9glJRSsZWyOqBFeCyfbEoZiwUc=",
-    "lastModified": 1781888691
+    "rev": "5a7078d20a14bb199ef9bb81faa4faeaf5e92117",
+    "narHash": "sha256-rwKRD8h3bxVebEDNyoaPh+q0dqdqvrAE8+1T4Jo3xxs=",
+    "lastModified": 1782070887
   },
   "niqspkgs": {
     "type": "github",
@@ -75,9 +75,9 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "14e578b7b8d0696bbe582fa6fee79b8d1308efc8",
-    "narHash": "sha256-Ga206P+IEguVLUoT87QvshjrLzzkoA3m6QMXySP+S1A=",
-    "lastModified": 1781943281
+    "rev": "f83806d230369cc515368783dba1c838a402dda0",
+    "narHash": "sha256-GYP8iYciiZjFoY61VdGEexLGNh2sBE9OtEv7a4KZRoU=",
+    "lastModified": 1782017494
   },
   "nixos-core": {
     "type": "github",
@@ -91,9 +91,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "c8c0b904d406666a948a59d6f52bb44059bc9c24",
-    "narHash": "sha256-aR+FJrqOdjWWqkd88LdrDalCzKNSSbdZTO92I9LCSzY=",
-    "lastModified": 1781971108
+    "rev": "e96d96376b17a27b83a184c8c481c13c98db7961",
+    "narHash": "sha256-TGub+4QjyI6dfu3oA5bFFt729zKHN9alkjPoB8yhBIk=",
+    "lastModified": 1782101079
   },
   "nvf": {
     "type": "github",
@@ -147,9 +147,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "a834318b7fe7371fce1eaf9c309caeadf57cf9af",
-    "narHash": "sha256-KhJb0NWLhj8AkD8uWEbXt179YlFLemk0OgOltw4jEk8=",
-    "lastModified": 1782001225
+    "rev": "d61ffcb1ea96fe0bb4157aabc0ad9a337a376417",
+    "narHash": "sha256-HOie9E1cVjloXbRt+Frz8ZalsU/sklhklBr2yHyclm8=",
+    "lastModified": 1782105670
   },
   "tuigreet": {
     "type": "github",

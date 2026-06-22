@@ -16,22 +16,6 @@
       "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-16",
       "hash": "sha256-+3DvnoLwVOL0uJD5nuhfyXnnc4dnXXZrf3q4SqZFZsY="
     },
-    "low_latency_layer": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Korthos-Software",
-        "repo": "low_latency_layer"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v0.2.0",
-      "revision": "4e7fe12b797d89be07919acf3d2df5cda3f4d89f",
-      "url": "https://api.github.com/repos/Korthos-Software/low_latency_layer/tarball/refs/tags/v0.2.0",
-      "hash": "sha256-mnGAH0m19wOkWEowpcPRHXQSc6HGYW+CFYxjPF2onk4="
-    },
     "nvidia-vaapi-driver": {
       "type": "Git",
       "repository": {
