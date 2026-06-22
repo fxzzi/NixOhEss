@@ -75,10 +75,6 @@ url = "github:fufexan/nix-gaming"
 # url = "github:Equicord/Equicord"
 # type = "fetch"
 #
-# [inputs.low_latency_layer]
-# url = "github:Korthos-Software/low_latency_layer"
-# type = "fetch"
-#
 # [inputs.nvidia-vaapi-driver]
 # url = "github:imperishableSecret/nvidia-vaapi-driver/fix/chrome-stream-format-switch"
 # type = "fetch"
