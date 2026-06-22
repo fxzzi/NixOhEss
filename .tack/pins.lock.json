@@ -91,9 +91,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "e96d96376b17a27b83a184c8c481c13c98db7961",
-    "narHash": "sha256-TGub+4QjyI6dfu3oA5bFFt729zKHN9alkjPoB8yhBIk=",
-    "lastModified": 1782101079
+    "rev": "5e8ca42db8804dbe70af4d4d3fcd1c71e8409e60",
+    "narHash": "sha256-rCSYc70Us8BXhGYu6UoUcax/sFGV6NecnQ3U2n4g8jo=",
+    "lastModified": 1782150293
   },
   "nvf": {
     "type": "github",
