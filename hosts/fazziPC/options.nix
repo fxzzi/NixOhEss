@@ -40,6 +40,7 @@
           retroactiveVadGrace = 0;
         };
       };
+      ananicy.enable = true;
       scx = {
         enable = true;
         scheduler = "scx_bpfland";
@@ -141,7 +142,7 @@
             supports_hdr = -1, -- hdr sucks on this monitor lol
             supports_wide_color = -1, -- only supports at lower 120Hz
             icc = "${config.age.secrets.m27q.path}",
-            position = "auto-center-left",
+            position = "auto-left",
             vrr = 1, -- this monitor doesn't flicker when using VRR at all
           })
         '';
