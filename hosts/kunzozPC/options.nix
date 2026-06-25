@@ -23,6 +23,7 @@
         };
       };
 
+      ananicy.enable = true;
       scx = {
         enable = true;
         scheduler = "scx_bpfland";
