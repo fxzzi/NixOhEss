@@ -11,10 +11,10 @@
   fan2 = "${nct_hwmon}/fan2_input";
   cpu_temp = "${k10temp_hwmon}/temp1_input";
   gpu_temp = "/tmp/nvidia-temp";
-  minTemp = 40;
-  maxTemp = 95;
-  minPwm = 36;
-  maxPwm = 224;
+  minTemp = 35;
+  maxTemp = 90;
+  minPwm = 32;
+  maxPwm = 255;
 in {
   config = {
     environment.systemPackages = [pkgs.lm_sensors];
