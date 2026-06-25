@@ -14,10 +14,7 @@
         generator = (pkgs.formats.toml {}).generate "bottom.toml";
         value = {
           flags = {
-            group_processes = true;
-            hide_table_gap = true;
-            process_memory_as_value = true;
-            hide_k_threads = true;
+            table_gap = "none";
           };
           temperature.sensor_filter = {
             list = [
@@ -33,23 +30,30 @@
           network.interface_filter = {
             list = ["virbr0.*"];
           };
-          disk.mount_filter = {
-            list = [
-              # A lot of these are just subvols of the main drive anyway.
-              "/mnt"
-              "/home"
-              "/games"
-              "/nix"
-              "/nix/store/"
+          disk = {
+            mount_filter = {
+              list = [
+                # A lot of these are just subvols of the main drive anyway.
+                "/mnt"
+                "/home"
+                "/games"
+                "/nix"
+                "/nix/store/"
+              ];
+            };
+            columns = [
+              "Disk"
+              "Mount"
+              "Used"
+              "Free"
+              "Total"
             ];
           };
-          disk.columns = [
-            "Disk"
-            "Mount"
-            "Used"
-            "Free"
-            "Total"
-          ];
+          processes = {
+            default_grouped = true;
+            hide_k_threads = true;
+            default_memory_value = true;
+          };
           # customize the layout of bottom
           row = [
             {
