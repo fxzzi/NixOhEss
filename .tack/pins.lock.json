@@ -11,9 +11,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "f4edd55710fb0a4ef437ce3adf983f253747538d",
-    "narHash": "sha256-iIO/4yG/ByoHUNG1B3nB1SEE8TOTt3tsB4pfgQq4lbQ=",
-    "lastModified": 1782293145
+    "rev": "9a967ff809ebe542a8c322014d78b91ada89ffdd",
+    "narHash": "sha256-23gcEkGOXy4rgbu3SzrqX3dWZQCJfCZ7lTkAFJQUzSM=",
+    "lastModified": 1782479582
   },
   "creamlinux": {
     "type": "github",
@@ -59,9 +59,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "c9e1a6c3a05c0310424f99c6b90af1164340af99",
-    "narHash": "sha256-J+yvgoF+zbYZHJkGxfMCPWa8L3i5Nm7Xlgfw2Eky/Xs=",
-    "lastModified": 1782366482
+    "rev": "afe2c390ab621e7a1dbd06744d33bc123acfe1f9",
+    "narHash": "sha256-es78EqYsT2+21M+jRdMY063EqEk8wL+mwSYyOOPECLI=",
+    "lastModified": 1782468408
   },
   "niqspkgs": {
     "type": "github",
@@ -91,9 +91,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "532f984da08d27af048ed8664238f97f38ede850",
-    "narHash": "sha256-8dEV/c6gqHOSeRO1hIo/XhiHZ6NgBer1wrw+f+Vmw+o=",
-    "lastModified": 1782291881
+    "rev": "410a3a0797f45e9306d8b7b6c4491ab09973afbe",
+    "narHash": "sha256-vYQcPDeKjvhAigTJaEARpSLy7oEitPP7Vo2t9uN958s=",
+    "lastModified": 1782462661
   },
   "nvf": {
     "type": "github",
@@ -115,9 +115,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "rags",
-    "rev": "81ca4a583649be43b9159cc12b948038d5686770",
-    "narHash": "sha256-K2VHaOCClDK/krjkTxSq43i0whKhsb65QdB7me7JcfY=",
-    "lastModified": 1781942068
+    "rev": "cdc126238ba2ea3a5f98077db57f26d1fe268856",
+    "narHash": "sha256-DUER4VfSfhq4kxyp8ojYFBPHRkF/K/eoLrywCXjjNj4=",
+    "lastModified": 1782416610
   },
   "rust-analyzer": {
     "type": "github",
@@ -171,8 +171,8 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "watt",
-    "rev": "4c21e9c31c3b0c00be19ab4c60acc6bc3cf30091",
-    "narHash": "sha256-AhYQl6kJ38Vm7R/sjm3BaYBqPekqpvv6Gf41S+2SE3I=",
-    "lastModified": 1782359194
+    "rev": "e65d029fda3eb77f6a464c37847f006c69bd0797",
+    "narHash": "sha256-1qEfa04gqCkkhHv+HJtEqrGCqJ3epJ2RepmOJZFEyiQ=",
+    "lastModified": 1782399501
   }
 }
