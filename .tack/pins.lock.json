@@ -91,9 +91,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "410a3a0797f45e9306d8b7b6c4491ab09973afbe",
-    "narHash": "sha256-vYQcPDeKjvhAigTJaEARpSLy7oEitPP7Vo2t9uN958s=",
-    "lastModified": 1782462661
+    "rev": "e73de5be04e0eff4190a1432b946d469c794e7b4",
+    "narHash": "sha256-pGvFkM8N0xEkIIXDe5YYfbEAvHrk4IxBrjB/x8OomhE=",
+    "lastModified": 1782467914
   },
   "nvf": {
     "type": "github",
@@ -139,9 +139,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "stash",
-    "rev": "6413449c45333a64968bb338b35a00ecb05b1ed7",
-    "narHash": "sha256-vS9VAkDHYAM+G+UTXKg7STe1XwrbSlsTQ6UhDaVDWfE=",
-    "lastModified": 1781683908
+    "rev": "71d914176b03913676df086e35f699be20821164",
+    "narHash": "sha256-wXUXwgx7NvWdnXLWSvwYN2um0rVkGCy7reAfwj0Hygg=",
+    "lastModified": 1782485948
   },
   "tack": {
     "type": "github",
