@@ -369,8 +369,8 @@ in {
           bind({ "XF86AudioNext" }, hl.dsp.exec_raw("${mpc} next"))
 
           -- shortcuts for OBS
-          bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.global(":_toggle_recording"))
-          bind({ "CTRL", "grave" }, hl.dsp.global(":ReplayBuffer.Save"))
+          bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.global("com.obsproject.Studio:_toggle_recording"))
+          bind({ "CTRL", "grave" }, hl.dsp.global("com.obsproject.Studio:ReplayBuffer.Save"))
 
           -- also for gpu-screen-recorder.
           -- SIGINT saves the recording (wont start a recording for now)
