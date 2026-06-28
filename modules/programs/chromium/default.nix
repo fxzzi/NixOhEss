@@ -8,7 +8,7 @@
   cfg = config.cfg.programs.chromium;
   disableFeatures = [
     "WebRtcAllowInputVolumeAdjustment"
-    "ChromeWideEchoCancellation"
+    # "ChromeWideEchoCancellation"
   ];
   enableFeatures = [
     # vaapi info: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/gpu/vaapi.md
