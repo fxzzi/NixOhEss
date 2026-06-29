@@ -42,7 +42,7 @@
         }
 
         /* Bring the server list down a few pixels */
-        ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 {
+        ul[data-list-id="guildsnav"] > div.tree_ef3116 {
           margin-top: 8px;
         }
       }
