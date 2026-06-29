@@ -30,7 +30,29 @@ in {
         "9-audient-evo4" = {
           "monitor.alsa.rules" = [
             {
-              matches = [{"node.name" = "~alsa_output.*EVO4.*";}];
+              matches = [
+                {
+                  "alsa.card_name" = "EVO4";
+                  "media.class" = "Audio/Source/Internal";
+                }
+                {
+                  "alsa.card_name" = "EVO4";
+                  "media.class" = "Audio/Sink/Internal";
+                }
+              ];
+              actions.update-props = {
+                # decrease priority of the raw hardware devices
+                "priority.driver" = 0;
+                "priority.session" = 0;
+              };
+            }
+            {
+              matches = [
+                {
+                  "alsa.card_name" = "EVO4";
+                  "media.class" = "Audio/Sink/Internal";
+                }
+              ];
               actions.update-props = {
                 # don't suspend the interface, to avoid popping when it wakes.
                 "session.suspend-timeout-seconds" = 0;
