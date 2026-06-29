@@ -92,6 +92,7 @@
       chromium = {
         enable = true;
         via.enable = true;
+        mchose-m-hub.enable = true;
       };
       startpage = {
         enable = true;

@@ -58,6 +58,13 @@
     terminal = false;
     icon = "${./scyrox-s-center.svg}";
   };
+  mchose-m-hub = pkgs.makeDesktopItem {
+    name = "mchose-m-hub";
+    desktopName = "MCHOSE M HUB";
+    exec = "chromium --app=https://www.mchose.com.cn/ %U";
+    terminal = false;
+    icon = "${./mchose-m-hub.svg}";
+  };
   via = pkgs.makeDesktopItem {
     name = "via";
     desktopName = "VIA";
@@ -70,6 +77,7 @@ in {
     enable = mkEnableOption "chromium";
     wootility.enable = mkEnableOption "wootility";
     scyrox-s-center.enable = mkEnableOption "scyrox-s-center";
+    mchose-m-hub.enable = mkEnableOption "mchose-m-hub";
     via.enable = mkEnableOption "via";
     commonArgs = mkOption {
       type = types.listOf types.str;
@@ -86,6 +94,7 @@ in {
         })
         (mkIf cfg.wootility.enable wootility)
         (mkIf cfg.scyrox-s-center.enable scyrox-s-center)
+        (mkIf cfg.mchose-m-hub.enable mchose-m-hub)
         (mkIf cfg.via.enable via)
       ];
     };
