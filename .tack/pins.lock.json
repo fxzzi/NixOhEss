@@ -11,9 +11,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "9a967ff809ebe542a8c322014d78b91ada89ffdd",
-    "narHash": "sha256-23gcEkGOXy4rgbu3SzrqX3dWZQCJfCZ7lTkAFJQUzSM=",
-    "lastModified": 1782479582
+    "rev": "c99364158bb09c85645cb08825c9ee9da58d92ba",
+    "narHash": "sha256-SCauj4PFWFMWPpS8bTve48UBXMOp4xhA6/1K5Dx3v40=",
+    "lastModified": 1782684793
   },
   "creamlinux": {
     "type": "github",
@@ -75,9 +75,9 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "f95c6acda72f71f1bc0dbf4391f731e0f03ab4af",
-    "narHash": "sha256-051nwXJJTKbZuxacOJxIMtmzSGDNeEbxtL6isuxMjJ0=",
-    "lastModified": 1782657600
+    "rev": "2ed08b945596ba9569f15203e0a0bfdf082220c0",
+    "narHash": "sha256-1guPG9ibImoPtpGLWK9QH9JJMEkNLPW2MlytkCNt9XE=",
+    "lastModified": 1782728717
   },
   "nixos-core": {
     "type": "github",
