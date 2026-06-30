@@ -20,7 +20,7 @@ in {
           value = {
             system = {
               env = {
-                OBS_VKCAPTURE = optionalAttrs config.cfg.programs.obs-studio.vkcapture.enable 1;
+                OBS_VKCAPTURE = optionalAttrs config.cfg.programs.obs-studio.enable 1;
                 # allow using the nvidia reflex layer.
                 # according to nvidia it can cause issues in apps which
                 # don't even use reflex, so enable it in here only for lutris
