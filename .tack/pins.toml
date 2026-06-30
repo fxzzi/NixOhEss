@@ -59,7 +59,7 @@ url = "github:NotAShelf/tuigreet"
 url = "github:feel-co/hjem"
 
 [inputs.hyprland]
-url = "github:hyprwm/Hyprland"
+url = "github:hyprwm/Hyprland/847a54dfc13ce4fbf7a036973cbf4d3f0a2f7f04"
 
 [inputs.agenix]
 url = "github:ryantm/agenix"
