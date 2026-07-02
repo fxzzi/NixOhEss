@@ -11,9 +11,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "c99364158bb09c85645cb08825c9ee9da58d92ba",
-    "narHash": "sha256-SCauj4PFWFMWPpS8bTve48UBXMOp4xhA6/1K5Dx3v40=",
-    "lastModified": 1782684793
+    "rev": "2987a1244bd3b9398783495d1660d63b28582b7f",
+    "narHash": "sha256-LBxAMNkHQsY6EWSFHh/FsFDblrgA02G6oYFHg6m/DBM=",
+    "lastModified": 1782925525
   },
   "creamlinux": {
     "type": "github",
@@ -57,11 +57,11 @@
   },
   "hyprland": {
     "type": "github",
-    "owner": "hyprwm",
+    "owner": "vaxerski",
     "repo": "Hyprland",
-    "rev": "847a54dfc13ce4fbf7a036973cbf4d3f0a2f7f04",
-    "narHash": "sha256-my7Y/BljrbSmcMZyAQxqD4TB6b5crcoT0rkbc5lkS20=",
-    "lastModified": 1782581720
+    "rev": "41444a502334838271aafd400888bac0f7b55fb2",
+    "narHash": "sha256-8TSnEL3b57/rilBAPxkDkXkCoECYL78eipyiar1m2Z4=",
+    "lastModified": 1783006068
   },
   "niqspkgs": {
     "type": "github",
@@ -75,17 +75,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "9a593f382964e3daf30de77ef58b2829f52f65d3",
-    "narHash": "sha256-OeM0skzLT6VTs1agIzgFKRz4dyE3OeNom4HSDS9kWSo=",
-    "lastModified": 1782792307
+    "rev": "a34118c61059e72f9276680400c4f52e8b4db4dd",
+    "narHash": "sha256-1YTEea1x4jfVZkwj2P9K+EpN4huU4PlCsMXbl4ili/A=",
+    "lastModified": 1782934759
   },
   "nixos-core": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "20b5f8916a3fde2f02bccd2e1f2795ab511aab5b",
-    "narHash": "sha256-7x7KzH5p+VDBvvzpCjkRcVhNm6fIty7WYgI7sPq1SCw=",
-    "lastModified": 1780223676
+    "rev": "bdf64399c48297978da2932287dfbcd192483d00",
+    "narHash": "sha256-ZL0ZrwESUMua5NiNWO6rBKVsfFxrzIsXAYIeQV+K5tA=",
+    "lastModified": 1782974239
   },
   "nixpkgs": {
     "type": "github",
@@ -99,9 +99,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "18d2d23191250c7f597d85da07d860eb05f9e1be",
-    "narHash": "sha256-d4Ndt82q9bhL+iKFr1reufZyE/MTdULzN3kEkXsNG88=",
-    "lastModified": 1782660650
+    "rev": "6fad9e9a998dd3a7783c839ce2928877d3e5a883",
+    "narHash": "sha256-S1f/S5Vv7wURVUtzPkmAFlKPVciaPLXxoeg7/GCnl28=",
+    "lastModified": 1782841360
   },
   "nvuv": {
     "type": "gitlab",
