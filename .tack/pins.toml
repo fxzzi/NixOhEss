@@ -40,7 +40,7 @@ url = "gitlab:fazzi/walls"
 type = "fetch"
 
 [inputs.nixos-core]
-url = "github:manic-systems/nixos-core/20b5f8916a3fde2f02bccd2e1f2795ab511aab5b"
+url = "github:manic-systems/nixos-core"
 [inputs.tack]
 url = "github:manic-systems/tack"
 
@@ -59,7 +59,8 @@ url = "github:NotAShelf/tuigreet"
 url = "github:feel-co/hjem"
 
 [inputs.hyprland]
-url = "github:hyprwm/Hyprland/847a54dfc13ce4fbf7a036973cbf4d3f0a2f7f04"
+# url = "github:hyprwm/Hyprland"
+url = "github:vaxerski/Hyprland/fix-fadeout-15260"
 
 [inputs.agenix]
 url = "github:ryantm/agenix"

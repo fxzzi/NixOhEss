@@ -1,5 +1,6 @@
 {
   self,
+  inputs,
   lib,
   pkgs,
   config,
@@ -26,12 +27,13 @@
 
   # pkgs
   selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
-  screenshot = getExe selfPkgs.screenshot;
-  audio = getExe selfPkgs.audio;
+  azzipkgs = inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system};
+  screenshot = getExe azzipkgs.screenshot;
+  audio = getExe azzipkgs.audio;
   brightness =
     if config.cfg.core.isLaptop
-    then getExe selfPkgs.brightness-laptop # uses brightnessctl
-    else getExe selfPkgs.brightness; # uses hyprsunset instead
+    then getExe azzipkgs.brightness-laptop # uses brightnessctl
+    else getExe azzipkgs.brightness; # uses hyprsunset instead
   mpc = getExe pkgs.mpc;
   killall = getExe pkgs.killall;
 in {
@@ -355,7 +357,7 @@ in {
           bind({ mainMod, "SHIFT", "E" }, hl.dsp.exec_raw("pkill wleave || wleave"))
           bind({ "CTRL", "SHIFT", "Escape" }, hl.dsp.exec_raw("foot btm"))
           -- extra schtuff
-          bind({ mainMod, "N" }, hl.dsp.exec_raw("${getExe selfPkgs.sunset} 3000"))
+          bind({ mainMod, "N" }, hl.dsp.exec_raw("${getExe azzipkgs.sunset} 3000"))
           bind({ mainMod, "R" }, hl.dsp.exec_raw("${getExe selfPkgs.random-wall}"))
           bind({ mainMod, "SHIFT", "R" }, hl.dsp.exec_raw("hyprctl reload && ${getExe' pkgs.dunst "dunstify"} 'Hyprland' 'Reloaded Successfully.'"))
           bind({ mainMod, "K" }, hl.dsp.exec_raw("hyprctl kill"))
