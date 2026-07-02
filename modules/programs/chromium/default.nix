@@ -49,28 +49,28 @@
     desktopName = "Wootility Web";
     exec = "chromium --app=https://beta.wootility.io/ %U";
     terminal = false;
-    icon = "${./wootility-web.svg}";
+    icon = ./wootility-web.svg;
   };
   scyrox-s-center = pkgs.makeDesktopItem {
     name = "scyrox-s-center";
     desktopName = "Scyrox S-center";
     exec = "chromium --app=https://www.scyrox.net/ %U";
     terminal = false;
-    icon = "${./scyrox-s-center.svg}";
+    icon = ./scyrox-s-center.svg;
   };
   mchose-m-hub = pkgs.makeDesktopItem {
     name = "mchose-m-hub";
     desktopName = "MCHOSE M HUB";
     exec = "chromium --app=https://www.mchose.com.cn/ %U";
     terminal = false;
-    icon = "${./mchose-m-hub.svg}";
+    icon = ./mchose-m-hub.svg;
   };
   via = pkgs.makeDesktopItem {
     name = "via";
     desktopName = "VIA";
     exec = "chromium --app=https://usevia.app/ %U";
     terminal = false;
-    icon = "${./via.svg}";
+    icon = ./via.svg;
   };
 in {
   options.cfg.programs.chromium = {
