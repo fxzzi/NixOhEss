@@ -74,11 +74,11 @@
   },
   "hyprland": {
     "type": "github",
-    "owner": "vaxerski",
+    "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "455dc6a877352db8fe2058f9bcb77a38cfd9bbae",
-    "narHash": "sha256-POkutShinyZS1RTzAWXtBRL5vliYp3WMJ/U9fRBV0Ng=",
-    "lastModified": 1783094552
+    "rev": "37b02954ec347642edcb8eefdf15846d2da9180f",
+    "narHash": "sha256-D+CFZ784rsLLhIjGjlmiR8TBbjZ1N8NbD+3u8HF0nuw=",
+    "lastModified": 1783106555
   },
   "niqspkgs": {
     "type": "github",
