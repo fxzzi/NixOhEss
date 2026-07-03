@@ -241,9 +241,17 @@ in {
           -- apply behavior by tag
           hl.window_rule({
             match = { tag = "game" },
+            -- setting content type allows ds to apply
             content = "game",
+            -- pause hypridle in fullscreen games
             idle_inhibit = "fullscreen",
-            immediate = true
+            -- allow tearing
+            immediate = true,
+            -- some games like portal 1 and 2 don't let you unfocus the game
+            -- unless it's paused. this suppresses the re-focus event.
+            -- rocket league also tries to bring your focus back to the game
+            -- when your loading into a match. don't do this.
+            suppress_event = "activate",
           })
 
           -- confine cursor to the monitor when a game is in fullscreen.
