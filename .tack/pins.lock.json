@@ -15,6 +15,14 @@
     "narHash": "sha256-LBxAMNkHQsY6EWSFHh/FsFDblrgA02G6oYFHg6m/DBM=",
     "lastModified": 1782925525
   },
+  "crane": {
+    "type": "github",
+    "owner": "ipetkov",
+    "repo": "crane",
+    "rev": "469fd08d0bcf6926321fa973c6777fbc87785dd7",
+    "narHash": "sha256-SlXKwIRIhrOSAcTjCB3ftPLzJWZStQIPS7J1FlZPnKk=",
+    "lastModified": 1781825982
+  },
   "creamlinux": {
     "type": "github",
     "owner": "fxzzi",
@@ -39,6 +47,15 @@
     "narHash": "sha256-Kn5J8HDd+k51c72upNc9IKmIaqN+AqrZfhcU5rDEMHo=",
     "lastModified": 1753598717
   },
+  "flake-compat": {
+    "type": "git",
+    "url": "https://git.lix.systems/lix-project/flake-compat.git",
+    "ref": "refs/heads/main",
+    "rev": "382052b74656a369c5408822af3f2501e9b1af81",
+    "narHash": "sha256-Eg9b/rq/ECYwNwEXs5i9wHyhxNI0JrYx2srdI2uZMaQ=",
+    "lastModified": 1777699697,
+    "revCount": 94
+  },
   "flake-parts": {
     "type": "github",
     "owner": "hercules-ci",
@@ -59,9 +76,9 @@
     "type": "github",
     "owner": "vaxerski",
     "repo": "Hyprland",
-    "rev": "41444a502334838271aafd400888bac0f7b55fb2",
-    "narHash": "sha256-8TSnEL3b57/rilBAPxkDkXkCoECYL78eipyiar1m2Z4=",
-    "lastModified": 1783006068
+    "rev": "455dc6a877352db8fe2058f9bcb77a38cfd9bbae",
+    "narHash": "sha256-POkutShinyZS1RTzAWXtBRL5vliYp3WMJ/U9fRBV0Ng=",
+    "lastModified": 1783094552
   },
   "niqspkgs": {
     "type": "github",
@@ -78,6 +95,14 @@
     "rev": "a34118c61059e72f9276680400c4f52e8b4db4dd",
     "narHash": "sha256-1YTEea1x4jfVZkwj2P9K+EpN4huU4PlCsMXbl4ili/A=",
     "lastModified": 1782934759
+  },
+  "nixcord": {
+    "type": "github",
+    "owner": "FlameFlag",
+    "repo": "nixcord",
+    "rev": "5f428154cf5d148f15c602f3afd04983e68ef364",
+    "narHash": "sha256-PhKjyxSpIEf1kNvySyoDx4XNYWghi69KwqH+AnTxO7Y=",
+    "lastModified": 1783074296
   },
   "nixos-core": {
     "type": "github",
@@ -99,9 +124,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "6fad9e9a998dd3a7783c839ce2928877d3e5a883",
-    "narHash": "sha256-S1f/S5Vv7wURVUtzPkmAFlKPVciaPLXxoeg7/GCnl28=",
-    "lastModified": 1782841360
+    "rev": "11985bb991c885e4e47df6bea8fa8d03fc6ba2ab",
+    "narHash": "sha256-TR9M4Gl/ibvrpLsheOlaNQRam6fzfNq9Mthw/j6ZniU=",
+    "lastModified": 1783065377
   },
   "nvuv": {
     "type": "gitlab",

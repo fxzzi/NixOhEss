@@ -1,21 +1,5 @@
 {
   "pins": {
-    "Equicord": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Equicord",
-        "repo": "Equicord"
-      },
-      "pre_releases": true,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "2026-06-16",
-      "revision": "02b56940cfaca548eebd0457a0e469f2a2ec8f0e",
-      "url": "https://api.github.com/repos/Equicord/Equicord/tarball/refs/tags/2026-06-16",
-      "hash": "sha256-+3DvnoLwVOL0uJD5nuhfyXnnc4dnXXZrf3q4SqZFZsY="
-    },
     "nvidia-vaapi-driver": {
       "type": "Git",
       "repository": {
@@ -25,9 +9,9 @@
       },
       "branch": "pr/chromium-direct-backend",
       "submodules": false,
-      "revision": "eb102da334507e3f157af5f616631947ac57538f",
-      "url": "https://github.com/AoTofu/nvidia-vaapi-driver/archive/eb102da334507e3f157af5f616631947ac57538f.tar.gz",
-      "hash": "sha256-86Y5y6agqaCK3kNscjug5CoGcSEtEl7VzEKnOK7opOw="
+      "revision": "166c390d7394c98f2dbd79991b1ecf2b7dc0a25d",
+      "url": "https://github.com/AoTofu/nvidia-vaapi-driver/archive/166c390d7394c98f2dbd79991b1ecf2b7dc0a25d.tar.gz",
+      "hash": "sha256-R5YTFj0V8Jqd446gFETCn9s5T4lvpiGTiqY/V3DOBv8="
     }
   },
   "version": 8
