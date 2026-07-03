@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  npinsSources,
+  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf concatStringsSep;
@@ -135,22 +135,9 @@ in {
           enableAutoscroll = true;
           withOpenASAR = true;
           withEquicord = true;
-          # equicord can break easily with server-side discord updates.
-          # so we need to keep it as up to date as possible outside of
-          # nixpkgs.
-          equicord = let
-            inherit (npinsSources.Equicord) version hash;
-            inherit (pkgs) fetchFromGitHub equicord;
-          in
-            equicord.overrideAttrs {
-              inherit version;
-              src = fetchFromGitHub {
-                owner = "Equicord";
-                repo = "Equicord";
-                tag = version;
-                inherit hash;
-              };
-            };
+          # equicord can break easily depending on discord updates.
+          # use a more up to date version from nixcord.
+          equicord = inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}.equicord;
         })
       ];
     };

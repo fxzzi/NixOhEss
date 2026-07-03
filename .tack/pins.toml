@@ -4,13 +4,15 @@
 # all_follow: input name -> top-level pin it follows wherever it appears
 # opt out per-input with exclude_follow
 [all_follow]
-nixpkgs = "nixpkgs"
+nixpkgs = ["nixpkgs", "nixpkgs-nixcord"]
 watt = "watt"
 
 # auto-dedup (no top-level pin needed):
 fenix = "fenix"
 flake-parts = "flake-parts"
+flake-compat = "flake-compat"
 rust-analyzer-src = "rust-analyzer"
+crane = "crane"
 
 # [inputs.<name>] fields
 #   url             required, shorturl ok; ?rev=<sha> pins an exact commit
@@ -70,3 +72,6 @@ url = "github:diniamo/niqspkgs"
 
 [inputs.nix-gaming]
 url = "github:fufexan/nix-gaming"
+
+[inputs.nixcord]
+url = "github:FlameFlag/nixcord"
