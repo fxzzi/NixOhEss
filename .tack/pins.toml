@@ -61,8 +61,7 @@ url = "github:NotAShelf/tuigreet"
 url = "github:feel-co/hjem"
 
 [inputs.hyprland]
-# url = "github:hyprwm/Hyprland"
-url = "github:vaxerski/Hyprland/fix-fadeout-15260"
+url = "github:hyprwm/Hyprland"
 
 [inputs.agenix]
 url = "github:ryantm/agenix"
