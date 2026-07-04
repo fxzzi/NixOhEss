@@ -53,6 +53,17 @@
             default_grouped = true;
             hide_k_threads = true;
             default_memory_value = true;
+            default_sort = "mem";
+            columns = [
+              "pid"
+              "name"
+              "cpu%"
+              "mem%"
+              "user"
+              "state"
+              "time"
+              "priority"
+            ];
           };
           # customize the layout of bottom
           row = [
