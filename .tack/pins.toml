@@ -73,4 +73,4 @@ url = "github:diniamo/niqspkgs"
 url = "github:fufexan/nix-gaming"
 
 [inputs.nixcord]
-url = "github:FlameFlag/nixcord"
+url = "github:4evy/nixcord"
