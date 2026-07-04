@@ -3,7 +3,6 @@
 
   outputs = {self}: let
     inputs = import ./.tack;
-    npinsSources = import ./npins;
 
     inherit (inputs.nixpkgs) lib;
     inherit (lib) genAttrs packagesFromDirectoryRecursive callPackageWith fix;
@@ -20,7 +19,7 @@
 
     # hosts are configured in here
     nixosConfigurations = import ./hosts {
-      inherit self inputs lib npinsSources;
+      inherit self inputs lib;
     };
 
     nixosModules.default = self.lib.listRecursive ./modules;
