@@ -24,6 +24,7 @@
     [
       # hdr, wcg
       "--enable-experimental-web-platform-features"
+      "--enable-blink-features=MiddleClickAutoscroll"
     ]
     ++ optionals (enableFeatures != []) [
       "--enable-features=${concatStringsSep "," enableFeatures}"

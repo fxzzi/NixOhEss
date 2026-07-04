@@ -8,7 +8,9 @@
   inherit (lib) mkEnableOption mkIf concatStringsSep;
   cfg = config.cfg.programs.discord;
 
-  commandLineArgs = concatStringsSep " " config.cfg.programs.chromium.commonArgs;
+  commandLineArgs =
+    concatStringsSep " "
+    config.cfg.programs.chromium.commonArgs;
 
   # Use the below variables to create a list of fonts which can
   # be used in openasar quickcss.
@@ -128,15 +130,10 @@ in {
         };
       };
       packages = [
-        (pkgs.discord.override {
+        (inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}.discord.override {
           inherit commandLineArgs;
-          disableUpdates = false;
-          withTTS = false;
-          enableAutoscroll = true;
           withOpenASAR = true;
           withEquicord = true;
-          # equicord can break easily depending on discord updates.
-          # use a more up to date version from nixcord.
           equicord = inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}.equicord;
         })
       ];
