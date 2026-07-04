@@ -2,7 +2,6 @@
   self,
   inputs,
   lib,
-  npinsSources,
 }: let
   inherit (lib) attrNames flatten genAttrs nixosSystem filterAttrs;
   inherit (builtins) readDir;
@@ -13,7 +12,7 @@
   mkSystem = hostName:
     nixosSystem {
       specialArgs = {
-        inherit self inputs hostName npinsSources;
+        inherit self inputs hostName;
       };
       modules = flatten [
         self.nixosModules.default # all modules

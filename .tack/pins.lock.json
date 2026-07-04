@@ -128,6 +128,14 @@
     "narHash": "sha256-7DMamcvS35/tI+KZKXt45bHAq2Vnucl74Xetvp7DR3I=",
     "lastModified": 1783164413
   },
+  "nvidia-vaapi-driver": {
+    "type": "github",
+    "owner": "AoTofu",
+    "repo": "nvidia-vaapi-driver",
+    "rev": "166c390d7394c98f2dbd79991b1ecf2b7dc0a25d",
+    "narHash": "sha256-R5YTFj0V8Jqd446gFETCn9s5T4lvpiGTiqY/V3DOBv8=",
+    "lastModified": 1782939258
+  },
   "nvuv": {
     "type": "gitlab",
     "owner": "fazzi",

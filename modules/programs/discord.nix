@@ -101,12 +101,6 @@ in {
           SKIP_HOST_UPDATE = true;
           SKIP_MODULE_UPDATE = true;
 
-          # use equicord through sheltupdate instead of through nixpkgs
-          # this means we can get faster updates
-          # FIXME: broken for now. see: https://github.com/NixOS/nixpkgs/issues/519923
-          # UPDATE_ENDPOINT = endpoint;
-          # NEW_UPDATE_ENDPOINT = "${endpoint}/";
-
           # access to inspect element
           DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
 
@@ -115,11 +109,14 @@ in {
           BACKGROUND_COLOR = "#121214";
 
           enableHardwareAcceleration = true;
-          offloadAdmControls = true;
           openH264Enabled = true;
+
+          # no idea what these do, but they're there by default.
+          offloadAdmControls = true;
           chromiumSwitches = {};
 
           openasar = {
+            # don't show the OA setup wizard on launch
             setup = true;
             # using the performance preset breaks vaapi
             cmdPreset = "balanced";
