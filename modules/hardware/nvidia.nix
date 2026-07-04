@@ -3,7 +3,6 @@
   lib,
   pkgs,
   inputs,
-  npinsSources,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -21,8 +20,7 @@ in {
         enable32Bit = true;
         extraPackages = [
           (pkgs.nvidia-vaapi-driver.overrideAttrs {
-            src = npinsSources.nvidia-vaapi-driver;
-            version = "0-unstable-${builtins.substring 0 8 npinsSources.nvidia-vaapi-driver.revision}";
+            src = inputs.nvidia-vaapi-driver;
           })
         ];
       };
