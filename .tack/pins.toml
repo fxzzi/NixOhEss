@@ -78,4 +78,3 @@ url = "github:4evy/nixcord"
 [inputs.nvidia-vaapi-driver]
 url = "github:AoTofu/nvidia-vaapi-driver/pr/chromium-direct-backend"
 type = "fetch"
-
