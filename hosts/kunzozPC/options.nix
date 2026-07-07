@@ -125,13 +125,13 @@
             supports_hdr = -1,
             -- this monitor does support 10bit, but only at 120Hz and lower
             supports_wide_color = -1,
+            -- closer to srgb clamp
+            cm = "edid",
           })
         '';
         extraHlConfig = {
           render = {
-            # sidestep all cm issues by just disabling it
-            cm_enabled = 0;
-            # same with ds
+            # ds has problems that i don't want kunzooz to complain about
             direct_scanout = 0;
           };
           # same with tearing
