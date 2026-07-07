@@ -232,6 +232,7 @@ in {
             { class = "sober" },
             { class = "waywall" },
             { class = "love", title = "Freesync test" },
+            { class = "dotnet", initial_title = "Terraria: .*" },
             { initial_title = "Clustertruck" },
           }) do
             hl.window_rule({ match = match, tag = "+game", fullscreen = true })
