@@ -10,7 +10,10 @@
 
   commandLineArgs =
     concatStringsSep " "
-    config.cfg.programs.chromium.commonArgs;
+    (config.cfg.programs.chromium.commonArgs
+      ++ [
+        "--enable-blink-features=MiddleClickAutoscroll"
+      ]);
 
   # Use the below variables to create a list of fonts which can
   # be used in openasar quickcss.

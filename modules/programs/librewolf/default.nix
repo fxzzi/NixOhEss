@@ -30,7 +30,6 @@ in {
     enable = mkEnableOption "librewolf";
   };
   config = mkIf cfg.enable {
-    # ...
     # librewolf re-enabled the sandbox recently, which broke my new tab override setup.
     # this jank solution below is able to re-disable it again. maybe don't do this???
     # nixpkgs.overlays = [
@@ -45,13 +44,14 @@ in {
     #     });
     #   })
     # ];
-    hj.packages = [librewolf];
 
     # some schmuck marked librewolf packages as insecure
     # nixpkgs.config.permittedInsecurePackages = with librewolf; [
     #   "${pname}-${version}"
     #   "${pname}-unwrapped-${version}"
     # ];
+
+    hj.packages = [librewolf];
 
     environment.sessionVariables = {
       MOZ_DISABLE_RDD_SANDBOX = 1;
