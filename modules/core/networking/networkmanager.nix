@@ -17,6 +17,11 @@ in {
         enable = true;
         wifi.powersave = config.cfg.core.isLaptop;
         dns = "systemd-resolved";
+        connectionConfig = {
+          # don't use router advertised dns
+          "ipv4.ignore-auto-dns" = true;
+          "ipv6.ignore-auto-dns" = true;
+        };
         dhcp = "dhcpcd";
         plugins = with pkgs; [
           networkmanager-openvpn
