@@ -5,14 +5,14 @@
 # opt out per-input with exclude_follow
 [all_follow]
 nixpkgs = ["nixpkgs", "nixpkgs-nixcord"]
-watt = "watt"
+watt    = "watt"
 
 # auto-dedup (no top-level pin needed):
-fenix = "fenix"
-flake-parts = "flake-parts"
-flake-compat = "flake-compat"
+fenix             = "fenix"
+flake-parts       = "flake-parts"
+flake-compat      = "flake-compat"
 rust-analyzer-src = "rust-analyzer"
-crane = "crane"
+crane             = "crane"
 
 # [inputs.<name>] fields
 #   url             required, shorturl ok; ?rev=<sha> pins an exact commit
@@ -35,10 +35,10 @@ url = "gitlab:fazzi/nvuv"
 [inputs.creamlinux]
 url = "github:fxzzi/creamlinux-installer"
 [inputs.startpage]
-url = "gitlab:fazzi/startpage"
+url  = "gitlab:fazzi/startpage"
 type = "fetch"
 [inputs.walls]
-url = "gitlab:fazzi/walls"
+url  = "gitlab:fazzi/walls"
 type = "fetch"
 
 [inputs.nixos-core]
@@ -76,5 +76,5 @@ url = "github:fufexan/nix-gaming"
 url = "github:4evy/nixcord"
 
 [inputs.nvidia-vaapi-driver]
-url = "github:AoTofu/nvidia-vaapi-driver/pr/chromium-direct-backend"
+url  = "github:elFarto/nvidia-vaapi-driver"
 type = "fetch"
