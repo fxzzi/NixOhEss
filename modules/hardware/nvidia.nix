@@ -79,9 +79,9 @@ in {
 
         # Report support for D3D12 NVIDIA shader extensions when being supported by VKD3D-Proton.
         # https://github.com/jp7677/dxvk-nvapi/releases/tag/v0.9.2
-        DXVK_NVAPI_D3D12_NV_SHADER_EXTN = 1;
+        # DXVK_NVAPI_D3D12_NV_SHADER_EXTN = 1;
         # also enable descriptor heap
-        VKD3D_CONFIG = "descriptor_heap";
+        # VKD3D_CONFIG = "descriptor_heap";
         # only really helps on dx12 for now
         # DXVK_CONFIG = "dxvk.enableDescriptorHeap = True;";
       };

@@ -92,17 +92,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "c209c198b3868632bf5b4a1bf5688b4154f525a4",
-    "narHash": "sha256-lmNJ0bNnO6AGUhlUMEZ5yZ89ETEZwOfao+cqssRKm8M=",
-    "lastModified": 1783396465
+    "rev": "e142752ebb9074642ef6fe0c6599a2ee6f3c420c",
+    "narHash": "sha256-HLCRJSJauuAJxKu1cZapg2R6Q0Nt7V9qliXjIkBWoBU=",
+    "lastModified": 1783480870
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "bd25941df7e494f1d31f28b4f6a8182362fec781",
-    "narHash": "sha256-ymGXQlPWLyq4iWiFUgqHB7j8hKv8a2/pm5K6BEsyEt4=",
-    "lastModified": 1783448630
+    "rev": "6c9dd68b37f50f6db57bea777e92fd67e0b2e0bb",
+    "narHash": "sha256-nuHRE13JbCT+xE76blZIfUEG8rV8eWld+gSVfjqCTZw=",
+    "lastModified": 1783482236
   },
   "nixos-core": {
     "type": "github",
@@ -116,17 +116,17 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "b5aa0fbd538984f6e3d201be0005b4463d8b09f8",
-    "narHash": "sha256-oPXCU/SSUokcGaJREHibG1CBX3+s/W7orDWQOZDsEeQ=",
-    "lastModified": 1782723713
+    "rev": "d61e20866f3c1ec3cdedaf34be0f3ab76e4bba71",
+    "narHash": "sha256-ITWCSqfeRr++Y7mExtw2P6Pwqwe1YlBIWOIYgpftye8=",
+    "lastModified": 1783482452
   },
   "nvf": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "b40d79caf365505320255056b365fca965bcde4a",
-    "narHash": "sha256-pAlO4ZOSsrKKKCfcNtPBHW2TQz0a3SFAaQih5gLtLf4=",
-    "lastModified": 1783421478
+    "rev": "a6f93c1e49d40246635ba30a8b79c21aae1cb0bc",
+    "narHash": "sha256-t8f/HFUfZC8SOllCFWXgbMKnWipdqoJNmplsn56s6EQ=",
+    "lastModified": 1783457578
   },
   "nvidia-vaapi-driver": {
     "type": "github",
@@ -172,9 +172,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "stash",
-    "rev": "71d914176b03913676df086e35f699be20821164",
-    "narHash": "sha256-wXUXwgx7NvWdnXLWSvwYN2um0rVkGCy7reAfwj0Hygg=",
-    "lastModified": 1782485948
+    "rev": "5e9dad9f8a56ebf532c5ced262ee375977b597ae",
+    "narHash": "sha256-L5UfPKzdU8qQIyXSCMglLhv22J7xInxg3NNKCLkxszM=",
+    "lastModified": 1783501534
   },
   "tack": {
     "type": "github",
@@ -188,9 +188,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "tuigreet",
-    "rev": "961ff2126d09b97bdbaccb02c610b7656fd4c366",
-    "narHash": "sha256-zaEvw2DnGjeKHTPo72GZyX4weaTKVZsNOFn9CKuqEGw=",
-    "lastModified": 1783447831
+    "rev": "2bf070a0b6bb66e76d2e32500dec851e2254ab2f",
+    "narHash": "sha256-aZttkaBzM0vjC/WDz5a/uVeq57hGur/CqfBD7P9V1es=",
+    "lastModified": 1783493073
   },
   "walls": {
     "type": "gitlab",

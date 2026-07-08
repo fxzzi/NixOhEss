@@ -21,16 +21,8 @@ in {
         webrtc = true;
         webrtcAddress = ":${port}";
         webrtcLocalUDPAddress = ":${port}";
-        # allow publishing to all paths
         paths = {
-          all_others = {};
-          # fazzi = {
-          #   alwaysAvailable = true;
-          #   alwaysAvailableTracks = [
-          #     {codec = "Opus";}
-          #     {codec = "H264";}
-          #   ];
-          # };
+          fazzi = {};
         };
         writeQueueSize = 2048;
       };
