@@ -24,7 +24,7 @@ crane             = "crane"
 #   submodules      fetch git submodules
 #   unpack          fixed-only: tarball or file
 [inputs.nixpkgs]
-url = "github:NixOS/nixpkgs/nixos-unstable"
+url = "github:NixOS/nixpkgs/d61e20866f3c1ec3cdedaf34be0f3ab76e4bba71"
 
 [inputs.azzipkgs]
 url = "gitlab:fazzi/azzipkgs"
