@@ -38,6 +38,7 @@ in {
           hunspell
           hunspellDicts.en_GB-ise
           nix-tree
+          npins
         ];
         xdg = {
           config.files = {
