@@ -468,7 +468,7 @@ in {
             -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
             hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
             -- use dynamic tonemapper to allow higher brightness
-            hl.window_rule({ match = { class = ".*"}, tonemap = limited })
+            hl.window_rule({ match = { class = ".*"}, tonemap = off })
           ''}
 
           -- apply the hl.config block from nix

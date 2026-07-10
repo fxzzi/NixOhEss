@@ -74,7 +74,6 @@ in {
             nix.enable = true;
             markdown.enable = true;
             bash.enable = true;
-            clang.enable = true;
             css.enable = true;
             html.enable = true;
             typescript.enable = true;
