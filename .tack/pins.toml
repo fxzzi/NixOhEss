@@ -24,7 +24,7 @@ crane             = "crane"
 #   submodules      fetch git submodules
 #   unpack          fixed-only: tarball or file
 [inputs.nixpkgs]
-url = "github:NixOS/nixpkgs/d61e20866f3c1ec3cdedaf34be0f3ab76e4bba71"
+url = "github:NixOS/nixpkgs/nixos-unstable-small"
 
 [inputs.azzipkgs]
 url = "gitlab:fazzi/azzipkgs"
@@ -43,8 +43,6 @@ type = "fetch"
 
 [inputs.nixos-core]
 url = "github:manic-systems/nixos-core"
-[inputs.tack]
-url = "github:manic-systems/tack"
 
 [inputs.nvf]
 url = "github:NotAShelf/nvf"
@@ -52,8 +50,6 @@ url = "github:NotAShelf/nvf"
 url = "github:NotAShelf/rags"
 [inputs.watt]
 url = "github:NotAShelf/watt"
-[inputs.stash]
-url = "github:NotAShelf/stash"
 [inputs.tuigreet]
 url = "github:NotAShelf/tuigreet"
 
