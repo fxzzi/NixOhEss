@@ -11,9 +11,9 @@
   fan2 = "${nct_hwmon}/fan2_input";
   cpu_temp = "${k10temp_hwmon}/temp1_input";
   gpu_temp = "/tmp/nvidia-temp";
-  minTemp = 35;
+  minTemp = 30;
   maxTemp = 90;
-  minPwm = 32;
+  minPwm = 42;
   maxPwm = 255;
 in {
   config = {
