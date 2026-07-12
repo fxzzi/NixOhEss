@@ -76,9 +76,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "50e7fdd1ccc7072a86537ba8b529bbb11733c44d",
-    "narHash": "sha256-ic2ar9xtdr2ZkVzitykxzihY91oMHon0hBtesE/uHsE=",
-    "lastModified": 1783761649
+    "rev": "ef18043b5ce913256c336c063147e120afd2abb1",
+    "narHash": "sha256-UzU1qO0RDO7HQFFYFgxT/kUhfdHVTSSs6sSgJG2h3uo=",
+    "lastModified": 1783866241
   },
   "niqspkgs": {
     "type": "github",
@@ -92,9 +92,9 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "e203d4a2fd19e95d5d81837fd64dd69fd1ad7b12",
-    "narHash": "sha256-TngG2a3g0gnBAPkR6gM5zwbqFbOc0Y4kioX4N+D7MP4=",
-    "lastModified": 1783739759
+    "rev": "9561ea00a9bf71f0fa3dd5ba280579b80fb49b7b",
+    "narHash": "sha256-Ui5hIGuPcRp1endU0KO4IQc6hMLOpOGasdm7yJythCQ=",
+    "lastModified": 1783827056
   },
   "nixcord": {
     "type": "github",
@@ -116,17 +116,17 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "bbb4df715cb62e53cd329090c2b69eb07f2bddac",
-    "narHash": "sha256-PEXS6z/zIvH+O7J3Ua3N2OUE7IvMhhghwtKxZhVfm5U=",
-    "lastModified": 1783760736
+    "rev": "e7a3ca8092b61ff85b6a45bf863ea2b2d6a661b3",
+    "narHash": "sha256-UgCQzxeWI75XM8G+hPrPh+MKzEPjG3SpAj7dtqSbksA=",
+    "lastModified": 1783776592
   },
   "nvf": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "c55a3a783e6e1ecbbaad607b15a9b7b23d42236f",
-    "narHash": "sha256-UgQuKee2d5VhXaqectc23i2rarIufUpAVSTA6R8XloY=",
-    "lastModified": 1783767627
+    "rev": "9cad654982744e1333cda802b943460ff8c69560",
+    "narHash": "sha256-CPtEH0l/pOzBD6tUS56BYrEuz+VDZZKoxXMObz6AN9I=",
+    "lastModified": 1783863192
   },
   "nvidia-vaapi-driver": {
     "type": "github",
