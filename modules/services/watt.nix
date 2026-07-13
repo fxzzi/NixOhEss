@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   config,
   ...
@@ -9,10 +8,8 @@
 in {
   options.cfg.services.watt.enable = mkEnableOption "watt";
   config = mkIf cfg.enable {
-    services = {
-      power-profiles-daemon.enable = mkForce false;
-      watt.enable = true;
-    };
+    services.watt.enable = true;
+
     systemd.services.watt.serviceConfig.Environment = [
       "WATT_CONFIG=/etc/watt.toml"
     ];
@@ -42,5 +39,4 @@ in {
       power.platform-profile            = { if.is-platform-profile-available = "performance", then = "performance" }
     '';
   };
-  imports = [inputs.watt.nixosModules.default];
 }
