@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     hj = {
       packages = [
-        (pkgs.fuzzel.override {svgBackend = "librsvg";})
+        pkgs.fuzzel
       ];
       xdg.config.files."fuzzel/fuzzel.ini" = {
         generator = lib.generators.toINI {};

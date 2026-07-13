@@ -76,9 +76,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "ef18043b5ce913256c336c063147e120afd2abb1",
-    "narHash": "sha256-UzU1qO0RDO7HQFFYFgxT/kUhfdHVTSSs6sSgJG2h3uo=",
-    "lastModified": 1783866241
+    "rev": "50d301d34a82e2edf7458eea8ab741c927690152",
+    "narHash": "sha256-TC20yyqmqUGT3iuTzNlC7N/D/up3inmUKuSGRMi+pUM=",
+    "lastModified": 1783947741
   },
   "niqspkgs": {
     "type": "github",
@@ -100,9 +100,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "f3c556542c423b5e790a94d0337a80cede816620",
-    "narHash": "sha256-AzoohteEEymQ+m3fAXlQJ+mkFLQ9XjPRqSlgqJ7TLGY=",
-    "lastModified": 1783764089
+    "rev": "83b4aef38f6a7355a80c93b35e0706314e6bcd50",
+    "narHash": "sha256-oVnGcwK62iKkB/erKqgrmnvrlCaVbDR88Upe0hDyIek=",
+    "lastModified": 1783942698
   },
   "nixos-core": {
     "type": "github",
@@ -116,17 +116,17 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "e7a3ca8092b61ff85b6a45bf863ea2b2d6a661b3",
-    "narHash": "sha256-UgCQzxeWI75XM8G+hPrPh+MKzEPjG3SpAj7dtqSbksA=",
-    "lastModified": 1783776592
+    "rev": "fa0063eb13bd6adb9ce0dc849b997dd77a6c5ee6",
+    "narHash": "sha256-wCWfznifGmMeHxx1zBWYnjBXOdARSgSjWh9PWoph2/0=",
+    "lastModified": 1783935015
   },
   "nvf": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "9cad654982744e1333cda802b943460ff8c69560",
-    "narHash": "sha256-CPtEH0l/pOzBD6tUS56BYrEuz+VDZZKoxXMObz6AN9I=",
-    "lastModified": 1783863192
+    "rev": "e84c13bfb2a9b242e07b486f67ff925b29338293",
+    "narHash": "sha256-pzFTGMkhIzV2kpn8MP/BdAVfSF2hM1YwZOCKEW2AhOw=",
+    "lastModified": 1783928475
   },
   "nvidia-vaapi-driver": {
     "type": "github",
@@ -188,8 +188,8 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "watt",
-    "rev": "8c39a46d1d9314484a1d573da66f306d6862814f",
-    "narHash": "sha256-Njn471xFf7OA/HkzrSWNLSxbYnXq0ZZ7nwwPF63vB2M=",
-    "lastModified": 1783329514
+    "rev": "f68a9795616699870d213dc9e641dab655aa434a",
+    "narHash": "sha256-pETi/Fs+8FF2ZuE+JyK9+NcFaDPMHx71UdWgmzjxvkQ=",
+    "lastModified": 1754314403
   }
 }
