@@ -25,20 +25,20 @@ in {
         ];
       };
       nvidia = {
-        open = true;
+        open = false;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true;
         nvidiaSettings = false; # useless on wayland still
         videoAcceleration = false; # override above
         branch = "bleeding_edge"; # newest of latest and beta
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "610.43.03";
-          sha256_64bit = "sha256-ReLUwTSiPDXlDyU6SqY+fl6NF+PRhdSgfIpY6WEu05I=";
-          openSha256 = "sha256-QCXmqo2xNyIwjGv0da2MUC8ex641Mmc5DUI+uRFVwgE=";
-          usePersistenced = false;
-          useSettings = false;
-        };
+        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        #   version = "610.43.03";
+        #   sha256_64bit = "sha256-ReLUwTSiPDXlDyU6SqY+fl6NF+PRhdSgfIpY6WEu05I=";
+        #   openSha256 = "sha256-QCXmqo2xNyIwjGv0da2MUC8ex641Mmc5DUI+uRFVwgE=";
+        #   usePersistenced = false;
+        #   useSettings = false;
+        # };
         moduleParams = {
           nvidia = {
             NVreg_UsePageAttributeTable = 1; # why this isn't default is beyond me.
