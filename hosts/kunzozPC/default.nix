@@ -11,8 +11,7 @@
       nvtopPackages.amd
       sgdboop
       cemu
-      # stremio-linux-shell
-      losange
+      stremio-linux-shell
       inputs.creamlinux.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
