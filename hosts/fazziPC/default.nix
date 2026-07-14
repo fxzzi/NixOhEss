@@ -9,7 +9,7 @@
   hj = {
     packages = with pkgs; [
       qbittorrent
-      losslesscut-bin
+      losslesscut
       steamguard-cli
       picard
       rsgain
