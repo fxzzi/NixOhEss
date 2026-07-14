@@ -21,7 +21,6 @@
       nvtopPackages.nvidia
       yt-dlp
       eden
-      losange
       # stremio-linux-shell
       (retroarch.withCores (cores:
         with cores; [

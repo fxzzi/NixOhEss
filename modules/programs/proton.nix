@@ -16,7 +16,7 @@ in {
     environment.sessionVariables = {
       PROTON_ENABLE_WAYLAND = mkIf cfg.nativeWayland 1;
       PROTON_USE_WOW64 = 1; # Some EAC games fail with this enabled
-      # https://farnoy.dev/posts/linux-latency
+      # https://farnoy.dev/posts/linux-latency#summary-and-recommendations
       VKD3D_SWAPCHAIN_LATENCY_FRAMES = 1;
     };
   };
