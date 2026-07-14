@@ -11,9 +11,8 @@
         value = {
           Appearance = {
             icon_theme = "Papirus-Dark";
-            custom_palette = true;
             standard_dialogs = "xdgdesktopportal";
-            style = "Adwaita-Dark";
+            style = "Adwaita-dark";
           };
           Fonts = {
             fixed = ''"monospace,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"'';
