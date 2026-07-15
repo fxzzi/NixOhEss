@@ -1,4 +1,12 @@
 {
+  "KvLibadwaita": {
+    "type": "github",
+    "owner": "GabePoel",
+    "repo": "KvLibadwaita",
+    "rev": "1f4e0bec44b13dabfa1fe4047aa8eeaccf2f3557",
+    "narHash": "sha256-jCXME6mpqqWd7gWReT04a//2O83VQcOaqIIXa+Frntc=",
+    "lastModified": 1757782301
+  },
   "agenix": {
     "type": "github",
     "owner": "ryantm",
@@ -76,9 +84,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "6984188eb0c004c9c813b0ed8ff3bd2051370726",
-    "narHash": "sha256-kK15dUtCEI+6qozQ+Jc9jNVmxy1CTBECsVsmqEzGwf0=",
-    "lastModified": 1784035423
+    "rev": "79bc0ca16e7cca40c247a9200634d150fa8193d1",
+    "narHash": "sha256-vd4VSlddmDAToJv/twyr0O8Siq4U/sOIXeo6DFZIolc=",
+    "lastModified": 1784043142
   },
   "niqspkgs": {
     "type": "github",
@@ -92,17 +100,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "57b8406622dce20b738f091a5e07dc395d625b3b",
-    "narHash": "sha256-vsF4IxwVoUmMBP+KwA7LXUHgJ8wBSi6BrQOQxy3/hNg=",
-    "lastModified": 1783997581
+    "rev": "05f3aeb1025daaa054e0722750c3b33699e57f06",
+    "narHash": "sha256-+qFb0sVUN0F7UG+Gj96rWYV3F8FpA1cejAcV/3Rzbxs=",
+    "lastModified": 1784108037
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "5e2ee31f6e3a1020ac821e749aea046b12e17252",
-    "narHash": "sha256-jtxXqX+ycVFlY/6fZi4A635CsCiCJcht0/sGvr9oAAQ=",
-    "lastModified": 1783998997
+    "rev": "8707050780d9fa1a3dd7cfe4781849f4eae97414",
+    "narHash": "sha256-d5UzKtZP2I7w5qLCEXACtk6t8tqFJ4yGi7yTCM1RSqU=",
+    "lastModified": 1784111200
   },
   "nixos-core": {
     "type": "github",
@@ -116,9 +124,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "5b6151d7156c90731f5723e0751d2b8684c62433",
-    "narHash": "sha256-SdAl2p+bZEwh5akQ0vkaKBnS6yQduvj7kf24q6FHvxY=",
-    "lastModified": 1784023459
+    "rev": "c552e6d492ac42d6039dc92a4dd7d608aced167a",
+    "narHash": "sha256-4jFMNTCCFYP7BfYanzw31ESHRDiOfShYEd/kI+T0ks8=",
+    "lastModified": 1784087100
   },
   "nvf": {
     "type": "github",
