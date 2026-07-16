@@ -25,7 +25,7 @@ in {
         ];
       };
       nvidia = {
-        open = false;
+        open = true;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true;
         nvidiaSettings = false; # useless on wayland still
