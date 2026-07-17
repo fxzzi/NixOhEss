@@ -47,6 +47,11 @@ in {
       package = hyprlandSet.hyprland;
       portalPackage = hyprlandSet.xdg-desktop-portal-hyprland;
     };
+
+    # allow Hyprland to gain RT.
+    # https://github.com/hyprwm/Hyprland/pull/15411
+    # security.rtkit.enable = true;
+
     systemd.user = {
       # the document portal breaks itself when i log out and back in.
       # is it even needed outside of flatpaks?? mask it.
