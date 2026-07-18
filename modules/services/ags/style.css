@@ -15,7 +15,7 @@ window > box {
   color: @foreground;
   margin: 2px 2px 0 2px;
   border: 1px solid @color4;
-  min-height: 30px;
+  min-height: 28px;
 }
 
 button {
@@ -36,7 +36,6 @@ menu menuitem {
 }
 
 .workspaces {
-  padding-top: 2px;
   margin-left: 5px;
 }
 
@@ -50,11 +49,10 @@ menu menuitem {
   box-shadow: none;
   color: @foreground;
   background-color: transparent;
-  border-bottom: 2px solid transparent;
 }
 
 .workspaces button.focused {
-  border-bottom: 2px solid @color6;
+  box-shadow: inset 0 -2px @color6;
 }
 
 .workspaces button:hover {
