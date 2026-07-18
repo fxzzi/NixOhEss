@@ -121,7 +121,6 @@ in {
         middle_click_paste = 0;
         # we launch with Hyprland, not start-hyprland.
         disable_watchdog_warning = 1;
-        initial_workspace_tracking = 2;
       };
       ecosystem = {
         no_update_news = 1;
@@ -381,8 +380,8 @@ in {
           bind({ "XF86AudioNext" }, hl.dsp.exec_raw("${mpc} next"))
 
           -- shortcuts for OBS
-          bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.global("com.obsproject.Studio:_toggle_recording"))
-          bind({ "CTRL", "grave" }, hl.dsp.global("com.obsproject.Studio:ReplayBuffer.Save"))
+          bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.global(":_toggle_recording"))
+          bind({ "CTRL", "grave" }, hl.dsp.global(":ReplayBuffer.Save"))
 
           -- also for gpu-screen-recorder.
           -- SIGINT saves the recording (wont start a recording for now)
