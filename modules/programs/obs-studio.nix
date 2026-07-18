@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -17,7 +16,7 @@ in {
       plugins = with pkgs.obs-studio-plugins; [
         obs-vkcapture
         obs-pipewire-audio-capture
-        inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.obs-wayland-hotkeys
+        obs-wayland-hotkeys
       ];
     };
   };
