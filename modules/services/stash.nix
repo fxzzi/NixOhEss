@@ -4,13 +4,20 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf getExe;
+  inherit (lib) mkEnableOption mkIf getExe mkForce;
   inherit (pkgs) writeText runCommand stash-clipboard;
   cfg = config.cfg.services.stash;
   regex = "(password|secret|api[_-]?key|token)[=: ]+[^\s]+";
 in {
   options.cfg.services.stash.enable = mkEnableOption "stash";
   config = mkIf cfg.enable {
+    services.stash-clipboard = {
+      enable = true;
+      arguments = ["--max-items 10"];
+      filterFile = "${writeText "stash-regex" regex}";
+    };
+    # FIXME: remove when merged
+    # https://github.com/NixOS/nixpkgs/pull/542997
     environment.systemPackages = [
       (runCommand "stash-symlinks" {} ''
         mkdir -p $out/bin
@@ -19,10 +26,6 @@ in {
         done
       '')
     ];
-    services.stash-clipboard = {
-      enable = true;
-      arguments = ["--max-items 10"];
-      filterFile = "${writeText "stash-regex" regex}";
-    };
+    systemd.user.services.stash-clipboard.serviceConfig.ExecStart = mkForce "${getExe stash-clipboard} --max-items 10 watch --persist";
   };
 }

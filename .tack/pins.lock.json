@@ -180,9 +180,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "tuigreet",
-    "rev": "2bf070a0b6bb66e76d2e32500dec851e2254ab2f",
-    "narHash": "sha256-aZttkaBzM0vjC/WDz5a/uVeq57hGur/CqfBD7P9V1es=",
-    "lastModified": 1783493073
+    "rev": "1edddd452ee100193ec6f96c52f472be7d0640a4",
+    "narHash": "sha256-l68bPsd9OznjeDL7tS9kmwmKu9+ZR2ktROsisWjkrLM=",
+    "lastModified": 1784381607
   },
   "walls": {
     "type": "gitlab",
