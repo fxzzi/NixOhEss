@@ -121,6 +121,7 @@ in {
         middle_click_paste = 0;
         # we launch with Hyprland, not start-hyprland.
         disable_watchdog_warning = 1;
+        initial_workspace_tracking = 2;
       };
       ecosystem = {
         no_update_news = 1;
