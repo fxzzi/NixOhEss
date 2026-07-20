@@ -253,6 +253,7 @@ in {
             -- rocket league also tries to bring your focus back to the game
             -- when your loading into a match. don't do this.
             suppress_event = "activate",
+            -- sync_fullscreen = true,
           })
 
           -- confine cursor to the monitor when a game is in fullscreen.
