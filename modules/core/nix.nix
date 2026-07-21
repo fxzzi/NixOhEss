@@ -1,8 +1,16 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   config = {
     nix = {
       package = pkgs.nixVersions.latest;
       channel.enable = false; # we use le flakes
+      registry = {
+        nixpkgs.flake = inputs.nixpkgs;
+        azzipkgs.flake = inputs.azzipkgs;
+      };
       settings = {
         experimental-features = [
           "nix-command"
