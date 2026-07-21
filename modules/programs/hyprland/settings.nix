@@ -468,6 +468,7 @@ in {
           ${optionalString cfg.useGit ''
             -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
             hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
+            hl.window_rule({ match = { class = "chromium-browser" }, no_auto_hdr = true })
             -- use dynamic tonemapper to allow higher brightness
             hl.window_rule({ match = { class = ".*"}, tonemap = off })
           ''}
