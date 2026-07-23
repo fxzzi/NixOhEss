@@ -9,7 +9,13 @@ in {
   options.cfg.programs.mpv.enable = mkEnableOption "mpv";
   config = mkIf config.cfg.programs.mpv.enable {
     hj = {
-      packages = [pkgs.mpv];
+      packages = [
+        (pkgs.mpv.override {
+          scripts = [
+            pkgs.mpvScripts.builtins.autoload
+          ];
+        })
+      ];
       xdg.config.files = {
         "mpv/mpv.conf" = {
           generator = generators.toKeyValue {};
@@ -19,7 +25,8 @@ in {
             hwdec = "auto";
             video-sync = "display-resample";
             volume-max = 150;
-            keep-open = "yes";
+            keep-open = "always";
+            reset-on-next-file = "pause";
             fs = "yes";
             alang = "ja,en,eng";
             slang = "en,eng";
