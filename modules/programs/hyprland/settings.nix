@@ -199,6 +199,12 @@ in {
           hl.window_rule({ match = { class = "xdg-desktop-portal-gtk" }, float = true })
           hl.window_rule({ match = { class = "org.gnome.FileRoller", title = "Extract.*" }, float = true })
 
+          -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
+          hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
+          hl.window_rule({ match = { class = "chromium-browser" }, no_auto_hdr = true })
+          -- use dynamic tonemapper to allow higher brightness
+          hl.window_rule({ match = { class = ".*"}, tonemap = off })
+
           -- Window rules for games
           -- emulators and similar apps that should be tagged as games, but not forced fullscreen
           for _, match in ipairs({
@@ -253,7 +259,7 @@ in {
             -- rocket league also tries to bring your focus back to the game
             -- when your loading into a match. don't do this.
             suppress_event = "activate",
-            -- sync_fullscreen = true,
+            sync_fullscreen = true,
           })
 
           -- confine cursor to the monitor when a game is in fullscreen.
@@ -466,11 +472,7 @@ in {
 
           -- git only stuff here :P
           ${optionalString cfg.useGit ''
-            -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
-            hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
-            hl.window_rule({ match = { class = "chromium-browser" }, no_auto_hdr = true })
-            -- use dynamic tonemapper to allow higher brightness
-            hl.window_rule({ match = { class = ".*"}, tonemap = off })
+
           ''}
 
           -- apply the hl.config block from nix

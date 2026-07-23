@@ -36,7 +36,7 @@ in {
   };
   config = mkIf cfg.enable {
     hj = {
-      packages = [pkgs.fastfetch];
+      packages = [pkgs.fastfetch-unwrapped];
       xdg.config.files."fastfetch/config.jsonc" = {
         generator = lib.generators.toJSON {};
         value = {
@@ -107,7 +107,9 @@ in {
       text = mkAfter ''
         # only run fastfetch if term is large enough
         if [[ $COLUMNS -ge 45 && $LINES -ge 15 ]]; then
-          ${getExe pkgs.fastfetch}
+          if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+            ${getExe pkgs.fastfetch-unwrapped}
+          fi
         fi
       '';
     };
