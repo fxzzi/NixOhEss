@@ -26,6 +26,6 @@ in {
         done
       '')
     ];
-    systemd.user.services.stash-clipboard.serviceConfig.ExecStart = mkForce "${getExe stash-clipboard} --max-items 10 watch --persist";
+    # systemd.user.services.stash-clipboard.serviceConfig.ExecStart = mkForce "${getExe stash-clipboard} --max-items 10 watch --persist";
   };
 }

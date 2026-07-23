@@ -46,6 +46,7 @@ in {
             "NVreg_RegistryDwords=RmEnableAggressiveVblank" = 1; # low-latency stuff
           };
           nvidia-modeset.disable_vrr_memclk_switch = 1; # don't force P0 when VRR is active
+          nvidia-drm.vblank = 1;
         };
       };
     };
