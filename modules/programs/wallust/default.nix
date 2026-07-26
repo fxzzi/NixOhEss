@@ -54,6 +54,10 @@ in {
                 target = "~/.cache/wallust/accent.txt";
               };
             };
+            hooks = {
+              dunst = optionalAttrs config.cfg.services.dunst.enable "dunstctl reload";
+              hyprland = optionalAttrs config.cfg.programs.hyprland.enable ''hyprctl hyprpaper wallpaper , $XDG_STATE_HOME/wallpaper'';
+            };
           };
         };
       };

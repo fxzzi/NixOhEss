@@ -26,6 +26,7 @@
         with cores; [
           bsnes
           beetle-psx-hw
+          pcsx2
           genesis-plus-gx
           melonds
           mupen64plus
