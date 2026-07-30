@@ -76,17 +76,17 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "26089c056ea561e695f74945f12872f24eb08e67",
-    "narHash": "sha256-wYo/odcGVHPpu78Y+EbINdfUDd30CWMpwC1UsN762Ck=",
-    "lastModified": 1785121190
+    "rev": "a065ac188fcd61a9d33349110dc99598a1b5e988",
+    "narHash": "sha256-IesjwM46rsaLRiHebqGdSy0vDuD6Yf7b6IME9LJOS8A=",
+    "lastModified": 1785520341
   },
   "hyprland": {
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "fdd49ae16e205fb5e5178ade21f7cd4c9af06ef2",
-    "narHash": "sha256-sd3mGA8RbaWvt+sQZwFApVY3otaKnQUBrb37DX1iwPs=",
-    "lastModified": 1785161273
+    "rev": "584df4c390b52e66938dfbb9f7b8561f4c027822",
+    "narHash": "sha256-u4FOyqVVugmDDffn0P10KYfHlq8AQWlP2wru41bZAwY=",
+    "lastModified": 1785518015
   },
   "niqspkgs": {
     "type": "github",
@@ -100,17 +100,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "347564af79e40412385c90ee362e542e680a7176",
-    "narHash": "sha256-QifeDk2VwwkW63y2hsioQnGUm4wZcpqIQZ1x0nI7YiE=",
-    "lastModified": 1785123476
+    "rev": "471d9f8fd2cef42938285cc11b0b42936220090c",
+    "narHash": "sha256-CgW0nbR45luaWAlvxGR+KfucWOyRKYeL/XZ36PtWm30=",
+    "lastModified": 1785468529
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "3f6f45fbeec727631ed9b2290861b5f24b023c7b",
-    "narHash": "sha256-EIcO2bphQwywezK6YZF5lLF/IBwiQZQ7lbcfQM789bE=",
-    "lastModified": 1785149446
+    "rev": "1ad9a82fab60e0cb7fa3f18022a03385f3cb3b98",
+    "narHash": "sha256-5px4gztZ1ZFYEOZ2QXodzg/meQTBIOFeykmLJxUB2Yc=",
+    "lastModified": 1785519980
   },
   "nixos-core": {
     "type": "github",
@@ -124,17 +124,17 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "624af665418d3c65d544145b4d34ad696439570e",
-    "narHash": "sha256-m0pDuRJG7EDo9ri+4Ksu83VsI+PlxNC9lNBfydejce4=",
-    "lastModified": 1785090369
+    "rev": "6e046a96da8cdd8e784a50f553d7f8357f3e3a47",
+    "narHash": "sha256-pkLRv2U1hO3sW20eRYWmxY073lIcDk+Iii8SQF0pZKA=",
+    "lastModified": 1785486925
   },
   "nvf": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "9851d9c3e0f32e7f37139893f16f6229929649fd",
-    "narHash": "sha256-Wutqb+MbbcLqm03C6jKYjVVwAQPOtcUueVQv/B+3z5s=",
-    "lastModified": 1785093145
+    "rev": "a7987e9650cfbefd9c59b203c35e8573f83d0a6b",
+    "narHash": "sha256-qgGuNVfxYliVtRRzxfT4zDr0ZjI7RZtFC0ZngHExTLk=",
+    "lastModified": 1785521230
   },
   "nvidia-vaapi-driver": {
     "type": "github",

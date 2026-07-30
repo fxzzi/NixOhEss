@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -12,7 +11,7 @@ in {
     services = {
       mullvad-vpn = {
         enable = true;
-        package = pkgs.mullvad-vpn; # mullvad gui
+        gui.enable = true;
         enableExcludeWrapper = false; # i do not use the wrapper
       };
     };
