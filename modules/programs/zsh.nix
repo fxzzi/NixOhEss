@@ -40,14 +40,21 @@
 in {
   options.cfg.programs.zsh.enable = mkEnableOption "zsh";
   config = mkIf cfg.enable {
-    programs.zsh.enable = true;
-    programs.zsh.promptInit = "";
+    programs = {
+      zsh = {
+        enable = true;
+        promptInit = ''PROMPT="%F{yellow}%3~%f $ "'';
+      };
+      fzf = {
+        fuzzyCompletion = true;
+        keybindings = true;
+      };
+    };
     users.users.${config.cfg.core.username} = {
       shell = pkgs.zsh; # Set shell to zsh
     };
     hj = {
       packages = with pkgs; [
-        fzf
         ripgrep
         bat
         eza
@@ -58,7 +65,6 @@ in {
           HISTSIZE=9999999
           SAVEHIST=$HISTSIZE
           HISTFILE="$XDG_DATA_HOME/zsh/zsh_history"
-          PROMPT="%F{yellow}%3~%f $ "
 
           setopt ${builtins.concatStringsSep " " options}
 
@@ -100,8 +106,6 @@ in {
           source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
           source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
           source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-          zstyle ':fzf-tab:complete:cd:*' fzf-preview '${aliases.ls} --color=always --width 1 $realpath'
-
           # these keybinds have to be set after the plugin is sourced
           bindkey "''${key[Up]}" history-substring-search-up
           bindkey "''${key[Down]}" history-substring-search-down
