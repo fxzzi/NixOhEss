@@ -64,7 +64,6 @@ in {
 
         # enable saving shaders to disk
         __GL_SHADER_DISK_CACHE = 1;
-        __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = 1;
         # increase max size to xGB
         __GL_SHADER_DISK_CACHE_SIZE = 12 * 1024 * 1024 * 1024;
         # clean up ~
