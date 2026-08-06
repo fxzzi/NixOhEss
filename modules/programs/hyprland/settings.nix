@@ -53,7 +53,6 @@ in {
         allow_tearing = 0;
       };
       render = {
-        cm_enabled = 1;
         # only activate DS for games
         direct_scanout = 2;
       };
