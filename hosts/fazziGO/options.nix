@@ -5,7 +5,7 @@
       kernel.type = "latest";
       isLaptop = true;
       keyLayout = "uk";
-      limine.timeout = 0.25;
+      limine.timeout = 10;
       networkmanager.enable = true;
     };
     services = {
