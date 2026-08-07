@@ -5,7 +5,6 @@ _: {
       input1 = {
         gain = 40;
         phantom = true;
-        mute = false;
       };
       output.mute = false;
     };

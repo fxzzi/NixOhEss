@@ -30,7 +30,9 @@ in {
         generator = lib.generators.toINI {};
         value = {
           main = {
-            font = "JetBrainsMono Nerd Font:size=12.5";
+            font = "BlexMono Nerd Font:size=12.5";
+            font-bold-italic = "VictorMono Nerd Font:size=12.5:style=Bold Italic";
+            font-italic = "VictorMono Nerd Font:size=12.5:style=Italic";
             pad = "6x6";
             transparent-fullscreen = true; # option added by my fork
             gamma-correct-blending = true;
