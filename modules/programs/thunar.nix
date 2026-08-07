@@ -67,11 +67,11 @@ in {
             <video-files/>
           </action>
           <action>
-            <icon>foot</icon>
+            <icon>beer</icon>
             <name>Edit in Terminal</name>
             <submenu></submenu>
             <unique-id>1715762765914315-1</unique-id>
-            <command>foot nvim %f</command>
+            <command>beer nvim %f</command>
             <description></description>
             <range>*</range>
             <patterns>*</patterns>
@@ -83,7 +83,7 @@ in {
             <name>Open Terminal here</name>
             <submenu></submenu>
             <unique-id>1715763119333224-2</unique-id>
-            <command>foot -D %f</command>
+            <command>beer -D %f</command>
             <description></description>
             <range>*</range>
             <patterns>*</patterns>

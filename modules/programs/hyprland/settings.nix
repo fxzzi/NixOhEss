@@ -109,8 +109,8 @@ in {
         # Focuses windows which ask for activation
         focus_on_activate = 1;
         enable_swallow = 0;
-        # gui apps executed by foot will swallow it
-        swallow_regex = "foot";
+        # gui apps executed by beer will swallow it
+        swallow_regex = "dev.notashelf.beer";
         vrr = 2; # only apply VRR in fullscreen
         # screencopy_force_8b = false;
         # by default, ANR dialog shows up way too aggressively.
@@ -183,7 +183,7 @@ in {
           hl.window_rule({ match = { class = "atril" }, idle_inhibit = "focus" })
 
           -- oled flicker is annoying on some apps
-          hl.window_rule({ match = { class = "foot" }, idle_inhibit = "fullscreen", no_vrr = true })
+          hl.window_rule({ match = { class = "dev.notashelf.beer" }, idle_inhibit = "fullscreen", no_vrr = true })
           hl.window_rule({ match = { class = "org.gnome.Loupe" }, no_vrr = true })
 
           -- ignore maximize requests from apps. You'll probably like this.
@@ -198,8 +198,6 @@ in {
           hl.window_rule({ match = { class = "xdg-desktop-portal-gtk" }, float = true })
           hl.window_rule({ match = { class = "org.gnome.FileRoller", title = "Extract.*" }, float = true })
 
-          -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
-          hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
           hl.window_rule({ match = { class = "chromium-browser" }, no_auto_hdr = true })
           -- disable HDR tonemapping for now to get DS off and on to more closely match
           hl.window_rule({ match = { class = ".*"}, tonemap = off })
@@ -364,19 +362,19 @@ in {
 
           -- binds for apps
           bind({ mainMod, "F" }, hl.dsp.exec_raw("thunar"))
-          bind({ mainMod, "T" }, hl.dsp.exec_raw("foot"))
+          bind({ mainMod, "T" }, hl.dsp.exec_raw("beer"))
           bind({ mainMod, "B" }, hl.dsp.exec_raw("librewolf"))
           bind({ mainMod, "SHIFT", "P" }, hl.dsp.exec_raw("librewolf --private-window"))
           bind({ mainMod, "W" }, hl.dsp.exec_raw("Discord"))
           bind({ mainMod, "D" }, hl.dsp.exec_raw("pkill fuzzel || fuzzel"))
           bind({ mainMod, "SHIFT", "E" }, hl.dsp.exec_raw("pkill wleave || wleave"))
-          bind({ "CTRL", "SHIFT", "Escape" }, hl.dsp.exec_raw("foot btm"))
+          bind({ "CTRL", "SHIFT", "Escape" }, hl.dsp.exec_raw("beer btm"))
           -- extra schtuff
           bind({ mainMod, "N" }, hl.dsp.exec_raw("${getExe azzipkgs.sunset} 3000"))
           bind({ mainMod, "R" }, hl.dsp.exec_raw("${getExe selfPkgs.random-wall}"))
           bind({ mainMod, "SHIFT", "R" }, hl.dsp.exec_raw("hyprctl reload && ${getExe' pkgs.dunst "dunstify"} 'Hyprland' 'Reloaded Successfully.'"))
           bind({ mainMod, "K" }, hl.dsp.exec_raw("hyprctl kill"))
-          bind({ mainMod, "J" }, hl.dsp.exec_raw("foot ${getExe selfPkgs.wall-picker}"))
+          bind({ mainMod, "J" }, hl.dsp.exec_raw("beer ${getExe selfPkgs.wall-picker}"))
           bind({ mainMod, "L" }, hl.dsp.exec_raw("loginctl lock-session"))
           bind({ mainMod, "V" }, hl.dsp.exec_raw("pkill fuzzel || (stash list | fuzzel --width 75 --dmenu | stash decode | wl-copy)"))
 

@@ -11,7 +11,7 @@
       zenergy.enable = true;
       v4l2.enable = true;
       # bluetooth.enable = true;
-      # scanning.enable = true;
+      scanning.enable = true;
     };
     services = {
       ags.enable = true;
@@ -146,7 +146,7 @@
       };
       hyprlock.enable = true;
       wallust.enable = true;
-      foot.enable = true;
+      beer.enable = true;
       fuzzel.enable = true;
     };
   };

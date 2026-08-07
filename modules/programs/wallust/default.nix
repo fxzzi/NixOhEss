@@ -34,10 +34,6 @@ in {
                 template = "colors_ags.css";
                 target = "~/.config/ags/colors_ags.css";
               };
-              foot = optionalAttrs config.cfg.programs.foot.enable {
-                template = "colors_foot.ini";
-                target = "~/.cache/wallust/colors_foot.ini";
-              };
               wleave = optionalAttrs config.cfg.programs.wleave.enable {
                 template = "colors_wleave.css";
                 target = "~/.config/wleave/colors_wleave.css";

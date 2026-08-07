@@ -19,11 +19,6 @@ in {
             main.include = "~/.cache/wallust/colors_fuzzel.ini";
           };
         };
-        "foot/foot.ini" = {
-          value = {
-            main.include = "~/.cache/wallust/colors_foot.ini";
-          };
-        };
       };
     };
   };

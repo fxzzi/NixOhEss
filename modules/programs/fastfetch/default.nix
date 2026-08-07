@@ -6,11 +6,7 @@
 }: let
   inherit (lib) mkEnableOption mkOption types mkIf getExe mkAfter;
   cfg = config.cfg.programs.fastfetch;
-  iconPath = ./images/${cfg.icon}.jpg;
-  # Generate sixel using chafa
-  icon = pkgs.runCommand "fastfetch-icon" {} ''
-    ${getExe pkgs.chafa} ${iconPath} -s 18 --format sixel > $out
-  '';
+  iconPath = ./images/${cfg.icon}.png;
 in {
   options = {
     cfg.programs.fastfetch = {
@@ -36,7 +32,7 @@ in {
   };
   config = mkIf cfg.enable {
     hj = {
-      packages = [pkgs.fastfetch-unwrapped];
+      packages = [pkgs.fastfetch];
       xdg.config.files."fastfetch/config.jsonc" = {
         generator = lib.generators.toJSON {};
         value = {
@@ -45,13 +41,12 @@ in {
             detectVersion = false;
           };
           logo = {
-            source = icon;
-            type = "raw";
-            height = 9;
-            width = 15;
+            source = iconPath;
+            type = "kitty-direct";
+            width = 16;
+            height = 8;
             padding = {
-              top = 1;
-              left = 1;
+              right = 1;
             };
           };
           modules = [
@@ -105,12 +100,7 @@ in {
     };
     hj.xdg.config.files."zsh/.zshrc" = lib.mkIf cfg.shellIntegration {
       text = mkAfter ''
-        # only run fastfetch if term is large enough
-        if [[ $COLUMNS -ge 45 && $LINES -ge 15 ]]; then
-          if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
-            ${getExe pkgs.fastfetch-unwrapped}
-          fi
-        fi
+        ${getExe pkgs.fastfetch}
       '';
     };
   };

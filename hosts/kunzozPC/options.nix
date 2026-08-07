@@ -69,7 +69,7 @@
         enable = true;
         disableCache = false;
       };
-      foot.enable = true;
+      beer.enable = true;
       nvf.enable = true;
       steam.enable = true;
       prismlauncher = {

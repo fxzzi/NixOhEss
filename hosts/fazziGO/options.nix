@@ -54,7 +54,7 @@
       nvf.enable = true;
       adb.enable = true;
       wallust.enable = true;
-      foot.enable = true;
+      beer.enable = true;
       fuzzel.enable = true;
       mpv.enable = true;
 

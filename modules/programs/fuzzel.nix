@@ -30,7 +30,7 @@ in {
             vertical-pad = "8";
             inner-pad = "6";
             filter-desktop = true;
-            terminal = "foot";
+            terminal = "beer";
             fields = "name,exec,keywords";
             placeholder = "Search...";
             match-mode = "exact";

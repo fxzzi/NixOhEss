@@ -23,6 +23,14 @@
     "narHash": "sha256-n4dY9wPMsq6BlA/Qd+rsfzOhQ9rI0jDylTGDocvByvg=",
     "lastModified": 1785851246
   },
+  "beer": {
+    "type": "github",
+    "owner": "Michael-C-Buckley",
+    "repo": "beer",
+    "rev": "2d719e91473cbca2309b88d701cd05295371eb9c",
+    "narHash": "sha256-j1IM/Vyj3WJ+O++mPuJaca0GGCWJex/3dpaKOa7DIJ4=",
+    "lastModified": 1785580637
+  },
   "crane": {
     "type": "github",
     "owner": "ipetkov",
@@ -108,9 +116,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "61ae857286c8f3c63bd3b20492e0f87d78bcead2",
-    "narHash": "sha256-zFsOHFtWozMWlH62CTUwBdKdTNN+esUGIyluRcitTQY=",
-    "lastModified": 1786013188
+    "rev": "99ffe102bd3a3cd685f5017ee5e1f3a9e0c59b43",
+    "narHash": "sha256-8Odgiu3KoOsTxf9RgjsyIXkg4HfPqvLiN3r2/e7CI8s=",
+    "lastModified": 1786063662
   },
   "nixos-core": {
     "type": "github",
