@@ -17,16 +17,24 @@ in {
     };
     services.mediamtx = {
       enable = true;
-      settings = {
-        webrtc = true;
-        webrtcAddress = ":${port}";
-        webrtcLocalUDPAddress = ":${port}";
-        paths = {
-          fazzi = {};
-        };
-        writeQueueSize = 2048;
-      };
+      # settings = {
+      #   webrtc = true;
+      #   webrtcAddress = ":${port}";
+      #   webrtcLocalUDPAddress = ":${port}";
+      #   paths = {
+      #     fazzi = {};
+      #   };
+      #   writeQueueSize = 2048;
+      # };
     };
+    environment.etc."mediamtx.yaml".text = lib.mkForce ''
+      paths:
+        fazzi: {}
+      webrtc: true
+      webrtcAddress: :4200
+      webrtcLocalUDPAddress: :4200
+      writeQueueSize: 2048
+    '';
     # pass the public ip to mediamtx via env var
     # secret should be in the form MTX_WEBRTCADDITIONALHOSTS=publicip1,publicip2,...
     systemd.services.mediamtx.serviceConfig.EnvironmentFile = "${config.age.secrets.publicip.path}";

@@ -24,7 +24,7 @@ crane             = "crane"
 #   submodules      fetch git submodules
 #   unpack          fixed-only: tarball or file
 [inputs.nixpkgs]
-url = "github:NixOS/nixpkgs/nixos-unstable-small"
+url = "github:NixOS/nixpkgs/a074fa9a1cc14efea8cc71fb08a71aacdfb91757"
 [inputs.nixos-core]
 url = "github:manic-systems/nixos-core"
 [inputs.hjem]
@@ -51,6 +51,10 @@ url = "github:NotAShelf/nvf"
 url = "github:NotAShelf/rags"
 [inputs.tuigreet]
 url = "github:NotAShelf/tuigreet"
+[inputs.beer]
+url = "git+https://git.notashelf.dev/notashelf/beer.git"
+[inputs.chroma]
+url = "git+https://git.notashelf.dev/notashelf/chroma.git"
 
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
