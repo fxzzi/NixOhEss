@@ -12,18 +12,19 @@ in {
   config = mkIf cfg.enable {
     hj = {
       packages = [
-        inputs.beer.packages.${pkgs.stdenv.hostPlatform.system}.default
+        # inputs.beer.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
       xdg.config.files = {
         "beer/beer.toml" = {
           generator = (pkgs.formats.toml {}).generate "beer.toml";
           value = {
             main = {
-              font = "JetBrainsMono Nerd Font";
+              font = "monospace";
               pad-x = 6;
               pad-y = 6;
               term = "xterm-256color";
-              subpixel = "rgb";
+              subpixel = "none";
+              hinting = "none";
             };
             colors = {
               alpha = 0.85;

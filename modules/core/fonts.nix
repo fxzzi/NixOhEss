@@ -22,15 +22,13 @@ in {
         enable = true;
         defaultFonts = {
           serif = [
-            "Noto Serif"
+            "Playfair Display"
           ];
           sansSerif = [
-            "Inter"
+            "Outfit"
           ];
           monospace = [
-            # "JetBrainsMono Nerd Font"
-            "JetBrains Mono"
-            "Symbols Nerd Font"
+            "BlexMono Nerd Font"
           ];
           emoji = [
             "Noto Color Emoji"
@@ -38,15 +36,20 @@ in {
         };
       };
       packages = with pkgs; [
-        nerd-fonts.symbols-only
-        jetbrains-mono
-        nerd-fonts.jetbrains-mono
+        nerd-fonts.blex-mono
 
-        inter
+        # i wish there was a nicer way to do this, currently
+        # it downloads the entire 2.7gb archive, then unpacks :(
+        (google-fonts.override {
+          fonts = [
+            "Playfair Display"
+            "Outfit"
+          ];
+        })
 
-        noto-fonts # Google Noto Fonts
+        noto-fonts
         noto-fonts-color-emoji # Emoji Font
-        noto-fonts-cjk-sans # Chinese, Japanese and Korean fonts
+        noto-fonts-cjk-sans # extra language fonts
 
         corefonts # ms fonts
         vista-fonts # more ms fonts including calibri and consolas

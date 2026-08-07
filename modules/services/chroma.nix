@@ -14,7 +14,7 @@ in {
     hj = {
       xdg.data.files."walls".source = "${inputs.walls}/images"; # wallpapers
 
-      packages = [chroma];
+      # packages = [chroma];
       xdg.config.files."chroma/chroma.toml" = {
         generator = (pkgs.formats.toml {}).generate "chroma.toml";
         value = {
@@ -27,24 +27,24 @@ in {
         };
       };
 
-      systemd.services.chroma = {
-        description = "Lightweight wallpaper daemon for Wayland";
-        after = ["graphical-session.target"];
-        wantedBy = ["graphical-session.target"];
-        partOf = ["graphical-session.target"];
-        unitConfig = {
-          ConditionEnvironment = "WAYLAND_DISPLAY";
-        };
-        serviceConfig = {
-          Type = "simple";
-          Restart = "always";
-          ExecStart = getExe chroma;
-        };
-        restartTriggers = [
-          config.hj.xdg.config.files."chroma/chroma.toml".source
-          chroma
-        ];
-      };
+      # systemd.services.chroma = {
+      #   description = "Lightweight wallpaper daemon for Wayland";
+      #   after = ["graphical-session.target"];
+      #   wantedBy = ["graphical-session.target"];
+      #   partOf = ["graphical-session.target"];
+      #   unitConfig = {
+      #     ConditionEnvironment = "WAYLAND_DISPLAY";
+      #   };
+      #   serviceConfig = {
+      #     Type = "simple";
+      #     Restart = "always";
+      #     ExecStart = getExe chroma;
+      #   };
+      #   restartTriggers = [
+      #     config.hj.xdg.config.files."chroma/chroma.toml".source
+      #     chroma
+      #   ];
+      # };
     };
   };
 }

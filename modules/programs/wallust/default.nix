@@ -56,7 +56,8 @@ in {
             };
             hooks = {
               dunst = optionalAttrs config.cfg.services.dunst.enable "dunstctl reload";
-              hyprland = optionalAttrs config.cfg.programs.hyprland.enable ''hyprctl hyprpaper wallpaper , $XDG_STATE_HOME/wallpaper'';
+              hyprland = optionalAttrs config.cfg.services.hyprpaper.enable ''hyprctl hyprpaper wallpaper , $XDG_STATE_HOME/wallpaper'';
+              # chroma = optionalAttrs config.cfg.services.chroma.enable "pkill -HUP chroma";
             };
           };
         };
