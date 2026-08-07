@@ -27,9 +27,9 @@
     "type": "git",
     "url": "https://git.notashelf.dev/notashelf/beer.git",
     "ref": "HEAD",
-    "rev": "2d719e91473cbca2309b88d701cd05295371eb9c",
-    "narHash": "sha256-j1IM/Vyj3WJ+O++mPuJaca0GGCWJex/3dpaKOa7DIJ4=",
-    "lastModified": 1785580637
+    "rev": "0cdcca0a6b263c087a9c4fcd43c6ffd14a3fa66f",
+    "narHash": "sha256-m2SIotXKnCU3y1Jpp7sOaxv4Yxs7a+nNXBnjG3zBUFk=",
+    "lastModified": 1786130871
   },
   "chroma": {
     "type": "git",
@@ -100,9 +100,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "7d4a3c5768d5a04c7b62e63265c82a3659529fd7",
-    "narHash": "sha256-ugTeq1o6wUVlIgIgTqLhGy4/85R7jFerbb2qMij4ZQA=",
-    "lastModified": 1786022009
+    "rev": "face6d144be7e33c7f49798d8cc5e8fe416de43c",
+    "narHash": "sha256-AvVYhJCOtgvzMcJqVFMBdNAw2aGmM8bzIJRWwhNzRpI=",
+    "lastModified": 1786114408
   },
   "niqspkgs": {
     "type": "github",
@@ -124,9 +124,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "d36517d116ae80fcfdaffaf5ada937f506e300e0",
-    "narHash": "sha256-kGtaHxXzKJQ2U9L0Ve9vvy21QsPhdyFxrivnjhQfi7Y=",
-    "lastModified": 1786090628
+    "rev": "8cf78f40ceec225b3a09e78d217bcb0bf9717810",
+    "narHash": "sha256-S/WgDNILwNyHSqeBUD3A3FnsZtwgkv0hrSMmrPaH+B8=",
+    "lastModified": 1786132515
   },
   "nixos-core": {
     "type": "github",
