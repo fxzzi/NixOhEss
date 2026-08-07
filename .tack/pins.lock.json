@@ -23,6 +23,22 @@
     "narHash": "sha256-n4dY9wPMsq6BlA/Qd+rsfzOhQ9rI0jDylTGDocvByvg=",
     "lastModified": 1785851246
   },
+  "beer": {
+    "type": "git",
+    "url": "https://git.notashelf.dev/notashelf/beer.git",
+    "ref": "HEAD",
+    "rev": "2d719e91473cbca2309b88d701cd05295371eb9c",
+    "narHash": "sha256-j1IM/Vyj3WJ+O++mPuJaca0GGCWJex/3dpaKOa7DIJ4=",
+    "lastModified": 1785580637
+  },
+  "chroma": {
+    "type": "git",
+    "url": "https://git.notashelf.dev/notashelf/chroma.git",
+    "ref": "HEAD",
+    "rev": "889bd0a44f903c6418e76cd5ca860a1c1b928819",
+    "narHash": "sha256-fV0Io6DgO6A+UxN67nr2gMFAjJ3ejEjr0hReVuVhHLo=",
+    "lastModified": 1781888076
+  },
   "crane": {
     "type": "github",
     "owner": "ipetkov",
@@ -108,9 +124,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "61ae857286c8f3c63bd3b20492e0f87d78bcead2",
-    "narHash": "sha256-zFsOHFtWozMWlH62CTUwBdKdTNN+esUGIyluRcitTQY=",
-    "lastModified": 1786013188
+    "rev": "d36517d116ae80fcfdaffaf5ada937f506e300e0",
+    "narHash": "sha256-kGtaHxXzKJQ2U9L0Ve9vvy21QsPhdyFxrivnjhQfi7Y=",
+    "lastModified": 1786090628
   },
   "nixos-core": {
     "type": "github",

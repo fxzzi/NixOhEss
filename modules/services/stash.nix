@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf getExe mkForce;
+  inherit (lib) mkEnableOption mkIf getExe;
   inherit (pkgs) writeText runCommand stash-clipboard;
   cfg = config.cfg.services.stash;
   regex = "(password|secret|api[_-]?key|token)[=: ]+[^\s]+";
