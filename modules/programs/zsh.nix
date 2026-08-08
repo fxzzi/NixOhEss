@@ -44,6 +44,8 @@ in {
       zsh = {
         enable = true;
         promptInit = ''PROMPT="%F{yellow}%3~%f $ "'';
+        autosuggestions.enable = true;
+        syntaxHighlighting.enable = true;
       };
       fzf = {
         fuzzyCompletion = true;
@@ -62,7 +64,7 @@ in {
       xdg.config.files."zsh/.zshrc".text =
         # sh
         ''
-          HISTSIZE=9999999
+          HISTSIZE=10000
           SAVEHIST=$HISTSIZE
           HISTFILE="$XDG_DATA_HOME/zsh/zsh_history"
 
@@ -91,7 +93,7 @@ in {
           WORDCHARS='*?_-.[]~=&;!$%^(){}<>|'
 
           # `paste` command which allows you to upload text to a pastebin
-          # usage: paste <file> or <command> | paste
+          # usage: `paste <file>` or `<command> | paste`
           function paste() {
             local file=''${1:-/dev/stdin}
             local link=$(curl -s --data-binary @"$file" https://paste.rs)
@@ -101,10 +103,10 @@ in {
 
           # plugins and completions
           fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
+
           source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-          source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
           source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-          source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
           # these keybinds have to be set after the plugin is sourced
           bindkey "''${key[Up]}" history-substring-search-up
           bindkey "''${key[Down]}" history-substring-search-down
