@@ -12,15 +12,13 @@ in {
     programs = {
       zsh = {
         enable = true;
+        enableGlobalCompInit = false; # we add to fpath after
         histFile = "$XDG_DATA_HOME/zsh/zsh_history";
         histSize = 10000;
         promptInit = ''PROMPT="%F{yellow}%3~%f $ "'';
         autosuggestions.enable = true;
         syntaxHighlighting.enable = true;
         setOptions = [
-          # cd without explicit `cd`
-          "AUTOCD"
-
           # match files beginning with . without explicitly specifying the dot
           "GLOBDOTS"
 
@@ -35,7 +33,7 @@ in {
           "INC_APPEND_HISTORY"
         ];
         shellAliases = {
-          grep = "${getExe pkgs.ripgrep}";
+          grep = getExe pkgs.ripgrep;
           cat = "${getExe pkgs.bat} -p";
 
           ls = "${getExe pkgs.eza} --icons --group-directories-first";
@@ -44,6 +42,7 @@ in {
 
           lt = "${getExe pkgs.eza} --icons --tree";
 
+          # clean up ~
           wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
 
           die = "pkill -9";
@@ -87,13 +86,16 @@ in {
               wl-copy $link
             }
 
-            # plugins and completions
-            fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
+            # plugins
             source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
             source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
             # these keybinds have to be set after the plugin is sourced
             bindkey "''${key[Up]}" history-substring-search-up
             bindkey "''${key[Down]}" history-substring-search-down
+
+            # completions
+            fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
+            autoload -U compinit && compinit
           '';
       };
       fzf = {
@@ -110,6 +112,10 @@ in {
         bat
         eza
       ];
+      sessionVariables = {
+        # clean up ~
+        ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
+      };
     };
   };
 }
