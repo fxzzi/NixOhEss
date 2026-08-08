@@ -35,7 +35,6 @@ in {
             font-italic = "VictorMono Nerd Font:size=12.5:style=Italic";
             pad = "6x6";
             transparent-fullscreen = true; # option added by my fork
-            gamma-correct-blending = true;
           };
           cursor = {
             style = "beam";
@@ -49,11 +48,7 @@ in {
             alpha-mode = "matching";
           };
           tweak = {
-            surface-bit-depth = "8-bit";
             font-monospace-warn = false; # slightly faster startup times
-          };
-          environment = {
-            FREETYPE_PROPERTIES = "cff:no-stem-darkening=0";
           };
         };
       };

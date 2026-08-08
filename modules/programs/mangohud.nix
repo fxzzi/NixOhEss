@@ -51,7 +51,6 @@ in {
             # normally this is #000000, but it isn't correctly
             # tonemapped in HDR. So lighten it ourselves
             text_outline_color = 262626;
-            cellpadding_y = -0.3;
             fps_limit = mkIf (cfg.refreshRate != null) "${toString fpsLimit},0";
             vsync = 1;
             gl_vsync = 0;
@@ -63,7 +62,7 @@ in {
           };
         };
         "MangoHud/presets.conf" = let
-          mono = "${pkgs.jetbrains-mono}/share/fonts/opentype/JetBrainsMono-Regular.otf";
+          mono = "${pkgs.nerd-fonts.blex-mono}/share/fonts/truetype/NerdFonts/BlexMono/BlexMonoNerdFont-Regular.ttf";
           sans = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
           common = {
             font_size = 20;
@@ -91,7 +90,7 @@ in {
               font_file = sans;
               font_size = 16;
               text_outline = false;
-              alpha = 0.67;
+              alpha = 0.5;
               fps_only = 1;
               background_alpha = 0;
               hud_no_margin = 1;
