@@ -13,6 +13,7 @@ in {
       zsh = {
         enable = true;
         enableGlobalCompInit = false; # we add to fpath after
+        enableLsColors = false; # we use eza instead :D
         histFile = "$XDG_DATA_HOME/zsh/zsh_history";
         histSize = 10000;
         promptInit = ''PROMPT="%F{yellow}%3~%f $ "'';
