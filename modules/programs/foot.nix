@@ -12,8 +12,9 @@
 in {
   options.cfg.programs.foot.enable = mkEnableOption "foot";
   config = mkIf cfg.enable {
-    hj.packages = [
-      (symlinkJoin {
+    programs.foot = {
+      enable = true;
+      package = symlinkJoin {
         inherit (foot) name pname version meta;
         paths = [foot];
 
@@ -23,52 +24,29 @@ in {
           unlink $out/share/applications/footclient.desktop
           unlink $out/share/applications/foot-server.desktop
         '';
-      })
-    ];
-    hj.xdg.config.files = {
-      "foot/foot.ini" = {
-        generator = lib.generators.toINI {};
-        value = {
-          main = {
-            font = "BlexMono Nerd Font:size=12.5";
-            font-bold-italic = "VictorMono Nerd Font:size=12.5:style=Bold Italic";
-            font-italic = "VictorMono Nerd Font:size=12.5:style=Italic";
-            pad = "6x6";
-            transparent-fullscreen = true; # option added by my fork
-          };
-          cursor = {
-            style = "beam";
-          };
-          mouse = {
-            hide-when-typing = true;
-          };
-          colors-dark = {
-            blur = "yes";
-            alpha = 0.85;
-            alpha-mode = "matching";
-          };
-          tweak = {
-            font-monospace-warn = false; # slightly faster startup times
-          };
-        };
       };
-      # zsh shell integration. see:
-      #  <https://codeberg.org/dnkl/foot/wiki#user-content-spawning-new-terminal-instances-in-the-current-working-directory>
-      "zsh/.zshrc".text =
-        #sh
-        ''
-          function osc7-pwd() {
-              emulate -L zsh # also sets localoptions for us
-              setopt extendedglob
-              local LC_ALL=C
-              printf '\e]7;file://%s%s\e\' $HOST ''${PWD//(#m)([^@-Za-z&-;_~])/%''${(l:2::0:)$(([##16]#MATCH))}}
-          }
-
-          function chpwd-osc7-pwd() {
-              (( ZSH_SUBSHELL )) || osc7-pwd
-          }
-          add-zsh-hook -Uz chpwd chpwd-osc7-pwd
-        '';
+      settings = {
+        main = {
+          font = "BlexMono Nerd Font:size=12.5";
+          font-bold-italic = "VictorMono Nerd Font:size=12.5:style=Bold Italic";
+          font-italic = "VictorMono Nerd Font:size=12.5:style=Italic";
+          pad = "6x6";
+          transparent-fullscreen = true; # option added by my fork
+        };
+        cursor = {
+          style = "beam";
+        };
+        mouse = {
+          hide-when-typing = true;
+        };
+        colors-dark = {
+          blur = "yes";
+          alpha = 0.85;
+          alpha-mode = "matching";
+        };
+        tweak.font-monospace-warn = false; # slightly faster startup times
+        scrollback.lines = 100000;
+      };
     };
     xdg.terminal-exec = {
       enable = true;

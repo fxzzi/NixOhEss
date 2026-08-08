@@ -103,8 +103,8 @@ in {
         };
       };
     };
-    hj.xdg.config.files."zsh/.zshrc" = lib.mkIf cfg.shellIntegration {
-      text = mkAfter ''
+    programs.zsh = lib.mkIf cfg.shellIntegration {
+      interactiveShellInit = mkAfter ''
         # only run fastfetch if term is large enough
         if [[ $COLUMNS -ge 45 && $LINES -ge 15 ]]; then
           ${getExe pkgs.fastfetch}

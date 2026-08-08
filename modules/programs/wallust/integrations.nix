@@ -7,6 +7,9 @@
   cfg = config.cfg.programs.wallust;
 in {
   config = mkIf cfg.enable {
+    programs.foot.settings = {
+      main.include = ["~/.cache/wallust/colors_foot.ini"];
+    };
     hj = {
       xdg.config.files = {
         "hypr/hyprland.lua" = {
@@ -17,11 +20,6 @@ in {
         "fuzzel/fuzzel.ini" = {
           value = {
             main.include = "~/.cache/wallust/colors_fuzzel.ini";
-          };
-        };
-        "foot/foot.ini" = {
-          value = {
-            main.include = "~/.cache/wallust/colors_foot.ini";
           };
         };
       };
