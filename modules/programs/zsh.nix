@@ -25,7 +25,7 @@
   ];
   aliases = {
     grep = "${getExe pkgs.ripgrep}";
-    cat = "${getExe pkgs.bat}";
+    cat = "${getExe pkgs.bat} -p";
 
     ls = "${getExe pkgs.eza} --icons --group-directories-first";
     la = "ls -a";
@@ -102,7 +102,6 @@ in {
           # plugins and completions
           fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
           source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-          source ${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
           source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
           source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
           source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
