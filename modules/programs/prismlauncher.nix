@@ -7,8 +7,8 @@
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.programs.prismlauncher;
   ninjabrain-bot = pkgs.fetchurl {
-    url = "https://github.com/Ninjabrain1/Ninjabrain-Bot/releases/download/1.5.1/Ninjabrain-Bot-1.5.1.jar";
-    sha256 = "sha256-Rxu9A2EiTr69fLBUImRv+RLC2LmosawIDyDPIaRcrdw=";
+    url = "https://github.com/Ninjabrain1/Ninjabrain-Bot/releases/download/1.5.2/Ninjabrain-Bot-1.5.2.jar";
+    sha256 = "sha256-mAmfYyGpDUrOwTQA6G0F96+NYOVjnC84Qn6WjccUUP8=";
   };
 in {
   options.cfg.programs.prismlauncher = {
@@ -25,14 +25,12 @@ in {
           temurin-jre-bin-21
           temurin-jre-bin-25
         ];
-        # required for mcsr anticheat (fairplay), ninjabrain-bot
         additionalLibs = [
+          # required for mcsr anticheat (fairplay), ninjabrain-bot
           libxt
           libxtst
           libxkbcommon
           libxinerama
-          # required for vulkan beta
-          wayland
         ];
       })
       (mkIf cfg.waywall.enable waywall)
@@ -64,7 +62,7 @@ in {
             actions = {
               -- run ninjabrain-bot
               ["Ctrl-Shift-N"] = function()
-                waywall.exec("${getExe pkgs.temurin-jre-bin} -jar ${ninjabrain-bot}")
+                waywall.exec("${getExe pkgs.temurin-jre-bin-25} -jar ${ninjabrain-bot}")
               end,
               -- show / hide it
               ["F7"] = function()
