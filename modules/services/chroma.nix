@@ -5,9 +5,8 @@
   inputs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf getExe;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.chroma;
-  chroma = inputs.chroma.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   options.cfg.services.chroma.enable = mkEnableOption "chroma";
   config = mkIf cfg.enable {
