@@ -120,6 +120,8 @@ in {
         middle_click_paste = 0;
         # we launch with Hyprland, not start-hyprland.
         disable_watchdog_warning = 1;
+        # useless...
+        bell_sound = "none";
       };
       ecosystem = {
         no_update_news = 1;
