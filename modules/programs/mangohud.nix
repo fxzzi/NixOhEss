@@ -88,13 +88,14 @@ in {
           value = {
             "preset 0" = {
               font_file = sans;
-              font_size = 16;
+              font_size = 15;
               text_outline = false;
               alpha = 0.5;
               fps_only = 1;
               background_alpha = 0;
               hud_no_margin = 1;
               hud_compact = 1;
+              cellpadding_y = -0.5;
             };
             "preset 1" = common;
             "preset 2" =
