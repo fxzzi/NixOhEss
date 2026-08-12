@@ -188,9 +188,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "startpage",
-    "rev": "31c681720da00c313c41b816ba8fc4ffe96f4f16",
-    "narHash": "sha256-gqNLZg6W5Z2Svu3ri/MxUS95DLNQXBKka6B883xXklo=",
-    "lastModified": 1765317058
+    "rev": "39fff5bc7b1c54cd7df7230437f9eb57d45a91d1",
+    "narHash": "sha256-uVdcLTjbhhqH1/zjqf8RB+x7JOiJPbl2TvGjTeJ8uBc=",
+    "lastModified": 1786576161
   },
   "tuigreet": {
     "type": "github",
