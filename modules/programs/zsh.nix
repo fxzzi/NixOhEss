@@ -20,6 +20,7 @@ in {
         autosuggestions.enable = true;
         syntaxHighlighting.enable = true;
         setOptions = [
+          "AUTO_CD"
           # match files beginning with . without explicitly specifying the dot
           "GLOBDOTS"
 
