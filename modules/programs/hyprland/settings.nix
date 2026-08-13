@@ -471,7 +471,7 @@ in {
 
           -- git only stuff here :P
           ${optionalString cfg.useGit ''
-            hl.config({["misc.bell_sound"] = 0}),
+            hl.config({["misc.bell_sound"] = 0})
           ''}
 
           -- apply the hl.config block from nix
