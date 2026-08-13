@@ -58,39 +58,39 @@ in {
             {
               type = "title";
               key = " hs";
-              keyColor = "green";
+              keyColor = "italic_green";
               format = "{1}@{2}";
             }
             {
               type = "os";
               key = " os";
-              keyColor = "green";
+              keyColor = "italic_green";
               format = "{2}";
             }
             # HACK: just read from env var since it's much faster
             {
               type = "custom";
               key = " cm";
-              keyColor = "blue";
+              keyColor = "italic_blue";
               format = "{$XDG_CURRENT_DESKTOP}";
             }
             {
               type = "terminal";
               key = " tr";
-              keyColor = "blue";
+              keyColor = "italic_blue";
               format = "{0}";
             }
             {
               type = "memory";
               key = "󰍛 mm";
-              keyColor = "yellow";
+              keyColor = "italic_yellow";
               format = "{1}";
             }
             {
               # days since install
               type = "disk";
               key = "󱦟 dy";
-              keyColor = "yellow";
+              keyColor = "italic_yellow";
               folders = "/";
               format = "{days} days";
             }
