@@ -29,6 +29,8 @@ url = "github:NixOS/nixpkgs/nixos-unstable"
 url = "github:manic-systems/nixos-core"
 [inputs.hjem]
 url = "github:feel-co/hjem"
+[inputs.tuigreet]
+url = "github:tuigreet/tuigreet"
 
 [inputs.azzipkgs]
 url = "gitlab:fazzi/azzipkgs"
@@ -49,8 +51,6 @@ type = "fetch"
 url = "github:NotAShelf/nvf"
 [inputs.rags]
 url = "github:NotAShelf/rags"
-[inputs.tuigreet]
-url = "github:NotAShelf/tuigreet"
 [inputs.beer]
 url = "git+https://git.notashelf.dev/notashelf/beer.git"
 [inputs.chroma]
