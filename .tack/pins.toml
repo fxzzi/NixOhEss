@@ -29,8 +29,6 @@ url = "github:NixOS/nixpkgs/nixos-unstable"
 url = "github:manic-systems/nixos-core"
 [inputs.hjem]
 url = "github:feel-co/hjem"
-[inputs.tuigreet]
-url = "github:tuigreet/tuigreet"
 
 [inputs.azzipkgs]
 url = "gitlab:fazzi/azzipkgs"
