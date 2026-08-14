@@ -39,14 +39,6 @@
     "narHash": "sha256-fV0Io6DgO6A+UxN67nr2gMFAjJ3ejEjr0hReVuVhHLo=",
     "lastModified": 1781888076
   },
-  "crane": {
-    "type": "github",
-    "owner": "ipetkov",
-    "repo": "crane",
-    "rev": "2c71e194474d13de031d729b729c968ddbe3507f",
-    "narHash": "sha256-MPaRdVkf6zZP5fCPxYCi8Dr4pZzgmXzg8T9nVEbp3Mw=",
-    "lastModified": 1785782307
-  },
   "creamlinux": {
     "type": "github",
     "owner": "fxzzi",
@@ -140,9 +132,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "279b4a8275f032c566576b3f181fa0f27197f588",
-    "narHash": "sha256-8S3Kcxs7D4UtxJxSJZz0m14CGhuW0MxfrIwJxeGWGnQ=",
-    "lastModified": 1786247143
+    "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
+    "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
+    "lastModified": 1786599213
   },
   "nvf": {
     "type": "github",
@@ -191,14 +183,6 @@
     "rev": "39fff5bc7b1c54cd7df7230437f9eb57d45a91d1",
     "narHash": "sha256-uVdcLTjbhhqH1/zjqf8RB+x7JOiJPbl2TvGjTeJ8uBc=",
     "lastModified": 1786576161
-  },
-  "tuigreet": {
-    "type": "github",
-    "owner": "tuigreet",
-    "repo": "tuigreet",
-    "rev": "201e564b1f27c3a8d0427dd5d41de850cf529573",
-    "narHash": "sha256-Tkxphrz49uKIxo5Ted2Y/1x8BJotHrpA643IBuTyqzs=",
-    "lastModified": 1786716759
   },
   "walls": {
     "type": "gitlab",

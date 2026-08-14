@@ -7,7 +7,6 @@
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.greetd;
-  tuigreet = inputs.tuigreet.packages.${pkgs.stdenv.hostPlatform.system}.default;
   hyprland-session =
     pkgs.writers.writeDashBin "hyprland-session"
     # sh
@@ -25,7 +24,7 @@ in {
       enable = true;
       useTextGreeter = true;
       settings.default_session = {
-        command = getExe tuigreet;
+        command = getExe pkgs.tuigreet;
         user = "greeter";
       };
     };

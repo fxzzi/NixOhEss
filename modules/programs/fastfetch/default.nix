@@ -44,6 +44,9 @@ in {
             # detecting hyprland version on NixOS is slow.
             detectVersion = false;
           };
+          display = {
+            separator = " - ";
+          };
           logo = {
             source = icon;
             type = "raw";
