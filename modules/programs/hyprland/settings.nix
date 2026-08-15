@@ -469,13 +469,14 @@ in {
             bind({ mainMod, "ALT" }, hl.dsp.window.resize(), { mouse = true })
           end
 
-          -- git only stuff here :P
-          ${optionalString cfg.useGit ''
-            hl.config({["misc.bell_sound"] = 0})
-          ''}
-
           -- apply the hl.config block from nix
           hl.config(${generators.toLua {} cfg.extraHlConfig})
+
+          -- git only stuff here :P
+          ${optionalString cfg.useGit ''
+
+          ''}
+
           -- extra text config
           ${cfg.extraConfig}
         '';

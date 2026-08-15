@@ -27,7 +27,7 @@ in {
       };
       settings = {
         main = {
-          font = "BlexMono Nerd Font:size=12.5";
+          font = "monospace:size=13";
           pad = "6x6";
           transparent-fullscreen = true; # option added by my fork
         };

@@ -51,7 +51,7 @@ in {
             source = icon;
             type = "raw";
             height = 9;
-            width = 15;
+            width = 16;
             padding = {
               top = 1;
               left = 1;
@@ -108,9 +108,10 @@ in {
     };
     programs.zsh = lib.mkIf cfg.shellIntegration {
       interactiveShellInit = mkAfter ''
-        # only run fastfetch if term is large enough
-        if [[ $COLUMNS -ge 45 && $LINES -ge 15 ]]; then
+        if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
           ${getExe pkgs.fastfetch}
+          # HACK: move cursor up 3 lines to avoid large gap between ff and prompt
+          printf '\033[3A'
         fi
       '';
     };

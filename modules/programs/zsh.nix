@@ -16,7 +16,11 @@ in {
         enableLsColors = false; # we use eza instead :D
         histFile = "$XDG_DATA_HOME/zsh/zsh_history";
         histSize = 10000;
-        promptInit = ''PROMPT="%F{yellow}%3~%f $ "'';
+        promptInit = ''
+          fpath+=(${pkgs.pure-prompt}/share/zsh/site-functions)
+          autoload -U promptinit; promptinit
+          prompt pure
+        '';
         autosuggestions.enable = true;
         syntaxHighlighting.enable = true;
         setOptions = [
