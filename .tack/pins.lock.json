@@ -108,9 +108,9 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "74224502811991e0c1c8beafbcfefe66cb0dddf6",
-    "narHash": "sha256-0LHfmvlBZWrFJyW0TeL00pTLNYh8z7uT9ANdWhfuPqM=",
-    "lastModified": 1786757376
+    "rev": "5607f78eb46ce192a1fdf2f4f566682e769c7c35",
+    "narHash": "sha256-9RfAshi6/ou2P2NgiuHNtGGHghzmtpk0Z8uG3CqKa08=",
+    "lastModified": 1786789564
   },
   "nixcord": {
     "type": "github",
