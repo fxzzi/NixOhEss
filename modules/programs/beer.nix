@@ -21,9 +21,9 @@ in {
               font = "monospace";
               pad-x = 6;
               pad-y = 6;
-              term = "xterm-256color";
-              subpixel = "none";
-              hinting = "none";
+              # term = "xterm-256color";
+              # subpixel = "none";
+              # hinting = "none";
             };
             colors = {
               alpha = 0.85;
