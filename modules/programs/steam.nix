@@ -15,6 +15,7 @@ in {
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;
+      protontricks.enable = true;
       platformOptimizations.enable = true;
       package = pkgs.steam.override {
         extraEnv = {
