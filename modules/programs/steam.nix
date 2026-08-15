@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf optionalAttrs;
@@ -10,9 +11,11 @@ in {
   options.cfg.programs.steam = {
     enable = mkEnableOption "steam";
   };
+  imports = ["${inputs.nix-gaming}/modules/platformOptimizations.nix"];
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;
+      platformOptimizations.enable = true;
       package = pkgs.steam.override {
         extraEnv = {
           OBS_VKCAPTURE = optionalAttrs config.cfg.programs.obs-studio.enable 1;
