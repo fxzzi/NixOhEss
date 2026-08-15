@@ -19,9 +19,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "9672838077c98b9ef0019cebde995182174264a5",
-    "narHash": "sha256-CeW7lBmiI6psix9YN/qxb4aB9YOVIVdLuipdwViD9eU=",
-    "lastModified": 1786468023
+    "rev": "6b05bfe26c6cd7ef0829a9456de31ad520dfc0a3",
+    "narHash": "sha256-I+5436mK/K/bK7NPAs+U+iN8f5TZPsorRcJs53tfZZ4=",
+    "lastModified": 1786746782
   },
   "beer": {
     "type": "git",
@@ -108,17 +108,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "cf32a4bb7307fb5cff11e42726418c1fd93d5b53",
-    "narHash": "sha256-K1Cg3W1DdqGT7D0B1wdMYvfqyYSwPXegHjASpX4E2kE=",
-    "lastModified": 1786587825
+    "rev": "74224502811991e0c1c8beafbcfefe66cb0dddf6",
+    "narHash": "sha256-0LHfmvlBZWrFJyW0TeL00pTLNYh8z7uT9ANdWhfuPqM=",
+    "lastModified": 1786757376
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "9caaca54bf266c411bccc9ca40d4e754adb3ee06",
-    "narHash": "sha256-Ofi56F9MS1HvgGlAJi3q37Jkeyt7ztnCsjl413mhXAw=",
-    "lastModified": 1786685292
+    "rev": "0d7dc7ca169f7d453216b0bafbad2a43211e8c3c",
+    "narHash": "sha256-4iyzSHy8YJN4GLtSBjLemNDTCZuZW16q3RvllSTjTtg=",
+    "lastModified": 1786767826
   },
   "nixos-core": {
     "type": "github",
