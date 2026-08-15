@@ -37,7 +37,7 @@ in {
           progressbar_color=black
           progressbar_elapsed_color=blue
           progressbar_look=▃▃▃
-          song_list_format=$5{%a $2»$8 %t}$0
+          song_list_format=$5{$i%a$/i $2»$8 %t}$0
           user_interface=alternative
         '';
       };
