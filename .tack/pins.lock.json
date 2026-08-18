@@ -92,9 +92,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "6d43ce8453f2d34b82b3da5ed9415f6fc3046ce4",
-    "narHash": "sha256-pQZdky4fH4jGqoIWy20g7bNgC8bLC4vEOIyRsfjp7qI=",
-    "lastModified": 1786561078
+    "rev": "af0d014cb26f536d8cb7cab2b9d5784f69767c8a",
+    "narHash": "sha256-egMnyO7618cG4qcvsTwUkYHoxPFNSe1IThXfDrl43l4=",
+    "lastModified": 1786998364
   },
   "niqspkgs": {
     "type": "github",
@@ -108,17 +108,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "5607f78eb46ce192a1fdf2f4f566682e769c7c35",
-    "narHash": "sha256-9RfAshi6/ou2P2NgiuHNtGGHghzmtpk0Z8uG3CqKa08=",
-    "lastModified": 1786789564
+    "rev": "23ff06d540f4df5e315d9a45b2388b6581d1c0a5",
+    "narHash": "sha256-gVwzq9tiX4oa6jwwoKsBJlKb2kPndVdMrYEvTpfi7DY=",
+    "lastModified": 1786844088
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "0d7dc7ca169f7d453216b0bafbad2a43211e8c3c",
-    "narHash": "sha256-4iyzSHy8YJN4GLtSBjLemNDTCZuZW16q3RvllSTjTtg=",
-    "lastModified": 1786767826
+    "rev": "befe06adc4df1d8ea4ebc3fabb92a22e0cecccf1",
+    "narHash": "sha256-OfO2+Uw6VKbusWyuggE4x4GNbM/NlRvMgzs//Pjio5I=",
+    "lastModified": 1787027348
   },
   "nixos-core": {
     "type": "github",
@@ -132,17 +132,17 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
-    "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
-    "lastModified": 1786599213
+    "rev": "e5bdc4a41d4c072fe1e3787eaa0320a384741d44",
+    "narHash": "sha256-FBJRXmbGXiSUDvYEbfLYRkckayyZ6SK1UEqhCrIZ2Cs=",
+    "lastModified": 1786862985
   },
   "nvf": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "a213644cadd5f90bf18b0c409f08f282b30e55e3",
-    "narHash": "sha256-rbOp2g0UCYt+evTnCGCKBQGqSMfwX4RTXneNbeHqOAk=",
-    "lastModified": 1786433999
+    "rev": "59b0dc327b5ce7a6b510c50456a35891ddd144cc",
+    "narHash": "sha256-ok6BBZuGDKvJurSpxR93I7wwP7oIpSy5sox6WvDrbPw=",
+    "lastModified": 1786998546
   },
   "nvidia-vaapi-driver": {
     "type": "github",
