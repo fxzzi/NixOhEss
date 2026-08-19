@@ -465,8 +465,8 @@ in {
           bind({ mainMod, "mouse:273" }, hl.dsp.window.resize(), { mouse = true }) -- right click
           -- these binds allow you to easily drag and resize on touchpad
           if ${boolToString config.cfg.core.isLaptop} then
-            bind({ mainMod, "CTRL" }, hl.dsp.window.drag(), { mouse = true })
-            bind({ mainMod, "ALT" }, hl.dsp.window.resize(), { mouse = true })
+            bind({ mainMod, "CONTROL_L" }, hl.dsp.window.drag(), { mouse = true })
+            bind({ mainMod, "ALT_L" }, hl.dsp.window.resize(), { mouse = true })
           end
 
           -- apply the hl.config block from nix
