@@ -100,6 +100,10 @@ in {
           statusline = {
             lualine = {
               enable = true;
+              integrations.breadcrumbs = {
+                navbuddy.enable = true;
+                nvim-navic.enable = true;
+              };
             };
           };
 
@@ -141,7 +145,6 @@ in {
           git = {
             enable = true;
             gitsigns.enable = true;
-            gitsigns.codeActions.enable = false; # throws an annoying debug message
           };
 
           utility = {
@@ -163,10 +166,6 @@ in {
             noice.enable = true;
             colorizer.enable = true;
             illuminate.enable = true;
-            breadcrumbs = {
-              enable = true;
-              navbuddy.enable = true;
-            };
             fastaction.enable = true;
           };
 
