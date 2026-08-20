@@ -18,22 +18,32 @@ in {
       ];
       xdg.config.files = {
         "mpv/mpv.conf" = {
-          generator = generators.toKeyValue {};
+          generator = generators.toINIWithGlobalSection {};
           value = {
-            save-position-on-quit = "yes";
-            target-colorspace-hint-mode = "source";
-            hwdec = "auto";
-            video-sync = "display-resample";
-            volume-max = 150;
-            keep-open = "always";
-            reset-on-next-file = "pause";
-            fs = "yes";
-            alang = "ja,en,eng";
-            slang = "en,eng";
-            sub-scale = 0.75;
-            sub-font = "sans-serif";
-            sub-scale-with-window = "yes";
-            cursor-autohide = 1000;
+            globalSection = {
+              save-position-on-quit = "yes";
+              target-colorspace-hint-mode = "source";
+              hwdec = "auto";
+              video-sync = "display-resample";
+              volume-max = 150;
+              keep-open = "always";
+              reset-on-next-file = "pause";
+              fs = "yes";
+              alang = "ja,en,eng";
+              slang = "en,eng";
+              sub-scale = 0.75;
+              sub-font = "sans-serif";
+              sub-scale-with-window = "yes";
+              cursor-autohide = 1000;
+            };
+
+            sections = {
+              downmix-multichannel = {
+                profile-cond = ''get("audio-params/channel-count", 0) > 2'';
+                profile-restore = "copy";
+                af = ''pan="stereo|FL=0.707*FC+0.3*FL+0.1*SL+0.1*LFE|FR=0.707*FC+0.3*FR+0.1*SR+0.1*LFE"'';
+              };
+            };
           };
         };
         "mpv/input.conf".text = ''
