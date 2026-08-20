@@ -188,9 +188,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "walls",
-    "rev": "679d1abecdc4db684abe19caa3d4b999c4dd94f7",
-    "narHash": "sha256-Kqal0R2koaR8qlL4z0ls9eNfwDec02QRK6nwGHYYNaI=",
-    "lastModified": 1777658201
+    "rev": "fe0bb9e42840603c19421a411417bc425a795f40",
+    "narHash": "sha256-tiFsPu3h1g6AFa2r4y8YpNkqp+L9AZoL+T8qFhvk2KY=",
+    "lastModified": 1787250691
   },
   "watt": {
     "type": "github",
