@@ -16,6 +16,9 @@ writeShellApplication {
     # link new wall to static location
     ln -sf "$1" "$STATICWALL"
 
+    dunstctl reload
+    hyprctl hyprpaper wallpaper ", $STATICWALL"
+
     # generate colours and configs with colours
     wallust run "$1"
   '';

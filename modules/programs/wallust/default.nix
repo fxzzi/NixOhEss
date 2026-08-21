@@ -19,7 +19,7 @@ in {
           generator = (pkgs.formats.toml {}).generate "wallust.toml";
           value = {
             check_contrast = true;
-            backend = "resized";
+            backend = "fastresize";
             color_space = "lch";
             templates = {
               fuzzel = optionalAttrs config.cfg.programs.fuzzel.enable {
@@ -53,11 +53,6 @@ in {
                 template = "accent.txt";
                 target = "~/.cache/wallust/accent.txt";
               };
-            };
-            hooks = {
-              dunst = optionalAttrs config.cfg.services.dunst.enable "dunstctl reload";
-              hyprland = optionalAttrs config.cfg.services.hyprpaper.enable ''hyprctl hyprpaper wallpaper , $XDG_STATE_HOME/wallpaper'';
-              # chroma = optionalAttrs config.cfg.services.chroma.enable "pkill -HUP chroma";
             };
           };
         };
