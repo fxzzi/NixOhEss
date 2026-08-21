@@ -140,9 +140,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "93cb00e768908ba77f64a846f487e43e79130796",
-    "narHash": "sha256-nYA+0kCn0h0dsaApPWuSJwIlBrPchqJphnfGLzDCOFs=",
-    "lastModified": 1787305329
+    "rev": "83d781d065b1b584baaf40436cbad6559ff14a8a",
+    "narHash": "sha256-MlaZ6QFcTtx1DGvE1NGjtd3067KqhNTgAXYWAfBrrZk=",
+    "lastModified": 1787322198
   },
   "nvidia-vaapi-driver": {
     "type": "github",

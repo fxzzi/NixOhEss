@@ -16,16 +16,6 @@ in {
         enable = true;
         support32Bit = true;
       };
-      extraConfig.pipewire."10-adjust-allowed-rates" = {
-        "context.properties" = {
-          "default.clock.allowed-rates" = [
-            44100
-            48000
-            88200
-            96000
-          ];
-        };
-      };
       wireplumber.extraConfig = {
         "9-audient-evo4" = {
           "monitor.alsa.rules" = [
@@ -42,20 +32,10 @@ in {
               ];
               actions.update-props = {
                 # decrease priority of the raw hardware devices
+                # without this, our rnnoise source tries to attach
+                # directly to this sink instead of our 1-ch mic.
                 "priority.driver" = 0;
                 "priority.session" = 0;
-              };
-            }
-            {
-              matches = [
-                {
-                  "alsa.card_name" = "EVO4";
-                  "media.class" = "Audio/Sink/Internal";
-                }
-              ];
-              actions.update-props = {
-                # don't suspend the interface, to avoid popping when it wakes.
-                "session.suspend-timeout-seconds" = 0;
               };
             }
             {
