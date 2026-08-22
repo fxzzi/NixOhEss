@@ -25,7 +25,6 @@ in {
             general = {
               hide_cursor = true;
               ignore_empty_input = true;
-              immediate_render = land.extraHlConfig.animations.enabled;
             };
             bezier = [
               "easeOut, 0.61, 1, 0.88, 1"
