@@ -56,9 +56,6 @@ in {
         # only activate DS for games
         direct_scanout = 2;
       };
-      # allows DS to activate with winewayland on nvidia,
-      # and also fixes mpv freezing in fullscreen with DS
-      quirks.skip_non_kms_dmabuf_formats = config.cfg.hardware.nvidia.enable;
       animations.enabled = true;
       decoration = {
         rounding = 0;
@@ -144,16 +141,11 @@ in {
             scale = "1",
           })
 
-          hl.on("hyprland.start", function()
-            hl.exec_cmd("systemctl --user start nixos-fake-graphical-session.target")
-          end)
-
           hl.on("hyprland.shutdown", function()
-            -- exec_cmd runs async, so to delay shutdown we need os.execute()
             -- discord literally craps itself and coredumps if the graphical env
             -- is shut down whilst it's still open. kill it to avoid the coredump.
-            -- allow a small buffer for stuff to close
-            os.execute("pkill -9 Discord; systemctl --user stop nixos-fake-graphical-session.target && sleep 0.1")
+            -- exec_cmd runs async, so to delay shutdown we need os.execute()
+            os.execute("pgrep Discord >/dev/null && pkill -9 Discord")
           end)
 
           -- set primary monitor in both monitor events to be safe

@@ -179,10 +179,6 @@ in {
           comments = {
             comment-nvim.enable = true;
           };
-
-          presence = {
-            neocord.enable = false;
-          };
         };
       };
     };

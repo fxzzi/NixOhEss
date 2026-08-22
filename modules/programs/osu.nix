@@ -10,7 +10,7 @@
   otd = config.cfg.services.opentabletdriver.enable;
   envVars = [
     "OSU_SDL3=1"
-    "PIPEWIRE_ALSA=\"{ alsa.buffer-bytes=512 alsa.period-bytes=64 }\""
+    "PIPEWIRE_ALSA=\"{ alsa.buffer-bytes=768 alsa.period-bytes=128 }\""
   ];
   # osu!lazer needs to be up to date. fuf's nix-gaming repo
   # updates it faster and more regularly than nixpkgs.
