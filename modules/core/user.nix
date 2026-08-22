@@ -28,15 +28,18 @@ in {
         enable = true;
         # These are available no matter the host.
         packages = with pkgs; [
-          loupe
           wget
           ffmpeg
           jq
           imagemagick
+
           atril
-          libreoffice-fresh
+          loupe
+
+          libreoffice
           hunspell
           hunspellDicts.en_GB-ise
+
           nix-tree
           npins
         ];
