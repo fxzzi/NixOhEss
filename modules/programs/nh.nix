@@ -7,7 +7,6 @@
   inherit (lib) mkEnableOption mkIf;
   inherit (builtins) toString;
   cfg = config.cfg.programs.nh;
-  keepCount = toString config.boot.loader.limine.maxGenerations;
 in {
   options.cfg.programs.nh.enable = mkEnableOption "nh";
   config = mkIf cfg.enable {
@@ -18,7 +17,7 @@ in {
         enable = true;
         dates = "weekly";
         # it only needs to keep what can be shown in the bootloader
-        extraArgs = "--keep ${keepCount}";
+        extraArgs = "--keep ${toString config.boot.loader.limine.maxGenerations}";
       };
     };
     environment.shellAliases = {
@@ -26,7 +25,6 @@ in {
       rb = "nh os switch";
       rbu = "nixupd; rb";
       rbb = "nh os boot";
-      rbbu = "nixupd; rbb";
     };
     hj.packages = [
       (pkgs.writeShellApplication
@@ -40,28 +38,19 @@ in {
           text = ''
             # Save the current commit hash of origin/main before fetching
             OLD_COMMIT=$(git -C "$NH_FLAKE" rev-parse origin/main)
-
             # Fetch from origin
             git -C "$NH_FLAKE" fetch origin
-
             # Get the new commit hash of origin/main after fetching
             NEW_COMMIT=$(git -C "$NH_FLAKE" rev-parse origin/main)
 
             # Compare commits and continue only if they differ
             if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
-              echo "Updating flake..."
+              echo "updoots available :)"
               git -C "$NH_FLAKE" reset --hard origin/main
-              echo "Rebuilding NixOS configuration..."
               nh os boot
-              echo "Done! Updates will take effect on next boot."
-
-              # Log the update
-              LOG_DIR="$XDG_DATA_HOME"
-              LOG_FILE="$LOG_DIR/crb.txt"
-              mkdir -p "$LOG_DIR"
-              echo "$(date '+%Y-%m-%d %H:%M:%S') $OLD_COMMIT -> $NEW_COMMIT" >> "$LOG_FILE"
+              echo "updoot finished please reboot :)"
             else
-              echo "No updates found. Exiting."
+              echo "you're up to date :)"
               exit 0
             fi
           '';
