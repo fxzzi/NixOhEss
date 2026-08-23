@@ -14,12 +14,21 @@
       SearchEngines = {
         PreventInstalls = true;
         Add = [
-          {Name = "Google";}
+          {
+            Name = "Google";
+            URLTemplate = "https://www.google.com/search?q={searchTerms}";
+            Method = "GET";
+            IconURL = "https://www.google.com/favicon.ico";
+            Alias = "@g";
+            Description = "Google Search";
+            SuggestURLTemplate = "https://suggestqueries.google.com/complete/search?client=firefox&q={searchTerms}";
+          }
         ];
         Remove = [
           "DuckDuckGo"
-          "Bing"
-          "Perplexity"
+          "Wikipedia (en)"
+          "Mojeek"
+          "Startpage"
         ];
         Default = "Google";
       };
