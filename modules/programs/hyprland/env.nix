@@ -21,8 +21,6 @@ in {
 
       # don't use libdecor as it's a little borken
       LIBDECOR_PLUGIN_DIR = "nope";
-
-      # SDL_VIDEO_DISPLAY_PRIORITY = cfg.defaultMonitor;
     };
   };
 }
