@@ -7,16 +7,6 @@
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.greetd;
-  hyprland-session =
-    pkgs.writers.writeDashBin "hyprland-session"
-    # sh
-    ''
-      # launch hyprland without any stdout
-      Hyprland >/dev/null 2>&1
-      # we run this in hyprland on shutdown too, but if Hyprland
-      # crashes it isn't able to. run it again here to be safe.
-      systemctl --user stop nixos-fake-graphical-session.target
-    '';
 in {
   options.cfg.services.greetd.enable = mkEnableOption "greetd";
   config = mkIf cfg.enable {
@@ -49,7 +39,7 @@ in {
           };
         };
       };
-      session.command = getExe hyprland-session;
+      session.command = "Hyprland >/dev/null 2>&1";
       secret = {
         mode = "characters";
         characters = "*";
