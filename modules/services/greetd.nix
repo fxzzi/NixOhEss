@@ -2,11 +2,22 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.greetd;
+  hyprland-session =
+    pkgs.writers.writeDashBin "hyprland-session"
+    # sh
+    ''
+      # launch hyprland without any stdout
+      Hyprland >/dev/null 2>&1
+      # hyprland runs this automatically on shut-down.
+      # but it can't if it crashes. so run it here.
+      if systemctl --user is-active --quiet graphical-session.target; then
+          systemctl --user stop graphical-session.target
+      fi
+    '';
 in {
   options.cfg.services.greetd.enable = mkEnableOption "greetd";
   config = mkIf cfg.enable {
@@ -39,7 +50,7 @@ in {
           };
         };
       };
-      session.command = "Hyprland >/dev/null 2>&1";
+      session.command = getExe hyprland-session;
       secret = {
         mode = "characters";
         characters = "*";
