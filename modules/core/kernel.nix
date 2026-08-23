@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkOption types mkIf;
+  inherit (lib) mkOption types;
   cfg = config.cfg.core.kernel;
   kernelType =
     if cfg.type == "latest"
