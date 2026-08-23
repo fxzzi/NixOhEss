@@ -5,14 +5,11 @@
     inputs = import ./.tack;
 
     inherit (inputs.nixpkgs) lib;
-    inherit (lib) genAttrs packagesFromDirectoryRecursive callPackageWith fix;
+    inherit (lib) packagesFromDirectoryRecursive callPackageWith;
 
-    # we only use x86_64-linux for now but this is good practice
-    supportedSystems = ["x86_64-linux"];
-    forAllSystems = apply:
-      genAttrs
-      supportedSystems
-      (system: apply inputs.nixpkgs.legacyPackages.${system});
+    # all my systems are x86_64-linux
+    system = "x86_64-linux";
+    pkgs = inputs.nixpkgs.legacyPackages.${system};
   in {
     # our internal lib which has some generators and useful funcs
     lib = import ./lib {inherit lib inputs;};
@@ -24,14 +21,12 @@
       inherit self inputs lib;
     };
 
-    # some of our pkgs depend on each other, so use fix and pass self through
-    packages = forAllSystems (pkgs:
-      fix (selfPkgs:
-        packagesFromDirectoryRecursive {
-          callPackage = callPackageWith (pkgs // selfPkgs);
-          directory = ./pkgs;
-        }));
+    packages.${system} = packagesFromDirectoryRecursive {
+      callPackage =
+        callPackageWith (pkgs // self.packages.${system});
+      directory = ./pkgs;
+    };
 
-    formatter = forAllSystems (pkgs: pkgs.callPackage ./fmt.nix {});
+    formatter.${system} = pkgs.callPackage ./fmt.nix {};
   };
 }
