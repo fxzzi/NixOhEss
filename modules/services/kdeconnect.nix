@@ -14,12 +14,7 @@ in
     programs.kdeconnect = {
       enable = true;
       package = pkgs.symlinkJoin {
-        inherit (pkgs.kdePackages.kdeconnect-kde)
-          name
-          pname
-          version
-          meta
-          ;
+        name = "kdeconnect";
         paths = [ pkgs.kdePackages.kdeconnect-kde ];
         # we don't want the indicator app in app launchers.
         postBuild = ''
@@ -34,7 +29,7 @@ in
         partOf = [ "graphical-session.target" ];
         unitConfig.ConditionEnvironment = "WAYLAND_DISPLAY";
         serviceConfig = {
-          ExecStart = getExe' pkgs.kdePackages.kdeconnect-kde "kdeconnectd";
+          ExecStart = getExe' config.programs.kdeconnect.package "kdeconnectd";
           Restart = "on-abort";
         };
       };
@@ -44,7 +39,7 @@ in
         partOf = [ "graphical-session.target" ];
         unitConfig.ConditionEnvironment = "WAYLAND_DISPLAY";
         serviceConfig = {
-          ExecStart = getExe' pkgs.kdePackages.kdeconnect-kde "kdeconnect-indicator";
+          ExecStart = getExe' config.programs.kdeconnect.package "kdeconnect-indicator";
           Restart = "on-abort";
         };
         # lets you open kdeconnect from the tray icon
