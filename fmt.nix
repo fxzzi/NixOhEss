@@ -1,7 +1,7 @@
 {
   lib,
   writeShellApplication,
-  alejandra,
+  nixfmt,
   deadnix,
   statix,
   fd,
@@ -18,14 +18,14 @@ let
   commands = [
     "statix fix -- '{}'"
     "deadnix -e -- '{}'"
-    "alejandra -q '{}'"
+    "nixfmt '{}'"
   ];
 in
 writeShellApplication {
   name = "nix-formatter";
 
   runtimeInputs = [
-    alejandra
+    nixfmt
     deadnix
     statix
     fd

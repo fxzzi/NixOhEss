@@ -3,12 +3,14 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.nvf;
-in {
+in
+{
   options.cfg.programs.nvf.enable = mkEnableOption "nvf";
-  imports = [inputs.nvf.nixosModules.default];
+  imports = [ inputs.nvf.nixosModules.default ];
   config = mkIf cfg.enable {
     environment.sessionVariables = {
       EDITOR = "nvim";
@@ -72,7 +74,7 @@ in {
             enableExtraDiagnostics = true;
             nix = {
               enable = true;
-              format.type = ["nixfmt"];
+              format.type = [ "nixfmt" ];
             };
             markdown.enable = true;
             bash.enable = true;
