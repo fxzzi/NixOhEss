@@ -27,16 +27,20 @@ in
           flags = {
             table_gap = "none";
           };
-          temperature.sensor_filter = {
-            list = [
-              # These all show up as 0 degrees.
-              "nct6775.656 (nct6798): PCH_CHIP_TEMP"
-              "nct6775.656 (nct6798): PCH_CPU_TEMP"
-              "nct6775.656 (nct6798): PCH_MCH_TEMP"
-              "nct6775.656 (nct6798): PCH_CHIP_CPU_MAX_TEMP"
-              "asus-ec-sensors (asusec): T_Sensor"
-              "asus-ec-sensors (asusec): VRM"
-            ];
+          temperature = {
+            default_sort = "Temp";
+            sort_order = "Descending";
+            sensor_filter = {
+              list = [
+                # These all show up as 0 degrees.
+                "nct6775.656 (nct6798): PCH_CHIP_TEMP"
+                "nct6775.656 (nct6798): PCH_CPU_TEMP"
+                "nct6775.656 (nct6798): PCH_MCH_TEMP"
+                "nct6775.656 (nct6798): PCH_CHIP_CPU_MAX_TEMP"
+                "asus-ec-sensors (asusec): T_Sensor"
+                "asus-ec-sensors (asusec): VRM"
+              ];
+            };
           };
           network.interface_filter = {
             list = [ "virbr0.*" ];
@@ -49,7 +53,7 @@ in
                 "/home"
                 "/games"
                 "/nix"
-                "/nix/store/"
+                "/nix/store"
               ];
             };
             columns = [
@@ -75,6 +79,9 @@ in
               "time"
               "priority"
             ];
+          };
+          memory_graph = {
+            short_gpu_names = true;
           };
           # customize the layout of bottom
           row = [
