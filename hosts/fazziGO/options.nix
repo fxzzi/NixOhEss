@@ -86,6 +86,8 @@
         email = "faaris.ansari@proton.me";
       };
       zsh.enable = true;
+      bottom.enable = true;
+      zoxide.enable = true;
       nh.enable = true;
       ncmpcpp.enable = true;
       wleave.enable = true;

@@ -1,5 +1,16 @@
-{ pkgs, ... }: {
-  config = {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.cfg.programs.bottom;
+in
+{
+  options.cfg.programs.bottom.enable = mkEnableOption "bottom";
+  config = mkIf cfg.enable {
     hj = {
       packages = with pkgs; [
         (symlinkJoin {
