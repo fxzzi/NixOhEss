@@ -7,7 +7,6 @@ gh    = "github:{path}"
 fazzi = "gitlab:fazzi/{path}"
 raf   = "git+https://git.notashelf.dev/notashelf/{path}.git"
 
-
 # all_follow: input name -> top-level pin it follows wherever it appears
 # opt out per-input with exclude_follow
 [all_follow]

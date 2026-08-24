@@ -54,6 +54,10 @@ in
         };
       };
     };
+    # avoid pipewire-pulse / pulseaudio / firefox creating a ~/.pulse-cookie
+    environment.etc."pulse/client.conf".text = ''
+      cookie-file = /tmp/pulse-cookie
+    '';
     hj.packages = with pkgs; [
       qpwgraph
       pwvucontrol
