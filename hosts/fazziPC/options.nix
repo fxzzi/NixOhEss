@@ -15,7 +15,7 @@
     };
     services = {
       ags.enable = true;
-      kdeconnect.enable = true;
+      # kdeconnect.enable = true;
       nvuv = {
         enable = true;
         maxClock = 1830;
