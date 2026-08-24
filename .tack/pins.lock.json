@@ -163,9 +163,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "startpage",
-    "rev": "39fff5bc7b1c54cd7df7230437f9eb57d45a91d1",
-    "narHash": "sha256-uVdcLTjbhhqH1/zjqf8RB+x7JOiJPbl2TvGjTeJ8uBc=",
-    "lastModified": 1786576161
+    "rev": "0b4a7c0068039c7ec30d833bbb3b390c16f4cbe9",
+    "narHash": "sha256-G+bc9N/WQxta+jf8AxG/OH3vV3Zoi0x0gjoMuJjhRbI=",
+    "lastModified": 1787597176
   },
   "walls": {
     "type": "gitlab",
