@@ -1,4 +1,4 @@
-_: {
+{
   config = {
     hardware.audient-evo.config = {
       monitor = 50;
