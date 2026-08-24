@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf getExe';
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.adb;
 in
 {
@@ -18,28 +18,17 @@ in
       packages = with pkgs; [
         android-tools
         (symlinkJoin {
-          inherit (pkgs.scrcpy)
-            name
-            pname
-            version
-            meta
-            ;
-          paths = [ pkgs.scrcpy ];
+          name = "scrcpy";
+          paths = [ scrcpy ];
           postBuild = ''
             unlink $out/share/applications/scrcpy.desktop
             unlink $out/share/applications/scrcpy-console.desktop
           '';
         })
-        payload-dumper-go
       ];
     };
     environment = {
-      sessionVariables = {
-        ANDROID_HOME = "$XDG_DATA_HOME/android"; # Android SDK home
-      };
       shellAliases = {
-        adb = "HOME=$ANDROID_HOME ${getExe' pkgs.android-tools "adb"}";
-
         webcam1080 = ''
           scrcpy --video-source=camera --no-audio --camera-facing=back \
           --v4l2-sink=/dev/video0 --camera-size=1920x1080 --video-bit-rate=6000K \

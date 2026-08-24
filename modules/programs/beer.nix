@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -13,7 +14,7 @@ in
   config = mkIf cfg.enable {
     hj = {
       packages = [
-        # inputs.beer.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.beer.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
       xdg.config.files = {
         "beer/beer.toml" = {
@@ -21,11 +22,11 @@ in
           value = {
             main = {
               font = "monospace";
+              font-size = 18;
               pad-x = 6;
               pad-y = 6;
-              # term = "xterm-256color";
-              # subpixel = "none";
-              # hinting = "none";
+              subpixel = "none";
+              hinting = "none";
             };
             colors = {
               alpha = 0.85;

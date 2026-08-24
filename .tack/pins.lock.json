@@ -24,9 +24,9 @@
     "lastModified": 1787530247
   },
   "beer": {
-    "type": "git",
-    "url": "https://git.notashelf.dev/notashelf/beer.git",
-    "ref": "HEAD",
+    "type": "github",
+    "owner": "Michael-C-Buckley",
+    "repo": "beer",
     "rev": "f85297331ffa1ad70faa87f74c67bd8d20827a58",
     "narHash": "sha256-oqfIfuQtAndxlPXkTiVGK+NsM6UH+hjUa5HXylN6mAk=",
     "lastModified": 1786685176
@@ -83,9 +83,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "951ab550e7ea050e4b871f99faf87d99c601c44a",
-    "narHash": "sha256-ds9J1/RBDzgSFtb20+MbXS/v8xA7TLRh7YSnD6cWSgY=",
-    "lastModified": 1787505664
+    "rev": "d8504461f0e9f95a5df9a0cdc0723d0ca6332888",
+    "narHash": "sha256-n5pRDrqMLDSoVJ3fc2DR7hL8bxXJwuPm391j+9Vswbk=",
+    "lastModified": 1787584490
   },
   "niqspkgs": {
     "type": "github",
@@ -99,17 +99,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "daa997a8979f01a0defcc2065ba824c65bb461f6",
-    "narHash": "sha256-BXGiZoNdYzfs5ZqsSlSvNvMgcL4+je67BRUoyXY+fjw=",
-    "lastModified": 1787448989
+    "rev": "c328665c0ae2cf1c2cafcc02c88da73a70b15372",
+    "narHash": "sha256-YSaFKa3BUqlujqdoQIwAsd2qtiHZAeoyLZKgRg9oa0A=",
+    "lastModified": 1787535674
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "ac53f77f50618f24a42c78b2dfea1d6515142d9b",
-    "narHash": "sha256-axaC0cgbr3vNeHfvIX1KVEC5Beg9TCzKS8prAMRIaxs=",
-    "lastModified": 1787470538
+    "rev": "de7375a7ebf5d43f70e084d1bc6d48821142d3c1",
+    "narHash": "sha256-QzOt9oPoIvOBdV6Gj58VsTNhKaMvvNNf7V02mVAJNeU=",
+    "lastModified": 1787546313
   },
   "nixos-core": {
     "type": "github",
@@ -123,9 +123,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "2c423e03bbafcff28bfadc6781a4a8257f205cb5",
-    "narHash": "sha256-dt4WdcvsA8/RCe+VZZwqU0X+XMM3wBbGCWA0/sFWzGo=",
-    "lastModified": 1787360063
+    "rev": "56c02bc00adcf003215cc4bd996d6efaf4cff188",
+    "narHash": "sha256-9i/VTdusq/+NM/tz+J1Re+ojkMB8MBf0QshnYfzHz30=",
+    "lastModified": 1787498568
   },
   "nvf": {
     "type": "github",

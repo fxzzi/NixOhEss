@@ -33,31 +33,14 @@
       };
       packages = with pkgs; [
         (symlinkJoin {
-          inherit (qt6Packages.qtstyleplugin-kvantum)
-            name
-            pname
-            version
-            meta
-            ;
-          paths = [ qt6Packages.qtstyleplugin-kvantum ];
-          # remove the desktop file. It's not like
-          # we can modify settings in it anyway.
-          postBuild = ''
-            unlink $out/share/applications/kvantummanager.desktop
-          '';
-        })
-        (symlinkJoin {
-          inherit (qt6Packages.qt6ct)
-            name
-            pname
-            version
-            meta
-            ;
-          paths = [ qt6Packages.qt6ct ];
-          # remove the desktop file. It's not like
-          # we can modify settings in it anyway.
+          name = "qt-theming";
+          paths = [
+            qt6Packages.qt6ct
+            qt6Packages.qtstyleplugin-kvantum
+          ];
           postBuild = ''
             unlink $out/share/applications/qt6ct.desktop
+            unlink $out/share/applications/kvantummanager.desktop
           '';
         })
       ];
