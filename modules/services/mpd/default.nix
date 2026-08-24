@@ -3,10 +3,12 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.mpd;
-in {
+in
+{
   options.cfg.services.mpd.enable = mkEnableOption "mpd";
   config = mkIf cfg.enable {
     hj = {

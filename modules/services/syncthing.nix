@@ -3,10 +3,12 @@
   config,
   hostName,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.syncthing;
-in {
+in
+{
   options.cfg.services.syncthing.enable = mkEnableOption "syncthing";
   config = mkIf cfg.enable {
     services.syncthing = {
@@ -29,11 +31,12 @@ in {
             path = "~/Music";
             # fazziPC is the main device, so send music to others and don't receive
             # the other devices can send and receive between each other though.
-            type =
-              if hostName == "fazziPC"
-              then "sendonly"
-              else "sendreceive";
-            devices = ["fazziPC" "fazziGO" "fazphone"];
+            type = if hostName == "fazziPC" then "sendonly" else "sendreceive";
+            devices = [
+              "fazziPC"
+              "fazziGO"
+              "fazphone"
+            ];
             ignorePatterns = [
               ".thumbnails"
               ".database_uuid"
@@ -45,8 +48,11 @@ in {
     };
     # Delay syncthing to after boot, to speed up boot
     systemd.services.syncthing-init = {
-      wantedBy = lib.mkForce ["default.target"];
-      after = lib.mkForce ["syncthing.service" "default.target"];
+      wantedBy = lib.mkForce [ "default.target" ];
+      after = lib.mkForce [
+        "syncthing.service"
+        "default.target"
+      ];
     };
   };
 }

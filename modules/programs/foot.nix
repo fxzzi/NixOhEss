@@ -4,19 +4,26 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.foot;
   inherit (pkgs) symlinkJoin;
   foot = inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.foot-transparency;
-in {
+in
+{
   options.cfg.programs.foot.enable = mkEnableOption "foot";
   config = mkIf cfg.enable {
     programs.foot = {
       enable = true;
       package = symlinkJoin {
-        inherit (foot) name pname version meta;
-        paths = [foot];
+        inherit (foot)
+          name
+          pname
+          version
+          meta
+          ;
+        paths = [ foot ];
 
         # remove foot desktop files for server and client, as
         # we just use standalone anyway

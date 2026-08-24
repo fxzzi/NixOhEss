@@ -4,10 +4,12 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.chroma;
-in {
+in
+{
   options.cfg.services.chroma.enable = mkEnableOption "chroma";
   config = mkIf cfg.enable {
     hj = {
@@ -15,7 +17,7 @@ in {
 
       # packages = [chroma];
       xdg.config.files."chroma/chroma.toml" = {
-        generator = (pkgs.formats.toml {}).generate "chroma.toml";
+        generator = (pkgs.formats.toml { }).generate "chroma.toml";
         value = {
           default_image = "$XDG_STATE_HOME/wallpaper";
           ipc.enable = true;

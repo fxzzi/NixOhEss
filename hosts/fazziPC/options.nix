@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, ... }: {
   cfg = {
     core = {
       username = "faaris";

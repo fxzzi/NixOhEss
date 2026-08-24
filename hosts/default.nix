@@ -2,14 +2,22 @@
   self,
   inputs,
   lib,
-}: let
-  inherit (lib) attrNames flatten genAttrs nixosSystem filterAttrs;
+}:
+let
+  inherit (lib)
+    attrNames
+    flatten
+    genAttrs
+    nixosSystem
+    filterAttrs
+    ;
   inherit (builtins) readDir;
 
   # all dirs in ./ are considered hosts.
   hostNames = attrNames (filterAttrs (_: v: v == "directory") (readDir ./.));
 
-  mkSystem = hostName:
+  mkSystem =
+    hostName:
     nixosSystem {
       specialArgs = {
         inherit self inputs hostName;
@@ -20,4 +28,4 @@
       ];
     };
 in
-  genAttrs hostNames mkSystem
+genAttrs hostNames mkSystem

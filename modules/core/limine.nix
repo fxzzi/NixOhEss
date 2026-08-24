@@ -3,12 +3,14 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkOption types mkIf;
-in {
+in
+{
   # HACK: limine lets you do a float for the timeout.
   # by default the nix timeout option can only be an int though.
-  disabledModules = ["system/boot/loader/loader.nix"];
+  disabledModules = [ "system/boot/loader/loader.nix" ];
   options = {
     boot.loader.timeout = mkOption {
       default = 5;
@@ -37,22 +39,19 @@ in {
           maxGenerations = 8;
           style = {
             wallpaperStyle = "centered";
-            wallpapers =
-              map
-              (file: "${inputs.walls}/images/${file}")
-              [
-                "fuji.jpg"
-                "cherry-blossom.jpg"
-                "clouds.jpg"
-                "austria_landscape.jpg"
-                "pink_flowers.jpg"
-                "wallhaven-9oxkwk_3840x2160.jpg"
-                "wallhaven-28v3mm_3840x2160.jpg"
-                "wallhaven-rqy1mm.jpg"
-                "wallhaven-og39mm.jpg"
-                "wallhaven-21dlrg.jpg"
-                "norway-lofoten-island.jpg"
-              ];
+            wallpapers = map (file: "${inputs.walls}/images/${file}") [
+              "fuji.jpg"
+              "cherry-blossom.jpg"
+              "clouds.jpg"
+              "austria_landscape.jpg"
+              "pink_flowers.jpg"
+              "wallhaven-9oxkwk_3840x2160.jpg"
+              "wallhaven-28v3mm_3840x2160.jpg"
+              "wallhaven-rqy1mm.jpg"
+              "wallhaven-og39mm.jpg"
+              "wallhaven-21dlrg.jpg"
+              "norway-lofoten-island.jpg"
+            ];
             interface = {
               resolution = "max";
               helpHidden = true;

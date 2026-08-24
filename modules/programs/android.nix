@@ -3,21 +3,28 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf getExe';
   cfg = config.cfg.programs.adb;
-in {
+in
+{
   options.cfg.programs.adb.enable = mkEnableOption "adb";
   config = mkIf cfg.enable {
     users.users.${config.cfg.core.username} = {
-      extraGroups = ["adbusers"];
+      extraGroups = [ "adbusers" ];
     };
     hj = {
       packages = with pkgs; [
         android-tools
         (symlinkJoin {
-          inherit (pkgs.scrcpy) name pname version meta;
-          paths = [pkgs.scrcpy];
+          inherit (pkgs.scrcpy)
+            name
+            pname
+            version
+            meta
+            ;
+          paths = [ pkgs.scrcpy ];
           postBuild = ''
             unlink $out/share/applications/scrcpy.desktop
             unlink $out/share/applications/scrcpy-console.desktop

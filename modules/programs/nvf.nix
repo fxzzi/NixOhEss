@@ -70,8 +70,10 @@ in {
             enableFormat = true;
             enableTreesitter = true;
             enableExtraDiagnostics = true;
-
-            nix.enable = true;
+            nix = {
+              enable = true;
+              format.type = ["nixfmt"];
+            };
             markdown.enable = true;
             bash.enable = true;
             css.enable = true;

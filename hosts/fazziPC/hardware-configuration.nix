@@ -6,8 +6,9 @@
   lib,
   modulesPath,
   ...
-}: {
-  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+}:
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
     initrd.availableKernelModules = [
       "nvme"
@@ -15,34 +16,34 @@
       "ahci"
       "usbhid"
     ];
-    initrd.kernelModules = [];
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
   };
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = ["noatime,ssd,discard=async,subvol=@"];
+      options = [ "noatime,ssd,discard=async,subvol=@" ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = ["noatime,ssd,discard=async,subvol=@home"];
+      options = [ "noatime,ssd,discard=async,subvol=@home" ];
       neededForBoot = true;
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = ["noatime,ssd,discard=async,subvol=@nix"];
+      options = [ "noatime,ssd,discard=async,subvol=@nix" ];
     };
 
     "/games" = {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = ["noatime,ssd,discard=async,subvol=@games"];
+      options = [ "noatime,ssd,discard=async,subvol=@games" ];
     };
 
     "/boot" = {
@@ -55,7 +56,7 @@
     };
   };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

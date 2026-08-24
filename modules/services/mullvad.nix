@@ -2,10 +2,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.mullvad;
-in {
+in
+{
   options.cfg.services.mullvad.enable = mkEnableOption "Mullvad VPN";
   config = mkIf cfg.enable {
     services = {

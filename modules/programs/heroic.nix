@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.heroic;
-in {
+in
+{
   options.cfg.programs.heroic.enable = mkEnableOption "heroic";
   config = mkIf cfg.enable {
     hj = {

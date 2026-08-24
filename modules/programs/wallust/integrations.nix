@@ -2,13 +2,15 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkBefore;
   cfg = config.cfg.programs.wallust;
-in {
+in
+{
   config = mkIf cfg.enable {
     programs.foot.settings = {
-      main.include = ["~/.cache/wallust/colors_foot.ini"];
+      main.include = [ "~/.cache/wallust/colors_foot.ini" ];
     };
     hj = {
       xdg.config.files = {

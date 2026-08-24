@@ -3,10 +3,12 @@
   lib,
   self,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.xdph;
-in {
+in
+{
   options.cfg.services.xdph.enable = mkEnableOption "xdph";
   config = mkIf cfg.enable {
     xdg = {
@@ -17,7 +19,7 @@ in {
       };
     };
     hj.xdg.config.files."hypr/xdph.conf" = {
-      generator = self.lib.generators.toHyprlang {};
+      generator = self.lib.generators.toHyprlang { };
       value = {
         screencopy.max_fps = 60; # don't need to capture more than this
       };

@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   config = {
     nix = {
       package = pkgs.nixVersions.latest;
@@ -20,8 +21,8 @@
         warn-dirty = false;
         allow-import-from-derivation = false; # don't allow IFD, they're slow asf
         use-xdg-base-directories = true; # clean up ~
-        allowed-users = ["@wheel"];
-        trusted-users = ["@wheel"];
+        allowed-users = [ "@wheel" ];
+        trusted-users = [ "@wheel" ];
         flake-registry = "";
         extra-substituters = [
           "https://nix-community.cachix.org"

@@ -3,13 +3,17 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.fuzzel;
-in {
+in
+{
   options.cfg.programs.fuzzel = {
     enable = mkEnableOption "fuzzel";
-    disableCache = mkEnableOption "Disable fuzzel cache" // {default = true;};
+    disableCache = mkEnableOption "Disable fuzzel cache" // {
+      default = true;
+    };
   };
   config = mkIf cfg.enable {
     hj = {
@@ -17,7 +21,7 @@ in {
         pkgs.fuzzel
       ];
       xdg.config.files."fuzzel/fuzzel.ini" = {
-        generator = lib.generators.toINI {};
+        generator = lib.generators.toINI { };
         value = {
           main = {
             font = "monospace:size=17";

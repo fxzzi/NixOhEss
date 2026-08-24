@@ -4,15 +4,17 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.hardware.nvidia;
-in {
+in
+{
   options.cfg.hardware.nvidia.enable = mkEnableOption "nvidia";
 
   config = mkIf cfg.enable {
     nixpkgs.config.cudaSupport = true; # enable cuda support in packages which need it
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware = {
       graphics = {
@@ -87,7 +89,7 @@ in {
         "nvidia/nvidia-application-profiles-rc.d/50-vram-alloc-fixes.json".text = builtins.toJSON {
           rules = [
             {
-              pattern = [];
+              pattern = [ ];
               # fix high vram usage on some apps. nvidia tries to do this automatically but only for select programs
               profile = "No VidMem Reuse";
             }
@@ -96,7 +98,7 @@ in {
         "nvidia/nvidia-application-profiles-rc.d/51-dont-nerf-cuda-perf.json".text = builtins.toJSON {
           rules = [
             {
-              pattern = [];
+              pattern = [ ];
               # don't lock to a lower (p2) perf state when cuda is in use.
               profile = "CudaNoStablePerfLimit";
             }

@@ -4,10 +4,12 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.hardware.amdgpu;
-in {
+in
+{
   options.cfg.hardware.amdgpu.enable = mkEnableOption "amdgpu";
   config = mkIf cfg.enable {
     hardware = {

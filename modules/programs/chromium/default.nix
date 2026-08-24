@@ -3,8 +3,16 @@
   pkgs,
   config,
   ...
-}: let
-  inherit (lib) mkEnableOption mkIf mkOption types optionals concatStringsSep;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    optionals
+    concatStringsSep
+    ;
   cfg = config.cfg.programs.chromium;
   disableFeatures = [
     "WebRtcAllowInputVolumeAdjustment"
@@ -20,29 +28,27 @@
     "MiddleClickAutoscroll"
   ];
 
-  commonArgs =
-    [
-      # hdr, wcg
-      "--enable-experimental-web-platform-features"
-    ]
-    ++ optionals (enableFeatures != []) [
-      "--enable-features=${concatStringsSep "," enableFeatures}"
-    ]
-    ++ optionals (disableFeatures != []) [
-      "--disable-features=${concatStringsSep "," disableFeatures}"
-    ]
-    ++ optionals (!config.cfg.programs.smoothScroll.enable) [
-      "--disable-smooth-scrolling"
-    ];
+  commonArgs = [
+    # hdr, wcg
+    "--enable-experimental-web-platform-features"
+  ]
+  ++ optionals (enableFeatures != [ ]) [
+    "--enable-features=${concatStringsSep "," enableFeatures}"
+  ]
+  ++ optionals (disableFeatures != [ ]) [
+    "--disable-features=${concatStringsSep "," disableFeatures}"
+  ]
+  ++ optionals (!config.cfg.programs.smoothScroll.enable) [
+    "--disable-smooth-scrolling"
+  ];
 
-  commandLineArgs =
-    [
-      "--extension-mime-request-handling=always-prompt-for-install"
-    ]
-    ++ optionals config.cfg.programs.startpage.enable [
-      "--custom-ntp=${config.cfg.programs.startpage.page}"
-    ]
-    ++ commonArgs;
+  commandLineArgs = [
+    "--extension-mime-request-handling=always-prompt-for-install"
+  ]
+  ++ optionals config.cfg.programs.startpage.enable [
+    "--custom-ntp=${config.cfg.programs.startpage.page}"
+  ]
+  ++ commonArgs;
 
   wootility = pkgs.makeDesktopItem {
     name = "wootility";
@@ -72,7 +78,8 @@
     terminal = false;
     icon = ./via.svg;
   };
-in {
+in
+{
   options.cfg.programs.chromium = {
     enable = mkEnableOption "chromium";
     wootility.enable = mkEnableOption "wootility";

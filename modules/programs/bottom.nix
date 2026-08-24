@@ -1,17 +1,22 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   config = {
     hj = {
       packages = with pkgs; [
         (symlinkJoin {
-          inherit (pkgs.bottom) name pname version meta;
-          paths = [pkgs.bottom];
+          inherit (pkgs.bottom)
+            name
+            pname
+            version
+            meta
+            ;
+          paths = [ pkgs.bottom ];
           postBuild = ''
             unlink $out/share/applications/bottom.desktop
           '';
         })
       ];
       xdg.config.files."bottom/bottom.toml" = {
-        generator = (pkgs.formats.toml {}).generate "bottom.toml";
+        generator = (pkgs.formats.toml { }).generate "bottom.toml";
         value = {
           flags = {
             table_gap = "none";
@@ -28,7 +33,7 @@
             ];
           };
           network.interface_filter = {
-            list = ["virbr0.*"];
+            list = [ "virbr0.*" ];
           };
           disk = {
             mount_filter = {

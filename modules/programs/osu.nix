@@ -4,8 +4,14 @@
   pkgs,
   inputs,
   ...
-}: let
-  inherit (lib) mkEnableOption mkIf concatStringsSep optionalString;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    concatStringsSep
+    optionalString
+    ;
   cfg = config.cfg.programs.osu;
   otd = config.cfg.services.opentabletdriver.enable;
   envVars = [
@@ -19,14 +25,17 @@
     pipewire_latency = "32/44100";
     command_prefix = "env ${concatStringsSep " " envVars} ${optionalString config.cfg.programs.mangohud.enable "mangohud"}";
   };
-in {
+in
+{
   options.cfg.programs.osu.enable = mkEnableOption "osu!";
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [osu];
+    environment.systemPackages = [ osu ];
 
     # if otd is disabled, still allow the osu internal tablet driver to work.
-    services.udev.packages = mkIf (!otd) [pkgs.opentabletdriver];
-    boot.blacklistedKernelModules = mkIf (!otd) config.hardware.opentabletdriver.blacklistedKernelModules;
+    services.udev.packages = mkIf (!otd) [ pkgs.opentabletdriver ];
+    boot.blacklistedKernelModules = mkIf (
+      !otd
+    ) config.hardware.opentabletdriver.blacklistedKernelModules;
   };
 }

@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.cfg.programs.librewolf;
@@ -34,7 +35,8 @@
       };
     };
   };
-in {
+in
+{
   options.cfg.programs.librewolf = {
     enable = mkEnableOption "librewolf";
   };
@@ -44,17 +46,15 @@ in {
     nixpkgs.overlays = [
       (_: prev: {
         librewolf-bin-unwrapped = prev.librewolf-bin-unwrapped.overrideAttrs (old: {
-          postInstall =
-            (old.postInstall or "")
-            + ''
-              echo 'pref("general.config.sandbox_enabled", false);' \
-                >> "$out/lib/librewolf-bin-${prev.librewolf-bin-unwrapped.version}/defaults/pref/local-settings.js"
-            '';
+          postInstall = (old.postInstall or "") + ''
+            echo 'pref("general.config.sandbox_enabled", false);' \
+              >> "$out/lib/librewolf-bin-${prev.librewolf-bin-unwrapped.version}/defaults/pref/local-settings.js"
+          '';
         });
       })
     ];
 
-    hj.packages = [librewolf];
+    hj.packages = [ librewolf ];
 
     environment.sessionVariables = {
       MOZ_DISABLE_RDD_SANDBOX = 1;

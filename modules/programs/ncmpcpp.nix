@@ -3,10 +3,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption getExe mkIf;
   cfg = config.cfg.programs.ncmpcpp;
-in {
+in
+{
   options.cfg.programs.ncmpcpp.enable = mkEnableOption "ncmpcpp";
   config = mkIf cfg.enable {
     hj = {

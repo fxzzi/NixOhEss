@@ -4,16 +4,17 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf concatStringsSep;
   cfg = config.cfg.programs.discord;
 
-  commandLineArgs =
-    concatStringsSep " "
-    (config.cfg.programs.chromium.commonArgs
-      ++ [
-        "--enable-blink-features=MiddleClickAutoscroll"
-      ]);
+  commandLineArgs = concatStringsSep " " (
+    config.cfg.programs.chromium.commonArgs
+    ++ [
+      "--enable-blink-features=MiddleClickAutoscroll"
+    ]
+  );
 
   # Use the below variables to create a list of fonts which can
   # be used in openasar quickcss.
@@ -88,17 +89,19 @@
         gap: 1px;
       }
     '';
-in {
+in
+{
   options.cfg.programs.discord = {
     enable = mkEnableOption "discord";
-    minimizeToTray =
-      mkEnableOption "Minimize to tray" // {default = true;};
+    minimizeToTray = mkEnableOption "Minimize to tray" // {
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {
     hj = {
       xdg.config.files."discord/settings.json" = {
-        generator = lib.generators.toJSON {};
+        generator = lib.generators.toJSON { };
         value = {
           # allow launching discord even if a new update is available
           SKIP_HOST_UPDATE = true;
@@ -116,7 +119,7 @@ in {
 
           # no idea what these do, but they're there by default.
           offloadAdmControls = true;
-          chromiumSwitches = {};
+          chromiumSwitches = { };
 
           openasar = {
             # don't show the OA setup wizard on launch

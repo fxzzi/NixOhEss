@@ -6,7 +6,8 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -19,29 +20,33 @@
       "usbhid"
       "sd_mod"
     ];
-    initrd.kernelModules = [];
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
-    supportedFilesystems = lib.mkDefault ["btrfs" "vfat" "ntfs"];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+    supportedFilesystems = lib.mkDefault [
+      "btrfs"
+      "vfat"
+      "ntfs"
+    ];
   };
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
       fsType = "btrfs";
-      options = ["noatime,ssd,discard=async,subvol=@"];
+      options = [ "noatime,ssd,discard=async,subvol=@" ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
       fsType = "btrfs";
-      options = ["noatime,ssd,discard=async,subvol=@home"];
+      options = [ "noatime,ssd,discard=async,subvol=@home" ];
       neededForBoot = true;
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
       fsType = "btrfs";
-      options = ["noatime,ssd,discard=async,subvol=@nix"];
+      options = [ "noatime,ssd,discard=async,subvol=@nix" ];
     };
 
     "/boot" = {
@@ -80,7 +85,7 @@
     };
   };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

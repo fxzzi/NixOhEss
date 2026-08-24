@@ -4,8 +4,15 @@
   config,
   lib,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption types mkIf generators;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    generators
+    ;
   inherit (builtins) toString;
   cfg = config.cfg.programs.mangohud;
 
@@ -14,14 +21,14 @@
   # correct behaviour is to provide a frame time gap. This gap becomes larger at higher refresh rates
   # and allows you to stay within the VRR range easily at the cost of a few measly FPS.
   # see: https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
-  fpsLimit = let
-    rr = cfg.refreshRate;
-    inherit (config.cfg.programs.hyprland.extraHlConfig.misc) vrr;
-  in
-    if vrr != 0
-    then rr - (rr * rr / 4096)
-    else rr;
-in {
+  fpsLimit =
+    let
+      rr = cfg.refreshRate;
+      inherit (config.cfg.programs.hyprland.extraHlConfig.misc) vrr;
+    in
+    if vrr != 0 then rr - (rr * rr / 4096) else rr;
+in
+{
   options.cfg.programs.mangohud = {
     enable = mkEnableOption "MangoHud";
     enableSessionWide = mkEnableOption "MangoHud for all Vulkan apps";
@@ -40,10 +47,10 @@ in {
     };
     hj = {
       # mangohud with some patches for hdr
-      packages = [inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.mangohud-patched];
+      packages = [ inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.mangohud-patched ];
       xdg.config.files = {
         "MangoHud/MangoHud.conf" = {
-          generator = generators.toKeyValue {};
+          generator = generators.toKeyValue { };
           value = {
             blacklist = "mpv";
             text_outline_thickness = 1;
@@ -61,52 +68,52 @@ in {
             toggle_preset = "Shift_R+F10";
           };
         };
-        "MangoHud/presets.conf" = let
-          mono = "${pkgs.nerd-fonts.blex-mono}/share/fonts/truetype/NerdFonts/BlexMono/BlexMonoNerdFont-Regular.ttf";
-          sans = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
-          common = {
-            font_size = 20;
-            font_file = mono;
-            background_alpha = 0.42;
-            hud_no_margin = 1;
-            gpu_stats = 1;
-            gpu_core_clock = 1;
-            gpu_mem_clock = 1;
-            gpu_temp = 1;
-            gpu_power = 1;
-            vram = 1;
-            fps = 1;
-            frame_timing = 1;
-            cpu_mhz = 1;
-            cpu_stats = 1;
-            cpu_temp = 1;
-            cpu_power = 1;
-            ram = 1;
-          };
-        in {
-          generator = generators.toINI {};
-          value = {
-            "preset 0" = {
-              font_file = sans;
-              font_size = 15;
-              text_outline = false;
-              alpha = 0.5;
-              fps_only = 1;
-              background_alpha = 0;
+        "MangoHud/presets.conf" =
+          let
+            mono = "${pkgs.nerd-fonts.blex-mono}/share/fonts/truetype/NerdFonts/BlexMono/BlexMonoNerdFont-Regular.ttf";
+            sans = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
+            common = {
+              font_size = 20;
+              font_file = mono;
+              background_alpha = 0.42;
               hud_no_margin = 1;
-              hud_compact = 1;
-              cellpadding_y = -0.5;
+              gpu_stats = 1;
+              gpu_core_clock = 1;
+              gpu_mem_clock = 1;
+              gpu_temp = 1;
+              gpu_power = 1;
+              vram = 1;
+              fps = 1;
+              frame_timing = 1;
+              cpu_mhz = 1;
+              cpu_stats = 1;
+              cpu_temp = 1;
+              cpu_power = 1;
+              ram = 1;
             };
-            "preset 1" = common;
-            "preset 2" =
-              common
-              // {
+          in
+          {
+            generator = generators.toINI { };
+            value = {
+              "preset 0" = {
+                font_file = sans;
+                font_size = 15;
+                text_outline = false;
+                alpha = 0.5;
+                fps_only = 1;
+                background_alpha = 0;
+                hud_no_margin = 1;
+                hud_compact = 1;
+                cellpadding_y = -0.5;
+              };
+              "preset 1" = common;
+              "preset 2" = common // {
                 core_load = 1;
                 present_mode = 1;
                 winesync = 1;
               };
+            };
           };
-        };
       };
     };
   };

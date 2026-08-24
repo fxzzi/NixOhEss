@@ -3,10 +3,17 @@
   config,
   pkgs,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption types mkIf;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    ;
   cfg = config.cfg.services.scx;
-in {
+in
+{
   options.cfg.services.scx = {
     enable = mkEnableOption "scx";
     scheduler = mkOption {
@@ -16,7 +23,7 @@ in {
     };
     flags = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       description = "add flags to your chosen scheduler.";
     };
   };

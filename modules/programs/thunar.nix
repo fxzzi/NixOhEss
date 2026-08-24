@@ -3,8 +3,14 @@
   pkgs,
   config,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption mkIf concatMapStrings;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    mkIf
+    concatMapStrings
+    ;
   cfg = config.cfg.programs.thunar;
   bookmarks = [
     "file://${config.hj.directory}/Downloads Downloads"
@@ -12,11 +18,16 @@
     "file://${config.hj.directory}/Pictures/Screenshots Screenshots"
     "file://${config.hj.directory}/.config/nixos NixOS"
   ];
-in {
+in
+{
   options.cfg.programs.thunar = {
     enable = mkEnableOption "thunar";
     view = mkOption {
-      type = lib.types.enum ["Details" "Icon" "Compact"];
+      type = lib.types.enum [
+        "Details"
+        "Icon"
+        "Compact"
+      ];
       default = "Icon";
       description = "The default view for Thunar.";
     };
