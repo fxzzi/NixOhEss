@@ -3,9 +3,11 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf generators;
-in {
+in
+{
   options.cfg.programs.mpv.enable = mkEnableOption "mpv";
   config = mkIf config.cfg.programs.mpv.enable {
     hj = {
@@ -18,7 +20,7 @@ in {
       ];
       xdg.config.files = {
         "mpv/mpv.conf" = {
-          generator = generators.toINIWithGlobalSection {};
+          generator = generators.toINIWithGlobalSection { };
           value = {
             globalSection = {
               save-position-on-quit = "yes";

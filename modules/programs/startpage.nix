@@ -3,10 +3,17 @@
   config,
   inputs,
   ...
-}: let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+}:
+let
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    ;
   cfg = config.cfg.programs.startpage;
-in {
+in
+{
   options.cfg.programs.startpage = {
     enable = mkEnableOption "startpage";
     user = mkOption {

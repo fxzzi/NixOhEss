@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.pipewire;
-in {
+in
+{
   options.cfg.services.pipewire.enable = mkEnableOption "pipewire";
   config = mkIf cfg.enable {
     services.pipewire = {
@@ -41,8 +43,8 @@ in {
             {
               # disable nodes that i don't use
               matches = [
-                {"node.description" = "~EVO4 Loopback.*";}
-                {"node.description" = "EVO4 Mic 2 / Line 2";}
+                { "node.description" = "~EVO4 Loopback.*"; }
+                { "node.description" = "EVO4 Mic 2 / Line 2"; }
               ];
               actions.update-props = {
                 "node.disabled" = true;

@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.gpu-screen-recorder;
-in {
+in
+{
   options.cfg.programs.gpu-screen-recorder.enable = mkEnableOption "gpu-screen-recorder";
   config = mkIf cfg.enable {
     programs.gpu-screen-recorder = {

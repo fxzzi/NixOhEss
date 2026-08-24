@@ -3,10 +3,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.obs-studio;
-in {
+in
+{
   options.cfg.programs.obs-studio = {
     enable = mkEnableOption "obs-studio";
   };

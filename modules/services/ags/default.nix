@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.ags;
   pkg = inputs.rags.packages.${pkgs.stdenv.hostPlatform.system}.agsNoTypes.override {
@@ -12,7 +13,8 @@
       pkgs.libgtop
     ];
   };
-in {
+in
+{
   options.cfg.services.ags.enable = mkEnableOption "ags";
   config = mkIf cfg.enable {
     hj = {
@@ -28,9 +30,9 @@ in {
 
       systemd.services.ags = {
         description = "Aylur's GTK Shell";
-        after = ["graphical-session.target"];
-        wantedBy = ["graphical-session.target"];
-        partOf = ["graphical-session.target"];
+        after = [ "graphical-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
         unitConfig = {
           ConditionEnvironment = "WAYLAND_DISPLAY";
         };

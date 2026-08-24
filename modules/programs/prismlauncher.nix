@@ -3,14 +3,16 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.programs.prismlauncher;
   ninjabrain-bot = pkgs.fetchurl {
     url = "https://github.com/Ninjabrain1/Ninjabrain-Bot/releases/download/1.5.2/Ninjabrain-Bot-1.5.2.jar";
     sha256 = "sha256-mAmfYyGpDUrOwTQA6G0F96+NYOVjnC84Qn6WjccUUP8=";
   };
-in {
+in
+{
   options.cfg.programs.prismlauncher = {
     enable = mkEnableOption "prismlauncher";
     waywall.enable = mkEnableOption "Waywall";

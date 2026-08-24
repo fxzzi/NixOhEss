@@ -4,12 +4,20 @@
   lib,
   inputs,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption types mkIf getExe;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    getExe
+    ;
   inherit (builtins) toString;
   cfg = config.cfg.services.nvuv;
   inherit (inputs.nvuv.packages.${pkgs.stdenv.hostPlatform.system}) nvuv;
-in {
+in
+{
   options.cfg = {
     services = {
       nvuv = {
@@ -55,7 +63,7 @@ in {
     systemd.services = {
       nvuv = mkIf cfg.enable {
         description = "NVidia Undervolting script";
-        wantedBy = ["multi-user.target"];
+        wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           ExecStart = ''
             ${getExe nvuv} \
@@ -68,8 +76,8 @@ in {
       };
       nvuv-temp = mkIf cfg.tempMonitor.enable {
         description = "NVidia Temperature monitoring script";
-        wantedBy = ["multi-user.target"];
-        before = mkIf config.hardware.fancontrol.enable ["fancontrol.service"];
+        wantedBy = [ "multi-user.target" ];
+        before = mkIf config.hardware.fancontrol.enable [ "fancontrol.service" ];
         serviceConfig = {
           ExecStart = ''
             ${getExe nvuv} \

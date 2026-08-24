@@ -3,15 +3,24 @@
   config,
   pkgs,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption types mkIf getExe mkAfter;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    getExe
+    mkAfter
+    ;
   cfg = config.cfg.programs.fastfetch;
   iconPath = ./images/${cfg.icon}.jpg;
   # Generate sixel using chafa
-  icon = pkgs.runCommand "fastfetch-icon" {} ''
+  icon = pkgs.runCommand "fastfetch-icon" { } ''
     ${getExe pkgs.chafa} ${iconPath} -s 18 --format sixel > $out
   '';
-in {
+in
+{
   options = {
     cfg.programs.fastfetch = {
       enable = mkEnableOption "fastfetch";
@@ -36,9 +45,9 @@ in {
   };
   config = mkIf cfg.enable {
     hj = {
-      packages = [pkgs.fastfetch];
+      packages = [ pkgs.fastfetch ];
       xdg.config.files."fastfetch/config.jsonc" = {
-        generator = lib.generators.toJSON {};
+        generator = lib.generators.toJSON { };
         value = {
           general = {
             # detecting hyprland version on NixOS is slow.

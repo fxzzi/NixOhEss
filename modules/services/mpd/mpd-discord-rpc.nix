@@ -3,18 +3,20 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.mpd.discord-rpc;
   pkg = pkgs.mpd-discord-rpc;
-in {
+in
+{
   options.cfg.services.mpd.discord-rpc.enable = mkEnableOption "discord-rpc";
   config = mkIf cfg.enable {
     hj = {
       xdg.config.files."discord-rpc/config.toml" = {
-        generator = (pkgs.formats.toml {}).generate "config.toml";
+        generator = (pkgs.formats.toml { }).generate "config.toml";
         value = {
-          hosts = ["localhost:6600"];
+          hosts = [ "localhost:6600" ];
           format = {
             details = "$title";
             state = "$artist";
@@ -34,11 +36,11 @@ in {
     };
     hj.systemd.services.mpd-discord-rpc = {
       description = "Discord Rich Presence for MPD";
-      documentation = ["https://github.com/JakeStanger/mpd-discord-rpc"];
-      wantedBy = ["mpd.service"];
-      requires = ["mpd.service"];
+      documentation = [ "https://github.com/JakeStanger/mpd-discord-rpc" ];
+      wantedBy = [ "mpd.service" ];
+      requires = [ "mpd.service" ];
       # make sure it starts and stops with mpd
-      partOf = ["mpd.service"];
+      partOf = [ "mpd.service" ];
       serviceConfig = {
         Type = "simple";
         Restart = "on-failure";

@@ -5,10 +5,10 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.cfg.programs.hyprland;
-  inherit
-    (lib)
+  inherit (lib)
     boolToString
     generators
     getExe
@@ -20,10 +20,7 @@
     ;
 
   multiMonitor = cfg.secondaryMonitor != null;
-  secondaryMonitor =
-    if multiMonitor
-    then cfg.secondaryMonitor
-    else cfg.defaultMonitor;
+  secondaryMonitor = if multiMonitor then cfg.secondaryMonitor else cfg.defaultMonitor;
 
   # pkgs
   selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
@@ -31,12 +28,14 @@
   screenshot = getExe azzipkgs.screenshot;
   audio = getExe azzipkgs.audio;
   brightness =
-    if config.cfg.core.isLaptop
-    then getExe azzipkgs.brightness-laptop # uses brightnessctl
-    else getExe azzipkgs.brightness; # uses hyprsunset instead
+    if config.cfg.core.isLaptop then
+      getExe azzipkgs.brightness-laptop # uses brightnessctl
+    else
+      getExe azzipkgs.brightness; # uses hyprsunset instead
   mpc = getExe pkgs.mpc;
   killall = getExe pkgs.killall;
-in {
+in
+{
   config = mkIf cfg.enable {
     # use mapAttrsRecursive here to make every attr in the config
     # a low prio. this means we can override / add any attr below
@@ -457,7 +456,7 @@ in {
           end
 
           -- apply the hl.config block from nix
-          hl.config(${generators.toLua {} cfg.extraHlConfig})
+          hl.config(${generators.toLua { } cfg.extraHlConfig})
 
           -- git only stuff here :P
           ${optionalString cfg.useGit ''

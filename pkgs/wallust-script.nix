@@ -4,7 +4,7 @@
 }:
 writeShellApplication {
   name = "wallust-script";
-  runtimeInputs = [wallust];
+  runtimeInputs = [ wallust ];
   text = ''
     STATICWALL="$XDG_STATE_HOME/wallpaper"
 

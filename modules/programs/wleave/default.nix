@@ -3,10 +3,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.wleave;
-in {
+in
+{
   options.cfg.programs.wleave.enable = mkEnableOption "wleave";
   config = mkIf cfg.enable {
     hj = {
@@ -15,7 +17,7 @@ in {
       ];
       xdg.config.files = {
         "wleave/layout.json" = {
-          generator = lib.generators.toJSON {};
+          generator = lib.generators.toJSON { };
           value = {
             no-version-info = true;
             buttons-per-row = "1/1"; # all buttons on one row

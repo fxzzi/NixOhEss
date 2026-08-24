@@ -1,8 +1,12 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (lib) mkDefault mkEnableOption;
-in {
+in
+{
   options.cfg.programs.smoothScroll = {
-    enable = mkEnableOption "smooth scrolling" // {default = true;};
+    enable = mkEnableOption "smooth scrolling" // {
+      default = true;
+    };
   };
   config = {
     programs = {
@@ -12,6 +16,6 @@ in {
       command-not-found.enable = false;
     };
     # also dont install any of the default packages.
-    environment.defaultPackages = mkDefault [];
+    environment.defaultPackages = mkDefault [ ];
   };
 }

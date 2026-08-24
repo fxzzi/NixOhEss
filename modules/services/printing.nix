@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.printing;
-in {
+in
+{
   options.cfg.services.printing.enable = mkEnableOption "printing";
   config = mkIf cfg.enable {
     services.avahi = {

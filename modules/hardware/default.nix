@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   config = {
     # enable microcode updates n stuff
     hardware.enableRedistributableFirmware = true;

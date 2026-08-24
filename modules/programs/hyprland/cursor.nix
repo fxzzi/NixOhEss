@@ -4,10 +4,12 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf gvariant;
   cfg = config.programs.hyprland;
-in {
+in
+{
   config = mkIf cfg.enable {
     environment.sessionVariables = {
       HYPRCURSOR_THEME = "Bibata-original";
@@ -15,14 +17,14 @@ in {
       XCURSOR_THEME = "Bibata-Original-Classic";
       XCURSOR_SIZE = 24;
       # as a list makes this append to instead of overwrite.
-      XCURSOR_PATH = ["${pkgs.bibata-cursors}/share/icons"];
+      XCURSOR_PATH = [ "${pkgs.bibata-cursors}/share/icons" ];
     };
     hj = {
       xdg = {
         # idk why some files read from here, but if you're ever having
         # problems with cursor themes not working on some apps, try this.
         data.files."icons/default/index.theme" = {
-          generator = lib.generators.toINI {};
+          generator = lib.generators.toINI { };
           value = {
             "Icon Theme".Inherits = "Bibata-Original-Classic";
           };

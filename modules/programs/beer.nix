@@ -3,10 +3,12 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.beer;
-in {
+in
+{
   options.cfg.programs.beer.enable = mkEnableOption "beer";
   config = mkIf cfg.enable {
     hj = {
@@ -15,7 +17,7 @@ in {
       ];
       xdg.config.files = {
         "beer/beer.toml" = {
-          generator = (pkgs.formats.toml {}).generate "beer.toml";
+          generator = (pkgs.formats.toml { }).generate "beer.toml";
           value = {
             main = {
               font = "monospace";

@@ -13,15 +13,17 @@
         }
       ];
     };
-    firewall = let
-      allowedPorts = [
-        6881 # qbittorrent
-        2234 # slsk / nicotine+
-        25565 # minecraft
-      ];
-    in {
-      allowedTCPPorts = allowedPorts;
-      allowedUDPPorts = allowedPorts;
-    };
+    firewall =
+      let
+        allowedPorts = [
+          6881 # qbittorrent
+          2234 # slsk / nicotine+
+          25565 # minecraft
+        ];
+      in
+      {
+        allowedTCPPorts = allowedPorts;
+        allowedUDPPorts = allowedPorts;
+      };
   };
 }

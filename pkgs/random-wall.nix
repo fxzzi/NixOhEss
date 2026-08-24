@@ -5,7 +5,10 @@
 }:
 writeShellApplication {
   name = "random-wall";
-  runtimeInputs = [coreutils wallust-script];
+  runtimeInputs = [
+    coreutils
+    wallust-script
+  ];
   text = ''
     WALLPAPER_DIR="$XDG_DATA_HOME/walls/"
     CURRENT_WALL=$(basename "$(readlink -f "$XDG_STATE_HOME/wallpaper")")

@@ -2,15 +2,25 @@
   config,
   lib,
   ...
-}: let
-  inherit (lib) mkOption types concatMapAttrsStringSep optionalString;
-  inherit (builtins) toJSON isBool isInt isString toString;
+}:
+let
+  inherit (lib)
+    mkOption
+    types
+    concatMapAttrsStringSep
+    optionalString
+    ;
+  inherit (builtins)
+    toJSON
+    isBool
+    isInt
+    isString
+    toString
+    ;
   prefs = {
     # Set home page
     "browser.startup.homepage" =
-      if config.cfg.programs.startpage.enable
-      then config.cfg.programs.startpage.page
-      else "about:home";
+      if config.cfg.programs.startpage.enable then config.cfg.programs.startpage.page else "about:home";
 
     # don't firefox sync the homepage, stops it overwriting on windows.
     "services.sync.prefs.sync.browser.startup.homepage" = !config.cfg.programs.startpage.enable;
@@ -81,15 +91,12 @@
     "browser.urlbar.trimURLs" = false;
   };
   attrsToLines = f: attrs: concatMapAttrsStringSep "\n" f attrs;
-  prefValue = pref:
-    toJSON (
-      if isBool pref || isInt pref || isString pref
-      then pref
-      else toString pref
-    );
+  prefValue =
+    pref: toJSON (if isBool pref || isInt pref || isString pref then pref else toString pref);
   # lockPref here means the options will show grayed out in ff.
   jsPrefs = attrsToLines (name: value: "lockPref(\"${name}\", ${prefValue value});") prefs;
-in {
+in
+{
   # internal option so we can apply these prefs in the other file
   options.cfg.programs.librewolf.prefs = mkOption {
     type = types.str;

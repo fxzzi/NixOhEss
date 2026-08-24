@@ -3,20 +3,22 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf optionalAttrs;
   cfg = config.cfg.programs.lutris;
-in {
+in
+{
   options.cfg.programs.lutris.enable = mkEnableOption "lutris";
   config = mkIf cfg.enable {
     hj = {
-      packages = [pkgs.lutris-free];
+      packages = [ pkgs.lutris-free ];
       xdg.data.files = {
         "lutris/runners/wine/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
           source = pkgs.proton-ge-bin.steamcompattool;
         };
         "lutris/system.yml" = {
-          generator = lib.generators.toYAML {};
+          generator = lib.generators.toYAML { };
           value = {
             system = {
               env = {
@@ -35,7 +37,7 @@ in {
           };
         };
         "lutris/runners/wine.yml" = {
-          generator = lib.generators.toYAML {};
+          generator = lib.generators.toYAML { };
           value = {
             wine = {
               # we use ntsync

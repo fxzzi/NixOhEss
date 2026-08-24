@@ -2,13 +2,15 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   noRounding = ''
     window {
       border-radius: 0;
     }
   '';
-in {
+in
+{
   config = {
     hj = {
       packages = [

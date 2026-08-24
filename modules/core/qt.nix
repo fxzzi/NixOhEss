@@ -3,13 +3,14 @@
   inputs,
   lib,
   ...
-}: {
+}:
+{
   config = {
     environment.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";
     hj = {
       xdg.config.files = {
         "qt6ct/qt6ct.conf" = {
-          generator = lib.generators.toINI {};
+          generator = lib.generators.toINI { };
           value = {
             Appearance = {
               icon_theme = "Papirus-Dark";
@@ -26,14 +27,19 @@
         "Kvantum/Colors".source = "${inputs.KvLibadwaita}/src/Colors";
         "Kvantum/KvLibadwaita".source = "${inputs.KvLibadwaita}/src/KvLibadwaita";
         "Kvantum/kvantum.kvconfig" = {
-          generator = lib.generators.toINI {};
+          generator = lib.generators.toINI { };
           value.General.theme = "KvLibadwaitaDark";
         };
       };
       packages = with pkgs; [
         (symlinkJoin {
-          inherit (qt6Packages.qtstyleplugin-kvantum) name pname version meta;
-          paths = [qt6Packages.qtstyleplugin-kvantum];
+          inherit (qt6Packages.qtstyleplugin-kvantum)
+            name
+            pname
+            version
+            meta
+            ;
+          paths = [ qt6Packages.qtstyleplugin-kvantum ];
           # remove the desktop file. It's not like
           # we can modify settings in it anyway.
           postBuild = ''
@@ -41,8 +47,13 @@
           '';
         })
         (symlinkJoin {
-          inherit (qt6Packages.qt6ct) name pname version meta;
-          paths = [qt6Packages.qt6ct];
+          inherit (qt6Packages.qt6ct)
+            name
+            pname
+            version
+            meta
+            ;
+          paths = [ qt6Packages.qt6ct ];
           # remove the desktop file. It's not like
           # we can modify settings in it anyway.
           postBuild = ''

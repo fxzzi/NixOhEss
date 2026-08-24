@@ -4,11 +4,13 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.hardware.evoctl;
   evoPkg = inputs.evoctl-nix.packages.${pkgs.stdenv.hostPlatform.system}.default;
-in {
+in
+{
   options.cfg.hardware.evoctl.enable = mkEnableOption "evoctl";
   imports = [
     inputs.evoctl-nix.nixosModules.default
@@ -18,7 +20,7 @@ in {
       enable = true;
       autostart = true;
     };
-    environment.systemPackages = [evoPkg];
+    environment.systemPackages = [ evoPkg ];
     systemd.services.mute-audient-evo = {
       unitConfig.description = "Mute Audient EVO Devices on Shutdown";
       serviceConfig = {
@@ -26,7 +28,7 @@ in {
         ExecStop = "${getExe evoPkg} set mute 1 -t output";
         RemainAfterExit = true;
       };
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
     };
   };
 }

@@ -3,18 +3,20 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.mate-polkit;
-in {
+in
+{
   options.cfg.services.mate-polkit.enable = mkEnableOption "mate-polkit";
   config = mkIf cfg.enable {
     security.polkit.enable = true;
     hj.systemd.services.mate-polkit = {
       description = "Mate Polkit";
-      after = ["graphical-session.target"];
-      wantedBy = ["graphical-session.target"];
-      partOf = ["graphical-session.target"];
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
       unitConfig = {
         ConditionEnvironment = "WAYLAND_DISPLAY";
       };
