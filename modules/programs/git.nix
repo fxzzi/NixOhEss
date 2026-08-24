@@ -2,10 +2,17 @@
   config,
   lib,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption types mkIf;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    ;
   cfg = config.cfg.programs.git;
-in {
+in
+{
   options.cfg.programs.git = {
     enable = mkEnableOption "git";
     name = mkOption {

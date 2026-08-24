@@ -6,7 +6,11 @@
 }:
 writeShellApplication {
   name = "wall-picker";
-  runtimeInputs = [libsixel fzf wallust-script];
+  runtimeInputs = [
+    libsixel
+    fzf
+    wallust-script
+  ];
   text = ''
     # ipc must be turned on inside hyprpaper.conf
 

@@ -3,10 +3,12 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.core.networkmanager;
-in {
+in
+{
   options.cfg.core.networkmanager = {
     enable = mkEnableOption "NetworkManager";
   };
@@ -29,7 +31,7 @@ in {
       };
     };
     users.users.${config.cfg.core.username} = {
-      extraGroups = ["networkmanager"];
+      extraGroups = [ "networkmanager" ];
     };
   };
 }

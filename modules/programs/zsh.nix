@@ -3,10 +3,12 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.programs.zsh;
-in {
+in
+{
   options.cfg.programs.zsh.enable = mkEnableOption "zsh";
   config = mkIf cfg.enable {
     programs = {

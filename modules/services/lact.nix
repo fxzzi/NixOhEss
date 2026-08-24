@@ -2,10 +2,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.lact;
-in {
+in
+{
   options.cfg.services.lact.enable = mkEnableOption "lact";
   config = mkIf cfg.enable {
     services.lact = {

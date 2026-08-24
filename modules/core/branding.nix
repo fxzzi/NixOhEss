@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   # this is NOT NixOS!!!!!!!! This is NIXOHESS!!!!!!
   system.nixos.distroName = "NixOhEss";
   environment.etc.issue = {

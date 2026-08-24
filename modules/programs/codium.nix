@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf mkForce;
   cfg = config.cfg.programs.codium;
-in {
+in
+{
   options.cfg.programs.codium = {
     enable = mkEnableOption "vscodium";
     defaultEditor = mkEnableOption "Use vscodium as the default editor";
@@ -30,7 +32,7 @@ in {
         "inode/directory" = "codium.desktop";
       };
       addedAssociations = {
-        "text/*" = ["codium.desktop"];
+        "text/*" = [ "codium.desktop" ];
       };
     };
   };

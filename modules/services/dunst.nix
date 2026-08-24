@@ -3,10 +3,12 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.dunst;
-in {
+in
+{
   options.cfg.services.dunst.enable = mkEnableOption "dunst";
   config = mkIf cfg.enable {
     hj = {
@@ -14,7 +16,7 @@ in {
         pkgs.dunst
       ];
       xdg.config.files."dunst/dunstrc" = {
-        generator = lib.generators.toINI {};
+        generator = lib.generators.toINI { };
         value = {
           global = {
             follow = "mouse";
@@ -100,8 +102,8 @@ in {
     hj.systemd.services.dunst = {
       unitConfig = {
         Description = "Dunst notification daemon";
-        After = ["graphical-session-pre.target"];
-        PartOf = ["graphical-session.target"];
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "graphical-session.target" ];
       };
       serviceConfig = {
         Type = "dbus";

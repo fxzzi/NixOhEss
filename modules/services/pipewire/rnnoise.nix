@@ -3,8 +3,14 @@
   pkgs,
   lib,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption types mkIf;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    ;
   cfg = config.cfg.services.pipewire.rnnoise;
   pw_rnnoise_config = {
     "context.modules" = [
@@ -30,7 +36,7 @@
           };
           "audio.rate" = 48000;
           "audio.channels" = 1;
-          "audio.position" = ["MONO"];
+          "audio.position" = [ "MONO" ];
           "capture.props" = {
             "node.name" = "capture.rnnoise_source";
             "node.passive" = true;
@@ -43,7 +49,8 @@
       }
     ];
   };
-in {
+in
+{
   options.cfg.services.pipewire.rnnoise = {
     enable = mkEnableOption "rnnoise";
     vadThreshold = mkOption {
@@ -64,7 +71,7 @@ in {
   };
   config = {
     services.pipewire = mkIf cfg.enable {
-      extraLadspaPackages = [pkgs.rnnoise-plugin.ladspa];
+      extraLadspaPackages = [ pkgs.rnnoise-plugin.ladspa ];
       extraConfig.pipewire."99-input-denoising" = pw_rnnoise_config;
     };
   };

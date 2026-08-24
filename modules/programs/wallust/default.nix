@@ -3,10 +3,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf optionalAttrs;
   cfg = config.cfg.programs.wallust;
-in {
+in
+{
   options.cfg.programs.wallust.enable = mkEnableOption "wallust";
   config = mkIf cfg.enable {
     hj = {
@@ -16,7 +18,7 @@ in {
       xdg.config.files = {
         "wallust/templates".source = ./templates;
         "wallust/wallust.toml" = {
-          generator = (pkgs.formats.toml {}).generate "wallust.toml";
+          generator = (pkgs.formats.toml { }).generate "wallust.toml";
           value = {
             check_contrast = true;
             backend = "fastresize";

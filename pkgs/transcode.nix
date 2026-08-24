@@ -4,7 +4,7 @@
 }:
 writeShellApplication {
   name = "transcode";
-  runtimeInputs = [ffmpeg];
+  runtimeInputs = [ ffmpeg ];
   text = ''
     # Default values
     input_file=""

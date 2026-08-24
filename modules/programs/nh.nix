@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   inherit (builtins) toString;
   cfg = config.cfg.programs.nh;
-in {
+in
+{
   options.cfg.programs.nh.enable = mkEnableOption "nh";
   config = mkIf cfg.enable {
     programs.nh = {
@@ -27,34 +29,33 @@ in {
       rbb = "nh os boot";
     };
     hj.packages = [
-      (pkgs.writeShellApplication
-        {
-          name = "crb";
-          runtimeInputs = with pkgs; [
-            nh
-            git
-            coreutils
-          ];
-          text = ''
-            # Save the current commit hash of origin/main before fetching
-            OLD_COMMIT=$(git -C "$NH_FLAKE" rev-parse origin/main)
-            # Fetch from origin
-            git -C "$NH_FLAKE" fetch origin
-            # Get the new commit hash of origin/main after fetching
-            NEW_COMMIT=$(git -C "$NH_FLAKE" rev-parse origin/main)
+      (pkgs.writeShellApplication {
+        name = "crb";
+        runtimeInputs = with pkgs; [
+          nh
+          git
+          coreutils
+        ];
+        text = ''
+          # Save the current commit hash of origin/main before fetching
+          OLD_COMMIT=$(git -C "$NH_FLAKE" rev-parse origin/main)
+          # Fetch from origin
+          git -C "$NH_FLAKE" fetch origin
+          # Get the new commit hash of origin/main after fetching
+          NEW_COMMIT=$(git -C "$NH_FLAKE" rev-parse origin/main)
 
-            # Compare commits and continue only if they differ
-            if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
-              echo "updoots available :)"
-              git -C "$NH_FLAKE" reset --hard origin/main
-              nh os boot
-              echo "updoot finished please reboot :)"
-            else
-              echo "you're up to date :)"
-              exit 0
-            fi
-          '';
-        })
+          # Compare commits and continue only if they differ
+          if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
+            echo "updoots available :)"
+            git -C "$NH_FLAKE" reset --hard origin/main
+            nh os boot
+            echo "updoot finished please reboot :)"
+          else
+            echo "you're up to date :)"
+            exit 0
+          fi
+        '';
+      })
 
       (pkgs.writeShellApplication {
         name = "evaltime";

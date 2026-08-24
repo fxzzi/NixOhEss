@@ -2,7 +2,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   system.stateVersion = "25.05";
   hj = {
     packages = with pkgs; [
@@ -20,7 +21,7 @@
 
   networking.firewall = {
     # minecraft
-    allowedUDPPorts = [25565];
-    allowedTCPPorts = [25565];
+    allowedUDPPorts = [ 25565 ];
+    allowedTCPPorts = [ 25565 ];
   };
 }

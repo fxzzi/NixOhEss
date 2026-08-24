@@ -3,15 +3,16 @@
   lib,
   config,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkEnableOption
     mkOption
     types
     mkDefault
     ;
-in {
+in
+{
   options = {
     cfg.core = {
       isLaptop = mkEnableOption "laptop";
@@ -26,7 +27,7 @@ in {
     console = {
       earlySetup = true;
       font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
-      packages = [pkgs.terminus_font];
+      packages = [ pkgs.terminus_font ];
       keyMap = config.cfg.core.keyLayout;
     };
 

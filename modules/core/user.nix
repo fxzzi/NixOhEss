@@ -4,11 +4,13 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkOption types;
   inherit (lib.modules) mkAliasOptionModule;
   inherit (config.cfg.core) username;
-in {
+in
+{
   options.cfg.core.username = mkOption {
     type = types.str;
     default = "faaris";
@@ -19,7 +21,7 @@ in {
     # Allow using `hj` in configuration to
     # easily configure hjem in any file.
     # This pretty much makes or breaks my config.
-    (mkAliasOptionModule ["hj"] ["hjem" "users" username])
+    (mkAliasOptionModule [ "hj" ] [ "hjem" "users" username ])
   ];
   config = {
     hjem = {

@@ -3,15 +3,17 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.mpd.notification;
-in {
+in
+{
   options.cfg.services.mpd.notification.enable = mkEnableOption "mpd-notification";
   config = mkIf cfg.enable {
     hj = {
       xdg.config.files."mpd-notification.conf" = {
-        generator = lib.generators.toKeyValue {};
+        generator = lib.generators.toKeyValue { };
         value = {
           music-dir = "${config.hj.directory}/Music";
           scale = 96;
@@ -26,11 +28,11 @@ in {
     };
     hj.systemd.services.mpd-notification = {
       description = "Notify about tracks played by mpd ";
-      documentation = ["https://github.com/eworm-de/mpd-notification"];
-      wantedBy = ["mpd.service"];
-      requires = ["mpd.service"];
+      documentation = [ "https://github.com/eworm-de/mpd-notification" ];
+      wantedBy = [ "mpd.service" ];
+      requires = [ "mpd.service" ];
       # make sure it starts and stops with mpd
-      partOf = ["mpd.service"];
+      partOf = [ "mpd.service" ];
       serviceConfig = {
         Type = "simple";
         Restart = "on-failure";

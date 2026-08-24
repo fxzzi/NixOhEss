@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   nct_hwmon = "/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*";
   k10temp_hwmon = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon[[:print:]]*";
   pwm1 = "${nct_hwmon}/pwm1";
@@ -15,9 +16,10 @@
   maxTemp = 90;
   minPwm = 32;
   maxPwm = 255;
-in {
+in
+{
   config = {
-    environment.systemPackages = [pkgs.lm_sensors];
+    environment.systemPackages = [ pkgs.lm_sensors ];
     hardware.fancontrol = {
       enable = true;
       config = ''
@@ -29,9 +31,11 @@ in {
         MINSTART=${pwm2}=${toString minPwm} ${pwm1}=${toString minPwm}
         MINSTOP=${pwm2}=${toString minPwm} ${pwm1}=${toString minPwm}
         MINPWM=${pwm2}=${toString minPwm} ${pwm1}=${toString minPwm}
-        ${lib.optionalString (maxPwm != null) ''
-          MAXPWM=${pwm2}=${toString maxPwm} ${pwm1}=${toString maxPwm}
-        ''};
+        ${
+          lib.optionalString (maxPwm != null) ''
+            MAXPWM=${pwm2}=${toString maxPwm} ${pwm1}=${toString maxPwm}
+          ''
+        };
       '';
     };
   };

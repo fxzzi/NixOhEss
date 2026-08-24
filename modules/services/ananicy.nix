@@ -3,10 +3,12 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.services.ananicy;
-in {
+in
+{
   options.cfg.services.ananicy.enable = mkEnableOption "ananicy";
   config = mkIf cfg.enable {
     services.ananicy = {

@@ -5,18 +5,20 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.hyprpaper;
-in {
+in
+{
   options.cfg.services.hyprpaper.enable = mkEnableOption "hyprpaper";
   config = mkIf cfg.enable {
     hj = {
       xdg.data.files."walls".source = "${inputs.walls}/images"; # wallpapers
 
-      packages = [pkgs.hyprpaper];
+      packages = [ pkgs.hyprpaper ];
       xdg.config.files."hypr/hyprpaper.conf" = {
-        generator = self.lib.generators.toHyprlang {};
+        generator = self.lib.generators.toHyprlang { };
         value = {
           splash = 0;
           "wallpaper[]".path = "~/.local/state/wallpaper";
@@ -25,9 +27,9 @@ in {
 
       systemd.services.hyprpaper = {
         description = "Hyprpaper wallpaper manager";
-        after = ["graphical-session.target"];
-        wantedBy = ["graphical-session.target"];
-        partOf = ["graphical-session.target"];
+        after = [ "graphical-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
         unitConfig = {
           ConditionEnvironment = "WAYLAND_DISPLAY";
         };

@@ -5,15 +5,15 @@
   deadnix,
   statix,
   fd,
-}: let
+}:
+let
   exclusionList = [
     "**/.tack/*"
   ];
 
-  excludeArgs =
-    lib.concatMapStringsSep " "
-    (pattern: "--exclude ${lib.escapeShellArg pattern}")
-    exclusionList;
+  excludeArgs = lib.concatMapStringsSep " " (
+    pattern: "--exclude ${lib.escapeShellArg pattern}"
+  ) exclusionList;
 
   commands = [
     "statix fix -- '{}'"
@@ -21,19 +21,17 @@
     "alejandra -q '{}'"
   ];
 in
-  writeShellApplication {
-    name = "nix-formatter";
+writeShellApplication {
+  name = "nix-formatter";
 
-    runtimeInputs = [
-      alejandra
-      deadnix
-      statix
-      fd
-    ];
+  runtimeInputs = [
+    alejandra
+    deadnix
+    statix
+    fd
+  ];
 
-    text = ''
-      fd "$@" ${excludeArgs} -t f -e nix -x sh -c ${
-        lib.escapeShellArg (lib.concatStringsSep "; " commands)
-      }
-    '';
-  }
+  text = ''
+    fd "$@" ${excludeArgs} -t f -e nix -x sh -c ${lib.escapeShellArg (lib.concatStringsSep "; " commands)}
+  '';
+}

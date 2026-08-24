@@ -2,10 +2,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.cfg.programs.hyprland;
   inherit (lib) mkIf;
-in {
+in
+{
   config = mkIf cfg.enable {
     environment.sessionVariables = {
       # run electron, gtk, qt apps in wayland native

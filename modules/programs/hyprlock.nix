@@ -4,15 +4,17 @@
   config,
   self,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.hyprlock;
   land = config.cfg.programs.hyprland;
-in {
+in
+{
   options.cfg.programs.hyprlock.enable = mkEnableOption "hyprlock";
   config = mkIf cfg.enable {
     # Hyprlock needs PAM access to authenticate, else it fallbacks to su
-    security.pam.services.hyprlock = {};
+    security.pam.services.hyprlock = { };
     hj = {
       packages = [
         pkgs.hyprlock
@@ -20,7 +22,7 @@ in {
       xdg.config.files."hypr/hyprlock.conf" = {
         generator = self.lib.generators.toHyprconf;
         value = {
-          importantPrefixes = ["bezier"];
+          importantPrefixes = [ "bezier" ];
           attrs = {
             general = {
               hide_cursor = true;

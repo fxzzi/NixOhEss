@@ -4,11 +4,20 @@
   lib,
   self,
   ...
-}: let
-  inherit (lib) mkEnableOption mkIf mkOption types optionals getExe;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    optionals
+    getExe
+    ;
   cfg = config.cfg.services.hypridle;
   dpms = state: "hyprctl dispatch 'hl.dsp.dpms({ action = \"${state}\" })'";
-in {
+in
+{
   options.cfg.services.hypridle = {
     enable = mkEnableOption "hypridle";
     dpmsTimeout = mkOption {
@@ -35,7 +44,7 @@ in {
   };
   config = mkIf cfg.enable {
     hj = {
-      packages = [pkgs.hypridle];
+      packages = [ pkgs.hypridle ];
       xdg.config.files."hypr/hypridle.conf" = {
         generator = self.lib.generators.toHyprconf;
         value = {
@@ -79,9 +88,9 @@ in {
     };
     hj.systemd.services.hypridle = {
       description = "Hypridle idle management";
-      after = ["graphical-session.target"];
-      wantedBy = ["graphical-session.target"];
-      partOf = ["graphical-session.target"];
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
       unitConfig = {
         ConditionEnvironment = "WAYLAND_DISPLAY";
       };

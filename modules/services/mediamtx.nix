@@ -3,17 +3,19 @@
   config,
   self,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf toInt;
   cfg = config.cfg.services.mediamtx;
   port = "4200";
-in {
+in
+{
   options.cfg.services.mediamtx.enable = mkEnableOption "mediamtx";
   config = mkIf cfg.enable {
     age.secrets.publicip.file = "${self}/secrets/publicip.age";
     networking.firewall = {
-      allowedTCPPorts = [(toInt port)];
-      allowedUDPPorts = [(toInt port)];
+      allowedTCPPorts = [ (toInt port) ];
+      allowedUDPPorts = [ (toInt port) ];
     };
     services.mediamtx = {
       enable = true;

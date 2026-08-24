@@ -19,7 +19,7 @@
       scx = {
         enable = true;
         scheduler = "scx_lavd";
-        flags = ["--autopower"];
+        flags = [ "--autopower" ];
       };
       pipewire = {
         enable = true;

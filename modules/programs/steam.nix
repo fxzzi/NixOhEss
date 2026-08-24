@@ -4,14 +4,16 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf optionalAttrs;
   cfg = config.cfg.programs.steam;
-in {
+in
+{
   options.cfg.programs.steam = {
     enable = mkEnableOption "steam";
   };
-  imports = ["${inputs.nix-gaming}/modules/platformOptimizations.nix"];
+  imports = [ "${inputs.nix-gaming}/modules/platformOptimizations.nix" ];
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;
@@ -29,7 +31,7 @@ in {
           MANGOHUD = optionalAttrs config.cfg.programs.mangohud.enable 1;
         };
       };
-      extraCompatPackages = mkIf config.cfg.programs.proton-ge.enable [pkgs.proton-ge-bin];
+      extraCompatPackages = mkIf config.cfg.programs.proton-ge.enable [ pkgs.proton-ge-bin ];
 
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
