@@ -6,7 +6,6 @@ _: {
         gain = 40;
         phantom = true;
       };
-      output.mute = false;
     };
   };
 }

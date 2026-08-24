@@ -15,7 +15,7 @@
     };
     services = {
       ags.enable = true;
-      # kdeconnect.enable = true;
+      kdeconnect.enable = true;
       nvuv = {
         enable = true;
         maxClock = 1830;
@@ -110,7 +110,7 @@
       ssh.enable = true;
       git = {
         enable = true;
-        name = "Fazzi";
+        name = "fazzi";
         email = "faaris.ansari@proton.me";
       };
       zsh.enable = true;
@@ -147,7 +147,7 @@
       hyprlock.enable = true;
       wallust.enable = true;
       foot.enable = true;
-      beer.enable = true;
+      # beer.enable = true;
       fuzzel.enable = true;
     };
   };

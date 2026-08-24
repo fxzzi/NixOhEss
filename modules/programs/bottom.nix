@@ -3,12 +3,7 @@
     hj = {
       packages = with pkgs; [
         (symlinkJoin {
-          inherit (pkgs.bottom)
-            name
-            pname
-            version
-            meta
-            ;
+          name = "bottom";
           paths = [ pkgs.bottom ];
           postBuild = ''
             unlink $out/share/applications/bottom.desktop
