@@ -19,9 +19,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "773b1fc0a0d4de1e7ad64d74e221d64385023d7c",
-    "narHash": "sha256-0T/HGTP4eAWdGv9lVuQCsggYxWNPf2f/1aV/zfkSTWw=",
-    "lastModified": 1787490773
+    "rev": "d228f4f42aba918d823b3bcaec2627740799232b",
+    "narHash": "sha256-NPmBffE1S5qvo45F1ATxW15E/oMnpyao5I+vmTjzEfo=",
+    "lastModified": 1787530247
   },
   "beer": {
     "type": "git",
@@ -54,23 +54,6 @@
     "rev": "71bc1a9a9c6f8b723ace90c8c9e51ee7e3bd2c2a",
     "narHash": "sha256-+v479izuxPyWRPaafQXENU+m7jQ/jwBDKvTk555O99o=",
     "lastModified": 1781521610
-  },
-  "fenix": {
-    "type": "github",
-    "owner": "nix-community",
-    "repo": "fenix",
-    "rev": "1dd2e6a479e1d6210d67bf10a119e10c508d9b5f",
-    "narHash": "sha256-Kn5J8HDd+k51c72upNc9IKmIaqN+AqrZfhcU5rDEMHo=",
-    "lastModified": 1753598717
-  },
-  "flake-compat": {
-    "type": "git",
-    "url": "https://git.lix.systems/lix-project/flake-compat.git",
-    "ref": "refs/heads/main",
-    "rev": "382052b74656a369c5408822af3f2501e9b1af81",
-    "narHash": "sha256-Eg9b/rq/ECYwNwEXs5i9wHyhxNI0JrYx2srdI2uZMaQ=",
-    "lastModified": 1777699697,
-    "revCount": 94
   },
   "flake-parts": {
     "type": "github",
@@ -164,9 +147,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "nvuv",
-    "rev": "bec4339a87938e0116e9bd677a3920890e653815",
-    "narHash": "sha256-HQMmZj0lELEr5MgcmXIubyH57TAllZJmVpplfKz0Uj8=",
-    "lastModified": 1783986360
+    "rev": "9b15110f58c58db9f777293e9f2dcf223b4f3e0b",
+    "narHash": "sha256-H1Yml1fdrtBHLhmcOGAuEjJfPMEDXvywTPMZd1h2pi4=",
+    "lastModified": 1787530323
   },
   "rags": {
     "type": "github",
@@ -175,14 +158,6 @@
     "rev": "cdc126238ba2ea3a5f98077db57f26d1fe268856",
     "narHash": "sha256-DUER4VfSfhq4kxyp8ojYFBPHRkF/K/eoLrywCXjjNj4=",
     "lastModified": 1782416610
-  },
-  "rust-analyzer": {
-    "type": "github",
-    "owner": "rust-lang",
-    "repo": "rust-analyzer",
-    "rev": "ea413f67a8f730b4211c09e103f8207c62e7dbc3",
-    "narHash": "sha256-BB8YntBL5sv6ZwuPz5bz7vL6f6LOHUHDct9yWvcQvvI=",
-    "lastModified": 1753540496
   },
   "startpage": {
     "type": "gitlab",
@@ -199,13 +174,5 @@
     "rev": "fe0bb9e42840603c19421a411417bc425a795f40",
     "narHash": "sha256-tiFsPu3h1g6AFa2r4y8YpNkqp+L9AZoL+T8qFhvk2KY=",
     "lastModified": 1787250691
-  },
-  "watt": {
-    "type": "github",
-    "owner": "NotAShelf",
-    "repo": "watt",
-    "rev": "f68a9795616699870d213dc9e641dab655aa434a",
-    "narHash": "sha256-pETi/Fs+8FF2ZuE+JyK9+NcFaDPMHx71UdWgmzjxvkQ=",
-    "lastModified": 1754314403
   }
 }
