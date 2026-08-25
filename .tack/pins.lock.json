@@ -83,9 +83,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "d8504461f0e9f95a5df9a0cdc0723d0ca6332888",
-    "narHash": "sha256-n5pRDrqMLDSoVJ3fc2DR7hL8bxXJwuPm391j+9Vswbk=",
-    "lastModified": 1787584490
+    "rev": "0bd11c7a04a63d2785abd53363f09d552175d67d",
+    "narHash": "sha256-K7sUeS1tKTSDu+aQK0ZwCxJCls+JzDj1qeTJRGk+CV8=",
+    "lastModified": 1787612295
   },
   "niqspkgs": {
     "type": "github",
