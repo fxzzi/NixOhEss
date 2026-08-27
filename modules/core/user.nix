@@ -51,6 +51,20 @@ in
             "autostart".type = "delete";
             # don't allow chromium to set itself as the DEFAULT BROWSER LMAO
             "mimeapps.list".text = "";
+            "user-dirs.dirs" = {
+              generator = lib.generators.toKeyValue {
+                mkKeyValue = lib.generators.mkKeyValueDefault {
+                  mkValueString = v: ''"${toString v}"'';
+                } "=";
+              };
+              value = {
+                XDG_DOWNLOAD_DIR = "$HOME/Downloads";
+                XDG_DOCUMENTS_DIR = "$HOME/Documents";
+                XDG_MUSIC_DIR = "$HOME/Music";
+                XDG_PICTURES_DIR = "$HOME/Pictures";
+                XDG_VIDEOS_DIR = "$HOME/Videos";
+              };
+            };
           };
           data.files."applications".type = "delete";
         };
