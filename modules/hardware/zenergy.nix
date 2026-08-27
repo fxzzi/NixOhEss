@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -11,7 +12,7 @@ in
   options.cfg.hardware.zenergy.enable = mkEnableOption "zenergy";
   config = mkIf cfg.enable {
     boot = {
-      kernelModules = [ "nct6775" ]; # provides temp readings
+      kernelModules = [ "nct6775" ];
       extraModulePackages = with config.boot.kernelPackages; [ zenergy ]; # provides power readings
     };
   };

@@ -8,7 +8,7 @@
     hardware = {
       evoctl.enable = true;
       nvidia.enable = true;
-      zenergy.enable = true;
+      zenpower.enable = true;
       v4l2.enable = true;
       # bluetooth.enable = true;
       # scanning.enable = true;
