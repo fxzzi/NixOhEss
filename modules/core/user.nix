@@ -53,6 +53,7 @@ in
             "mimeapps.list".text = "";
             "user-dirs.dirs" = {
               generator = lib.generators.toKeyValue {
+                # wrap the values in ""
                 mkKeyValue = lib.generators.mkKeyValueDefault {
                   mkValueString = v: ''"${toString v}"'';
                 } "=";
