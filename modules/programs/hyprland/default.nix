@@ -50,7 +50,14 @@ in
     programs.hyprland = {
       enable = true;
       package = hyprlandSet.hyprland;
-      portalPackage = hyprlandSet.xdg-desktop-portal-hyprland;
+      portalPackage = hyprlandSet.xdg-desktop-portal-hyprland.overrideAttrs (oldAttrs: {
+        patches = (oldAttrs.patches or [ ]) ++ [
+          # revert a commit which stops dmabuf screencopy from working.
+          # it makes it fall back to slow SHM every time. revert it for now
+          # https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/430
+          ./0001-Revert-screencopy-add-DMA-BUF-to-SHM-fallback-379.patch
+        ];
+      });
     };
   };
 }

@@ -1,0 +1,136 @@
+From 5549f6fd834fd2f4b735386dc83d5e9ff62cb4a3 Mon Sep 17 00:00:00 2001
+From: Fazzi <faaris.ansari@proton.me>
+Date: Fri, 28 Aug 2026 19:48:13 +0300
+Subject: [PATCH 1/1] Revert "screencopy: add DMA-BUF to SHM fallback (#379)"
+
+This reverts commit 906d0ac159803a7df2dc1f948df9327670380f69.
+---
+ src/core/PortalManager.cpp |  1 -
+ src/portals/Screencopy.cpp | 37 ++++++-------------------------------
+ src/portals/Screencopy.hpp |  9 +++------
+ 3 files changed, 9 insertions(+), 38 deletions(-)
+
+diff --git a/src/core/PortalManager.cpp b/src/core/PortalManager.cpp
+index 5dc98d4..6b5704b 100644
+--- a/src/core/PortalManager.cpp
++++ b/src/core/PortalManager.cpp
+@@ -75,7 +75,6 @@ CPortalManager::CPortalManager() {
+     m_sConfig.config->addConfigValue("screencopy:max_fps", Hyprlang::INT{120L});
+     m_sConfig.config->addConfigValue("screencopy:allow_token_by_default", Hyprlang::INT{0L});
+     m_sConfig.config->addConfigValue("screencopy:custom_picker_binary", Hyprlang::STRING{""});
+-    m_sConfig.config->addConfigValue("screencopy:force_shm", Hyprlang::INT{0L});
+     m_sConfig.config->addConfigValue("screencopy:cursor_mode", Hyprlang::INT{0L});
+ 
+     m_sConfig.config->commence();
+diff --git a/src/portals/Screencopy.cpp b/src/portals/Screencopy.cpp
+index 80b860d..374a451 100644
+--- a/src/portals/Screencopy.cpp
++++ b/src/portals/Screencopy.cpp
+@@ -13,8 +13,7 @@
+ 
+ using namespace Hyprutils::Math;
+ 
+-constexpr static int MAX_RETRIES        = 10;
+-constexpr static int MAX_DMABUF_RETRIES = 2;
++constexpr static int MAX_RETRIES = 10;
+ 
+ //
+ static sdbus::Struct<std::string, uint32_t, sdbus::Variant> getFullRestoreStruct(const SSelectionData& data, uint32_t cursor) {
+@@ -827,17 +826,6 @@ static void pwStreamParamChanged(void* data, uint32_t id, const spa_pod* param)
+ 
+         if ((prop_modifier->flags & SPA_POD_PROP_FLAG_DONT_FIXATE) > 0) {
+             Debug::log(TRACE, "[pw] don't fixate");
+-
+-            if (++PSTREAM->dmaBufRetries > MAX_DMABUF_RETRIES) {
+-                Debug::log(ERR, "[pw] DMA-BUF fixation failed after {} attempts, falling back to SHM", PSTREAM->dmaBufRetries - 1);
+-                PSTREAM->dmaBufFailed = true;
+-                g_pPortalManager->m_sPortals.screencopy->m_pPipewire->updateStreamParam(PSTREAM);
+-                spa_pod_dynamic_builder_clean(&dynBuilder[0]);
+-                spa_pod_dynamic_builder_clean(&dynBuilder[1]);
+-                spa_pod_dynamic_builder_clean(&dynBuilder[2]);
+-                return;
+-            }
+-
+             const spa_pod* pod_modifier = &prop_modifier->value;
+ 
+             uint32_t       n_modifiers = SPA_POD_CHOICE_N_VALUES(pod_modifier) - 1;
+@@ -877,11 +865,6 @@ static void pwStreamParamChanged(void* data, uint32_t id, const spa_pod* param)
+             }
+ 
+             Debug::log(ERR, "[pw] failed to alloc dma");
+-            PSTREAM->dmaBufFailed = true;
+-            g_pPortalManager->m_sPortals.screencopy->m_pPipewire->updateStreamParam(PSTREAM);
+-            spa_pod_dynamic_builder_clean(&dynBuilder[0]);
+-            spa_pod_dynamic_builder_clean(&dynBuilder[1]);
+-            spa_pod_dynamic_builder_clean(&dynBuilder[2]);
+             return;
+ 
+         fixate_format:
+@@ -1137,14 +1120,11 @@ static bool build_modifierlist(CPipewireConnection::SPWStream* stream, uint32_t
+ }
+ 
+ uint32_t CPipewireConnection::buildFormatsFor(spa_pod_builder* b[2], const spa_pod* params[2], CPipewireConnection::SPWStream* stream) {
+-    uint32_t            paramCount = 0;
+-    uint32_t            modCount   = 0;
+-    uint64_t*           modifiers  = nullptr;
++    uint32_t  paramCount = 0;
++    uint32_t  modCount   = 0;
++    uint64_t* modifiers  = nullptr;
+ 
+-    static auto* const* PFORCESHM = (Hyprlang::INT* const*)g_pPortalManager->m_sConfig.config->getConfigValuePtr("screencopy:force_shm")->getDataStaticPtr();
+-    const bool          forceSHM  = **PFORCESHM || stream->dmaBufFailed;
+-
+-    if (!forceSHM && build_modifierlist(stream, stream->pSession->sharingData.frameInfoDMA.fmt, &modifiers, &modCount) && modCount > 0) {
++    if (build_modifierlist(stream, stream->pSession->sharingData.frameInfoDMA.fmt, &modifiers, &modCount) && modCount > 0) {
+         Debug::log(LOG, "[pw] Building modifiers for dma");
+ 
+         paramCount = 2;
+@@ -1155,12 +1135,7 @@ uint32_t CPipewireConnection::buildFormatsFor(spa_pod_builder* b[2], const spa_p
+                                  stream->pSession->sharingData.frameInfoSHM.h, stream->pSession->sharingData.framerate, NULL, 0);
+         assert(params[1] != NULL);
+     } else {
+-        if (stream->dmaBufFailed)
+-            Debug::log(WARN, "[pw] DMA-BUF allocation failed, falling back to SHM");
+-        else if (forceSHM)
+-            Debug::log(LOG, "[pw] DMA-BUF disabled (force_shm), using SHM only");
+-        else
+-            Debug::log(LOG, "[pw] Building modifiers for shm");
++        Debug::log(LOG, "[pw] Building modifiers for shm");
+ 
+         paramCount = 1;
+         params[0]  = build_format(b[0], pwFromDrmFourcc(stream->pSession->sharingData.frameInfoSHM.fmt), stream->pSession->sharingData.frameInfoSHM.w,
+diff --git a/src/portals/Screencopy.hpp b/src/portals/Screencopy.hpp
+index 340bf0a..61e6034 100644
+--- a/src/portals/Screencopy.hpp
++++ b/src/portals/Screencopy.hpp
+@@ -2,7 +2,6 @@
+ 
+ #include "wlr-screencopy-unstable-v1.hpp"
+ #include "hyprland-toplevel-export-v1.hpp"
+-#include <cstdint>
+ #include <hyprutils/memory/UniquePtr.hpp>
+ #include <hyprutils/memory/WeakPtr.hpp>
+ #include <sdbus-c++/sdbus-c++.h>
+@@ -156,10 +155,8 @@ class CPipewireConnection {
+         spa_hook                              streamListener;
+         SBuffer*                              currentPWBuffer = nullptr;
+         spa_video_info_raw                    pwVideoInfo;
+-        uint32_t                              seq           = 0;
+-        bool                                  isDMA         = false;
+-        uint32_t                              dmaBufRetries = 0;
+-        bool                                  dmaBufFailed  = false;
++        uint32_t                              seq   = 0;
++        bool                                  isDMA = false;
+ 
+         std::vector<std::unique_ptr<SBuffer>> buffers;
+     };
+@@ -177,4 +174,4 @@ class CPipewireConnection {
+ 
+     pw_context*                             m_pContext = nullptr;
+     pw_core*                                m_pCore    = nullptr;
+-};
++};
+\ No newline at end of file
+-- 
+2.55.0
+
