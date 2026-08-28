@@ -8,7 +8,6 @@
       ];
     };
     boot.loader.limine.secureBoot.enable = true;
-    # allow updating the timezone manually when travelling
-    services.tzupdate.enable = true;
+    time.timeZone = "Europe/Istanbul";
   };
 }
