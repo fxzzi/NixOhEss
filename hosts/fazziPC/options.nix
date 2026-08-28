@@ -97,6 +97,7 @@
         enable = true;
         wootility.enable = true;
         scyrox-s-center.enable = true;
+        eightbitdo.enable = true;
       };
       startpage = {
         enable = true;
