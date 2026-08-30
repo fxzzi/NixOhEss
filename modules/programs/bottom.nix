@@ -89,12 +89,12 @@ in
               ratio = 30;
               child = [
                 {
-                  ratio = 65;
+                  ratio = 55;
                   type = "cpu";
                 }
                 {
-                  ratio = 35;
-                  type = "net";
+                  ratio = 45;
+                  type = "mem";
                 }
               ];
             }
@@ -102,11 +102,11 @@ in
               ratio = 30;
               child = [
                 {
-                  ratio = 40;
+                  ratio = 45;
                   type = "temp";
                 }
                 {
-                  ratio = 60;
+                  ratio = 55;
                   type = "disk";
                 }
               ];
@@ -115,11 +115,7 @@ in
               ratio = 40;
               child = [
                 {
-                  ratio = 45;
-                  type = "mem";
-                }
-                {
-                  ratio = 55;
+                  ratio = 100;
                   type = "proc";
                   default = true;
                 }
