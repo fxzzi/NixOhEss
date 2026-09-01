@@ -83,9 +83,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "3b2dadd987fd9da19006a4969036777f44c98f61",
-    "narHash": "sha256-LtXqt/xbyR/FyKtuLTXJN5pxJoMAHzI/uWTw/ZxUxwA=",
-    "lastModified": 1788187241
+    "rev": "eb97c46a5318cb05c4a4ce8c9c6d601f82b9e11f",
+    "narHash": "sha256-NtWOCF0FqgVYGmDXXUEjjjhUZDlH3tjVTpanSE4VNhA=",
+    "lastModified": 1788275296
   },
   "niqspkgs": {
     "type": "github",
@@ -99,17 +99,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "51de0cca39be715df8e02218421cc7f91388228e",
-    "narHash": "sha256-QehJP4PYmGoibbmFKYUA19wvdESywXNC+9DHxcuos48=",
-    "lastModified": 1788064340
+    "rev": "f4434220501c23e7154bca5262e5b2fd7efa4490",
+    "narHash": "sha256-MmEtOeX/RQlnan/jIgjFhm1j7KUKv8p5o7zRsXEEq3g=",
+    "lastModified": 1788236945
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "208ae34f932f1ddda36553190169af1ba920481a",
-    "narHash": "sha256-NRJUB6pVNqLpX2apWi6fCz5j47ZePRI25f+9H0WYs6Y=",
-    "lastModified": 1788082709
+    "rev": "998b3f6eac9cdbf1a496325af0ed8647d237ecb3",
+    "narHash": "sha256-+18+hW03A1Zl5iagPD1gAcyG1W1X90P6yCBbkjEBfhU=",
+    "lastModified": 1788253445
   },
   "nixos-core": {
     "type": "github",
@@ -123,9 +123,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "d2f67949798825fe853f7c5d0492b8bf016d3f88",
-    "narHash": "sha256-pa4Q0qErvCvzCaaUph7Sm37RhR4xvPrYI8Lgz6k85+A=",
-    "lastModified": 1788039129
+    "rev": "34ab99075ac4f7e40cf037eef32cb1c360bb85e9",
+    "narHash": "sha256-hn1oU2rue2SYK8dAr8+WNZWtbsz1S2W5mnHlSEuh3bo=",
+    "lastModified": 1788179007
   },
   "nvf": {
     "type": "github",

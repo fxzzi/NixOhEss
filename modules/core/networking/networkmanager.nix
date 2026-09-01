@@ -17,7 +17,10 @@ in
     networking = {
       networkmanager = {
         enable = true;
-        wifi.powersave = config.cfg.core.isLaptop;
+        wifi = {
+          backend = "iwd";
+          powersave = config.cfg.core.isLaptop;
+        };
         dns = "systemd-resolved";
         connectionConfig = {
           # don't use router advertised dns
