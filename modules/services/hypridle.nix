@@ -50,7 +50,7 @@ in
         value = {
           attrs = {
             general = {
-              lock_cmd = "pidof hyprlock || hyprlock";
+              lock_cmd = "pidof -q hyprlock || hyprlock";
               before_sleep_cmd = "loginctl lock-session";
               after_sleep_cmd = dpms "on";
             };
@@ -70,7 +70,7 @@ in
                 {
                   timeout = 60;
                   # dpms off screen if hyprlock is running
-                  on-timeout = "pidof hyprlock && ${dpms "off"}";
+                  on-timeout = "pidof -q hyprlock && ${dpms "off"}";
                   on-resume = dpms "on";
                   # no matter what, dimming screen on lockscreen shouldn't be a problem
                   ignore_inhibit = true;
