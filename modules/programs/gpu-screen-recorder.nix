@@ -1,11 +1,10 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.programs.gpu-screen-recorder;
 in
 {
@@ -13,10 +12,23 @@ in
   config = mkIf cfg.enable {
     programs.gpu-screen-recorder = {
       enable = true;
+      ui.enable = true;
     };
-    hj = {
-      packages = with pkgs; [
-        gpu-screen-recorder-gtk
+    hj.systemd.services.gpu-screen-recorder = {
+      description = "A ShadowPlay-like screen recorder for Linux";
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      unitConfig = {
+        ConditionEnvironment = "WAYLAND_DISPLAY";
+      };
+      serviceConfig = {
+        Type = "simple";
+        Restart = "always";
+        ExecStart = getExe config.programs.gpu-screen-recorder.ui.package;
+      };
+      restartTriggers = [
+        config.programs.gpu-screen-recorder.ui.package
       ];
     };
   };
