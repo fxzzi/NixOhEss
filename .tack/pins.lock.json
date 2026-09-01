@@ -155,9 +155,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "rags",
-    "rev": "cdc126238ba2ea3a5f98077db57f26d1fe268856",
-    "narHash": "sha256-DUER4VfSfhq4kxyp8ojYFBPHRkF/K/eoLrywCXjjNj4=",
-    "lastModified": 1782416610
+    "rev": "0718ee8cf150ae05a1e933931f93fed7447c1e78",
+    "narHash": "sha256-tJKBNmkGrfNbgZ8MCVPatFq7oQHs78AEwoltNYMv2os=",
+    "lastModified": 1788285223
   },
   "startpage": {
     "type": "gitlab",

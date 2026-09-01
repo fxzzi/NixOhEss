@@ -375,12 +375,6 @@ in
           bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.global("com.obsproject.Studio:_toggle_recording"))
           bind({ "CTRL", "grave" }, hl.dsp.global("com.obsproject.Studio:ReplayBuffer.Save"))
 
-          -- also for gpu-screen-recorder.
-          -- SIGINT saves the recording (wont start a recording for now)
-          bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.exec_raw("${killall} -SIGINT gpu-screen-recorder"))
-          -- SIGUSR1 saves the replay
-          bind({ "CTRL", "grave" }, hl.dsp.exec_raw("${killall} -SIGUSR1 gpu-screen-recorder"))
-
           -- window management
           bind({ mainMod, "Q" }, hl.dsp.window.close())
           bind({ mainMod, "Space" }, hl.dsp.window.fullscreen(1))
