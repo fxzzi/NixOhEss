@@ -55,7 +55,7 @@
         defaultEditor = true;
       };
       gamescope.enable = true;
-      gpu-screen-recorder.enable = true;
+      # gpu-screen-recorder.enable = true;
       adb.enable = true;
       mangohud = {
         enable = true;
