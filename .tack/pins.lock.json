@@ -19,9 +19,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "ec3fa41cc83a40b989a0c70e71f6640207f4c9e6",
-    "narHash": "sha256-50aCSj1/8z+vs7LQFOzcvOy+NjIzbX0ImKvZdQ2XY10=",
-    "lastModified": 1787595276
+    "rev": "f5e0c38d6e2441e0b4919afdc744b535355b5b12",
+    "narHash": "sha256-+jmiMfODk8kOy1r3m451CzRseKebSCJY9QsBHxKRRDM=",
+    "lastModified": 1788726449
   },
   "beer": {
     "type": "github",
