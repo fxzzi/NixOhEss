@@ -61,4 +61,20 @@
   # and a secondary monitor of layout BGR. Therefore we shouldn't
   # use subpixel rendering.
   fonts.fontconfig.subpixel.rgba = "none";
+
+  networking = {
+    firewall =
+      let
+        allowedPorts = [
+          6881 # qbittorrent
+          2234 # slsk / nicotine+
+          25565 # minecraft
+        ];
+      in
+      {
+        allowedTCPPorts = allowedPorts;
+        allowedUDPPorts = allowedPorts;
+      };
+  };
+
 }
