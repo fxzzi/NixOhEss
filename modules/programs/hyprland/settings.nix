@@ -33,7 +33,6 @@ let
     else
       getExe azzipkgs.brightness; # uses hyprsunset instead
   mpc = getExe pkgs.mpc;
-  killall = getExe pkgs.killall;
 in
 {
   config = mkIf cfg.enable {
