@@ -24,7 +24,7 @@ let
       };
       modules = flatten [
         self.nixosModules.default # all modules
-        (self.lib.listRecursive ./${hostName}) # host-specific
+        (self.lib.nixFilesInRecursive ./${hostName}) # host-specific
       ];
     };
 in

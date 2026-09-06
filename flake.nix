@@ -17,7 +17,7 @@
       # our internal lib which has some generators and useful funcs
       lib = import ./lib { inherit lib inputs; };
 
-      nixosModules.default = self.lib.listRecursive ./modules;
+      nixosModules.default = self.lib.nixFilesInRecursive ./modules;
 
       # hosts are configured in here
       nixosConfigurations = import ./hosts {

@@ -4,5 +4,5 @@
 }:
 {
   generators = import ./generators { inherit lib inputs; };
-  listRecursive = import ./listRecursive.nix lib;
+  nixFilesInRecursive = import ./nixFilesInRecursive.nix lib;
 }
