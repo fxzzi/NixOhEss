@@ -27,9 +27,9 @@
     "type": "github",
     "owner": "Michael-C-Buckley",
     "repo": "beer",
-    "rev": "f85297331ffa1ad70faa87f74c67bd8d20827a58",
-    "narHash": "sha256-oqfIfuQtAndxlPXkTiVGK+NsM6UH+hjUa5HXylN6mAk=",
-    "lastModified": 1786685176
+    "rev": "a872cf25ee12ba07a948acf396e68e8f2a866a02",
+    "narHash": "sha256-+ep5J19LvmHU7MbmZG5T91fKhrm0JNud0bBS3g+ONWs=",
+    "lastModified": 1788505209
   },
   "chroma": {
     "type": "git",
@@ -134,14 +134,6 @@
     "rev": "5e4f212f8720c17fdd06f5c57591f251aff67453",
     "narHash": "sha256-ozY1uUiOLXt3KLpUQwu8Y1DG+lKa53Gke7NW9gvUu3I=",
     "lastModified": 1788494938
-  },
-  "nvidia-vaapi-driver": {
-    "type": "github",
-    "owner": "elFarto",
-    "repo": "nvidia-vaapi-driver",
-    "rev": "982ba1c2464b9cea5a4403df8f2c5a351ca21394",
-    "narHash": "sha256-cEEPRKoWtNXk8LsDbkhNjnIY7UD1rfYbv2Q6ThG0YLg=",
-    "lastModified": 1787995391
   },
   "nvuv": {
     "type": "gitlab",

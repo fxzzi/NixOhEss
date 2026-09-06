@@ -9,11 +9,11 @@ raf   = "git+https://git.notashelf.dev/notashelf/{path}.git"
 # all_follow: input name -> top-level pin it follows wherever it appears
 # opt out per-input with exclude_follow
 [all_follow]
-nixpkgs = ["nixpkgs-nixcord"]
+nixpkgs = ["nixpkgs", "nixpkgs-nixcord", "nixpkgs-lib"]
 
 # auto-dedup (no top-level pin needed):
 flake-parts = ["flake-parts"]
-git-hooks   = ["pre-commit-hooks"]
+git-hooks   = ["git-hooks", "pre-commit-hooks"]
 
 # [inputs.<name>] fields
 #   url             required, shorturl ok; ?rev=<sha> pins an exact commit
@@ -72,10 +72,6 @@ url = "github:fufexan/nix-gaming"
 
 [inputs.nixcord]
 url = "github:4evy/nixcord"
-
-[inputs.nvidia-vaapi-driver]
-url  = "github:elFarto/nvidia-vaapi-driver"
-type = "fetch"
 
 [inputs.KvLibadwaita]
 url  = "github:GabePoel/KvLibadwaita"
