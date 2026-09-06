@@ -20,18 +20,12 @@ in
       graphics = {
         enable = true;
         enable32Bit = true;
-        extraPackages = [
-          (pkgs.nvidia-vaapi-driver.overrideAttrs {
-            src = inputs.nvidia-vaapi-driver;
-          })
-        ];
       };
       nvidia = {
         open = true;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true;
         nvidiaSettings = false; # useless on wayland still
-        videoAcceleration = false; # override above
         branch = "bleeding_edge"; # newest of latest and beta
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
