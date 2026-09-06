@@ -53,6 +53,8 @@ in
       render = {
         # only activate DS for games
         direct_scanout = 2;
+        # improves cursor latency at 60hz but doesn't help outside of that tbh
+        async_commit = config.cfg.core.isLaptop;
       };
       animations.enabled = true;
       decoration = {
