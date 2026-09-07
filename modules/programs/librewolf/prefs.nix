@@ -40,6 +40,10 @@ let
     # Force hardware acceleration (NVIDIA)
     "media.hardware-video-decoding.force-enabled" = true;
 
+    # enable vulkan video decoding
+    "media.hardware-video-decoding-vulkan.enabled" = true;
+    "media.hardware-video-decoding-vulkan.direct-export.enabled" = true;
+
     # Mouse behavior
     "middlemouse.paste" = false;
     "general.autoScroll" = true;
