@@ -40,7 +40,6 @@
       device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
       fsType = "btrfs";
       options = [ "noatime,ssd,discard=async,subvol=@home" ];
-      neededForBoot = true;
     };
 
     "/nix" = {
