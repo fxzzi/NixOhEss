@@ -45,7 +45,6 @@ This flake (accidentally) makes use of the
 
 - [raf](https://github.com/NotAShelf) for creating lots of cool software like
   [nvf](https://github.com/NotAShelf/nvf),
-  [watt](https://github.com/NotAShelf/watt),
   [stash](https://github.com/NotAShelf/stash) and
   [rags](https://github.com/NotAShelf/rags)
 - [feel-co](https://github.com/feel-co) for making hjem
