@@ -93,6 +93,9 @@ let
     # enable browser data backups
     "browser.backup.scheduled.enabled" = true;
     "browser.backup.location" = "${config.hj.directory}/Documents/Restore Librewolf";
+
+    # disable nova for now until it's a bit more useable
+    "browser.nova.enabled" = false;
   };
   attrsToLines = f: attrs: concatMapAttrsStringSep "\n" f attrs;
   prefValue =
