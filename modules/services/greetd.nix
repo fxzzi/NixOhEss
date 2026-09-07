@@ -26,10 +26,8 @@ in
     services.greetd = {
       enable = true;
       useTextGreeter = true;
-      settings.default_session = {
-        command = getExe pkgs.tuigreet;
-        user = "greeter";
-      };
+      settings.default_session.command = getExe pkgs.tuigreet;
+
     };
     environment.etc."tuigreet/config.toml".source =
       (pkgs.formats.toml { }).generate "tuigreet-config.toml"

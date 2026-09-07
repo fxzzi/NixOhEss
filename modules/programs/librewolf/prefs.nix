@@ -89,6 +89,10 @@ let
 
     # by default ff hides "http(s)://" in the URL bar. why??
     "browser.urlbar.trimURLs" = false;
+
+    # enable browser data backups
+    "browser.backup.scheduled.enabled" = true;
+    "browser.backup.location" = "${config.hj.directory}/Documents/Restore Librewolf";
   };
   attrsToLines = f: attrs: concatMapAttrsStringSep "\n" f attrs;
   prefValue =
