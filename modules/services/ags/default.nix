@@ -50,6 +50,6 @@ in
         ];
       };
     };
-    services.upower.enable = config.cfg.services.watt.enable; # enable battery module if watt is in use, its a good indicator of whether we're on a laptop.
+    services.upower.enable = config.cfg.core.isLaptop;
   };
 }
