@@ -99,41 +99,39 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "efb84bed1287a9733d4b539f2913236d06f94c82",
-    "narHash": "sha256-v+PsKNvmDW0gZDp7yo/fLa+ZLi4QRfHMlK8i3QNV0LA=",
-    "lastModified": 1788667114
+    "rev": "7b9ddc7b9dc0283e45f616311384b84239a33060",
+    "narHash": "sha256-JrJkREqNWmXhTgiXqZQkl6tusimI7fR+a9tu5npmNM0=",
+    "lastModified": 1788839872
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "84dfdce1255bf2fee956f42842ba7bef6f9a6713",
-    "narHash": "sha256-M4SQ2tjMFtPbj5tjq9+P3HtBrzAg0rp8pz/TeqDRlSY=",
-    "lastModified": 1788797014
+    "rev": "b5a25427cca7ed257549f14437fb468f48591fdb",
+    "narHash": "sha256-G5knic2BF44zsDwAEvToreC10cs0ND5J+Limz6eDxII=",
+    "lastModified": 1788962100
   },
   "nixos-core": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "1793b22bfe73e077ecce0ead2d8ab51ca54efdf7",
-    "narHash": "sha256-BNHNzU37v7zoUqKH/7fI3LA2ttFEbl2LxBtC+t7SlEE=",
-    "lastModified": 1788804738
+    "rev": "c65bbdee8d52c1219a721a39b7427b82ea377b9f",
+    "narHash": "sha256-UU72d6f9S0qBXaVTYL8vmLhIVuugSFONQL2zYQzcP30=",
+    "lastModified": 1788952165
   },
   "nixpkgs": {
-    "type": "github",
-    "owner": "NixOS",
-    "repo": "nixpkgs",
-    "rev": "dc5d91f840324650bac8c379428c7037a416959a",
-    "narHash": "sha256-VaWGJ6+cIYN2erfSecbRV+4ljI185Ty2wUrXyvQbgOw=",
-    "lastModified": 1788752844
+    "type": "tarball",
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1069856.d6524aaca2ff/nixexprs.tar.xz",
+    "rev": "d6524aaca2ff07876657ae2b323f24be4874944b",
+    "narHash": "sha256-151taSq/21cxagiIu7hyMVl68+FbHfwBP4lh6TB6KOM="
   },
   "nvf": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "5e4f212f8720c17fdd06f5c57591f251aff67453",
-    "narHash": "sha256-ozY1uUiOLXt3KLpUQwu8Y1DG+lKa53Gke7NW9gvUu3I=",
-    "lastModified": 1788494938
+    "rev": "4771b6b78c203c090799ca6984d73c54e77228d6",
+    "narHash": "sha256-PEcPDc5QRRlzYYGQuGuh7OMMLZ1TC5hLHt3whFBRSS0=",
+    "lastModified": 1788873411
   },
   "nvuv": {
     "type": "gitlab",
