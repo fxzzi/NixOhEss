@@ -23,8 +23,8 @@ in
         };
         dns = "systemd-resolved";
         dhcp = "dhcpcd";
-        plugins = with pkgs; [
-          networkmanager-openvpn
+        plugins = [
+          pkgs.networkmanager-openvpn
         ];
       };
     };

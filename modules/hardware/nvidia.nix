@@ -40,6 +40,10 @@ in
             NVreg_UsePageAttributeTable = 1; # why this isn't default is beyond me.
             NVreg_EnableResizableBar = 1; # enable reBAR
             "NVreg_RegistryDwords=RmEnableAggressiveVblank" = 1; # low-latency stuff
+            # This may reduce idle power consumption in some multi-monitor configurations,
+            # at the risk of changing memory clocks while display is using the memory,
+            # potentially resulting in momentary display glitches.
+            "NVreg_RegistryDwords=RmDisableDisplayGlitchPerfLimit" = 1;
           };
           nvidia-modeset.disable_vrr_memclk_switch = 1; # don't force P0 when VRR is active
           nvidia-drm.vblank = 1;
