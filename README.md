@@ -44,9 +44,8 @@ This flake (accidentally) makes use of the
 ## SPECIAL THANKS
 
 - [raf](https://github.com/NotAShelf) for creating lots of cool software like
-  [nvf](https://github.com/NotAShelf/nvf),
-  [stash](https://github.com/NotAShelf/stash) and
-  [rags](https://github.com/NotAShelf/rags)
+  [nvf](https://github.com/NotAShelf/nvf) and
+  [stash](https://github.com/NotAShelf/stash)
 - [feel-co](https://github.com/feel-co) for making hjem
 - [nezia](https://github.com/nezia1) for persuading me to use hjem
 - [Rexie](https://github.com/Rexcrazy804/Zaphkiel) for helping with npins :)
