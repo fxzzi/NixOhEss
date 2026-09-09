@@ -9,6 +9,6 @@
       ];
     };
     boot.loader.limine.secureBoot.enable = true;
-    time.timeZone = "Asia/Karachi";
+    time.timeZone = "Europe/Istanbul";
   };
 }
