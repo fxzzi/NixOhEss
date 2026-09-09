@@ -10,7 +10,7 @@
     };
     services = {
       ags.enable = true;
-      stash.enable = true;
+      cliphist.enable = true;
       mullvad.enable = true;
       mate-polkit.enable = true;
       gcr-ssh-agent.enable = true;

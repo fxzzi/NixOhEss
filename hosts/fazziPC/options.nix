@@ -26,7 +26,7 @@
           enable = true;
         };
       };
-      stash.enable = true;
+      cliphist.enable = true;
       mullvad.enable = true;
       mediamtx.enable = true;
       mate-polkit.enable = true;
