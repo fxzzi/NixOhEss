@@ -33,7 +33,7 @@ in
           serviceConfig = {
             Type = "simple";
             Restart = "always";
-            ExecStart = "${getExe' pkgs.wl-clipboard "wl-paste"} --watch ${getExe pkgs.cliphist} store";
+            ExecStart = "${getExe' pkgs.wl-clipboard "wl-paste"} --watch ${getExe pkgs.cliphist} store -max-items 24 -min-store-length 2 -preview-width 75";
           };
           restartTriggers = [
             pkgs.cliphist
