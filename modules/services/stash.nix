@@ -16,7 +16,7 @@ in
     services.stash-clipboard = {
       enable = true;
       arguments = [ "--max-items 10" ];
-      serviceArguments = [ "--persist" ];
+      # serviceArguments = [ "--persist" ];
       filterFile = "${writeText "stash-regex" regex}";
     };
   };
