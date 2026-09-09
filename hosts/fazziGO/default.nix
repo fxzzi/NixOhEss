@@ -5,6 +5,7 @@
       packages = with pkgs; [
         deluge
         stremio-linux-shell
+        cemu
       ];
     };
     boot.loader.limine.secureBoot.enable = true;
