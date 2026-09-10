@@ -42,11 +42,11 @@ in
     cfg.programs.hyprland.extraHlConfig = mapAttrsRecursive (_: mkDefault) {
       general = {
         # Outer monitor gaps
-        gaps_out = 2;
+        gaps_out = 4;
         # Inner window gaps
-        gaps_in = 1;
+        gaps_in = 2;
         # Set window border width
-        border_size = 1;
+        border_size = 2;
         # tearing causes problems and is honestly useless most the time
         allow_tearing = 0;
       };

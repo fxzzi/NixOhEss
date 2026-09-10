@@ -13,9 +13,9 @@ window > box {
   font: 15.5px monospace;
   font-weight: 600;
   color: @foreground;
-  margin: 2px 2px 0 2px;
-  border: 1px solid @color4;
-  min-height: 28px;
+  margin: 4px 4px 0 4px;
+  border: 2px solid @color4;
+  min-height: 30px;
 }
 
 button {
