@@ -5,7 +5,7 @@
       kernel.type = "latest";
       isLaptop = true;
       keyLayout = "uk";
-      limine.timeout = 10;
+      limine.timeout = 5;
       networkmanager.enable = true;
     };
     services = {
@@ -26,7 +26,6 @@
       syncthing.enable = true;
       mpd = {
         enable = true;
-        discord-rpc.enable = false;
       };
       hypridle = {
         enable = true;
@@ -56,9 +55,7 @@
       foot.enable = true;
       fuzzel.enable = true;
       mpv.enable = true;
-
       thunar.enable = true;
-
       discord = {
         enable = true;
         minimizeToTray = false;
