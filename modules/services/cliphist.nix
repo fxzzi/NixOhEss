@@ -33,33 +33,38 @@ in
           serviceConfig = {
             Type = "simple";
             Restart = "always";
-            ExecStart = "${getExe' pkgs.wl-clipboard "wl-paste"} --watch ${getExe pkgs.cliphist} -max-items 24 -min-store-length 2 -preview-width 75 store";
+            ExecStart = "${getExe' pkgs.wl-clipboard "wl-paste"} --watch ${getExe pkgs.cliphist} store";
+          };
+          environment = {
+            CLIPHIST_PREVIEW_WIDTH = "75";
+            CLIPHIST_MAX_ITEMS = "24";
+            CLIPHIST_MIN_STORE_LENGTH = "2";
           };
           restartTriggers = [
             pkgs.cliphist
             pkgs.wl-clipboard
           ];
         };
-        wl-clip-persist = {
-          description = "Keep Wayland clipboard even after programs close";
-          after = [
-            "graphical-session.target"
-            "cliphist.service"
-          ];
-          wantedBy = [ "graphical-session.target" ];
-          partOf = [ "graphical-session.target" ];
-          unitConfig = {
-            ConditionEnvironment = "WAYLAND_DISPLAY";
-          };
-          serviceConfig = {
-            Type = "simple";
-            Restart = "always";
-            ExecStart = "${getExe pkgs.wl-clip-persist} --clipboard regular";
-          };
-          restartTriggers = [
-            pkgs.wl-clip-persist
-          ];
-        };
+        # wl-clip-persist = {
+        #   description = "Keep Wayland clipboard even after programs close";
+        #   after = [
+        #     "graphical-session.target"
+        #     "cliphist.service"
+        #   ];
+        #   wantedBy = [ "graphical-session.target" ];
+        #   partOf = [ "graphical-session.target" ];
+        #   unitConfig = {
+        #     ConditionEnvironment = "WAYLAND_DISPLAY";
+        #   };
+        #   serviceConfig = {
+        #     Type = "simple";
+        #     Restart = "always";
+        #     ExecStart = "${getExe pkgs.wl-clip-persist} --clipboard regular";
+        #   };
+        #   restartTriggers = [
+        #     pkgs.wl-clip-persist
+        #   ];
+        # };
       };
     };
   };
