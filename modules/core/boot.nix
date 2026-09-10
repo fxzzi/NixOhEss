@@ -10,6 +10,7 @@ let
     mkOption
     types
     mkDefault
+    mkIf
     ;
 in
 {
@@ -41,7 +42,7 @@ in
         "fbcon=font:TER16x32" # make font size bigger
         "nowatchdog" # unsafe!! but fine for personal computers
         "mitigations=off" # also unsafe!!
-        "amd_pstate.dynamic_epp=1" # auto enable performance if plugged in
+        (mkIf config.cfg.core.isLaptop "amd_pstate.dynamic_epp=1") # auto enable performance if plugged in
       ];
       # disable some more watchdog
       extraModprobeConfig = ''
