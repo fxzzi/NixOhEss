@@ -96,7 +96,7 @@ let
 
     # enable browser data backups
     "browser.backup.scheduled.enabled" = true;
-    "browser.backup.location" = "${config.hj.directory}/Documents/Restore Librewolf";
+    "browser.backup.location" = "${config.hj.directory}/Documents/Restore LibreWolf";
 
     # disable nova for now until it's a bit more useable
     "browser.nova.enabled" = false;
