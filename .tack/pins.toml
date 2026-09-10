@@ -56,8 +56,6 @@ url = "github:NotAShelf/rags"
 # so fetch from github mirror instead
 # url = "raf:beer"
 url = "github:Michael-C-Buckley/beer"
-[inputs.chroma]
-url = "raf:chroma"
 
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
