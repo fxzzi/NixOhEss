@@ -15,7 +15,7 @@ window > box {
   color: @foreground;
   margin: 4px 4px 0 4px;
   border: 2px solid @color4;
-  min-height: 30px;
+  min-height: 28px;
 }
 
 button {

@@ -91,17 +91,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "7b9ddc7b9dc0283e45f616311384b84239a33060",
-    "narHash": "sha256-JrJkREqNWmXhTgiXqZQkl6tusimI7fR+a9tu5npmNM0=",
-    "lastModified": 1788839872
+    "rev": "640a9727e73ff02f982ecdfff1d4648927a1d280",
+    "narHash": "sha256-sLTZXAGMWkiZt5r83T0Om2FqXfPTSnVFHnC3Us28KrU=",
+    "lastModified": 1789012916
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "b5a25427cca7ed257549f14437fb468f48591fdb",
-    "narHash": "sha256-G5knic2BF44zsDwAEvToreC10cs0ND5J+Limz6eDxII=",
-    "lastModified": 1788962100
+    "rev": "177141d589014f014ac2b05cd8e2235886868e2f",
+    "narHash": "sha256-dk2p8SjpJ2sRHHpmSA+ps4d2uhQjtkdKGC2+RcyZYPE=",
+    "lastModified": 1789029226
   },
   "nixos-core": {
     "type": "github",
@@ -112,10 +112,12 @@
     "lastModified": 1788952165
   },
   "nixpkgs": {
-    "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1069856.d6524aaca2ff/nixexprs.tar.xz",
-    "rev": "d6524aaca2ff07876657ae2b323f24be4874944b",
-    "narHash": "sha256-151taSq/21cxagiIu7hyMVl68+FbHfwBP4lh6TB6KOM="
+    "type": "github",
+    "owner": "NixOS",
+    "repo": "nixpkgs",
+    "rev": "8ce4ef6cb6f871616146b9fe26d2a5ae594e94fe",
+    "narHash": "sha256-xB8mKMOx1IA9vTDNLmJZ6n4wCMq/cuWBBOzGCRnqxrU=",
+    "lastModified": 1789006805
   },
   "nvf": {
     "type": "github",
