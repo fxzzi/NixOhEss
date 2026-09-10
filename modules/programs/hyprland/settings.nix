@@ -365,7 +365,7 @@ in
           bind({ mainMod, "K" }, hl.dsp.exec_raw("hyprctl kill"))
           bind({ mainMod, "J" }, hl.dsp.exec_raw("foot ${getExe selfPkgs.wall-picker}"))
           bind({ mainMod, "L" }, hl.dsp.exec_raw("loginctl lock-session"))
-          bind({ mainMod, "V" }, hl.dsp.exec_raw("pkill fuzzel || (cliphist list | fuzzel --width 75 --dmenu --with-nth 2 | cliphist decode | wl-copy)"))
+          bind({ mainMod, "V" }, hl.dsp.exec_raw("pkill fuzzel || (cliphist list | fuzzel --width 75 --dmenu --with-nth 2 -p ' ' | cliphist decode | wl-copy)"))
 
           -- mpd media controls
           bind({ "XF86AudioPrev" }, hl.dsp.exec_raw("${mpc} prev"))

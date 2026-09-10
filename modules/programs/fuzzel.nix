@@ -24,7 +24,8 @@ in
         generator = lib.generators.toINI { };
         value = {
           main = {
-            font = "monospace:size=17";
+            font = "monospace:size=16";
+            use-bold = true;
             line-height = "28";
             prompt = "' '";
             layer = "overlay";
@@ -35,9 +36,8 @@ in
             inner-pad = "6";
             filter-desktop = true;
             terminal = "foot";
-            fields = "name,exec,keywords";
+            fields = "name,generic,exec,keywords";
             placeholder = "Search...";
-            match-mode = "exact";
             dpi-aware = false;
             # by default fuzzel sorts by most frequent
             cache = mkIf cfg.disableCache "/dev/null";
