@@ -146,7 +146,7 @@ in
             -- discord literally craps itself and coredumps if the graphical env
             -- is shut down whilst it's still open. kill it to avoid the coredump.
             -- exec_cmd runs async, so to delay shutdown we need os.execute()
-            os.execute("pgrep Discord >/dev/null && pkill -9 Discord")
+            os.execute("pgrep --quiet Discord && pkill -9 Discord")
           end)
 
           -- set primary monitor in both monitor events to be safe
@@ -318,7 +318,9 @@ in
           hl.device({
             -- thinkpad l14 touchpad
             name = "elan0680:00-04f3:320a-touchpad",
-            accel_profile = "adaptive",
+            -- https://gist.github.com/fufexan/e6bcccb7787116b8f9c31160fc8bc543
+            accel_profile = "custom",
+            scroll_points = "0.5 0.000 0.053 0.115 0.189 0.280 0.391 0.525 0.687 0.880 1.108 1.375 1.684 2.040 2.446 2.905 3.422 4.000 4.643 5.355 6.139",
           })
 
           hl.gesture({
