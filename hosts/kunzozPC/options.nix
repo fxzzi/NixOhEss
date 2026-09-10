@@ -79,7 +79,7 @@
       proton-ge = {
         enable = true;
       };
-      mpv.enable = true;
+      # mpv.enable = true;
       obs-studio.enable = true;
       thunar = {
         enable = true;
