@@ -13,6 +13,7 @@
       sgdboop
       cemu
       stremio-linux-shell
+      celluloid
       inputs.creamlinux.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
