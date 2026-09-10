@@ -39,21 +39,22 @@ in
           nvidia = {
             NVreg_UsePageAttributeTable = 1; # why this isn't default is beyond me.
             NVreg_EnableResizableBar = 1; # enable reBAR
-            "NVreg_RegistryDwords=RmEnableAggressiveVblank" = 1; # low-latency stuff
+            # reduces the time spent in the interrupt top half for low-latency display interrupts
+            # by deferring work.
+            "NVreg_RegistryDwords=RmEnableAggressiveVblank" = 1;
             # This may reduce idle power consumption in some multi-monitor configurations,
             # at the risk of changing memory clocks while display is using the memory,
             # potentially resulting in momentary display glitches.
             "NVreg_RegistryDwords=RmDisableDisplayGlitchPerfLimit" = 1;
           };
-          nvidia-modeset.disable_vrr_memclk_switch = 1; # don't force P0 when VRR is active
+          # by default, when VRR is active, mem clocks will be maxed out. This isn't great for
+          # power consumption on idle. This disables that behaviour and lets memclk stay down
+          nvidia-modeset.disable_vrr_memclk_switch = 1;
           nvidia-drm.vblank = 1;
         };
       };
     };
     environment = {
-      systemPackages = [
-        inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.dxvk-nvapi-vkreflex-layer
-      ];
       sessionVariables = {
         # disable vsync
         __GL_SYNC_TO_VBLANK = "0";

@@ -62,8 +62,9 @@ in
                 outer_color = "0xff1a1b26";
                 inner_color = "0xff1a1b26";
                 font_color = "0xffc8d3f6";
-                placeholder_text = ''<span font="monospace"><i>Password...</i></span>''; # Text rendered when empty
-                fail_text = ''<span font="monospace"><i>Incorrect.</i></span>'';
+                placeholder_text = "Password..."; # Text rendered when empty
+                fail_text = "Incorrect.";
+                font_family = "monospace Bold Italic";
                 hide_input = false;
                 position = "0, 120";
                 halign = "center";
@@ -98,10 +99,12 @@ in
               }
               {
                 monitor = "${land.defaultMonitor}";
-                text = "󰌾";
+                text = "";
                 color = "0xffc8d3f5";
-                font_size = 36;
-                font_family = "monospace";
+                font_size = 42;
+                # needs the mono font specifically to avoid being
+                # cut off
+                font_family = "BlexMono Nerd Font Mono";
                 shadow_passes = 2;
                 shadow_size = 2;
                 position = "0, 40";
