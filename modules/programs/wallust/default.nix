@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf optionalAttrs;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.wallust;
 in
 {
@@ -24,27 +24,27 @@ in
             backend = "fastresize";
             color_space = "lch";
             templates = {
-              fuzzel = optionalAttrs config.cfg.programs.fuzzel.enable {
+              fuzzel = {
                 template = "colors_fuzzel.ini";
                 target = "~/.cache/wallust/colors_fuzzel.ini";
               };
-              hyprland = optionalAttrs config.cfg.programs.hyprland.enable {
+              hyprland = {
                 template = "colors_hyprland.lua";
                 target = "~/.config/hypr/colors_hyprland.lua";
               };
-              ags = optionalAttrs config.cfg.services.ags.enable {
+              ags = {
                 template = "colors_ags.css";
                 target = "~/.config/ags/colors_ags.css";
               };
-              foot = optionalAttrs config.cfg.programs.foot.enable {
+              foot = {
                 template = "colors_foot.ini";
                 target = "~/.cache/wallust/colors_foot.ini";
               };
-              wleave = optionalAttrs config.cfg.programs.wleave.enable {
+              wleave = {
                 template = "colors_wleave.css";
                 target = "~/.config/wleave/colors_wleave.css";
               };
-              dunst = optionalAttrs config.cfg.services.dunst.enable {
+              dunst = {
                 template = "99-wallust.conf";
                 target = "~/.config/dunst/dunstrc.d/99-wallust.conf";
               };
@@ -55,6 +55,9 @@ in
                 template = "accent.txt";
                 target = "~/.cache/wallust/accent.txt";
               };
+            };
+            hooks = {
+              dunst = "dunstctl reload";
             };
           };
         };
