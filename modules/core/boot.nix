@@ -47,7 +47,7 @@ in
         "mitigations=off"
         # enable dynamic epp for laptops. this will change the epp
         # based on the charging / discharging status.
-        (mkIf config.cfg.core.isLaptop "amd_pstate.dynamic_epp=1")
+        (mkIf config.cfg.core.isLaptop "amd_dynamic_epp=enable")
       ];
       # disable hardware watchdog present on my laptop
       extraModprobeConfig = ''
