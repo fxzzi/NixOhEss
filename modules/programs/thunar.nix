@@ -52,7 +52,6 @@ in
     hj = {
       packages = with pkgs; [
         file-roller
-        unrar
         rar
         p7zip
       ];
