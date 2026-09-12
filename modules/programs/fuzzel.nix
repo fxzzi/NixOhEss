@@ -35,8 +35,7 @@ in
             vertical-pad = "8";
             inner-pad = "6";
             filter-desktop = true;
-            terminal = "foot";
-            fields = "name,generic,exec,keywords";
+            terminal = "xdg-terminal-exec";
             placeholder = "Search...";
             dpi-aware = false;
             # by default fuzzel sorts by most frequent
