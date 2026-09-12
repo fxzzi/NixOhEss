@@ -10,10 +10,9 @@ let
     mkEnableOption
     mkIf
     concatStringsSep
-    optionalString
     ;
   cfg = config.cfg.programs.osu;
-  otd = config.cfg.services.opentabletdriver.enable;
+  otd = config.cfg.services.opentabletdriver;
   envVars = [
     "OSU_SDL3=1"
     "PIPEWIRE_ALSA=\"{ alsa.buffer-bytes=768 alsa.period-bytes=128 }\""
@@ -23,7 +22,12 @@ let
   osu = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
     # lower audio latency
     pipewire_latency = "32/44100";
-    command_prefix = "env ${concatStringsSep " " envVars} ${optionalString config.cfg.programs.mangohud.enable "mangohud"}";
+    command_prefix = concatStringsSep "" [
+      "env"
+      (concatStringsSep " " envVars)
+      (mkIf config.cfg.programs.mangohud.enable "mangohud")
+      (mkIf config.cfg.programs.obs-studio.enable "obs-gamecapture")
+    ];
   };
 in
 {
@@ -33,9 +37,7 @@ in
     environment.systemPackages = [ osu ];
 
     # if otd is disabled, still allow the osu internal tablet driver to work.
-    services.udev.packages = mkIf (!otd) [ pkgs.opentabletdriver ];
-    boot.blacklistedKernelModules = mkIf (
-      !otd
-    ) config.hardware.opentabletdriver.blacklistedKernelModules;
+    services.udev.packages = mkIf (!otd.enable) [ otd.package ];
+    boot.blacklistedKernelModules = mkIf (!otd.enable) otd.blacklistedKernelModules;
   };
 }

@@ -23,8 +23,6 @@ in
             system = {
               env = {
                 OBS_VKCAPTURE = optionalAttrs config.cfg.programs.obs-studio.enable 1;
-                # https://github.com/Korthos-Software/low_latency_layer
-                # LOW_LATENCY_LAYER = optionalAttrs config.cfg.hardware.amdgpu.enable 1;
               };
               mangohud = optionalAttrs config.cfg.programs.mangohud.enable 1;
             };
