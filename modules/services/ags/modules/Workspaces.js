@@ -9,10 +9,7 @@ export const Workspaces = (monitorName) =>
         .sort((a, b) => a.id - b.id)
         .map(({ id }) =>
           Widget.Button({
-            on_clicked: () =>
-              hyprland.messageAsync(
-                `dispatch hl.dsp.focus({workspace = ${id}})`,
-              ),
+            on_clicked: () => hyprland.dispatch.focus({ workspace: `${id}` }),
             child: Widget.Label(`${id}`),
             class_name: hyprland.active.workspace
               .bind("id")
