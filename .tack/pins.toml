@@ -49,7 +49,7 @@ url = "github:fxzzi/creamlinux-installer"
 [inputs.nvf]
 url = "github:NotAShelf/nvf"
 [inputs.rags]
-url = "github:NotAShelf/rags"
+url = "github:NotAShelf/rags/notashelf/push-tloqkvsrzlsm"
 [inputs.beer]
 # nix fails to fetch from raf's git forge :(
 # so fetch from github mirror instead
@@ -57,7 +57,7 @@ url = "github:NotAShelf/rags"
 url = "github:Michael-C-Buckley/beer"
 
 [inputs.hyprland]
-url = "github:hyprwm/Hyprland/7ebf13abb3c391604c60c9f627c7a403bcec8d17"
+url = "github:hyprwm/Hyprland"
 
 [inputs.agenix]
 url = "github:ryantm/agenix"
