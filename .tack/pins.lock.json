@@ -99,9 +99,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "ddf1cc35c235a2e7103c942eafacdcb96b65d2d0",
-    "narHash": "sha256-6bMO4bJzMqoyDM/vMx7ZECdjvj3V1DR1JlYYVUArT3k=",
-    "lastModified": 1789288898
+    "rev": "56efb34bedac3f55c4b37ff5b980dfa40b78e37c",
+    "narHash": "sha256-TFiDKl4jW6hnH7/Ptxh4IcB9PdEq00yTyRt5hviunTY=",
+    "lastModified": 1789354461
   },
   "nixos-core": {
     "type": "github",
@@ -115,17 +115,17 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "eaad089433ca2bb662274377d33df3d0e51ef28b",
-    "narHash": "sha256-H6GwaZzZf+4npqv0tph94w9tZddSjFjmQrVsW0z78uk=",
-    "lastModified": 1789149629
+    "rev": "ef34387ddd751e1ab8857adf4676492d32eb24ec",
+    "narHash": "sha256-eiEK7cKZORNEvX0GeF3RtNEF/JXhgf2RqSp3230q13E=",
+    "lastModified": 1789286504
   },
   "nvf": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "9c1d99771b443055f5cd428f11b5a4b04c7b7e2e",
-    "narHash": "sha256-LV26WEThZ7U+L274lSY1xNOmxTb8Y9yrE3mOR6CAOZg=",
-    "lastModified": 1789172534
+    "rev": "2d6b480abfa9fcf84841e62c27922bfa3f3d0d2b",
+    "narHash": "sha256-C9GsjXostGh50d62SYEXVJOSDTwk7RjAumJmwzkJKEY=",
+    "lastModified": 1789333536
   },
   "nvuv": {
     "type": "gitlab",
