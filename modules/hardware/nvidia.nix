@@ -45,10 +45,11 @@ in
             # potentially resulting in momentary display glitches.
             "NVreg_RegistryDwords=RmDisableDisplayGlitchPerfLimit" = 1;
           };
-          # by default, when VRR is active, mem clocks will be maxed out. This isn't great for
-          # power consumption on idle. This disables that behaviour and lets memclk stay down
+          # by default, when VRR is active, memclk will be maxed out. This isn't great for
+          # power consumption on idle. disable that behaviour and let memclk downclock.
           nvidia-modeset.disable_vrr_memclk_switch = 1;
-          nvidia-drm.vblank = 1;
+          # undocumented, causes stutters.
+          # nvidia-drm.vblank = 1;
         };
       };
     };
@@ -86,6 +87,7 @@ in
         "nvidia/nvidia-application-profiles-rc.d/50-vram-alloc-fixes.json".text = builtins.toJSON {
           rules = [
             {
+              # empty pattern means to apply to all procs.
               pattern = [ ];
               # fix high vram usage on some apps. nvidia tries to do this automatically but only for select programs
               profile = "No VidMem Reuse";
@@ -95,6 +97,7 @@ in
         "nvidia/nvidia-application-profiles-rc.d/51-dont-nerf-cuda-perf.json".text = builtins.toJSON {
           rules = [
             {
+              # empty pattern means to apply to all procs.
               pattern = [ ];
               # don't lock to a lower (p2) perf state when cuda is in use.
               profile = "CudaNoStablePerfLimit";
