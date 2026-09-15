@@ -15,19 +15,15 @@ in
           rgba = mkDefault "rgb";
           lcdfilter = "light";
         };
-        hinting.style = "slight";
-        antialias = true;
         includeUserConf = false;
-        # fixes emojis on browser
-        useEmbeddedBitmaps = true;
 
         enable = true;
         defaultFonts = {
-          serif = [
-            "Playfair Display"
-          ];
           sansSerif = [
             "Outfit"
+          ];
+          serif = [
+            "IBM Plex Serif"
           ];
           monospace = [
             "BlexMono Nerd Font"
@@ -38,15 +34,13 @@ in
         };
       };
       packages = with pkgs; [
+        ibm-plex
         nerd-fonts.blex-mono
 
         # i wish there was a nicer way to do this, currently
-        # it downloads the entire 2.7gb archive, then unpacks :(
+        # it downloads the entire ~3gb archive, then unpacks :(
         (google-fonts.override {
-          fonts = [
-            "Playfair Display"
-            "Outfit"
-          ];
+          fonts = [ "Outfit" ];
         })
 
         noto-fonts
