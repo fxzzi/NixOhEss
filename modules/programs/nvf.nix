@@ -76,7 +76,10 @@ in
               enable = true;
               format.type = [ "nixfmt" ];
             };
-            markdown.enable = true;
+            markdown = {
+              enable = true;
+              extensions.render-markdown-nvim.enable = true;
+            };
             bash.enable = true;
             css.enable = true;
             html.enable = true;

@@ -23,7 +23,7 @@ in
             "Outfit"
           ];
           serif = [
-            "IBM Plex Serif"
+            "Space Grotesk"
           ];
           monospace = [
             "BlexMono Nerd Font"
@@ -34,18 +34,19 @@ in
         };
       };
       packages = with pkgs; [
-        ibm-plex
         nerd-fonts.blex-mono
 
         # i wish there was a nicer way to do this, currently
         # it downloads the entire ~3gb archive, then unpacks :(
         (google-fonts.override {
-          fonts = [ "Outfit" ];
+          fonts = [
+            "Outfit"
+            "Space Grotesk"
+          ];
         })
 
-        noto-fonts
-        noto-fonts-color-emoji # Emoji Font
-        noto-fonts-cjk-sans # extra language fonts
+        ibm-plex
+        noto-fonts-color-emoji
 
         corefonts # ms fonts
         vista-fonts # more ms fonts including calibri and consolas
