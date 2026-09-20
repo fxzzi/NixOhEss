@@ -46,6 +46,7 @@
       amdgpu.enable = true;
     };
     programs = {
+      osu.enable = true;
       mangohud.enable = true;
       steam.enable = true;
       proton-ge = {
