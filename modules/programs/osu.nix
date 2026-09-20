@@ -10,9 +10,10 @@ let
     mkEnableOption
     mkIf
     concatStringsSep
+    optional
     ;
   cfg = config.cfg.programs.osu;
-  otd = config.cfg.services.opentabletdriver;
+  otd = config.hardware.opentabletdriver;
   envVars = [
     "OSU_SDL3=1"
     "PIPEWIRE_ALSA=\"{ alsa.buffer-bytes=768 alsa.period-bytes=128 }\""
@@ -22,12 +23,12 @@ let
   osu = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
     # lower audio latency
     pipewire_latency = "32/44100";
-    command_prefix = concatStringsSep "" [
-      "env"
-      (concatStringsSep " " envVars)
-      (mkIf config.cfg.programs.mangohud.enable "mangohud")
-      (mkIf config.cfg.programs.obs-studio.enable "obs-gamecapture")
-    ];
+    command_prefix = concatStringsSep " " (
+      [ "env" ]
+      ++ envVars
+      ++ optional config.cfg.programs.mangohud.enable "mangohud"
+      ++ optional config.cfg.programs.obs-studio.enable "obs-gamecapture"
+    );
   };
 in
 {
