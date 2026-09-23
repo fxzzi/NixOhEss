@@ -29,7 +29,7 @@ in
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
           version = "615.71.09";
           sha256_64bit = "sha256-zc7tIrvrYSSNGm3qvCWWZz46ZQFpjucayNL9wo87cP4=";
-          openSha256 = "sha256-IbekQhE7cFfmnPZaLY9NDYcF7CoNZ+2Qb7sRd4EOgWM=";
+          openSha256 = "sha256-3gByMYIwFzRaLdDG+roCEOuKRRJDrljG9AlLnRZTirM=";
           usePersistenced = false;
           useSettings = false;
         };
