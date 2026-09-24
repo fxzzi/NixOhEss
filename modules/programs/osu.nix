@@ -25,10 +25,10 @@ let
         # uses sdl2 by default
         "OSU_SDL3=1"
         # https://github.com/ppy/osu-framework/pull/6724
-        "OSU_TEMP_TESTING_BASS_CONFIG_DEV_PERIOD=-64"
+        "OSU_TEMP_TESTING_BASS_CONFIG_DEV_PERIOD=-65"
       ]
-      ++ optional config.cfg.programs.mangohud.enable "mangohud"
       ++ optional config.cfg.programs.obs-studio.enable "obs-gamecapture"
+      ++ optional config.cfg.programs.mangohud.enable "mangohud"
     );
   };
 in
