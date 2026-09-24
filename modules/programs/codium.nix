@@ -5,7 +5,13 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf mkForce;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkForce
+    optionals
+    concatStringsSep
+    ;
   cfg = config.cfg.programs.codium;
 in
 {
@@ -16,9 +22,7 @@ in
 
   config = mkIf cfg.enable {
     hj.packages = [
-      (pkgs.vscodium.override {
-        commandLineArgs = config.cfg.programs.chromium.commonArgs;
-      }).fhs
+      pkgs.vscodium-fhs
     ];
     environment.sessionVariables = mkIf cfg.defaultEditor {
       EDITOR = mkForce "codium";
