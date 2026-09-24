@@ -6,6 +6,7 @@
       limine.timeout = 0.25;
     };
     hardware = {
+      opentabletdriver.enable = true;
       evoctl.enable = true;
       nvidia.enable = true;
       zenergy.enable = true;
@@ -64,7 +65,7 @@
       printing.enable = true;
     };
     programs = {
-      gpu-screen-recorder.enable = true;
+      # gpu-screen-recorder.enable = true;
       # gamescope.enable = true;
       osu.enable = true;
       smoothScroll.enable = false;
