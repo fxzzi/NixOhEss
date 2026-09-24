@@ -8,10 +8,6 @@
       [Disable Mouse Debouncing]
       MatchUdevType=mouse
       ModelBouncingKeys=1
-
-      [Disable Tablet Smoothing]
-      MatchUdevType=tablet
-      AttrTabletSmoothing=0
     '';
 
     services.udev = {
@@ -24,8 +20,8 @@
         # use the kyber i/o scheduler on ssd's.
         ACTION=="add|change", KERNEL=="nvme*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="kyber"
         # allow access to flash update mode of wacom tablets
-        SUBSYSTEM=="hidraw", ATTRS{idVendor}=="056a", TAG+="uaccess"
-        SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="0ac3", ATTR{idProduct}=="ff0f", TAG+="uaccess"
+        KERNEL=="hidraw*", ATTRS{idVendor}=="056a", TAG+="uaccess"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="0ac3", TAG+="uaccess"
       '';
     };
   };
