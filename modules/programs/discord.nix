@@ -6,15 +6,42 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf concatStringsSep;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    concatStringsSep
+    optionals
+    ;
   cfg = config.cfg.programs.discord;
 
-  commandLineArgs = concatStringsSep " " (
-    config.cfg.programs.chromium.commonArgs
-    ++ [
-      "--enable-blink-features=MiddleClickAutoscroll"
-    ]
-  );
+  disableFeatures = [
+    # stop allowing chromium / electron to adjust your mic gain
+    "WebRtcAllowInputVolumeAdjustment"
+  ];
+  enableFeatures = [
+    # vaapi info: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/gpu/vaapi.md
+    "AcceleratedVideoDecodeLinuxGL"
+    "AcceleratedVideoDecodeLinuxZeroCopyGL"
+    "AcceleratedVideoEncoder"
+    "VaapiOnNvidiaGPUs"
+    "WaylandLinuxDrmSyncobj" # fix flickering on nvidia
+    "MiddleClickAutoscroll"
+  ];
+
+  commandLineArgs = [
+    # hdr, wcg
+    "--enable-experimental-web-platform-features"
+    "--enable-blink-features=MiddleClickAutoscroll"
+  ]
+  ++ optionals (enableFeatures != [ ]) [
+    "--enable-features=${concatStringsSep "," enableFeatures}"
+  ]
+  ++ optionals (disableFeatures != [ ]) [
+    "--disable-features=${concatStringsSep "," disableFeatures}"
+  ]
+  ++ optionals (!config.cfg.programs.smoothScroll.enable) [
+    "--disable-smooth-scrolling"
+  ];
 
   # Use the below variables to create a list of fonts which can
   # be used in openasar quickcss.
