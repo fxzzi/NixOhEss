@@ -36,7 +36,6 @@ in
                 # decrease priority of the raw hardware devices
                 # without this, our rnnoise source tries to attach
                 # directly to this sink instead of our 1-ch mic.
-                "priority.driver" = 0;
                 "priority.session" = 0;
               };
             }
