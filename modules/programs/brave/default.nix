@@ -73,13 +73,6 @@ let
     terminal = false;
     icon = ./icons/via.svg;
   };
-  eightbitdo = pkgs.makeDesktopItem {
-    name = "8BitDo Web";
-    desktopName = "8BitDo Web";
-    exec = "brave-origin --app=https://web.8bitdo.com %U";
-    terminal = false;
-    icon = ./icons/8bitdo.svg;
-  };
 in
 {
   options.cfg.programs.brave = {
@@ -88,7 +81,6 @@ in
     scyrox-s-center.enable = mkEnableOption "scyrox-s-center";
     mchose-m-hub.enable = mkEnableOption "mchose-m-hub";
     via.enable = mkEnableOption "via";
-    eightbitdo.enable = mkEnableOption "8bitdo";
   };
   config = {
     hj = mkIf cfg.enable {
@@ -100,7 +92,6 @@ in
         (mkIf cfg.scyrox-s-center.enable scyrox-s-center)
         (mkIf cfg.mchose-m-hub.enable mchose-m-hub)
         (mkIf cfg.via.enable via)
-        (mkIf cfg.eightbitdo.enable eightbitdo)
       ];
     };
   };

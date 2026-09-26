@@ -34,8 +34,6 @@ url = "github:feel-co/hjem"
 
 [inputs.azzipkgs]
 url = "fazzi:azzipkgs"
-[inputs.evoctl-nix]
-url = "fazzi:evoctl-nix"
 [inputs.nvuv]
 url = "fazzi:nvuv"
 [inputs.startpage]

@@ -7,7 +7,6 @@
     };
     hardware = {
       opentabletdriver.enable = true;
-      evoctl.enable = true;
       nvidia.enable = true;
       zenergy.enable = true;
       v4l2.enable = true;
@@ -97,7 +96,6 @@
         enable = true;
         wootility.enable = true;
         scyrox-s-center.enable = true;
-        eightbitdo.enable = true;
       };
       startpage = {
         enable = true;
