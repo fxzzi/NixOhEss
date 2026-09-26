@@ -24,6 +24,9 @@ in
   config = {
     boot = {
       extraModulePackages = [
+        # patched snd-usb-audio containing EVO4 mixer quirks
+        # this lets ALSA expose all the hardware controls to the system
+        # https://lore.kernel.org/lkml/20260919151840.24371-1-arc@gmx.li/
         (config.boot.kernelPackages.callPackage "${self}/pkgs/snd-usb-audio/package.nix" { })
       ];
       # ignore errors from the USB controller for the EVO4.

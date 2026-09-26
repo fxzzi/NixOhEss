@@ -11,9 +11,9 @@
     "type": "github",
     "owner": "ryantm",
     "repo": "agenix",
-    "rev": "b027ee29d959fda4b60b57566d64c98a202e0feb",
-    "narHash": "sha256-9VnK6Oqai65puVJ4WYtCTvlJeXxMzAp/69HhQuTdl/I=",
-    "lastModified": 1770165109
+    "rev": "3683254a858be188d482661d2d40dce345497435",
+    "narHash": "sha256-M1UINOIb0bKg3qGSsHNyo+1Dw7k5Msog2ArYAUkSfag=",
+    "lastModified": 1790435407
   },
   "azzipkgs": {
     "type": "gitlab",
@@ -67,9 +67,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "c6f11721168908e3608b2517e84df62c9c35064f",
-    "narHash": "sha256-kTY3D2Gc3Fg9mkoIBnt2Oa6/AcuBR9q23mvduuhkE1U=",
-    "lastModified": 1790412692
+    "rev": "9a1ea29274f0ba7c771d6c7b4195c5c4d7efe7a4",
+    "narHash": "sha256-EDxpW+t2TWnuhH0fBnVMD6G4Es9cFm+Vnu80HejODYI=",
+    "lastModified": 1790431221
   },
   "niqspkgs": {
     "type": "github",
@@ -91,9 +91,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "181ec41f5a7feda87c9f19f3ad9cd0479c720347",
-    "narHash": "sha256-nXwdn7XQ/K0aN1HX/gk0RYQ7AlZKMZWcSLFpqVpvLgs=",
-    "lastModified": 1790413147
+    "rev": "3e62a5b9471a4c51537b4ab1ca3024656e49c5b0",
+    "narHash": "sha256-MH67dJxSoHbqfPQE4CZ0Ky/b/Rj5z8bF5b9JhetZMI4=",
+    "lastModified": 1790425616
   },
   "nixos-core": {
     "type": "github",
