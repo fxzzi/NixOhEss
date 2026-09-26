@@ -16,6 +16,8 @@ let
       pkgs.linuxKernel.packages.linux_zen
     else if cfg.type == "xanmod" then
       pkgs.linuxKernel.packages.linux_xanmod_latest
+    else if cfg.type == "rc" then
+      pkgs.linuxKernel.packages.linux_testing
     else
       throw "Unsupported kernel type.";
 in
@@ -26,6 +28,7 @@ in
       "zen"
       "lts"
       "xanmod"
+      "rc"
     ];
     default = if config.cfg.core.isLaptop then "lts" else "latest";
     description = "Selects which kernel to use";

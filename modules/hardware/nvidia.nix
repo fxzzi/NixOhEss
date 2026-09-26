@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -32,6 +33,12 @@ in
         #   openSha256 = "sha256-3gByMYIwFzRaLdDG+roCEOuKRRJDrljG9AlLnRZTirM=";
         #   usePersistenced = false;
         #   useSettings = false;
+        #   patchesOpen = [
+        #     (pkgs.fetchpatch {
+        #       url = "https://raw.githubusercontent.com/Frogging-Family/nvidia-all/refs/heads/master/nvidia-all-patches/615/kernel-7.3.patch";
+        #       sha256 = "sha256-Sx5ta+ijM7wsJGmTpJVcDrKLlKWeYTTv6vTkVDa+MvU=";
+        #     })
+        #   ];
         # };
         moduleParams = {
           nvidia = {
