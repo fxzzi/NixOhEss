@@ -19,13 +19,14 @@ let
   osu = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
     command_prefix = concatStringsSep " " (
       [
-        # this env var needs to be unset so that it can be
-        # derived from our bass dev period var instead.
-        "env --unset=PIPEWIRE_LATENCY"
+        "env"
         # uses sdl2 by default
         "OSU_SDL3=1"
-        # https://github.com/ppy/osu-framework/pull/6724
-        "OSU_TEMP_TESTING_BASS_CONFIG_DEV_PERIOD=-65"
+
+        "PIPEWIRE_QUANTUM=64/44100"
+        "PIPEWIRE_LATENCY=64/44100"
+        ''PIPEWIRE_ALSA="{ alsa.buffer-bytes=512 alsa.period-bytes=64 }"''
+
       ]
       ++ optional config.cfg.programs.obs-studio.enable "obs-gamecapture"
       ++ optional config.cfg.programs.mangohud.enable "mangohud"
