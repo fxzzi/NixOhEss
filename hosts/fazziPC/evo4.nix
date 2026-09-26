@@ -26,7 +26,12 @@ in
       extraModulePackages = [
         (config.boot.kernelPackages.callPackage "${self}/pkgs/snd-usb-audio/package.nix" { })
       ];
-      kernelModules = [ "snd-usb-audio" ];
+      # ignore errors from the USB controller for the EVO4.
+      # a kernel regression in 7.2 somewhere causes pipewire to fail
+      # to set the hardware volume, this fixes it.
+      extraModprobeConfig = ''
+        options snd_usb_audio quirk_flags=2708:0006:ignore_ctl_error
+      '';
     };
 
     systemd = {
