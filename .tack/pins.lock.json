@@ -11,9 +11,9 @@
     "type": "github",
     "owner": "ryantm",
     "repo": "agenix",
-    "rev": "3683254a858be188d482661d2d40dce345497435",
-    "narHash": "sha256-M1UINOIb0bKg3qGSsHNyo+1Dw7k5Msog2ArYAUkSfag=",
-    "lastModified": 1790435407
+    "rev": "654f73179924797b0d5307105398aedfcdc10800",
+    "narHash": "sha256-5T54NUBA0c1eo7a8MMT1GOuFYsDqqa91rLWp7l/xPC8=",
+    "lastModified": 1790460690
   },
   "azzipkgs": {
     "type": "gitlab",
@@ -51,9 +51,9 @@
     "type": "github",
     "owner": "cachix",
     "repo": "git-hooks.nix",
-    "rev": "59f4ca0d063a1a3ec722c88b51a33004862e5379",
-    "narHash": "sha256-PFD1nxptCXJyJoiYO1gf/5Vv43yqGpHtMC6LUhl9/pQ=",
-    "lastModified": 1789514889
+    "rev": "0d3997c4d3253505f77c9bcea63904bb575da3c5",
+    "narHash": "sha256-2dUuLTiQrf2gUFVLlayDq/hgluitplAMv6Y9bYwQQ+c=",
+    "lastModified": 1790091288
   },
   "hjem": {
     "type": "github",
@@ -83,17 +83,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "3a544c661c7cdcae4e8d9b40957276ab97169ae9",
-    "narHash": "sha256-4L6/qmhQh8uvjbRGJi5hh8BLVnX+1EeJyoqfnQmaIWQ=",
-    "lastModified": 1790396660
+    "rev": "b193ce18777d01469dbeb3b9c4110de2426e0edf",
+    "narHash": "sha256-srUVCAD22Bcbg6GJbZEijDI22HMD6Lo2qOoUKtH22dg=",
+    "lastModified": 1790483338
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "3e62a5b9471a4c51537b4ab1ca3024656e49c5b0",
-    "narHash": "sha256-MH67dJxSoHbqfPQE4CZ0Ky/b/Rj5z8bF5b9JhetZMI4=",
-    "lastModified": 1790425616
+    "rev": "6a96f605b9cc515d2029b61336415696df31674e",
+    "narHash": "sha256-ec+QBlI8opZGOo+DT5IFdGwq1FMPH2G27Wtn8swx2Rc=",
+    "lastModified": 1790489349
   },
   "nixos-core": {
     "type": "github",
@@ -105,9 +105,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1079315.e94cb152ed51/nixexprs.tar.zst",
-    "rev": "e94cb152ed51bd6e24eb4a41f1460252beb52cd2",
-    "narHash": "sha256-m4DGo58Fza5ImOegtWOeE18nhpSO1IGzsVA6Lpsb4zw="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1080189.e158d9ed9b51/nixexprs.tar.zst",
+    "rev": "e158d9ed9b51c98974c5e66e1ba1c9e0255fecaa",
+    "narHash": "sha256-VZHcT2wKLkApBCACQ2SH4P1jVZUbbOA7jWAGi1MIViw="
   },
   "nvf": {
     "type": "github",

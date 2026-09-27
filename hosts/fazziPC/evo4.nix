@@ -22,6 +22,7 @@ let
 in
 {
   config = {
+    hardware.alsa.enablePersistence = true;
     boot = {
       extraModulePackages = [
         # patched snd-usb-audio containing EVO4 mixer quirks
