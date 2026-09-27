@@ -18,7 +18,6 @@ in
       networkmanager = {
         enable = true;
         wifi = {
-          backend = "iwd";
           powersave = config.cfg.core.isLaptop;
         };
         dns = "systemd-resolved";
