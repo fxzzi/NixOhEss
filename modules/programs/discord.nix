@@ -160,8 +160,9 @@ in
         };
       };
       packages = [
-        (inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}.discord.override {
+        (pkgs.discord.override {
           inherit commandLineArgs;
+          useFHSEnv = false;
           withOpenASAR = true;
           withEquicord = true;
           equicord = inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}.equicord;
