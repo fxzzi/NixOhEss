@@ -23,8 +23,8 @@ let
         # uses sdl2 by default
         "OSU_SDL3=1"
 
-        "PIPEWIRE_QUANTUM=64/44100"
-        "PIPEWIRE_LATENCY=64/44100"
+        "PIPEWIRE_QUANTUM=32/44100"
+        "PIPEWIRE_LATENCY=32/44100"
         ''PIPEWIRE_ALSA="{ alsa.buffer-bytes=512 alsa.period-bytes=64 }"''
 
       ]
