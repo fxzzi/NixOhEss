@@ -9,6 +9,8 @@ let
   alsa-ucm-conf' = pkgs.runCommand "audient-evo4-ucm-conf" { } ''
     cp -r --no-preserve=all ${pkgs.alsa-ucm-conf} $out
 
+    # the mixer control name was fixed by one of the patches.
+    # correct it in alsa-ucm-conf too.
     substituteInPlace \
       $out/share/alsa/ucm2/USB-Audio/Audient/Audient-EVO4-HiFi-0006.conf \
       --replace-fail \
@@ -28,14 +30,10 @@ in
         # patched snd-usb-audio containing EVO4 mixer quirks
         # this lets ALSA expose all the hardware controls to the system
         # https://lore.kernel.org/lkml/20260919151840.24371-1-arc@gmx.li/
+        # also fixes hardware volume control not working properly
+        # https://lore.kernel.org/regressions/CANBVYRCL=8QdLxGg4S6qrahrFtwJxhv-aSGpW7-1S=+iOe4ZGA@mail.gmail.com/T/#u
         (config.boot.kernelPackages.callPackage "${self}/pkgs/snd-usb-audio/package.nix" { })
       ];
-      # ignore errors from the USB controller for the EVO4.
-      # a kernel regression in 7.2 somewhere causes pipewire to fail
-      # to set the hardware volume, this fixes it.
-      extraModprobeConfig = ''
-        options snd_usb_audio quirk_flags=2708:0006:ignore_ctl_error
-      '';
     };
 
     systemd = {
