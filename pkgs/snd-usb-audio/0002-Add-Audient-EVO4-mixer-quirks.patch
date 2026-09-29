@@ -1,7 +1,7 @@
-From 2887d19e5e4e56c685df6bcaaf22cda8379085af Mon Sep 17 00:00:00 2001
+From 60bcc5d01c1ef6a3a9136b33d0d0d291a1c1ed2f Mon Sep 17 00:00:00 2001
 From: Christian Ruppert <arc@gmx.li>
 Date: Sat, 19 Sep 2026 17:18:39 +0200
-Subject: [PATCH 2/2] Add Audient EVO4 mixer quirks
+Subject: [PATCH 2/3] Add Audient EVO4 mixer quirks
 
 The controls enumerated by the Audient EVO4 are incomplete. Add missing
 controls for
