@@ -94,6 +94,9 @@ in
         # don't apply this on laptops though, because it'll mess with
         # keys like brightness, micmute, etc.
         kb_options = optionalString (!config.cfg.core.isLaptop) "fkeys:basic_13-24";
+
+        # tablet will follow the active monitor.
+        tablet.output = "current";
       };
       misc = {
         # Disable hyprland wallpapers etc
