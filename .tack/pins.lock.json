@@ -11,9 +11,9 @@
     "type": "github",
     "owner": "ryantm",
     "repo": "agenix",
-    "rev": "b485690a7c97b3793a41dd57edfb05ac84343813",
-    "narHash": "sha256-ftyJcr21FzMLq4hnzg3COo7gITOkJ4j+ey0miWCTU3U=",
-    "lastModified": 1790555459
+    "rev": "3daa710894355fa2fad8243380af373a2b4046ef",
+    "narHash": "sha256-n7wew722m1OTBT9DOIMxNX/NF4zfsSUABAO5eW3wikE=",
+    "lastModified": 1790734419
   },
   "azzipkgs": {
     "type": "gitlab",
@@ -83,17 +83,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "b193ce18777d01469dbeb3b9c4110de2426e0edf",
-    "narHash": "sha256-srUVCAD22Bcbg6GJbZEijDI22HMD6Lo2qOoUKtH22dg=",
-    "lastModified": 1790483338
+    "rev": "8ccccbcd68d901665ba456f72bde6c7ed950a62a",
+    "narHash": "sha256-FDUQAs0kYI2qg5Pkfm3aqZF1ZutuagvRHTQwaKs/qtM=",
+    "lastModified": 1790744223
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "5410af311dbcd478a5c9c5ebe74b730d60e4eb50",
-    "narHash": "sha256-qPR/PDUkdF3ZcgStDFC01iAsgEqcIbrMcT/SRGmORcg=",
-    "lastModified": 1790703588
+    "rev": "6a60ccd7ba6f43b40ea4bb45e905b2d4596a11a5",
+    "narHash": "sha256-OTR/sEdqetEuPcWQJRjFz0+XRuYgBXPEAAXe12D3IeM=",
+    "lastModified": 1790763193
   },
   "nixos-core": {
     "type": "github",
