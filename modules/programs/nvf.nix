@@ -14,6 +14,7 @@ in
   config = mkIf cfg.enable {
     environment.sessionVariables = {
       EDITOR = "nvim";
+      MANPAGER = "nvim -n --cmd 'set laststatus=0 nonumber noruler noshowcmd' +Man!";
     };
     programs.nvf = {
       enable = true;

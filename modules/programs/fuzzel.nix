@@ -18,7 +18,15 @@ in
   config = mkIf cfg.enable {
     hj = {
       packages = [
-        pkgs.fuzzel
+        (pkgs.fuzzel.overrideAttrs (oldAttrs: {
+          patches = (oldAttrs.patches or [ ]) ++ [
+            (pkgs.fetchpatch {
+              url = "https://codeberg.org/dnkl/fuzzel/pulls/792.patch";
+              hash = "sha256-+h1kp81kP+aIc3dDDrrySmT/Rn0Yiojq5OdHaxdJdPA=";
+              excludes = [ "CHANGELOG.md" ];
+            })
+          ];
+        }))
       ];
       xdg.config.files."fuzzel/fuzzel.ini" = {
         generator = lib.generators.toINI { };
