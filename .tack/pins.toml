@@ -27,7 +27,8 @@ git-hooks   = ["git-hooks", "pre-commit-hooks"]
 #   unpack          fixed-only: tarball or file
 [inputs.nixpkgs]
 # url = "channel:nixos-unstable"
-url = "github:NixOS/nixpkgs/nixos-unstable"
+# url = "github:NixOS/nixpkgs/nixos-unstable"
+url = "github:NixOS/nixpkgs/7a0f122f5090cf4c2ade2a13a0e229d4e19ba71f"
 [inputs.nixos-core]
 url = "github:manic-systems/nixos-core"
 [inputs.hjem]
