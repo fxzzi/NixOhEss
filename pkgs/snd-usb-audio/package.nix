@@ -16,6 +16,7 @@ pkgs.stdenv.mkDerivation {
   patches = [
     ./0001-Fix-Audient-EVO4-master-playback-control-name.patch
     ./0002-Add-Audient-EVO4-mixer-quirks.patch
+    ./0003-usb-quirks-add-quirk-to-fix-audient-devices.patch
   ];
 
   buildPhase = ''
