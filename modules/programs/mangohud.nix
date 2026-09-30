@@ -61,7 +61,7 @@ in
             fps_limit = mkIf (cfg.refreshRate != null) "${toString fpsLimit},0";
             vsync = 1;
             gl_vsync = 0;
-            vulkan_present_mode = "immediate";
+            vulkan_present_mode = "FIFO_LATEST_READY";
             preset = "0,1,2";
             toggle_hud = "Shift_R+F12";
             toggle_hud_position = "Shift_R+F11";

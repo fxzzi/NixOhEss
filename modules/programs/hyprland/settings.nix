@@ -197,8 +197,12 @@ in
           -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
           hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
           hl.window_rule({ match = { class = "chromium-browser" }, no_auto_hdr = true })
-          -- disable HDR tonemapping for now to get DS off and on to more closely match
-          hl.window_rule({ match = { class = ".*"}, tonemap = off })
+          hl.window_rule({ match = { class = ".*"}, 
+            -- disable HDR tonemapping for now to get DS off and on to more closely match
+            tonemap = "off",
+            -- thank god this can be disabled
+            no_xdg_drags = true,
+          })
 
           -- Window rules for games
           -- emulators and similar apps that should be tagged as games, but not forced fullscreen
