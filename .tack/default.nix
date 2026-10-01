@@ -1,8 +1,11 @@
 # SPDX-License-Identifier: EUPL-1.2
 # tack-managed resolver. delete this line to take ownership; tack will leave it alone afterwards.
+# tack-resolver: patched tag signedBy
 
 let
   inherit (builtins)
+    addErrorContext
+    all
     attrNames
     attrValues
     concatMap
@@ -11,6 +14,7 @@ let
     filter
     foldl'
     fromJSON
+    hashFile
     head
     intersectAttrs
     isList
@@ -20,52 +24,90 @@ let
     match
     pathExists
     readFile
+    split
+    stringLength
     substring
     tail
     trace
     ;
+
+  pins = fromTOML (readFile ./pins.toml);
+  lock = fromJSON (readFile ./pins.lock.json);
+  declared = pins.inputs or { };
+  all_follow_raw = pins.all_follow or { };
+
+  # flatten `target = [aliases]` rows alongside `alias = "target"` rows
+  all_follow = listToAttrs (
+    concatMap (
+      key:
+      let
+        val = all_follow_raw.${key};
+      in
+      if isList val then
+        [
+          {
+            name = key;
+            value = key;
+          }
+        ]
+        ++ map (a: {
+          name = a;
+          value = key;
+        }) val
+      else if isString val then
+        [
+          {
+            name = key;
+            value = val;
+          }
+        ]
+      else
+        [ ]
+    ) (attrNames all_follow_raw)
+  );
+
+  knownTypes = [
+    "github"
+    "gitlab"
+    "git"
+    "tarball"
+    "path"
+    "indirect"
+  ];
+
+  fetchTreeAttrs = {
+    type = null;
+    owner = null;
+    repo = null;
+    host = null;
+    url = null;
+    id = null;
+    ref = null;
+    rev = null;
+    narHash = null;
+    lastModified = null;
+    revCount = null;
+    submodules = null;
+    shallow = null;
+    allRefs = null;
+    name = null;
+    lfs = null;
+    exportIgnore = null;
+    verifyCommit = null;
+    keytype = null;
+    publicKey = null;
+    publicKeys = null;
+    dirtyRev = null;
+    dirtyShortRev = null;
+    unpack = null;
+    treeHash = null;
+  };
 
   call =
     {
       overrides ? { },
     }:
     let
-      pins = fromTOML (readFile ./pins.toml);
-      lock = fromJSON (readFile ./pins.lock.json);
-      all_follow_raw = pins.all_follow or { };
-
-      # flatten `target = [aliases]` rows alongside `alias = "target"` rows
-      all_follow = foldl' (
-        acc: key:
-        let
-          val = all_follow_raw.${key};
-        in
-        if isList val then
-          acc
-          // {
-            ${key} = key;
-          }
-          // listToAttrs (
-            map (a: {
-              name = a;
-              value = key;
-            }) val
-          )
-        else if isString val then
-          acc // { ${key} = val; }
-        else
-          acc
-      ) { } (attrNames all_follow_raw);
-
-      knownTypes = [
-        "github"
-        "gitlab"
-        "git"
-        "tarball"
-        "path"
-        "indirect"
-      ];
-
       # path nodes are convenience pins, so return the live local path directly
       # because fetchTree rejects unlocked paths in pure eval
       fetchPin =
@@ -85,7 +127,7 @@ let
           else if !(elem (node.type or "") knownTypes) then
             throw "tack: unknown lock type '${node.type or "?"}' for pin '${name}'"
           else
-            fetchTree node;
+            fetchTree (intersectAttrs fetchTreeAttrs node);
 
       fetchFixed =
         { name, entry }:
@@ -108,6 +150,54 @@ let
           };
         in
         if (entry.unpack or "file") == "tarball" then unpacked.outPath + "/" + name else raw.outPath;
+
+      # tack builds patched trees and adds them to the store, so eval only
+      # fetches a locked path and never builds
+      fetchPatched =
+        { name, pin }:
+        let
+          node = lock.${name} or { };
+          tree =
+            node.patched
+              or (throw "tack: pin '${name}' has patches but no patched tree, run tack update ${name}");
+          vendored =
+            digest:
+            let
+              file = ./. + "/${digest.file}";
+            in
+            if pathExists file then
+              file
+            else
+              throw "tack: patch ${digest.file} for pin '${name}' is missing, if this is a flake make sure it is tracked by git (git add .tack/patches)";
+          current =
+            map (digest: digest.source) tree.patches == pin.patches
+            && all (digest: hashFile "sha256" (vendored digest) == digest.sha256) tree.patches;
+          fetched =
+            addErrorContext
+              "tack: could not read the patched tree of '${name}', run tack materialize ${name}, or tack update ${name} if the lock was edited by hand"
+              (
+                fetchTree (
+                  {
+                    type = "path";
+                    inherit (tree) path narHash;
+                  }
+                  // (if tree ? lastModified then { inherit (tree) lastModified; } else { })
+                )
+              );
+        in
+        if !current then
+          throw "tack: patches for '${name}' changed since the lock was written, run tack update ${name}"
+        else
+          fetched
+          // (
+            if node ? rev then
+              {
+                dirtyRev = node.rev + "-dirty";
+                dirtyShortRev = substring 0 7 node.rev + "-dirty";
+              }
+            else
+              { }
+          );
 
       resolveSpec =
         { upLock, spec }:
@@ -148,17 +238,29 @@ let
             };
 
       followsFor =
-        pin:
+        { name, pin }:
         let
           rules = removeAttrs all_follow (pin.exclude_follow or [ ]);
+          # a rule into this pin's own inputs would make that input follow itself
+          prefix = name + "/";
+          intoSelf = filter (k: substring 0 (stringLength prefix) rules.${k} == prefix) (attrNames rules);
         in
         {
-          level = rules // (pin.follows or { });
+          level = removeAttrs rules intoSelf // (pin.follows or { });
           deep = rules;
         };
 
+      # `pin/input/...` walks the inputs that pin was evaluated with, as a flake.nix follows does
       resolveFollows = mapAttrs (
-        _: target: self.${target} or (throw "tack: follows target '${target}' is not a pin")
+        _: target:
+        let
+          path = filter isString (split "/" target);
+          pin = self.${head path} or (throw "tack: follows target '${head path}' is not a pin");
+        in
+        foldl' (
+          node: key:
+          (node.inputs or { }).${key} or (throw "tack: follows target '${target}' has no input '${key}'")
+        ) pin (tail path)
       );
 
       # follows key is `flake:name`, `tack:name`, or bare `name`
@@ -323,13 +425,17 @@ let
         };
 
       evalTopFlake =
-        { sourceInfo, pin }:
+        {
+          sourceInfo,
+          name,
+          pin,
+        }:
         let
           flakeDir = sourceInfo.outPath + (if pin ? dir then "/" + pin.dir else "");
           upLockPath = flakeDir + "/flake.lock";
           upLock = if pathExists upLockPath then fromJSON (readFile upLockPath) else null;
           rootNode = if upLock != null then upLock.root else null;
-          f = followsFor pin;
+          f = followsFor { inherit name pin; };
         in
         evalFlake {
           inherit sourceInfo flakeDir upLock;
@@ -341,6 +447,7 @@ let
       evalFetch =
         {
           sourceInfo,
+          name,
           pin,
           subdir,
         }:
@@ -349,7 +456,7 @@ let
           tackPinsPath = path + "/.tack/pins.toml";
           hasTack = pathExists tackPinsPath;
           upPins = if hasTack then fromTOML (readFile tackPinsPath) else { };
-          f = followsFor pin;
+          f = followsFor { inherit name pin; };
           # a fetch drill-in is tack-only
           tackOverrides = resolveFollows (
             intersectAttrs (upPins.inputs or { }) (followsForSide {
@@ -357,9 +464,12 @@ let
               follows = f.level;
             })
           );
+          supportsOverrides = (upPins.tack or { }).recomposable or false;
         in
         # only override tack files within a `fetch`, since there's no flake.lock
-        if hasTack && tackOverrides != { } then
+        if hasTack && tackOverrides != { } && !supportsOverrides then
+          trace "tack: ${path}: not marked recomposable (set [tack] recomposable = true); overrides will not reach upstream" path
+        else if hasTack && tackOverrides != { } then
           let
             upstream = import (path + "/.tack");
           in
@@ -375,7 +485,6 @@ let
         { name, pin }:
         let
           pinType = pin.type or (if pin.flake or true then "flake" else "fetch");
-          subdir = if pin ? dir then "/" + pin.dir else "";
         in
         if pinType == "fixed" then
           fetchFixed {
@@ -384,14 +493,21 @@ let
           }
         else
           let
-            sourceInfo = fetchPin name;
+            sourceInfo =
+              if (pin.patches or [ ]) == [ ] then fetchPin name else fetchPatched { inherit name pin; };
+            subdir = if pin ? dir then "/" + pin.dir else "";
           in
           if pinType == "flake" then
-            evalTopFlake { inherit sourceInfo pin; }
+            evalTopFlake { inherit sourceInfo name pin; }
           else
-            evalFetch { inherit sourceInfo pin subdir; };
-
-      declared = pins.inputs or { };
+            evalFetch {
+              inherit
+                sourceInfo
+                name
+                pin
+                subdir
+                ;
+            };
 
       # undeclared lock entries are synthesised into toplevels by auto-dedup
       # only when referenced as [all_follow] targets
@@ -409,7 +525,7 @@ let
         in
         if pathExists (sourceInfo.outPath + "/flake.nix") then
           evalTopFlake {
-            inherit sourceInfo;
+            inherit sourceInfo name;
             pin = { };
           }
         else

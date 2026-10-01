@@ -1,4 +1,24 @@
 {
+  "$declared": {
+    "KvLibadwaita": "github:GabePoel/KvLibadwaita",
+    "agenix": "github:ryantm/agenix",
+    "azzipkgs": "gitlab:fazzi/azzipkgs",
+    "beer": "github:Michael-C-Buckley/beer",
+    "creamlinux": "github:fxzzi/creamlinux-installer",
+    "hjem": "github:feel-co/hjem",
+    "hyprland": "github:hyprwm/Hyprland",
+    "niqspkgs": "github:diniamo/niqspkgs",
+    "nix-gaming": "github:fufexan/nix-gaming",
+    "nixcord": "github:4evy/nixcord",
+    "nixos-core": "github:manic-systems/nixos-core",
+    "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
+    "nvf": "github:NotAShelf/nvf",
+    "nvuv": "gitlab:fazzi/nvuv",
+    "rags": "github:NotAShelf/rags/notashelf/push-tloqkvsrzlsm",
+    "startpage": "gitlab:fazzi/startpage",
+    "tack": "github:manic-systems/tack",
+    "walls": "gitlab:fazzi/walls"
+  },
   "KvLibadwaita": {
     "type": "github",
     "owner": "GabePoel",
@@ -104,12 +124,24 @@
     "lastModified": 1790670188
   },
   "nixpkgs": {
-    "type": "github",
-    "owner": "NixOS",
-    "repo": "nixpkgs",
+    "type": "tarball",
+    "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "rev": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
-    "narHash": "sha256-69xHQhAeMAD2wDXO7T2pcOZIF9Sga2W+JkmY2a11Ops=",
-    "lastModified": 1790822859
+    "narHash": "sha256-VBA0QerzzmL+4wxgtwiCdiLwLpJg2/9xOxhgO3BRJQA=",
+    "patched": {
+      "path": "/nix/store/3ahiv1a4xv6lm7pcgjv764k3f8p1nvhm-source",
+      "narHash": "sha256-oaQ+DrQt+QksA26aKO7cC+QcYGE5PwT9hSvbQS7sjs0=",
+      "lastModified": 315532800,
+      "patches": [
+        {
+          "source": "https://github.com/NixOS/nixpkgs/pull/568957",
+          "url": "https://github.com/NixOS/nixpkgs/pull/568957",
+          "file": "patches/nixpkgs/pr-568957.patch",
+          "sha256": "2a70035aec4c07584bec67d7e30b58d41ba561c1a8cc5c507a36931ea1e6ef84",
+          "head": "087569c4305f2ab4f507124678f7a7e099005ad7"
+        }
+      ]
+    }
   },
   "nvf": {
     "type": "github",
@@ -142,6 +174,14 @@
     "rev": "1e53a0945177c49b21111bf2d40c3be4806729cd",
     "narHash": "sha256-o4E6xuMXK+tCJuM2gHJBU/5RBPrjOM6sFT/91Z0hSKY=",
     "lastModified": 1787875277
+  },
+  "tack": {
+    "type": "github",
+    "owner": "manic-systems",
+    "repo": "tack",
+    "rev": "2bd8466510898be1d0bf0a105426463c2ddd8366",
+    "narHash": "sha256-zMmFIA2c9WLzgOHje3OnBI9NkrgCBjx1cck1jGoTRZE=",
+    "lastModified": 1790893986
   },
   "walls": {
     "type": "gitlab",
