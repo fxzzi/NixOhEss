@@ -152,14 +152,11 @@ in
             os.execute("pgrep --quiet Discord && pkill -9 Discord")
           end)
 
-          -- set primary monitor in both monitor events to be safe
+          -- set primary monitor for xwayland apps too.
           if ${boolToString multiMonitor} then
-            local function set_primary()
+            hl.on("monitor.layout_changed", function()
               hl.exec_cmd("${getExe pkgs.xrandr} --output ${cfg.defaultMonitor} --primary")
-            end
-            hl.on("monitor.added", set_primary)
-            hl.on("monitor.removed", set_primary)
-            hl.on("config.reloaded", set_primary)
+            end)
           end
 
           hl.layer_rule({ match = { namespace = "launcher" }, blur = true, ignore_alpha = 0 })
