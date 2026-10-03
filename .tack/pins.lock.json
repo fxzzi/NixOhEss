@@ -111,9 +111,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "1c47afb71426fa2b97b562ff5e50527075dc0110",
-    "narHash": "sha256-R7P+jKdK0iZwHv/V1jeTfBigqhLYwoIKc78mSHtfNAA=",
-    "lastModified": 1791007510
+    "rev": "c0e76a9ddc0f86860b2fc3fc027fc83fec5618c0",
+    "narHash": "sha256-mPa20rgp6cUP6khDAYdOtiSt0gBfG/fHQH/Ifsa94bA=",
+    "lastModified": 1791067261
   },
   "nixos-core": {
     "type": "github",
@@ -125,7 +125,7 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1083223.c59305bab206/nixexprs.tar.zst?rev=c59305bab2065cfecc4944690d9eedbb56f3a9fa&lastModified=1790822859",
     "rev": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
     "narHash": "sha256-VBA0QerzzmL+4wxgtwiCdiLwLpJg2/9xOxhgO3BRJQA=",
     "patched": {
@@ -179,9 +179,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "b1fc7d5d34a43931ef1206aa635c20d4c3e3e386",
-    "narHash": "sha256-5q5nsALiZTavGBtJP/YWe1RMPCDf5PL4JO0NY85sUNw=",
-    "lastModified": 1790979535
+    "rev": "4a8b68df58488b311840eb0244c75b4857871789",
+    "narHash": "sha256-ST/08SMwfjtXeP/+72GJYVFkO2xT6PDU5ofh9Gh9IJ8=",
+    "lastModified": 1791058919
   },
   "walls": {
     "type": "gitlab",
