@@ -5,10 +5,10 @@
       packages = with pkgs; [
         deluge
         stremio-linux-shell
-        cemu
+        # cemu
       ];
     };
     boot.loader.limine.secureBoot.enable = true;
-    time.timeZone = "Europe/Istanbul";
+    # time.timeZone = "Europe/Istanbul";
   };
 }

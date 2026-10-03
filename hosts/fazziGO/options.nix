@@ -46,12 +46,12 @@
       amdgpu.enable = true;
     };
     programs = {
-      mangohud.enable = true;
-      steam.enable = true;
-      proton-ge = {
-        enable = true;
-        nativeWayland = true;
-      };
+      # mangohud.enable = true;
+      # steam.enable = true;
+      # proton-ge = {
+      #   enable = true;
+      #   nativeWayland = true;
+      # };
       smoothScroll.enable = false;
       nvf.enable = true;
       adb.enable = true;
