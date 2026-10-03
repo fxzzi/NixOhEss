@@ -71,9 +71,9 @@
     "type": "github",
     "owner": "cachix",
     "repo": "git-hooks.nix",
-    "rev": "0d3997c4d3253505f77c9bcea63904bb575da3c5",
-    "narHash": "sha256-2dUuLTiQrf2gUFVLlayDq/hgluitplAMv6Y9bYwQQ+c=",
-    "lastModified": 1790091288
+    "rev": "a0e4241b51206fbcbf52fd322eb5f0cd80f153c4",
+    "narHash": "sha256-XN3sDtn8TU9hAc9xqZ+SqRB/HHm2wjxM6aSWYLJU+oo=",
+    "lastModified": 1790500375
   },
   "hjem": {
     "type": "github",
@@ -87,9 +87,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "8e9a538fb08dafa094309d3025ac5ec48b9879fe",
-    "narHash": "sha256-QWs5eh6SUO2bWqlxTAPFopXpEpnp0DjYfyqNCEsGCuo=",
-    "lastModified": 1790956643
+    "rev": "9dc5398d14a090b4d2e69380ad22d2410ba10090",
+    "narHash": "sha256-ru+ZkfOriyjrRuktGKKa6ngJ3SLO1eNJK5b2k7eqi9g=",
+    "lastModified": 1791051181
   },
   "niqspkgs": {
     "type": "github",
@@ -111,9 +111,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "430676f81ddefd114f43254a1ae83b75963ddcfc",
-    "narHash": "sha256-GJ+pEcvjbnKXtIN67i+e4paMujahuWL2Ps4pVz9GLHw=",
-    "lastModified": 1790957230
+    "rev": "1c47afb71426fa2b97b562ff5e50527075dc0110",
+    "narHash": "sha256-R7P+jKdK0iZwHv/V1jeTfBigqhLYwoIKc78mSHtfNAA=",
+    "lastModified": 1791007510
   },
   "nixos-core": {
     "type": "github",
@@ -179,9 +179,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "4aaed84df55c1f116ccd81d7bc0fb818a068955f",
-    "narHash": "sha256-5fc6+wvlE5yUPkrbgi9xSWsaVRA54qLuMot4sCoLm2E=",
-    "lastModified": 1790920390
+    "rev": "b1fc7d5d34a43931ef1206aa635c20d4c3e3e386",
+    "narHash": "sha256-5q5nsALiZTavGBtJP/YWe1RMPCDf5PL4JO0NY85sUNw=",
+    "lastModified": 1790979535
   },
   "walls": {
     "type": "gitlab",
