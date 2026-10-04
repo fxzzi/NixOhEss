@@ -13,9 +13,9 @@ let
   cpu_temp = "${k10temp_hwmon}/temp1_input";
   gpu_temp = "/tmp/nvidia-temp";
   minTemp = 35;
-  maxTemp = 90;
+  maxTemp = 95;
   minPwm = 32;
-  maxPwm = 255;
+  maxPwm = 228;
 in
 {
   config = {
