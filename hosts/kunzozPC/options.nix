@@ -49,6 +49,7 @@
       zenergy.enable = true;
     };
     programs = {
+      osu.enable = true;
       codium = {
         enable = true;
         # kunzoz is noob and needs gui editor
