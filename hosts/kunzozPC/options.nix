@@ -47,6 +47,7 @@
       amdgpu.enable = true;
       # scanning.enable = true;
       zenergy.enable = true;
+      opentabletdriver.enable = true;
     };
     programs = {
       osu.enable = true;
