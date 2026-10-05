@@ -22,7 +22,7 @@ in
             follow = "mouse";
             width = "(256,448)";
             origin = "top-right";
-            offset = "(2,2)";
+            offset = "(4,4)";
             notification_limit = 0;
             progress_bar = true;
             progress_bar_height = 10;
@@ -34,7 +34,7 @@ in
             padding = 6;
             horizontal_padding = 6;
             text_icon_padding = 6;
-            frame_width = 1;
+            frame_width = 2;
             gap_size = 2;
             separator_color = "frame";
             sort = true;
