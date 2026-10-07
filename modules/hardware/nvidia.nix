@@ -27,19 +27,13 @@ in
         nvidiaSettings = false; # useless on wayland still
         branch = "bleeding_edge"; # newest of latest and beta
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
-        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        #   version = "615.71.09";
-        #   sha256_64bit = "sha256-zc7tIrvrYSSNGm3qvCWWZz46ZQFpjucayNL9wo87cP4=";
-        #   openSha256 = "sha256-3gByMYIwFzRaLdDG+roCEOuKRRJDrljG9AlLnRZTirM=";
-        #   usePersistenced = false;
-        #   useSettings = false;
-        #   patchesOpen = [
-        #     (pkgs.fetchpatch {
-        #       url = "https://raw.githubusercontent.com/Frogging-Family/nvidia-all/refs/heads/master/nvidia-all-patches/615/kernel-7.3.patch";
-        #       sha256 = "sha256-Sx5ta+ijM7wsJGmTpJVcDrKLlKWeYTTv6vTkVDa+MvU=";
-        #     })
-        #   ];
-        # };
+        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          version = "615.78.08";
+          sha256_64bit = "sha256-Pj9t3cLudnoIGFMAr3vjyyhuznZpjS3eNSRZl4LQf/4=";
+          openSha256 = "sha256-HBINiOjL0ZJLIAJeNIBYHBnwgUXtNwPPtnFpAI1YwF4=";
+          usePersistenced = false;
+          useSettings = false;
+        };
         moduleParams = {
           nvidia = {
             NVreg_UsePageAttributeTable = 1; # why this isn't default is beyond me.
