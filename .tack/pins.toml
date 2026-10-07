@@ -62,7 +62,8 @@ url = "github:NotAShelf/rags/notashelf/push-tloqkvsrzlsm"
 url = "github:Michael-C-Buckley/beer"
 
 [inputs.hyprland]
-url = "github:hyprwm/Hyprland"
+url     = "github:hyprwm/Hyprland"
+patches = ["https://github.com/hyprwm/Hyprland/pull/16494"]
 
 [inputs.agenix]
 url = "github:ryantm/agenix"
