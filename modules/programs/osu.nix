@@ -24,7 +24,7 @@ let
         "OSU_SDL3=1"
 
         "PIPEWIRE_QUANTUM=64/44100"
-        "PIPEWIRE_LATENCY=64/44100"
+        # "PIPEWIRE_LATENCY=64/44100"
         ''PIPEWIRE_ALSA="{ alsa.buffer-bytes=768 alsa.period-bytes=128 }"''
 
       ]
