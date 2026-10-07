@@ -18,10 +18,10 @@
       # kdeconnect.enable = true;
       nvuv = {
         enable = true;
-        maxClock = 1815;
+        maxClock = 1845;
         coreOffset = 205;
         memOffset = 900;
-        powerLimit = 160;
+        powerLimit = 165;
         tempMonitor = {
           enable = true;
         };
@@ -70,7 +70,7 @@
       smoothScroll.enable = false;
       proton-ge = {
         enable = true;
-        nativeWayland = true;
+        # nativeWayland = true;
       };
       mangohud = {
         enable = true;
