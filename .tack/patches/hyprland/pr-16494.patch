@@ -1,0 +1,2038 @@
+diff --git a/hyprtester/CMakeLists.txt b/hyprtester/CMakeLists.txt
+index 59110ed997c..4f14976fa24 100644
+--- a/hyprtester/CMakeLists.txt
++++ b/hyprtester/CMakeLists.txt
+@@ -102,6 +102,7 @@ function(clientNew sourceName)
+ endfunction()
+ 
+ protocolnew("staging/pointer-warp" "pointer-warp-v1" false)
++protocolnew("unstable/pointer-constraints" "pointer-constraints-unstable-v1" false)
+ protocolnew("staging/fractional-scale" "fractional-scale-v1" false)
+ protocolnew("stable/xdg-shell" "xdg-shell" false)
+ protocolnew("staging/xdg-activation" "xdg-activation-v1" false)
+@@ -110,6 +111,7 @@ protocolnew("../protocols" "wlr-foreign-toplevel-management-unstable-v1" true)
+ protocolnew("${HYPRLAND_PROTOCOLS}/protocols" "hyprland-toplevel-export-v1" true)
+ 
+ clientNew("pointer-warp" PROTOS "pointer-warp-v1" "xdg-shell")
++clientNew("pointer-constraints" PROTOS "pointer-constraints-unstable-v1" "xdg-shell")
+ clientNew("surface-scale-transform" PROTOS "fractional-scale-v1" "xdg-shell")
+ clientNew("pointer-scroll" PROTOS "xdg-shell")
+ clientNew("child-window" PROTOS "xdg-shell")
+diff --git a/hyprtester/clients/pointer-constraints.cpp b/hyprtester/clients/pointer-constraints.cpp
+new file mode 100644
+index 00000000000..f8e03e1fd52
+--- /dev/null
++++ b/hyprtester/clients/pointer-constraints.cpp
+@@ -0,0 +1,260 @@
++#include <format>
++#include <iostream>
++#include <sstream>
++#include <string>
++#include <sys/mman.h>
++#include <unistd.h>
++
++#include <wayland-client.h>
++#include <wayland.hpp>
++#include <xdg-shell.hpp>
++#include <pointer-constraints-unstable-v1.hpp>
++#include <hyprutils/memory/SharedPtr.hpp>
++#include <hyprutils/os/FileDescriptor.hpp>
++
++using namespace Hyprutils::Memory;
++using namespace Hyprutils::OS;
++
++struct SWlState {
++    wl_display*                               display = nullptr;
++    CSharedPointer<CCWlRegistry>              registry;
++    CSharedPointer<CCWlCompositor>            compositor;
++    CSharedPointer<CCWlSubcompositor>         subcompositor;
++    CSharedPointer<CCWlShm>                   shm;
++    CSharedPointer<CCWlSeat>                  seat;
++    CSharedPointer<CCXdgWmBase>               shell;
++    CSharedPointer<CCZwpPointerConstraintsV1> constraints;
++    CSharedPointer<CCWlSurface>               root, child;
++    CSharedPointer<CCWlSubsurface>            subsurface;
++    CSharedPointer<CCXdgSurface>              xdgSurface;
++    CSharedPointer<CCXdgToplevel>             toplevel;
++    CSharedPointer<CCWlBuffer>                rootBuffer, childBuffer;
++    CSharedPointer<CCWlPointer>               pointer;
++    CSharedPointer<CCWlKeyboard>              keyboard;
++    CSharedPointer<CCZwpLockedPointerV1>      lock;
++    CSharedPointer<CCZwpConfinedPointerV1>    confine;
++    bool                                      configured = false;
++    bool                                      active     = false;
++    int                                       locked = 0, unlocked = 0, confined = 0, unconfined = 0;
++    int                                       rootEnters = 0, childEnters = 0, keyboardEnters = 0, keyboardLeaves = 0;
++    int                                       motions = 0, lockedMotions = 0, confinedMotions = 0, outsideMotions = 0, badActivations = 0;
++    int                                       motionX = 0, motionY = 0;
++    std::string                               pointerTarget = "none", keyboardTarget = "none";
++    std::string                               constraintTarget;
++};
++
++static bool sync(SWlState& state) {
++    return wl_display_roundtrip(state.display) >= 0;
++}
++
++static CSharedPointer<CCWlBuffer> createBuffer(SWlState& state, int width, int height) {
++    const int       size = width * height * 4;
++    CFileDescriptor fd(memfd_create("hyprtester-pointer-constraints", MFD_CLOEXEC));
++    if (fd.get() < 0 || ftruncate(fd.get(), size) < 0)
++        return nullptr;
++
++    // A zero-filled XRGB buffer is opaque black; no mapping is needed.
++    auto pool = makeShared<CCWlShmPool>(state.shm->sendCreatePool(fd.get(), size));
++    if (!pool->resource())
++        return nullptr;
++    auto buffer = makeShared<CCWlBuffer>(pool->sendCreateBuffer(0, width, height, width * 4, WL_SHM_FORMAT_XRGB8888));
++    pool->sendDestroy();
++    return buffer->resource() ? buffer : nullptr;
++}
++
++static std::string surfaceName(const SWlState& state, wl_proxy* surface) {
++    if (surface && state.root && surface == state.root->resource())
++        return "root";
++    if (surface && state.child && surface == state.child->resource())
++        return "child";
++    return "other";
++}
++
++static bool setup(SWlState& state) {
++    state.registry = makeShared<CCWlRegistry>(reinterpret_cast<wl_proxy*>(wl_display_get_registry(state.display)));
++    state.registry->setGlobal([&](CCWlRegistry*, uint32_t id, const char* name, uint32_t) {
++        const auto bind = [&](const wl_interface* interface) {
++            return reinterpret_cast<wl_proxy*>(wl_registry_bind(reinterpret_cast<wl_registry*>(state.registry->resource()), id, interface, 1));
++        };
++        const std::string global = name;
++        if (global == "wl_compositor")
++            state.compositor = makeShared<CCWlCompositor>(bind(&wl_compositor_interface));
++        else if (global == "wl_subcompositor")
++            state.subcompositor = makeShared<CCWlSubcompositor>(bind(&wl_subcompositor_interface));
++        else if (global == "wl_shm")
++            state.shm = makeShared<CCWlShm>(bind(&wl_shm_interface));
++        else if (global == "wl_seat")
++            state.seat = makeShared<CCWlSeat>(bind(&wl_seat_interface));
++        else if (global == "xdg_wm_base")
++            state.shell = makeShared<CCXdgWmBase>(bind(&xdg_wm_base_interface));
++        else if (global == "zwp_pointer_constraints_v1")
++            state.constraints = makeShared<CCZwpPointerConstraintsV1>(bind(&zwp_pointer_constraints_v1_interface));
++    });
++    if (!sync(state) || !state.compositor || !state.subcompositor || !state.shm || !state.seat || !state.shell || !state.constraints)
++        return false;
++
++    state.shell->setPing([&](CCXdgWmBase*, uint32_t serial) { state.shell->sendPong(serial); });
++    state.pointer = makeShared<CCWlPointer>(state.seat->sendGetPointer());
++    if (!state.pointer->resource())
++        return false;
++    state.pointer->setEnter([&](CCWlPointer*, uint32_t, wl_proxy* surface, wl_fixed_t, wl_fixed_t) {
++        state.pointerTarget = surfaceName(state, surface);
++        if (state.pointerTarget == "root")
++            ++state.rootEnters;
++        else if (state.pointerTarget == "child")
++            ++state.childEnters;
++    });
++    state.pointer->setLeave([&](CCWlPointer*, uint32_t, wl_proxy*) { state.pointerTarget = "none"; });
++    state.pointer->setMotion([&](CCWlPointer*, uint32_t, wl_fixed_t x, wl_fixed_t y) {
++        ++state.motions;
++        state.motionX = wl_fixed_to_int(x);
++        state.motionY = wl_fixed_to_int(y);
++        if (!state.active)
++            return;
++        if (state.lock)
++            ++state.lockedMotions;
++        else {
++            ++state.confinedMotions;
++            // The confinement fixture is [10,42) in constraint-surface coordinates.
++            if (x < wl_fixed_from_int(10) || x >= wl_fixed_from_int(42) || y < wl_fixed_from_int(10) || y >= wl_fixed_from_int(42))
++                ++state.outsideMotions;
++        }
++    });
++    state.keyboard = makeShared<CCWlKeyboard>(state.seat->sendGetKeyboard());
++    if (!state.keyboard->resource())
++        return false;
++    state.keyboard->setKeymap([](CCWlKeyboard*, wl_keyboard_keymap_format, int32_t fd, uint32_t) { close(fd); });
++    state.keyboard->setEnter([&](CCWlKeyboard*, uint32_t, wl_proxy* surface, wl_array*) {
++        state.keyboardTarget = surfaceName(state, surface);
++        ++state.keyboardEnters;
++    });
++    state.keyboard->setLeave([&](CCWlKeyboard*, uint32_t, wl_proxy*) {
++        state.keyboardTarget = "none";
++        ++state.keyboardLeaves;
++    });
++
++    state.root  = makeShared<CCWlSurface>(state.compositor->sendCreateSurface());
++    state.child = makeShared<CCWlSurface>(state.compositor->sendCreateSurface());
++    if (!state.root->resource() || !state.child->resource())
++        return false;
++    state.subsurface = makeShared<CCWlSubsurface>(state.subcompositor->sendGetSubsurface(state.child.get(), state.root.get()));
++    if (!state.subsurface->resource())
++        return false;
++    state.subsurface->sendSetPosition(80, 60);
++    state.rootBuffer  = createBuffer(state, 320, 240);
++    state.childBuffer = createBuffer(state, 96, 80);
++    if (!state.rootBuffer || !state.childBuffer)
++        return false;
++    state.child->sendAttach(state.childBuffer.get(), 0, 0);
++    state.child->sendCommit();
++    state.xdgSurface = makeShared<CCXdgSurface>(state.shell->sendGetXdgSurface(state.root->resource()));
++    if (!state.xdgSurface->resource())
++        return false;
++    state.toplevel = makeShared<CCXdgToplevel>(state.xdgSurface->sendGetToplevel());
++    if (!state.toplevel->resource())
++        return false;
++    state.xdgSurface->setConfigure([&](CCXdgSurface*, uint32_t serial) {
++        state.xdgSurface->sendAckConfigure(serial);
++        state.root->sendAttach(state.rootBuffer.get(), 0, 0);
++        state.root->sendCommit();
++        state.configured = true;
++    });
++    state.toplevel->sendSetAppId("pointer-constraints");
++    state.toplevel->sendSetTitle("pointer constraints test");
++    state.root->sendCommit();
++    while (!state.configured) {
++        if (!sync(state))
++            return false;
++    }
++    return sync(state);
++}
++
++static std::string report(const SWlState& state) {
++    return std::format("locked={} unlocked={} confined={} unconfined={} active={} pointer={} root_enters={} child_enters={} keyboard={} keyboard_enters={} keyboard_leaves={} "
++                       "motions={} motion_x={} motion_y={} locked_motions={} confined_motions={} outside_motions={} bad_activations={}",
++                       state.locked, state.unlocked, state.confined, state.unconfined, state.active ? 1 : 0, state.pointerTarget, state.rootEnters, state.childEnters,
++                       state.keyboardTarget, state.keyboardEnters, state.keyboardLeaves, state.motions, state.motionX, state.motionY, state.lockedMotions, state.confinedMotions,
++                       state.outsideMotions, state.badActivations);
++}
++
++static bool constrain(SWlState& state, const std::string& command) {
++    std::istringstream input(command);
++    std::string        kind, target, lifetime;
++    input >> kind >> target >> lifetime;
++    if (state.lock || state.confine || (kind != "lock" && kind != "confine") || (target != "root" && target != "child") || (lifetime != "persistent" && lifetime != "oneshot"))
++        return false;
++
++    auto       surface     = target == "child" ? state.child : state.root;
++    const auto life        = lifetime == "persistent" ? ZWP_POINTER_CONSTRAINTS_V1_LIFETIME_PERSISTENT : ZWP_POINTER_CONSTRAINTS_V1_LIFETIME_ONESHOT;
++    state.constraintTarget = target;
++    if (kind == "lock") {
++        state.lock = makeShared<CCZwpLockedPointerV1>(state.constraints->sendLockPointer(surface->resource(), state.pointer->resource(), nullptr, life));
++        if (!state.lock->resource())
++            return false;
++        state.lock->setLocked([&](CCZwpLockedPointerV1*) {
++            if (state.pointerTarget != state.constraintTarget)
++                ++state.badActivations;
++            ++state.locked;
++            state.active = true;
++        });
++        state.lock->setUnlocked([&](CCZwpLockedPointerV1*) {
++            ++state.unlocked;
++            state.active = false;
++        });
++    } else {
++        auto region = makeShared<CCWlRegion>(state.compositor->sendCreateRegion());
++        if (!region->resource())
++            return false;
++        region->sendAdd(10, 10, 32, 32);
++        state.confine = makeShared<CCZwpConfinedPointerV1>(state.constraints->sendConfinePointer(surface->resource(), state.pointer->resource(), region->resource(), life));
++        region->sendDestroy();
++        if (!state.confine->resource())
++            return false;
++        state.confine->setConfined([&](CCZwpConfinedPointerV1*) {
++            if (state.pointerTarget != state.constraintTarget)
++                ++state.badActivations;
++            ++state.confined;
++            state.active = true;
++        });
++        state.confine->setUnconfined([&](CCZwpConfinedPointerV1*) {
++            ++state.unconfined;
++            state.active = false;
++        });
++    }
++    return sync(state);
++}
++
++int main() {
++    SWlState state;
++    state.display = wl_display_connect(nullptr);
++    if (!state.display || !setup(state)) {
++        std::cout << "error setup" << std::endl;
++        return 1;
++    }
++    std::cout << "started" << std::endl;
++
++    // Like surface-scale-transform, every command is a display synchronization point.
++    std::string command;
++    while (std::getline(std::cin, command) && command != "exit") {
++        if (!sync(state))
++            return 1;
++        if (command == "report")
++            std::cout << report(state) << std::endl;
++        else if (command == "destroy") {
++            if (state.lock)
++                state.lock->sendDestroy();
++            if (state.confine)
++                state.confine->sendDestroy();
++            state.lock.reset();
++            state.confine.reset();
++            // Destroy has no unlocked/unconfined event; retain all observed event counters.
++            state.active = false;
++            std::cout << (sync(state) ? "ok" : "error destroy") << std::endl;
++        } else
++            std::cout << (constrain(state, command) ? "ok" : "error command") << std::endl;
++    }
++    const auto display = state.display;
++    state              = {};
++    wl_display_disconnect(display);
++    return 0;
++}
+diff --git a/hyprtester/plugin/src/main.cpp b/hyprtester/plugin/src/main.cpp
+index 09db7a162ba..06a9ae5a0c0 100644
+--- a/hyprtester/plugin/src/main.cpp
++++ b/hyprtester/plugin/src/main.cpp
+@@ -1326,7 +1326,7 @@ static SDispatchResult checkKeyboardFocusWindow(std::string in) {
+     if (!KBSURF)
+         return {.success = false, .error = "No keyboard focus"};
+ 
+-    const auto PWINDOW = Desktop::focusState()->window();
++    const auto PWINDOW = Desktop::viewState()->query().type(Desktop::View::VIEW_TYPE_WINDOW).surface(KBSURF).runWindow();
+     if (!PWINDOW)
+         return {.success = false, .error = "Keyboard focus surface is not a window"};
+ 
+@@ -1336,6 +1336,22 @@ static SDispatchResult checkKeyboardFocusWindow(std::string in) {
+     return {};
+ }
+ 
++static SDispatchResult checkKeyboardFocusLayer(std::string in) {
++    const auto KBSURF = g_pSeatManager->m_state.keyboardFocus.lock();
++    if (!KBSURF)
++        return {.success = false, .error = "No keyboard focus"};
++
++    const auto HLSURF = Desktop::View::CWLSurface::fromResource(KBSURF);
++    const auto VIEW   = HLSURF ? HLSURF->view() : nullptr;
++    const auto LAYER  = Desktop::View::CLayerSurface::fromView(VIEW);
++    if (!LAYER)
++        return {.success = false, .error = "Keyboard focus surface is not a layer"};
++    if (LAYER->m_namespace != in)
++        return {.success = false, .error = std::format("Keyboard focus layer namespace is '{}', expected '{}'", LAYER->m_namespace, in)};
++
++    return {};
++}
++
+ static Desktop::Rule::CWindowRuleEffectContainer::storageType windowRuleIDX = 0;
+ 
+ //
+@@ -1768,6 +1784,18 @@ static int luaCheckKeyboardFocusWindow(lua_State* L) {
+     return luaResult(L, ::checkKeyboardFocusWindow(luaL_checkstring(L, 1)));
+ }
+ 
++static int luaCheckKeyboardFocusLayer(lua_State* L) {
++    return luaResult(L, ::checkKeyboardFocusLayer(luaL_checkstring(L, 1)));
++}
++
++static int luaCheckKeyboardFocusNone(lua_State* L) {
++    return luaResult(L, {.success = g_pSeatManager->m_state.keyboardFocus.expired(), .error = "Expected no keyboard focus"});
++}
++
++static int luaCheckPointerFocusNone(lua_State* L) {
++    return luaResult(L, {.success = g_pSeatManager->m_state.pointerFocus.expired(), .error = "Expected no pointer focus"});
++}
++
+ static int luaAddWindowRule(lua_State* L) {
+     return luaResult(L, ::addWindowRule(""));
+ }
+@@ -1857,12 +1885,15 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle) {
+     addLuaFn("nullfocus", ::luaNullfocus);
+     addLuaFn("clear_surface_focus", ::luaClearSurfaceFocus);
+     addLuaFn("check_keyboard_focus_window", ::luaCheckKeyboardFocusWindow);
++    addLuaFn("check_keyboard_focus_layer", ::luaCheckKeyboardFocusLayer);
++    addLuaFn("check_keyboard_focus_none", ::luaCheckKeyboardFocusNone);
+     addLuaFn("add_window_rule", ::luaAddWindowRule);
+     addLuaFn("check_window_rule", ::luaCheckWindowRule);
+     addLuaFn("add_layer_rule", ::luaAddLayerRule);
+     addLuaFn("check_layer_rule", ::luaCheckLayerRule);
+     addLuaFn("check_pointer_focus_window", ::luaCheckPointerFocusWindow);
+     addLuaFn("check_pointer_focus_layer", ::luaCheckPointerFocusLayer);
++    addLuaFn("check_pointer_focus_none", ::luaCheckPointerFocusNone);
+     addLuaFn("set_pointer_focus_layer", ::luaSetPointerFocusLayer);
+     addLuaFn("window_soft_focus", ::luaSoftFocusWindowByClass);
+     addLuaFn("floating_focus_on_fullscreen", ::luaFloatingFocusOnFullscreen);
+diff --git a/hyprtester/src/tests/clients/pointer-constraints.cpp b/hyprtester/src/tests/clients/pointer-constraints.cpp
+new file mode 100644
+index 00000000000..88df3952688
+--- /dev/null
++++ b/hyprtester/src/tests/clients/pointer-constraints.cpp
+@@ -0,0 +1,281 @@
++#include "../../hyprctlCompat.hpp"
++#include "../../shared.hpp"
++#include "../shared.hpp"
++#include "build.hpp"
++#include "tests.hpp"
++
++#include <array>
++#include <cerrno>
++#include <chrono>
++#include <csignal>
++#include <format>
++#include <optional>
++#include <sstream>
++#include <stdexcept>
++#include <sys/poll.h>
++#include <thread>
++#include <unistd.h>
++#include <hyprutils/os/FileDescriptor.hpp>
++#include <hyprutils/os/Process.hpp>
++#include <hyprutils/utils/ScopeGuard.hpp>
++
++using namespace Hyprutils::Memory;
++using namespace Hyprutils::OS;
++using namespace Hyprutils::Utils;
++
++class CPointerConstraintsClient {
++  public:
++    CPointerConstraintsClient();
++    ~CPointerConstraintsClient();
++    std::string command(const std::string& command);
++
++  private:
++    std::string              readLine();
++    CSharedPointer<CProcess> m_proc;
++    CFileDescriptor          m_readFd, m_writeFd;
++};
++
++CPointerConstraintsClient::CPointerConstraintsClient() {
++    m_proc = makeShared<CProcess>(std::format("{}/pointer-constraints", binaryDir), std::vector<std::string>{});
++    m_proc->addEnv("WAYLAND_DISPLAY", WLDISPLAY);
++    int input[2] = {}, output[2] = {};
++    if (pipe(input) != 0)
++        throw std::runtime_error("client input pipe failed");
++    CFileDescriptor inputRead(input[0]);
++    m_writeFd = CFileDescriptor(input[1]);
++    if (pipe(output) != 0)
++        throw std::runtime_error("client output pipe failed");
++    CFileDescriptor outputWrite(output[1]);
++    m_readFd = CFileDescriptor(output[0]);
++    m_proc->setStdinFD(inputRead.get());
++    m_proc->setStdoutFD(outputWrite.get());
++    if (!m_proc->runAsync())
++        throw std::runtime_error("pointer-constraints launch failed");
++    bool        started = false;
++    CScopeGuard failedStartup([&] {
++        if (!started && m_proc->pid() > 0)
++            kill(m_proc->pid(), SIGKILL);
++    });
++    const auto  reply = readLine();
++    if (reply != "started")
++        throw std::runtime_error("pointer-constraints startup: " + reply);
++    started = true;
++}
++
++CPointerConstraintsClient::~CPointerConstraintsClient() {
++    if (m_proc && m_proc->pid() > 0)
++        kill(m_proc->pid(), SIGKILL);
++}
++
++std::string CPointerConstraintsClient::readLine() {
++    std::string result;
++    const auto  deadline = std::chrono::steady_clock::now() + std::chrono::seconds(5);
++    while (std::chrono::steady_clock::now() < deadline) {
++        pollfd     fd  = {.fd = m_readFd.get(), .events = POLLIN, .revents = 0};
++        const auto ret = poll(&fd, 1, 100);
++        if (ret < 0 && errno == EINTR)
++            continue;
++        if (ret < 0 || (fd.revents & (POLLERR | POLLNVAL)))
++            break;
++        if (!(fd.revents & POLLIN)) {
++            if (fd.revents & POLLHUP)
++                break;
++            continue;
++        }
++        std::array<char, 1024> buffer = {};
++        const auto             size   = read(m_readFd.get(), buffer.data(), buffer.size());
++        if (size <= 0)
++            break;
++        result.append(buffer.data(), size);
++        if (result.ends_with('\n')) {
++            result.pop_back();
++            return result;
++        }
++    }
++    return "error client response: " + result;
++}
++
++std::string CPointerConstraintsClient::command(const std::string& command) {
++    const auto line = command + '\n';
++    if (write(m_writeFd.get(), line.data(), line.size()) != static_cast<ssize_t>(line.size()))
++        return "error client write";
++    return readLine();
++}
++
++static int count(const std::string& report, const std::string& key) {
++    std::istringstream input(report);
++    std::string        field;
++    while (input >> field) {
++        if (field.starts_with(key + '='))
++            return std::stoi(field.substr(key.size() + 1));
++    }
++    return -1;
++}
++
++static bool matches(const std::string& report, std::initializer_list<std::string> fields) {
++    for (const auto& field : fields) {
++        if (!(" " + report + " ").contains(" " + field + " "))
++            return false;
++    }
++    return true;
++}
++
++static std::string waitReport(CPointerConstraintsClient& client, std::initializer_list<std::string> fields) {
++    std::string report;
++    const auto  deadline = std::chrono::steady_clock::now() + std::chrono::seconds(5);
++    do {
++        report = client.command("report");
++        if (matches(report, fields))
++            break;
++        std::this_thread::sleep_for(std::chrono::milliseconds(20));
++    } while (std::chrono::steady_clock::now() < deadline);
++    return report;
++}
++
++SUBTEST(nativeConstraintLifecycle, const std::string& kind, const std::string& target, bool persistent, bool rule) {
++    CScopeGuard cleanup([&] {
++        EXPECT(Tests::killAllWindows(), true);
++        EXPECT_OK(getFromSocket("/reload"));
++    });
++    OK(getFromSocket("/eval hl.config({ input = { follow_mouse = 1 }, cursor = { warp_on_change_workspace = 0 } })"));
++    OK(getFromSocket("/dispatch hl.dsp.focus({ monitor = 'HEADLESS-2' })"));
++    OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = 'name:native_constraints' })"));
++    OK(getFromSocket(std::format("/eval hl.window_rule({{ match = {{ class = '^pointer-constraints$' }}, float = true, size = {{320, 240}}, confine_pointer = {} }})", rule)));
++
++    std::optional<CPointerConstraintsClient> client;
++    try {
++        client.emplace();
++    } catch (const std::exception& e) { FAIL_TEST("{}", e.what()); }
++    ASSERT_CONTAINS(waitReport(*client, {"keyboard=root"}), "keyboard=root");
++    ASSERT_CONTAINS(getFromSocket("/activewindow"), "class: pointer-constraints\n");
++
++    int                x = 0, y = 0;
++    char               comma = 0;
++    std::istringstream position(Tests::getAttribute(getFromSocket("/activewindow"), "at"));
++    ASSERT(static_cast<bool>(position >> x >> comma >> y), true);
++    ASSERT(comma, ',');
++    OK(getFromSocket(std::format("/dispatch hl.dsp.cursor.move({{ x = {}, y = {} }})", x + 20, y + 20)));
++    const auto before = waitReport(*client, {"pointer=root", "keyboard=root"});
++    ASSERT(matches(before, {"pointer=root", "keyboard=root", "active=0"}), true);
++    const auto keyboardEnters = count(before, "keyboard_enters");
++    const auto keyboardLeaves = count(before, "keyboard_leaves");
++    const auto targetEnters   = count(before, target + "_enters");
++    const auto activated      = kind == "lock" ? "locked" : "confined";
++    const auto deactivated    = kind == "lock" ? "unlocked" : "unconfined";
++
++    ASSERT(client->command(std::format("{} {} {}", kind, target, persistent ? "persistent" : "oneshot")), "ok");
++    if (target == "child") {
++        ASSERT(matches(client->command("report"), {"active=0", "pointer=root", "keyboard=root"}), true);
++        // Acquire on child enter at local (20,20), inside the narrow confinement region.
++        OK(getFromSocket(std::format("/dispatch hl.dsp.cursor.move({{ x = {}, y = {} }})", x + 100, y + 80)));
++    }
++    const auto active = waitReport(*client, {"active=1", "pointer=" + target, std::format("{}=1", activated)});
++    ASSERT(matches(active, {"active=1", "pointer=" + target, "keyboard=root"}), true);
++    EXPECT(count(active, activated), 1);
++    EXPECT(count(active, deactivated), 0);
++    EXPECT(count(active, "keyboard_enters"), keyboardEnters);
++    EXPECT(count(active, "keyboard_leaves"), keyboardLeaves);
++    EXPECT(count(active, target + "_enters"), targetEnters + (target == "child" ? 1 : 0));
++    EXPECT(matches(active, {"locked_motions=0", "outside_motions=0", "bad_activations=0"}), true);
++    if (kind == "confine") {
++        EXPECT(count(active, "confined_motions") > 0, true);
++        // Once active, an attempted motion to child-local (60,60) must be clamped.
++        OK(getFromSocket(std::format("/dispatch hl.dsp.cursor.move({{ x = {}, y = {} }})", x + 140, y + 120)));
++        const auto clamped = client->command("report");
++        EXPECT(matches(clamped, {"active=1", "pointer=child", "keyboard=root", "outside_motions=0", "bad_activations=0"}), true);
++        EXPECT(count(clamped, "confined_motions") > count(active, "confined_motions"), true);
++        EXPECT(count(clamped, "motion_x") >= 10 && count(clamped, "motion_x") < 42, true);
++        EXPECT(count(clamped, "motion_y") >= 10 && count(clamped, "motion_y") < 42, true);
++    }
++
++    // Same-window refocus must neither churn seat focus nor exhaust a one-shot constraint.
++    OK(getFromSocket("/eval hl.plugin.test.window_soft_focus('pointer-constraints')"));
++    const auto refocused = client->command("report");
++    EXPECT(matches(refocused, {"active=1", "pointer=" + target, "keyboard=root", "locked_motions=0", "outside_motions=0", "bad_activations=0"}), true);
++    for (const auto& field : {activated, deactivated, "root_enters", "child_enters", "keyboard_enters", "keyboard_leaves"}) {
++        EXPECT(count(refocused, field), count(active, field));
++    }
++
++    if (kind == "lock") {
++        OK(getFromSocket("/dispatch hl.dsp.window.pin({ action = 'set', window = 'class:pointer-constraints' })"));
++        OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = 'name:native_constraints_pinned' })"));
++        OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = 'name:native_constraints' })"));
++        OK(getFromSocket("/dispatch hl.dsp.window.pin({ action = 'unset', window = 'class:pointer-constraints' })"));
++        const auto pinned = client->command("report");
++        EXPECT(matches(pinned, {"active=1", "pointer=" + target, "keyboard=root", "locked_motions=0"}), true);
++        for (const auto& field : {activated, deactivated, "root_enters", "child_enters", "keyboard_enters", "keyboard_leaves"}) {
++            EXPECT(count(pinned, field), count(active, field));
++        }
++    }
++
++    if (rule) {
++        // A rule confines to the window, but a native lock must still pin the pointer within that window.
++        const auto lockedPosition = getFromSocket("/cursorpos");
++        OK(getFromSocket(std::format("/dispatch hl.dsp.cursor.move({{ x = {}, y = {} }})", x + 40, y + 40)));
++        EXPECT(getFromSocket("/cursorpos"), lockedPosition);
++        EXPECT(matches(client->command("report"), {"active=1", "locked=1", "pointer=" + target, "keyboard=root"}), true);
++    }
++
++    OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = 'name:native_constraints_empty' })"));
++    ASSERT(Tests::getAttribute(getFromSocket("/activeworkspace"), "windows"), "0");
++    const auto inactive = waitReport(*client, {"active=0", "pointer=none", "keyboard=none", std::format("{}=1", deactivated)});
++    ASSERT(matches(inactive, {"active=0", "pointer=none", "keyboard=none"}), true);
++    EXPECT(count(inactive, activated), 1);
++    EXPECT(count(inactive, deactivated), 1);
++    EXPECT(count(inactive, "keyboard_leaves"), keyboardLeaves + 1);
++
++    // Observe restoration only: moving the pointer or explicitly refocusing the window would mask the regression.
++    OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = 'name:native_constraints' })"));
++    const auto restored =
++        waitReport(*client, {"keyboard=root", "pointer=" + target, std::format("active={}", persistent ? 1 : 0), std::format("{}={}", activated, persistent ? 2 : 1)});
++    ASSERT(matches(restored, {"keyboard=root", "pointer=" + target}), true);
++    EXPECT(count(restored, "active"), persistent ? 1 : 0);
++    EXPECT(count(restored, activated), persistent ? 2 : 1);
++    EXPECT(count(restored, deactivated), 1);
++    EXPECT(count(restored, target + "_enters"), count(active, target + "_enters") + 1);
++    EXPECT(count(restored, "keyboard_enters"), keyboardEnters + 1);
++    EXPECT(count(restored, "keyboard_leaves"), keyboardLeaves + 1);
++    EXPECT(matches(restored, {"locked_motions=0", "outside_motions=0", "bad_activations=0"}), true);
++    // Also catch delayed reactivation of a spent one-shot object or duplicate persistent activation events.
++    std::this_thread::sleep_for(std::chrono::milliseconds(250));
++    const auto settled = client->command("report");
++    EXPECT(matches(settled, {"pointer=" + target, "keyboard=root", "locked_motions=0", "outside_motions=0", "bad_activations=0"}), true);
++    for (const auto& field : {activated, deactivated, "active", "root_enters", "child_enters", "keyboard_enters", "keyboard_leaves"}) {
++        EXPECT(count(settled, field), count(restored, field));
++    }
++
++    if (rule) {
++        ASSERT(client->command("destroy"), "ok");
++        // Native destruction must reveal the rule without a focus cycle: allow motion inside the window,
++        // then clamp an attempted escape to its edge. A leftover lock fails the first check; no rule fails the second.
++        OK(getFromSocket(std::format("/dispatch hl.dsp.cursor.move({{ x = {}, y = {} }})", x + 40, y + 40)));
++        const auto freed = client->command("report");
++        EXPECT(matches(freed, {"active=0", "pointer=root", "keyboard=root", "motion_x=40", "motion_y=40"}), true);
++        EXPECT(count(freed, "motions") > count(restored, "motions"), true);
++        OK(getFromSocket(std::format("/dispatch hl.dsp.cursor.move({{ x = {}, y = {} }})", x + 400, y + 20)));
++        const auto fallback = client->command("report");
++        EXPECT(matches(fallback, {"active=0", "pointer=root", "keyboard=root", "motion_y=20", "locked_motions=0", "bad_activations=0"}), true);
++        EXPECT(count(fallback, "motion_x") >= 319 && count(fallback, "motion_x") <= 320, true);
++        for (const auto& field : {activated, deactivated, "keyboard_enters", "keyboard_leaves"}) {
++            EXPECT(count(fallback, field), count(restored, field));
++        }
++        EXPECT(count(fallback, "root_enters"), count(freed, "root_enters"));
++        EXPECT(count(fallback, "child_enters"), count(freed, "child_enters"));
++    }
++}
++
++TEST_CASE(nativePointerConstraintsPersistent) {
++    CALL_SUBTEST(nativeConstraintLifecycle, "lock", "root", true, false);
++    CALL_SUBTEST(nativeConstraintLifecycle, "lock", "child", true, false);
++    CALL_SUBTEST(nativeConstraintLifecycle, "confine", "child", true, false);
++}
++
++TEST_CASE(nativePointerConstraintsOneshot) {
++    CALL_SUBTEST(nativeConstraintLifecycle, "lock", "child", false, false);
++    CALL_SUBTEST(nativeConstraintLifecycle, "confine", "child", false, false);
++}
++
++TEST_CASE(nativePointerLockOverridesConfineRule) {
++    CALL_SUBTEST(nativeConstraintLifecycle, "lock", "root", true, true);
++    CALL_SUBTEST(nativeConstraintLifecycle, "lock", "child", true, true);
++}
+diff --git a/hyprtester/src/tests/main/layer.cpp b/hyprtester/src/tests/main/layer.cpp
+index 2d042be374b..5aadda0a845 100644
+--- a/hyprtester/src/tests/main/layer.cpp
++++ b/hyprtester/src/tests/main/layer.cpp
+@@ -5,12 +5,15 @@
+ #include "../../hyprctlCompat.hpp"
+ #include <chrono>
+ #include <format>
++#include <string_view>
+ #include <thread>
+ #include <hyprutils/os/Process.hpp>
+ #include <hyprutils/memory/WeakPtr.hpp>
++#include <hyprutils/utils/ScopeGuard.hpp>
+ 
+ using namespace Hyprutils::OS;
+ using namespace Hyprutils::Memory;
++using namespace Hyprutils::Utils;
+ 
+ static bool spawnLayer(const std::string& namespace_, const std::vector<std::string>& args = {}) {
+     NLog::log("{}Spawning kitty layer {}", Colors::YELLOW, namespace_);
+@@ -35,6 +38,36 @@ static std::string getLayerLine(const std::string& layers, const std::string& ta
+     return layers.substr(start, end - start);
+ }
+ 
++// Poll only observations: refocusing or moving the pointer here would hide a broken restoration.
++static std::string waitForFocusCheck(const std::string& check) {
++    auto result = getFromSocket("/eval " + check);
++    for (int i = 0; i < 50 && result != "ok"; ++i) {
++        std::this_thread::sleep_for(std::chrono::milliseconds(100));
++        result = getFromSocket("/eval " + check);
++    }
++    return result;
++}
++
++static std::string waitForWindowFocus(const std::string& cls) {
++    return waitForFocusCheck(std::format("hl.plugin.test.check_keyboard_focus_window('{}'); hl.plugin.test.check_pointer_focus_window('{}')", cls, cls));
++}
++
++static std::string waitForLayerFocus(const std::string& namespace_) {
++    return waitForFocusCheck(std::format("hl.plugin.test.check_keyboard_focus_layer('{}'); hl.plugin.test.check_pointer_focus_layer('{}')", namespace_, namespace_));
++}
++
++// The floating fixture is centered on (960, 540); the attempted motion stays on the monitor but leaves the window.
++SUBTEST(ruleConfinementClampsMotion, const std::string& cls) {
++    const auto WINDOW = std::format("local w = hl.get_window('class:{}'); assert(w); ", cls);
++    OK(waitForFocusCheck(WINDOW + "assert(w.floating and w.at.x == 660 and w.at.y == 340 and w.size.x == 600 and w.size.y == 400)"));
++    OK(waitForWindowFocus(cls));
++    OK(getFromSocket("/dispatch hl.dsp.cursor.move({ x = 1400, y = 540 })"));
++    OK(getFromSocket("/eval " + WINDOW + "local p = hl.get_cursor_pos(); assert(p.x >= w.at.x + w.size.x - 1 and p.x < w.at.x + w.size.x and p.y == 540)"));
++    OK(waitForWindowFocus(cls));
++    // Reset only during setup, never after the focus transition under test.
++    OK(getFromSocket("/dispatch hl.dsp.cursor.move({ x = 960, y = 540 })"));
++}
++
+ TEST_CASE(plugin_layerrules) {
+ 
+     EXPECT(spawnLayer("rule-layer"), true);
+@@ -69,10 +102,12 @@ TEST_CASE(layerPointerFocusPreservedOnKeyboardRefocus) {
+ 
+     OK(getFromSocket(std::format("/eval hl.plugin.test.set_pointer_focus_layer('{}')", LAYER_NAMESPACE)));
+     OK(getFromSocket(std::format("/eval hl.plugin.test.check_pointer_focus_layer('{}')", LAYER_NAMESPACE)));
++    OK(getFromSocket("/eval hl.plugin.test.check_keyboard_focus_window('pointer_focus_ws1')"));
+ 
+     OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = '2' })"));
+     ASSERT_CONTAINS(getFromSocket("/activewindow"), "class: pointer_focus_ws2\n");
+     OK(getFromSocket(std::format("/eval hl.plugin.test.check_pointer_focus_layer('{}')", LAYER_NAMESPACE)));
++    OK(getFromSocket("/eval hl.plugin.test.check_keyboard_focus_window('pointer_focus_ws2')"));
+ }
+ 
+ TEST_CASE(exclusiveLayerTakesPointerFocusFromRuleConfinedWindow) {
+@@ -90,6 +125,7 @@ TEST_CASE(exclusiveLayerTakesPointerFocusFromRuleConfinedWindow) {
+     const auto WINDOW_POINTER_CHECK = std::format("/eval hl.plugin.test.check_pointer_focus_window('{}')", WINDOW_CLASS);
+     const auto LAYER_POINTER_CHECK  = std::format("/eval hl.plugin.test.check_pointer_focus_layer('{}')", LAYER_NAMESPACE);
+     OK(getFromSocket(WINDOW_POINTER_CHECK));
++    OK(getFromSocket(std::format("/eval hl.plugin.test.check_keyboard_focus_window('{}')", WINDOW_CLASS)));
+ 
+     ASSERT(spawnLayer(LAYER_NAMESPACE,
+                       {
+@@ -107,9 +143,162 @@ TEST_CASE(exclusiveLayerTakesPointerFocusFromRuleConfinedWindow) {
+         layerFocus = getFromSocket(LAYER_POINTER_CHECK);
+     }
+     OK(layerFocus);
++    OK(getFromSocket(std::format("/eval hl.plugin.test.check_keyboard_focus_layer('{}')", LAYER_NAMESPACE)));
+ 
+     ASSERT(Tests::killAllLayers(), true);
+     OK(getFromSocket(WINDOW_POINTER_CHECK));
++    OK(getFromSocket(std::format("/eval hl.plugin.test.check_keyboard_focus_window('{}')", WINDOW_CLASS)));
++}
++
++// These exercise the confine_pointer rule, not a client's native pointer-constraints protocol.
++TEST_CASE(ruleConfinedWindowFocusRestoredAfterEmptyWorkspace) {
++    CScopeGuard cleanup([&] {
++        EXPECT(Tests::killAllWindows(), true);
++        EXPECT_OK(getFromSocket("/reload"));
++    });
++
++    OK(getFromSocket("/eval hl.config({ input = { follow_mouse = 1 } })"));
++    OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = '1' })"));
++    OK(getFromSocket("/eval hl.window_rule({ match = { class = '^confined_empty_game$' }, float = true, size = {600, 400}, move = {660, 340}, confine_pointer = true })"));
++    SPAWN_KITTY("confined_empty_game");
++    OK(getFromSocket("/dispatch hl.dsp.cursor.move({ x = 960, y = 540 })"));
++    CALL_SUBTEST(ruleConfinementClampsMotion, "confined_empty_game");
++
++    OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = 'name:confined_empty' })"));
++    ASSERT_CONTAINS(getFromSocket("/activeworkspace"), "(confined_empty)");
++    OK(waitForFocusCheck("hl.plugin.test.check_keyboard_focus_none(); hl.plugin.test.check_pointer_focus_none()"));
++
++    OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = '1' })"));
++    OK(waitForWindowFocus("confined_empty_game"));
++}
++
++TEST_CASE(ruleConfinedWindowFocusRestoredAfterSpecialWorkspace) {
++    CScopeGuard cleanup([&] {
++        EXPECT(Tests::killAllWindows(), true);
++        EXPECT_OK(getFromSocket("/reload"));
++    });
++
++    OK(getFromSocket("/eval hl.config({ input = { follow_mouse = 1 } })"));
++    OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = '1' })"));
++    // Populate the special workspace before constraining the game, then reopen it while constrained.
++    OK(getFromSocket("/dispatch hl.dsp.workspace.toggle_special('confined_special')"));
++    SPAWN_KITTY("confined_special_client");
++    ASSERT_CONTAINS(getFromSocket("/activewindow"), "(special:confined_special)");
++    OK(getFromSocket("/dispatch hl.dsp.workspace.toggle_special('confined_special')"));
++    OK(getFromSocket("/eval hl.window_rule({ match = { class = '^confined_special_game$' }, float = true, size = {600, 400}, move = {660, 340}, confine_pointer = true })"));
++    SPAWN_KITTY("confined_special_game");
++    OK(getFromSocket("/dispatch hl.dsp.cursor.move({ x = 960, y = 540 })"));
++    CALL_SUBTEST(ruleConfinementClampsMotion, "confined_special_game");
++
++    OK(getFromSocket("/dispatch hl.dsp.workspace.toggle_special('confined_special')"));
++    OK(waitForWindowFocus("confined_special_client"));
++    OK(getFromSocket("/dispatch hl.dsp.workspace.toggle_special('confined_special')"));
++    OK(waitForWindowFocus("confined_special_game"));
++}
++
++TEST_CASE(ruleConfinedWindowFocusRestoredAfterCrossMonitorExclusiveLayer) {
++    static constexpr const char* OUTPUT          = "HYPRTEST-CONFINED-LAYER";
++    static constexpr const char* LAYER_NAMESPACE = "cross-monitor-confined-layer";
++
++    ASSERT_NOT_CONTAINS(getFromSocket("/monitors all"), OUTPUT);
++    bool        outputCreated = false;
++    CScopeGuard cleanup([&] {
++        EXPECT(Tests::killAllLayers(), true);
++        EXPECT(Tests::killAllWindows(), true);
++        if (outputCreated)
++            EXPECT_OK(getFromSocket(std::format("/output remove {}", OUTPUT)));
++        EXPECT_OK(getFromSocket("/reload"));
++    });
++
++    OK(getFromSocket("/eval hl.config({ input = { follow_mouse = 1 }, cursor = { no_warps = false } })"));
++    OK(getFromSocket("/eval hl.monitor({ output = 'HEADLESS-2', mode = '1920x1080@60', position = '0x0', scale = '1' })"));
++    OK(getFromSocket(std::format("/eval hl.monitor({{ output = '{}', disabled = false, mode = '1920x1080@60', position = '1920x0', scale = '1' }})", OUTPUT)));
++    const auto CREATED = getFromSocket(std::format("/output create headless {}", OUTPUT));
++    outputCreated      = CREATED == "ok";
++    OK(CREATED);
++    OK(waitForFocusCheck(std::format("local m = hl.get_monitor('{}'); assert(m and m.enabled and m.x == 1920 and m.width == 1920)", OUTPUT)));
++
++    OK(getFromSocket("/dispatch hl.dsp.focus({ monitor = 'HEADLESS-2' })"));
++    OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = 'name:confined_layer_game' })"));
++    OK(getFromSocket("/eval hl.window_rule({ match = { class = '^confined_layer_game$' }, confine_pointer = true })"));
++    SPAWN_KITTY("confined_layer_game");
++    OK(getFromSocket("/dispatch hl.dsp.cursor.move({ x = 960, y = 540 })"));
++    OK(waitForWindowFocus("confined_layer_game"));
++
++    OK(getFromSocket(std::format("/dispatch hl.dsp.focus({{ monitor = '{}' }})", OUTPUT)));
++    ASSERT(spawnLayer(LAYER_NAMESPACE,
++                      {
++                          "--edge=center",
++                          "--layer=overlay",
++                          "--focus-policy=exclusive",
++                          std::format("--output-name={}", OUTPUT),
++                      }),
++           true);
++    OK(waitForLayerFocus(LAYER_NAMESPACE));
++
++    // Return while the layer still owns the keyboard. Dismissal must restore both seat surfaces by itself.
++    OK(getFromSocket("/dispatch hl.dsp.focus({ monitor = 'HEADLESS-2' })"));
++    ASSERT(getFromSocket("/repl hl.get_monitor('HEADLESS-2').focused"), "true");
++    OK(getFromSocket(std::format("/eval hl.plugin.test.check_keyboard_focus_layer('{}')", LAYER_NAMESPACE)));
++    ASSERT(Tests::killAllLayers(), true);
++    OK(waitForWindowFocus("confined_layer_game"));
++}
++
++TEST_CASE(ruleConfinementAllowsExplicitAndNewWindowFocusWithoutWarps) {
++    CScopeGuard cleanup([&] {
++        EXPECT(Tests::killAllWindows(), true);
++        EXPECT_OK(getFromSocket("/reload"));
++    });
++
++    OK(getFromSocket("/eval hl.config({ input = { follow_mouse = 1 }, cursor = { no_warps = true } })"));
++    OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = '1' })"));
++    OK(getFromSocket("/eval hl.window_rule({ match = { class = '^confined_focus_a$' }, float = true, size = {600, 400}, move = {660, 340}, confine_pointer = true })"));
++    OK(getFromSocket("/eval hl.window_rule({ match = { class = '^confined_focus_(existing|new)$' }, float = true, size = {300, 200}, move = {100, 100} })"));
++    SPAWN_KITTY("confined_focus_existing");
++    SPAWN_KITTY("confined_focus_a");
++
++    for (const auto TARGET : {"confined_focus_existing", "confined_focus_new"}) {
++        OK(getFromSocket("/dispatch hl.dsp.focus({ window = 'class:confined_focus_a' })"));
++        OK(getFromSocket("/dispatch hl.dsp.cursor.move({ x = 960, y = 540 })"));
++        CALL_SUBTEST(ruleConfinementClampsMotion, "confined_focus_a");
++
++        if (std::string_view(TARGET) == "confined_focus_existing")
++            OK(getFromSocket(std::format("/dispatch hl.dsp.focus({{ window = 'class:{}' }})", TARGET)));
++        else
++            SPAWN_KITTY(TARGET);
++
++        // Rule-only confinement must allow keyboard focus to leave A, even though the cursor stays over A.
++        const auto CHECK = std::format("hl.plugin.test.check_keyboard_focus_window('{}'); local p = hl.get_cursor_pos(); assert(p.x == 960 and p.y == 540)", TARGET);
++        OK(waitForFocusCheck(CHECK));
++        std::this_thread::sleep_for(std::chrono::milliseconds(250));
++        OK(getFromSocket("/eval " + CHECK));
++    }
++}
++
++TEST_CASE(ruleConfinementRuntimeToggle) {
++    CScopeGuard cleanup([&] {
++        EXPECT(Tests::killAllWindows(), true);
++        EXPECT_OK(getFromSocket("/reload"));
++    });
++
++    OK(getFromSocket("/eval hl.config({ input = { follow_mouse = 1 } })"));
++    OK(getFromSocket("/dispatch hl.dsp.focus({ workspace = '1' })"));
++    OK(getFromSocket("/eval hl.window_rule({ match = { class = '^confined_runtime$' }, float = true, size = {600, 400}, move = {660, 340} })"));
++    OK(getFromSocket("/eval hl.window_rule({ name = 'runtime-confinement', match = { class = '^confined_runtime$' }, confine_pointer = false })"));
++    SPAWN_KITTY("confined_runtime");
++
++    for (const bool ENABLED : {false, true, false, true}) {
++        // Establish the shared keyboard/pointer domain before changing the rule on this mapped window.
++        OK(getFromSocket("/dispatch hl.dsp.cursor.move({ x = 960, y = 540 })"));
++        OK(waitForWindowFocus("confined_runtime"));
++        OK(getFromSocket(std::format("/eval hl.window_rule({{ name = 'runtime-confinement', confine_pointer = {} }})", ENABLED)));
++        if (ENABLED)
++            CALL_SUBTEST(ruleConfinementClampsMotion, "confined_runtime");
++        else {
++            OK(getFromSocket("/dispatch hl.dsp.cursor.move({ x = 1400, y = 540 })"));
++            ASSERT(getFromSocket("/cursorpos"), "1400, 540");
++        }
++    }
+ }
+ 
+ TEST_CASE(layerVisibilityOnFs) {
+diff --git a/src/config/shared/actions/ConfigActions.cpp b/src/config/shared/actions/ConfigActions.cpp
+index 3aecbf969ff..d789e8710b3 100644
+--- a/src/config/shared/actions/ConfigActions.cpp
++++ b/src/config/shared/actions/ConfigActions.cpp
+@@ -76,7 +76,7 @@ static void switchToWindow(PHLWINDOW PWINDOWTOCHANGETO, bool forceFSCycle = fals
+     if (PWINDOWTOCHANGETO == PLASTWINDOW || !PWINDOWTOCHANGETO)
+         return;
+ 
+-    g_pInputManager->unconstrainMouse();
++    auto constraintGuard = g_pInputManager->pointerConstraints().suspend();
+ 
+     if (PLASTWINDOW && PLASTWINDOW->m_workspace == PWINDOWTOCHANGETO->m_workspace &&
+         (Fullscreen::controller()->isFullscreen(PLASTWINDOW) && !Fullscreen::controller()->layoutManagedFS(PLASTWINDOW)))
+@@ -112,11 +112,11 @@ static bool tryMoveFocusToMonitor(PHLMONITOR monitor) {
+     static auto PFOLLOWMOUSE = CConfigValue<Config::INTEGER>("input:follow_mouse");
+     static auto PNOWARPS     = CConfigValue<Config::INTEGER>("cursor:no_warps");
+ 
+-    g_pInputManager->unconstrainMouse();
++    auto        constraintGuard = g_pInputManager->pointerConstraints().suspend();
+ 
+-    const auto PNEWMAINWORKSPACE = monitor->m_activeWorkspace;
+-    const auto PNEWWORKSPACE     = monitor->m_activeSpecialWorkspace ? monitor->m_activeSpecialWorkspace : PNEWMAINWORKSPACE;
+-    auto       PNEWWINDOW        = PNEWWORKSPACE->getFocusCandidate();
++    const auto  PNEWMAINWORKSPACE = monitor->m_activeWorkspace;
++    const auto  PNEWWORKSPACE     = monitor->m_activeSpecialWorkspace ? monitor->m_activeSpecialWorkspace : PNEWMAINWORKSPACE;
++    auto        PNEWWINDOW        = PNEWWORKSPACE->getFocusCandidate();
+ 
+     if (PNEWWINDOW) {
+         updateRelativeCursorCoords();
+@@ -388,6 +388,8 @@ ActionResult Actions::moveToWorkspace(PHLWORKSPACE ws, bool silent, std::optiona
+     if (ws == window->m_workspace)
+         return {};
+ 
++    auto       constraintGuard = g_pInputManager->pointerConstraints().suspend();
++
+     const auto POLDWS = window->m_workspace;
+ 
+     updateRelativeCursorCoords();
+@@ -534,6 +536,8 @@ ActionResult Actions::focus(PHLWINDOW window) {
+     if (!PWORKSPACE)
+         return actionError("Window has no workspace", eActionErrorLevel::WARNING, eActionErrorCode::INVALID_STATE);
+ 
++    auto constraintGuard = g_pInputManager->pointerConstraints().suspend();
++
+     updateRelativeCursorCoords();
+ 
+     if (Desktop::focusState()->monitor() && Desktop::focusState()->monitor()->m_activeWorkspace != window->m_workspace &&
+@@ -1024,6 +1028,8 @@ ActionResult Actions::changeWorkspace(PHLWORKSPACE ws) {
+     if (!PMONITOR)
+         return actionError("No focused monitor", eActionErrorLevel::WARNING, eActionErrorCode::INVALID_STATE);
+ 
++    auto constraintGuard = g_pInputManager->pointerConstraints().suspend();
++
+     if (ws->type() == Workspace::eWorkspaceType::SPECIAL) {
+         PMONITOR->setSpecialWorkspace(ws);
+         g_pInputManager->simulateMouseMovement();
+@@ -1503,6 +1509,8 @@ ActionResult Actions::pass(std::optional<PHLWINDOW> w) {
+     if (!g_pSeatManager->m_keyboard)
+         return actionError("No keyboard connected", eActionErrorLevel::INFO, eActionErrorCode::NO_TARGET);
+ 
++    auto        constraintGuard = g_pInputManager->pointerConstraints().suspend();
++
+     const auto& S             = *Config::Actions::state();
+     const auto  XWTOXW        = window->backend().isX11() && Desktop::focusState()->window() && Desktop::focusState()->window()->backend().isX11();
+     const auto  LASTMOUSESURF = g_pSeatManager->m_state.pointerFocus.lock();
+@@ -1568,6 +1576,8 @@ ActionResult Actions::pass(Input::ModifierMask modMask, uint32_t key, std::optio
+     if (!g_pSeatManager->m_keyboard && !isMouse)
+         return actionError("No keyboard connected", eActionErrorLevel::INFO, eActionErrorCode::NO_TARGET);
+ 
++    auto        constraintGuard = g_pInputManager->pointerConstraints().suspend();
++
+     const auto& S           = *Config::Actions::state();
+     const auto  LASTSURFACE = Desktop::focusState()->surface();
+ 
+diff --git a/src/desktop/state/FocusState.cpp b/src/desktop/state/FocusState.cpp
+index f18cd2955ec..0f26051d413 100644
+--- a/src/desktop/state/FocusState.cpp
++++ b/src/desktop/state/FocusState.cpp
+@@ -8,7 +8,6 @@
+ #include "../../ipc/s2/S2.hpp"
+ #include "../../managers/input/InputManager.hpp"
+ #include "../../managers/SeatManager.hpp"
+-#include "../../protocols/PointerConstraints.hpp"
+ #include "animation/WorkspaceAnimationController.hpp"
+ #include "../../managers/fullscreen/FullscreenController.hpp"
+ #include "../../layout/LayoutManager.hpp"
+@@ -125,7 +124,7 @@ void CFocusState::rawWindowFocus(PHLWINDOW pWindow, eFocusReason reason, SP<CWLS
+     if (pWindow)
+         g_layoutManager->bringTargetToTop(pWindow->windowTarget());
+ 
+-    g_pInputManager->unconstrainMouse();
++    auto constraintGuard = g_pInputManager->pointerConstraints().suspend();
+ 
+     if (!pWindow || !validMapped(pWindow)) {
+ 
+@@ -241,6 +240,8 @@ void CFocusState::rawSurfaceFocus(SP<CWLSurfaceResource> pSurface, PHLWINDOW pWi
+         return;
+     }
+ 
++    auto constraintGuard = g_pInputManager->pointerConstraints().suspend();
++
+     // Unfocus last surface if should
+     if (m_focusSurface && !pWindowOwner)
+         g_pXWaylandManager->activateSurface(m_focusSurface.lock(), false);
+diff --git a/src/managers/SeatManager.cpp b/src/managers/SeatManager.cpp
+index 90038d0e2b7..04d8fc480ba 100644
+--- a/src/managers/SeatManager.cpp
++++ b/src/managers/SeatManager.cpp
+@@ -7,7 +7,6 @@
+ #include "../protocols/core/Compositor.hpp"
+ #include "../protocols/LayerShell.hpp"
+ #include "../protocols/InputCapture.hpp"
+-#include "../protocols/PointerConstraints.hpp"
+ #include "../Compositor.hpp"
+ #include "../desktop/state/FocusState.hpp"
+ #include "../devices/IKeyboard.hpp"
+@@ -364,11 +363,12 @@ void CSeatManager::setPointerFocus(SP<CWLSurfaceResource> surf, const Vector2D&
+         return;
+     }
+ 
++    if (g_pInputManager->pointerConstraints().preservesPointerFocus(surf))
++        return;
++
+     m_listeners.pointerSurfaceDestroy.reset();
+ 
+-    const auto OLDSURF = Desktop::View::CWLSurface::fromResource(m_state.pointerFocus.lock());
+-    if (OLDSURF && OLDSURF->constraint())
+-        OLDSURF->constraint()->deactivate();
++    g_pInputManager->pointerConstraints().release();
+ 
+     for (auto const& p : PROTO::seat->m_pointers) {
+         if (!p)
+@@ -389,10 +389,6 @@ void CSeatManager::setPointerFocus(SP<CWLSurfaceResource> surf, const Vector2D&
+         return;
+     }
+ 
+-    const auto SURF = Desktop::View::CWLSurface::fromResource(surf);
+-    if (SURF && SURF->constraint())
+-        SURF->constraint()->activate();
+-
+     m_state.dndPointerFocus = surf;
+ 
+     auto client = surf->client();
+@@ -421,7 +417,7 @@ void CSeatManager::setPointerFocus(SP<CWLSurfaceResource> surf, const Vector2D&
+ }
+ 
+ void CSeatManager::sendPointerMotion(uint32_t timeMs, const Vector2D& local) {
+-    if (!m_state.pointerFocusResource)
++    if (!m_state.pointerFocusResource || g_pInputManager->pointerConstraints().blocksAbsoluteMotion())
+         return;
+ 
+     for (auto const& s : m_seatResources) {
+diff --git a/src/managers/input/InputManager.cpp b/src/managers/input/InputManager.cpp
+index 22ef2e9a2c7..b940bb60930 100644
+--- a/src/managers/input/InputManager.cpp
++++ b/src/managers/input/InputManager.cpp
+@@ -111,6 +111,7 @@ CInputManager::CInputManager() {
+     });
+ 
+     m_cursorSurfaceInfo.wlSurface = Desktop::View::CWLSurface::create();
++    m_pointerConstraints.init();
+ }
+ 
+ CInputManager::~CInputManager() {
+@@ -231,11 +232,22 @@ void CInputManager::sendMotionEventsToFocused() {
+ 
+     m_emptyFocusCursorSet = false;
+ 
+-    g_pSeatManager->setPointerFocus(Desktop::focusState()->surface(), getMouseCoordsInternal().floor() - BOX->pos());
++    auto surface = SURF;
++    auto local   = getMouseCoordsInternal().floor() - BOX->pos();
++    if (const auto WINDOW = Desktop::View::CWindow::fromView(VIEW); WINDOW && !WINDOW->backend().isX11()) {
++        Vector2D childLocal;
++        if (const auto CHILD = Desktop::viewState()->hitTest().windowSurfaceAt(getMouseCoordsInternal().floor(), WINDOW, childLocal)) {
++            surface = CHILD;
++            local   = childLocal;
++        }
++    }
++
++    g_pSeatManager->setPointerFocus(surface, local);
+ }
+ 
+-void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, std::optional<Vector2D> overridePos) {
+-    m_lastInputMouse = mouse;
++void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, std::optional<Vector2D> overridePos, bool pointerOnly) {
++    if (!pointerOnly)
++        m_lastInputMouse = mouse;
+ 
+     if (g_pCompositor->m_isShuttingDown)
+         return;
+@@ -243,7 +255,7 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+     Vector2D const mouseCoords        = overridePos.value_or(getMouseCoordsInternal());
+     auto const     MOUSECOORDSFLOORED = mouseCoords.floor();
+ 
+-    if (MOUSECOORDSFLOORED == m_lastCursorPosFloored && !refocus)
++    if (MOUSECOORDSFLOORED == m_lastCursorPosFloored && !refocus && !pointerOnly)
+         return;
+ 
+     static auto PFOLLOWMOUSE          = CConfigValue<Config::INTEGER>("input:follow_mouse");
+@@ -257,14 +269,16 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+ 
+     const auto  FOLLOWMOUSE = *PFOLLOWONDND && PROTO::data->dndActive() ? 1 : *PFOLLOWMOUSE;
+ 
+-    if (FOLLOWMOUSE == 1 && m_lastCursorMovement.getSeconds() < 0.5)
+-        m_mousePosDelta += MOUSECOORDSFLOORED.distance(m_lastCursorPosFloored);
+-    else
+-        m_mousePosDelta = 0;
++    if (!pointerOnly) {
++        if (FOLLOWMOUSE == 1 && m_lastCursorMovement.getSeconds() < 0.5)
++            m_mousePosDelta += MOUSECOORDSFLOORED.distance(m_lastCursorPosFloored);
++        else
++            m_mousePosDelta = 0;
+ 
+-    m_foundSurfaceToFocus.reset();
+-    m_foundLSToFocus.reset();
+-    m_foundWindowToFocus.reset();
++        m_foundSurfaceToFocus.reset();
++        m_foundLSToFocus.reset();
++        m_foundWindowToFocus.reset();
++    }
+     SP<CWLSurfaceResource> foundSurface;
+     Vector2D               surfaceCoords;
+     Vector2D               surfacePos = Vector2D(-1337, -1337);
+@@ -272,12 +286,14 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+     PHLLS                  pFoundLayerSurface;
+     const auto             FOCUS_REASON = refocus ? Desktop::FOCUS_REASON_CLICK : Desktop::FOCUS_REASON_FFM;
+ 
+-    Event::SCallbackInfo   info;
+-    Event::bus()->m_events.input.mouse.move.emit(MOUSECOORDSFLOORED, info);
+-    if (info.cancelled)
+-        return;
++    if (!pointerOnly) {
++        Event::SCallbackInfo info;
++        Event::bus()->m_events.input.mouse.move.emit(MOUSECOORDSFLOORED, info);
++        if (info.cancelled)
++            return;
+ 
+-    m_lastCursorPosFloored = MOUSECOORDSFLOORED;
++        m_lastCursorPosFloored = MOUSECOORDSFLOORED;
++    }
+ 
+     // use mouseCoords specifically in case touch sent overridePos, otherwise touch doesn't work on non-focused monitor
+     const auto PMONITOR = isLocked() && Desktop::focusState()->monitor() ? Desktop::focusState()->monitor() : State::monitorState()->query().vec(mouseCoords).run();
+@@ -298,60 +314,10 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+         !SKIP_CURSOR_FRAME_SCHEDULE)
+         CURSOR_MONITOR->scheduleFrame(Aquamarine::IOutput::AQ_SCHEDULE_CURSOR_MOVE);
+ 
+-    // constraints
+-    auto confineToRegion = [&](const CRegion& rg, SP<Desktop::View::CWLSurface> surf) {
+-        if (!surf)
+-            return;
+-
+-        const auto CLOSEST      = rg.closestPoint(mouseCoords);
+-        const auto BOX          = surf->getSurfaceBoxGlobal();
+-        const auto WINDOW       = Desktop::View::CWindow::fromView(surf->view());
+-        const auto LOCAL        = CLOSEST - (BOX.has_value() ? BOX->pos() : Vector2D{});
+-        const auto CLOSESTLOCAL = WINDOW ? WINDOW->backend().surfaceLocalToBuffer(LOCAL) : LOCAL;
+-
+-        if (g_pSeatManager->m_state.pointerFocus != surf->resource())
+-            g_pSeatManager->setPointerFocus(surf->resource(), CLOSESTLOCAL);
+-
+-        Pointer::pointerController()->warpTo(CLOSEST, true);
+-        g_pSeatManager->sendPointerMotion(time, CLOSESTLOCAL);
+-        PROTO::relativePointer->sendRelativeMotion(sc<uint64_t>(time) * 1000, {}, {});
+-    };
+-
+-    if (!g_pSeatManager->m_mouse.expired()) {
+-        const auto SURF = Desktop::View::CWLSurface::fromResource(g_pSeatManager->m_state.pointerFocus.lock());
+-
+-        if (isConstrained()) {
+-            const auto CONSTRAINT = SURF ? SURF->constraint() : nullptr;
+-
+-            if (CONSTRAINT) {
+-                if (CONSTRAINT->isLocked()) {
+-                    const auto HINT = CONSTRAINT->logicPositionHint();
+-                    Pointer::pointerController()->warpTo(HINT, true);
+-                } else {
+-                    confineToRegion(CONSTRAINT->logicConstraintRegion(), SURF);
+-                }
+-
+-                return;
+-            } else {
+-                LOG(Log::ERR, "BUG THIS: Null SURF/CONSTRAINT in mouse refocus. Ignoring constraints. {:x} {:x}", rc<uintptr_t>(SURF.get()), rc<uintptr_t>(CONSTRAINT.get()));
+-            }
+-        } else {
+-            const auto WINDOW = SURF ? Desktop::View::CWindow::fromView(SURF->view()) : nullptr;
+-            if (WINDOW) {
+-                if (WINDOW->m_ruleApplicator->confinePointer().valueOrDefault()) {
+-                    const auto BOX = SURF->getSurfaceBoxGlobal();
+-                    if (BOX.has_value()) {
+-                        CRegion rg;
+-                        rg.set(*BOX);
+-                        confineToRegion(rg, SURF);
+-                    }
+-                    return;
+-                }
+-            }
+-        }
+-    }
++    if (!pointerOnly && m_pointerConstraints.apply(time, mouseCoords))
++        return;
+ 
+-    if (PMONITOR != Desktop::focusState()->monitor() && (*PMOUSEFOCUSMON || refocus) && m_forcedFocus.expired())
++    if (!pointerOnly && PMONITOR != Desktop::focusState()->monitor() && (*PMOUSEFOCUSMON || refocus) && m_forcedFocus.expired())
+         Desktop::focusState()->rawMonitorFocus(PMONITOR);
+ 
+     // IME popups essentially always exist on the top - they are transient,
+@@ -377,7 +343,8 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+         const auto PSESSIONLOCKSURFACE = g_pSessionLockManager->getSessionLockSurfaceForMonitor(PMONITOR->m_id);
+         const auto foundLockSurface    = PSESSIONLOCKSURFACE ? PSESSIONLOCKSURFACE->surface->surface() : nullptr;
+ 
+-        Desktop::focusState()->rawSurfaceFocus(foundLockSurface);
++        if (!pointerOnly)
++            Desktop::focusState()->rawSurfaceFocus(foundLockSurface);
+ 
+         // search for interactable abovelock surfaces for pointer focus, or use session lock surface if not found
+         for (auto& lsl : PMONITOR->m_layerSurfaceLayers | std::views::reverse) {
+@@ -399,7 +366,8 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+         }
+ 
+         g_pSeatManager->setPointerFocus(foundSurface, surfaceCoords);
+-        g_pSeatManager->sendPointerMotion(time, surfaceCoords);
++        if (!pointerOnly && !m_pointerConstraints.apply(time, mouseCoords))
++            g_pSeatManager->sendPointerMotion(time, surfaceCoords);
+ 
+         return;
+     }
+@@ -411,8 +379,12 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+ 
+     if (forcedFocus && !foundSurface) {
+         pFoundWindow = forcedFocus;
+-        surfacePos   = pFoundWindow->position(Desktop::View::IGeometric::GEOMETRIC_CURRENT);
+-        foundSurface = pFoundWindow->wlSurface()->resource();
++        if (!pFoundWindow->backend().isX11())
++            foundSurface = Desktop::viewState()->hitTest().windowSurfaceAt(mouseCoords, pFoundWindow, surfaceCoords);
++        if (!foundSurface) {
++            surfacePos   = pFoundWindow->position(Desktop::View::IGeometric::GEOMETRIC_CURRENT);
++            foundSurface = pFoundWindow->wlSurface()->resource();
++        }
+     }
+ 
+     // if we are holding a pointer button,
+@@ -451,7 +423,8 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+         }
+     }
+ 
+-    g_layoutManager->moveMouse(getMouseCoordsInternal());
++    if (!pointerOnly)
++        g_layoutManager->moveMouse(getMouseCoordsInternal());
+ 
+     if (g_layoutManager->dragController()->exclusiveDeviceGrab()) {
+         g_pSeatManager->setPointerFocus(nullptr, {});
+@@ -586,7 +559,7 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+     // FIXME: This will be disabled during DnD operations because we do not exactly follow the spec
+     // xdg-popup grabs should be keyboard-only, while they are absolute in our case...
+     if (g_pSeatManager->m_seatGrab && !g_pSeatManager->m_seatGrab->accepts(foundSurface) && !PROTO::data->dndActive()) {
+-        if (m_hardInput || refocus) {
++        if (!pointerOnly && (m_hardInput || refocus)) {
+             g_pSeatManager->setGrab(nullptr);
+             return; // setGrab will refocus
+         } else {
+@@ -612,7 +585,7 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+ 
+         g_pSeatManager->setPointerFocus(nullptr, {});
+ 
+-        if (refocus || !Desktop::focusState()->window()) // if we are forcing a refocus, and we don't find a surface, clear the kb focus too!
++        if (!pointerOnly && (refocus || !Desktop::focusState()->window())) // if we are forcing a refocus, and we don't find a surface, clear the kb focus too!
+             Desktop::focusState()->rawWindowFocus(nullptr, FOCUS_REASON);
+ 
+         return;
+@@ -625,6 +598,11 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+     if (pFoundWindow && pFoundWindow->backend().isX11()) // for x11 force scale zero
+         surfaceLocal = pFoundWindow->backend().surfaceLocalToBuffer(surfaceLocal);
+ 
++    if (pointerOnly) {
++        g_pSeatManager->setPointerFocus(foundSurface, surfaceLocal);
++        return;
++    }
++
+     bool allowKeyboardRefocus = true;
+ 
+     if (!refocus && Desktop::focusState()->surface()) {
+@@ -684,7 +662,7 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+             if (FOLLOWMOUSE != 0 || pFoundWindow == Desktop::focusState()->window())
+                 g_pSeatManager->setPointerFocus(foundSurface, surfaceLocal);
+ 
+-            if (g_pSeatManager->m_state.pointerFocus == foundSurface)
++            if (g_pSeatManager->m_state.pointerFocus == foundSurface && !m_pointerConstraints.apply(time, mouseCoords))
+                 g_pSeatManager->sendPointerMotion(time, surfaceLocal);
+ 
+             m_lastFocusOnLS = false;
+@@ -733,7 +711,8 @@ void CInputManager::mouseMoveUnified(uint32_t time, bool refocus, bool mouse, st
+ 
+     if (!overridePos.has_value()) {
+         g_pSeatManager->setPointerFocus(foundSurface, surfaceLocal);
+-        g_pSeatManager->sendPointerMotion(time, surfaceLocal);
++        if (!m_pointerConstraints.apply(time, mouseCoords))
++            g_pSeatManager->sendPointerMotion(time, surfaceLocal);
+     }
+ }
+ 
+@@ -1841,12 +1820,21 @@ void CInputManager::refocus(std::optional<Vector2D> overridePos) {
+     mouseMoveUnified(0, true, false, overridePos);
+ }
+ 
++void CInputManager::refocusPointer() {
++    if (!anyHidHasCap(HID_INPUT_CAPABILITY_POINTER))
++        return;
++
++    mouseMoveUnified(Time::millis(Time::steadyNow()), false, false, std::nullopt, true);
++}
++
+ bool CInputManager::refocusLastWindow(PHLMONITOR pMonitor) {
+     if (!m_exclusiveKeyboardLSes.empty()) {
+         LOG(Log::DEBUG, "CInputManager::refocusLastWindow: ignoring, exclusive LS present.");
+         return false;
+     }
+ 
++    auto constraintGuard = m_pointerConstraints.suspend();
++
+     if (!pMonitor) {
+         refocus();
+         return true;
+@@ -1893,49 +1881,21 @@ bool CInputManager::refocusLastWindow(PHLMONITOR pMonitor) {
+ }
+ 
+ void CInputManager::unconstrainMouse() {
+-    if (g_pSeatManager->m_mouse.expired())
+-        return;
+-
+-    for (auto const& c : m_constraints) {
+-        const auto C = c.lock();
+-
+-        if (!C)
+-            continue;
+-
+-        if (!C->isActive())
+-            continue;
+-
+-        C->deactivate();
+-    }
++    m_pointerConstraints.release();
+ }
+ 
+ bool CInputManager::isConstrained() {
+-    return std::ranges::any_of(m_constraints, [](auto const& c) {
+-        const auto constraint = c.lock();
+-
+-        if (!constraint || !constraint->isActive() || constraint->owner()->resource() != g_pSeatManager->m_state.pointerFocus)
+-            return false;
+-
+-        const auto OWNER = constraint->owner()->view();
+-        return OWNER && OWNER->mapped() && !OWNER->cantLockCursor();
+-    });
++    // Preserve the native-only focus-stealing policy. Rule confinement shares
++    // motion enforcement and release, but does not prevent new windows focusing.
++    return m_pointerConstraints.nativeActive();
+ }
+ 
+ bool CInputManager::isLocked() {
+-    if (!isConstrained())
+-        return false;
+-
+-    const auto SURF = Desktop::View::CWLSurface::fromResource(g_pSeatManager->m_state.pointerFocus.lock());
+-    if (!SURF)
+-        return false;
+-
+-    const auto VIEW = SURF->view();
+-    if (!VIEW || VIEW->cantLockCursor())
+-        return false;
+-
+-    const auto CONSTRAINT = SURF->constraint();
++    return m_pointerConstraints.locked();
++}
+ 
+-    return CONSTRAINT && CONSTRAINT->isLocked();
++CPointerConstraintController& CInputManager::pointerConstraints() {
++    return m_pointerConstraints;
+ }
+ 
+ bool CInputManager::hasHeldButtons() {
+diff --git a/src/managers/input/InputManager.hpp b/src/managers/input/InputManager.hpp
+index 4ab63b7496b..e6247d74aa4 100644
+--- a/src/managers/input/InputManager.hpp
++++ b/src/managers/input/InputManager.hpp
+@@ -6,6 +6,7 @@
+ #include "../../helpers/WLClasses.hpp"
+ #include "../../helpers/time/Timer.hpp"
+ #include "InputMethodRelay.hpp"
++#include "PointerConstraintController.hpp"
+ #include "../../helpers/signal/Signal.hpp"
+ #include "../../desktop/view/WLSurface.hpp"
+ #include "../../devices/IPointer.hpp"
+@@ -139,6 +140,7 @@ class CInputManager {
+ 
+     Vector2D           getMouseCoordsInternal();
+     void               refocus(std::optional<Vector2D> overridePos = std::nullopt);
++    void               refocusPointer();
+     bool               refocusLastWindow(PHLMONITOR pMonitor);
+     void               simulateMouseMovement();
+     void               sendMotionEventsToFocused();
+@@ -194,6 +196,7 @@ class CInputManager {
+     std::vector<PHLLSREF> m_exclusiveKeyboardLSes;
+ 
+     // constraints
++    CPointerConstraintController&       pointerConstraints();
+     std::vector<WP<CPointerConstraint>> m_constraints;
+ 
+     //
+@@ -237,6 +240,8 @@ class CInputManager {
+     bool m_emptyFocusCursorSet = false;
+ 
+   private:
++    CPointerConstraintController m_pointerConstraints;
++
+     // Listeners
+     struct {
+         CHyprSignalListener setCursorShape;
+@@ -266,7 +271,7 @@ class CInputManager {
+ 
+     uint32_t           m_capabilities = 0;
+ 
+-    void               mouseMoveUnified(uint32_t, bool refocus = false, bool mouse = false, std::optional<Vector2D> overridePos = std::nullopt);
++    void               mouseMoveUnified(uint32_t, bool refocus = false, bool mouse = false, std::optional<Vector2D> overridePos = std::nullopt, bool pointerOnly = false);
+     void               recheckMouseWarpOnMouseInput();
+ 
+     SP<CTabletTool>    ensureTabletToolPresent(SP<Aquamarine::ITabletTool>);
+diff --git a/src/managers/input/PointerConstraintController.cpp b/src/managers/input/PointerConstraintController.cpp
+new file mode 100644
+index 00000000000..f81235f5417
+--- /dev/null
++++ b/src/managers/input/PointerConstraintController.cpp
+@@ -0,0 +1,230 @@
++#include "PointerConstraintController.hpp"
++#include "InputManager.hpp"
++#include "../SeatManager.hpp"
++#include "../../desktop/view/Popup.hpp"
++#include "../../desktop/view/LayerSurface.hpp"
++#include "../../desktop/view/window/Window.hpp"
++#include "../../desktop/state/ViewState.hpp"
++#include "../../event/EventBus.hpp"
++#include "../../helpers/time/Time.hpp"
++#include "../../pointer/PointerController.hpp"
++#include "../../protocols/PointerConstraints.hpp"
++#include "../../protocols/RelativePointer.hpp"
++#include "../../protocols/core/Compositor.hpp"
++#include "../../protocols/core/DataDevice.hpp"
++#include "../../protocols/core/Subcompositor.hpp"
++#include "../../workspace/HLWorkspace.hpp"
++
++static SP<CWLSurfaceResource> focusOwner(SP<CWLSurfaceResource> surface) {
++    while (surface && surface->m_role->role() == SURFACE_ROLE_SUBSURFACE) {
++        const auto SUB = sc<CSubsurfaceRole*>(surface->m_role.get())->m_subsurface.lock();
++        surface        = SUB ? SUB->m_parent.lock() : nullptr;
++    }
++
++    const auto HLSURFACE = Desktop::View::CWLSurface::fromResource(surface);
++    if (const auto POPUP = HLSURFACE ? Desktop::View::CPopup::fromView(HLSURFACE->view()) : nullptr) {
++        if (const auto WINDOW = POPUP->windowOwner())
++            return WINDOW->wlSurface()->resource();
++        if (const auto LAYER = POPUP->layerOwner())
++            return LAYER->wlSurface()->resource();
++    }
++
++    return surface;
++}
++
++static bool surfaceVisible(SP<Desktop::View::CWLSurface> surface) {
++    const auto VIEW = surface ? surface->view() : nullptr;
++    if (!VIEW || !VIEW->mapped() || !VIEW->acceptsInput())
++        return false;
++
++    const auto ROOT   = Desktop::View::CWLSurface::fromResource(focusOwner(surface->resource()));
++    const auto WINDOW = ROOT ? Desktop::View::CWindow::fromView(ROOT->view()) : nullptr;
++    return !WINDOW || (WINDOW->m_workspace && WINDOW->m_workspace->visible());
++}
++
++static bool eligible(SP<Desktop::View::CWLSurface> surface) {
++    if (!surfaceVisible(surface))
++        return false;
++
++    const auto OWNER = focusOwner(surface->resource());
++    return OWNER && OWNER == focusOwner(g_pSeatManager->m_state.keyboardFocus.lock());
++}
++
++static PHLWINDOW ruleWindow(SP<Desktop::View::CWLSurface> surface) {
++    const auto ROOT = surface ? Desktop::View::CWLSurface::fromResource(focusOwner(surface->resource())) : nullptr;
++    return ROOT ? Desktop::View::CWindow::fromView(ROOT->view()) : nullptr;
++}
++
++void CPointerConstraintController::init() {
++    m_listeners.pointerFocus  = g_pSeatManager->m_events.pointerFocusChange.listen([this] { refresh(true); });
++    m_listeners.keyboardFocus = g_pSeatManager->m_events.keyboardFocusChange.listen([this] { refresh(true); });
++    m_listeners.rules         = Event::bus()->m_events.window.updateRules.listen([this](auto) { refresh(); });
++}
++
++void CPointerConstraintController::release() {
++    m_released = true;
++    if (const auto NATIVE = m_native.lock())
++        NATIVE->deactivate();
++    m_ruleState.deactivate();
++}
++
++void CPointerConstraintController::refresh(bool rearm) {
++    // A rule/property refresh must not undo an explicit compositor release.
++    if (rearm)
++        m_released = false;
++    if (m_suspensions)
++        return;
++
++    const auto SURFACE  = Desktop::View::CWLSurface::fromResource(g_pSeatManager->m_state.pointerFocus.lock());
++    const bool ELIGIBLE = eligible(SURFACE);
++    const auto NATIVE   = ELIGIBLE ? SURFACE->constraint() : nullptr;
++
++    if (m_native != NATIVE) {
++        if (const auto OLD = m_native.lock())
++            OLD->deactivate();
++        m_native = NATIVE;
++    }
++
++    if (NATIVE && !m_released)
++        NATIVE->activate();
++
++    const auto WINDOW = ELIGIBLE ? ruleWindow(SURFACE) : nullptr;
++    const bool RULE   = WINDOW && WINDOW->m_ruleApplicator->confinePointer().valueOrDefault() && !(NATIVE && NATIVE->isActive());
++
++    if (m_ruleSurface != SURFACE || !RULE || m_released)
++        m_ruleState.deactivate();
++
++    m_ruleSurface = RULE ? SURFACE : nullptr;
++    if (RULE && !m_released)
++        m_ruleState.activate();
++}
++
++Hyprutils::Utils::CScopeGuard CPointerConstraintController::suspend() {
++    if (!m_suspensions) {
++        m_hadConstraint  = !!activeSurface();
++        m_keyboardBefore = g_pSeatManager->m_state.keyboardFocus;
++        m_positionBefore = g_pInputManager->getMouseCoordsInternal();
++    }
++    ++m_suspensions;
++    return Hyprutils::Utils::CScopeGuard([this] { resume(); });
++}
++
++void CPointerConstraintController::resume() {
++    // Hit-test before rearming, not after: the old constraint must not decide
++    // which surface receives focus on the destination workspace/layer.
++    if (m_suspensions == 1 && m_keyboardBefore != g_pSeatManager->m_state.keyboardFocus) {
++        const auto POINTER = Desktop::View::CWLSurface::fromResource(g_pSeatManager->m_state.pointerFocus.lock());
++        // Preserve ordinary pointer/keyboard separation, and pointer focus that
++        // the focus policy has already transferred to the destination.
++        if (!surfaceVisible(POINTER) || (m_hadConstraint && !eligible(POINTER)) || m_positionBefore != g_pInputManager->getMouseCoordsInternal())
++            g_pInputManager->refocusPointer();
++    }
++
++    if (--m_suspensions)
++        return;
++
++    refresh(true);
++    enforce();
++}
++
++SP<Desktop::View::CWLSurface> CPointerConstraintController::activeSurface() const {
++    if (m_suspensions || m_released || g_pSeatManager->m_mouse.expired())
++        return nullptr;
++
++    const auto NATIVE  = m_native.lock();
++    const auto SURFACE = NATIVE && NATIVE->isActive() ? NATIVE->owner() : (m_ruleState.active() ? m_ruleSurface.lock() : nullptr);
++    if (!SURFACE || SURFACE->resource() != g_pSeatManager->m_state.pointerFocus || !eligible(SURFACE) || SURFACE->view()->cantLockCursor())
++        return nullptr;
++
++    if (!(NATIVE && NATIVE->isActive())) {
++        const auto WINDOW = ruleWindow(SURFACE);
++        if (!WINDOW || !WINDOW->m_ruleApplicator->confinePointer().valueOrDefault())
++            return nullptr;
++    }
++
++    return SURFACE;
++}
++
++bool CPointerConstraintController::nativeActive() const {
++    const auto NATIVE = m_native.lock();
++    return NATIVE && NATIVE->isActive() && activeSurface();
++}
++
++bool CPointerConstraintController::locked() const {
++    const auto NATIVE = m_native.lock();
++    return nativeActive() && NATIVE->isLocked();
++}
++
++bool CPointerConstraintController::blocksAbsoluteMotion() const {
++    const auto NATIVE  = m_native.lock();
++    const auto SURFACE = NATIVE ? NATIVE->owner() : nullptr;
++    // Suspension permits compositor hit-testing, not locked or unclamped
++    // motion while the client's native constraint remains active.
++    return SURFACE && SURFACE->resource() == g_pSeatManager->m_state.pointerFocus && NATIVE->isActive() && (NATIVE->isLocked() || m_suspensions);
++}
++
++bool CPointerConstraintController::preservesPointerFocus(SP<CWLSurfaceResource> target) const {
++    if (!m_suspensions || !target || g_pSeatManager->m_seatGrab)
++        return false;
++
++    const auto NATIVE  = m_native.lock();
++    const auto SURFACE = NATIVE ? NATIVE->owner() : nullptr;
++    if (!NATIVE || !NATIVE->isActive() || !eligible(SURFACE) || SURFACE->view()->cantLockCursor())
++        return false;
++
++    // A no-op focus/warp or a pinned workspace switch must not consume a
++    // one-shot constraint just by rediscovering another child of its owner.
++    return SURFACE->resource() == g_pSeatManager->m_state.pointerFocus && focusOwner(target) == focusOwner(SURFACE->resource());
++}
++
++void CPointerConstraintController::enforce() {
++    apply(Time::millis(Time::steadyNow()), g_pInputManager->getMouseCoordsInternal());
++}
++
++bool CPointerConstraintController::apply(uint32_t time, const Vector2D& position) {
++    const auto SURFACE = activeSurface();
++    if (!SURFACE)
++        return false;
++
++    const auto NATIVE = m_native.lock();
++    if (NATIVE && NATIVE->isActive() && NATIVE->isLocked()) {
++        Pointer::pointerController()->warpTo(NATIVE->logicPositionHint(), true);
++        return true;
++    }
++
++    const auto BOX = SURFACE->getSurfaceBoxGlobal();
++    if (!BOX)
++        return false;
++
++    const auto RULEWINDOW = NATIVE && NATIVE->isActive() ? nullptr : ruleWindow(SURFACE);
++    const auto RULEBOX    = RULEWINDOW ? RULEWINDOW->wlSurface()->getSurfaceBoxGlobal() : std::nullopt;
++    if (RULEWINDOW && !RULEBOX)
++        return false;
++
++    const auto REGION  = RULEWINDOW ? CRegion(*RULEBOX) : NATIVE->logicConstraintRegion();
++    const auto CLOSEST = REGION.closestPoint(position);
++
++    // A window rule confines to the window, not to whichever child currently
++    // has pointer focus. Native constraints still take precedence on entry.
++    const bool HELD_FOCUS = g_pInputManager->hasHeldButtons() && !PROTO::data->dndActive() && !g_pInputManager->m_hardInput;
++    if (RULEWINDOW && !RULEWINDOW->backend().isX11() && !HELD_FOCUS) {
++        Vector2D   local;
++        const auto TARGET = Desktop::viewState()->hitTest().windowSurfaceAt(CLOSEST, RULEWINDOW, local);
++        if (TARGET && TARGET != SURFACE->resource() && (!g_pSeatManager->m_seatGrab || g_pSeatManager->m_seatGrab->accepts(TARGET))) {
++            Pointer::pointerController()->warpTo(CLOSEST, true);
++            g_pSeatManager->setPointerFocus(TARGET, local);
++            if (g_pSeatManager->m_state.pointerFocus == TARGET && !apply(time, CLOSEST))
++                g_pSeatManager->sendPointerMotion(time, local);
++            return true;
++        }
++    }
++
++    const auto WINDOW      = Desktop::View::CWindow::fromView(SURFACE->view());
++    const auto LOCAL       = CLOSEST - BOX->pos();
++    const auto BUFFERLOCAL = WINDOW ? WINDOW->backend().surfaceLocalToBuffer(LOCAL) : LOCAL;
++
++    Pointer::pointerController()->warpTo(CLOSEST, true);
++    g_pSeatManager->sendPointerMotion(time, BUFFERLOCAL);
++    PROTO::relativePointer->sendRelativeMotion(sc<uint64_t>(time) * 1000, {}, {});
++    return true;
++}
+diff --git a/src/managers/input/PointerConstraintController.hpp b/src/managers/input/PointerConstraintController.hpp
+new file mode 100644
+index 00000000000..f6371e2a927
+--- /dev/null
++++ b/src/managers/input/PointerConstraintController.hpp
+@@ -0,0 +1,50 @@
++#pragma once
++
++#include "../../helpers/memory/Memory.hpp"
++#include "../../helpers/signal/Signal.hpp"
++#include "PointerConstraintState.hpp"
++#include <hyprutils/utils/ScopeGuard.hpp>
++#include <hyprutils/math/Vector2D.hpp>
++#include <cstddef>
++#include <cstdint>
++
++class CPointerConstraint;
++class CWLSurfaceResource;
++namespace Desktop::View {
++    class CWLSurface;
++}
++
++class CPointerConstraintController {
++  public:
++    void                                        init();
++    void                                        release();
++    void                                        refresh(bool rearm = false);
++
++    [[nodiscard]] Hyprutils::Utils::CScopeGuard suspend();
++
++    bool                                        apply(uint32_t time, const Hyprutils::Math::Vector2D& position);
++    void                                        enforce();
++    bool                                        nativeActive() const;
++    bool                                        locked() const;
++    bool                                        blocksAbsoluteMotion() const;
++    bool                                        preservesPointerFocus(SP<CWLSurfaceResource> target) const;
++
++  private:
++    SP<Desktop::View::CWLSurface> activeSurface() const;
++    void                          resume();
++
++    WP<CPointerConstraint>        m_native;
++    WP<Desktop::View::CWLSurface> m_ruleSurface;
++    CPointerConstraintState       m_ruleState;
++    bool                          m_released      = false;
++    size_t                        m_suspensions   = 0;
++    bool                          m_hadConstraint = false;
++    WP<CWLSurfaceResource>        m_keyboardBefore;
++    Hyprutils::Math::Vector2D     m_positionBefore;
++
++    struct {
++        CHyprSignalListener pointerFocus;
++        CHyprSignalListener keyboardFocus;
++        CHyprSignalListener rules;
++    } m_listeners;
++};
+diff --git a/src/managers/input/PointerConstraintState.cpp b/src/managers/input/PointerConstraintState.cpp
+new file mode 100644
+index 00000000000..9cce7db3adc
+--- /dev/null
++++ b/src/managers/input/PointerConstraintState.cpp
+@@ -0,0 +1,30 @@
++#include "PointerConstraintState.hpp"
++
++CPointerConstraintState::CPointerConstraintState(eLifetime lifetime) : m_lifetime(lifetime) {
++    ;
++}
++
++bool CPointerConstraintState::activate() {
++    if (m_active || m_exhausted)
++        return false;
++
++    m_active = true;
++    return true;
++}
++
++bool CPointerConstraintState::deactivate() {
++    if (!m_active)
++        return false;
++
++    m_active    = false;
++    m_exhausted = m_lifetime == LIFETIME_ONESHOT;
++    return true;
++}
++
++bool CPointerConstraintState::active() const {
++    return m_active;
++}
++
++bool CPointerConstraintState::exhausted() const {
++    return m_exhausted;
++}
+diff --git a/src/managers/input/PointerConstraintState.hpp b/src/managers/input/PointerConstraintState.hpp
+new file mode 100644
+index 00000000000..9042d7426f3
+--- /dev/null
++++ b/src/managers/input/PointerConstraintState.hpp
+@@ -0,0 +1,21 @@
++#pragma once
++
++class CPointerConstraintState {
++  public:
++    enum eLifetime {
++        LIFETIME_PERSISTENT,
++        LIFETIME_ONESHOT,
++    };
++
++    explicit CPointerConstraintState(eLifetime lifetime = LIFETIME_PERSISTENT);
++
++    bool activate();
++    bool deactivate();
++    bool active() const;
++    bool exhausted() const;
++
++  private:
++    eLifetime m_lifetime;
++    bool      m_active    = false;
++    bool      m_exhausted = false;
++};
+diff --git a/src/output/Monitor.cpp b/src/output/Monitor.cpp
+index 1852ef9023a..41736f097cf 100644
+--- a/src/output/Monitor.cpp
++++ b/src/output/Monitor.cpp
+@@ -1364,8 +1364,9 @@ void CMonitor::changeWorkspace(const PHLWORKSPACE& pWorkspace, bool internal, bo
+     if (pWorkspace == m_activeWorkspace)
+         return;
+ 
++    auto constraintGuard = g_pInputManager->pointerConstraints().suspend();
++
+     if (!internal) {
+-        g_pInputManager->unconstrainMouse();
+         g_pInputManager->m_emptyFocusCursorSet = false;
+         g_pInputManager->releaseAllMouseButtons();
+     }
+@@ -1476,7 +1477,7 @@ void CMonitor::setSpecialWorkspace(const PHLWORKSPACE& pWorkspace, bool noFocus)
+ 
+     g_pHyprRenderer->damageMonitor(m_self.lock());
+ 
+-    g_pInputManager->unconstrainMouse();
++    auto constraintGuard = g_pInputManager->pointerConstraints().suspend();
+ 
+     if (!pWorkspace) {
+         // remove special if exists
+diff --git a/src/protocols/PointerConstraints.cpp b/src/protocols/PointerConstraints.cpp
+index bff4b5b5cc9..a003ee98221 100644
+--- a/src/protocols/PointerConstraints.cpp
++++ b/src/protocols/PointerConstraints.cpp
+@@ -1,15 +1,13 @@
+ #include "PointerConstraints.hpp"
+ #include "../desktop/view/WLSurface.hpp"
+-#include "../desktop/state/FocusState.hpp"
+ #include "../desktop/view/window/Window.hpp"
+ #include "../managers/SeatManager.hpp"
+ #include "core/Compositor.hpp"
+ #include "../managers/input/InputManager.hpp"
+-#include "../render/Renderer.hpp"
+-#include "../output/Monitor.hpp"
+ 
+ CPointerConstraint::CPointerConstraint(SP<CZwpLockedPointerV1> resource_, SP<CWLSurfaceResource> surf, wl_resource* region_, zwpPointerConstraintsV1Lifetime lifetime_) :
+-    m_resourceLocked(resource_), m_locked(true), m_lifetime(lifetime_) {
++    m_resourceLocked(resource_), m_locked(true),
++    m_state(lifetime_ == ZWP_POINTER_CONSTRAINTS_V1_LIFETIME_ONESHOT ? CPointerConstraintState::LIFETIME_ONESHOT : CPointerConstraintState::LIFETIME_PERSISTENT) {
+     if UNLIKELY (!resource_->resource())
+         return;
+ 
+@@ -36,14 +34,16 @@ CPointerConstraint::CPointerConstraint(SP<CZwpLockedPointerV1> resource_, SP<CWL
+         if (PWINDOW && PWINDOW->backend().isX11())
+             m_positionHint = PWINDOW->backend().bufferToSurfaceLocal(m_positionHint);
+ 
+-        g_pInputManager->simulateMouseMovement();
++        if (isActive())
++            g_pInputManager->pointerConstraints().enforce();
+     });
+ 
+     sharedConstructions();
+ }
+ 
+ CPointerConstraint::CPointerConstraint(SP<CZwpConfinedPointerV1> resource_, SP<CWLSurfaceResource> surf, wl_resource* region_, zwpPointerConstraintsV1Lifetime lifetime_) :
+-    m_resourceConfined(resource_), m_lifetime(lifetime_) {
++    m_resourceConfined(resource_),
++    m_state(lifetime_ == ZWP_POINTER_CONSTRAINTS_V1_LIFETIME_ONESHOT ? CPointerConstraintState::LIFETIME_ONESHOT : CPointerConstraintState::LIFETIME_PERSISTENT) {
+     if UNLIKELY (!resource_->resource())
+         return;
+ 
+@@ -77,8 +77,7 @@ void CPointerConstraint::sharedConstructions() {
+     if (m_hlSurface) {
+         m_listeners.destroySurface = m_hlSurface->m_events.destroy.listen([this] {
+             m_hlSurface.reset();
+-            if (m_active)
+-                deactivate();
++            deactivate();
+ 
+             std::erase_if(g_pInputManager->m_constraints, [this](const auto& c) {
+                 const auto SHP = c.lock();
+@@ -86,8 +85,6 @@ void CPointerConstraint::sharedConstructions() {
+             });
+         });
+     }
+-
+-    m_cursorPosOnActivate = g_pInputManager->getMouseCoordsInternal();
+ }
+ 
+ bool CPointerConstraint::good() {
+@@ -95,7 +92,7 @@ bool CPointerConstraint::good() {
+ }
+ 
+ void CPointerConstraint::deactivate() {
+-    if (!m_active)
++    if (!m_state.deactivate())
+         return;
+ 
+     if (m_locked)
+@@ -103,10 +100,7 @@ void CPointerConstraint::deactivate() {
+     else
+         m_resourceConfined->sendUnconfined();
+ 
+-    m_active = false;
+-
+-    if (m_lifetime == ZWP_POINTER_CONSTRAINTS_V1_LIFETIME_ONESHOT) {
+-        m_dead = true;
++    if (m_state.exhausted()) {
+         // remove from inputmgr
+         std::erase_if(g_pInputManager->m_constraints, [this](const auto& c) {
+             const auto SHP = c.lock();
+@@ -116,30 +110,19 @@ void CPointerConstraint::deactivate() {
+ }
+ 
+ void CPointerConstraint::activate() {
+-    if (m_dead || m_active)
++    if (!m_hlSurface || !m_state.activate())
+         return;
+ 
+-    // TODO: hack, probably not a super duper great idea
+-    if (g_pSeatManager->m_state.pointerFocus != m_hlSurface->resource()) {
+-        if (const auto VIEW = m_hlSurface->view(); !VIEW || !VIEW->cantLockCursor()) {
+-            const auto SURFBOX = m_hlSurface->getSurfaceBoxGlobal();
+-            const auto LOCAL   = SURFBOX.has_value() ? logicPositionHint() - SURFBOX->pos() : Vector2D{};
+-            g_pSeatManager->setPointerFocus(m_hlSurface->resource(), LOCAL);
+-        }
+-    }
++    m_cursorPosOnActivate = g_pInputManager->getMouseCoordsInternal();
+ 
+     if (m_locked)
+         m_resourceLocked->sendLocked();
+     else
+         m_resourceConfined->sendConfined();
+-
+-    m_active = true;
+-
+-    g_pInputManager->simulateMouseMovement();
+ }
+ 
+ bool CPointerConstraint::isActive() {
+-    return m_active;
++    return m_state.active();
+ }
+ 
+ void CPointerConstraint::onSetRegion(wl_resource* wlRegion) {
+@@ -152,7 +135,8 @@ void CPointerConstraint::onSetRegion(wl_resource* wlRegion) {
+ 
+     m_region.set(REGION);
+     m_positionHint = m_region.closestPoint(m_positionHint);
+-    g_pInputManager->simulateMouseMovement(); // to warp the cursor if anything's amiss
++    if (isActive())
++        g_pInputManager->pointerConstraints().enforce();
+ }
+ 
+ SP<Desktop::View::CWLSurface> CPointerConstraint::owner() {
+@@ -209,6 +193,7 @@ void CPointerConstraintsProtocol::onManagerResourceDestroy(wl_resource* res) {
+ 
+ void CPointerConstraintsProtocol::destroyPointerConstraint(CPointerConstraint* hyprlandEgg) {
+     std::erase_if(m_constraints, [&](const auto& other) { return other.get() == hyprlandEgg; });
++    g_pInputManager->pointerConstraints().refresh();
+ }
+ 
+ void CPointerConstraintsProtocol::onNewConstraint(SP<CPointerConstraint> constraint, CZwpPointerConstraintsV1* pMgr) {
+@@ -239,8 +224,9 @@ void CPointerConstraintsProtocol::onNewConstraint(SP<CPointerConstraint> constra
+ 
+     g_pInputManager->m_constraints.emplace_back(constraint);
+ 
+-    if (g_pSeatManager->m_state.pointerFocus == OWNER->resource())
+-        constraint->activate();
++    g_pInputManager->pointerConstraints().refresh(g_pSeatManager->m_state.pointerFocus == OWNER->resource());
++    if (constraint->isActive())
++        g_pInputManager->pointerConstraints().enforce();
+ }
+ 
+ void CPointerConstraintsProtocol::onLockPointer(CZwpPointerConstraintsV1* pMgr, uint32_t id, wl_resource* surface, wl_resource* pointer, wl_resource* region,
+diff --git a/src/protocols/PointerConstraints.hpp b/src/protocols/PointerConstraints.hpp
+index b190c041938..01497d792a6 100644
+--- a/src/protocols/PointerConstraints.hpp
++++ b/src/protocols/PointerConstraints.hpp
+@@ -9,6 +9,7 @@
+ #include "../desktop/view/WLSurface.hpp"
+ #include "../helpers/math/Math.hpp"
+ #include "../helpers/signal/Signal.hpp"
++#include "../managers/input/PointerConstraintState.hpp"
+ 
+ class CWLSurfaceResource;
+ 
+@@ -31,22 +32,20 @@ class CPointerConstraint {
+     Vector2D                      logicPositionHint();
+ 
+   private:
+-    SP<CZwpLockedPointerV1>         m_resourceLocked;
+-    SP<CZwpConfinedPointerV1>       m_resourceConfined;
++    SP<CZwpLockedPointerV1>       m_resourceLocked;
++    SP<CZwpConfinedPointerV1>     m_resourceConfined;
+ 
+-    WP<Desktop::View::CWLSurface>   m_hlSurface;
++    WP<Desktop::View::CWLSurface> m_hlSurface;
+ 
+-    CRegion                         m_region;
+-    bool                            m_hintSet             = false;
+-    Vector2D                        m_positionHint        = {-1, -1};
+-    Vector2D                        m_cursorPosOnActivate = {-1, -1};
+-    bool                            m_active              = false;
+-    bool                            m_locked              = false;
+-    bool                            m_dead                = false;
+-    zwpPointerConstraintsV1Lifetime m_lifetime            = ZWP_POINTER_CONSTRAINTS_V1_LIFETIME_ONESHOT;
++    CRegion                       m_region;
++    bool                          m_hintSet             = false;
++    Vector2D                      m_positionHint        = {-1, -1};
++    Vector2D                      m_cursorPosOnActivate = {-1, -1};
++    bool                          m_locked              = false;
++    CPointerConstraintState       m_state;
+ 
+-    void                            sharedConstructions();
+-    void                            onSetRegion(wl_resource* region);
++    void                          sharedConstructions();
++    void                          onSetRegion(wl_resource* region);
+ 
+     struct {
+         CHyprSignalListener destroySurface;
+@@ -75,4 +74,4 @@ class CPointerConstraintsProtocol : public IWaylandProtocol {
+ 
+ namespace PROTO {
+     inline UP<CPointerConstraintsProtocol> constraints;
+-};
+\ No newline at end of file
++};
+diff --git a/tests/managers/input/PointerConstraintState.cpp b/tests/managers/input/PointerConstraintState.cpp
+new file mode 100644
+index 00000000000..5836ecf36b2
+--- /dev/null
++++ b/tests/managers/input/PointerConstraintState.cpp
+@@ -0,0 +1,43 @@
++#include <managers/input/PointerConstraintState.hpp>
++#include <gtest/gtest.h>
++
++TEST(PointerConstraintState, PersistentReactivation) {
++    CPointerConstraintState state;
++
++    EXPECT_FALSE(state.active());
++    EXPECT_TRUE(state.activate());
++    EXPECT_TRUE(state.active());
++    EXPECT_TRUE(state.deactivate());
++    EXPECT_FALSE(state.active());
++    EXPECT_FALSE(state.exhausted());
++    EXPECT_TRUE(state.activate());
++    EXPECT_TRUE(state.active());
++}
++
++TEST(PointerConstraintState, OneshotCannotReactivate) {
++    CPointerConstraintState state(CPointerConstraintState::LIFETIME_ONESHOT);
++
++    EXPECT_TRUE(state.activate());
++    EXPECT_TRUE(state.deactivate());
++    EXPECT_TRUE(state.exhausted());
++    EXPECT_FALSE(state.activate());
++    EXPECT_FALSE(state.active());
++}
++
++TEST(PointerConstraintState, InactiveOneshotIsNotConsumed) {
++    CPointerConstraintState state(CPointerConstraintState::LIFETIME_ONESHOT);
++
++    EXPECT_FALSE(state.deactivate());
++    EXPECT_FALSE(state.exhausted());
++    EXPECT_TRUE(state.activate());
++}
++
++TEST(PointerConstraintState, RepeatedTransitionsDoNotNotify) {
++    CPointerConstraintState state;
++
++    EXPECT_TRUE(state.activate());
++    EXPECT_FALSE(state.activate());
++    EXPECT_TRUE(state.active());
++    EXPECT_TRUE(state.deactivate());
++    EXPECT_FALSE(state.deactivate());
++}
