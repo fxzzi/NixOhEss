@@ -9,15 +9,16 @@ channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 # all_follow: input name -> top-level pin it follows wherever it appears
 # opt out per-input with exclude_follow
 [all_follow]
-nixpkgs = ["nixpkgs", "nixpkgs-nixcord", "nixpkgs-lib", "nixpkgs-ci"]
+nixpkgs = ["nixpkgs", "nixpkgs-lib", "nixpkgs-ci", "nixpkgs-packages"]
 
 # auto-dedup (no top-level pin needed):
 git-hooks         = ["git-hooks", "pre-commit-hooks"]
 flake-parts       = "flake-parts"
 fenix             = "fenix"
 rust-analyzer-src = "rust-analyzer"
-hyprgraphics      = "hyprgraphics"
-hyprutils         = "hyprutils"
+
+hyprgraphics = "hyprgraphics"
+hyprutils    = "hyprutils"
 
 # [inputs.<name>] fields
 #   url             required, shorturl ok; ?rev=<sha> pins an exact commit
@@ -30,8 +31,7 @@ hyprutils         = "hyprutils"
 #   unpack          fixed-only: tarball or file
 [inputs.nixpkgs]
 # url = "channel:nixos-unstable"
-url     = "github:NixOS/nixpkgs/nixos-unstable"
-patches = ["https://github.com/NixOS/nixpkgs/pull/571492"]
+url = "github:NixOS/nixpkgs/nixos-unstable"
 [inputs.nixos-core]
 url = "github:manic-systems/nixos-core"
 [inputs.hjem]
@@ -55,7 +55,8 @@ url = "github:fxzzi/creamlinux-installer"
 [inputs.nvf]
 url = "github:NotAShelf/nvf"
 [inputs.rags]
-url = "github:NotAShelf/rags/notashelf/push-tloqkvsrzlsm"
+url     = "github:NotAShelf/rags"
+patches = ["https://github.com/NotAShelf/rags/pull/44"]
 [inputs.beer]
 # nix and tack fail to fetch from raf's git forge :(
 # so fetch from github mirror instead
@@ -63,8 +64,7 @@ url = "github:NotAShelf/rags/notashelf/push-tloqkvsrzlsm"
 url = "github:Michael-C-Buckley/beer"
 
 [inputs.hyprland]
-url     = "github:hyprwm/Hyprland"
-patches = ["https://github.com/hyprwm/Hyprland/pull/16494"]
+url = "github:hyprwm/Hyprland"
 
 [inputs.agenix]
 url = "github:ryantm/agenix"
