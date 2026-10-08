@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   self,
   ...
 }:
@@ -19,7 +18,6 @@ let
           PlaybackSwitch "Master Playback Switch"'
   '';
 
-  systemWide = config.services.pipewire.systemWide;
   extraEnv.ALSA_CONFIG_UCM2 = "${alsa-ucm-conf'}/share/alsa/ucm2";
 in
 {
@@ -35,16 +33,10 @@ in
         (config.boot.kernelPackages.callPackage "${self}/pkgs/snd-usb-audio/package.nix" { })
       ];
     };
-
-    systemd = {
-      services = {
-        pipewire.environment = lib.mkIf systemWide extraEnv;
-        wireplumber.environment = lib.mkIf systemWide extraEnv;
-      };
-      user.services = {
-        pipewire.environment = lib.mkIf (!systemWide) extraEnv;
-        wireplumber.environment = lib.mkIf (!systemWide) extraEnv;
-      };
+    systemd.user.services = {
+      pipewire.environment = extraEnv;
+      wireplumber.environment = extraEnv;
     };
+
   };
 }

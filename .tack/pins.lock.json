@@ -14,7 +14,7 @@
     "nixpkgs": "github:NixOS/nixpkgs/nixos-unstable",
     "nvf": "github:NotAShelf/nvf",
     "nvuv": "gitlab:fazzi/nvuv",
-    "rags": "github:NotAShelf/rags/notashelf/push-tloqkvsrzlsm",
+    "rags": "github:NotAShelf/rags",
     "startpage": "gitlab:fazzi/startpage",
     "tack": "github:manic-systems/tack",
     "walls": "gitlab:fazzi/walls"
@@ -39,9 +39,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "81ec037ef98559ed51128f2bf9a0f63e499b244e",
-    "narHash": "sha256-zu0BuQIuRiPGF7qD0DRFg0XohsAZH2VnSIU4FeszxZI=",
-    "lastModified": 1791147301
+    "rev": "ab8aa895762bbb3e690069708231ded4805f79de",
+    "narHash": "sha256-VgxbmmCianzacCvt0Eg6MRhD+kq5a3vVjRXW/2hXT3c=",
+    "lastModified": 1791471972
   },
   "beer": {
     "type": "github",
@@ -103,23 +103,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "5a78b5e927345860a27e2893bf894f97ee620c48",
-    "narHash": "sha256-zD7XTuKKvko7gt6chqY3KrjgpLUUNGegn7MKPm6h48k=",
-    "lastModified": 1791292844,
-    "patched": {
-      "path": "/nix/store/cb23xn71l1ikbg3kaa4b9z5nkml4dvqa-source",
-      "narHash": "sha256-b5KjBHf/ecLgJ80fcMLEXl7E1bbceiWLnkpoJeMiwkA=",
-      "lastModified": 1791292844,
-      "patches": [
-        {
-          "source": "https://github.com/hyprwm/Hyprland/pull/16494",
-          "url": "https://github.com/hyprwm/Hyprland/pull/16494",
-          "file": "patches/hyprland/pr-16494.patch",
-          "sha256": "d4ded9b056ac53b160ca7dbeb0298b6b025decdf3ffb9985aa6b4bb92fc9e1bd",
-          "head": "24292971b529f1b2594e5d42e5424213c5fc9dcf"
-        }
-      ]
-    }
+    "rev": "5e04ae1f9fc44705799ed9c0f97b99a305c6db25",
+    "narHash": "sha256-gedubEBaDPiQZOWRPaGn/ZbbT1zqv4Fy6mcElfDC+iM=",
+    "lastModified": 1791470510
   },
   "hyprutils": {
     "type": "github",
@@ -165,23 +151,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "151fa4e8ddfdd8dd25d945ad94ed54a13de9f6e4",
-    "narHash": "sha256-Miqqk/ammqnTUxaoCyvtwoPeLbI1ksFyLxi/CazZpWY=",
-    "lastModified": 1791260994,
-    "patched": {
-      "path": "/nix/store/vb5knfqg1ra1pbggax5n97wcljcap4hk-source",
-      "narHash": "sha256-57dY+pS9C3CJWZav8IJWzbD712sREiF66I66e/OuWpA=",
-      "lastModified": 1791260994,
-      "patches": [
-        {
-          "source": "https://github.com/NixOS/nixpkgs/pull/571492",
-          "url": "https://github.com/NixOS/nixpkgs/pull/571492",
-          "file": "patches/nixpkgs/pr-571492.patch",
-          "sha256": "189d01ffb1e4f4fee7a3daa084fa113f6626ed05c273a2f8d3eda6ecce5d8d0f",
-          "head": "4a2fdcd43310443ee389901dd98346b7a2bc6853"
-        }
-      ]
-    }
+    "rev": "e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+    "narHash": "sha256-H83yz/do+hjOO0uujHyH8RgtIQP2v7Mw+cLwcZK/xKc=",
+    "lastModified": 1791456040
   },
   "nvf": {
     "type": "github",
@@ -195,17 +167,31 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "nvuv",
-    "rev": "9b15110f58c58db9f777293e9f2dcf223b4f3e0b",
-    "narHash": "sha256-H1Yml1fdrtBHLhmcOGAuEjJfPMEDXvywTPMZd1h2pi4=",
-    "lastModified": 1787530323
+    "rev": "8eaf6c4a8e715709ae42e89c4e9658a99c5e6e23",
+    "narHash": "sha256-x0AMCBUyRVoihryikHH4b5URV6b50KR0EWb5xcY2qQY=",
+    "lastModified": 1791471956
   },
   "rags": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "rags",
-    "rev": "7d0098a18b22803700280d40c20d61aab7717d5f",
-    "narHash": "sha256-b9l/f2Fd5iooAQplHEOa7NpZ9RMP9CRB7Ov+1GJo3uE=",
-    "lastModified": 1789308821
+    "rev": "71f0037a4d0d1d54b6ff4c58fc712b3504e9b7d6",
+    "narHash": "sha256-WW1fAhOI/4jO+9u/RX6sK0T9l50lo4dPclPb915nKU0=",
+    "lastModified": 1789308418,
+    "patched": {
+      "path": "/nix/store/jnz5vw8c3mb18k2z2yrkqm22zbi779d2-source",
+      "narHash": "sha256-b9l/f2Fd5iooAQplHEOa7NpZ9RMP9CRB7Ov+1GJo3uE=",
+      "lastModified": 1789308418,
+      "patches": [
+        {
+          "source": "https://github.com/NotAShelf/rags/pull/44",
+          "url": "https://github.com/NotAShelf/rags/pull/44",
+          "file": "patches/rags/pr-44.patch",
+          "sha256": "8cc397e41a470f8a59d5cbd457ef88b34cfb5c2332f23dde2df849227664b802",
+          "head": "7d0098a18b22803700280d40c20d61aab7717d5f"
+        }
+      ]
+    }
   },
   "rust-analyzer": {
     "type": "github",
