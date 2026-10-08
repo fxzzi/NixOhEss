@@ -9,8 +9,6 @@ let
     mkEnableOption
     mkIf
     mkForce
-    optionals
-    concatStringsSep
     ;
   cfg = config.cfg.programs.codium;
 in
