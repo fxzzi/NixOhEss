@@ -9,7 +9,7 @@ pkgs.stdenv.mkDerivation {
   pname = "snd-usb-audio-patched";
   version = "${kernel.version}";
 
-  src = kernel.src;
+  inherit (kernel) src;
 
   dontConfigure = true;
 
