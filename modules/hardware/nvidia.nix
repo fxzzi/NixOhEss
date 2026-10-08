@@ -1,6 +1,8 @@
 {
   config,
   lib,
+  pkgs,
+  inputs,
   ...
 }:
 let
@@ -18,8 +20,16 @@ in
       graphics = {
         enable = true;
         enable32Bit = true;
+        extraPackages = [
+          (pkgs.nvidia-vaapi-driver.overrideAttrs {
+            src = inputs.nvidia-vaapi-driver;
+            version = "0-unstable-${builtins.substring 0 8 inputs._meta.nvidia-vaapi-driver.rev}";
+          })
+        ];
       };
       nvidia = {
+        # we add nvidia-vaapi-driver manually above.
+        videoAcceleration = false;
         open = true;
         gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true;

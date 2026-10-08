@@ -81,3 +81,7 @@ url = "github:4evy/nixcord"
 [inputs.KvLibadwaita]
 url  = "github:GabePoel/KvLibadwaita"
 type = "fetch"
+
+[inputs.nvidia-vaapi-driver]
+url  = "github:elFarto/nvidia-vaapi-driver"
+type = "fetch"
