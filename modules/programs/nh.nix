@@ -32,9 +32,9 @@ in
       (pkgs.writeShellApplication {
         name = "crb";
         runtimeInputs = with pkgs; [
-          nh
+          config.programs.nh.package
+          config.programs.tack.package
           git
-          coreutils
         ];
         text = ''
           # Save the current commit hash of origin/main before fetching
@@ -48,6 +48,11 @@ in
           if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
             echo "updoots available :)"
             git -C "$NH_FLAKE" reset --hard origin/main
+            # tack needs to be run inside our flake dir
+            (
+              cd "$NH_FLAKE"
+              tack materialize
+            )
             nh os boot
             echo "updoot finished please reboot :)"
           else

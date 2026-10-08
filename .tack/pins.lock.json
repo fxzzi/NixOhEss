@@ -149,9 +149,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "b6ccf91d8525de4e25c277ca29cd7e2de0f3003d",
-    "narHash": "sha256-5tiGWleactEzfGm6JRAJbZlaczk4Xl2xn2uxdKoRzOM=",
-    "lastModified": 1791393458
+    "rev": "513d75b517c4b7bf2537318c99b64547c6142bdb",
+    "narHash": "sha256-jVgYte3c9bRoOVAm8us+6X8R36c8Znsp8b+qK2OiZ+Q=",
+    "lastModified": 1791453723
   },
   "nixos-core": {
     "type": "github",
