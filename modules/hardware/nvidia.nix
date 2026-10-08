@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf concatStringsSep;
   cfg = config.cfg.hardware.nvidia;
 in
 {
@@ -47,13 +47,15 @@ in
           nvidia = {
             NVreg_UsePageAttributeTable = 1; # why this isn't default is beyond me.
             NVreg_EnableResizableBar = 1; # enable reBAR
-            # reduces the time spent in the interrupt top half for low-latency display interrupts
-            # by deferring work.
-            "NVreg_RegistryDwords=RmEnableAggressiveVblank" = 1;
-            # This may reduce idle power consumption in some multi-monitor configurations,
-            # at the risk of changing memory clocks while display is using the memory,
-            # potentially resulting in momentary display glitches.
-            "NVreg_RegistryDwords=RmDisableDisplayGlitchPerfLimit" = 1;
+            NVreg_RegistryDwords = concatStringsSep ";" [
+              # reduces the time spent in the interrupt top half for low-latency display interrupts
+              # by deferring work.
+              "RmEnableAggressiveVblank=1"
+              # This may reduce idle power consumption in some multi-monitor configurations,
+              # at the risk of changing memory clocks while display is using the memory,
+              # potentially resulting in momentary display glitches.
+              "RmDisableDisplayGlitchPerfLimit=1"
+            ];
           };
           # by default, when VRR is active, memclk will be maxed out. This isn't great for
           # power consumption on idle. disable that behaviour and let memclk downclock.
