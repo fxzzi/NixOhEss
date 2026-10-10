@@ -5,23 +5,21 @@
   ...
 }:
 let
-  alsa-ucm-conf' = pkgs.runCommand "audient-evo4-ucm-conf" { } ''
-    cp -r --no-preserve=all ${pkgs.alsa-ucm-conf} $out
-
-    # the mixer control name was fixed by one of the patches.
-    # correct it in alsa-ucm-conf too.
-    substituteInPlace \
-      $out/share/alsa/ucm2/USB-Audio/Audient/Audient-EVO4-HiFi-0006.conf \
-      --replace-fail \
-        'PlaybackVolume "EVO4 "' \
-        'PlaybackVolume "Master Playback Volume"
-          PlaybackSwitch "Master Playback Switch"'
-  '';
+  alsa-ucm-conf' = pkgs.alsa-ucm-conf.overrideAttrs {
+    patches = [
+      # USB-Audio/EVO4: correct naming scheme for Master Playback
+      (pkgs.fetchpatch {
+        url = "https://github.com/alsa-project/alsa-ucm-conf/commit/cd50898a4956b26ec038b64a8286282d263a5885.patch";
+        hash = "sha256-T/k/pXJ3hhYOaL9Wy4qaz1g4FEb+4VVW3DcVbTi5Nsc=";
+      })
+    ];
+  };
 
   extraEnv.ALSA_CONFIG_UCM2 = "${alsa-ucm-conf'}/share/alsa/ucm2";
 in
 {
   config = {
+    # save the EVO4 options in ALSA, including mic gain, phantom power, etc.
     hardware.alsa.enablePersistence = true;
     boot = {
       extraModulePackages = [
@@ -37,6 +35,5 @@ in
       pipewire.environment = extraEnv;
       wireplumber.environment = extraEnv;
     };
-
   };
 }
