@@ -232,6 +232,7 @@ in
             { class = "sm64coopdx" },
             { class = "UnleashedRecomp" },
             { class = "sober" },
+            { class = "Cordial" },
             { class = "waywall" },
             { class = "love", title = "Freesync test" },
             { class = "dotnet", initial_title = "Terraria: .*" },
