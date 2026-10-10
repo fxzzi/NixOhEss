@@ -11,7 +11,7 @@
     "nix-gaming": "github:fufexan/nix-gaming",
     "nixcord": "github:4evy/nixcord",
     "nixos-core": "github:manic-systems/nixos-core",
-    "nixpkgs": "github:NixOS/nixpkgs/nixos-unstable",
+    "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "nvf": "github:NotAShelf/nvf",
     "nvidia-vaapi-driver": "github:elFarto/nvidia-vaapi-driver",
     "nvuv": "gitlab:fazzi/nvuv",
@@ -40,17 +40,17 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "ab8aa895762bbb3e690069708231ded4805f79de",
-    "narHash": "sha256-VgxbmmCianzacCvt0Eg6MRhD+kq5a3vVjRXW/2hXT3c=",
-    "lastModified": 1791471972
+    "rev": "4674a5d64539ff54862c4962d100afe45e80d223",
+    "narHash": "sha256-KZ+oxn4Kk8tM7wKpmrSTYqwojDFPk5b1ZBB3FzsOnF0=",
+    "lastModified": 1791628222
   },
   "beer": {
     "type": "github",
     "owner": "Michael-C-Buckley",
     "repo": "beer",
-    "rev": "a872cf25ee12ba07a948acf396e68e8f2a866a02",
-    "narHash": "sha256-+ep5J19LvmHU7MbmZG5T91fKhrm0JNud0bBS3g+ONWs=",
-    "lastModified": 1788505209
+    "rev": "3975368dfd9ad507d5af7a4bf3310b8d86200a9c",
+    "narHash": "sha256-IrNqWwWrk0dXRwlrRlqAotb37UuEeseM9/ygBanap04=",
+    "lastModified": 1789473088
   },
   "creamlinux": {
     "type": "github",
@@ -96,9 +96,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "5e04ae1f9fc44705799ed9c0f97b99a305c6db25",
-    "narHash": "sha256-gedubEBaDPiQZOWRPaGn/ZbbT1zqv4Fy6mcElfDC+iM=",
-    "lastModified": 1791470510
+    "rev": "663b29b846e4bad17cfa29941f6d2fbb6b61f139",
+    "narHash": "sha256-EuTde/DbLBZ0nm8Ctj4Il3M5SKsWAKeDITvUuatu5+g=",
+    "lastModified": 1791545463
   },
   "hyprutils": {
     "type": "github",
@@ -120,17 +120,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "74105fcc663c660efb04dcf1d69ba321094f0ad6",
-    "narHash": "sha256-AJAIMIhVGq7rOxvuxIsa70Bawy/fMutkcjM/2YXzDyI=",
-    "lastModified": 1791350236
+    "rev": "f754262694b6f53b60bbc6741d395ff8b4935f64",
+    "narHash": "sha256-D4JNazMoq5nb59XlRq/MzS88F08Je99n06r0e0z2XJ8=",
+    "lastModified": 1791609284
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "f370697f13c79248e41f04b4361748b44b10218c",
-    "narHash": "sha256-AHFAJcYA+QXX/z9K6uaCYhiKN9vr7raghv6Dflq6aF0=",
-    "lastModified": 1791480182
+    "rev": "1ffd9a241a518fab5c2188749a599a8981cd8208",
+    "narHash": "sha256-qvL6V4VxqeF5hhrqCYW/XildRFpDJKsevALZRIyGJ7A=",
+    "lastModified": 1791624273
   },
   "nixos-core": {
     "type": "github",
@@ -141,20 +141,19 @@
     "lastModified": 1791294720
   },
   "nixpkgs": {
-    "type": "github",
-    "owner": "NixOS",
-    "repo": "nixpkgs",
+    "type": "tarball",
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1087755.e7439b6b14ad/nixexprs.tar.zst?rev=e7439b6b14ad3cc35d05608ebca9bce01a25f5f8&lastModified=1791456040",
     "rev": "e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
-    "narHash": "sha256-H83yz/do+hjOO0uujHyH8RgtIQP2v7Mw+cLwcZK/xKc=",
-    "lastModified": 1791456040
+    "narHash": "sha256-gRZ/s8WQJ2CsXdhcDVQH34qxuL0MuMCOs3aBiK1Prsw=",
+    "lastModified": 315532800
   },
   "nvf": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "b5a8011df7e743d5bd992d25983d548f99e9ff83",
-    "narHash": "sha256-GBC/HfZM1Bh5dM/B0csBr8YoVGk3DTmCF/Qx646kThE=",
-    "lastModified": 1791215772
+    "rev": "9723961413fcd7268f73e27c0277a6da307bbce7",
+    "narHash": "sha256-lKqmYifuU1gWhtmcgalvsk62zitc71fPX6wx9f6VX24=",
+    "lastModified": 1791602170
   },
   "nvidia-vaapi-driver": {
     "type": "github",
@@ -214,9 +213,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "4a8b68df58488b311840eb0244c75b4857871789",
-    "narHash": "sha256-ST/08SMwfjtXeP/+72GJYVFkO2xT6PDU5ofh9Gh9IJ8=",
-    "lastModified": 1791058919
+    "rev": "5957ec0bd3df490a06dab467337152ae75977585",
+    "narHash": "sha256-dkuO01AoiMwzwY5DtEPDRyQYKjD3RRPZ8evLLYfEeY4=",
+    "lastModified": 1791612427
   },
   "walls": {
     "type": "gitlab",
