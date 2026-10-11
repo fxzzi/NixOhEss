@@ -128,17 +128,17 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "1f5836a74c84a4269df9b214f7d9714830c5b5be",
-    "narHash": "sha256-c1hTEvs7Mxfz9bfWgSbAJhd9sfHypfZJka2g9V1Ey2Q=",
-    "lastModified": 1791717264
+    "rev": "36818fa6196623f1da8c2898499188f440587330",
+    "narHash": "sha256-M/DxR1WYRVfwFI/skgURb5bGLc0J265T5wA+os0VpZI=",
+    "lastModified": 1791730200
   },
   "nixos-core": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "3d3bfe4f586cdc89824d06395889039189545d4d",
-    "narHash": "sha256-zmDoO7zZVDKBz2mK5uqsRvM/KEBiiakdSn5yYdIwPss=",
-    "lastModified": 1791294720
+    "rev": "8cc795588d743dd38e78ec129f5d6550eca77bfb",
+    "narHash": "sha256-wLoiBBvvUYPt61717RZowAMDxwMMJXyoaQ/7muCq/Z8=",
+    "lastModified": 1791741529
   },
   "nixpkgs": {
     "type": "tarball",
@@ -173,9 +173,9 @@
     "type": "github",
     "owner": "elFarto",
     "repo": "nvidia-vaapi-driver",
-    "rev": "d03f8cb42e467ff5495c92fc69050ab968f2b5ed",
-    "narHash": "sha256-ZGm8xaVemDZ/EWFXBEIeanYXOxoM7/LgY/66m3luz6U=",
-    "lastModified": 1791229577
+    "rev": "443050726fdb30888a2ced1cea1c5d036ea3b15c",
+    "narHash": "sha256-E2c4Hn4A0Vx3lcmP/Ms7FHEtxsDcxhCmcVFvct1Uv+0=",
+    "lastModified": 1791741043
   },
   "nvuv": {
     "type": "gitlab",
@@ -227,9 +227,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "5957ec0bd3df490a06dab467337152ae75977585",
-    "narHash": "sha256-dkuO01AoiMwzwY5DtEPDRyQYKjD3RRPZ8evLLYfEeY4=",
-    "lastModified": 1791612427
+    "rev": "1df34422c2699ff9d40f3be959aedaa5056ca3cb",
+    "narHash": "sha256-7wHRQAoMC0lp4VeXF+cgzJec1K/+dFBpPwpXRPdpo+o=",
+    "lastModified": 1791739078
   },
   "walls": {
     "type": "gitlab",
