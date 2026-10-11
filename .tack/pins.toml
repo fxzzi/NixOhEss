@@ -30,7 +30,10 @@ hyprutils    = "hyprutils"
 #   unpack          fixed-only: tarball or file
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
-# url = "github:NixOS/nixpkgs/nixos-unstable"
+patches = [
+  # sgdboop: 1.4.3 -> 1.4.4
+  "https://github.com/NixOS/nixpkgs/pull/572699",
+]
 [inputs.nixos-core]
 url = "github:manic-systems/nixos-core"
 [inputs.hjem]
