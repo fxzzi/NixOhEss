@@ -21,7 +21,6 @@ in
           powersave = config.cfg.core.isLaptop;
         };
         dns = "systemd-resolved";
-        dhcp = "dhcpcd";
         plugins = [
           pkgs.networkmanager-openvpn
         ];
