@@ -10,6 +10,22 @@ in
   config = {
     fonts = {
       enableDefaultPackages = false;
+      packages = with pkgs; [
+        nerd-fonts.blex-mono
+
+        (google-fonts.override {
+          fonts = [
+            "Outfit"
+            "Space Grotesk"
+          ];
+        })
+
+        ibm-plex
+        noto-fonts-color-emoji
+
+        corefonts # ms fonts
+        vista-fonts # more ms fonts including calibri and consolas
+      ];
       fontconfig = {
         subpixel = {
           rgba = mkDefault "rgb";
@@ -33,24 +49,6 @@ in
           ];
         };
       };
-      packages = with pkgs; [
-        nerd-fonts.blex-mono
-
-        # i wish there was a nicer way to do this, currently
-        # it downloads the entire ~3gb archive, then unpacks :(
-        (google-fonts.override {
-          fonts = [
-            "Outfit"
-            "Space Grotesk"
-          ];
-        })
-
-        ibm-plex
-        noto-fonts-color-emoji
-
-        corefonts # ms fonts
-        vista-fonts # more ms fonts including calibri and consolas
-      ];
     };
   };
 }
