@@ -23,14 +23,13 @@ in
   config = {
     networking = {
       inherit hostName;
-      dhcpcd.wait = "background"; # don't delay boot
       nameservers = quad9DNS;
     };
     services.resolved = {
       enable = true;
       settings.Resolve = {
         DNSOverTLS = "opportunistic";
-        DNSSEC = "supported";
+        DNSSEC = "allow-downgrade";
         DNS = config.networking.nameservers;
         FallbackDNS = cloudflareDNS ++ googleDNS;
       };
