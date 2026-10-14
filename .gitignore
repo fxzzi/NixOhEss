@@ -1,3 +1,7 @@
+# nix build artifacts
 result
 result-*
 *.qcow2
+
+# we use tack inputs, not flake inputs :D
+flake.lock
