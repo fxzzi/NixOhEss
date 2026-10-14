@@ -17,9 +17,6 @@ flake-parts       = "flake-parts"
 fenix             = "fenix"
 rust-analyzer-src = "rust-analyzer"
 
-hyprgraphics = "hyprgraphics"
-hyprutils    = "hyprutils"
-
 # [inputs.<name>] fields
 #   url             required, shorturl ok; ?rev=<sha> pins an exact commit
 #   type            flake (default), fetch, or fixed
