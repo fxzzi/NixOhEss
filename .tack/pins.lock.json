@@ -40,9 +40,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "4674a5d64539ff54862c4962d100afe45e80d223",
-    "narHash": "sha256-KZ+oxn4Kk8tM7wKpmrSTYqwojDFPk5b1ZBB3FzsOnF0=",
-    "lastModified": 1791628222
+    "rev": "c78d6081d8f1a69413b37f74a06aab688d19979f",
+    "narHash": "sha256-tEymq57q/E/Y2dCTRPGBr41KbocdOa48URhlXO+x4Wg=",
+    "lastModified": 1792013545
   },
   "beer": {
     "type": "github",
@@ -112,9 +112,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "9e11535d8fa81936095a40890c225497acf91bc4",
-    "narHash": "sha256-vgi49KY2eiMJPvC035MlcGlkkw5yQcXpC7Ue2BYUHns=",
-    "lastModified": 1791995743
+    "rev": "c8e747f84f8be2d1d3737eaea8021595bdb8b7ec",
+    "narHash": "sha256-l9zdlcuyl6VUFQpUYsj/jvvSxYDZYL4LbsHmP/bNulg=",
+    "lastModified": 1792009791
   },
   "nixos-core": {
     "type": "github",
