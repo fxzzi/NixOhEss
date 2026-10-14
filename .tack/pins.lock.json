@@ -96,9 +96,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "663b29b846e4bad17cfa29941f6d2fbb6b61f139",
-    "narHash": "sha256-EuTde/DbLBZ0nm8Ctj4Il3M5SKsWAKeDITvUuatu5+g=",
-    "lastModified": 1791545463
+    "rev": "38a82a41163817918bb4e51f41ae5f7e35f3a04a",
+    "narHash": "sha256-bVBhgoY43QEkRt4v5qXMEEg9Xx9BtLWL/9kOcOKlzjQ=",
+    "lastModified": 1791986696
   },
   "hyprutils": {
     "type": "github",
@@ -120,25 +120,25 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "be29aeb316bcf28fdaa7798a461e38a95b82139a",
-    "narHash": "sha256-DyQY0+k+zBDuSRSDxvl7Qs7FRn/8W/XX/b7+Uu/ZJoM=",
-    "lastModified": 1791782351
+    "rev": "b3d035dbc65250f6990ac526b0c9e188fe853856",
+    "narHash": "sha256-7ZMKTSse+BxmGiQ+isxga/biFfaEpEgYSRvv2efdCWY=",
+    "lastModified": 1791951554
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "58298812834393c79a6c1b78d5b68e3a301a0ec1",
-    "narHash": "sha256-H4oPz8lX2fHV4FOhxp9txUT/GVC/QB5mypkAkUhW31o=",
-    "lastModified": 1791789228
+    "rev": "06c6636f5f530682ea4a7be811bf5622365bfcd4",
+    "narHash": "sha256-rlCpeTPGBV+3H7D0EbH43ye0oZBs4eGbY8+aQ486mL8=",
+    "lastModified": 1791976655
   },
   "nixos-core": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "8cc795588d743dd38e78ec129f5d6550eca77bfb",
-    "narHash": "sha256-wLoiBBvvUYPt61717RZowAMDxwMMJXyoaQ/7muCq/Z8=",
-    "lastModified": 1791741529
+    "rev": "d3c2e1de4f6387da12713a26ef5b9a7930f46b22",
+    "narHash": "sha256-ZBvWH97NmR6P5Rapi4YXjrQTmmwXtw8RYgmIortbXyU=",
+    "lastModified": 1791933734
   },
   "nixpkgs": {
     "type": "tarball",
@@ -165,9 +165,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "19992540d372466340ededda0c065a3a0a962fd6",
-    "narHash": "sha256-cxmegj6Tg0xYk8A2icSl3v1+SeVDj+bESU2BnCqERPE=",
-    "lastModified": 1791651540
+    "rev": "969775ccc2830a70119ba8720a4cf250490a1f56",
+    "narHash": "sha256-f6n9FW5Ke2VnhlrIgycPXSbfguAzsiUlUeIyK4j6hCw=",
+    "lastModified": 1791915337
   },
   "nvidia-vaapi-driver": {
     "type": "github",
@@ -227,9 +227,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "1df34422c2699ff9d40f3be959aedaa5056ca3cb",
-    "narHash": "sha256-7wHRQAoMC0lp4VeXF+cgzJec1K/+dFBpPwpXRPdpo+o=",
-    "lastModified": 1791739078
+    "rev": "cb825647a30e7f54915babbec5b5786c647772d6",
+    "narHash": "sha256-F+sgyf1KB/ogY41JJ52WPYuWXosB6dXTlO3J/m+xcww=",
+    "lastModified": 1791942069
   },
   "walls": {
     "type": "gitlab",
