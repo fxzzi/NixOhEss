@@ -112,9 +112,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "c8e747f84f8be2d1d3737eaea8021595bdb8b7ec",
-    "narHash": "sha256-l9zdlcuyl6VUFQpUYsj/jvvSxYDZYL4LbsHmP/bNulg=",
-    "lastModified": 1792009791
+    "rev": "539023e88ee5f651260fbb06d5952e0c5055a916",
+    "narHash": "sha256-YM3AGLPwp9+bh5koAV534c4SzwV4kiFgwSPbidVG8tc=",
+    "lastModified": 1792034168
   },
   "nixos-core": {
     "type": "github",
@@ -126,24 +126,10 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1089111.6510408d147d/nixexprs.tar.zst?rev=6510408d147d8c5e6d76043e899e9251756f6a75&lastModified=1791594108",
-    "rev": "6510408d147d8c5e6d76043e899e9251756f6a75",
-    "narHash": "sha256-V0WmebqwEeAVZMqxfv7Dq7hpKkPPM19W50xQf3D1Kf4=",
-    "lastModified": 315532800,
-    "patched": {
-      "path": "/nix/store/za82d87m4avy3vh6wisk76gzln8v10ki-source",
-      "narHash": "sha256-deaOHtf0g5cBwRTR0o3tqImurii99d/dG71Mxqzp4xA=",
-      "lastModified": 315532800,
-      "patches": [
-        {
-          "source": "https://github.com/NixOS/nixpkgs/pull/572699",
-          "url": "https://github.com/NixOS/nixpkgs/pull/572699",
-          "file": "patches/nixpkgs/pr-572699.patch",
-          "sha256": "f331d0579b551bb09860fb15c5264ce1cb4ca3a116501ed7fcb339160c2b8708",
-          "head": "fc5e1868ca770193ed9671db5fa708a64a3527d6"
-        }
-      ]
-    }
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1092090.55bfb4d7437b/nixexprs.tar.zst?rev=55bfb4d7437bd4e09ab7cba58a43bd68eb310044&lastModified=1791956154",
+    "rev": "55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+    "narHash": "sha256-gJX2+xcImvxBCI3bp7zXKLUX2AwsdTxMgJ1UX/5Hm/o=",
+    "lastModified": 1791956154
   },
   "nvf": {
     "type": "github",
@@ -211,9 +197,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "cb825647a30e7f54915babbec5b5786c647772d6",
-    "narHash": "sha256-F+sgyf1KB/ogY41JJ52WPYuWXosB6dXTlO3J/m+xcww=",
-    "lastModified": 1791942069
+    "rev": "cb40a92166a280f79f36dd3529cf12d0532ce30a",
+    "narHash": "sha256-SxL4jbhDWuCj2E3Ik9/ngu5pPK6AeuOf18b/fmDHEJk=",
+    "lastModified": 1792025586
   },
   "walls": {
     "type": "gitlab",
