@@ -17,6 +17,7 @@
     "nvuv": "gitlab:fazzi/nvuv",
     "rags": "github:NotAShelf/rags",
     "startpage": "gitlab:fazzi/startpage",
+    "systems": "github:nix-systems/x86_64-linux",
     "tack": "github:manic-systems/tack",
     "walls": "gitlab:fazzi/walls"
   },
@@ -112,9 +113,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "539023e88ee5f651260fbb06d5952e0c5055a916",
-    "narHash": "sha256-YM3AGLPwp9+bh5koAV534c4SzwV4kiFgwSPbidVG8tc=",
-    "lastModified": 1792034168
+    "rev": "62bd05e9fb4f66f28bb65c72b1a0122f308fdb22",
+    "narHash": "sha256-xiMdvYhb2lFWPmv/nOfU5+ZNElraTB6DZ65bLO9hdnI=",
+    "lastModified": 1792054404
   },
   "nixos-core": {
     "type": "github",
@@ -192,6 +193,14 @@
     "rev": "1e53a0945177c49b21111bf2d40c3be4806729cd",
     "narHash": "sha256-o4E6xuMXK+tCJuM2gHJBU/5RBPrjOM6sFT/91Z0hSKY=",
     "lastModified": 1787875277
+  },
+  "systems": {
+    "type": "github",
+    "owner": "nix-systems",
+    "repo": "x86_64-linux",
+    "rev": "2ecfcac5e15790ba6ce360ceccddb15ad16d08a8",
+    "narHash": "sha256-Gtqg8b/v49BFDpDetjclCYXm8mAnTrUzR0JnE2nv5aw=",
+    "lastModified": 1680978846
   },
   "tack": {
     "type": "github",
