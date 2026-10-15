@@ -23,8 +23,9 @@ let
         # uses sdl2 by default
         "OSU_SDL3=1"
 
+        # force entire pipewire graph to output to 64/44100
         "PIPEWIRE_QUANTUM=64/44100"
-        # "PIPEWIRE_LATENCY=64/44100"
+        # period bytes are 2x the quantum.
         ''PIPEWIRE_ALSA="{ alsa.buffer-bytes=768 alsa.period-bytes=128 }"''
 
       ]
