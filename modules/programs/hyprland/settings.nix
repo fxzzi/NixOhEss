@@ -225,7 +225,8 @@ in
             { class = "org-prismlauncher-EntryPoint" }, -- legacy mc
             { class = "minecraft" }, -- gregtech:nh ?
             { initial_title = "Minecraft\\* .*" }, -- mc up to v26.1
-            { initial_title = "Minecraft .*" }, -- v26.2+ mc
+            { initial_title = "Minecraft .*" }, -- v26.2-26.3 mc
+            { class = "com.mojang.minecraft" }, -- v26.3+
             { class = "osu!" },
             { class = "gamescope" },
             { class = "Celeste" },
@@ -251,6 +252,7 @@ in
             idle_inhibit = "fullscreen",
             -- allow tearing
             immediate = true,
+            sync_fullscreen = true,
           })
 
           -- confine cursor to the monitor when a game is in fullscreen.
