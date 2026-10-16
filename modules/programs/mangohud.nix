@@ -26,7 +26,7 @@ let
       rr = cfg.refreshRate;
       inherit (config.cfg.programs.hyprland.extraHlConfig.misc) vrr;
     in
-    if vrr != 0 then rr - (rr * rr / 4096) else rr;
+    if vrr != 0 then rr - (rr * rr / 8192) else rr;
 in
 {
   options.cfg.programs.mangohud = {
