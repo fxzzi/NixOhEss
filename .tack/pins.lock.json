@@ -113,9 +113,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "bc9591b91ad2e3174f5fb53301c4221aea8b51dd",
-    "narHash": "sha256-3RPlYmm4nF3UFiFWuAhHn/dgCyJUS3SQchbu7H1bZYk=",
-    "lastModified": 1792072763
+    "rev": "3b85f32df809ab138d3071ba10bd9273c4b9f34c",
+    "narHash": "sha256-wM9dqRgWYFKGiJ5xne+kXcUBRQXw+mN0xO16cdAc1a4=",
+    "lastModified": 1792109284
   },
   "nixos-core": {
     "type": "github",
@@ -206,9 +206,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "cb40a92166a280f79f36dd3529cf12d0532ce30a",
-    "narHash": "sha256-SxL4jbhDWuCj2E3Ik9/ngu5pPK6AeuOf18b/fmDHEJk=",
-    "lastModified": 1792025586
+    "rev": "d785e637b7f6d0694a53951588c484f32397335e",
+    "narHash": "sha256-q3o87E0s55Z09YVhFJtws2Dvv1IRCoGxOOtomZsJEXA=",
+    "lastModified": 1792090744
   },
   "walls": {
     "type": "gitlab",
