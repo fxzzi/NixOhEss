@@ -60,9 +60,9 @@ url     = "github:NotAShelf/rags"
 patches = ["https://github.com/NotAShelf/rags/pull/44"]
 [inputs.beer]
 # nix and tack fail to fetch from raf's git forge :(
-# so fetch from github mirror instead
+# so fetch from a mirror instead
 # url = "git+https://git.notashelf.dev/notashelf/beer.git"
-url = "github:Michael-C-Buckley/beer"
+url = "git+https://forge.rysieko.pl/rysieko/beer"
 
 [inputs.agenix]
 url = "github:ryantm/agenix"

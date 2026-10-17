@@ -19,7 +19,8 @@ let
   osu = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
     command_prefix = concatStringsSep " " (
       [
-        "env"
+        "env --unset=PIPEWIRE_LATENCY"
+
         # uses sdl2 by default
         "OSU_SDL3=1"
 

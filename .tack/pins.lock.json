@@ -3,7 +3,7 @@
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
-    "beer": "github:Michael-C-Buckley/beer",
+    "beer": "git+https://forge.rysieko.pl/rysieko/beer",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "hjem": "github:feel-co/hjem",
     "hyprland": "github:hyprwm/Hyprland",
@@ -46,12 +46,12 @@
     "lastModified": 1792079814
   },
   "beer": {
-    "type": "github",
-    "owner": "Michael-C-Buckley",
-    "repo": "beer",
-    "rev": "3975368dfd9ad507d5af7a4bf3310b8d86200a9c",
-    "narHash": "sha256-IrNqWwWrk0dXRwlrRlqAotb37UuEeseM9/ygBanap04=",
-    "lastModified": 1789473088
+    "type": "git",
+    "url": "https://forge.rysieko.pl/rysieko/beer",
+    "ref": "HEAD",
+    "rev": "f2152d299b9602088449c614a9ae13cd745b7f37",
+    "narHash": "sha256-pxYMSEXljfN3ecKYpHLQMylIhGI+cR2MPYWm7scPqsw=",
+    "lastModified": 1792186550
   },
   "creamlinux": {
     "type": "github",
@@ -89,9 +89,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "3633316a66fbe18c5c1297cdc60dde7e3b9c5844",
-    "narHash": "sha256-AwJBGVv9guapmG5kNhUygVPErsZPjatAo61dzFxTrWI=",
-    "lastModified": 1792147713
+    "rev": "8010b4e5c66f97aa82cd5b3332b4ec613779b9a7",
+    "narHash": "sha256-jZPbyMWO4osKt2lT79rcqR74amU/eiS9XOJJYS9GwCg=",
+    "lastModified": 1792228001
   },
   "niqspkgs": {
     "type": "github",
@@ -113,17 +113,17 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "a2b9f3345345186234672e42d01ab03bc46b7999",
-    "narHash": "sha256-hE12YTDqhVFJh7+bP6Ys9gL6nChjOlGocOttTE3pMb4=",
-    "lastModified": 1792147518
+    "rev": "fc11ff6901b9bb2de811db719346a6aa70e990aa",
+    "narHash": "sha256-SttBwl9KAlNK6ilyTG5IFvZw9FHKG0uHVJo+L3lJKiI=",
+    "lastModified": 1792236246
   },
   "nixos-core": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "d3c2e1de4f6387da12713a26ef5b9a7930f46b22",
-    "narHash": "sha256-ZBvWH97NmR6P5Rapi4YXjrQTmmwXtw8RYgmIortbXyU=",
-    "lastModified": 1791933734
+    "rev": "ea3d43aab1da4ab847065d50892c774904aa492d",
+    "narHash": "sha256-4XPY3uV0guJjLwzQb2wbio448zKfgkaH3dEh7ui2Bxg=",
+    "lastModified": 1792210974
   },
   "nixpkgs": {
     "type": "tarball",
@@ -136,9 +136,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "673067dfbadc19b50c1da5e932de6aab3d2f8f43",
-    "narHash": "sha256-6W8pwEbmyjfJGGXpgLv2+mA57Px7wDFx8xD16qjOff8=",
-    "lastModified": 1792150292
+    "rev": "a736b60b1e2019931168979951c94dc46e342957",
+    "narHash": "sha256-XD64JVLV8iE4lR+W5gkTweEaT+SBwOrSy0+le2WgITI=",
+    "lastModified": 1792175215
   },
   "nvidia-vaapi-driver": {
     "type": "github",
