@@ -23,14 +23,14 @@ in
   config = {
     networking = {
       inherit hostName;
-      nameservers = quad9DNS;
+      nameservers = cloudflareDNS;
     };
     services.resolved = {
       enable = true;
       settings.Resolve = {
         DNSOverTLS = "opportunistic";
         DNSSEC = "allow-downgrade";
-        FallbackDNS = cloudflareDNS ++ googleDNS;
+        FallbackDNS = quad9DNS ++ googleDNS;
         # bypass DHCP-provided DNS servers, and use what
         # we have configured manually instead.
         Domains = [ "~." ];
