@@ -17,6 +17,7 @@ let
   # osu!lazer needs to be up to date. fuf's nix-gaming repo
   # updates it faster and more regularly than nixpkgs.
   osu = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
+    releaseStream = "tachyon";
     command_prefix = concatStringsSep " " (
       [
         "env --unset=PIPEWIRE_LATENCY"
@@ -31,7 +32,6 @@ let
 
       ]
       ++ optional config.cfg.programs.obs-studio.enable "obs-gamecapture"
-      ++ optional config.cfg.programs.mangohud.enable "mangohud"
     );
   };
 in
