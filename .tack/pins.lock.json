@@ -41,9 +41,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "bd970d04660a470f6d138c038ef3f0e2c92eeedd",
-    "narHash": "sha256-oc6B8K/HEXn/QHgGDthHA41KxalHp3fwmEhQPZHl1L0=",
-    "lastModified": 1792079814
+    "rev": "2b02f0f479f7716ba61e715fef03b2cccbdf4f10",
+    "narHash": "sha256-kDpmtGy+9RtXtk8eXuZk1f7XT30VdeSoc/fykLdjh0Y=",
+    "lastModified": 1792338951
   },
   "beer": {
     "type": "git",
@@ -105,9 +105,9 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "b3d035dbc65250f6990ac526b0c9e188fe853856",
-    "narHash": "sha256-7ZMKTSse+BxmGiQ+isxga/biFfaEpEgYSRvv2efdCWY=",
-    "lastModified": 1791951554
+    "rev": "8bfba80f57356cc26eba4e5d7b8a595e70e87a00",
+    "narHash": "sha256-cI7nldj6D1f4QLN9y82sqCA7kERAcrwD7/F9i89PhmY=",
+    "lastModified": 1792295076
   },
   "nixcord": {
     "type": "github",
