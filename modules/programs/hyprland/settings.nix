@@ -203,6 +203,9 @@ in
             no_xdg_drags = true,
           })
 
+          -- Disable blur for steam
+          hl.window_rule({ match = { class = "steam" }, no_blur = true })
+
           -- Window rules for games
           -- emulators and similar apps that should be tagged as games, but not forced fullscreen
           for _, match in ipairs({
