@@ -21,8 +21,10 @@ let
     command_prefix = concatStringsSep " " (
       [
         "env --unset=PIPEWIRE_LATENCY"
+        # use the in game FPS limiter instead
+        "MANGOHUD_FPS_LIMIT=0"
 
-        # uses sdl2 by default
+        # lazer uses sdl2 by default
         "OSU_SDL3=1"
 
         # force entire pipewire graph to output to 64/44100
@@ -32,6 +34,7 @@ let
 
       ]
       ++ optional config.cfg.programs.obs-studio.enable "obs-gamecapture"
+      ++ optional config.cfg.programs.mangohud.enable "mangohud"
     );
   };
 in
