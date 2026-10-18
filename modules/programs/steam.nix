@@ -21,6 +21,10 @@ in
       platformOptimizations.enable = true;
       package = pkgs.steam.override {
         extraEnv = {
+          # When not using NetworkManager, steam startup is delayed for some reason. Setting this
+          # envvar to a blank string works around it for now.
+          # see: <https://github.com/ValveSoftware/steam-for-linux/issues/9966#issuecomment-4061620051>
+          DBUS_SYSTEM_BUS_ADDRESS = optionalAttrs (!config.cfg.core.networkmanager.enable) "";
           OBS_VKCAPTURE = optionalAttrs config.cfg.programs.obs-studio.enable 1;
           MANGOHUD = optionalAttrs config.cfg.programs.mangohud.enable 1;
         };
