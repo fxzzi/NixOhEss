@@ -55,6 +55,8 @@ in
         direct_scanout = 2;
         # improves cursor latency at 60hz but doesn't help outside of that tbh
         async_commit = config.cfg.core.isLaptop;
+        # use values from edid in autoHDR
+        cm_auto_hdr = 2;
       };
       animations.enabled = true;
       decoration = {

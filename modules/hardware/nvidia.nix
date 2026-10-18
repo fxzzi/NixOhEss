@@ -96,16 +96,41 @@ in
         VKD3D_CONFIG = "descriptor_heap";
       };
       etc = {
-        "nvidia/nvidia-application-profiles-rc.d/50-vram-alloc-fixes.json".text = builtins.toJSON {
-          rules = [
-            {
-              # empty pattern means to apply to all procs.
-              pattern = [ ];
-              # fix high vram usage on some apps. nvidia tries to do this automatically but only for select programs
-              profile = "No VidMem Reuse";
-            }
-          ];
-        };
+        "nvidia/nvidia-application-profiles-rc.d/50-vram-alloc-fixes.json".text =
+          let
+            # these apps use vram too freely due to a driver bug.
+            # work around it with the "No VidMem Reuse" profile.
+            apps = [
+              "Hyprland"
+              "hyprpaper"
+              "Discord"
+              "librewolf"
+              "stremio"
+              "mpv"
+              "obs"
+              "steam"
+            ];
+            # the rules aren't regex, so also add a wrapped variant
+            # of each program to the list.
+            names = lib.concatMap (n: [
+              n
+              ".${n}-wrapped"
+            ]) apps;
+          in
+          builtins.toJSON {
+            rules = [
+              {
+                pattern = {
+                  op = "or";
+                  sub = map (matches: {
+                    feature = "procname";
+                    inherit matches;
+                  }) names;
+                };
+                profile = "No VidMem Reuse";
+              }
+            ];
+          };
         "nvidia/nvidia-application-profiles-rc.d/51-dont-nerf-cuda-perf.json".text = builtins.toJSON {
           rules = [
             {
