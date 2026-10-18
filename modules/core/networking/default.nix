@@ -1,4 +1,4 @@
-{ config, hostName, ... }:
+{ hostName, ... }:
 let
   quad9DNS = [
     "9.9.9.9#dns.quad9.net"
@@ -30,8 +30,10 @@ in
       settings.Resolve = {
         DNSOverTLS = "opportunistic";
         DNSSEC = "allow-downgrade";
-        DNS = config.networking.nameservers;
         FallbackDNS = cloudflareDNS ++ googleDNS;
+        # bypass DHCP-provided DNS servers, and use what
+        # we have configured manually instead.
+        Domains = [ "~." ];
       };
     };
   };
