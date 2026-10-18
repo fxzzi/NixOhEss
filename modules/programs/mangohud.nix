@@ -12,21 +12,23 @@ let
     types
     mkIf
     generators
+    min
     ;
-  inherit (builtins) toString;
+  inherit (builtins) toString floor;
   cfg = config.cfg.programs.mangohud;
 
-  # When using VRR it's recommended to limit your FPS to slightly below your refresh rate. In the past,
-  # it was recommended to just put your FPS cap at ~3 lower than your refresh rate. However the more
-  # correct behaviour is to provide a frame time gap. This gap becomes larger at higher refresh rates
-  # and allows you to stay within the VRR range easily at the cost of a few measly FPS.
-  # see: https://old.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
+  # If VRR is enabled, cap FPS slightly *below* the refresh rate to avoid the FIFO filling up which would cause
+  # significant latency. Note that this optimization is *only* possible on VRR displays because it would cause
+  # periodic stutters on fixed refresh rate displays.
+  # see: <https://github.com/ppy/osu-framework/blob/06e28ecb30f9136304a4cd8889550884bf05a346/osu.Framework/Platform/GameHost.cs#L1358>
   fpsLimit =
     let
       rr = cfg.refreshRate;
-      inherit (config.cfg.programs.hyprland.extraHlConfig.misc) vrr;
     in
-    if vrr != 0 then rr - (rr * rr / 4096) else rr;
+    if config.cfg.programs.hyprland.extraHlConfig.misc.vrr != 0 then
+      floor (min (rr * 0.985) (rr - 2))
+    else
+      rr;
 in
 {
   options.cfg.programs.mangohud = {
