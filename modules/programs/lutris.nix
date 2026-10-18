@@ -20,12 +20,13 @@ in
         "lutris/system.yml" = {
           generator = lib.generators.toYAML { };
           value = {
-            system = {
-              env = {
-                OBS_VKCAPTURE = optionalAttrs config.cfg.programs.obs-studio.enable 1;
+            system =
+              optionalAttrs config.cfg.programs.obs-studio.enable {
+                env.OBS_VKCAPTURE = "1";
+              }
+              // optionalAttrs config.cfg.programs.mangohud.enable {
+                mangohud = true;
               };
-              mangohud = optionalAttrs config.cfg.programs.mangohud.enable 1;
-            };
           };
         };
         "lutris/runners/wine.yml" = {
@@ -36,8 +37,10 @@ in
               esync = false;
               fsync = false;
               fsr = false;
+            }
+            // optionalAttrs config.cfg.programs.proton-ge.enable {
               # use the above sourced GE-Proton
-              version = optionalAttrs config.cfg.programs.proton-ge.enable "GE-Proton";
+              version = "GE-Proton";
             };
           };
         };
