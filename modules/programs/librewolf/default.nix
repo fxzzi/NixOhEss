@@ -17,7 +17,9 @@ let
         Add = [
           {
             Name = "Google";
-            URLTemplate = "https://www.google.com/search?q={searchTerms}";
+            # udm14 parameter requests Google to return a more stripped down view for search
+            # results, omitting much of the additional junk inserted by allegedly AI processes.
+            URLTemplate = "https://www.google.com/search?q={searchTerms}&udm=14";
             Method = "GET";
             IconURL = "https://www.google.com/favicon.ico";
             Alias = "@g";
