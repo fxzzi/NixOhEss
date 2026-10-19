@@ -121,16 +121,17 @@
         defaultMonitor = "DP-3";
         secondaryMonitor = null;
         useGit = true;
-        extraConfig = ''
-          hl.monitor({
-            output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543",
-            mode = "2560x1440@170",
-            -- bad hdr
-            supports_hdr = -1,
-            -- this monitor does support 10bit, but only at 120Hz and lower
-            supports_wide_color = -1,
-          })
-        '';
+        extraConfig = # lua
+          ''
+            hl.monitor({
+              output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 23080B004543",
+              mode = "2560x1440@170",
+              -- bad hdr
+              supports_hdr = -1,
+              -- this monitor does support 10bit, but only at 120Hz and lower
+              supports_wide_color = -1,
+            })
+          '';
         extraHlConfig = {
           render = {
             # sidestep all cm issues by just disabling it

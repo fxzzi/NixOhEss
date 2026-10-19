@@ -33,9 +33,9 @@
     "type": "github",
     "owner": "ryantm",
     "repo": "agenix",
-    "rev": "3daa710894355fa2fad8243380af373a2b4046ef",
-    "narHash": "sha256-n7wew722m1OTBT9DOIMxNX/NF4zfsSUABAO5eW3wikE=",
-    "lastModified": 1790734419
+    "rev": "847720f0e73a77ce6503b63fba6c357c742c28a7",
+    "narHash": "sha256-Ptf4Drj8JYQDpNGEo9o+Tc7+hyjYxe+zrYO3J4jrYT4=",
+    "lastModified": 1792369191
   },
   "azzipkgs": {
     "type": "gitlab",
@@ -69,21 +69,13 @@
     "narHash": "sha256-zTwuwezD0w3hpga6a6P8emidzAZFyWqlNeRBlpWOOl8=",
     "lastModified": 1790898470
   },
-  "git-hooks": {
-    "type": "github",
-    "owner": "cachix",
-    "repo": "git-hooks.nix",
-    "rev": "1ba1dbfe28738c9a71c266be6efa5b89e75491a9",
-    "narHash": "sha256-VAhpCOmrun/KXimYfR8NM88bciKCui7CqHHhThSzgag=",
-    "lastModified": 1791909798
-  },
   "hjem": {
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "6b2cc57463bbbac3d7c61206ab365a2c928861a4",
-    "narHash": "sha256-Q5hGcKBaqz1L0neSRDfQgQPBKmSCkV1N5YBRwp+RtUc=",
-    "lastModified": 1791807571
+    "rev": "7fec35f695f1d8784d2485be6871f85dc0d0f522",
+    "narHash": "sha256-E3vrGA6k5Suh2NDP18PO+HTaL5zCQMfGW5toKoVqcQ8=",
+    "lastModified": 1792374494
   },
   "hyprland": {
     "type": "github",
@@ -105,17 +97,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "8bfba80f57356cc26eba4e5d7b8a595e70e87a00",
-    "narHash": "sha256-cI7nldj6D1f4QLN9y82sqCA7kERAcrwD7/F9i89PhmY=",
-    "lastModified": 1792295076
+    "rev": "9aa6dee894ab0577baef304489d8edba740f2893",
+    "narHash": "sha256-P/2IiWQdCo3OZVn8vc07WwTH16JitGovjOxadMmfgBI=",
+    "lastModified": 1792395704
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "324115db0fe29255e7b4e2ea19ba6a30a393f016",
-    "narHash": "sha256-ncYaCksO/r8PVWLWxWQWgAQvisy+UfWSYvBQszvzQwE=",
-    "lastModified": 1792354133
+    "rev": "3d1d68de85a7f7c7f596d6fe6761e5e22b2061b3",
+    "narHash": "sha256-PisexpJ5lsL25C2x7FeA+99nYO+4lY8ZNDwJjnEdYQ4=",
+    "lastModified": 1792388734
   },
   "nixos-core": {
     "type": "github",
@@ -177,14 +169,6 @@
         }
       ]
     }
-  },
-  "rust-analyzer": {
-    "type": "github",
-    "owner": "rust-lang",
-    "repo": "rust-analyzer",
-    "rev": "ea413f67a8f730b4211c09e103f8207c62e7dbc3",
-    "narHash": "sha256-BB8YntBL5sv6ZwuPz5bz7vL6f6LOHUHDct9yWvcQvvI=",
-    "lastModified": 1753540496
   },
   "startpage": {
     "type": "gitlab",
