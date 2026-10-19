@@ -49,9 +49,9 @@
     "type": "git",
     "url": "https://forge.rysieko.pl/rysieko/beer",
     "ref": "HEAD",
-    "rev": "f2152d299b9602088449c614a9ae13cd745b7f37",
-    "narHash": "sha256-pxYMSEXljfN3ecKYpHLQMylIhGI+cR2MPYWm7scPqsw=",
-    "lastModified": 1792186550
+    "rev": "1204609940fbeaafc5d781eada682cecd938d43c",
+    "narHash": "sha256-XAAkr0862gstusBRxLmkrOtxNzzsk23BcRjnHEIG23s=",
+    "lastModified": 1792435431
   },
   "creamlinux": {
     "type": "github",
@@ -105,9 +105,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "3d1d68de85a7f7c7f596d6fe6761e5e22b2061b3",
-    "narHash": "sha256-PisexpJ5lsL25C2x7FeA+99nYO+4lY8ZNDwJjnEdYQ4=",
-    "lastModified": 1792388734
+    "rev": "555a516d2f52d68e259f547ea36ddd249ee898d0",
+    "narHash": "sha256-Xf3nKViaWkms2IXMG79jESDN3UEo/f08xoJtci1p4n0=",
+    "lastModified": 1792436559
   },
   "nixos-core": {
     "type": "github",
