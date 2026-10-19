@@ -54,7 +54,7 @@
         enable = true;
         dpmsTimeout = 300;
         lockTimeout = 480;
-        suspendTimeout = 0;
+        suspendTimeout = 900;
       };
       hyprpaper.enable = true;
       hyprsunset.enable = true;
@@ -123,27 +123,33 @@
         defaultMonitor = "DP-3";
         secondaryMonitor = "DP-2";
         useGit = true;
-        extraConfig = ''
-          hl.monitor({
-            output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917",
-            mode = "highres",
-            bitdepth = 10,
-            cm = "srgb", -- use srgb calibrated mode on monitor instead
-            -- icc = "${config.age.secrets.mo27q28g.path}",
-            sdr_min_luminance = 0.005,
-            sdr_max_luminance = 203,
-          })
+        extraConfig = # lua
+          ''
+            hl.monitor({
+              output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. MO27Q28G 25392F000917",
+              mode = "highres",
+              bitdepth = 10,
+              -- ds reverts back to srgb. so instead of wide colour cm in Hyprland,
+              -- set the profile in my monitor OSD to srgb. This clamps the colours
+              -- to srgb perfectly without Hyprland needing to step in.
+              cm = "srgb",
+              -- Ujin recommended this so it's what i'm using
+              sdr_min_luminance = 0.005,
+              -- in essence, set the brightness of SDR windows.
+              -- 203 is a good value, or 280 if you want it brighter.
+              sdr_max_luminance = 280,
+            })
 
-          hl.monitor({
-            output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001",
-            mode = "highres",
-            supports_hdr = -1, -- hdr sucks on this monitor lol
-            supports_wide_color = -1, -- only supports at lower 120Hz
-            icc = "${config.age.secrets.m27q.path}",
-            position = "auto-left",
-            vrr = 1, -- this monitor doesn't flicker when using VRR at all
-          })
-        '';
+            hl.monitor({
+              output = "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M27Q 20120B000001",
+              mode = "highres",
+              supports_hdr = -1, -- hdr sucks on this monitor lol
+              supports_wide_color = -1, -- only supports at lower 120Hz
+              icc = "${config.age.secrets.m27q.path}",
+              position = "auto-left",
+              vrr = 1, -- this monitor doesn't flicker when using VRR at all
+            })
+          '';
       };
       hyprlock.enable = true;
       wallust.enable = true;
