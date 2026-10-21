@@ -123,6 +123,8 @@ in
         # we launch with Hyprland, not start-hyprland.
         disable_watchdog_warning = true;
         session_lock_xray = true;
+        # don't allow bars to be opened above a fullscreen window
+        allow_new_top_layers_over_existing_fullscreen = false;
       };
       ecosystem = {
         no_update_news = 1;
