@@ -81,9 +81,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "c7216a9807a2683ce243f6ed14ae01e7e884c426",
-    "narHash": "sha256-FI+AF5jFi/NqfbMmFZ/CfS6dLzguZi2Im4CgAqU/W28=",
-    "lastModified": 1792542070
+    "rev": "76edafffc68951a66b094806659ac4823e22c624",
+    "narHash": "sha256-6fvgaIKT8QFm/wm4zopuluAeQ46A6nf3DltvF9IZ4Oc=",
+    "lastModified": 1792697076
   },
   "niqspkgs": {
     "type": "github",
@@ -105,9 +105,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "99ad1fb696c3b761ea6dac99211c862b9ca64571",
-    "narHash": "sha256-XpP8ws1IYlvoQVN27adsJkLP5IsJ6H/o8aWtS3WrE2s=",
-    "lastModified": 1792571875
+    "rev": "9c3b575e714f36f72e9f5e780f477c00aa91c90a",
+    "narHash": "sha256-5ITl5ZFbF6tV7+HCKMyPJCHvAYQE/2Ezv9ZbmkFLOr8=",
+    "lastModified": 1792723906
   },
   "nixos-core": {
     "type": "github",
@@ -152,13 +152,13 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "rags",
-    "rev": "71f0037a4d0d1d54b6ff4c58fc712b3504e9b7d6",
-    "narHash": "sha256-WW1fAhOI/4jO+9u/RX6sK0T9l50lo4dPclPb915nKU0=",
-    "lastModified": 1789308418,
+    "rev": "2bafe0d1a3d246c89038ffd8dc5880ea0a02b6d1",
+    "narHash": "sha256-opfxKfmdotn+FBAzQbsrGzv+bphQXI8sKEsllzaURKM=",
+    "lastModified": 1792609950,
     "patched": {
-      "path": "/nix/store/jnz5vw8c3mb18k2z2yrkqm22zbi779d2-source",
-      "narHash": "sha256-b9l/f2Fd5iooAQplHEOa7NpZ9RMP9CRB7Ov+1GJo3uE=",
-      "lastModified": 1789308418,
+      "path": "/nix/store/32zmm1312bnmmyc7j69gfjd3k0m0894s-source",
+      "narHash": "sha256-V3yZTYIMZBvnHkmk6qkpmgA62JLsIHgnDX4qPX2ELmg=",
+      "lastModified": 1792609950,
       "patches": [
         {
           "source": "https://github.com/NotAShelf/rags/pull/44",
@@ -190,9 +190,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "8573f1f1bda4aa467fa341b33f6004661833c022",
-    "narHash": "sha256-wwkmmsr5u8MknxrF9ZdIN90wk09weXCaVQp8aeWdYaE=",
-    "lastModified": 1792416927
+    "rev": "f7cce4f7e53c9482661b158824522fefef2d7920",
+    "narHash": "sha256-vOIIx/QU6xEjMZTMZM8GNNXS/p4Idvw8V09KT5zNwTI=",
+    "lastModified": 1792630541
   },
   "walls": {
     "type": "gitlab",
