@@ -16,9 +16,9 @@ and [hjem](https://github.com/feel-co/hjem).
 
 ## Hosts
 
-- [fazziPC](./hosts/fazziPC): My main desktop PC, running an AMD 5600x and an
-  RTX 3070.
-- [fazziGO](./hosts/fazziGO): My Thinkpad L14 Gen 4, which sports an AMD Ryzen 5
+- [fazziPC](./hosts/fazziPC): My main desktop PC, running a Ryzen 7 9850x3D and
+  an RTX 3070.
+- [fazziGO](./hosts/fazziGO): My Thinkpad L14 Gen 4, which sports a Ryzen 5
   7530U.
 - [kunzozPC](./hosts/kunzozPC): My friend's gaming PC, where I manage his NixOS
   installation.
