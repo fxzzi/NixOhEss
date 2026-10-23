@@ -30,7 +30,6 @@ in
   };
   config = {
     boot = {
-      initrd.systemd.enable = true;
       loader = {
         efi.canTouchEfiVariables = true;
         inherit (config.cfg.core.limine) timeout;
