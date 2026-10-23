@@ -24,6 +24,9 @@ in
     networking = {
       inherit hostName;
       nameservers = cloudflareDNS;
+      # fork dhcpcd to the background on boot
+      # instead of letting it delay bootup
+      dhcpcd.wait = "background";
     };
     services.resolved = {
       enable = true;
