@@ -3,6 +3,6 @@
     inputs.nixos-core.nixosModules.default
   ];
   config = {
-    system.nixos-core.enable = true;
+    # system.nixos-core.enable = true;
   };
 }
