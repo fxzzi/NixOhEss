@@ -27,10 +27,6 @@ names = [
 # core
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
-patches = [
-  # linuxPackages / aggregateModules: Minor improvements post-module-signing
-  "https://github.com/NixOS/nixpkgs/pull/577219",
-]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.nixos-core]
