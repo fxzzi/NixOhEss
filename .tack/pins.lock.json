@@ -73,9 +73,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "4cd448d5b3220b8bbccdb6e7e8185b515f63a776",
-    "narHash": "sha256-xj1hq1P05Lekx9tAtyJGSMFw8Z5oK4jh+n7Qr0Q1m5k=",
-    "lastModified": 1792547720
+    "rev": "d219ef55ab7311d884cf33e114561082fec95f34",
+    "narHash": "sha256-BohcZsIqBOd6YL6+jUkdM4GE+aQc72E6yrqVyt1z5X4=",
+    "lastModified": 1793026809
   },
   "hyprland": {
     "type": "github",
@@ -105,9 +105,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "33aef60077e134dbc170f317d1a2896b547045cf",
-    "narHash": "sha256-3k2ZI2OzEqq1n8d7ccCcTbDlEGbQf8TyXwe4ZfRbtCs=",
-    "lastModified": 1792951801
+    "rev": "5d9cbc77242752bd5353df2407ee9cd9966fe466",
+    "narHash": "sha256-cBt5t1EAuEPllPznQa5qAAr6UqZoIqIGra2TKbkqY50=",
+    "lastModified": 1793021930
   },
   "nixos-core": {
     "type": "github",
