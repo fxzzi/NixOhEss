@@ -56,11 +56,8 @@ url = "github:fxzzi/creamlinux-installer"
 [inputs.nvf]
 url = "github:NotAShelf/nvf"
 [inputs.rags]
-url = "github:NotAShelf/rags"
-patches = [
-  "https://github.com/NotAShelf/rags/pull/44",
-  # "https://github.com/NotAShelf/rags/pull/45",
-]
+url     = "github:NotAShelf/rags"
+patches = ["https://github.com/NotAShelf/rags/pull/44"]
 [inputs.beer]
 # nix and tack fail to fetch from raf's git forge :(
 # so fetch from a mirror instead
