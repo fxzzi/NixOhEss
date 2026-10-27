@@ -16,16 +16,8 @@
     services = {
       ags.enable = true;
       # kdeconnect.enable = true;
-      nvuv = {
-        enable = true;
-        maxClock = 1815;
-        coreOffset = 205;
-        memOffset = 900;
-        powerLimit = 175;
-        tempMonitor = {
-          enable = true;
-        };
-      };
+      lact.enable = true;
+      nvuv.tempMonitor.enable = true;
       cliphist.enable = true;
       mullvad.enable = true;
       mate-polkit.enable = true;
