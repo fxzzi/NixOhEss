@@ -138,347 +138,385 @@ in
         # disable_logs = false;
       };
     };
+    hj.xdg.config.files = {
+      "wallust/wallust.toml".value.templates = mkIf config.cfg.programs.wallust.enable {
+        hyprland = {
+          target = "~/.config/hypr/colors_hyprland.lua";
+          template = builtins.toFile "colors_hyprland.lua" ''
+            hl.config({
+            	general = {
+            		col = {
+            			active_border = "rgb({{color4 | strip}})",
+            			inactive_border = "rgba({{color0 | strip}}ff)",
+            		},
+            	},
+            })
+          '';
+          hyprtoolkit = mkIf config.cfg.programs.wallust.enable {
+            template = builtins.toFile "hyprtoolkit.conf" (
+              self.lib.generators.toHyprlang { } {
+                background = "0xFF{{background | strip}}";
+                base = "0xFF{{color0 | strip}}";
+                text = "0xFF{{foreground | strip}}";
+                alternate_base = "0xFF{{color8 | strip}}";
+                bright_text = "0xFF{{color15 | strip}}";
+                accent = "0xFF{{color2 | strip}}";
+                accent_secondary = "0xFF{{color4 | strip}}";
 
-    hj.xdg.config.files."hypr/hyprland.lua" = {
-      text =
-        # lua
-        ''
-          -- fallback monitor config
-          hl.monitor({
-            output = "",
-            mode = "highres",
-            position = "auto",
-            scale = "1",
-          })
+                rounding_large = 4;
+                rounding_small = 2;
+              }
+            );
+            target = "~/.config/hypr/hyprtoolkit.conf";
+          };
 
-          hl.on("hyprland.shutdown", function()
-            -- discord literally craps itself and coredumps if the graphical env
-            -- is shut down whilst it's still open. kill it to avoid the coredump.
-            -- exec_cmd runs async, so to delay shutdown we need os.execute()
-            os.execute("pgrep --quiet Discord && pkill -9 Discord")
-          end)
+        };
+      };
+      "hypr/hyprland.lua" = {
+        text =
+          # lua
+          ''
+            ${optionalString config.cfg.programs.wallust.enable ''
+              require("colors_hyprland")
+            ''}
 
-          -- set primary monitor for xwayland apps too.
-          if ${boolToString multiMonitor} then
-            hl.on("monitor.layout_changed", function()
-              hl.exec_cmd("${getExe pkgs.xrandr} --output ${cfg.defaultMonitor} --primary")
+            -- fallback monitor config
+            hl.monitor({
+              output = "",
+              mode = "highres",
+              position = "auto",
+              scale = "1",
+            })
+
+            hl.on("hyprland.shutdown", function()
+              -- discord literally craps itself and coredumps if the graphical env
+              -- is shut down whilst it's still open. kill it to avoid the coredump.
+              -- exec_cmd runs async, so to delay shutdown we need os.execute()
+              os.execute("pgrep --quiet Discord && pkill -9 Discord")
             end)
-          end
 
-          hl.layer_rule({ match = { namespace = "launcher" }, blur = true, ignore_alpha = 0 })
-          hl.layer_rule({ match = { namespace = "wleave" }, blur = true, xray = true })
-          hl.layer_rule({ match = { namespace = "bar-.*" }, blur = true, xray = true, ignore_alpha = 0 })
-          hl.layer_rule({ match = { namespace = "notifications" }, blur = true, animation = "slide" })
-          -- show `still` below `slurp`, but above notifications
-          -- used to freeze screen during selection screenshots
-          hl.layer_rule({ match = { namespace = "selection" }, no_anim = true, order = -2 })
-          hl.layer_rule({ match = { namespace = "still" }, no_anim = true, order = -1 })
-
-          -- hyprland shows anr dialog when stremio is in another workspace, so render_unfocused 1
-          hl.window_rule({ match = { class = ".*stremio.*" }, render_unfocused = true, content = "video" })
-          -- no vrr on video content, like mpv
-          hl.window_rule({ match = { content = "video" }, idle_inhibit = "fullscreen", no_vrr = true })
-
-          hl.window_rule({ match = { class = "atril" }, idle_inhibit = "focus" })
-
-          -- oled flicker is annoying on some apps
-          hl.window_rule({ match = { class = "foot" }, idle_inhibit = "fullscreen", no_vrr = true })
-          hl.window_rule({ match = { class = "org.gnome.Loupe" }, no_vrr = true })
-
-          -- ignore maximize requests from apps. You'll probably like this.
-          hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
-
-          -- dialogs
-          hl.window_rule({ match = { title = "File Operation Progress.*" }, float = true })
-          hl.window_rule({ match = { title = "Confirm to replace files.*" }, float = true })
-          hl.window_rule({ match = { title = "Select a File.*" }, float = true })
-          hl.window_rule({ match = { title = "Save As.*" }, float = true })
-          hl.window_rule({ match = { title = "Rename.*" }, float = true })
-          hl.window_rule({ match = { class = "xdg-desktop-portal-gtk" }, float = true })
-          hl.window_rule({ match = { class = "org.gnome.FileRoller", title = "Extract.*" }, float = true })
-
-          -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
-          hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
-          hl.window_rule({ match = { class = "chromium-browser" }, no_auto_hdr = true })
-          hl.window_rule({ match = { class = ".*"}, 
-            -- disable HDR tonemapping for now to get DS off and on to more closely match
-            tonemap = "off",
-            -- thank god this can be disabled
-            no_xdg_drags = true,
-          })
-
-          -- Disable blur for steam
-          hl.window_rule({ match = { class = "steam" }, no_blur = true })
-
-          -- Window rules for games
-          -- emulators and similar apps that should be tagged as games, but not forced fullscreen
-          for _, match in ipairs({
-            { class = "info.cemu.Cemu" },
-            { class = "org.eden_emu.eden" },
-            { class = "dev.eden_emu.eden" },
-            { class = "dolphin-emu" },
-          }) do
-            hl.window_rule({ match = match, tag = "+game" })
-          end
-
-          -- wine/proton/native titles that should launch fullscreen
-          for _, match in ipairs({
-            { xdg_tag = "proton-game" }, -- proton w/ wine-wayland sets this
-            { class = "steam_app_.*" }, -- umu / proton xwayland set this
-            { class = "com.libretro.RetroArch" },
-            { class = ".*_linux" }, -- 32-bit source
-            { class = ".*_linux64" }, -- 64-bit source
-            { class = ".*.x86_64" }, -- native sdl games
-            { class = "momentum" }, -- momentum mod
-            { class = "cs2" },
-            { class = "org-prismlauncher-EntryPoint" }, -- legacy mc
-            { class = "minecraft" }, -- gregtech:nh ?
-            { initial_title = "Minecraft\\* .*" }, -- mc up to v26.1
-            { initial_title = "Minecraft .*" }, -- v26.2-26.3 mc
-            { class = "com.mojang.minecraft" }, -- v26.3+
-            { class = "osu!" },
-            { class = "gamescope" },
-            { class = "Celeste" },
-            { class = "sm64coopdx" },
-            { class = "UnleashedRecomp" },
-            { class = "sober" },
-            { class = "Cordial" },
-            { class = "waywall" },
-            { class = "love", title = "Freesync test" },
-            { class = "dotnet", initial_title = "Terraria: .*" },
-            { initial_title = "Clustertruck" },
-          }) do
-            hl.window_rule({ match = match, tag = "+game", fullscreen = true })
-            hl.window_rule({ match = match, tag = "+confine" })
-          end
-
-          -- apply behavior by tag
-          hl.window_rule({
-            match = { tag = "game" },
-            -- setting content type allows ds to apply
-            content = "game",
-            -- pause hypridle in fullscreen games
-            idle_inhibit = "fullscreen",
-            -- allow tearing
-            immediate = true,
-            sync_fullscreen = true,
-          })
-
-          -- confine cursor to the monitor when a game is in fullscreen.
-          if ${boolToString multiMonitor} then
-            hl.window_rule({ match = {tag = "confine", fullscreen = true}, confine_pointer = true;})
-          end
-
-          local function curves(items)
-            for name, points in pairs(items) do
-              hl.curve(name, {
-                type = "bezier",
-                points = points,
-              })
+            -- set primary monitor for xwayland apps too.
+            if ${boolToString multiMonitor} then
+              hl.on("monitor.layout_changed", function()
+                hl.exec_cmd("${getExe pkgs.xrandr} --output ${cfg.defaultMonitor} --primary")
+              end)
             end
-          end
 
-          local function animations(items)
-            for _, a in ipairs(items) do
-              hl.animation({
-                leaf = a[1],
-                enabled = a[2],
-                speed = a[3],
-                bezier = a[4],
-                style = a[5],
-              })
+            hl.layer_rule({ match = { namespace = "launcher" }, blur = true, ignore_alpha = 0 })
+            hl.layer_rule({ match = { namespace = "wleave" }, blur = true, xray = true })
+            hl.layer_rule({ match = { namespace = "bar-.*" }, blur = true, xray = true, ignore_alpha = 0 })
+            hl.layer_rule({ match = { namespace = "notifications" }, blur = true, animation = "slide" })
+            -- show `still` below `slurp`, but above notifications
+            -- used to freeze screen during selection screenshots
+            hl.layer_rule({ match = { namespace = "selection" }, no_anim = true, order = -2 })
+            hl.layer_rule({ match = { namespace = "still" }, no_anim = true, order = -1 })
+
+            -- hyprland shows anr dialog when stremio is in another workspace, so render_unfocused 1
+            hl.window_rule({ match = { class = ".*stremio.*" }, render_unfocused = true, content = "video" })
+            -- no vrr on video content, like mpv
+            hl.window_rule({ match = { content = "video" }, idle_inhibit = "fullscreen", no_vrr = true })
+
+            hl.window_rule({ match = { class = "atril" }, idle_inhibit = "focus" })
+
+            -- oled flicker is annoying on some apps
+            hl.window_rule({ match = { class = "foot" }, idle_inhibit = "fullscreen", no_vrr = true })
+            hl.window_rule({ match = { class = "org.gnome.Loupe" }, no_vrr = true })
+
+            -- ignore maximize requests from apps. You'll probably like this.
+            hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
+
+            -- dialogs
+            hl.window_rule({ match = { title = "File Operation Progress.*" }, float = true })
+            hl.window_rule({ match = { title = "Confirm to replace files.*" }, float = true })
+            hl.window_rule({ match = { title = "Select a File.*" }, float = true })
+            hl.window_rule({ match = { title = "Save As.*" }, float = true })
+            hl.window_rule({ match = { title = "Rename.*" }, float = true })
+            hl.window_rule({ match = { class = "xdg-desktop-portal-gtk" }, float = true })
+            hl.window_rule({ match = { class = "org.gnome.FileRoller", title = "Extract.*" }, float = true })
+
+            -- foot with gamma correct blending is considered scRGB, but don't trigger autoHDR with it
+            hl.window_rule({ match = { class = "foot" }, no_auto_hdr = true })
+            hl.window_rule({ match = { class = "chromium-browser" }, no_auto_hdr = true })
+            hl.window_rule({ match = { class = ".*"}, 
+              -- disable HDR tonemapping for now to get DS off and on to more closely match
+              tonemap = "off",
+              -- thank god this can be disabled
+              no_xdg_drags = true,
+            })
+
+            -- Disable blur for steam
+            hl.window_rule({ match = { class = "steam" }, no_blur = true })
+
+            -- Window rules for games
+            -- emulators and similar apps that should be tagged as games, but not forced fullscreen
+            for _, match in ipairs({
+              { class = "info.cemu.Cemu" },
+              { class = "org.eden_emu.eden" },
+              { class = "dev.eden_emu.eden" },
+              { class = "dolphin-emu" },
+            }) do
+              hl.window_rule({ match = match, tag = "+game" })
             end
-          end
 
-          local function bind(keys, action, opts)
-            hl.bind(table.concat(keys, " + "), action, opts)
-          end
+            -- wine/proton/native titles that should launch fullscreen
+            for _, match in ipairs({
+              { xdg_tag = "proton-game" }, -- proton w/ wine-wayland sets this
+              { class = "steam_app_.*" }, -- umu / proton xwayland set this
+              { class = "com.libretro.RetroArch" },
+              { class = ".*_linux" }, -- 32-bit source
+              { class = ".*_linux64" }, -- 64-bit source
+              { class = ".*.x86_64" }, -- native sdl games
+              { class = "momentum" }, -- momentum mod
+              { class = "cs2" },
+              { class = "org-prismlauncher-EntryPoint" }, -- legacy mc
+              { class = "minecraft" }, -- gregtech:nh ?
+              { initial_title = "Minecraft\\* .*" }, -- mc up to v26.1
+              { initial_title = "Minecraft .*" }, -- v26.2-26.3 mc
+              { class = "com.mojang.minecraft" }, -- v26.3+
+              { class = "osu!" },
+              { class = "gamescope" },
+              { class = "Celeste" },
+              { class = "sm64coopdx" },
+              { class = "UnleashedRecomp" },
+              { class = "sober" },
+              { class = "Cordial" },
+              { class = "waywall" },
+              { class = "love", title = "Freesync test" },
+              { class = "dotnet", initial_title = "Terraria: .*" },
+              { initial_title = "Clustertruck" },
+            }) do
+              hl.window_rule({ match = match, tag = "+game", fullscreen = true })
+              hl.window_rule({ match = match, tag = "+confine" })
+            end
 
-          curves({
-            easeOutQuint = { { 0.23, 1 }, { 0.32, 1 } },
-            easeInOutCubic = { { 0.65, 0.05 }, { 0.36, 1 } },
-            linear = { { 0, 0 }, { 1, 1 } },
-            almostLinear = { { 0.5, 0.5 }, { 0.75, 1 } },
-            quick = { { 0.15, 0 }, { 0.1, 1 } },
-          })
+            -- apply behavior by tag
+            hl.window_rule({
+              match = { tag = "game" },
+              -- setting content type allows ds to apply
+              content = "game",
+              -- pause hypridle in fullscreen games
+              idle_inhibit = "fullscreen",
+              -- allow tearing
+              immediate = true,
+              sync_fullscreen = true,
+            })
 
-          animations({
-            { "windowsIn", true, 3, "easeOutQuint", "slide" },
-            { "windowsOut", true, 3, "easeOutQuint", "slide" },
-            { "windowsMove", true, 3, "easeOutQuint" },
-            { "layersIn", true, 4, "easeOutQuint", "fade" },
-            { "layersOut", true, 1.5, "linear", "fade" },
-            { "fadeIn", true, 1.2, "almostLinear" },
-            { "fadeOut", true, 2, "almostLinear" },
-            { "fadeSwitch", true, 1.2, "almostLinear" },
-            { "fadeShadow", true, 1.2, "almostLinear" },
-            { "fadeDim", true, 1.2, "almostLinear" },
-            { "fadeLayers", true, 1.4, "linear" },
-            { "fadePopups", true, 2, "linear" },
-            { "border", true, 5, "easeOutQuint" },
-            { "specialWorkspace", true, 3, "quick", "fade" },
-            { "zoomFactor", true, 4, "quick" },
-            -- wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
-            -- and it will look like windows are moving into each other across the monitors.
-            { "workspaces", true, 4, "easeOutQuint", ${boolToString multiMonitor} and "slidevert" or "slide" },
-            -- disable the bootup animation
-            { "monitorAdded", false },
-          })
+            -- confine cursor to the monitor when a game is in fullscreen.
+            if ${boolToString multiMonitor} then
+              hl.window_rule({ match = {tag = "confine", fullscreen = true}, confine_pointer = true;})
+            end
 
-          hl.device({
-            -- thinkpad l14 keyboard
-            name = "at-translated-set-2-keyboard",
-            kb_layout = "gb",
-          })
+            local function curves(items)
+              for name, points in pairs(items) do
+                hl.curve(name, {
+                  type = "bezier",
+                  points = points,
+                })
+              end
+            end
 
-          hl.device({
-            -- thinkpad l14 touchpad
-            name = "elan0680:00-04f3:320a-touchpad",
-            -- https://gist.github.com/fufexan/e6bcccb7787116b8f9c31160fc8bc543
-            accel_profile = "custom",
-            scroll_points = "0.5 0.000 0.053 0.115 0.189 0.280 0.391 0.525 0.687 0.880 1.108 1.375 1.684 2.040 2.446 2.905 3.422 4.000 4.643 5.355 6.139",
-          })
+            local function animations(items)
+              for _, a in ipairs(items) do
+                hl.animation({
+                  leaf = a[1],
+                  enabled = a[2],
+                  speed = a[3],
+                  bezier = a[4],
+                  style = a[5],
+                })
+              end
+            end
 
-          hl.gesture({
-            fingers = 3,
-            direction = "horizontal",
-            action = "workspace",
-          })
+            local function bind(keys, action, opts)
+              hl.bind(table.concat(keys, " + "), action, opts)
+            end
 
-          -- set workspaces to alternate between monitors when there are 2 monitors.
-          if ${boolToString multiMonitor} then
+            curves({
+              easeOutQuint = { { 0.23, 1 }, { 0.32, 1 } },
+              easeInOutCubic = { { 0.65, 0.05 }, { 0.36, 1 } },
+              linear = { { 0, 0 }, { 1, 1 } },
+              almostLinear = { { 0.5, 0.5 }, { 0.75, 1 } },
+              quick = { { 0.15, 0 }, { 0.1, 1 } },
+            })
+
+            animations({
+              { "windowsIn", true, 3, "easeOutQuint", "slide" },
+              { "windowsOut", true, 3, "easeOutQuint", "slide" },
+              { "windowsMove", true, 3, "easeOutQuint" },
+              { "layersIn", true, 4, "easeOutQuint", "fade" },
+              { "layersOut", true, 1.5, "linear", "fade" },
+              { "fadeIn", true, 1.2, "almostLinear" },
+              { "fadeOut", true, 2, "almostLinear" },
+              { "fadeSwitch", true, 1.2, "almostLinear" },
+              { "fadeShadow", true, 1.2, "almostLinear" },
+              { "fadeDim", true, 1.2, "almostLinear" },
+              { "fadeLayers", true, 1.4, "linear" },
+              { "fadePopups", true, 2, "linear" },
+              { "border", true, 5, "easeOutQuint" },
+              { "specialWorkspace", true, 3, "quick", "fade" },
+              { "zoomFactor", true, 4, "quick" },
+              -- wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
+              -- and it will look like windows are moving into each other across the monitors.
+              { "workspaces", true, 4, "easeOutQuint", ${boolToString multiMonitor} and "slidevert" or "slide" },
+              -- disable the bootup animation
+              { "monitorAdded", false },
+            })
+
+            hl.device({
+              -- thinkpad l14 keyboard
+              name = "at-translated-set-2-keyboard",
+              kb_layout = "gb",
+            })
+
+            hl.device({
+              -- thinkpad l14 touchpad
+              name = "elan0680:00-04f3:320a-touchpad",
+              -- https://gist.github.com/fufexan/e6bcccb7787116b8f9c31160fc8bc543
+              accel_profile = "custom",
+              scroll_points = "0.5 0.000 0.053 0.115 0.189 0.280 0.391 0.525 0.687 0.880 1.108 1.375 1.684 2.040 2.446 2.905 3.422 4.000 4.643 5.355 6.139",
+            })
+
+            hl.gesture({
+              fingers = 3,
+              direction = "horizontal",
+              action = "workspace",
+            })
+
+            -- set workspaces to alternate between monitors when there are 2 monitors.
+            if ${boolToString multiMonitor} then
+              for i = 1, 10 do
+                local monitor = (i % 2 == 1) and "${cfg.defaultMonitor}" or "${secondaryMonitor}"
+                hl.workspace_rule({
+                  workspace = tostring(i),
+                  monitor = monitor,
+                })
+              end
+            end
+
+            local mainMod = "SUPER"
+
+            -- screenshot script
+            bind({ "Print" }, hl.dsp.exec_raw("${screenshot} --monitor"))
+            bind({ "SHIFT", "Print" }, hl.dsp.exec_raw("${screenshot} --selection"))
+            bind({ mainMod, "SHIFT", "S" }, hl.dsp.exec_raw("${screenshot} --selection"))
+            bind({ mainMod, "Print" }, hl.dsp.exec_raw("${screenshot} --active"))
+
+            -- annotate the image in clipboard
+            bind({mainMod, "A"}, hl.dsp.exec_raw("wl-paste | ${getExe pkgs.swappy} -f -"))
+
+            -- binds for apps
+            bind({ mainMod, "F" }, hl.dsp.exec_raw("thunar"))
+            bind({ mainMod, "T" }, hl.dsp.exec_raw("foot"))
+            bind({ mainMod, "B" }, hl.dsp.exec_raw("librewolf"))
+            bind({ mainMod, "SHIFT", "P" }, hl.dsp.exec_raw("librewolf --private-window"))
+            bind({ mainMod, "W" }, hl.dsp.exec_raw("Discord"))
+            bind({ mainMod, "D" }, hl.dsp.exec_raw("pkill fuzzel || fuzzel"))
+            bind({ mainMod, "SHIFT", "E" }, hl.dsp.exec_raw("pkill wleave || wleave"))
+            bind({ "CTRL", "SHIFT", "Escape" }, hl.dsp.exec_raw("foot btm"))
+            -- extra schtuff
+            bind({ mainMod, "N" }, hl.dsp.exec_raw("${getExe azzipkgs.sunset} 3000"))
+            bind({ mainMod, "R" }, hl.dsp.exec_raw("${getExe selfPkgs.random-wall}"))
+            bind({ mainMod, "SHIFT", "R" }, hl.dsp.exec_raw("hyprctl reload && ${getExe' pkgs.dunst "dunstify"} 'Hyprland' 'Reloaded Successfully.'"))
+            bind({ mainMod, "K" }, hl.dsp.exec_raw("hyprctl kill"))
+            bind({ mainMod, "J" }, hl.dsp.exec_raw("foot ${getExe selfPkgs.wall-picker}"))
+            bind({ mainMod, "L" }, hl.dsp.exec_raw("loginctl lock-session"))
+            bind({ mainMod, "V" }, hl.dsp.exec_raw("pkill fuzzel || (cliphist list | fuzzel --width 75 --dmenu --with-nth 2 -p ' ' | cliphist decode | wl-copy)"))
+
+            -- mpd media controls
+            bind({ "XF86AudioPrev" }, hl.dsp.exec_raw("${mpc} prev"))
+            bind({ "XF86AudioPlay" }, hl.dsp.exec_raw("${mpc} toggle"))
+            bind({ "XF86AudioNext" }, hl.dsp.exec_raw("${mpc} next"))
+
+            -- shortcuts for OBS
+            bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.global("com.obsproject.Studio:_toggle_recording"))
+            bind({ "CTRL", "grave" }, hl.dsp.global("com.obsproject.Studio:ReplayBuffer.Save"))
+
+            -- window management
+            bind({ mainMod, "Q" }, hl.dsp.window.close())
+            bind({ mainMod, "Space" }, hl.dsp.window.fullscreen(1))
+            bind({ mainMod, "Tab" }, hl.dsp.window.float({ action = "toggle" }))
+            bind({ mainMod, "P" }, hl.dsp.window.pseudo())
+            bind({ mainMod, "S" }, hl.dsp.layout("togglesplit"))
+
+            -- focus
+            for _, dir in ipairs({ "left", "right", "up", "down" }) do
+              bind({ mainMod, dir }, hl.dsp.focus({ direction = dir }))
+            end
+
+            -- move
+            for _, dir in ipairs({ "left", "right", "up", "down" }) do
+              bind({ mainMod, "SHIFT", dir }, hl.dsp.window.move({ direction = dir }))
+            end
+
             for i = 1, 10 do
-              local monitor = (i % 2 == 1) and "${cfg.defaultMonitor}" or "${secondaryMonitor}"
-              hl.workspace_rule({
-                workspace = tostring(i),
-                monitor = monitor,
-              })
+                local key = i % 10 -- 10 maps to key 0
+                bind({ mainMod, tostring(key) }, hl.dsp.focus({ workspace = i }))
+                bind({ mainMod, "SHIFT", tostring(key) }, hl.dsp.window.move({ workspace = i }))
             end
-          end
 
-          local mainMod = "SUPER"
+            -- navigate through workspaces on mouse
+            bind({ mainMod, "mouse_down" }, hl.dsp.focus({ workspace = "e+1" }))
+            bind({ mainMod, "mouse_up" }, hl.dsp.focus({ workspace = "e-1" }))
 
-          -- screenshot script
-          bind({ "Print" }, hl.dsp.exec_raw("${screenshot} --monitor"))
-          bind({ "SHIFT", "Print" }, hl.dsp.exec_raw("${screenshot} --selection"))
-          bind({ mainMod, "SHIFT", "S" }, hl.dsp.exec_raw("${screenshot} --selection"))
-          bind({ mainMod, "Print" }, hl.dsp.exec_raw("${screenshot} --active"))
+            -- resize
+            for _, resize in ipairs({
+              { "left", -10, 0 },
+              { "right", 10, 0 },
+              { "up", 0, -10 },
+              { "down", 0, 10 },
+            }) do
+              bind(
+                { mainMod, "CTRL", resize[1] },
+                hl.dsp.window.resize({ x = resize[2], y = resize[3], relative = true }),
+                { repeating = true }
+              )
+            end
 
-          -- annotate the image in clipboard
-          bind({mainMod, "A"}, hl.dsp.exec_raw("wl-paste | ${getExe pkgs.swappy} -f -"))
+            -- audio binds
+            for _, a in ipairs({
+              { { "XF86AudioRaiseVolume" }, "${audio} vol up 5" },
+              { { "SHIFT", "XF86AudioRaiseVolume" }, "${audio} vol up 1" },
 
-          -- binds for apps
-          bind({ mainMod, "F" }, hl.dsp.exec_raw("thunar"))
-          bind({ mainMod, "T" }, hl.dsp.exec_raw("foot"))
-          bind({ mainMod, "B" }, hl.dsp.exec_raw("librewolf"))
-          bind({ mainMod, "SHIFT", "P" }, hl.dsp.exec_raw("librewolf --private-window"))
-          bind({ mainMod, "W" }, hl.dsp.exec_raw("Discord"))
-          bind({ mainMod, "D" }, hl.dsp.exec_raw("pkill fuzzel || fuzzel"))
-          bind({ mainMod, "SHIFT", "E" }, hl.dsp.exec_raw("pkill wleave || wleave"))
-          bind({ "CTRL", "SHIFT", "Escape" }, hl.dsp.exec_raw("foot btm"))
-          -- extra schtuff
-          bind({ mainMod, "N" }, hl.dsp.exec_raw("${getExe azzipkgs.sunset} 3000"))
-          bind({ mainMod, "R" }, hl.dsp.exec_raw("${getExe selfPkgs.random-wall}"))
-          bind({ mainMod, "SHIFT", "R" }, hl.dsp.exec_raw("hyprctl reload && ${getExe' pkgs.dunst "dunstify"} 'Hyprland' 'Reloaded Successfully.'"))
-          bind({ mainMod, "K" }, hl.dsp.exec_raw("hyprctl kill"))
-          bind({ mainMod, "J" }, hl.dsp.exec_raw("foot ${getExe selfPkgs.wall-picker}"))
-          bind({ mainMod, "L" }, hl.dsp.exec_raw("loginctl lock-session"))
-          bind({ mainMod, "V" }, hl.dsp.exec_raw("pkill fuzzel || (cliphist list | fuzzel --width 75 --dmenu --with-nth 2 -p ' ' | cliphist decode | wl-copy)"))
+              { { "XF86AudioLowerVolume" }, "${audio} vol down 5" },
+              { { "SHIFT", "XF86AudioLowerVolume" }, "${audio} vol down 1" },
 
-          -- mpd media controls
-          bind({ "XF86AudioPrev" }, hl.dsp.exec_raw("${mpc} prev"))
-          bind({ "XF86AudioPlay" }, hl.dsp.exec_raw("${mpc} toggle"))
-          bind({ "XF86AudioNext" }, hl.dsp.exec_raw("${mpc} next"))
+              { { "XF86AudioMute" }, "${audio} vol toggle" },
 
-          -- shortcuts for OBS
-          bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.global("com.obsproject.Studio:_toggle_recording"))
-          bind({ "CTRL", "grave" }, hl.dsp.global("com.obsproject.Studio:ReplayBuffer.Save"))
+              { { "XF86AudioMicMute" }, "${audio} mic toggle" },
+              { { mainMod, "SHIFT", "M" }, "${audio} mic toggle" },
+            }) do
+              bind(a[1], hl.dsp.exec_raw(a[2]), { locked = true, repeating = true })
+            end
 
-          -- window management
-          bind({ mainMod, "Q" }, hl.dsp.window.close())
-          bind({ mainMod, "Space" }, hl.dsp.window.fullscreen(1))
-          bind({ mainMod, "Tab" }, hl.dsp.window.float({ action = "toggle" }))
-          bind({ mainMod, "P" }, hl.dsp.window.pseudo())
-          bind({ mainMod, "S" }, hl.dsp.layout("togglesplit"))
+            -- brightness binds
+            for _, b in ipairs({
+              { "XF86MonBrightnessUp", "up" },
+              { "XF86MonBrightnessDown", "down" },
+            }) do
+              bind({ b[1] }, hl.dsp.exec_raw("${brightness} " .. b[2] .. " 5"), { locked = true, repeating = true })
+            end
 
-          -- focus
-          for _, dir in ipairs({ "left", "right", "up", "down" }) do
-            bind({ mainMod, dir }, hl.dsp.focus({ direction = dir }))
-          end
+            -- mouse binds
+            bind({ mainMod, "mouse:272" }, hl.dsp.window.drag(), { mouse = true }) -- left click
+            bind({ mainMod, "mouse:273" }, hl.dsp.window.resize(), { mouse = true }) -- right click
+            -- these binds allow you to easily drag and resize on touchpad
+            if ${boolToString config.cfg.core.isLaptop} then
+              bind({ mainMod, "CONTROL_L" }, hl.dsp.window.drag(), { mouse = true })
+              bind({ mainMod, "ALT_L" }, hl.dsp.window.resize(), { mouse = true })
+            end
 
-          -- move
-          for _, dir in ipairs({ "left", "right", "up", "down" }) do
-            bind({ mainMod, "SHIFT", dir }, hl.dsp.window.move({ direction = dir }))
-          end
+            -- apply the hl.config block from nix
+            hl.config(${generators.toLua { } cfg.extraHlConfig})
 
-          for i = 1, 10 do
-              local key = i % 10 -- 10 maps to key 0
-              bind({ mainMod, tostring(key) }, hl.dsp.focus({ workspace = i }))
-              bind({ mainMod, "SHIFT", tostring(key) }, hl.dsp.window.move({ workspace = i }))
-          end
+            -- git only stuff here :P
+            ${optionalString cfg.useGit ''
 
-          -- navigate through workspaces on mouse
-          bind({ mainMod, "mouse_down" }, hl.dsp.focus({ workspace = "e+1" }))
-          bind({ mainMod, "mouse_up" }, hl.dsp.focus({ workspace = "e-1" }))
+            ''}
 
-          -- resize
-          for _, resize in ipairs({
-            { "left", -10, 0 },
-            { "right", 10, 0 },
-            { "up", 0, -10 },
-            { "down", 0, 10 },
-          }) do
-            bind(
-              { mainMod, "CTRL", resize[1] },
-              hl.dsp.window.resize({ x = resize[2], y = resize[3], relative = true }),
-              { repeating = true }
-            )
-          end
-
-          -- audio binds
-          for _, a in ipairs({
-            { { "XF86AudioRaiseVolume" }, "${audio} vol up 5" },
-            { { "SHIFT", "XF86AudioRaiseVolume" }, "${audio} vol up 1" },
-
-            { { "XF86AudioLowerVolume" }, "${audio} vol down 5" },
-            { { "SHIFT", "XF86AudioLowerVolume" }, "${audio} vol down 1" },
-
-            { { "XF86AudioMute" }, "${audio} vol toggle" },
-
-            { { "XF86AudioMicMute" }, "${audio} mic toggle" },
-            { { mainMod, "SHIFT", "M" }, "${audio} mic toggle" },
-          }) do
-            bind(a[1], hl.dsp.exec_raw(a[2]), { locked = true, repeating = true })
-          end
-
-          -- brightness binds
-          for _, b in ipairs({
-            { "XF86MonBrightnessUp", "up" },
-            { "XF86MonBrightnessDown", "down" },
-          }) do
-            bind({ b[1] }, hl.dsp.exec_raw("${brightness} " .. b[2] .. " 5"), { locked = true, repeating = true })
-          end
-
-          -- mouse binds
-          bind({ mainMod, "mouse:272" }, hl.dsp.window.drag(), { mouse = true }) -- left click
-          bind({ mainMod, "mouse:273" }, hl.dsp.window.resize(), { mouse = true }) -- right click
-          -- these binds allow you to easily drag and resize on touchpad
-          if ${boolToString config.cfg.core.isLaptop} then
-            bind({ mainMod, "CONTROL_L" }, hl.dsp.window.drag(), { mouse = true })
-            bind({ mainMod, "ALT_L" }, hl.dsp.window.resize(), { mouse = true })
-          end
-
-          -- apply the hl.config block from nix
-          hl.config(${generators.toLua { } cfg.extraHlConfig})
-
-          -- git only stuff here :P
-          ${optionalString cfg.useGit ''
-
-          ''}
-
-          -- extra text config
-          ${cfg.extraConfig}
-        '';
+            -- extra text config
+            ${cfg.extraConfig}
+          '';
+      };
     };
   };
 }
