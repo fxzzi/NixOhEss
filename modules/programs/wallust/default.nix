@@ -16,7 +16,6 @@ in
         wallust
       ];
       xdg.config.files = {
-        "wallust/templates".source = ./templates;
         "wallust/wallust.toml" = {
           generator = (pkgs.formats.toml { }).generate "wallust.toml";
           value = {
@@ -25,27 +24,27 @@ in
             color_space = "lch";
             templates = {
               fuzzel = {
-                template = "colors_fuzzel.ini";
+                template = ./templates/colors_fuzzel.ini;
                 target = "~/.cache/wallust/colors_fuzzel.ini";
               };
               hyprland = {
-                template = "colors_hyprland.lua";
+                template = ./templates/colors_hyprland.lua;
                 target = "~/.config/hypr/colors_hyprland.lua";
               };
               ags = {
-                template = "colors_ags.css";
+                template = ./templates/colors_ags.css;
                 target = "~/.config/ags/colors_ags.css";
               };
               foot = {
-                template = "colors_foot.ini";
+                template = ./templates/colors_foot.ini;
                 target = "~/.cache/wallust/colors_foot.ini";
               };
               wleave = {
-                template = "colors_wleave.css";
+                template = ./templates/colors_wleave.css;
                 target = "~/.config/wleave/colors_wleave.css";
               };
               dunst = {
-                template = "99-wallust.conf";
+                template = ./templates/99-wallust.conf;
                 target = "~/.config/dunst/dunstrc.d/99-wallust.conf";
               };
               # contains one hex of the accent colour of current theme.
