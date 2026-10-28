@@ -3,6 +3,7 @@
   pkgs,
   config,
   inputs,
+  self,
   ...
 }:
 let
@@ -52,5 +53,24 @@ in
       package = hyprlandSet.hyprland;
       portalPackage = hyprlandSet.xdg-desktop-portal-hyprland;
     };
+    hj.xdg.config.files."wallust/wallust.toml".value.templates.hyprtoolkit =
+      mkIf config.cfg.programs.wallust.enable
+        {
+          template = builtins.toFile "hyprtoolkit.conf" (
+            self.lib.generators.toHyprlang { } {
+              background = "0xFF{{background | strip}}";
+              base = "0xFF{{color0 | strip}}";
+              text = "0xFF{{foreground | strip}}";
+              alternate_base = "0xFF{{color8 | strip}}";
+              bright_text = "0xFF{{color15 | strip}}";
+              accent = "0xFF{{color2 | strip}}";
+              accent_secondary = "0xFF{{color4 | strip}}";
+
+              rounding_large = 4;
+              rounding_small = 2;
+            }
+          );
+          target = "~/.config/hypr/hyprtoolkit.conf";
+        };
   };
 }
