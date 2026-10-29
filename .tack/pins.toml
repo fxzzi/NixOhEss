@@ -9,6 +9,7 @@ nixpkgs = ["nixpkgs", "nixpkgs-lib", "nixpkgs-packages"]
 systems = "systems"
 # auto-dedup (no top-level pin needed):
 flake-parts = "flake-parts"
+aquamarine  = "aquamarine"
 
 # recursively omit selected upstream inputs from every top-level pin
 [omit_inputs]
@@ -65,8 +66,11 @@ patches = ["https://github.com/NotAShelf/rags/pull/44"]
 url = "git+https://forge.rysieko.pl/rysieko/beer"
 
 # everything else
+[inputs.aquamarine]
+url = "github:hyprwm/aquamarine"
 [inputs.hyprland]
-url = "github:hyprwm/Hyprland"
+url     = "github:hyprwm/Hyprland"
+patches = ["https://github.com/hyprwm/Hyprland/pull/16708"]
 
 [inputs.niqspkgs]
 url = "github:diniamo/niqspkgs"
