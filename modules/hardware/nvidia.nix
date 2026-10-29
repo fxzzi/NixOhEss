@@ -42,6 +42,13 @@ in
           openSha256 = "sha256-HBINiOjL0ZJLIAJeNIBYHBnwgUXtNwPPtnFpAI1YwF4=";
           usePersistenced = false;
           useSettings = false;
+          patchesOpen = [
+            (pkgs.fetchpatch {
+              # toms patchset
+              url = "https://github.com/NVIDIA/open-gpu-kernel-modules/compare/main...gulafaran:open-gpu-kernel-modules:patches.diff";
+              hash = "sha256-Gs8Nr1Gq+SRmmz4fh5svbVWyCRxT3B+C6K+1Tq8QDuw=";
+            })
+          ];
         };
         moduleParams = {
           nvidia = {
@@ -60,8 +67,6 @@ in
           # by default, when VRR is active, memclk will be maxed out. This isn't great for
           # power consumption on idle. disable that behaviour and let memclk downclock.
           nvidia-modeset.disable_vrr_memclk_switch = 1;
-          # undocumented, causes stutters.
-          # nvidia-drm.vblank = 1;
         };
       };
     };
