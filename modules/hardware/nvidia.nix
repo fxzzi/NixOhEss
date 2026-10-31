@@ -45,23 +45,18 @@ in
           patchesOpen = [
             (pkgs.fetchpatch {
               # toms patchset
-              url = "https://github.com/NVIDIA/open-gpu-kernel-modules/compare/main...gulafaran:open-gpu-kernel-modules:patches.diff";
-              hash = "sha256-Gs8Nr1Gq+SRmmz4fh5svbVWyCRxT3B+C6K+1Tq8QDuw=";
+              url = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...7ec081900b07fb335e8d5b410ff85de2957ff4e5.diff";
+              hash = "sha256-eZ+QU1jMKftPfl07phb+SwWmeBNYZCg3szPuHGHMk80=";
             })
           ];
         };
         moduleParams = {
           nvidia = {
-            NVreg_UsePageAttributeTable = 1; # why this isn't default is beyond me.
             NVreg_EnableResizableBar = 1; # enable reBAR
             NVreg_RegistryDwords = concatStringsSep ";" [
               # reduces the time spent in the interrupt top half for low-latency display interrupts
               # by deferring work.
               "RmEnableAggressiveVblank=1"
-              # This may reduce idle power consumption in some multi-monitor configurations,
-              # at the risk of changing memory clocks while display is using the memory,
-              # potentially resulting in momentary display glitches.
-              "RmDisableDisplayGlitchPerfLimit=1"
             ];
           };
           # by default, when VRR is active, memclk will be maxed out. This isn't great for

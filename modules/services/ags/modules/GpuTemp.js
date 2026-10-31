@@ -22,37 +22,37 @@ function listDir(path) {
   }
 }
 
-function findAmdGpuTempFile() {
+function findGpuTempFile() {
+  const gpuVendors = ["0x10de", "0x1002"];
+
   for (const dev of listDir("/sys/bus/pci/devices")) {
     const base = `/sys/bus/pci/devices/${dev}`;
-    if (readFile(`${base}/vendor`) !== "0x1002") continue;
+    const vendor = readFile(`${base}/vendor`);
+
+    if (!gpuVendors.includes(vendor)) continue;
+
     for (const hwmon of listDir(`${base}/hwmon`)) {
       const f = `${base}/hwmon/${hwmon}/temp1_input`;
+
       if (GLib.file_test(f, GLib.FileTest.EXISTS)) {
-        console.log(`Using AMD GPU temperature file: ${f}`);
+        console.log(`Using GPU temperature file: ${f}`);
         return f;
       }
     }
   }
+
+  console.error("No valid GPU temperature path found.");
   return null;
 }
 
-const gpuTempFilePath = (() => {
-  const nvidia = "/tmp/nvidia-temp";
-  if (GLib.file_test(nvidia, GLib.FileTest.EXISTS | GLib.FileTest.IS_REGULAR)) {
-    console.log(`Using NVIDIA GPU temperature file: ${nvidia}`);
-    return nvidia;
-  }
-  const amd = findAmdGpuTempFile();
-  if (!amd) console.error("No valid GPU temperature path found.");
-  return amd;
-})();
+const gpuTempFilePath = findGpuTempFile();
 
 const gpuTemp = Variable("", {
   poll: [
     5000,
     () => {
       if (!gpuTempFilePath) return "N/A";
+
       const raw = readFile(gpuTempFilePath);
       return raw ? `${(parseFloat(raw) / 1000).toFixed(0)}°C` : "N/A";
     },
@@ -67,7 +67,10 @@ export function GpuTempWidget() {
         class_name: "icon",
         size: 16,
       }),
-      Widget.Label({ class_name: "temperature-usage", label: gpuTemp.bind() }),
+      Widget.Label({
+        class_name: "temperature-usage",
+        label: gpuTemp.bind(),
+      }),
     ],
   });
 }

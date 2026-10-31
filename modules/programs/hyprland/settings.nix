@@ -58,6 +58,7 @@ in
         # use values from edid in autoHDR
         cm_auto_hdr = 2;
       };
+      quirks.skip_non_kms_dmabuf_formats = config.cfg.hardware.nvidia.enable;
       animations.enabled = true;
       decoration = {
         rounding = 0;

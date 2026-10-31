@@ -42,7 +42,7 @@
 
   # set resolutions early to avoid modeset when launching hyprland
   hardware.display.outputs = {
-    "DP-3".mode = "2560x1440-24@280";
+    "DP-3".mode = "2560x1440-30@280";
     "DP-2".mode = "2560x1440-24@170";
   };
 

@@ -6,12 +6,14 @@
 let
   nct_hwmon = "/sys/devices/platform/nct6775.656/hwmon/hwmon[[:print:]]*";
   k10temp_hwmon = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon[[:print:]]*";
+  nvidia_hwmon = "/sys/devices/pci0000:00/0000:00:01.1/0000:01:00.0/hwmon/hwmon[[:print:]]*";
+
   pwm1 = "${nct_hwmon}/pwm1";
   pwm2 = "${nct_hwmon}/pwm2";
   fan1 = "${nct_hwmon}/fan1_input";
   fan2 = "${nct_hwmon}/fan2_input";
   cpu_temp = "${k10temp_hwmon}/temp1_input";
-  gpu_temp = "/tmp/nvidia-temp";
+  gpu_temp = "${nvidia_hwmon}/temp1_input";
   minTemp = 35;
   maxTemp = 95;
   minPwm = 32;

@@ -1,3 +1,22 @@
+diff --git a/flake.lock b/flake.lock
+index 32c20b2d2e1..409f29ece0e 100644
+--- a/flake.lock
++++ b/flake.lock
+@@ -16,11 +16,11 @@
+         ]
+       },
+       "locked": {
+-        "lastModified": 1792686663,
+-        "narHash": "sha256-+cM/b9wmTgjZ/eCuSlZ6GNcPjkHoLkww/DhQzV7Bba8=",
++        "lastModified": 1793296104,
++        "narHash": "sha256-pUZFfVc6+eLZOAuMaAGSwdbFvtYzc+7t1vrii4ZBQ3Y=",
+         "owner": "hyprwm",
+         "repo": "aquamarine",
+-        "rev": "163b138cfb22873de1e1bf253d57bf03154d1acd",
++        "rev": "259c8b5db9bd5393e4b0655da5832077745eddfd",
+         "type": "github"
+       },
+       "original": {
 diff --git a/src/output/Monitor.cpp b/src/output/Monitor.cpp
 index 4a50c9f901a..7775fcac3b5 100644
 --- a/src/output/Monitor.cpp

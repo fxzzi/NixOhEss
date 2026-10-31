@@ -57,8 +57,7 @@ url = "github:fxzzi/creamlinux-installer"
 [inputs.nvf]
 url = "github:NotAShelf/nvf"
 [inputs.rags]
-url     = "github:NotAShelf/rags"
-patches = ["https://github.com/NotAShelf/rags/pull/44"]
+url = "github:NotAShelf/rags"
 [inputs.beer]
 # nix and tack fail to fetch from raf's git forge :(
 # so fetch from a mirror instead
@@ -69,8 +68,12 @@ url = "git+https://forge.rysieko.pl/rysieko/beer"
 [inputs.aquamarine]
 url = "github:hyprwm/aquamarine"
 [inputs.hyprland]
-url     = "github:hyprwm/Hyprland"
-patches = ["https://github.com/hyprwm/Hyprland/pull/16708"]
+url = "github:hyprwm/Hyprland"
+patches = [
+  "https://github.com/hyprwm/Hyprland/pull/16708",
+  "https://github.com/hyprwm/Hyprland/pull/16740",
+  "https://github.com/hyprwm/Hyprland/pull/16731",
+]
 
 [inputs.niqspkgs]
 url = "github:diniamo/niqspkgs"
