@@ -81,8 +81,6 @@ const getMonitorByName = (name) => {
   return null;
 };
 
-const removeAllWindows = () => App.windows.forEach(App.removeWindow);
-
 const InitBars = (wdg) => {
   hyprland.monitors.forEach((mon) => {
     const gdkMonitor = getMonitorByName(mon.name);

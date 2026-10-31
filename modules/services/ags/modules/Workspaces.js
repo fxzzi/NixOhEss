@@ -6,16 +6,14 @@ export const Workspaces = (monitorName) =>
     children: hyprland.bind("workspaces").as((ws) =>
       ws
         .filter(({ monitor }) => monitor === monitorName)
-        .sort((a, b) => a.name - b.name)
-        .map(({ address, name }) =>
+        .sort((a, b) => a.id - b.id)
+        .map(({ address, id, name }) =>
           Widget.Button({
             on_clicked: () => hyprland.dispatch.focus({ workspace: address }),
             child: Widget.Label(name),
             class_name: hyprland.active.workspace
-              .bind("address")
-              .as((activeAddress) =>
-                activeAddress === address ? "focused" : "",
-              ),
+              .bind("id")
+              .as((activeId) => (activeId === id ? "focused" : "")),
           }),
         ),
     ),

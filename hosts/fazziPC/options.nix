@@ -17,7 +17,6 @@
       ags.enable = true;
       # kdeconnect.enable = true;
       lact.enable = true;
-      nvuv.tempMonitor.enable = true;
       cliphist.enable = true;
       mullvad.enable = true;
       mate-polkit.enable = true;
