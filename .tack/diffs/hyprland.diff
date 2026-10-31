@@ -1,0 +1,61 @@
+diff --git a/src/desktop/view/LayerSurface.cpp b/src/desktop/view/LayerSurface.cpp
+--- a/src/desktop/view/LayerSurface.cpp
++++ b/src/desktop/view/LayerSurface.cpp
+@@ -172,6 +172,11 @@
+     Desktop::layerState()->removeSafe(SELF);
+ }
+ 
++// Monitor only recognises a window as FS if it is FSMODE_FULLSCREEN so that's guaranteed here
++bool CLayerSurface::isHiddenByFullscreen(const PHLMONITOR& monitor) const {
++    return m_layer == ZWLR_LAYER_SHELL_V1_LAYER_TOP && !(m_flags & LAYER_FLAG_ABOVE_FULLSCREEN) && Fullscreen::controller()->hasFullscreen(monitor, true);
++}
++
+ void CLayerSurface::onMap() {
+     LOG(Log::DEBUG, "LayerSurface {:x} mapped", rc<uintptr_t>(m_layerSurface.get()));
+ 
+@@ -233,9 +238,8 @@
+     m_realSize->setConfig(Config::animationTree()->getAnimationPropertyConfig("layersIn"));
+     m_alpha.get(LS_ALPHA_FADE)->setConfig(Config::animationTree()->getAnimationPropertyConfig("fadeLayersIn"));
+ 
+-    // If fullscreen window present check if layer is allowed above it
+-    // Monitor only recognises a window as FS if it is FSMODE_FULLSCREEN so that's guaranteed here
+-    if (!Fullscreen::controller()->hasFullscreen(PMONITOR, true) || (m_flags & LAYER_FLAG_ABOVE_FULLSCREEN))
++    // Only top layers should be hidden by a fullscreen window.
++    if (!isHiddenByFullscreen(PMONITOR))
+         m_animationController.apply(m_animationController.animateIn());
+ 
+     IPC::Socket2::sock()->postEvent({.event = "openlayer", .data = m_namespace});
+@@ -358,8 +362,8 @@
+             else
+                 m_flags &= ~LAYER_FLAG_ABOVE_FULLSCREEN;
+ 
+-            // if in fullscreen, only overlay can be above.
+-            *m_alpha.get(LS_ALPHA_FADE) = Fullscreen::controller()->hasFullscreen(PMONITOR, true) ? (m_layer >= ZWLR_LAYER_SHELL_V1_LAYER_OVERLAY ? 1.F : 0.F) : 1.F;
++            // if in fullscreen, only top layers that are not allowed above it are hidden.
++            *m_alpha.get(LS_ALPHA_FADE) = isHiddenByFullscreen(PMONITOR) ? 0.F : 1.F;
+ 
+             if (m_layer == ZWLR_LAYER_SHELL_V1_LAYER_BACKGROUND || m_layer == ZWLR_LAYER_SHELL_V1_LAYER_BOTTOM)
+                 PMONITOR->m_blurFBDirty = true; // so that blur is recalc'd
+diff --git a/src/desktop/view/LayerSurface.hpp b/src/desktop/view/LayerSurface.hpp
+--- a/src/desktop/view/LayerSurface.hpp
++++ b/src/desktop/view/LayerSurface.hpp
+@@ -62,6 +62,7 @@
+ 
+         WP<CLayerShellResource>                                   m_layerSurface;
+         bool                                                      shouldBlur() const;
++        bool                                                      isHiddenByFullscreen(const PHLMONITOR& monitor) const;
+ 
+         LayerFlags                                                m_flags = LAYER_FLAG_NONE;
+ 
+diff --git a/src/output/Monitor.cpp b/src/output/Monitor.cpp
+--- a/src/output/Monitor.cpp
++++ b/src/output/Monitor.cpp
+@@ -921,6 +921,8 @@
+ 
+     m_pixelSize = m_size;
+ 
++    m_output->state->setMaxBpc(RULE->m_enable10bit ? 10 : 8);
++
+     static constexpr auto formats10bit = std::to_array<uint32_t>({DRM_FORMAT_XRGB2101010, DRM_FORMAT_XBGR2101010});
+     static constexpr auto formats8bit  = std::to_array<uint32_t>({DRM_FORMAT_XRGB8888, DRM_FORMAT_XBGR8888});
+ 
