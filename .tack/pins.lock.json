@@ -81,13 +81,13 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "ecbcfe6e36ab8e510d464bb2e72c550710563093",
-    "narHash": "sha256-cpCfoBsBuCRJMaJZFUtTv8ipZvtS1XU/fhQLcrU30V0=",
-    "lastModified": 1793469163,
+    "rev": "d55a55d72a2ecfbb31b875b0b45c27559ce86691",
+    "narHash": "sha256-4Ce6YOJDxHxpR+zZIA0t5XrqQZTp4owwhxYGeV1GL0E=",
+    "lastModified": 1793557552,
     "patched": {
-      "path": "/nix/store/gzh7rbjnz8gjv379pkmyycmvhx10lvbm-source",
-      "narHash": "sha256-MuNN01FIXSToUqHgZRovQjTfsw3frtP9yzMOhYlo6TE=",
-      "lastModified": 1793469163,
+      "path": "/nix/store/qnq42qf2a25b9g85yxf83c6ms6vf47di-source",
+      "narHash": "sha256-C20u+mqNUSCTJjTTNZo/OW/piTuJrEJoN9/hDam6j6M=",
+      "lastModified": 1793557552,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16708",
@@ -119,17 +119,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "09d13e94d65c23d321e0bc915262088510517cf8",
-    "narHash": "sha256-HdLDbipKYcWh4n8orz0LSgqIPIHoMbTRo659XwUmDMc=",
-    "lastModified": 1793422527
+    "rev": "d7e74ce5ca04a2e540c6b43431a31c08cca87a17",
+    "narHash": "sha256-6fsvM/LUHqnG3QJM7hIksvSRxxqW9wvVf6evMTFuMdM=",
+    "lastModified": 1793510871
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "7765e85b3d4d42d53c0f3d32a9b24225b58ac982",
-    "narHash": "sha256-TuF6aYxfDW8OVgMiXiMhp9TYS9eHoYSdhrjJGzqWtTU=",
-    "lastModified": 1793470332
+    "rev": "3cc16a5520810b84b3ebb21416402d3a0620ad34",
+    "narHash": "sha256-46kvwxjNCgMM6NQaPI9qDR4XTiZ2AJqosg2dWs5nEDU=",
+    "lastModified": 1793524496
   },
   "nixos-core": {
     "type": "github",
@@ -137,7 +137,22 @@
     "repo": "nixos-core",
     "rev": "f6d88810c1b082568d195c0c025b34b7bb7a3a61",
     "narHash": "sha256-ge22NAvGv5CzsamFUGMHUtpf46H4A4U9iOQDQicNCxY=",
-    "lastModified": 1793420539
+    "lastModified": 1793420539,
+    "patched": {
+      "path": "/nix/store/axwpfc3jp38zb7b7l673gv5y421z6hyj-source",
+      "narHash": "sha256-ye5tyihsx79dHi/7q3vfjAqxCUYEILIZhb9aQUawink=",
+      "lastModified": 1793420539,
+      "patches": [
+        {
+          "source": "https://github.com/manic-systems/nixos-core/pull/84",
+          "url": "https://github.com/manic-systems/nixos-core/pull/84",
+          "file": "patches/nixos-core/pr-84.patch",
+          "sha256": "92c2a513639c014c1c236f87899f495c68ac89a5c49ca6cf25da5d92191c930a",
+          "head": "13e4d6d811e1e6fa3c9366613931e59ba10b3bd4"
+        }
+      ],
+      "diff": "85376248645d1167033675e22462bbf6fad7d7d310a9c235d4a01cb21190e06a"
+    }
   },
   "nixpkgs": {
     "type": "tarball",
@@ -150,9 +165,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "0ae8788d14334c9dd4bcd68d951bee661b00ad87",
-    "narHash": "sha256-hH7rK3yF7lMdrJYqF9cZbGheq8qNPgCYJDsfJovh7UY=",
-    "lastModified": 1793152231
+    "rev": "ab3159aea7707333e689289a74545b26c1c9d37c",
+    "narHash": "sha256-N5ulCQwTIcd3Il7uE491pbkRTWL2BtZKf/B5jfavmCo=",
+    "lastModified": 1793550142
   },
   "nvidia-vaapi-driver": {
     "type": "github",

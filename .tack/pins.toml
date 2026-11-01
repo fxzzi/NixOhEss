@@ -30,7 +30,8 @@ url = "channel:nixos-unstable"
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.nixos-core]
-url = "github:manic-systems/nixos-core"
+url     = "github:manic-systems/nixos-core"
+patches = ["https://github.com/manic-systems/nixos-core/pull/84"]
 [inputs.hjem]
 url = "github:feel-co/hjem"
 [inputs.tack]
