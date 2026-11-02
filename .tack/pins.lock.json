@@ -81,13 +81,13 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "d55a55d72a2ecfbb31b875b0b45c27559ce86691",
-    "narHash": "sha256-4Ce6YOJDxHxpR+zZIA0t5XrqQZTp4owwhxYGeV1GL0E=",
-    "lastModified": 1793557552,
+    "rev": "15b8b8e825001987f20ec0499ce8fa4236eb8553",
+    "narHash": "sha256-DOFiPy9MGnJ7Q7kUveHbTBI3y9ijAWA8lhT/u9hR86w=",
+    "lastModified": 1793617580,
     "patched": {
-      "path": "/nix/store/qnq42qf2a25b9g85yxf83c6ms6vf47di-source",
-      "narHash": "sha256-C20u+mqNUSCTJjTTNZo/OW/piTuJrEJoN9/hDam6j6M=",
-      "lastModified": 1793557552,
+      "path": "/nix/store/2idkh4svgpn7gpdp0pri6wqj806sf48z-source",
+      "narHash": "sha256-ZoYzEWiGZzZCJCJTHw1WiX0Vlx9IXrfpGGM4otZhawE=",
+      "lastModified": 1793617580,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16708",
@@ -127,9 +127,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "3cc16a5520810b84b3ebb21416402d3a0620ad34",
-    "narHash": "sha256-46kvwxjNCgMM6NQaPI9qDR4XTiZ2AJqosg2dWs5nEDU=",
-    "lastModified": 1793524496
+    "rev": "ddb50a3aeda9ff2e5fbbbb140dda5bf1e216e764",
+    "narHash": "sha256-XNs7pmJdFdLcMeidrbleceG6sks8A1fDuDOQEbpUSx8=",
+    "lastModified": 1793605555
   },
   "nixos-core": {
     "type": "github",
@@ -156,10 +156,25 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1105037.1c89083e451e/nixexprs.tar.zst?rev=1c89083e451e891152365b799595cf7790a43325&lastModified=1793341285",
-    "rev": "1c89083e451e891152365b799595cf7790a43325",
-    "narHash": "sha256-LOv16TsMYV2/8BUYnhSxHkOASe7es2ORbqMeLlZJ8Hc=",
-    "lastModified": 1793341285
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1106360.0bb2eedc20e4/nixexprs.tar.zst?rev=0bb2eedc20e4739f29e8045034f2828ad7054f8f&lastModified=1793540411",
+    "rev": "0bb2eedc20e4739f29e8045034f2828ad7054f8f",
+    "narHash": "sha256-us2GRWGXbOQpN1blyJGvmdx+g4bv9GoFYq5iiOHRiZ8=",
+    "lastModified": 1793540411,
+    "patched": {
+      "path": "/nix/store/66rii61mgc0ib8v9w84dw6a1lfslliyi-source",
+      "narHash": "sha256-vun+hNQHdNJKe3iLDhQYraGKY01XxmNZar1SbSyGGig=",
+      "lastModified": 1793540411,
+      "patches": [
+        {
+          "source": "https://github.com/NixOS/nixpkgs/pull/582210",
+          "url": "https://github.com/NixOS/nixpkgs/pull/582210",
+          "file": "patches/nixpkgs/pr-582210.patch",
+          "sha256": "babcedd3edb59027d758466659667ecbb9aa1a0ac5dde71c62b25a2edff9fb54",
+          "head": "7f22afb3cce067f755572b02badea85ac04179e3"
+        }
+      ],
+      "diff": "396d213f78a3b541b2ac31c965e78020d8e87d336539c8f3aee185dc8a3fe27d"
+    }
   },
   "nvf": {
     "type": "github",
