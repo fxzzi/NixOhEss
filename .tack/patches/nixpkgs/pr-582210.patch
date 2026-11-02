@@ -1,0 +1,12 @@
+diff --git a/pkgs/by-name/lu/lutris/package.nix b/pkgs/by-name/lu/lutris/package.nix
+index 602022f0d5292..7954101e98bc8 100644
+--- a/pkgs/by-name/lu/lutris/package.nix
++++ b/pkgs/by-name/lu/lutris/package.nix
+@@ -253,7 +253,6 @@ buildFHSEnv {
+       SDL2
+       curl
+       graphite2
+-      gtk2
+       gtk3
+       udev
+       ncurses

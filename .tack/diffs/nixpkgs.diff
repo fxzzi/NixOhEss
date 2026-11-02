@@ -1,0 +1,11 @@
+diff --git a/pkgs/by-name/lu/lutris/package.nix b/pkgs/by-name/lu/lutris/package.nix
+--- a/pkgs/by-name/lu/lutris/package.nix
++++ b/pkgs/by-name/lu/lutris/package.nix
+@@ -253,7 +253,6 @@
+       SDL2
+       curl
+       graphite2
+-      gtk2
+       gtk3
+       udev
+       ncurses

@@ -27,11 +27,18 @@ names = [
 # core
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
+patches = [
+  # lutris: drop gtk2
+  "https://github.com/NixOS/nixpkgs/pull/582210",
+]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.nixos-core]
-url     = "github:manic-systems/nixos-core"
-patches = ["https://github.com/manic-systems/nixos-core/pull/84"]
+url = "github:manic-systems/nixos-core"
+patches = [
+  # Remove support for scripted initrd
+  "https://github.com/manic-systems/nixos-core/pull/84",
+]
 [inputs.hjem]
 url = "github:feel-co/hjem"
 [inputs.tack]
@@ -68,7 +75,9 @@ url = "git+https://forge.rysieko.pl/rysieko/beer"
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
 patches = [
+  # monitor: set max_bpc based on configured bitdepth
   "https://github.com/hyprwm/Hyprland/pull/16708",
+  # core/layers: allow bottom layers and background layers under fs
   "https://github.com/hyprwm/Hyprland/pull/16740",
 ]
 
