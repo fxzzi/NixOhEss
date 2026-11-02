@@ -1,4 +1,7 @@
-{ hostName, ... }:
+{
+  hostName,
+  ...
+}:
 let
   quad9DNS = [
     "9.9.9.9#dns.quad9.net"
@@ -34,9 +37,6 @@ in
         DNSOverTLS = "opportunistic";
         DNSSEC = "allow-downgrade";
         FallbackDNS = quad9DNS ++ googleDNS;
-        # bypass DHCP-provided DNS servers, and use what
-        # we have configured manually instead.
-        Domains = [ "~." ];
       };
     };
   };
