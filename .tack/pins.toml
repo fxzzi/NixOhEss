@@ -49,8 +49,6 @@ url = "github:ryantm/agenix"
 # things from yours truly
 [inputs.azzipkgs]
 url = "fazzi:azzipkgs"
-[inputs.nvuv]
-url = "fazzi:nvuv"
 [inputs.startpage]
 url  = "fazzi:startpage"
 type = "fetch"

@@ -14,7 +14,6 @@
     "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "nvf": "github:NotAShelf/nvf",
     "nvidia-vaapi-driver": "github:elFarto/nvidia-vaapi-driver",
-    "nvuv": "gitlab:fazzi/nvuv",
     "rags": "github:NotAShelf/rags",
     "startpage": "gitlab:fazzi/startpage",
     "systems": "github:nix-systems/x86_64-linux",
@@ -191,14 +190,6 @@
     "rev": "443050726fdb30888a2ced1cea1c5d036ea3b15c",
     "narHash": "sha256-E2c4Hn4A0Vx3lcmP/Ms7FHEtxsDcxhCmcVFvct1Uv+0=",
     "lastModified": 1791741043
-  },
-  "nvuv": {
-    "type": "gitlab",
-    "owner": "fazzi",
-    "repo": "nvuv",
-    "rev": "8eaf6c4a8e715709ae42e89c4e9658a99c5e6e23",
-    "narHash": "sha256-x0AMCBUyRVoihryikHH4b5URV6b50KR0EWb5xcY2qQY=",
-    "lastModified": 1791471956
   },
   "rags": {
     "type": "github",
