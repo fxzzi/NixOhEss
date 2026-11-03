@@ -30,6 +30,8 @@ url = "channel:nixos-unstable"
 patches = [
   # lutris: drop gtk2
   "https://github.com/NixOS/nixpkgs/pull/582210",
+  # losslesscut: 3.70.1 -> 3.70.2-unstable-2026-10-24 (bump Electron to 45)
+  "https://github.com/NixOS/nixpkgs/pull/578915",
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
@@ -75,6 +77,8 @@ url = "github:hyprwm/Hyprland"
 patches = [
   # core/layers: allow bottom layers and background layers under fs
   "https://github.com/hyprwm/Hyprland/pull/16740",
+  # overlay double counted when present early exited.
+  "https://github.com/hyprwm/Hyprland/pull/16834",
 ]
 
 [inputs.niqspkgs]

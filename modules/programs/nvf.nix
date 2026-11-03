@@ -90,6 +90,7 @@ in
             typst.enable = true;
             toml.enable = true;
             yaml.enable = true;
+            clang.enable = true;
           };
 
           notes = {

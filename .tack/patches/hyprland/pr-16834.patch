@@ -1,0 +1,26 @@
+diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
+index 4bbb6066163..8151dc5b9c6 100644
+--- a/src/render/Renderer.cpp
++++ b/src/render/Renderer.cpp
+@@ -2275,10 +2275,8 @@ void IHyprRenderer::renderMonitor(PHLMONITOR pMonitor, bool commit) {
+     if (!*PDAMAGEBLINK)
+         damageBlinkCleanup = 0;
+ 
+-    if (*PDEBUGOVERLAY == 1) {
++    if (*PDEBUGOVERLAY == 1)
+         renderStart = std::chrono::high_resolution_clock::now();
+-        Debug::overlay()->frameData(pMonitor);
+-    }
+ 
+     if (!g_pCompositor->m_sessionActive)
+         return;
+@@ -2312,6 +2310,9 @@ void IHyprRenderer::renderMonitor(PHLMONITOR pMonitor, bool commit) {
+         return;
+     }
+ 
++    if (*PDEBUGOVERLAY == 1)
++        Debug::overlay()->frameData(pMonitor);
++
+     // tearing and DS first
+     bool       shouldTear              = pMonitor->updateTearing();
+     const bool canAttemptDirectScanout = pMonitor->canAttemptDirectScanoutFast();
