@@ -40,9 +40,6 @@
     };
     nixpkgs.config = {
       allowUnfree = true; # not too fussed as long as app works on linux tbh
-      permittedInsecurePackages = [
-        "electron-42.11.18"
-      ];
     };
 
     # remove useless docs .desktop

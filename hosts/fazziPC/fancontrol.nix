@@ -15,7 +15,7 @@ let
   cpu_temp = "${k10temp_hwmon}/temp1_input";
   gpu_temp = "${nvidia_hwmon}/temp1_input";
   minTemp = 35;
-  maxTemp = 95;
+  maxTemp = 100;
   minPwm = 32;
   maxPwm = 228;
 in
