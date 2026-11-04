@@ -107,6 +107,7 @@ in
       restartTriggers = [
         config.hj.xdg.config.files."hypr/hypridle.conf".source
         pkgs.hypridle
+        pkgs.hyprlock
       ];
     };
   };

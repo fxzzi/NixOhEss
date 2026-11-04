@@ -28,12 +28,10 @@ names = [
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
 patches = [
-  # lutris: drop gtk2
-  "https://github.com/NixOS/nixpkgs/pull/582210",
-  # losslesscut: 3.70.1 -> 3.70.2-unstable-2026-10-24 (bump Electron to 45)
-  "https://github.com/NixOS/nixpkgs/pull/578915",
   # proton-ge-bin: GE-Proton11-11 -> GE-Proton11-12
   "https://github.com/NixOS/nixpkgs/pull/582591",
+  # hyprland: make module and package withUWSM same
+  "https://github.com/NixOS/nixpkgs/pull/581387",
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
