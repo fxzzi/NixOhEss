@@ -86,16 +86,24 @@ in
               timeout = 2;
             };
             mpd-notification = {
-              summary = "Now Playing";
+              appname = "mpd-notification";
               max_icon_size = 96;
               word_wrap = false;
               timeout = 3;
             };
             mpd-notification-hide = {
-              summary = "Now Playing";
+              appname = "mpd-notification";
               body = "dontshow";
               skip_display = true;
               history_ignore = true;
+            };
+            qbittorrent-ioerror-hide = {
+              # qbittorrent shows an I/O error notification when you have
+              # deselected files in a torrent and it tries to seed it.
+              # That's annoying. Please don't do that.
+              appname = "qBittorrent";
+              summary = "I/O Error";
+              skip_display = true;
             };
           };
         };
