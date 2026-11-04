@@ -45,12 +45,12 @@ in
           patchesOpen = [
             (pkgs.fetchpatch (
               let
-                rev = "e54e7391f2f93b5937442ab4d8a250a674a47740";
+                rev = "08388f0d5aff6f9c54eace79c352f0045b54f27e";
               in
               {
                 # toms patchset
                 url = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...${rev}.diff";
-                hash = "sha256-O0a0zve0oIiUy2geGTveRvkyPJIIjB+kJDMT7W4FNa4=";
+                hash = "sha256-as5K6q3IGxtUYs7DC7YluiSa1LYX90AaGHdXn55UzoA=";
               }
             ))
           ];
