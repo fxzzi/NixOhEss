@@ -52,8 +52,7 @@ in
     hj = {
       packages = with pkgs; [
         file-roller
-        rar
-        p7zip
+        _7zip-zstd-rar
       ];
       xdg.config.files = {
         "gtk-3.0/bookmarks".text = concatMapStrings (l: l + "\n") bookmarks;
