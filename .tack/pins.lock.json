@@ -9,7 +9,7 @@
     "hyprland": "github:hyprwm/Hyprland",
     "niqspkgs": "github:diniamo/niqspkgs",
     "nix-gaming": "github:fufexan/nix-gaming",
-    "nixcord": "github:4evy/nixcord",
+    "nixcord": "github:4evy/nixcord/ddb50a3aeda9ff2e5fbbbb140dda5bf1e216e764",
     "nixos-core": "github:manic-systems/nixos-core",
     "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "nvf": "github:NotAShelf/nvf",
@@ -126,9 +126,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "2b52831d11441e3f5a4aa0387e6b8e9d495013d1",
-    "narHash": "sha256-PaAfhobMWpzXlCEWDBAZdRiYS5mLqsoQe1u0xNR8OXU=",
-    "lastModified": 1793783853
+    "rev": "ddb50a3aeda9ff2e5fbbbb140dda5bf1e216e764",
+    "narHash": "sha256-XNs7pmJdFdLcMeidrbleceG6sks8A1fDuDOQEbpUSx8=",
+    "lastModified": 1793605555
   },
   "nixos-core": {
     "type": "github",

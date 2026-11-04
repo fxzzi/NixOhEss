@@ -130,9 +130,9 @@ in
       xdg.config.files."discord/settings.json" = {
         generator = lib.generators.toJSON { };
         value = {
-          # allow launching discord even if a new update is available
           SKIP_HOST_UPDATE = true;
           SKIP_MODULE_UPDATE = true;
+          USE_NEW_UPDATER = false;
 
           # access to inspect element
           DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
