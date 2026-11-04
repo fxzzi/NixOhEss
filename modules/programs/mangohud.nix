@@ -112,8 +112,6 @@ in
               "preset 1" = common;
               "preset 2" = common // {
                 core_load = 1;
-                present_mode = 1;
-                winesync = 1;
               };
             };
           };

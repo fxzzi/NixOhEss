@@ -45,6 +45,11 @@
     "DP-3".mode = "2560x1440-30@280";
     "DP-2".mode = "2560x1440-24@170";
   };
+  environment.sessionVariables = {
+    # force HDR in proton-ge. It can't determine HDR support for
+    # itself when using cm_auto_hdr.
+    PROTON_FORCE_HDR = 1;
+  };
 
   # icc files used in Hyprland
   age.secrets = {
