@@ -32,6 +32,8 @@ patches = [
   "https://github.com/NixOS/nixpkgs/pull/582210",
   # losslesscut: 3.70.1 -> 3.70.2-unstable-2026-10-24 (bump Electron to 45)
   "https://github.com/NixOS/nixpkgs/pull/578915",
+  # proton-ge-bin: GE-Proton11-11 -> GE-Proton11-12
+  "https://github.com/NixOS/nixpkgs/pull/582591",
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
@@ -77,7 +79,7 @@ url = "github:hyprwm/Hyprland"
 patches = [
   # core/layers: allow bottom layers and background layers under fs
   "https://github.com/hyprwm/Hyprland/pull/16740",
-  # overlay double counted when present early exited.
+  # debug overlay frame counter double counts when renderMonitor early exits.
   "https://github.com/hyprwm/Hyprland/pull/16834",
 ]
 
