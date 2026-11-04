@@ -88,7 +88,7 @@ url = "github:diniamo/niqspkgs"
 url = "github:fufexan/nix-gaming"
 
 [inputs.nixcord]
-url = "github:4evy/nixcord/ddb50a3aeda9ff2e5fbbbb140dda5bf1e216e764"
+url = "github:4evy/nixcord"
 
 # non-flake inputs
 [inputs.KvLibadwaita]
