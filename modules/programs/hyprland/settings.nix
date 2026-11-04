@@ -174,8 +174,7 @@ in
         };
       };
       "hypr/hyprland.lua" = {
-        text =
-          # lua
+        text = # lua
           ''
             ${optionalString config.cfg.programs.wallust.enable ''
               require("colors_hyprland")
@@ -245,8 +244,8 @@ in
               no_xdg_drags = true,
             })
 
-            -- Disable blur for steam
-            hl.window_rule({ match = { class = "steam" }, no_blur = true, force_rgbx = true, })
+            -- Disable blur for steam, it regularly goes invisible for a few frames and looks ugly
+            hl.window_rule({ match = { class = "steam" }, no_blur = true })
 
             -- Window rules for games
             -- emulators and similar apps that should be tagged as games, but not forced fullscreen
