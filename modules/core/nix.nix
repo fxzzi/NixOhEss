@@ -16,6 +16,7 @@
         experimental-features = [
           "nix-command"
           "flakes"
+          "auto-allocate-uids"
         ];
         auto-optimise-store = true; # save some storage space
         warn-dirty = false;
