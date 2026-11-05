@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  self,
   ...
 }:
 let
@@ -12,24 +13,13 @@ in
   options.cfg.services.mate-polkit.enable = mkEnableOption "mate-polkit";
   config = mkIf cfg.enable {
     security.polkit.enable = true;
-    hj.systemd.services.mate-polkit = {
+    hj.systemd.services.mate-polkit = self.lib.mkGraphicalService {
       description = "Mate Polkit";
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY";
-      };
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-      restartTriggers = [
+      exec = "${pkgs.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+      extra.restartTriggers = [
         pkgs.mate-polkit
       ];
+
     };
   };
 }

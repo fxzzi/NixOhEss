@@ -86,29 +86,21 @@ in
         };
       };
     };
-    hj.systemd.services.hypridle = {
+    hj.systemd.services.hypridle = self.lib.mkGraphicalService {
       description = "Hypridle idle management";
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY";
+      exec = getExe pkgs.hypridle;
+      extra = {
+        path = [
+          config.programs.hyprland.package # for hyprctl
+          pkgs.procps # for pidof
+          pkgs.hyprlock
+        ];
+        restartTriggers = [
+          config.hj.xdg.config.files."hypr/hypridle.conf".source
+          pkgs.hypridle
+          pkgs.hyprlock
+        ];
       };
-      serviceConfig = {
-        Type = "simple";
-        Restart = "always";
-        ExecStart = getExe pkgs.hypridle;
-      };
-      path = [
-        config.programs.hyprland.package # for hyprctl
-        pkgs.procps # for pidof
-        pkgs.hyprlock
-      ];
-      restartTriggers = [
-        config.hj.xdg.config.files."hypr/hypridle.conf".source
-        pkgs.hypridle
-        pkgs.hyprlock
-      ];
     };
   };
 }

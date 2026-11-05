@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  self,
   ...
 }:
 let
@@ -14,20 +15,10 @@ in
       enable = true;
       ui.enable = true;
     };
-    hj.systemd.services.gpu-screen-recorder = {
+    hj.systemd.services.gpu-screen-recorder = self.lib.mkGraphicalService {
       description = "A ShadowPlay-like screen recorder for Linux";
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY";
-      };
-      serviceConfig = {
-        Type = "simple";
-        Restart = "always";
-        ExecStart = getExe config.programs.gpu-screen-recorder.ui.package;
-      };
-      restartTriggers = [
+      exec = getExe config.programs.gpu-screen-recorder.ui.package;
+      extra.restartTriggers = [
         config.programs.gpu-screen-recorder.ui.package
       ];
     };

@@ -25,20 +25,10 @@ in
         };
       };
 
-      systemd.services.hyprpaper = {
+      systemd.services.hyprpaper = self.lib.mkGraphicalService {
         description = "Hyprpaper wallpaper manager";
-        after = [ "graphical-session.target" ];
-        wantedBy = [ "graphical-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        unitConfig = {
-          ConditionEnvironment = "WAYLAND_DISPLAY";
-        };
-        serviceConfig = {
-          Type = "simple";
-          Restart = "always";
-          ExecStart = "${getExe pkgs.hyprpaper}";
-        };
-        restartTriggers = [
+        exec = getExe pkgs.hyprpaper;
+        extra.restartTriggers = [
           config.hj.xdg.config.files."hypr/hyprpaper.conf".source
           pkgs.hyprpaper
         ];
