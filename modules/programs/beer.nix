@@ -21,12 +21,10 @@ in
           generator = (pkgs.formats.toml { }).generate "beer.toml";
           value = {
             main = {
-              font = "monospace";
               font-size = 17;
-              pad-x = 8;
-              pad-y = 8;
-              subpixel = "none";
-              hinting = "none";
+              pad-x = 6;
+              pad-y = 6;
+              subpixel = config.fonts.fontconfig.subpixel.rgba;
             };
             colors = {
               alpha = 0.85;
@@ -71,6 +69,22 @@ in
         };
       };
     };
+
+    # zsh shell integration for OSC7, so Ctrl-Shift-N can carry through the CWD
+    programs.zsh.interactiveShellInit = lib.mkAfter ''
+      function osc7-pwd() {
+          emulate -L zsh # also sets localoptions for us
+          setopt extendedglob
+          local LC_ALL=C
+          printf '\e]7;file://%s%s\e\' $HOST ''${PWD//(#m)([^@-Za-z&-;_~])/%''${(l:2::0:)$(([##16]#MATCH))}}
+      }
+
+      function chpwd-osc7-pwd() {
+          (( ZSH_SUBSHELL )) || osc7-pwd
+      }
+      add-zsh-hook -Uz chpwd chpwd-osc7-pwd
+    '';
+
     # include both the regular config and the wallust generated config
     environment.sessionVariables = mkIf config.cfg.programs.wallust.enable {
       BEER_CONFIG = "$XDG_CONFIG_HOME/beer/beer.toml:$XDG_CONFIG_HOME/beer/colors_beer.toml";
