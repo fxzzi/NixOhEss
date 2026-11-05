@@ -65,7 +65,7 @@ in
           PGUP osd-msg-bar seek +600 relative+keyframes
           PGDWN osd-msg-bar seek -600 relative+keyframes
           SHIFT+PGUP osd-msg-bar seek +1200 relative+keyframes
-          SHIFT+PGDWN osd-msg-bar seek +1200 relative+keyframes
+          SHIFT+PGDWN osd-msg-bar seek -1200 relative+keyframes
           - add volume -2 ; show-text "Volume: ''${volume}"
           = add volume +2 ; show-text "Volume: ''${volume}"
           Q quit
