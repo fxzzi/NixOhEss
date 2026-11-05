@@ -11,7 +11,7 @@ let
     optionals
     concatStringsSep
     ;
-  cfg = config.cfg.programs.brave;
+  cfg = config.cfg.programs.chromium;
 
   disableFeatures = [
     # stop allowing chromium / electron to adjust your mic gain
@@ -48,35 +48,35 @@ let
   wootility = pkgs.makeDesktopItem {
     name = "wootility";
     desktopName = "Wootility Web";
-    exec = "brave-origin --app=https://beta.wootility.io/ %U";
+    exec = "chromium --app=https://beta.wootility.io/ %U";
     terminal = false;
     icon = ./icons/wootility-web.svg;
   };
   scyrox-s-center = pkgs.makeDesktopItem {
     name = "scyrox-s-center";
     desktopName = "Scyrox S-center";
-    exec = "brave-origin --app=https://www.scyrox.net/ %U";
+    exec = "chromium --app=https://www.scyrox.net/ %U";
     terminal = false;
     icon = ./icons/scyrox-s-center.svg;
   };
   mchose-m-hub = pkgs.makeDesktopItem {
     name = "mchose-m-hub";
     desktopName = "MCHOSE M HUB";
-    exec = "brave-origin --app=https://www.mchose.com.cn/ %U";
+    exec = "chromium --app=https://www.mchose.com.cn/ %U";
     terminal = false;
     icon = ./icons/mchose-m-hub.svg;
   };
   via = pkgs.makeDesktopItem {
     name = "via";
     desktopName = "VIA";
-    exec = "brave-origin --app=https://usevia.app/ %U";
+    exec = "chromium --app=https://usevia.app/ %U";
     terminal = false;
     icon = ./icons/via.svg;
   };
 in
 {
-  options.cfg.programs.brave = {
-    enable = mkEnableOption "brave";
+  options.cfg.programs.chromium = {
+    enable = mkEnableOption "chromium";
     wootility.enable = mkEnableOption "wootility";
     scyrox-s-center.enable = mkEnableOption "scyrox-s-center";
     mchose-m-hub.enable = mkEnableOption "mchose-m-hub";
@@ -85,7 +85,7 @@ in
   config = {
     hj = mkIf cfg.enable {
       packages = [
-        (pkgs.brave-origin.override {
+        (pkgs.ungoogled-chromium.override {
           inherit commandLineArgs;
         })
         (mkIf cfg.wootility.enable wootility)

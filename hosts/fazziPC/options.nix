@@ -83,7 +83,7 @@
       thunar.enable = true;
       discord.enable = true;
       librewolf.enable = true;
-      brave = {
+      chromium = {
         enable = true;
         wootility.enable = true;
         scyrox-s-center.enable = true;

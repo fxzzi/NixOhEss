@@ -68,7 +68,7 @@
       librewolf = {
         enable = true;
       };
-      brave = {
+      chromium = {
         enable = true;
       };
       startpage = {
