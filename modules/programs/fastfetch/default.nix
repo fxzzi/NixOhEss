@@ -14,11 +14,7 @@ let
     mkAfter
     ;
   cfg = config.cfg.programs.fastfetch;
-  iconPath = ./images/${cfg.icon}.jpg;
-  # Generate sixel using chafa
-  icon = pkgs.runCommand "fastfetch-icon" { } ''
-    ${getExe pkgs.chafa} ${iconPath} -s 18 --format sixel > $out
-  '';
+  icon = ./images/${cfg.icon}.jpg;
 in
 {
   options = {
@@ -58,15 +54,16 @@ in
           };
           logo = {
             source = icon;
-            type = "raw";
-            height = 9;
-            width = 16;
+            type = "kitty";
+            height = 8;
             padding = {
               top = 1;
               left = 1;
+              right = 2;
             };
           };
           modules = [
+            "break"
             {
               type = "title";
               key = " hs";
@@ -119,8 +116,6 @@ in
       interactiveShellInit = mkAfter ''
         if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
           ${getExe pkgs.fastfetch}
-          # HACK: move cursor up 3 lines to avoid large gap between ff and prompt
-          printf '\033[3A'
         fi
       '';
     };
