@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  self,
   ...
 }:
 let
@@ -16,20 +17,10 @@ in
         pkgs.hyprsunset
       ];
     };
-    hj.systemd.services.hyprsunset = {
+    hj.systemd.services.hyprsunset = self.lib.mkGraphicalService {
       description = "Hyprsunset blue light filter";
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      unitConfig = {
-        ConditionEnvironment = "WAYLAND_DISPLAY";
-      };
-      serviceConfig = {
-        Type = "simple";
-        Restart = "always";
-        # --identity starts hyprsunset without changing temperature
-        ExecStart = "${getExe pkgs.hyprsunset} --identity";
-      };
+      # --identity starts hyprsunset without changing temperature
+      exec = "${getExe pkgs.hyprsunset} --identity";
     };
   };
 }

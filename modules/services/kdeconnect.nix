@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  self,
   ...
 }:
 let
@@ -23,27 +24,19 @@ in
       };
     };
     systemd.user.services = {
-      kdeconnect = {
-        after = [ "graphical-session.target" ];
-        wantedBy = [ "graphical-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        unitConfig.ConditionEnvironment = "WAYLAND_DISPLAY";
-        serviceConfig = {
-          ExecStart = getExe' config.programs.kdeconnect.package "kdeconnectd";
-          Restart = "on-abort";
-        };
+      kdeconnect = self.lib.mkGraphicalService {
+        description = "KDE Connect daemon";
+        exec = getExe' config.programs.kdeconnect.package "kdeconnectd";
+        extra.serviceConfig.Restart = "on-abort";
       };
-      kdeconnect-indicator = {
-        after = [ "graphical-session.target" ];
-        wantedBy = [ "graphical-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        unitConfig.ConditionEnvironment = "WAYLAND_DISPLAY";
-        serviceConfig = {
-          ExecStart = getExe' config.programs.kdeconnect.package "kdeconnect-indicator";
-          Restart = "on-abort";
+      kdeconnect-indicator = self.lib.mkGraphicalService {
+        description = "KDE Connect indicator";
+        exec = getExe' config.programs.kdeconnect.package "kdeconnect-indicator";
+        extra = {
+          serviceConfig.Restart = "on-abort";
+          # lets you open kdeconnect from the tray icon
+          path = [ config.programs.kdeconnect.package ];
         };
-        # lets you open kdeconnect from the tray icon
-        path = [ config.programs.kdeconnect.package ];
       };
     };
   };

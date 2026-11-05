@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  self,
   ...
 }:
 let
@@ -52,20 +53,10 @@ in
         };
       };
 
-      systemd.services.ags = {
+      systemd.services.ags = self.lib.mkGraphicalService {
         description = "Aylur's GTK Shell";
-        after = [ "graphical-session.target" ];
-        wantedBy = [ "graphical-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        unitConfig = {
-          ConditionEnvironment = "WAYLAND_DISPLAY";
-        };
-        serviceConfig = {
-          Type = "simple";
-          Restart = "always";
-          ExecStart = "${getExe pkg}";
-        };
-        restartTriggers = [
+        exec = getExe pkg;
+        extra.restartTriggers = [
           config.hj.xdg.config.files."ags/config.js".source
           config.hj.xdg.config.files."ags/style.css".source
           config.hj.xdg.config.files."ags/icons".source
