@@ -76,7 +76,7 @@ in
             <video-files/>
           </action>
           <action>
-            <icon>xdg-terminal-exec</icon>
+            <icon>utilities-terminal</icon>
             <name>Edit in Terminal</name>
             <submenu></submenu>
             <unique-id>1715762765914315-1</unique-id>
@@ -92,7 +92,7 @@ in
             <name>Open Terminal here</name>
             <submenu></submenu>
             <unique-id>1715763119333224-2</unique-id>
-            <command>xdg-terminal-exec --dir %f</command>
+            <command>xdg-terminal-exec --dir=%f</command>
             <description></description>
             <range>*</range>
             <patterns>*</patterns>
