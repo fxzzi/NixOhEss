@@ -17,12 +17,12 @@ in
     enable = mkEnableOption "git";
     name = mkOption {
       type = types.str;
-      default = config.cfg.username;
+      default = config.cfg.core.username;
       description = "Sets your username for git.";
     };
     email = mkOption {
       type = types.str;
-      default = "${config.cfg.username}@example.com";
+      default = "${config.cfg.core.username}@example.com";
       description = "Sets your email for git.";
     };
   };
