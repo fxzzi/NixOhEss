@@ -20,6 +20,9 @@ in
           generator = (pkgs.formats.toml { }).generate "wallust.toml";
           value = {
             check_contrast = true;
+            # normally sends OSC terminal sequences to set colors.
+            # instead, just reload the terminal config, in our case beer.
+            skip_sequences = true;
             backend = "fastresize";
             color_space = "lch";
             templates = {
@@ -30,10 +33,6 @@ in
                 template = ./templates/accent.txt;
                 target = "~/.cache/wallust/accent.txt";
               };
-              # NOTE: the rest of the templates are handled in their respective program modules.
-            };
-            hooks = {
-              dunst = "dunstctl reload";
             };
           };
         };
