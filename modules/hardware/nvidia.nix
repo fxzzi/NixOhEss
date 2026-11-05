@@ -37,20 +37,20 @@ in
         branch = "bleeding_edge"; # newest of latest and beta
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "615.78.08";
-          sha256_64bit = "sha256-Pj9t3cLudnoIGFMAr3vjyyhuznZpjS3eNSRZl4LQf/4=";
-          openSha256 = "sha256-HBINiOjL0ZJLIAJeNIBYHBnwgUXtNwPPtnFpAI1YwF4=";
+          version = "620.70.06";
+          sha256_64bit = "sha256-KRGOOr0IwHVZvMo9nHYjjQOUkK8DYqLlvPy+cgSv1LE=";
+          openSha256 = "sha256-dV8vzniUl3UJoG2Q3KdoUJigLRuQeTniUfB670gb1Mw=";
           usePersistenced = false;
           useSettings = false;
           patchesOpen = [
             (pkgs.fetchpatch (
               let
-                rev = "08388f0d5aff6f9c54eace79c352f0045b54f27e";
+                rev = "a192b8bb6aafa17cf167c2b183fd280614f75ec8";
               in
               {
                 # toms patchset
                 url = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...${rev}.diff";
-                hash = "sha256-as5K6q3IGxtUYs7DC7YluiSa1LYX90AaGHdXn55UzoA=";
+                hash = "sha256-gYja+NtSVZ1HteNxExOkNfc2A5oqxn1EwHsNwTySh2k=";
               }
             ))
           ];

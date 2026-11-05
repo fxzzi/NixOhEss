@@ -48,9 +48,9 @@
     "type": "git",
     "url": "https://forge.rysieko.pl/rysieko/beer",
     "ref": "HEAD",
-    "rev": "ba29e66548fff1c7920684ca52166d3c13a34345",
-    "narHash": "sha256-jFwjoh3XnEtM4+QoSapB2V0ipgR2wvDht+8oCqRfh08=",
-    "lastModified": 1793457497
+    "rev": "d354426aa7dc84ce64b7eac7c716644ad7c6b483",
+    "narHash": "sha256-DBzKlomb+8ywl2Mkyn6JWQz8fMJDFgKeWa3Cf1BEnBE=",
+    "lastModified": 1793869840
   },
   "creamlinux": {
     "type": "github",
@@ -80,13 +80,13 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "64bde62ee467d7fe56d15431e91eaa4bb47ddd14",
-    "narHash": "sha256-0vHmcnw8AgqQUig++z70GD3/BFs4wZpMmqRSnrq0kDQ=",
-    "lastModified": 1793815543,
+    "rev": "f389f008228d51fa48bdd69a4c9e2b91f24bb2da",
+    "narHash": "sha256-jx73NY1kT1xyQa0Ma9n/YlN/2+QM4EgTm0csM5b2mQ4=",
+    "lastModified": 1793872649,
     "patched": {
-      "path": "/nix/store/74iy2wrdk3q98d73z04i2sz8ky4lnjvp-source",
-      "narHash": "sha256-aENa8OAPs87BiUxq6jN8RZjTS7stxISm8IwoOutk5fI=",
-      "lastModified": 1793815543,
+      "path": "/nix/store/i2jg7f583ry3vjmwdw7zl22gl5sq5czw-source",
+      "narHash": "sha256-tGmH5PGlhJJ70mg2TvdNQrA1KBfwN/YXyRjN0gCrc0Y=",
+      "lastModified": 1793872649,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16740",
@@ -118,17 +118,17 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "dac06f956e8d6b76a0a67487c7fc3e52e171b23d",
-    "narHash": "sha256-TA0MWE1lWF0nE89lEF4fYjBwkEjIiOgJcKjEk5C1u5k=",
-    "lastModified": 1793701090
+    "rev": "3bc45ba3640c6cf9639e4aa0b8432ff31be73191",
+    "narHash": "sha256-p15EWqHMVsY2tPyWZR8XirRmSEKBRs10JEatLRoai60=",
+    "lastModified": 1793869981
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "c34be622576cffcef0b84ec4b2ab8c69fcf93ee6",
-    "narHash": "sha256-rUECSLb23uZNZCIpJbxfdaGNSfSdRseFaL9R/B35IBM=",
-    "lastModified": 1793813741
+    "rev": "9beb40204065fc893dcd15ba19b9c8df16018eaa",
+    "narHash": "sha256-DipXEHDWALNBtiIrRK6NzX45xAk7IBk+hY4HTud9i8A=",
+    "lastModified": 1793889593
   },
   "nixos-core": {
     "type": "github",
@@ -226,9 +226,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "4ec7cc54362fdc2aa062ccb38b5b826b31921261",
-    "narHash": "sha256-WFAX4R64cjol4+w1KPTTnq58qm5G/QXCInxLY1pIVIk=",
-    "lastModified": 1793758878
+    "rev": "8162a7e9d098f6ea0fc00404014a732b8e768da8",
+    "narHash": "sha256-dMyQFIkLF3f0sQFMSzlEWFZV2q4SG5Zrdbon5fbCbdA=",
+    "lastModified": 1793888518
   },
   "walls": {
     "type": "gitlab",
