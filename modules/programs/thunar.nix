@@ -16,7 +16,7 @@ let
     "file://${config.hj.directory}/Downloads Downloads"
     "file://${config.hj.directory}/Videos Videos"
     "file://${config.hj.directory}/Pictures/Screenshots Screenshots"
-    "file://${config.hj.directory}/.config/nixos NixOS"
+    "file://${config.programs.nh.flake} NixOS"
   ];
 in
 {

@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkAfter;
   cfg = config.cfg.programs.beer;
 in
 {
@@ -22,8 +22,8 @@ in
           value = {
             main = {
               font-size = 17;
-              pad-x = 6;
-              pad-y = 6;
+              pad-x = 8;
+              pad-y = 8;
               subpixel = config.fonts.fontconfig.subpixel.rgba;
             };
             colors = {
@@ -33,7 +33,7 @@ in
           };
         };
         "wallust/wallust.toml".value = {
-          hooks.beer = "pkill -USR1 .beer-wrapped";
+          hooks.beer = "pkill -USR1 .beer-wrapped"; # reload beer config
           templates.beer = mkIf config.cfg.programs.wallust.enable {
             target = "~/.config/beer/colors_beer.toml";
             template = (pkgs.formats.toml { }).generate "colors_beer.toml" {
@@ -74,19 +74,24 @@ in
     };
 
     # zsh shell integration for OSC7, so Ctrl-Shift-N can carry through the CWD
-    programs.zsh.interactiveShellInit = lib.mkAfter ''
-      function osc7-pwd() {
-          emulate -L zsh # also sets localoptions for us
-          setopt extendedglob
-          local LC_ALL=C
-          printf '\e]7;file://%s%s\e\' $HOST ''${PWD//(#m)([^@-Za-z&-;_~])/%''${(l:2::0:)$(([##16]#MATCH))}}
-      }
+    # mkAfter so that add-zsh-hook is available
+    # <https://codeberg.org/dnkl/foot/wiki#user-content-spawning-new-terminal-instances-in-the-current-working-directory>
+    programs.zsh.interactiveShellInit =
+      mkAfter
+        # sh
+        ''
+          function osc7-pwd() {
+              emulate -L zsh # also sets localoptions for us
+              setopt extendedglob
+              local LC_ALL=C
+              printf '\e]7;file://%s%s\e\' $HOST ''${PWD//(#m)([^@-Za-z&-;_~])/%''${(l:2::0:)$(([##16]#MATCH))}}
+          }
 
-      function chpwd-osc7-pwd() {
-          (( ZSH_SUBSHELL )) || osc7-pwd
-      }
-      add-zsh-hook -Uz chpwd chpwd-osc7-pwd
-    '';
+          function chpwd-osc7-pwd() {
+              (( ZSH_SUBSHELL )) || osc7-pwd
+          }
+          add-zsh-hook -Uz chpwd chpwd-osc7-pwd
+        '';
 
     # include both the regular config and the wallust generated config
     environment.sessionVariables = mkIf config.cfg.programs.wallust.enable {
