@@ -30,7 +30,10 @@ let
   commandLineArgs = [
     # hdr, wcg
     "--enable-experimental-web-platform-features"
+    # allow installing ungoogled-chromium webstore stuff
     "--extension-mime-request-handling=always-prompt-for-install"
+    # stop begging to be the default browser dude, you ain't firefox
+    "--no-default-browser-check"
   ]
   ++ optionals config.cfg.programs.startpage.enable [
     "--custom-ntp=${config.cfg.programs.startpage.page}"
