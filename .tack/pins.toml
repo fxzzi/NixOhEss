@@ -30,8 +30,6 @@ url = "channel:nixos-unstable"
 patches = [
   # proton-ge-bin: GE-Proton11-11 -> GE-Proton11-12
   "https://github.com/NixOS/nixpkgs/pull/582591",
-  # hyprland: make module and package withUWSM same
-  "https://github.com/NixOS/nixpkgs/pull/581387",
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
