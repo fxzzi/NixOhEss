@@ -77,8 +77,6 @@ url = "github:hyprwm/Hyprland"
 patches = [
   # core/layers: allow bottom layers and background layers under fs
   "https://github.com/hyprwm/Hyprland/pull/16740",
-  # debug overlay frame counter double counts when renderMonitor early exits.
-  "https://github.com/hyprwm/Hyprland/pull/16834",
 ]
 
 [inputs.niqspkgs]
