@@ -1,15 +1,3 @@
-diff --git a/pkgs/by-name/hy/hyprland/package.nix b/pkgs/by-name/hy/hyprland/package.nix
---- a/pkgs/by-name/hy/hyprland/package.nix
-+++ b/pkgs/by-name/hy/hyprland/package.nix
-@@ -55,7 +55,7 @@
-   debug ? false,
-   enableXWayland ? true,
-   withSystemd ? lib.meta.availableOn gcc16Stdenv.hostPlatform systemdLibs,
--  withUWSM ? withSystemd,
-+  withUWSM ? false,
-   wrapRuntimeDeps ? true,
- }:
- assert withUWSM -> withSystemd;
 diff --git a/pkgs/by-name/pr/proton-ge-bin/package.nix b/pkgs/by-name/pr/proton-ge-bin/package.nix
 --- a/pkgs/by-name/pr/proton-ge-bin/package.nix
 +++ b/pkgs/by-name/pr/proton-ge-bin/package.nix

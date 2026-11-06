@@ -93,7 +93,7 @@
           "url": "https://github.com/hyprwm/Hyprland/pull/16740",
           "file": "patches/hyprland/pr-16740.patch",
           "sha256": "bff389b5703fa9a904f0d3fa8f35bbae87df562536de9e190608ee1c97bd49aa",
-          "head": "ae57cc66d0b56c4961199ff9763e796091711d36"
+          "head": "d3552d2538ef65cc1b9383177760c2c514137954"
         }
       ],
       "diff": "fa489fd17f2fe158d8fd934225ba3146129048d805b7b5e2b95e3189a0a3701c"
@@ -119,9 +119,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "3067f0516568506d327f6654535ba03d1327e8a6",
-    "narHash": "sha256-iBioKvxFMkbBIXhe56UKpMK7qrrMxU9XtUO11DOiYhQ=",
-    "lastModified": 1793982526
+    "rev": "5171bb987426e0e7cddf6b302e99305b4612bf20",
+    "narHash": "sha256-+LQeFOGHvRISlD058/pk+SpZffpudeTy2Vev7gTsu1I=",
+    "lastModified": 1794000011
   },
   "nixos-core": {
     "type": "github",
@@ -153,8 +153,8 @@
     "narHash": "sha256-iNjybNORi/2+shilhMlkNr01UHWKOHRGzQyIyvobs9o=",
     "lastModified": 1793726008,
     "patched": {
-      "path": "/nix/store/0kgi0pkvn1sj4f12p8wdcsgmqjznyk00-source",
-      "narHash": "sha256-YSUT32db1gWtP9hk3A2zEzu9IY5hAK9um5iA5eRsd84=",
+      "path": "/nix/store/frmvnpgd9p2anlrcrcd5i9vv0w7jlpkw-source",
+      "narHash": "sha256-zzTVn3C+8+Uhk03Ih8vrURG2BjfG9WP0gLq1J0vmGOc=",
       "lastModified": 1793726008,
       "patches": [
         {
@@ -163,16 +163,9 @@
           "file": "patches/nixpkgs/pr-582591.patch",
           "sha256": "ce649a8471b5e0ff42935dac4872ea625a5e762c62ad00a1a1e1d588fa2b4108",
           "head": "90a8c189543e5f1c5901a24a10688592b750926b"
-        },
-        {
-          "source": "https://github.com/NixOS/nixpkgs/pull/581387",
-          "url": "https://github.com/NixOS/nixpkgs/pull/581387",
-          "file": "patches/nixpkgs/pr-581387.patch",
-          "sha256": "dd32397c9370562cd735bf511df6a880e6490e9439aab28e17a134b0da6cf2d5",
-          "head": "9086b9b1a99e1c7ac54fe61c544102dfaad7f73e"
         }
       ],
-      "diff": "f6d969a3ebca8b777b46e8e70d7d8112e9a6e78d17fbb621cb8571048ca8f614"
+      "diff": "68def46a7e292e720142c69bb7ed479ea29d46c960d55424234229a3eebb5ccd"
     }
   },
   "nvf": {

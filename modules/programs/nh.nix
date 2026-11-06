@@ -32,6 +32,7 @@ in
       (pkgs.writeShellApplication {
         name = "crb";
         runtimeInputs = with pkgs; [
+          config.nix.package
           config.programs.nh.package
           config.programs.tack.package
           git
@@ -48,11 +49,8 @@ in
           if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
             echo "updoots available :)"
             git -C "$NH_FLAKE" reset --hard origin/main
-            # tack needs to be run inside our flake dir
-            (
-              cd "$NH_FLAKE"
-              tack materialize
-            )
+            # build any patched inputs from tack
+            nix-build "$NH_FLAKE/.tack" -A _patched -o "$NH_FLAKE/.tack/patched"
             nh os boot
             echo "updoot finished please reboot :)"
           else
