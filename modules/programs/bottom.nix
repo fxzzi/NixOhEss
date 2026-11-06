@@ -26,6 +26,7 @@ in
         value = {
           flags = {
             table_gap = "none";
+            show_table_scroll_bar = false;
           };
           temperature = {
             default_sort = "Temp";
@@ -68,7 +69,6 @@ in
             default_grouped = true;
             hide_k_threads = true;
             default_memory_value = true;
-            default_sort = "mem";
             columns = [
               "pid"
               "name"

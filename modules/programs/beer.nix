@@ -25,6 +25,8 @@ in
               pad-x = 8;
               pad-y = 8;
               subpixel = config.fonts.fontconfig.subpixel.rgba;
+
+              term = "beer";
             };
             colors = {
               alpha = 0.85;
