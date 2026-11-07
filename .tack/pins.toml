@@ -75,6 +75,8 @@ url = "github:hyprwm/Hyprland"
 patches = [
   # core/layers: allow bottom layers and background layers under fs
   "https://github.com/hyprwm/Hyprland/pull/16740",
+  # render: fix invalidation artifacts with floating overlapped windows
+  "https://github.com/hyprwm/Hyprland/pull/16888",
 ]
 
 [inputs.niqspkgs]
