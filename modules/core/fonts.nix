@@ -31,7 +31,7 @@ in
       fontconfig = {
         subpixel = {
           rgba = mkDefault "rgb";
-          lcdfilter = "light";
+          # lcdfilter = "light";
         };
         includeUserConf = false;
 
