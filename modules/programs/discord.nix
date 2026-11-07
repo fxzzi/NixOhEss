@@ -70,12 +70,12 @@ let
         --custom-app-top-bar-height: 0px !important;
 
         /* Title bar buttons are still visible so hide them too */
-        div.base__5e434 > div.bar_c38106 {
+        div.base_pog62O > div.bar_3zSH5d {
           display: none;
         }
 
         /* Bring the server list down a few pixels */
-        [data-list-id="guildsnav"] > .scroller_ef3116 {
+        [data-list-id="guildsnav"] > .scroller_5dqHTG {
           margin-top: 8px;
         }
       }
@@ -112,7 +112,7 @@ let
         & ~ button { display: none; }
       }
       /* Also reduce the gap between the buttons */
-      div.container__37e49 > div.buttons__37e49 {
+      div.container_g6VwXp > div.buttons_g6VwXp {
         gap: 1px;
       }
     '';
