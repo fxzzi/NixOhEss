@@ -14,7 +14,7 @@ in
   config = mkIf cfg.enable {
     hj = {
       packages = [
-        inputs.beer.packages.${pkgs.stdenv.hostPlatform.system}.default
+        (pkgs.callPackage "${inputs.beer}/nix/package.nix" { })
       ];
       xdg.config.files = {
         "beer/beer.toml" = {

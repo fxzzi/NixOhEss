@@ -16,7 +16,8 @@ let
   otd = config.hardware.opentabletdriver;
   # osu!lazer needs to be up to date. fuf's nix-gaming repo
   # updates it faster and more regularly than nixpkgs.
-  osu = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
+  osu = pkgs.callPackage "${inputs.nix-gaming}/pkgs/osu-lazer-bin" {
+    osu-mime = pkgs.callPackage "${inputs.nix-gaming}/pkgs/osu-mime" { };
     releaseStream = "tachyon";
     command_prefix = concatStringsSep " " (
       [

@@ -5,24 +5,12 @@ fazzi   = "gitlab:fazzi/{path}"
 channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 
 [all_follow]
-nixpkgs = ["nixpkgs", "nixpkgs-lib", "nixpkgs-packages"]
+nixpkgs = ["nixpkgs"]
 systems = "systems"
-# auto-dedup (no top-level pin needed):
-flake-parts = "flake-parts"
 
 # recursively omit selected upstream inputs from every top-level pin
 [omit_inputs]
-names = [
-  "nixpkgs-ci",
-  "flake-compat",
-  "home-manager",
-  "nix-darwin",
-  "treefmt-nix",
-  "rust-analyzer",
-  "rust-analyzer-src",
-  "fenix",
-  "pre-commit-hooks",
-]
+names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 
 # core
 [inputs.nixpkgs]
@@ -38,9 +26,11 @@ patches = [
 [inputs.hjem]
 url = "github:feel-co/hjem"
 [inputs.tack]
-url = "github:manic-systems/tack"
+url  = "github:manic-systems/tack"
+type = "fetch"
 [inputs.agenix]
-url = "github:ryantm/agenix"
+url  = "github:ryantm/agenix"
+type = "fetch"
 
 # things from yours truly
 [inputs.azzipkgs]
@@ -58,24 +48,19 @@ url = "github:fxzzi/creamlinux-installer"
 [inputs.nvf]
 url = "github:NotAShelf/nvf"
 [inputs.rags]
-url = "github:NotAShelf/rags"
+url  = "github:NotAShelf/rags"
+type = "fetch"
 [inputs.beer]
 # nix and tack fail to fetch from raf's git forge :(
 # so fetch from a mirror instead
 # url = "git+https://git.notashelf.dev/notashelf/beer.git"
 url     = "git+https://forge.rysieko.pl/rysieko/beer"
 patches = ["patches/beer/beer-issue18.diff"]
+type    = "fetch"
 
 # everything else
-[inputs.aquamarine]
-url = "github:hyprwm/aquamarine"
-patches = [
-  # DRM: don't fail test if there's a pendingAsyncCommit
-  "https://github.com/hyprwm/aquamarine/pull/485",
-]
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
-follows = { aquamarine = "aquamarine" }
 patches = [
   # core/layers: allow bottom layers and background layers under fs
   "https://github.com/hyprwm/Hyprland/pull/16740",
@@ -84,13 +69,16 @@ patches = [
 ]
 
 [inputs.niqspkgs]
-url = "github:diniamo/niqspkgs"
+url  = "github:diniamo/niqspkgs"
+type = "fetch"
 
 [inputs.nix-gaming]
-url = "github:fufexan/nix-gaming"
+url  = "github:fufexan/nix-gaming"
+type = "fetch"
 
 [inputs.nixcord]
-url = "github:4evy/nixcord"
+url  = "github:4evy/nixcord"
+type = "fetch"
 
 # non-flake inputs
 [inputs.KvLibadwaita]
@@ -101,7 +89,6 @@ type = "fetch"
 url    = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.patch"
 type   = "fixed"
 unpack = "file"
-frozen = true
 
 [inputs.nvidia-vaapi-driver]
 url  = "github:elFarto/nvidia-vaapi-driver"

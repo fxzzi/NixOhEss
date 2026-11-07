@@ -31,7 +31,7 @@ in
         };
       };
       packages = [
-        (inputs.niqspkgs.packages.${pkgs.stdenv.hostPlatform.system}.bibata-hyprcursor.override {
+        (pkgs.callPackage "${inputs.niqspkgs}/pkgs/bibata-hyprcursor/package.nix" {
           variant = "original";
         })
         pkgs.bibata-cursors

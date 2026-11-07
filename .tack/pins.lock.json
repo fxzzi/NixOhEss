@@ -28,7 +28,11 @@
     "repo": "KvLibadwaita",
     "rev": "1f4e0bec44b13dabfa1fe4047aa8eeaccf2f3557",
     "narHash": "sha256-jCXME6mpqqWd7gWReT04a//2O83VQcOaqIIXa+Frntc=",
-    "lastModified": 1757782301
+    "lastModified": 1757782301,
+    "archive": {
+      "hash": "sha256-7JBi7n4oO9mJRkwjFaSI9x75Opa2nV5xuHlCOaesJ5A=",
+      "outHash": "sha256-/amx+nVqYsVOgCWwKWXBu6ILeKbJdjgb4ri4XyMPtec="
+    }
   },
   "agenix": {
     "type": "github",
@@ -36,7 +40,11 @@
     "repo": "agenix",
     "rev": "5e5b88a0c8e56f291a108c2fe9934054d9745b2e",
     "narHash": "sha256-8tKjSQajD3mUND1GaAuaWTcuyUpgcGsh5V+l4ibzC7U=",
-    "lastModified": 1792507013
+    "lastModified": 1792507013,
+    "archive": {
+      "hash": "sha256-XbPSwFHX132ZG+VQUibhHkXqqg5khUkAgmHyheBIPBA=",
+      "outHash": "sha256-jyjihZaUUToWhXdKJ7Q7u3yyZ7ClOQFslEGYsGiirto="
+    }
   },
   "aquamarine": {
     "type": "github",
@@ -84,7 +92,7 @@
         {
           "source": "patches/beer/beer-issue18.diff",
           "file": "patches/beer/beer-issue18.diff",
-          "sha256": "b8baa9c7482d31517342c7d5062105e4def2218f0cf77c50b4b8ecb8ea1df561"
+          "sha256": "98edf11921836d39afdd163833f05a09220d81fa6888931c267de392b6b9793a"
         }
       ],
       "diff": "4af35f9e7c27e7571b3355764535e0ceaf2875974eb462a7c38b86e24e6bc590"
@@ -97,14 +105,6 @@
     "rev": "17ad517a459f1a41a40bef2642ee952859147ab5",
     "narHash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
     "lastModified": 1744901658
-  },
-  "flake-parts": {
-    "type": "github",
-    "owner": "hercules-ci",
-    "repo": "flake-parts",
-    "rev": "024633cd702b10285db5cb19b40ad48d2399ba60",
-    "narHash": "sha256-zTwuwezD0w3hpga6a6P8emidzAZFyWqlNeRBlpWOOl8=",
-    "lastModified": 1790898470
   },
   "hjem": {
     "type": "github",
@@ -150,7 +150,11 @@
     "repo": "niqspkgs",
     "rev": "d3ecf69607638ff323ea735d71cca826d4e70098",
     "narHash": "sha256-WQLwbfnl1NsSUpF08KmGgY0TgX93qXbBc2H4Fxqp7zM=",
-    "lastModified": 1770459190
+    "lastModified": 1770459190,
+    "archive": {
+      "hash": "sha256-r0/e23GmBWtlGilzJnpqw5XKAVG/VXe1TKDVhREvPr4=",
+      "outHash": "sha256-PA21XVTWViW0DufXpkxLDuB0n0HPughPqfa79jfUlAk="
+    }
   },
   "nix-gaming": {
     "type": "github",
@@ -158,7 +162,11 @@
     "repo": "nix-gaming",
     "rev": "0c91eac86a0457145b0abd2a1a83d15ef3918720",
     "narHash": "sha256-XtrGCLkDt9bRaA5aATVbhZHVnppg4U0U9mA2IgSmKRA=",
-    "lastModified": 1793944758
+    "lastModified": 1793944758,
+    "archive": {
+      "hash": "sha256-4Na6WpAiQFge1H6GATAo8gGqTMNuzNr2JvJkBXl4tUs=",
+      "outHash": "sha256-gl1or3a+QvyA7F9SToE53BgkYVD00fW1EEu1y10mXTc="
+    }
   },
   "nixcord": {
     "type": "github",
@@ -166,7 +174,11 @@
     "repo": "nixcord",
     "rev": "d343faee88e617b69a8268172f650ea712b6b7ab",
     "narHash": "sha256-ad10qHKo01nSorhni0u3EmiebFg8fCKl5daMZLNefus=",
-    "lastModified": 1794065611
+    "lastModified": 1794065611,
+    "archive": {
+      "hash": "sha256-1ubCtOCi3CKlMaT/P/WliYieopWp/djFYERm08z25zM=",
+      "outHash": "sha256-tE20aBoN4aEmO0TYxeqq2s6Rz/WBVZ/RtJH8sDQd0Eg="
+    }
   },
   "nixos-core": {
     "type": "github",
@@ -212,7 +224,11 @@
     "repo": "nvidia-vaapi-driver",
     "rev": "443050726fdb30888a2ced1cea1c5d036ea3b15c",
     "narHash": "sha256-E2c4Hn4A0Vx3lcmP/Ms7FHEtxsDcxhCmcVFvct1Uv+0=",
-    "lastModified": 1791741043
+    "lastModified": 1791741043,
+    "archive": {
+      "hash": "sha256-6xkoTl6ABe/bUjQcT15VFzQjvbCVuQKFOSzDWqckCU4=",
+      "outHash": "sha256-PHde0wyI7GlAwS03aV0D/S2lS+rCCCXXg0DsFuMQ8j0="
+    }
   },
   "rags": {
     "type": "github",
@@ -220,7 +236,11 @@
     "repo": "rags",
     "rev": "168fca6e6dec1ffd19797c29d9b74dcd19222750",
     "narHash": "sha256-Ahp28Nq5SBG7EmEeIZ/bPrR7+Zcx/ZuS7tjUFuiAH68=",
-    "lastModified": 1793948047
+    "lastModified": 1793948047,
+    "archive": {
+      "hash": "sha256-4E+3wHsGP0X8VF5qsbKOtB8RjVI+UwwyZTn2EKdNaIw=",
+      "outHash": "sha256-NLlgakM/GHhhz2foMtYhVfeaXCUIJdtdOi+Za17jzvQ="
+    }
   },
   "startpage": {
     "type": "gitlab",
@@ -244,7 +264,8 @@
     "repo": "tack",
     "rev": "cd02f41558f0ccf8b1ae67fd96950ed0e6553129",
     "narHash": "sha256-NkEQK3h5pn39Cj4zMf/EYoxUo0/SNnkR0yGaYvJ96DA=",
-    "lastModified": 1794039014
+    "lastModified": 1794039014,
+    "archive": null
   },
   "tom-nvidia-patches": {
     "type": "fixed",
