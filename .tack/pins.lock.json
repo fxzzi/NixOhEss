@@ -57,22 +57,9 @@
     "type": "git",
     "url": "https://forge.rysieko.pl/rysieko/beer",
     "ref": "HEAD",
-    "rev": "46c5418168b4a42cde0e03b2fb9008a6e40b8727",
-    "narHash": "sha256-ncG3INFf43HBVsqyTsr55jJF3+fqfwnfwEL33WRb8rM=",
-    "lastModified": 1794035880,
-    "patched": {
-      "path": "/nix/store/bkj87n661gkhing58ynair0r07acmfl8-source",
-      "narHash": "sha256-6hmtGGtw46W1qpBFYGQJdXMwEgT+3C4fM+xf9DWB2Ok=",
-      "lastModified": 1794035880,
-      "patches": [
-        {
-          "source": "patches/beer/beer-issue18.diff",
-          "file": "patches/beer/beer-issue18.diff",
-          "sha256": "98edf11921836d39afdd163833f05a09220d81fa6888931c267de392b6b9793a"
-        }
-      ],
-      "diff": "4af35f9e7c27e7571b3355764535e0ceaf2875974eb462a7c38b86e24e6bc590"
-    }
+    "rev": "604f1cba182d463800a975749d1bc983d1380268",
+    "narHash": "sha256-6hmtGGtw46W1qpBFYGQJdXMwEgT+3C4fM+xf9DWB2Ok=",
+    "lastModified": 1794086271
   },
   "creamlinux": {
     "type": "github",
