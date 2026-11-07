@@ -21,19 +21,21 @@ in
       default = "scx_lavd";
       description = "Change the scheduler used by scx.";
     };
-    flags = mkOption {
-      type = types.listOf types.str;
-      default = [ ];
-      description = "add flags to your chosen scheduler.";
+    mode = mkOption {
+      type = types.str;
+      default = "Auto";
+      description = ''Set the mode out of "Auto", "Gaming", "LowLatency", "PowerSave" and "Server".'';
     };
   };
 
   config = mkIf cfg.enable {
-    services.scx = {
+    services.scx-loader = {
       enable = true;
-      inherit (cfg) scheduler;
-      extraArgs = cfg.flags;
-      package = pkgs.scx.rustscheds;
+      schedsPackages = [ pkgs.scx.rustscheds ];
+      config = {
+        default_sched = cfg.scheduler;
+        default_mode = cfg.mode;
+      };
     };
   };
 }

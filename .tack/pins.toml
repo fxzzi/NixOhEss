@@ -27,10 +27,6 @@ names = [
 # core
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
-patches = [
-  # proton-ge-bin: GE-Proton11-11 -> GE-Proton11-12
-  "https://github.com/NixOS/nixpkgs/pull/582591",
-]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.nixos-core]
@@ -67,7 +63,8 @@ url = "github:NotAShelf/rags"
 # nix and tack fail to fetch from raf's git forge :(
 # so fetch from a mirror instead
 # url = "git+https://git.notashelf.dev/notashelf/beer.git"
-url = "git+https://forge.rysieko.pl/rysieko/beer"
+url     = "git+https://forge.rysieko.pl/rysieko/beer"
+patches = ["patches/beer/beer-issue18.diff"]
 
 # everything else
 [inputs.hyprland]

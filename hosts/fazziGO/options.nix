@@ -18,7 +18,7 @@
       scx = {
         enable = true;
         scheduler = "scx_lavd";
-        flags = [ "--autopower" ];
+        mode = "PowerSave";
       };
       pipewire = {
         enable = true;
