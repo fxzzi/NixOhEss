@@ -22,9 +22,10 @@ in
           value = {
             main = {
               font-size = 17;
+              subpixel = config.fonts.fontconfig.subpixel.rgba;
+
               pad-x = 8;
               pad-y = 8;
-              subpixel = config.fonts.fontconfig.subpixel.rgba;
 
               term = "beer";
             };
