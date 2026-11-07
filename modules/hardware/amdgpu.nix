@@ -38,7 +38,7 @@ in
         MESA_SHADER_CACHE_MAX_SIZE = "12G";
       };
       systemPackages = [
-        inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.low-latency-layer
+        (pkgs.callPackage "${inputs.nix-gaming}/pkgs/low-latency-layer" { })
       ];
     };
   };

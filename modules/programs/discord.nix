@@ -159,14 +159,12 @@ in
           };
         };
       };
-      packages = with inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}; [
-        (discord.override {
-          inherit
-            commandLineArgs
-            equicord
-            ;
+      packages = [
+        (pkgs.callPackage "${inputs.nixcord}/pkgs/discord" {
+          inherit commandLineArgs;
           withOpenASAR = true;
           withEquicord = true;
+          equicord = pkgs.callPackage "${inputs.nixcord}/pkgs/equicord" { };
         })
       ];
     };

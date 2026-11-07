@@ -9,7 +9,8 @@
 let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.ags;
-  pkg = inputs.rags.packages.${pkgs.stdenv.hostPlatform.system}.agsNoTypes.override {
+  pkg = pkgs.callPackage "${inputs.rags}/nix/package.nix" {
+    buildTypes = false;
     extraPackages = [
       pkgs.libgtop
     ];

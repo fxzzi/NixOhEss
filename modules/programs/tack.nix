@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }: {
   programs.tack = {
     enable = true;
-    package = inputs.tack.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    package = pkgs.callPackage "${inputs.tack}/nix/package.nix" { };
     nixConfTokens = true;
   };
 }

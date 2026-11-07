@@ -1,4 +1,3 @@
-
 diff --git a/crates/beer-protocols/src/key.rs b/crates/beer-protocols/src/key.rs
 index 58bd018a2e..643f33c00f 100644
 --- a/crates/beer-protocols/src/key.rs
