@@ -87,7 +87,7 @@ in
       };
     };
     hj.systemd.services.hypridle = self.lib.mkGraphicalService {
-      description = "Hypridle idle management";
+      description = "Hyprland's idle daemon";
       exec = getExe pkgs.hypridle;
       extra = {
         path = [

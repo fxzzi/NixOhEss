@@ -19,6 +19,7 @@
     "startpage": "gitlab:fazzi/startpage",
     "systems": "github:nix-systems/x86_64-linux",
     "tack": "github:manic-systems/tack",
+    "tom-nvidia-patches": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.patch",
     "walls": "gitlab:fazzi/walls"
   },
   "KvLibadwaita": {
@@ -163,9 +164,9 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "a82a7c70b95232795567ca7db062ff1ac747b059",
-    "narHash": "sha256-AkS3jtwLO7zjTX1g9HA4qVe5SFItPkzFjt15g9VrApY=",
-    "lastModified": 1794042104
+    "rev": "d343faee88e617b69a8268172f650ea712b6b7ab",
+    "narHash": "sha256-ad10qHKo01nSorhni0u3EmiebFg8fCKl5daMZLNefus=",
+    "lastModified": 1794065611
   },
   "nixos-core": {
     "type": "github",
@@ -244,6 +245,12 @@
     "rev": "cd02f41558f0ccf8b1ae67fd96950ed0e6553129",
     "narHash": "sha256-NkEQK3h5pn39Cj4zMf/EYoxUo0/SNnkR0yGaYvJ96DA=",
     "lastModified": 1794039014
+  },
+  "tom-nvidia-patches": {
+    "type": "fixed",
+    "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.patch",
+    "sha256": "sha256-NYk+xJizemnp3E3ZR6uKYZQ9qGyIg5g81p5I6cUzXmo=",
+    "unpack": "file"
   },
   "walls": {
     "type": "gitlab",

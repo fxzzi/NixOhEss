@@ -46,15 +46,8 @@ in
             # tom / gulafaran's patchset.
             # yes, it's vibe coded to hell and back, but so is the NVIDIA driver itself.
             # and it fixes a bunch of stuff and provides some good QOL improvements.
-            (pkgs.fetchpatch (
-              let
-                rev = "cf4c3bcd1c3572689060c3e740caabeff0441cf9";
-              in
-              {
-                url = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...${rev}.diff";
-                hash = "sha256-LQ71tNyJA59WRr5XsH6HdFjsKiOC6hEGujLScdTnN2M";
-              }
-            ))
+            # and i trust tom from previous work on the hyprstack
+            inputs.tom-nvidia-patches
           ];
         };
         moduleParams = {
