@@ -81,7 +81,7 @@
       };
       git = {
         enable = true;
-        name = "Fazzi";
+        name = "fazzi";
         email = "faaris.ansari@proton.me";
       };
       zsh.enable = true;
