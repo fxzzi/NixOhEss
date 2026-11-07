@@ -2,7 +2,6 @@
   "$declared": {
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
-    "aquamarine": "github:hyprwm/aquamarine",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
     "beer": "git+https://forge.rysieko.pl/rysieko/beer",
     "creamlinux": "github:fxzzi/creamlinux-installer",
@@ -44,29 +43,6 @@
     "archive": {
       "hash": "sha256-XbPSwFHX132ZG+VQUibhHkXqqg5khUkAgmHyheBIPBA=",
       "outHash": "sha256-jyjihZaUUToWhXdKJ7Q7u3yyZ7ClOQFslEGYsGiirto="
-    }
-  },
-  "aquamarine": {
-    "type": "github",
-    "owner": "hyprwm",
-    "repo": "aquamarine",
-    "rev": "42c396067a5a59491a45138528d49238dd6e394e",
-    "narHash": "sha256-ReMSxLREQtPzOGKAiTECkLTpgqBLdQehdsTPFWl6ROI=",
-    "lastModified": 1793985030,
-    "patched": {
-      "path": "/nix/store/0w42jaypd4hiv2pr95mmha22w0pc9yk7-source",
-      "narHash": "sha256-Z48FaGEcSOeobBF7KUPq+YzHT5insZkW82u/U9vnwP8=",
-      "lastModified": 1793985030,
-      "patches": [
-        {
-          "source": "https://github.com/hyprwm/aquamarine/pull/485",
-          "url": "https://github.com/hyprwm/aquamarine/pull/485",
-          "file": "patches/aquamarine/pr-485.patch",
-          "sha256": "1d2cba94579748f5d361afe4f6f45075f0527e4fc8d9a182476d951999c7a5c3",
-          "head": "fac922b192445cd547f2b322eae7a2e2f2e091b7"
-        }
-      ],
-      "diff": "fcc43f47f1d0626f65f12e0d44dc8229a36c69aae947190be9260a5a7c5cc5ae"
     }
   },
   "azzipkgs": {
@@ -172,12 +148,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "d343faee88e617b69a8268172f650ea712b6b7ab",
-    "narHash": "sha256-ad10qHKo01nSorhni0u3EmiebFg8fCKl5daMZLNefus=",
-    "lastModified": 1794065611,
+    "rev": "f753a8d227d283406849d09e84f04236beb67e50",
+    "narHash": "sha256-6zy+LcIktHluBNcox05L3WTz69WjysodvLukDEudVmg=",
+    "lastModified": 1794083704,
     "archive": {
-      "hash": "sha256-1ubCtOCi3CKlMaT/P/WliYieopWp/djFYERm08z25zM=",
-      "outHash": "sha256-tE20aBoN4aEmO0TYxeqq2s6Rz/WBVZ/RtJH8sDQd0Eg="
+      "hash": "sha256-S0aWF57Tz76fcwtFHbJoM1vJfovkRMc97fDFmxVgTRI=",
+      "outHash": "sha256-aCS9hkw/FKOyQUHU04i/AqVgch58PrHr5Hv+fL2HmsU="
     }
   },
   "nixos-core": {

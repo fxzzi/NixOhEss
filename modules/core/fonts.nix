@@ -16,11 +16,13 @@ in
         (google-fonts.override {
           fonts = [
             "Outfit"
-            "Space Grotesk"
           ];
         })
 
-        ibm-plex
+        # should provide fallbacks for pretty much every language
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
         noto-fonts-color-emoji
 
         corefonts # ms fonts
@@ -39,7 +41,7 @@ in
             "Outfit"
           ];
           serif = [
-            "Space Grotesk"
+            "Noto Serif"
           ];
           monospace = [
             "BlexMono Nerd Font"
