@@ -22,7 +22,6 @@
       nvtopPackages.nvidia
       yt-dlp
       eden
-      thunderbird-bin
       # stremio-linux-shell
       (retroarch.withCores (
         cores: with cores; [
