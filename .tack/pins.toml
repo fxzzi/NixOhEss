@@ -67,8 +67,15 @@ url     = "git+https://forge.rysieko.pl/rysieko/beer"
 patches = ["patches/beer/beer-issue18.diff"]
 
 # everything else
+[inputs.aquamarine]
+url = "github:hyprwm/aquamarine"
+patches = [
+  # DRM: don't fail test if there's a pendingAsyncCommit
+  "https://github.com/hyprwm/aquamarine/pull/485",
+]
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
+follows = { aquamarine = "aquamarine" }
 patches = [
   # core/layers: allow bottom layers and background layers under fs
   "https://github.com/hyprwm/Hyprland/pull/16740",

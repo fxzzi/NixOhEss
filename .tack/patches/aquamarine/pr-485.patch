@@ -1,0 +1,13 @@
+diff --git a/src/backend/drm/DRM.cpp b/src/backend/drm/DRM.cpp
+index e1ed1611..cb06affc 100644
+--- a/src/backend/drm/DRM.cpp
++++ b/src/backend/drm/DRM.cpp
+@@ -2375,8 +2375,6 @@ bool Aquamarine::CDRMOutput::test() {
+     const auto QUEUE_KEY = connector->crtc->id;
+     if (pendingAsyncCommit)
+         backend->cancelAsyncOutput(this, true);
+-    if (pendingAsyncCommit)
+-        return false;
+     if (!backend->pauseCommitQueue(QUEUE_KEY))
+         return false;
+     CScopeGuard resume([this, QUEUE_KEY] { backend->resumeCommitQueue(QUEUE_KEY); });
