@@ -104,7 +104,6 @@
         enable = true;
         shellIntegration = true;
       };
-      ssh.enable = true;
       git = {
         enable = true;
         name = "Kunooz";
