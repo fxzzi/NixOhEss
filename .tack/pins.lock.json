@@ -48,9 +48,22 @@
     "type": "git",
     "url": "https://forge.rysieko.pl/rysieko/beer",
     "ref": "HEAD",
-    "rev": "d354426aa7dc84ce64b7eac7c716644ad7c6b483",
-    "narHash": "sha256-DBzKlomb+8ywl2Mkyn6JWQz8fMJDFgKeWa3Cf1BEnBE=",
-    "lastModified": 1793869840
+    "rev": "46c5418168b4a42cde0e03b2fb9008a6e40b8727",
+    "narHash": "sha256-ncG3INFf43HBVsqyTsr55jJF3+fqfwnfwEL33WRb8rM=",
+    "lastModified": 1794035880,
+    "patched": {
+      "path": "/nix/store/bkj87n661gkhing58ynair0r07acmfl8-source",
+      "narHash": "sha256-6hmtGGtw46W1qpBFYGQJdXMwEgT+3C4fM+xf9DWB2Ok=",
+      "lastModified": 1794035880,
+      "patches": [
+        {
+          "source": "patches/beer/beer-issue18.diff",
+          "file": "patches/beer/beer-issue18.diff",
+          "sha256": "b8baa9c7482d31517342c7d5062105e4def2218f0cf77c50b4b8ecb8ea1df561"
+        }
+      ],
+      "diff": "4af35f9e7c27e7571b3355764535e0ceaf2875974eb462a7c38b86e24e6bc590"
+    }
   },
   "creamlinux": {
     "type": "github",
@@ -126,21 +139,21 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "2b85b0d7cf809bf681f9b443afb98fbb31038405",
-    "narHash": "sha256-LhZW1QYJ93kQLQaeto44ZQEeFlAtKZ2EWYzqLQz0Nk0=",
-    "lastModified": 1794015954
+    "rev": "a82a7c70b95232795567ca7db062ff1ac747b059",
+    "narHash": "sha256-AkS3jtwLO7zjTX1g9HA4qVe5SFItPkzFjt15g9VrApY=",
+    "lastModified": 1794042104
   },
   "nixos-core": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "f6d88810c1b082568d195c0c025b34b7bb7a3a61",
-    "narHash": "sha256-ge22NAvGv5CzsamFUGMHUtpf46H4A4U9iOQDQicNCxY=",
-    "lastModified": 1793420539,
+    "rev": "411f45761a532a02f056bb1b366aa07abb7cf34e",
+    "narHash": "sha256-Vl9FOeAOqr94iSFnRpOUqI0P2nffULmtKj2wtnRvdFs=",
+    "lastModified": 1794025402,
     "patched": {
-      "path": "/nix/store/axwpfc3jp38zb7b7l673gv5y421z6hyj-source",
-      "narHash": "sha256-ye5tyihsx79dHi/7q3vfjAqxCUYEILIZhb9aQUawink=",
-      "lastModified": 1793420539,
+      "path": "/nix/store/rqxikc081xfwpm46lwih9vw136m76x5q-source",
+      "narHash": "sha256-xZhNR8nH1PJABLu44Mh854Uhc+J1B5qjjBWlWdIdCbM=",
+      "lastModified": 1794025402,
       "patches": [
         {
           "source": "https://github.com/manic-systems/nixos-core/pull/84",
@@ -155,25 +168,10 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1107793.1d060086d60c/nixexprs.tar.zst?rev=1d060086d60cb76a40cf37109f979d88a5bd6396&lastModified=1793726008",
-    "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
-    "narHash": "sha256-iNjybNORi/2+shilhMlkNr01UHWKOHRGzQyIyvobs9o=",
-    "lastModified": 1793726008,
-    "patched": {
-      "path": "/nix/store/frmvnpgd9p2anlrcrcd5i9vv0w7jlpkw-source",
-      "narHash": "sha256-zzTVn3C+8+Uhk03Ih8vrURG2BjfG9WP0gLq1J0vmGOc=",
-      "lastModified": 1793726008,
-      "patches": [
-        {
-          "source": "https://github.com/NixOS/nixpkgs/pull/582591",
-          "url": "https://github.com/NixOS/nixpkgs/pull/582591",
-          "file": "patches/nixpkgs/pr-582591.patch",
-          "sha256": "ce649a8471b5e0ff42935dac4872ea625a5e762c62ad00a1a1e1d588fa2b4108",
-          "head": "90a8c189543e5f1c5901a24a10688592b750926b"
-        }
-      ],
-      "diff": "68def46a7e292e720142c69bb7ed479ea29d46c960d55424234229a3eebb5ccd"
-    }
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1108983.f9a75f41be3a/nixexprs.tar.zst?rev=f9a75f41be3a74eab55d3a7679d34ad6cc0da977&lastModified=1793876309",
+    "rev": "f9a75f41be3a74eab55d3a7679d34ad6cc0da977",
+    "narHash": "sha256-Q62pssAT9r01POiSyXW0IPXBWhntiKqMhzlsp3bsl5I=",
+    "lastModified": 1793876309
   },
   "nvf": {
     "type": "github",
@@ -219,9 +217,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "8162a7e9d098f6ea0fc00404014a732b8e768da8",
-    "narHash": "sha256-dMyQFIkLF3f0sQFMSzlEWFZV2q4SG5Zrdbon5fbCbdA=",
-    "lastModified": 1793888518
+    "rev": "cd02f41558f0ccf8b1ae67fd96950ed0e6553129",
+    "narHash": "sha256-NkEQK3h5pn39Cj4zMf/EYoxUo0/SNnkR0yGaYvJ96DA=",
+    "lastModified": 1794039014
   },
   "walls": {
     "type": "gitlab",
