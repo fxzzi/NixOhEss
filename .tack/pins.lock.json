@@ -2,6 +2,7 @@
   "$declared": {
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
+    "aquamarine": "github:hyprwm/aquamarine",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
     "beer": "git+https://forge.rysieko.pl/rysieko/beer",
     "creamlinux": "github:fxzzi/creamlinux-installer",
@@ -35,6 +36,29 @@
     "rev": "5e5b88a0c8e56f291a108c2fe9934054d9745b2e",
     "narHash": "sha256-8tKjSQajD3mUND1GaAuaWTcuyUpgcGsh5V+l4ibzC7U=",
     "lastModified": 1792507013
+  },
+  "aquamarine": {
+    "type": "github",
+    "owner": "hyprwm",
+    "repo": "aquamarine",
+    "rev": "42c396067a5a59491a45138528d49238dd6e394e",
+    "narHash": "sha256-ReMSxLREQtPzOGKAiTECkLTpgqBLdQehdsTPFWl6ROI=",
+    "lastModified": 1793985030,
+    "patched": {
+      "path": "/nix/store/0w42jaypd4hiv2pr95mmha22w0pc9yk7-source",
+      "narHash": "sha256-Z48FaGEcSOeobBF7KUPq+YzHT5insZkW82u/U9vnwP8=",
+      "lastModified": 1793985030,
+      "patches": [
+        {
+          "source": "https://github.com/hyprwm/aquamarine/pull/485",
+          "url": "https://github.com/hyprwm/aquamarine/pull/485",
+          "file": "patches/aquamarine/pr-485.patch",
+          "sha256": "1d2cba94579748f5d361afe4f6f45075f0527e4fc8d9a182476d951999c7a5c3",
+          "head": "fac922b192445cd547f2b322eae7a2e2f2e091b7"
+        }
+      ],
+      "diff": "fcc43f47f1d0626f65f12e0d44dc8229a36c69aae947190be9260a5a7c5cc5ae"
+    }
   },
   "azzipkgs": {
     "type": "gitlab",
@@ -177,9 +201,9 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "ab3159aea7707333e689289a74545b26c1c9d37c",
-    "narHash": "sha256-N5ulCQwTIcd3Il7uE491pbkRTWL2BtZKf/B5jfavmCo=",
-    "lastModified": 1793550142
+    "rev": "d36cd373c5636f9a97c228ffaaec857383d88cbc",
+    "narHash": "sha256-K1rzAlksFZWJ0JQfB9kIEFIp9N+pzZs9881Va5LmytY=",
+    "lastModified": 1794049908
   },
   "nvidia-vaapi-driver": {
     "type": "github",

@@ -53,8 +53,9 @@ in
       render = {
         # only activate DS for games
         direct_scanout = 2;
-        # improves cursor latency at 60hz but doesn't help outside of that tbh
-        async_commit = config.cfg.core.isLaptop;
+        # improves cursor latency. doesn't help as much on higher rr though.
+        # this normally doesn't work on nvidia but tom's patches make it work.
+        async_commit = true;
         # use values from edid in autoHDR
         cm_auto_hdr = 2;
       };
@@ -74,10 +75,10 @@ in
         sync_gsettings_theme = 0;
         # hide cursor after x seconds of inactivity
         inactive_timeout = 4;
-        # allow cursor to run at full fps in games
-        no_break_fs_vrr = 0;
         # always try to use hw cursors whenever possible
         no_hardware_cursors = 0;
+        # min refresh rate for the cursor in games.
+        min_refresh_rate = 48;
       };
       input = {
         # Set characters to repeat on hold every Xms
