@@ -97,6 +97,12 @@ url = "github:4evy/nixcord"
 url  = "github:GabePoel/KvLibadwaita"
 type = "fetch"
 
+[inputs.tom-nvidia-patches]
+url    = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.patch"
+type   = "fixed"
+unpack = "file"
+frozen = true
+
 [inputs.nvidia-vaapi-driver]
 url  = "github:elFarto/nvidia-vaapi-driver"
 type = "fetch"

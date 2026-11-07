@@ -103,7 +103,6 @@
       fastfetch = {
         enable = true;
         shellIntegration = true;
-        icon = "kunzoz";
       };
       ssh.enable = true;
       git = {
