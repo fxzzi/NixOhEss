@@ -105,6 +105,7 @@ in
         # despite the name, it doesn't always use latest. it uses the "recommended" model for your GPU.
         # for example on my 3070 it will use preset K.
         DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION = "render_preset_latest";
+
       };
       etc = {
         "nvidia/nvidia-application-profiles-rc.d/50-vram-alloc-fixes.json".text =

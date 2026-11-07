@@ -78,7 +78,6 @@
       fastfetch = {
         enable = true;
         shellIntegration = true;
-        icon = "azzi-merl";
       };
       ssh.enable = true;
       git = {

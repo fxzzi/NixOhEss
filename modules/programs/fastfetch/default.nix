@@ -14,7 +14,6 @@ let
     mkAfter
     ;
   cfg = config.cfg.programs.fastfetch;
-  icon = ./images/${cfg.icon}.jpg;
 in
 {
   options = {
@@ -27,14 +26,10 @@ in
       };
       icon = mkOption {
         type = types.enum [
-          "azzi"
-          "azzi-laptop"
-          "azzi-merl"
-          "azzi-yawn"
-          "tomoe"
           "kunzoz"
+          "azzi-random" # randomly selects an azzi one
         ];
-        default = "azzi";
+        default = "azzi-random";
         description = "Configures which icon you would like to display on fastfetch.";
       };
     };
@@ -42,6 +37,9 @@ in
   config = mkIf cfg.enable {
     hj = {
       packages = [ pkgs.fastfetch ];
+      xdg.config.files."fastfetch/images" = {
+        source = "${./images}";
+      };
       xdg.config.files."fastfetch/config.jsonc" = {
         generator = lib.generators.toJSON { };
         value = {
@@ -53,7 +51,12 @@ in
             separator = " - ";
           };
           logo = {
-            source = icon;
+            source =
+              if cfg.icon == "azzi-random" then
+                # randomize between all azzi icons
+                "$XDG_CONFIG_HOME/fastfetch/images/azzi*.*"
+              else
+                "$XDG_CONFIG_HOME/fastfetch/images/${cfg.icon}.*";
             type = "kitty";
             height = 8;
             padding = {
