@@ -13,7 +13,7 @@
       sgdboop
       cemu
       stremio-linux-shell
-      inputs.creamlinux.packages.${pkgs.stdenv.hostPlatform.system}.default
+      (pkgs.callPackage inputs.creamlinux { })
     ];
   };
 
