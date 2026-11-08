@@ -5,7 +5,7 @@ fazzi   = "gitlab:fazzi/{path}"
 channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 
 [all_follow]
-nixpkgs = ["nixpkgs"]
+nixpkgs = "nixpkgs"
 systems = "systems"
 
 # recursively omit selected upstream inputs from every top-level pin
