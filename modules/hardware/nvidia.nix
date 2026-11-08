@@ -46,7 +46,7 @@ in
             # tom / gulafaran's patchset.
             # yes, it's vibe coded to hell and back, but so is the NVIDIA driver itself.
             # and it fixes a bunch of stuff and provides some good QOL improvements.
-            # and i trust tom from previous work on the hyprstack
+            # and i trust tom from previous work on the hyprstack :P
             inputs.tom-nvidia-patches
           ];
         };
