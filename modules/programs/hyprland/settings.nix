@@ -68,6 +68,7 @@ in
           enabled = true;
           size = 3;
           passes = 3;
+          noise = 0.1;
         };
       };
       cursor = {
