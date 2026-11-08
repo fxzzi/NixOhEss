@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  self,
   inputs,
   ...
 }:
@@ -21,10 +22,8 @@ in
         enable = true;
         enable32Bit = true;
         extraPackages = [
-          (pkgs.nvidia-vaapi-driver.overrideAttrs {
-            src = inputs.nvidia-vaapi-driver;
-            version = "0-unstable-${builtins.substring 0 8 inputs._meta.nvidia-vaapi-driver.rev}";
-          })
+          inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.nvidia-vaapi-driver
+          inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.open-gpu-userspace-modules
         ];
       };
       nvidia = {
@@ -100,6 +99,9 @@ in
         # despite the name, it doesn't always use latest. it uses the "recommended" model for your GPU.
         # for example on my 3070 it will use preset K.
         DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION = "render_preset_latest";
+
+        # use tom's clanker open-gpu-userspace-modules
+        GBM_BACKEND = "nvidia-open";
 
       };
       etc = {

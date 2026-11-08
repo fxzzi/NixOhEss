@@ -13,7 +13,6 @@
     "nixos-core": "github:manic-systems/nixos-core",
     "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "nvf": "github:NotAShelf/nvf",
-    "nvidia-vaapi-driver": "github:elFarto/nvidia-vaapi-driver",
     "rags": "github:NotAShelf/rags",
     "startpage": "gitlab:fazzi/startpage",
     "systems": "github:nix-systems/x86_64-linux",
@@ -49,9 +48,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "70a158e7202d86f5fec59c27b044a48ba09b6465",
-    "narHash": "sha256-HbzW9yuUUWPTkimyH3a2Vz3Zr9FW83/MfdgX3DYPlkI=",
-    "lastModified": 1794136528
+    "rev": "d0ba23a6c5236311fb5c1c9468676d5cc1588d60",
+    "narHash": "sha256-eNf1yKyipLU8guOvVgB6dzS5xdZ9HRovHwC9RJgG0IA=",
+    "lastModified": 1794143713
   },
   "beer": {
     "type": "git",
@@ -135,12 +134,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "b30c1a84431bf66ea5884869c846769df16ebe71",
-    "narHash": "sha256-+mtZLfNDP+qrzKUaqjcXpYxGKZHFH5LRHqxKy39hA4M=",
-    "lastModified": 1794112296,
+    "rev": "0533f06c66ca9a4491292a04fed7f55cc16b1931",
+    "narHash": "sha256-35sQQC4+cscfgFBQZ06ZUg6zcMfJeQPf7t2MuwYxD1Q=",
+    "lastModified": 1794141094,
     "archive": {
-      "hash": "sha256-qTa7SOCcU/qaXnahH/9z2Xb+nkOw2+PcRdVIbfSqkew=",
-      "outHash": "sha256-HoPoW0M/monWLBdWzStI+oFij81777MfzXjGkDnvp+E="
+      "hash": "sha256-+7/lZ2kJqOu/MOdDORH+KXEM2KoJvua1bZsdqsWqRdk=",
+      "outHash": "sha256-ykyG8/nqQcRUKwygeUTCZte8XpNVpcvbUtbBhJx8RRg="
     }
   },
   "nixos-core": {
@@ -180,18 +179,6 @@
     "rev": "d36cd373c5636f9a97c228ffaaec857383d88cbc",
     "narHash": "sha256-K1rzAlksFZWJ0JQfB9kIEFIp9N+pzZs9881Va5LmytY=",
     "lastModified": 1794049908
-  },
-  "nvidia-vaapi-driver": {
-    "type": "github",
-    "owner": "elFarto",
-    "repo": "nvidia-vaapi-driver",
-    "rev": "443050726fdb30888a2ced1cea1c5d036ea3b15c",
-    "narHash": "sha256-E2c4Hn4A0Vx3lcmP/Ms7FHEtxsDcxhCmcVFvct1Uv+0=",
-    "lastModified": 1791741043,
-    "archive": {
-      "hash": "sha256-6xkoTl6ABe/bUjQcT15VFzQjvbCVuQKFOSzDWqckCU4=",
-      "outHash": "sha256-PHde0wyI7GlAwS03aV0D/S2lS+rCCCXXg0DsFuMQ8j0="
-    }
   },
   "rags": {
     "type": "github",

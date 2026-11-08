@@ -89,7 +89,3 @@ type = "fetch"
 url    = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.patch"
 type   = "fixed"
 unpack = "file"
-
-[inputs.nvidia-vaapi-driver]
-url  = "github:elFarto/nvidia-vaapi-driver"
-type = "fetch"
