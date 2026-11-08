@@ -1,0 +1,20 @@
+diff --git a/pkgs/top-level/linux-kernels.nix b/pkgs/top-level/linux-kernels.nix
+index 16c8287cdd184..ddf0b424ade94 100644
+--- a/pkgs/top-level/linux-kernels.nix
++++ b/pkgs/top-level/linux-kernels.nix
+@@ -131,7 +131,6 @@ in
+           kernelPatches = [
+             kernelPatches.bridge_stp_helper
+             kernelPatches.request_key_helper
+-            kernelPatches.tools_128bit_types
+           ];
+         };
+         linux_xanmod_latest = xanmodKernels {
+@@ -139,7 +138,6 @@ in
+           kernelPatches = [
+             kernelPatches.bridge_stp_helper
+             kernelPatches.request_key_helper
+-            kernelPatches.tools_128bit_types
+           ];
+         };
+       }

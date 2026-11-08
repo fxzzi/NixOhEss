@@ -80,31 +80,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "ab6141897d57e609e24c571a762c30c963e0885a",
-    "narHash": "sha256-rqmgV0BeCtguyXNsmXjH5+bauyrpWA4imqz9B7zCtvQ=",
-    "lastModified": 1793984293,
-    "patched": {
-      "path": "/nix/store/llcpz4q53nyhp0i275c1gzhziwfk5i3k-source",
-      "narHash": "sha256-sHQCQ3LWcvnlOiTQtfqmhq7ge/ecuTMgnIMnHUqSr/Y=",
-      "lastModified": 1793984293,
-      "patches": [
-        {
-          "source": "https://github.com/hyprwm/Hyprland/pull/16740",
-          "url": "https://github.com/hyprwm/Hyprland/pull/16740",
-          "file": "patches/hyprland/pr-16740.patch",
-          "sha256": "bff389b5703fa9a904f0d3fa8f35bbae87df562536de9e190608ee1c97bd49aa",
-          "head": "d3552d2538ef65cc1b9383177760c2c514137954"
-        },
-        {
-          "source": "https://github.com/hyprwm/Hyprland/pull/16888",
-          "url": "https://github.com/hyprwm/Hyprland/pull/16888",
-          "file": "patches/hyprland/pr-16888.patch",
-          "sha256": "cf3f678a384caa70e35d5546fcdd9b9f9d8f665f7375ab37a747ca8a00e852f2",
-          "head": "446b59fac2fd1f4663575fc7d3789490b7c1fcda"
-        }
-      ],
-      "diff": "cf12d397c63640560fdd06666d8d5cb20bc709fdef543c2dfcae47ff73280fd6"
-    }
+    "rev": "2d2669a1b75094ab43c1d631e710c27a1accc7fc",
+    "narHash": "sha256-3OGZFx4suz5mPwjE6YTBXpHAiLo5E/4fTMbXZVYPaGY=",
+    "lastModified": 1794156494
   },
   "niqspkgs": {
     "type": "github",
@@ -134,12 +112,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "0533f06c66ca9a4491292a04fed7f55cc16b1931",
-    "narHash": "sha256-35sQQC4+cscfgFBQZ06ZUg6zcMfJeQPf7t2MuwYxD1Q=",
-    "lastModified": 1794141094,
+    "rev": "93699d1aa4829372a3eb5550f3a19ddc52aad8a5",
+    "narHash": "sha256-M+35oe7+cLLqj28tBwlxG5s1vji8IZb/1p1GzkRy6O4=",
+    "lastModified": 1794159897,
     "archive": {
-      "hash": "sha256-+7/lZ2kJqOu/MOdDORH+KXEM2KoJvua1bZsdqsWqRdk=",
-      "outHash": "sha256-ykyG8/nqQcRUKwygeUTCZte8XpNVpcvbUtbBhJx8RRg="
+      "hash": "sha256-FbtPZvk5sADZmCzCoPTselRVDcg/vL6TGLvEtpuJHBc=",
+      "outHash": "sha256-04F3SHsqEfcnaEIShFI7ojbenohM3xMIGZamBR4dYpI="
     }
   },
   "nixos-core": {
@@ -167,18 +145,33 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1108983.f9a75f41be3a/nixexprs.tar.zst?rev=f9a75f41be3a74eab55d3a7679d34ad6cc0da977&lastModified=1793876309",
-    "rev": "f9a75f41be3a74eab55d3a7679d34ad6cc0da977",
-    "narHash": "sha256-Q62pssAT9r01POiSyXW0IPXBWhntiKqMhzlsp3bsl5I=",
-    "lastModified": 1793876309
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1113206.f4a03c008967/nixexprs.tar.zst?rev=f4a03c008967841f2a0b3cb7c436fc6fc31671f6&lastModified=1794042290",
+    "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
+    "narHash": "sha256-VZ8WvA9m3XN36juXyg/GwbDRU2OezOHJlXpJCXkccv0=",
+    "lastModified": 1794042290,
+    "patched": {
+      "path": "/nix/store/7p29b4jmcn8zwj9jfsj46lwim8frbvw8-source",
+      "narHash": "sha256-IPtcuL4UVNiIqPbLb0OXesAbrbRiMqAYzjcrwY/MrOw=",
+      "lastModified": 1794042290,
+      "patches": [
+        {
+          "source": "https://github.com/NixOS/nixpkgs/pull/584576",
+          "url": "https://github.com/NixOS/nixpkgs/pull/584576",
+          "file": "patches/nixpkgs/pr-584576.patch",
+          "sha256": "9c2f2d20b2e6fd418674f1cf47abda800f1e4fe11b12d78cb1a2b9a7e0cd969f",
+          "head": "e99a4dcc911379a4c9a2c3313adb008c1c582d01"
+        }
+      ],
+      "diff": "984593e2fb0cae5e331979e7a34d68e08067191496903d9071f8453d2302ec38"
+    }
   },
   "nvf": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "d36cd373c5636f9a97c228ffaaec857383d88cbc",
-    "narHash": "sha256-K1rzAlksFZWJ0JQfB9kIEFIp9N+pzZs9881Va5LmytY=",
-    "lastModified": 1794049908
+    "rev": "c5a635adcd638bc1d5bc31098a2ba4b89bfe787b",
+    "narHash": "sha256-2xkGsyT1C6+z9fx72VeRdmExCIOibm4q0Rk7mfKBCj0=",
+    "lastModified": 1794159704
   },
   "rags": {
     "type": "github",
