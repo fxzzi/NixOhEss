@@ -15,6 +15,10 @@ names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 # core
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
+patches = [
+  # linux_xanmod_{stable,latest}: remove patch included in 7.3
+  "https://github.com/NixOS/nixpkgs/pull/584576",
+]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.nixos-core]
@@ -61,12 +65,6 @@ type = "fetch"
 # everything else
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
-patches = [
-  # core/layers: allow bottom layers and background layers under fs
-  "https://github.com/hyprwm/Hyprland/pull/16740",
-  # render: fix invalidation artifacts with floating overlapped windows
-  "https://github.com/hyprwm/Hyprland/pull/16888",
-]
 
 [inputs.niqspkgs]
 url  = "github:diniamo/niqspkgs"

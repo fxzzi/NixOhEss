@@ -2,7 +2,7 @@
   cfg = {
     core = {
       username = "kunzoz";
-      kernel.type = "xanmod";
+      kernel.type = "zen";
       limine.timeout = 15;
       networkmanager.enable = true;
     };
