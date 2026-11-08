@@ -42,7 +42,8 @@ type = "fetch"
 url  = "fazzi:walls"
 type = "fetch"
 [inputs.creamlinux]
-url = "github:fxzzi/creamlinux-installer"
+url  = "github:fxzzi/creamlinux-installer"
+type = "fetch"
 
 # raf stuff :D
 [inputs.nvf]
