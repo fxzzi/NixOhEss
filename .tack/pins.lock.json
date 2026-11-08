@@ -48,9 +48,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "d0ba23a6c5236311fb5c1c9468676d5cc1588d60",
-    "narHash": "sha256-eNf1yKyipLU8guOvVgB6dzS5xdZ9HRovHwC9RJgG0IA=",
-    "lastModified": 1794143713
+    "rev": "878e09b2fe0758713dbdeaa11e51b585df6893c2",
+    "narHash": "sha256-TFpYi3gE92xDtIkyVoiFCmuMKNPAivmiIYORS6f+8V0=",
+    "lastModified": 1794169507
   },
   "beer": {
     "type": "git",
@@ -80,9 +80,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "2d2669a1b75094ab43c1d631e710c27a1accc7fc",
-    "narHash": "sha256-3OGZFx4suz5mPwjE6YTBXpHAiLo5E/4fTMbXZVYPaGY=",
-    "lastModified": 1794156494
+    "rev": "151b0434114fad482e4fed9438c081b46e73423c",
+    "narHash": "sha256-vENRpNT6omxYGd2cI9+X1xwm9aAp2JD5ixibTqg7uLQ=",
+    "lastModified": 1794180039
   },
   "niqspkgs": {
     "type": "github",
@@ -112,12 +112,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "93699d1aa4829372a3eb5550f3a19ddc52aad8a5",
-    "narHash": "sha256-M+35oe7+cLLqj28tBwlxG5s1vji8IZb/1p1GzkRy6O4=",
-    "lastModified": 1794159897,
+    "rev": "9c4f5cc5c7bdf31c352092dbeb340df6219ca775",
+    "narHash": "sha256-35sQQC4+cscfgFBQZ06ZUg6zcMfJeQPf7t2MuwYxD1Q=",
+    "lastModified": 1794174907,
     "archive": {
-      "hash": "sha256-FbtPZvk5sADZmCzCoPTselRVDcg/vL6TGLvEtpuJHBc=",
-      "outHash": "sha256-04F3SHsqEfcnaEIShFI7ojbenohM3xMIGZamBR4dYpI="
+      "hash": "sha256-XaMs4s7hPBd/3phA6peYdibh2Y+FZEvDWjNeQte1kno=",
+      "outHash": "sha256-ykyG8/nqQcRUKwygeUTCZte8XpNVpcvbUtbBhJx8RRg="
     }
   },
   "nixos-core": {
