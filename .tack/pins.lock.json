@@ -189,9 +189,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "startpage",
-    "rev": "1e53a0945177c49b21111bf2d40c3be4806729cd",
-    "narHash": "sha256-o4E6xuMXK+tCJuM2gHJBU/5RBPrjOM6sFT/91Z0hSKY=",
-    "lastModified": 1787875277
+    "rev": "67e487137eb24840c2e127cb719a564cef132b63",
+    "narHash": "sha256-lnFW5hcKXwuTxIbyZ3x/XZ5LWktQQRrPx4vcW8SDocM=",
+    "lastModified": 1794245034
   },
   "systems": {
     "type": "github",
@@ -205,9 +205,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "7d2b9344af472e3dc0047fe387dc9cacd63c4597",
-    "narHash": "sha256-hrsa+AccOSScK9zAx4u1e5yd+enCyHfRdhhPH7xF5x0=",
-    "lastModified": 1794235387,
+    "rev": "f59bc3e6679df14d402e40bf895cc2533bae4ca2",
+    "narHash": "sha256-ZK5sfTsvSo9VYEi8mAVtfu5FUFvMYoGMn6+CYzS1pPU=",
+    "lastModified": 1794242539,
     "archive": null
   },
   "tom-nvidia-patches": {
