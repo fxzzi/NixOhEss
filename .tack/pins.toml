@@ -15,10 +15,6 @@ names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 # core
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
-patches = [
-  # linux_xanmod_{stable,latest}: remove patch included in 7.3
-  "https://github.com/NixOS/nixpkgs/pull/584576",
-]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.nixos-core]
@@ -84,6 +80,6 @@ url  = "github:GabePoel/KvLibadwaita"
 type = "fetch"
 
 [inputs.tom-nvidia-patches]
-url    = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.patch"
+url    = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff"
 type   = "fixed"
 unpack = "file"
