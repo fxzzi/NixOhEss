@@ -80,9 +80,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "151b0434114fad482e4fed9438c081b46e73423c",
-    "narHash": "sha256-vENRpNT6omxYGd2cI9+X1xwm9aAp2JD5ixibTqg7uLQ=",
-    "lastModified": 1794180039
+    "rev": "a1d7a78b6c8e54ad72d401bfa8b85fdc89ee66a6",
+    "narHash": "sha256-P6LkrX13khvsMiNOLEC4hvHTpTwXv5IXiikZQMXPwPU=",
+    "lastModified": 1794221806
   },
   "niqspkgs": {
     "type": "github",
@@ -100,12 +100,12 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "7e6eb45dd770a9b59edc599442193b70799ca177",
-    "narHash": "sha256-JWDVgTvXY/oNKczjoZpPPIFwjWb3z6gtja0aGP5JxQA=",
-    "lastModified": 1794114800,
+    "rev": "917f7eeedd72527e044c4ef2c18df58f0e7d1244",
+    "narHash": "sha256-rcjqitVbDxtmNWDv35gPmTexDeQFsV9BF4GD3NmQgtA=",
+    "lastModified": 1794224602,
     "archive": {
-      "hash": "sha256-jRb7ZT77IndHomTrJbRt3Fo/xkozkxWl9NRF+QmTtJI=",
-      "outHash": "sha256-5MCOxgtt9fOqUIN6WjPV+DuvBrmX1w006hwa2co/KCo="
+      "hash": "sha256-r/tloW+t/6LEBWTSqNGcJr0AKxKEuGv5V9tJ3GHQIrw=",
+      "outHash": "sha256-sF/p8Bb0C7LVwomabEMwIMKNsAwFrENokBW0YEltYAU="
     }
   },
   "nixcord": {
@@ -205,15 +205,15 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "ea48abbf5ceb99d4e150b545767a2159f3e07979",
-    "narHash": "sha256-rpcW35sv5exqvhZ0uuyY/14KXaS9hndXJ5qb4DiLFIo=",
-    "lastModified": 1794193449,
+    "rev": "7d2b9344af472e3dc0047fe387dc9cacd63c4597",
+    "narHash": "sha256-hrsa+AccOSScK9zAx4u1e5yd+enCyHfRdhhPH7xF5x0=",
+    "lastModified": 1794235387,
     "archive": null
   },
   "tom-nvidia-patches": {
     "type": "fixed",
     "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff",
-    "sha256": "sha256-VLs229QpvfKOWCnwnXzlc/AyKwxFozjWFSJ1YObxLw0=",
+    "sha256": "sha256-ZH2LSvdCAj8+hcuLU8zIMfDsbWbEWKmNkBCWPHokdDU=",
     "unpack": "file"
   },
   "walls": {
