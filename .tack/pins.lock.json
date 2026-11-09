@@ -112,12 +112,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "ebb424bef132067bef034f4758be37c879a6ebd2",
-    "narHash": "sha256-5dSu57mv/HhaFWHYCXwnmsHxWAmUG5cFrvHHHjUzvNA=",
-    "lastModified": 1794215339,
+    "rev": "73d476f96dc51c590544b5339c8fa9be012d6d97",
+    "narHash": "sha256-+mmW6HXHWAyqWTHEs+V3IQFIiGmMxldCHYBtwisFfq8=",
+    "lastModified": 1794217410,
     "archive": {
-      "hash": "sha256-UQaoXcc7gy0N9Oy4Svao0aDhms3Ont0iMZedsOliJU4=",
-      "outHash": "sha256-LdGGQReLVxpDuHmjYAGB2U9dD7wYntv/JviMZjHucpM="
+      "hash": "sha256-RAT/Upnr8Ablua6pqMpqCja4t1ISxY/vmD2UFAXl+08=",
+      "outHash": "sha256-PbNDBstWYQ3ONqgqqbVfdujnGfgddn47F8GwmI+MnUc="
     }
   },
   "nixos-core": {
