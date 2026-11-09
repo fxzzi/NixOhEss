@@ -26,10 +26,6 @@ in
             small_image = "";
             small_text = "";
             display_type = "state";
-            # button1_text = "Listen on YouTube";
-            # button1_link = "https://www.youtube.com/results?search_query=$artist\ -\ $title";
-            # button2_text = "Album on MusicBrainz";
-            # button2_url = "https://musicbrainz.org/search?query=$albumartist\ $album&type=release&method=indexed";
           };
         };
       };

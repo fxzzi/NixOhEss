@@ -91,6 +91,8 @@ in
             	font-size: 18pt;
             	color: #c0caf5;
             	background-color: @background;
+              /* can be set to anything, as hyprland does the blur radius */
+              backdrop-filter: blur(69px);
             }
 
             button {
