@@ -15,6 +15,10 @@ names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 # core
 [inputs.nixpkgs]
 url = "channel:nixos-unstable"
+patches = [
+  # lutris_unwrapped: fix crash at launch
+  "https://github.com/NixOS/nixpkgs/pull/585282",
+]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.nixos-core]
