@@ -2,7 +2,7 @@
   cfg = {
     core = {
       username = "faaris";
-      kernel.type = "xanmod";
+      kernel.type = "zen";
       limine.timeout = 0.25;
     };
     hardware = {
