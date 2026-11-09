@@ -54,8 +54,8 @@ in
         # only activate DS for games
         direct_scanout = 2;
         # improves cursor latency. doesn't help as much on higher rr though.
-        # this normally doesn't work on nvidia but tom's patches make it work.
-        async_commit = true;
+        # so just apply it on my laptop
+        async_commit = config.cfg.core.isLaptop;
         # use values from edid in autoHDR
         cm_auto_hdr = 2;
       };
