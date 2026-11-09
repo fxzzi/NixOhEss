@@ -55,6 +55,7 @@
       printing.enable = true;
     };
     programs = {
+      tack.enable = true;
       # gpu-screen-recorder.enable = true;
       # gamescope.enable = true;
       osu.enable = true;

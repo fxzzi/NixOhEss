@@ -245,8 +245,9 @@ in
               no_xdg_drags = true,
             })
 
-            -- Disable blur for steam, it regularly goes invisible for a few frames and looks ugly
+            -- disable blur for slow apps
             hl.window_rule({ match = { class = "steam" }, no_blur = true })
+            hl.window_rule({ match = { class = "discord" }, no_blur = true })
 
             -- Window rules for games
             -- emulators and similar apps that should be tagged as games, but not forced fullscreen
