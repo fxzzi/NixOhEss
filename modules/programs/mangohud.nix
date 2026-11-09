@@ -73,7 +73,7 @@ in
         };
         "MangoHud/presets.conf" =
           let
-            mono = "${pkgs.nerd-fonts.blex-mono}/share/fonts/truetype/NerdFonts/BlexMono/BlexMonoNerdFont-Regular.ttf";
+            mono = "${pkgs.nerd-fonts.lilex}/share/fonts/truetype/NerdFonts/Lilex/LilexNerdFont-Regular.ttf";
             sans = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
             common = {
               font_size = 20;

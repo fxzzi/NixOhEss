@@ -11,7 +11,7 @@ in
     fonts = {
       enableDefaultPackages = false;
       packages = with pkgs; [
-        nerd-fonts.blex-mono
+        nerd-fonts.lilex
 
         (google-fonts.override {
           fonts = [
@@ -27,6 +27,7 @@ in
 
         corefonts # ms fonts
         vista-fonts # more ms fonts including calibri and consolas
+
       ];
       fontconfig = {
         subpixel = {
@@ -44,7 +45,7 @@ in
             "Noto Serif"
           ];
           monospace = [
-            "BlexMono Nerd Font"
+            "Lilex Nerd Font"
           ];
           emoji = [
             "Noto Color Emoji"
