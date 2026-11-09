@@ -6,7 +6,7 @@
     "beer": "git+https://forge.rysieko.pl/rysieko/beer",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "hjem": "github:feel-co/hjem",
-    "hyprland": "github:hyprwm/Hyprland",
+    "hyprland": "github:hyprwm/Hyprland/151b0434114fad482e4fed9438c081b46e73423c",
     "niqspkgs": "github:diniamo/niqspkgs",
     "nix-gaming": "github:fufexan/nix-gaming",
     "nixcord": "github:4evy/nixcord",
@@ -56,9 +56,9 @@
     "type": "git",
     "url": "https://forge.rysieko.pl/rysieko/beer",
     "ref": "HEAD",
-    "rev": "604f1cba182d463800a975749d1bc983d1380268",
-    "narHash": "sha256-6hmtGGtw46W1qpBFYGQJdXMwEgT+3C4fM+xf9DWB2Ok=",
-    "lastModified": 1794086271
+    "rev": "53e436a8aeabfcf6f7704ec331e029587aa4867d",
+    "narHash": "sha256-EdRrXyMFUA/UMg+Mz8P+S6tM3dj4R58ZTs+0svTqlXo=",
+    "lastModified": 1794262535
   },
   "creamlinux": {
     "type": "github",
@@ -80,9 +80,9 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "a1d7a78b6c8e54ad72d401bfa8b85fdc89ee66a6",
-    "narHash": "sha256-P6LkrX13khvsMiNOLEC4hvHTpTwXv5IXiikZQMXPwPU=",
-    "lastModified": 1794221806
+    "rev": "151b0434114fad482e4fed9438c081b46e73423c",
+    "narHash": "sha256-vENRpNT6omxYGd2cI9+X1xwm9aAp2JD5ixibTqg7uLQ=",
+    "lastModified": 1794180039
   },
   "niqspkgs": {
     "type": "github",
@@ -112,12 +112,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "73d476f96dc51c590544b5339c8fa9be012d6d97",
-    "narHash": "sha256-+mmW6HXHWAyqWTHEs+V3IQFIiGmMxldCHYBtwisFfq8=",
-    "lastModified": 1794217410,
+    "rev": "834451b1578209be59a03197445392331d701cd4",
+    "narHash": "sha256-Yhde3cQF3MBv/EoEcsFu4P1KRSlJJmYl9du3E/BImQM=",
+    "lastModified": 1794256476,
     "archive": {
-      "hash": "sha256-RAT/Upnr8Ablua6pqMpqCja4t1ISxY/vmD2UFAXl+08=",
-      "outHash": "sha256-PbNDBstWYQ3ONqgqqbVfdujnGfgddn47F8GwmI+MnUc="
+      "hash": "sha256-Oa4YGVyMM9VFwSBVDPLmxLnDGIWnaeeC4SRxh5ZCdH0=",
+      "outHash": "sha256-Nwffbtyz0oNjjKuZb+5jQFPKjv7d/loovB6a/uYXFyI="
     }
   },
   "nixos-core": {
