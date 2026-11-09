@@ -74,8 +74,8 @@ in
               "name"
               "cpu%"
               "mem%"
+              # "swap"
               "user"
-              "state"
               "time"
               "priority"
             ];
