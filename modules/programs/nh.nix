@@ -34,7 +34,6 @@ in
         runtimeInputs = with pkgs; [
           config.nix.package
           config.programs.nh.package
-          config.programs.tack.package
           git
         ];
         text = ''
