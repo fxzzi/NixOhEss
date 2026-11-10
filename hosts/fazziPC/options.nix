@@ -113,6 +113,9 @@
         defaultMonitor = "DP-3";
         secondaryMonitor = "DP-2";
         useGit = true;
+        extraHlConfig = {
+          render.async_commit = true;
+        };
         extraConfig = # lua
           ''
             hl.monitor({
