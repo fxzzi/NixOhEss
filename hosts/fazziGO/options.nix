@@ -14,19 +14,9 @@
       mullvad.enable = true;
       mate-polkit.enable = true;
       gcr-ssh-agent.enable = true;
-
-      scx = {
-        enable = true;
-        scheduler = "scx_lavd";
-        mode = "PowerSave";
-      };
-      pipewire = {
-        enable = true;
-      };
+      pipewire.enable = true;
       syncthing.enable = true;
-      mpd = {
-        enable = true;
-      };
+      mpd.enable = true;
       hypridle = {
         enable = true;
         dpmsTimeout = 300;
@@ -38,7 +28,6 @@
       xdph.enable = true;
       dunst.enable = true;
       greetd.enable = true;
-
       printing.enable = true;
     };
     hardware = {

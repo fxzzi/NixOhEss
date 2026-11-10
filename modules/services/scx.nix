@@ -21,11 +21,6 @@ in
       default = "scx_lavd";
       description = "Change the scheduler used by scx.";
     };
-    mode = mkOption {
-      type = types.str;
-      default = "Auto";
-      description = ''Set the mode out of "Auto", "Gaming", "LowLatency", "PowerSave" and "Server".'';
-    };
   };
 
   config = mkIf cfg.enable {
@@ -34,7 +29,6 @@ in
       schedsPackages = [ pkgs.scx.rustscheds ];
       config = {
         default_sched = cfg.scheduler;
-        default_mode = cfg.mode;
       };
     };
   };
