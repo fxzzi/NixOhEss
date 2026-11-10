@@ -64,7 +64,7 @@ type = "fetch"
 
 # everything else
 [inputs.hyprland]
-url = "github:hyprwm/Hyprland/151b0434114fad482e4fed9438c081b46e73423c"
+url = "github:hyprwm/Hyprland"
 
 [inputs.niqspkgs]
 url  = "github:diniamo/niqspkgs"
