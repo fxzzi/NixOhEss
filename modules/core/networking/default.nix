@@ -24,6 +24,8 @@ let
 in
 {
   config = {
+    # start networking earlier in boot cycle to hopefully speed up boot
+    boot.initrd.network.enable = true;
     networking = {
       inherit hostName;
       nameservers = cloudflareDNS;

@@ -37,11 +37,6 @@ in
         # Increase AMD's shader cache size to xGB
         MESA_SHADER_CACHE_MAX_SIZE = "12G";
       };
-      systemPackages = [
-        (pkgs.callPackage "${inputs.nix-gaming}/pkgs/low-latency-layer" {
-          pins = import "${inputs.nix-gaming}/npins";
-        })
-      ];
     };
   };
 }
