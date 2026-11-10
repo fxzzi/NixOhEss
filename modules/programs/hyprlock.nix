@@ -104,7 +104,7 @@ in
                 font_size = 42;
                 # needs the mono font specifically to avoid being
                 # cut off
-                font_family = "BlexMono Nerd Font Mono";
+                font_family = "Lilex Nerd Font Mono";
                 shadow_passes = 2;
                 shadow_size = 2;
                 position = "0, 40";

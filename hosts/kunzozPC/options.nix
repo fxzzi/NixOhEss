@@ -2,7 +2,7 @@
   cfg = {
     core = {
       username = "kunzoz";
-      kernel.type = "zen";
+      kernel.type = "xanmod";
       limine.timeout = 15;
       networkmanager.enable = true;
     };
@@ -118,7 +118,7 @@
         enable = true;
         defaultMonitor = "DP-3";
         secondaryMonitor = null;
-        useGit = true;
+        # useGit = true;
         extraConfig = # lua
           ''
             hl.monitor({
