@@ -80,9 +80,24 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "df680d40f81fb72b4f222a427088ff643279b89f",
-    "narHash": "sha256-+MJFROJBRK0jq32Ymx6Eu6DOwi2bEo91/wZrhOYZAiA=",
-    "lastModified": 1794332834
+    "rev": "815585bb8197f9bec5e0fc5cd2d307a7b135e015",
+    "narHash": "sha256-hl3GQ1lmv4P+8U2oCEYsikz+3u9fra3qkWL8mjSW+W0=",
+    "lastModified": 1794355752,
+    "patched": {
+      "path": "/nix/store/3qk7kwinc22ghwq09n4j64f6zri00rzf-source",
+      "narHash": "sha256-fh5Jwh03e7etBvyNXX2SuXZrOePluYdFzBkQg4uOA5Y=",
+      "lastModified": 1794355752,
+      "patches": [
+        {
+          "source": "https://github.com/hyprwm/Hyprland/pull/16941",
+          "url": "https://github.com/hyprwm/Hyprland/pull/16941",
+          "file": "patches/hyprland/pr-16941.patch",
+          "sha256": "9beafc71819861839888c250dcc21b6f03074446a1a295fea213c60f88cb8666",
+          "head": "d6ebb51c32e382d9ea6dd0ef05f44590efbc0476"
+        }
+      ],
+      "diff": "560939c44113269811567c35a04f085e3c0e060fc5f949fd224c6237ccf9e829"
+    }
   },
   "niqspkgs": {
     "type": "github",
@@ -106,18 +121,33 @@
     "archive": {
       "hash": "sha256-T9570jN+R3j9NjNDIRlVU0VzFS5/e1FYQhLEhSUClU8=",
       "outHash": "sha256-GTaWzNkVmc/VLzP/IM1nEOZOIcgP7xVpZeKLxzqtpYk="
+    },
+    "patched": {
+      "path": "/nix/store/vc1ygpmblv3z2d2b68mazyrw3xm8ihj3-source",
+      "narHash": "sha256-LMCQ+Mk6CJ92ZJ8lFPA2BVrEOFXFZifvGJroapKPZp8=",
+      "lastModified": 1794293202,
+      "patches": [
+        {
+          "source": "https://github.com/fufexan/nix-gaming/pull/384",
+          "url": "https://github.com/fufexan/nix-gaming/pull/384",
+          "file": "patches/nix-gaming/pr-384.patch",
+          "sha256": "292e7ec446bea191b7e2adfbdd433d247dc8d13f57a532c0efcc2627251040bc",
+          "head": "cecb8b6724f193df8f827a6a1f37c0262f188821"
+        }
+      ],
+      "diff": "db7c02986de6b2ef11530ffda14e454bcba71c07e5eb48f8003b29ca78bd6996"
     }
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "803504cff18fad929f6d72612e0b8b23de6d9c02",
-    "narHash": "sha256-54MAVlTBxvqEjobNpu6Yu53+psn0cOJ/NnMdT8Ws9h8=",
-    "lastModified": 1794324842,
+    "rev": "d4e982c45559f1d1798a84d736d861e2c2666096",
+    "narHash": "sha256-rS0LXCe8SEx/KMCPyEBN6Jg3+UvpRBQRJpwdfBTgmd8=",
+    "lastModified": 1794358929,
     "archive": {
-      "hash": "sha256-92GKKuddsFouCxS9Vm4u9t5E8txR4wp0FAvtYNnmrsk=",
-      "outHash": "sha256-csQskcUW00pENo0JEBOjSFkT05pYvseOzRm3P2BM2OA="
+      "hash": "sha256-Ilx2cevUaCb0BuC3/o8tZff62grxHU/Kxf7iv3DWjf4=",
+      "outHash": "sha256-XHVjpaZui9GxLH4mlvTtMoT0+gTCiAtTxtDuU/34tSI="
     }
   },
   "nixos-core": {

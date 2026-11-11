@@ -65,13 +65,21 @@ type = "fetch"
 # everything else
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
+patches = [
+  # monitor: update swapchain when leaving DS to avoid flickers
+  "https://github.com/hyprwm/Hyprland/pull/16941",
+]
 
 [inputs.niqspkgs]
 url  = "github:diniamo/niqspkgs"
 type = "fetch"
 
 [inputs.nix-gaming]
-url  = "github:fufexan/nix-gaming"
+url = "github:fufexan/nix-gaming"
+patches = [
+  # osu-lazer-bin: drop EGL bwrap override
+  "https://github.com/fufexan/nix-gaming/pull/384",
+]
 type = "fetch"
 
 [inputs.nixcord]
