@@ -56,7 +56,10 @@ url = "github:NotAShelf/nvf"
 url  = "github:NotAShelf/rags"
 type = "fetch"
 [inputs.beer]
-url  = "git+https://git.notashelf.dev/notashelf/beer.git"
+# nix and tack fail to fetch from raf's git forge :(
+# so fetch from a mirror instead
+# url = "git+https://git.notashelf.dev/notashelf/beer.git"
+url  = "git+https://forge.rysieko.pl/rysieko/beer"
 type = "fetch"
 
 # everything else
