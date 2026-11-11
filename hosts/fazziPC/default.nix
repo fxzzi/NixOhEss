@@ -48,7 +48,7 @@
         # in fact goes up to 170Hz.
         # so I edited the EDID with a few changes:
         # - Physical size changed to 60x34cm
-        # - VRR range widened to 36-170Hz
+        # - VRR range widened to 32-170Hz
         # - Removed 10-bit, because it was using FRC which is not true 10-bit
         (pkgs.runCommand "M27Q" { } ''
           install -Dm444 ${./M27Q-edid.bin} "$out/lib/firmware/edid/M27Q.bin"
