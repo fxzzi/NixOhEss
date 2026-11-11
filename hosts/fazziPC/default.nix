@@ -22,6 +22,7 @@
       nvtopPackages.nvidia
       yt-dlp
       eden
+      claude-code
       # stremio-linux-shell
       (retroarch.withCores (
         cores: with cores; [
@@ -67,6 +68,8 @@
     # force HDR in proton-ge. It can't determine HDR support for
     # itself when using cm_auto_hdr.
     PROTON_FORCE_HDR = 1;
+    # wtf is it with these clankers not following XDG
+    CLAUDE_CONFIG_DIR = "$XDG_CONFIG_HOME/claude";
   };
 
   # icc files used in Hyprland
