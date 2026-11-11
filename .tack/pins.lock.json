@@ -84,8 +84,8 @@
     "narHash": "sha256-hl3GQ1lmv4P+8U2oCEYsikz+3u9fra3qkWL8mjSW+W0=",
     "lastModified": 1794355752,
     "patched": {
-      "path": "/nix/store/3qk7kwinc22ghwq09n4j64f6zri00rzf-source",
-      "narHash": "sha256-fh5Jwh03e7etBvyNXX2SuXZrOePluYdFzBkQg4uOA5Y=",
+      "path": "/nix/store/dx4347qggb3dxwvw9a4k4v0byq8x6mh6-source",
+      "narHash": "sha256-zTqh+kHLUJuMCw/fo5XbGIUZ+mWeTP0NFwJ4Ko7ebnU=",
       "lastModified": 1794355752,
       "patches": [
         {
@@ -94,9 +94,16 @@
           "file": "patches/hyprland/pr-16941.patch",
           "sha256": "9beafc71819861839888c250dcc21b6f03074446a1a295fea213c60f88cb8666",
           "head": "d6ebb51c32e382d9ea6dd0ef05f44590efbc0476"
+        },
+        {
+          "source": "https://github.com/hyprwm/Hyprland/pull/16946",
+          "url": "https://github.com/hyprwm/Hyprland/pull/16946",
+          "file": "patches/hyprland/pr-16946.patch",
+          "sha256": "de0006436289bbf0ee87aceabe6fe1b39ffdb550639441ab795a268efef1a6b6",
+          "head": "46a437aa56bd061ea3e7e0eb4c53a60816fca5f5"
         }
       ],
-      "diff": "560939c44113269811567c35a04f085e3c0e060fc5f949fd224c6237ccf9e829"
+      "diff": "5346b51eaaca61a50a628b1a55b9e9dc3f9a43f80eb7c408b04a1b70cff264e0"
     }
   },
   "niqspkgs": {
@@ -115,17 +122,13 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "01772509e6c8d07deaa5f5c1d5fd494c3460a026",
-    "narHash": "sha256-sMffGA16WJBVMDoWUPLH6PXy5V5W3IeaTOxgA9cYw8A=",
-    "lastModified": 1794293202,
-    "archive": {
-      "hash": "sha256-T9570jN+R3j9NjNDIRlVU0VzFS5/e1FYQhLEhSUClU8=",
-      "outHash": "sha256-GTaWzNkVmc/VLzP/IM1nEOZOIcgP7xVpZeKLxzqtpYk="
-    },
+    "rev": "3d460ece2fde6ba86a7f9deacc9a65e40f9ed19e",
+    "narHash": "sha256-x97M5XOV+IDcm7K9Bv6a7OUePyEVCjPeLpr3iD3BJD8=",
+    "lastModified": 1794375173,
     "patched": {
-      "path": "/nix/store/vc1ygpmblv3z2d2b68mazyrw3xm8ihj3-source",
-      "narHash": "sha256-LMCQ+Mk6CJ92ZJ8lFPA2BVrEOFXFZifvGJroapKPZp8=",
-      "lastModified": 1794293202,
+      "path": "/nix/store/c6a8kvvzmpyfhbx9pqznw4m6v60nkck8-source",
+      "narHash": "sha256-nCKZv8/Mo3xUmC2yeyPlFnuygs/qtWo0RSIkhGXMYhI=",
+      "lastModified": 1794375173,
       "patches": [
         {
           "source": "https://github.com/fufexan/nix-gaming/pull/384",
@@ -142,12 +145,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "d4e982c45559f1d1798a84d736d861e2c2666096",
-    "narHash": "sha256-rS0LXCe8SEx/KMCPyEBN6Jg3+UvpRBQRJpwdfBTgmd8=",
-    "lastModified": 1794358929,
+    "rev": "41a8518b8a21937e0f0407878d8947e112954b37",
+    "narHash": "sha256-6wopA38JvVKkaKa5MkmyAOtt+ac/5LBmHJU/On3BbLM=",
+    "lastModified": 1794384920,
     "archive": {
-      "hash": "sha256-Ilx2cevUaCb0BuC3/o8tZff62grxHU/Kxf7iv3DWjf4=",
-      "outHash": "sha256-XHVjpaZui9GxLH4mlvTtMoT0+gTCiAtTxtDuU/34tSI="
+      "hash": "sha256-I815QecZBgqgNo/ZoXovRmRBkhVClVKzn57lxt44v7M=",
+      "outHash": "sha256-1hFGss8VTNCaJT4Axug1Jb4f4lXVIWBQV7K69WkWekM="
     }
   },
   "nixos-core": {
