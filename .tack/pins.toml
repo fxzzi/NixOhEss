@@ -68,6 +68,8 @@ url = "github:hyprwm/Hyprland"
 patches = [
   # monitor: update swapchain when leaving DS to avoid flickers
   "https://github.com/hyprwm/Hyprland/pull/16941",
+  # render/hdr: avoid metadata modeset in DS ins/outs
+  "https://github.com/hyprwm/Hyprland/pull/16946",
 ]
 
 [inputs.niqspkgs]
