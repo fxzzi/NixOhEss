@@ -3,7 +3,7 @@
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
-    "beer": "git+https://git.notashelf.dev/notashelf/beer.git",
+    "beer": "git+https://forge.rysieko.pl/rysieko/beer",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "hjem": "github:feel-co/hjem",
     "hyprland": "github:hyprwm/Hyprland",
@@ -54,7 +54,7 @@
   },
   "beer": {
     "type": "git",
-    "url": "https://git.notashelf.dev/notashelf/beer.git",
+    "url": "https://forge.rysieko.pl/rysieko/beer",
     "ref": "HEAD",
     "rev": "9614b5d9c57c92e24e0ec8cd4a32d818ba752aad",
     "narHash": "sha256-GgrnGZxm0FwkRG/jCHvmIBvtEpdrg+4zg8WF1jLk/oc=",
@@ -246,7 +246,7 @@
   "tom-nvidia-patches": {
     "type": "fixed",
     "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff",
-    "sha256": "sha256-ZH2LSvdCAj8+hcuLU8zIMfDsbWbEWKmNkBCWPHokdDU=",
+    "sha256": "sha256-0dfYPYhUC5lTUp0TejO6T06rRWO+MMPoQDKCLyHN//Q=",
     "unpack": "file"
   },
   "walls": {
