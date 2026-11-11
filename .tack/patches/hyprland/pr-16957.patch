@@ -1,0 +1,131 @@
+diff --git a/src/Compositor.cpp b/src/Compositor.cpp
+index 63a5d770615..f5ef0e6564a 100644
+--- a/src/Compositor.cpp
++++ b/src/Compositor.cpp
+@@ -1008,6 +1008,13 @@ PImageDescription CCompositor::getHDRImageDescription() {
+         DEFAULT_HDR_IMAGE_DESCRIPTION;
+ }
+ 
++// whether quirks:prefer_hdr applies to window, which is nullptr for surfaces without one
++bool CCompositor::shouldPreferHDR(PHLWINDOW window) {
++    static const auto PPREFERHDR = CConfigValue<Config::INTEGER>("quirks:prefer_hdr");
++
++    return *PPREFERHDR == 1 || (*PPREFERHDR == 2 && window && window->metadata().appID() == "gamescope");
++}
++
+ bool CCompositor::shouldChangePreferredImageDescription() {
+     LOG(Log::WARN, "FIXME: color management protocol is enabled and outputs changed, check preferred image description changes");
+     return false;
+diff --git a/src/Compositor.hpp b/src/Compositor.hpp
+index 700f83cb0a5..6058caf9739 100644
+--- a/src/Compositor.hpp
++++ b/src/Compositor.hpp
+@@ -84,6 +84,7 @@ class CCompositor {
+ 
+     NColorManagement::PImageDescription getPreferredImageDescription();
+     NColorManagement::PImageDescription getHDRImageDescription();
++    bool                                shouldPreferHDR(PHLWINDOW window);
+     bool                                shouldChangePreferredImageDescription();
+ 
+     bool                                supportsDrmSyncobjTimeline() const;
+diff --git a/src/output/Monitor.cpp b/src/output/Monitor.cpp
+index d535d0f655c..2b995a25435 100644
+--- a/src/output/Monitor.cpp
++++ b/src/output/Monitor.cpp
+@@ -2378,14 +2378,24 @@ std::optional<NColorManagement::PImageDescription> CMonitor::getFSImageDescripti
+ std::optional<NColorManagement::PImageDescription> CMonitor::getAutoHDRImageDescription(const SP<CWLSurfaceResource>& surface) {
+     static const auto PAUTOHDR = CConfigValue<Config::INTEGER>("render:cm_auto_hdr");
+ 
+-    if (!*PAUTOHDR || !supportsHDR() || !m_activeMonitorRule.m_iccFile.empty() || m_cmType == NCMType::CM_HDR || m_cmType == NCMType::CM_HDR_EDID)
++    if (const auto WINDOW = getAutoHDRPreferWindow(); !WINDOW || WINDOW->wlSurface()->resource() != surface)
+         return {};
+ 
++    return getHDRImageDescription(*PAUTOHDR == 2 ? NCMType::CM_HDR_EDID : NCMType::CM_HDR);
++}
++
++// the fullscreen window that gets auto HDR's description as its preferred one, or nullptr if none should
++PHLWINDOW CMonitor::getAutoHDRPreferWindow() {
++    static const auto PAUTOHDR = CConfigValue<Config::INTEGER>("render:cm_auto_hdr");
++
++    if (!*PAUTOHDR || !supportsHDR() || !m_activeMonitorRule.m_iccFile.empty() || m_cmType == NCMType::CM_HDR || m_cmType == NCMType::CM_HDR_EDID)
++        return nullptr;
++
+     const auto FS_WINDOW = Fullscreen::controller()->getFullscreenWindow(m_self.lock());
+-    if (!FS_WINDOW || FS_WINDOW->wlSurface()->resource() != surface || FS_WINDOW->m_ruleApplicator->noAutoHDR().valueOrDefault())
+-        return {};
++    if (!FS_WINDOW || !g_pCompositor->shouldPreferHDR(FS_WINDOW) || FS_WINDOW->m_ruleApplicator->noAutoHDR().valueOrDefault())
++        return nullptr;
+ 
+-    return getHDRImageDescription(*PAUTOHDR == 2 ? NCMType::CM_HDR_EDID : NCMType::CM_HDR);
++    return FS_WINDOW;
+ }
+ 
+ NColorManagement::SPCPRimaries CMonitor::getMasteringPrimaries() {
+diff --git a/src/output/Monitor.hpp b/src/output/Monitor.hpp
+index b0498b745c8..45789a0c2e5 100644
+--- a/src/output/Monitor.hpp
++++ b/src/output/Monitor.hpp
+@@ -344,6 +344,7 @@ namespace Monitor {
+ 
+         std::optional<NColorManagement::PImageDescription>          getFSImageDescription();
+         std::optional<NColorManagement::PImageDescription>          getAutoHDRImageDescription(const SP<CWLSurfaceResource>& surface);
++        PHLWINDOW                                                   getAutoHDRPreferWindow();
+ 
+         NColorManagement::SPCPRimaries                              getMasteringPrimaries();
+         NColorManagement::SImageDescription::SPCMasteringLuminances getMasteringLuminances();
+diff --git a/src/protocols/core/Compositor.cpp b/src/protocols/core/Compositor.cpp
+index f3fa66ef658..59a9eb2e537 100644
+--- a/src/protocols/core/Compositor.cpp
++++ b/src/protocols/core/Compositor.cpp
+@@ -708,12 +708,10 @@ void CWLSurfaceResource::commitState(SSurfaceState& state) {
+ }
+ 
+ PImageDescription CWLSurfaceResource::getPreferredImageDescription() {
+-    static const auto PFORCE_HDR = CConfigValue<Config::INTEGER>("quirks:prefer_hdr");
+-    const auto        WINDOW     = m_hlSurface ? Desktop::View::CWindow::fromView(m_hlSurface->view()) : nullptr;
+-
+-    if (*PFORCE_HDR == 1 || (*PFORCE_HDR == 2 && m_hlSurface && WINDOW && WINDOW->metadata().appID() == "gamescope"))
+-        return g_pCompositor->getHDRImageDescription();
++    const auto WINDOW     = m_hlSurface ? Desktop::View::CWindow::fromView(m_hlSurface->view()) : nullptr;
++    const bool PREFER_HDR = g_pCompositor->shouldPreferHDR(WINDOW);
+ 
++    // subsurfaces follow their toplevel surface
+     auto parent = m_self;
+     if (parent->m_role->role() == SURFACE_ROLE_SUBSURFACE) {
+         const auto subsurface = sc<CSubsurfaceRole*>(parent->m_role.get())->m_subsurface.lock();
+@@ -726,10 +724,10 @@ PImageDescription CWLSurfaceResource::getPreferredImageDescription() {
+         monitor = WINDOW->m_monitor;
+ 
+     if (!monitor)
+-        return g_pCompositor->getPreferredImageDescription();
++        return PREFER_HDR ? g_pCompositor->getHDRImageDescription() : g_pCompositor->getPreferredImageDescription();
+ 
+-    // auto HDR only switches once a fullscreen client submits HDR content, so offer it the description it would switch to
+-    return monitor->getAutoHDRImageDescription(parent.lock()).value_or(monitor->m_imageDescription);
++    // with prefer_hdr, offer the fullscreen surface the exact description auto HDR would switch its monitor to
++    return monitor->getAutoHDRImageDescription(parent.lock()).value_or(PREFER_HDR ? g_pCompositor->getHDRImageDescription() : monitor->m_imageDescription);
+ }
+ 
+ void CWLSurfaceResource::sortSubsurfaces() {
+diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
+index 6fc12317404..d522d52f2f7 100644
+--- a/src/render/Renderer.cpp
++++ b/src/render/Renderer.cpp
+@@ -2738,10 +2738,13 @@ void IHyprRenderer::handleFullscreenSettings(PHLMONITOR pMonitor) {
+         pMonitor->m_output->state->setCTM(pMonitor->m_ctm);
+     }
+ 
+-    // the fullscreen surface's preferred description depends on the fullscreen window, see getPreferredImageDescription()
+-    if (*PAUTOHDR && PROTO::colorManagement && pMonitor->supportsHDR() && FULLSCREEN_WINDOW != pMonitor->m_autoHDRWindow) {
+-        pMonitor->m_autoHDRWindow = FULLSCREEN_WINDOW;
+-        PROTO::colorManagement->recheckFeedbacks();
++    // the fullscreen surface's preferred description depends on getAutoHDRPreferWindow(), see getPreferredImageDescription()
++    if (PROTO::colorManagement) {
++        const auto AUTO_HDR_WINDOW = pMonitor->getAutoHDRPreferWindow();
++        if (AUTO_HDR_WINDOW != pMonitor->m_autoHDRWindow) {
++            pMonitor->m_autoHDRWindow = AUTO_HDR_WINDOW;
++            PROTO::colorManagement->recheckFeedbacks();
++        }
+     }
+ 
+     pMonitor->m_previousFSWindow = FULLSCREEN_WINDOW;

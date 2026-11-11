@@ -14,11 +14,8 @@ names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 
 # core
 [inputs.nixpkgs]
-url = "channel:nixos-unstable-small"
-patches = [
-  # lutris_unwrapped: fix crash at launch
-  "https://github.com/NixOS/nixpkgs/pull/585282",
-]
+url    = "channel:nixos-unstable-small"
+frozen = true
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.nixos-core]
@@ -70,6 +67,8 @@ patches = [
   "https://github.com/hyprwm/Hyprland/pull/16941",
   # render/hdr: avoid metadata modeset in DS ins/outs
   "https://github.com/hyprwm/Hyprland/pull/16946",
+  # cm: only prefer HDR for the fullscreen window with prefer_hdr
+  "https://github.com/hyprwm/Hyprland/pull/16957",
 ]
 
 [inputs.niqspkgs]
