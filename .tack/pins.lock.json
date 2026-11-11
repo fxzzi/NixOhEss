@@ -3,7 +3,7 @@
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
-    "beer": "git+https://forge.rysieko.pl/rysieko/beer",
+    "beer": "git+https://git.notashelf.dev/notashelf/beer.git",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "hjem": "github:feel-co/hjem",
     "hyprland": "github:hyprwm/Hyprland",
@@ -54,7 +54,7 @@
   },
   "beer": {
     "type": "git",
-    "url": "https://forge.rysieko.pl/rysieko/beer",
+    "url": "https://git.notashelf.dev/notashelf/beer.git",
     "ref": "HEAD",
     "rev": "9614b5d9c57c92e24e0ec8cd4a32d818ba752aad",
     "narHash": "sha256-GgrnGZxm0FwkRG/jCHvmIBvtEpdrg+4zg8WF1jLk/oc=",
