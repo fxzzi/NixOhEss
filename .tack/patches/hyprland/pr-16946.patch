@@ -11,10 +11,10 @@ index b0498b745c8..5502a8febbc 100644
          std::optional<dev_t>                m_cachedAllocatorDRMDev;
          std::optional<dev_t>                m_cachedCompositorDRMDev;
 diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
-index 6fc12317404..e46f1b54fb8 100644
+index 6fc12317404..db94fcec9e9 100644
 --- a/src/render/Renderer.cpp
 +++ b/src/render/Renderer.cpp
-@@ -2621,11 +2621,13 @@ void IHyprRenderer::handleFullscreenSettings(PHLMONITOR pMonitor) {
+@@ -2621,13 +2621,15 @@ void IHyprRenderer::handleFullscreenSettings(PHLMONITOR pMonitor) {
                          LOG(Log::INFO, "[CM] Recreating HDR metadata for surface");
                          SURF->m_colorManagement->setHDRMetadata(createHDRMetadata(SURF->m_colorManagement->imageDescription(), pMonitor));
                      }
@@ -25,11 +25,15 @@ index 6fc12317404..e46f1b54fb8 100644
                          pMonitor->m_output->state->setHDRMetadata(SURF->m_colorManagement->hdrMetadata());
 -                        pMonitor->m_hdrMetadataFromSurface = true;
                      }
+-                    hdrIsHandled               = true;
+-                    pMonitor->m_needsHDRupdate = false;
 +                    pMonitor->m_hdrMetadataFromSurface = true;
 +                    pMonitor->m_hdrMetadataWindow      = FULLSCREEN_WINDOW;
-                     hdrIsHandled               = true;
-                     pMonitor->m_needsHDRupdate = false;
++                    hdrIsHandled                       = true;
++                    pMonitor->m_needsHDRupdate         = false;
                  }
+             }
+         }
 @@ -2639,7 +2641,9 @@ void IHyprRenderer::handleFullscreenSettings(PHLMONITOR pMonitor) {
          if (!hdrIsHandled) {
              const bool HDR_CHANGED = pMonitor->inHDR() != wantHDR;

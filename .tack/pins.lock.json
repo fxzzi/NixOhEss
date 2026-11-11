@@ -80,13 +80,13 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "815585bb8197f9bec5e0fc5cd2d307a7b135e015",
-    "narHash": "sha256-hl3GQ1lmv4P+8U2oCEYsikz+3u9fra3qkWL8mjSW+W0=",
-    "lastModified": 1794355752,
+    "rev": "1989e6179b4de4db0af072e79e10236b92c1f110",
+    "narHash": "sha256-XgVpJTvzCjuMsz5NeYwLJ9KiCDNEnqAyDyXobiyVzug=",
+    "lastModified": 1794476999,
     "patched": {
-      "path": "/nix/store/dx4347qggb3dxwvw9a4k4v0byq8x6mh6-source",
-      "narHash": "sha256-zTqh+kHLUJuMCw/fo5XbGIUZ+mWeTP0NFwJ4Ko7ebnU=",
-      "lastModified": 1794355752,
+      "path": "/nix/store/mz6f8jjkwmrrz7wp8wd5znvsq21wd99l-source",
+      "narHash": "sha256-/wRHsGJ9MfE4nVRKpT6YDpfQnana9S0GK7qoxfjp5y4=",
+      "lastModified": 1794476999,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16941",
@@ -99,11 +99,18 @@
           "source": "https://github.com/hyprwm/Hyprland/pull/16946",
           "url": "https://github.com/hyprwm/Hyprland/pull/16946",
           "file": "patches/hyprland/pr-16946.patch",
-          "sha256": "de0006436289bbf0ee87aceabe6fe1b39ffdb550639441ab795a268efef1a6b6",
-          "head": "46a437aa56bd061ea3e7e0eb4c53a60816fca5f5"
+          "sha256": "abc6a63d5d6b61c9ef37a8dd95aa91c8bdf0b21ce0228f2653037de1778e2d6f",
+          "head": "5294fba58e9bc27b6cb6acd55120f0f296320616"
+        },
+        {
+          "source": "https://github.com/hyprwm/Hyprland/pull/16957",
+          "url": "https://github.com/hyprwm/Hyprland/pull/16957",
+          "file": "patches/hyprland/pr-16957.patch",
+          "sha256": "0713a39bbb2b0f95603ecdacdaf0868093545797e9a5cc41452527a2b9c779f4",
+          "head": "0016c6e10492b6bdb92a18d25b5e43542fceadcc"
         }
       ],
-      "diff": "5346b51eaaca61a50a628b1a55b9e9dc3f9a43f80eb7c408b04a1b70cff264e0"
+      "diff": "0f68d2f76153385520d9c3f0935c0eb717a01f825af30901360cd8b170686072"
     }
   },
   "niqspkgs": {
@@ -145,12 +152,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "41a8518b8a21937e0f0407878d8947e112954b37",
-    "narHash": "sha256-6wopA38JvVKkaKa5MkmyAOtt+ac/5LBmHJU/On3BbLM=",
-    "lastModified": 1794384920,
+    "rev": "109af0bd4f8dd690749a1831f94df15a3816ee2a",
+    "narHash": "sha256-iS+juE5nq1dPPLyVtNmlkGfAf8TvMamL/LMnqh48jPY=",
+    "lastModified": 1794456864,
     "archive": {
-      "hash": "sha256-I815QecZBgqgNo/ZoXovRmRBkhVClVKzn57lxt44v7M=",
-      "outHash": "sha256-1hFGss8VTNCaJT4Axug1Jb4f4lXVIWBQV7K69WkWekM="
+      "hash": "sha256-NHVrz2RNzKU9KRQJFaHWnEPY/InhsXrUcr0odoSbP30=",
+      "outHash": "sha256-nziCdFbh6ci0J2L85rCzLlwc0TOUwHQqU3nNbahx2jU="
     }
   },
   "nixos-core": {
@@ -178,33 +185,18 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable-small/nixos-26.11pre1116118.f37ff5c2009e/nixexprs.tar.zst?rev=f37ff5c2009e3923aa79378f923f01d5759b6d84&lastModified=1794309823",
-    "rev": "f37ff5c2009e3923aa79378f923f01d5759b6d84",
-    "narHash": "sha256-W5iTNOSDOtBklDuka7mxyY53st3yUorpeMvc+u2QlX0=",
-    "lastModified": 1794309823,
-    "patched": {
-      "path": "/nix/store/yx863a8brdyvldb9nknxyn7ax8pllwq6-source",
-      "narHash": "sha256-CauX2JdqifCy7sipf/cohE3FZjIrQ8x6Bt7RMv6lOZ8=",
-      "lastModified": 1794309823,
-      "patches": [
-        {
-          "source": "https://github.com/NixOS/nixpkgs/pull/585282",
-          "url": "https://github.com/NixOS/nixpkgs/pull/585282",
-          "file": "patches/nixpkgs/pr-585282.patch",
-          "sha256": "5bf9269313853a6098df9888c80eea012278001f1055ffd78284986ebb1ad274",
-          "head": "c7d32bc90499a115398f2a68521962f6b32f143f"
-        }
-      ],
-      "diff": "0b1c01711448f0083bee02126cd0912436b45ab426d472e2e62a82bf9087b93a"
-    }
+    "url": "https://releases.nixos.org/nixos/unstable-small/nixos-26.11pre1118478.babbd6cb9101/nixexprs.tar.zst?rev=babbd6cb910119d644818372641a557f9330df1c&lastModified=1794464805",
+    "rev": "babbd6cb910119d644818372641a557f9330df1c",
+    "narHash": "sha256-c6VJz6lWXkWHFLHLEDSz5fyK8PV+CZIsG3VByAWLCBM=",
+    "lastModified": 1794464805
   },
   "nvf": {
     "type": "github",
     "owner": "NotAShelf",
     "repo": "nvf",
-    "rev": "dd06c9b6aac414bf7cd7594b27108439f5caa95b",
-    "narHash": "sha256-IjBiWJHKiuhMQ/xsdHYGbxK6AXac4TIWYM1DODRnkEk=",
-    "lastModified": 1794268150
+    "rev": "01869cbbf1938bd02858dae14d9a942d35a60454",
+    "narHash": "sha256-DrdxLvPwBEJd8N5ycaIG1zhWFCAj+QT/XJRm9wcegtc=",
+    "lastModified": 1794477186
   },
   "rags": {
     "type": "github",
@@ -238,15 +230,15 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "f59bc3e6679df14d402e40bf895cc2533bae4ca2",
-    "narHash": "sha256-ZK5sfTsvSo9VYEi8mAVtfu5FUFvMYoGMn6+CYzS1pPU=",
-    "lastModified": 1794242539,
+    "rev": "c107b0fc252b0b33b01e6b7d6111aaaedc49613e",
+    "narHash": "sha256-bdNCaHUF3c8hgsYw6FCI+lGcZanZIDxt2Sefu5AsERY=",
+    "lastModified": 1794450976,
     "archive": null
   },
   "tom-nvidia-patches": {
     "type": "fixed",
     "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff",
-    "sha256": "sha256-0dfYPYhUC5lTUp0TejO6T06rRWO+MMPoQDKCLyHN//Q=",
+    "sha256": "sha256-rVkwA3rXts1plzJQOvXOml9jPWvlE/n/jAogI/V2lQc=",
     "unpack": "file"
   },
   "walls": {

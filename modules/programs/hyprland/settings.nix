@@ -235,8 +235,6 @@ in
             hl.window_rule({ match = { class = "xdg-desktop-portal-gtk" }, float = true })
             hl.window_rule({ match = { class = "org.gnome.FileRoller", title = "Extract.*" }, float = true })
 
-            hl.window_rule({ match = { class = "chromium-browser" }, no_auto_hdr = true })
-
             -- apply to everything
             hl.window_rule({ match = { class = ".*"}, 
               -- disable HDR tonemapping for now to get DS off and on to more closely match

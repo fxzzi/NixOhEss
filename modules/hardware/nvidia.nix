@@ -44,13 +44,9 @@ in
             # tom / gulafaran's patchset.
             # yes, it's vibe coded to hell and back, but so is the NVIDIA driver itself.
             # and it fixes a bunch of stuff and provides some good QOL improvements.
-            # and i trust tom from previous work on the hyprstack :P
             inputs.tom-nvidia-patches
           ];
-          # replace the driver's libnvidia-allocator.so.1 (and so gbm/nvidia-drm_gbm.so,
-          # which symlinks to it) with the open one, for both 64 and 32-bit.
-          # this has to happen in the driver package itself: its libs have a RUNPATH
-          # of their own lib dir, so EGL/GL/Vulkan would dlopen the closed copy otherwise.
+          # replace the driver's libnvidia-allocator.so.1 with tom's open version
           postInstall = ''
             replaceAllocator() {
               rm "$1"/lib/libnvidia-allocator.so*
