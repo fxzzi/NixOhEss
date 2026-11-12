@@ -19,7 +19,7 @@
       sgdboop
       cemu
       dolphin-emu
-      nvtop
+      nvtopPackages.nvidia
       yt-dlp
       eden
       claude-code
@@ -28,12 +28,12 @@
         cores: with cores; [
           bsnes
           beetle-psx-hw
-          pcsx2
           genesis-plus-gx
           melonds
           mupen64plus
         ]
       ))
+      pcsx2
       self.packages.${pkgs.stdenv.hostPlatform.system}.transcode
       inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2vorbis
       inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.flac2opus
