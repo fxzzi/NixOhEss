@@ -9,7 +9,7 @@
     packages = with pkgs; [
       losslesscut
       qbittorrent
-      nvtopPackages.amd
+      nvtop
       sgdboop
       cemu
       stremio-linux-shell
