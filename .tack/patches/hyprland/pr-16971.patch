@@ -1,0 +1,129 @@
+diff --git a/src/helpers/cm/ColorManagement.cpp b/src/helpers/cm/ColorManagement.cpp
+index 36089ed8169..2c9464ef956 100644
+--- a/src/helpers/cm/ColorManagement.cpp
++++ b/src/helpers/cm/ColorManagement.cpp
+@@ -8,6 +8,7 @@
+ #include <map>
+ #include <vector>
+ #include <numeric>
++#include <algorithm>
+ #include <numbers>
+ 
+ using namespace NColorManagement;
+@@ -177,6 +178,14 @@ static std::array<float, 3> matByVec(const Mat3x3& M, const std::array<float, 3>
+     return {ARR[0] * v[0] + ARR[1] * v[1] + ARR[2] * v[2], ARR[3] * v[0] + ARR[4] * v[1] + ARR[5] * v[2], ARR[6] * v[0] + ARR[7] * v[1] + ARR[8] * v[2]};
+ }
+ 
++float NColorManagement::SImageDescription::getContentMaxLuminance(float fallback) const {
++    if (maxCLL > 0)
++        return std::min(sc<float>(maxCLL), fallback);
++    if (masteringLuminances.max > 0)
++        return std::min(sc<float>(masteringLuminances.max), fallback);
++    return fallback;
++}
++
+ std::optional<Mat3x3> NColorManagement::rgbToXYZFromPrimaries(SPCPRimaries pr) {
+     const auto R = Hyprgraphics::xy2xyz(pr.red);
+     const auto G = Hyprgraphics::xy2xyz(pr.green);
+diff --git a/src/helpers/cm/ColorManagement.hpp b/src/helpers/cm/ColorManagement.hpp
+index 76bcf973306..6b6943bafce 100644
+--- a/src/helpers/cm/ColorManagement.hpp
++++ b/src/helpers/cm/ColorManagement.hpp
+@@ -280,6 +280,8 @@ namespace NColorManagement {
+             return primaries;
+         }
+ 
++        float getContentMaxLuminance(float fallback) const;
++
+         float getTFMinLuminance(float sdrMinLuminance = -1.0f) const {
+             switch (transferFunction) {
+                 case CM_TRANSFER_FUNCTION_EXT_LINEAR: return isWindows ? 0.0f : luminances.min;
+@@ -418,7 +420,7 @@ namespace NColorManagement {
+         .primariesNameSet = true,
+         .primariesNamed   = NColorManagement::CM_PRIMARIES_SRGB,
+         .primaries        = NColorPrimaries::BT709,
+-        .luminances       = {.reference = 203},
++        .luminances       = {.min = 0, .max = 10000, .reference = 203},
+     });
+ 
+     inline const auto BT2100_IMAGE_DESCRIPTION = CImageDescription::from(SImageDescription{
+@@ -427,7 +429,7 @@ namespace NColorManagement {
+         .primariesNameSet = true,
+         .primariesNamed   = NColorManagement::CM_PRIMARIES_BT2020,
+         .primaries        = NColorPrimaries::BT2020,
+-        .luminances       = {.reference = 203},
++        .luminances       = {.min = HDR_MIN_LUMINANCE, .max = 10000, .reference = 203},
+     });
+ 
+     inline const auto LINEAR_IMAGE_DESCRIPTION = CImageDescription::from(SImageDescription{
+diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
+index 63e17ca1519..5a9375d56cd 100644
+--- a/src/render/Renderer.cpp
++++ b/src/render/Renderer.cpp
+@@ -2150,14 +2150,6 @@ static bool isSDR2HDR(CRenderContext& ctx, const NColorManagement::SImageDescrip
+           ctx.m_data.pMonitor->m_imageDescription->value().transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_ST2084_PQ));
+ }
+ 
+-static bool isHDR2SDR(const NColorManagement::SImageDescription& imageDescription, const NColorManagement::SImageDescription& targetImageDescription) {
+-    // might be too strict
+-    return (imageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_ST2084_PQ ||
+-            imageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_HLG) &&
+-        (targetImageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_SRGB ||
+-         targetImageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_GAMMA22);
+-}
+-
+ void IHyprRenderer::clearCMSettingsCache(CRenderContext& ctx) {
+     ctx.m_cmSettingsCache.clear();
+ }
+@@ -2197,10 +2189,8 @@ SCMSettings IHyprRenderer::getCMSettings(CRenderContext& ctx, const NColorManage
+         srcTF = imageDescription->value().transferFunction;
+ 
+     const bool  needsSDRmod     = modifySDR && isSDR2HDR(ctx, imageDescription->value(), targetImageDescription->value());
+-    const bool  needsHDRmod     = !needsSDRmod && isHDR2SDR(imageDescription->value(), targetImageDescription->value());
+-    const float maxLuminance    = needsHDRmod ?
+-        imageDescription->value().getTFMaxLuminance(-1) :
+-        (imageDescription->value().luminances.max > 0 ? imageDescription->value().luminances.max : imageDescription->value().luminances.reference);
++    const float maxLuminance    = imageDescription->value().getContentMaxLuminance(imageDescription->value().luminances.max > 0 ? imageDescription->value().luminances.max :
++                                                                                                                                  imageDescription->value().luminances.reference);
+     const auto  dstMaxLuminance = targetImageDescription->value().luminances.max > 0 ? targetImageDescription->value().luminances.max : 10000;
+ 
+     auto        matrix = imageDescription->getPrimaries()->convertMatrix(targetImageDescription->getPrimaries());
+diff --git a/tests/helpers/ColorManagement.cpp b/tests/helpers/ColorManagement.cpp
+index 3875a5ee595..8357d3106b1 100644
+--- a/tests/helpers/ColorManagement.cpp
++++ b/tests/helpers/ColorManagement.cpp
+@@ -120,3 +120,18 @@ TEST(ColorManagement, NativeLinearConversionPreservesExtendedRange) {
+     EXPECT_NEAR(color.c.b, 12500.0, 0.0001);
+     EXPECT_DOUBLE_EQ(color.c.a, 1.0);
+ }
++
++TEST(ColorManagement, ContentMaxLuminancePrefersMetadata) {
++    SImageDescription description;
++    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(10000.F), 10000.F);
++
++    description.masteringLuminances = {.min = 0.005F, .max = 1000};
++    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(10000.F), 1000.F);
++
++    description.maxCLL = 600;
++    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(10000.F), 600.F);
++
++    // Metadata can't push the peak past what the encoding can carry.
++    description.maxCLL = 4000;
++    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(1000.F), 1000.F);
++}
+diff --git a/tests/protocols/ColorManagement.cpp b/tests/protocols/ColorManagement.cpp
+index ffbe42580c9..3cb09b1b45d 100644
+--- a/tests/protocols/ColorManagement.cpp
++++ b/tests/protocols/ColorManagement.cpp
+@@ -248,9 +248,8 @@ TEST_F(CColorManagementTest, WindowsScRGBKeepsFixedEncoding) {
+     EXPECT_EQ(settings.transferFunction, CM_TRANSFER_FUNCTION_EXT_LINEAR);
+     EXPECT_TRUE(settings.primariesNameSet);
+     EXPECT_EQ(settings.primariesNamed, CM_PRIMARIES_SRGB);
+-    // Stored metadata retains its default minimum, but Windows encoding starts at zero.
+-    EXPECT_FLOAT_EQ(settings.luminances.min, 0.2F);
+-    EXPECT_EQ(settings.luminances.max, 80U);
++    EXPECT_FLOAT_EQ(settings.luminances.min, 0.F);
++    EXPECT_EQ(settings.luminances.max, 10000U);
+     EXPECT_EQ(settings.luminances.reference, 203U);
+     EXPECT_FLOAT_EQ(settings.getTFMinLuminance(), 0.F);
+     EXPECT_FLOAT_EQ(settings.getTFMaxLuminance(), 80.F);

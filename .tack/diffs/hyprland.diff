@@ -26,6 +26,80 @@ diff --git a/src/Compositor.hpp b/src/Compositor.hpp
      bool                                shouldChangePreferredImageDescription();
  
      bool                                supportsDrmSyncobjTimeline() const;
+diff --git a/src/helpers/cm/ColorManagement.cpp b/src/helpers/cm/ColorManagement.cpp
+--- a/src/helpers/cm/ColorManagement.cpp
++++ b/src/helpers/cm/ColorManagement.cpp
+@@ -8,6 +8,7 @@
+ #include <map>
+ #include <vector>
+ #include <numeric>
++#include <algorithm>
+ #include <numbers>
+ 
+ using namespace NColorManagement;
+@@ -177,6 +178,14 @@
+     return {ARR[0] * v[0] + ARR[1] * v[1] + ARR[2] * v[2], ARR[3] * v[0] + ARR[4] * v[1] + ARR[5] * v[2], ARR[6] * v[0] + ARR[7] * v[1] + ARR[8] * v[2]};
+ }
+ 
++float NColorManagement::SImageDescription::getContentMaxLuminance(float fallback) const {
++    if (maxCLL > 0)
++        return std::min(sc<float>(maxCLL), fallback);
++    if (masteringLuminances.max > 0)
++        return std::min(sc<float>(masteringLuminances.max), fallback);
++    return fallback;
++}
++
+ std::optional<Mat3x3> NColorManagement::rgbToXYZFromPrimaries(SPCPRimaries pr) {
+     const auto R = Hyprgraphics::xy2xyz(pr.red);
+     const auto G = Hyprgraphics::xy2xyz(pr.green);
+@@ -486,7 +495,7 @@
+     return color;
+ }
+ 
+-static RGBAColor tonemap(RGBAColor color, std::array<std::array<double, 3>, 3> dstXYZ, float maxLuminance, float dstMaxLuminance, float dstRefLuminance, float srcRefLuminance) {
++static RGBAColor tonemap(RGBAColor color, std::array<std::array<double, 3>, 3> dstXYZ, float maxLuminance, float dstMaxLuminance, float dstRefLuminance) {
+     // TODO source color is expected to be in sRGB colorspace and tonemapping shouldn't be needed
+     return color;
+ }
+@@ -507,7 +516,7 @@
+             color = toNit(color, settings.srcTFRange);
+         color *= color.c.a;
+         if (settings.needsTonemap)
+-            color = tonemap(color, settings.dstPrimaries2XYZ, settings.maxLuminance, settings.dstMaxLuminance, settings.dstRefLuminance, settings.srcRefLuminance);
++            color = tonemap(color, settings.dstPrimaries2XYZ, settings.maxLuminance, settings.dstMaxLuminance, settings.dstRefLuminance);
+ 
+         color = fromLinearNit(color, dstDesc->value().transferFunction, settings.dstTFRange);
+         if (settings.needsSDRmod) {
+diff --git a/src/helpers/cm/ColorManagement.hpp b/src/helpers/cm/ColorManagement.hpp
+--- a/src/helpers/cm/ColorManagement.hpp
++++ b/src/helpers/cm/ColorManagement.hpp
+@@ -280,6 +280,8 @@
+             return primaries;
+         }
+ 
++        float getContentMaxLuminance(float fallback) const;
++
+         float getTFMinLuminance(float sdrMinLuminance = -1.0f) const {
+             switch (transferFunction) {
+                 case CM_TRANSFER_FUNCTION_EXT_LINEAR: return isWindows ? 0.0f : luminances.min;
+@@ -418,7 +420,7 @@
+         .primariesNameSet = true,
+         .primariesNamed   = NColorManagement::CM_PRIMARIES_SRGB,
+         .primaries        = NColorPrimaries::BT709,
+-        .luminances       = {.reference = 203},
++        .luminances       = {.min = 0, .max = 10000, .reference = 203},
+     });
+ 
+     inline const auto BT2100_IMAGE_DESCRIPTION = CImageDescription::from(SImageDescription{
+@@ -427,7 +429,7 @@
+         .primariesNameSet = true,
+         .primariesNamed   = NColorManagement::CM_PRIMARIES_BT2020,
+         .primaries        = NColorPrimaries::BT2020,
+-        .luminances       = {.reference = 203},
++        .luminances       = {.min = HDR_MIN_LUMINANCE, .max = 10000, .reference = 203},
+     });
+ 
+     inline const auto LINEAR_IMAGE_DESCRIPTION = CImageDescription::from(SImageDescription{
 diff --git a/src/output/Monitor.cpp b/src/output/Monitor.cpp
 --- a/src/output/Monitor.cpp
 +++ b/src/output/Monitor.cpp
@@ -121,22 +195,124 @@ diff --git a/src/protocols/core/Compositor.cpp b/src/protocols/core/Compositor.c
  }
  
  void CWLSurfaceResource::sortSubsurfaces() {
+diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
+--- a/src/render/OpenGL.cpp
++++ b/src/render/OpenGL.cpp
+@@ -1290,7 +1290,6 @@
+                                      const SCMSettings& settings) {
+     shader->setUniformFloat2(SHADER_SRC_TF_RANGE, settings.srcTFRange.min, settings.srcTFRange.max);
+     shader->setUniformFloat2(SHADER_DST_TF_RANGE, settings.dstTFRange.min, settings.dstTFRange.max);
+-    shader->setUniformFloat(SHADER_SRC_REF_LUMINANCE, settings.srcRefLuminance);
+     shader->setUniformFloat(SHADER_DST_REF_LUMINANCE, settings.dstRefLuminance);
+     shader->setUniformFloat(SHADER_MAX_LUMINANCE, settings.maxLuminance);
+     shader->setUniformFloat(SHADER_DST_MAX_LUMINANCE, settings.dstMaxLuminance);
 diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
 --- a/src/render/Renderer.cpp
 +++ b/src/render/Renderer.cpp
-@@ -2644,13 +2644,15 @@
-                         LOG(Log::INFO, "[CM] Recreating HDR metadata for surface");
-                         SURF->m_colorManagement->setHDRMetadata(createHDRMetadata(SURF->m_colorManagement->imageDescription(), pMonitor));
-                     }
+@@ -2150,14 +2150,6 @@
+           ctx.m_data.pMonitor->m_imageDescription->value().transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_ST2084_PQ));
+ }
+ 
+-static bool isHDR2SDR(const NColorManagement::SImageDescription& imageDescription, const NColorManagement::SImageDescription& targetImageDescription) {
+-    // might be too strict
+-    return (imageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_ST2084_PQ ||
+-            imageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_HLG) &&
+-        (targetImageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_SRGB ||
+-         targetImageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_GAMMA22);
+-}
+-
+ void IHyprRenderer::clearCMSettingsCache(CRenderContext& ctx) {
+     ctx.m_cmSettingsCache.clear();
+ }
+@@ -2197,10 +2189,8 @@
+         srcTF = imageDescription->value().transferFunction;
+ 
+     const bool  needsSDRmod     = modifySDR && isSDR2HDR(ctx, imageDescription->value(), targetImageDescription->value());
+-    const bool  needsHDRmod     = !needsSDRmod && isHDR2SDR(imageDescription->value(), targetImageDescription->value());
+-    const float maxLuminance    = needsHDRmod ?
+-        imageDescription->value().getTFMaxLuminance(-1) :
+-        (imageDescription->value().luminances.max > 0 ? imageDescription->value().luminances.max : imageDescription->value().luminances.reference);
++    const float maxLuminance    = imageDescription->value().getContentMaxLuminance(imageDescription->value().luminances.max > 0 ? imageDescription->value().luminances.max :
++                                                                                                                                  imageDescription->value().luminances.reference);
+     const auto  dstMaxLuminance = targetImageDescription->value().luminances.max > 0 ? targetImageDescription->value().luminances.max : 10000;
+ 
+     auto        matrix = imageDescription->getPrimaries()->convertMatrix(targetImageDescription->getPrimaries());
+@@ -2219,14 +2209,12 @@
+                             .max = imageDescription->value().getTFMaxLuminance(needsSDRmod ? sdrMaxLuminance : -1)},
+         .dstTFRange      = {.min = targetImageDescription->value().getTFMinLuminance(needsSDRmod ? sdrMinLuminance : -1),
+                             .max = targetImageDescription->value().getTFMaxLuminance(needsSDRmod ? sdrMaxLuminance : -1)},
+-        .srcRefLuminance = imageDescription->value().luminances.reference,
+         .dstRefLuminance = targetImageDescription->value().luminances.reference,
+         .convertMatrix   = matrix.mat(),
+ 
+         .needsTonemap            = tonemapMode != 0 && needsTonemap,
+         .tonemapMode             = tonemapMode,
+-        .maxLuminance            = needsTonemap && tonemapMode == 2 ? dstMaxLuminance :
+-                                                                      maxLuminance * targetImageDescription->value().luminances.reference / imageDescription->value().luminances.reference,
++        .maxLuminance            = needsTonemap && tonemapMode == 2 ? dstMaxLuminance : maxLuminance,
+         .dstMaxLuminance         = dstMaxLuminance,
+         .dstPrimaries2XYZ        = toXYZ.mat(),
+         .needsSDRmod             = needsMod,
+@@ -2606,6 +2594,22 @@
+     return std::memcmp(&a.hdmi_metadata_type1, &b.hdmi_metadata_type1, sizeof(a.hdmi_metadata_type1)) == 0;
+ }
+ 
++static void applySurfaceHDRMetadata(SP<CWLSurfaceResource> surf, PHLMONITOR pMonitor, bool force) {
++    const auto& CM = surf->m_colorManagement;
++
++    if (CM->needsHdrMetadataUpdate()) {
++        LOG(Log::INFO, "[CM] Recreating HDR metadata for surface");
++        CM->setHDRMetadata(createHDRMetadata(CM->imageDescription(), pMonitor));
++        force = true;
++    }
++
++    // changing blob causes a modeset, so try and skip it in cases where surface metadata is already applied
++    if (force && !hdrMetadataEqual(CM->hdrMetadata(), pMonitor->m_output->state->state().hdrMetadata)) {
++        LOG(Log::INFO, "[CM] Updating HDR metadata from surface");
++        pMonitor->m_output->state->setHDRMetadata(CM->hdrMetadata());
++    }
++}
++
+ void IHyprRenderer::handleFullscreenSettings(PHLMONITOR pMonitor) {
+     static auto PCT        = CConfigValue<Config::INTEGER>("render:send_content_type");
+     static auto PAUTOHDR   = CConfigValue<Config::INTEGER>("render:cm_auto_hdr");
+@@ -2625,13 +2629,13 @@
+         // HDR scRGB - monitor settings
+         // HDR PQ surface & DS is active - surface settings
+ 
+-        bool hdrIsHandled = false;
++        bool       hdrIsHandled = false;
++        const auto SURF         = FULLSCREEN_WINDOW ? FULLSCREEN_WINDOW->wlSurface()->resource()->findWithCM() : nullptr;
++        const bool SURF_HAS_CM  = SURF && SURF->m_colorManagement.valid() && SURF->m_colorManagement->hasImageDescription();
++
+         if (FULLSCREEN_WINDOW) {
+-            const auto ROOT_SURF = FULLSCREEN_WINDOW->wlSurface()->resource();
+-            const auto SURF      = ROOT_SURF->findWithCM();
+-
+             // we have a surface with image description
+-            if (SURF && SURF->m_colorManagement.valid() && SURF->m_colorManagement->hasImageDescription()) {
++            if (SURF_HAS_CM) {
+                 const bool surfaceIsHDR = SURF->m_colorManagement->isHDR();
+                 wantHDR                 = *PAUTOHDR && surfaceIsHDR;
+                 if (FULLSCREEN_WINDOW && FULLSCREEN_WINDOW->m_ruleApplicator->noAutoHDR().valueOrDefault())
+@@ -2638,19 +2642,11 @@
+                     wantHDR = configuredHDR;
+                 if (surfaceIsHDR && !SURF->m_colorManagement->isWindowsScRGB() && !pMonitor->m_lastScanout.expired()) {
+                     // DS HDR
+-                    bool needsHdrMetadataUpdate =
+-                        SURF->m_colorManagement->needsHdrMetadataUpdate() || pMonitor->m_previousFSWindow != FULLSCREEN_WINDOW || pMonitor->m_needsHDRupdate;
+-                    if (SURF->m_colorManagement->needsHdrMetadataUpdate()) {
+-                        LOG(Log::INFO, "[CM] Recreating HDR metadata for surface");
+-                        SURF->m_colorManagement->setHDRMetadata(createHDRMetadata(SURF->m_colorManagement->imageDescription(), pMonitor));
+-                    }
 -                    if (needsHdrMetadataUpdate) {
-+                    // changing blob causes a modeset, so try and skip it in cases where surface metadata is already applied
-+                    if (needsHdrMetadataUpdate && !hdrMetadataEqual(SURF->m_colorManagement->hdrMetadata(), pMonitor->m_output->state->state().hdrMetadata)) {
-                         LOG(Log::INFO, "[CM] Updating HDR metadata from surface");
-                         pMonitor->m_output->state->setHDRMetadata(SURF->m_colorManagement->hdrMetadata());
+-                        LOG(Log::INFO, "[CM] Updating HDR metadata from surface");
+-                        pMonitor->m_output->state->setHDRMetadata(SURF->m_colorManagement->hdrMetadata());
 -                        pMonitor->m_hdrMetadataFromSurface = true;
-                     }
+-                    }
 -                    hdrIsHandled               = true;
 -                    pMonitor->m_needsHDRupdate = false;
++                    applySurfaceHDRMetadata(SURF, pMonitor, pMonitor->m_previousFSWindow != FULLSCREEN_WINDOW || pMonitor->m_needsHDRupdate);
 +                    pMonitor->m_hdrMetadataFromSurface = true;
 +                    pMonitor->m_hdrMetadataWindow      = FULLSCREEN_WINDOW;
 +                    hdrIsHandled                       = true;
@@ -144,41 +320,44 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
                  }
              }
          }
-@@ -2662,7 +2664,9 @@
+@@ -2662,7 +2658,9 @@
          if (!hdrIsHandled) {
              const bool HDR_CHANGED = pMonitor->inHDR() != wantHDR;
  
 -            if (HDR_CHANGED && *PAUTOHDR && !(pMonitor->inHDR() && configuredHDR)) {
-+            const auto descTF    = pMonitor->m_imageDescription->value().transferFunction;
-+            const bool descIsHDR = descTF == CM_TRANSFER_FUNCTION_ST2084_PQ || descTF == CM_TRANSFER_FUNCTION_EXT_LINEAR;
-+            if (*PAUTOHDR && descIsHDR != wantHDR && !(descIsHDR && configuredHDR)) {
++            const auto DESC_TF     = pMonitor->m_imageDescription->value().transferFunction;
++            const bool DESC_IS_HDR = DESC_TF == CM_TRANSFER_FUNCTION_ST2084_PQ || DESC_TF == CM_TRANSFER_FUNCTION_EXT_LINEAR;
++            if (*PAUTOHDR && DESC_IS_HDR != wantHDR && !(DESC_IS_HDR && configuredHDR)) {
                  const auto targetCM      = wantHDR ? (*PAUTOHDR == 2 ? NCMType::CM_HDR_EDID : NCMType::CM_HDR) : pMonitor->m_cmType;
                  const auto targetSDREOTF = pMonitor->m_sdrEotf;
                  LOG(Log::INFO, "[CM] Auto HDR: changing monitor cm to {}", sc<uint8_t>(targetCM));
-@@ -2670,17 +2674,23 @@
+@@ -2670,17 +2668,26 @@
                  pMonitor->m_previousFSWindow.reset(); // trigger CTM update
              }
  
 -            const auto WANTED  = wantHDR ? createHDRMetadata(pMonitor->m_imageDescription->value(), pMonitor) : NO_HDR_METADATA;
 -            const auto CURRENT = pMonitor->m_output->state->state().hdrMetadata;
 +            const bool KEEP_SURFACE_METADATA =
-+                pMonitor->m_hdrMetadataFromSurface && wantHDR && pMonitor->inHDR() && FULLSCREEN_WINDOW && pMonitor->m_hdrMetadataWindow == FULLSCREEN_WINDOW;
++                pMonitor->m_hdrMetadataFromSurface && wantHDR && pMonitor->inHDR() && FULLSCREEN_WINDOW && pMonitor->m_hdrMetadataWindow == FULLSCREEN_WINDOW && SURF_HAS_CM;
  
 -            // Required in order to clear stale HDR metadata
 -            const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
 -            const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
-+            if (!KEEP_SURFACE_METADATA) {
++            // keep surface metadata across DS drop-outs, but follow the surface if its image description changes meanwhile
++            if (KEEP_SURFACE_METADATA)
++                applySurfaceHDRMetadata(SURF, pMonitor, false);
++            else {
 +                const auto WANTED  = wantHDR ? createHDRMetadata(pMonitor->m_imageDescription->value(), pMonitor) : NO_HDR_METADATA;
 +                const auto CURRENT = pMonitor->m_output->state->state().hdrMetadata;
++
++                // Required in order to clear stale HDR metadata
++                const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
++                const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
  
 -            if (HDR_CHANGED || INITIAL_SDR || pMonitor->m_hdrMetadataFromSurface || HDR_METADATA_CHANGED) {
 -                LOG(Log::INFO, wantHDR ? "[CM] Updating HDR metadata from monitor" : "[CM] Restoring SDR mode");
 -                pMonitor->m_output->state->setHDRMetadata(WANTED);
 -                pMonitor->m_hdrMetadataFromSurface = false;
-+                // Required in order to clear stale HDR metadata
-+                const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
-+                const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
-+
 +                if (HDR_CHANGED || INITIAL_SDR || pMonitor->m_hdrMetadataFromSurface || HDR_METADATA_CHANGED) {
 +                    LOG(Log::INFO, wantHDR ? "[CM] Updating HDR metadata from monitor" : "[CM] Restoring SDR mode");
 +                    pMonitor->m_output->state->setHDRMetadata(WANTED);
@@ -188,7 +367,7 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
              }
  
              pMonitor->m_needsHDRupdate = true;
-@@ -2761,10 +2771,13 @@
+@@ -2761,10 +2768,13 @@
          pMonitor->m_output->state->setCTM(pMonitor->m_ctm);
      }
  
@@ -206,3 +385,239 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
      }
  
      pMonitor->m_previousFSWindow = FULLSCREEN_WINDOW;
+diff --git a/src/render/Shader.cpp b/src/render/Shader.cpp
+--- a/src/render/Shader.cpp
++++ b/src/render/Shader.cpp
+@@ -135,7 +135,6 @@
+     m_uniformLocations[SHADER_DST_TF_RANGE]         = getUniform("dstTFRange");
+     m_uniformLocations[SHADER_TARGET_PRIMARIES_XYZ] = getUniform("targetPrimariesXYZ");
+     m_uniformLocations[SHADER_MAX_LUMINANCE]        = getUniform("maxLuminance");
+-    m_uniformLocations[SHADER_SRC_REF_LUMINANCE]    = getUniform("srcRefLuminance");
+     m_uniformLocations[SHADER_DST_MAX_LUMINANCE]    = getUniform("dstMaxLuminance");
+     m_uniformLocations[SHADER_DST_REF_LUMINANCE]    = getUniform("dstRefLuminance");
+     m_uniformLocations[SHADER_SDR_SATURATION]       = getUniform("sdrSaturation");
+diff --git a/src/render/Shader.hpp b/src/render/Shader.hpp
+--- a/src/render/Shader.hpp
++++ b/src/render/Shader.hpp
+@@ -14,7 +14,6 @@
+     SHADER_DST_TF_RANGE,
+     SHADER_TARGET_PRIMARIES_XYZ,
+     SHADER_MAX_LUMINANCE,
+-    SHADER_SRC_REF_LUMINANCE,
+     SHADER_DST_MAX_LUMINANCE,
+     SHADER_DST_REF_LUMINANCE,
+     SHADER_SDR_SATURATION,
+diff --git a/src/render/ShaderLoader.hpp b/src/render/ShaderLoader.hpp
+--- a/src/render/ShaderLoader.hpp
++++ b/src/render/ShaderLoader.hpp
+@@ -17,7 +17,7 @@
+         SH_FEAT_DISCARD           = (1 << 1),  // RGBA/RGBX texture sampling
+         SH_FEAT_TINT              = (1 << 2),  // uniforms: tint; condition: applyTint
+         SH_FEAT_ROUNDING          = (1 << 3),  // uniforms: radius, roundingPower, topLeft, fullSize; condition: radius > 0
+-        SH_FEAT_CM                = (1 << 4),  // uniforms: srcTFRange, dstTFRange, srcRefLuminance, convertMatrix; condition: !skipCM
++        SH_FEAT_CM                = (1 << 4),  // uniforms: srcTFRange, dstTFRange, convertMatrix; condition: !skipCM
+         SH_FEAT_TONEMAP           = (1 << 5),  // uniforms: maxLuminance, dstMaxLuminance, dstRefLuminance; condition: maxLuminance < dstMaxLuminance * 1.01
+         SH_FEAT_SDR_MOD           = (1 << 6),  // uniforms: sdrSaturation, sdrBrightnessMultiplier; condition: SDR <-> HDR && (sdrSaturation != 1 || sdrBrightnessMultiplier != 1)
+         SH_FEAT_BLUR              = (1 << 7),  // condition: render:use_shader_blur_blend
+diff --git a/src/render/shaders/glsl/CM.glsl b/src/render/shaders/glsl/CM.glsl
+--- a/src/render/shaders/glsl/CM.glsl
++++ b/src/render/shaders/glsl/CM.glsl
+@@ -7,7 +7,6 @@
+ uniform vec2  srcTFRange;
+ uniform vec2  dstTFRange;
+ 
+-uniform float srcRefLuminance;
+ uniform mat3  convertMatrix;
+ 
+ #if USE_ICC
+diff --git a/src/render/shaders/glsl/blurprepare.frag b/src/render/shaders/glsl/blurprepare.frag
+--- a/src/render/shaders/glsl/blurprepare.frag
++++ b/src/render/shaders/glsl/blurprepare.frag
+@@ -18,7 +18,6 @@
+ uniform vec2  srcTFRange;
+ uniform vec2  dstTFRange;
+ 
+-uniform float srcRefLuminance;
+ uniform mat3  convertMatrix;
+ 
+ uniform float sdrBrightnessMultiplier;
+@@ -32,7 +31,7 @@
+     fragColor = fragColor = blurPrepare(texture(tex, v_texcoord), contrast, brightness
+ #if USE_CM
+                                         ,
+-                                        sourceTF, targetTF, convertMatrix, srcTFRange, dstTFRange, srcRefLuminance, sdrBrightnessMultiplier
++                                        sourceTF, targetTF, convertMatrix, srcTFRange, dstTFRange, sdrBrightnessMultiplier
+ #endif
+     );
+ }
+diff --git a/src/render/shaders/glsl/blurprepare.glsl b/src/render/shaders/glsl/blurprepare.glsl
+--- a/src/render/shaders/glsl/blurprepare.glsl
++++ b/src/render/shaders/glsl/blurprepare.glsl
+@@ -14,7 +14,7 @@
+ vec4 blurPrepare(vec4 pixColor, float contrast, float brightness
+ #if USE_CM
+                  ,
+-                 int sourceTF, int targetTF, mat3 convertMatrix, vec2 srcTFRange, vec2 dstTFRange, float srcRefLuminance, float sdrBrightnessMultiplier
++                 int sourceTF, int targetTF, mat3 convertMatrix, vec2 srcTFRange, vec2 dstTFRange, float sdrBrightnessMultiplier
+ #endif
+ ) {
+     if (pixColor.a <= 0.0)
+diff --git a/src/render/shaders/glsl/border.frag b/src/render/shaders/glsl/border.frag
+--- a/src/render/shaders/glsl/border.frag
++++ b/src/render/shaders/glsl/border.frag
+@@ -59,7 +59,7 @@
+ #endif
+ #if USE_TONEMAP
+                   ,
+-                  maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode
++                  maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                   ,
+diff --git a/src/render/shaders/glsl/border.glsl b/src/render/shaders/glsl/border.glsl
+--- a/src/render/shaders/glsl/border.glsl
++++ b/src/render/shaders/glsl/border.glsl
+@@ -28,7 +28,7 @@
+ #endif
+ #if USE_TONEMAP
+               ,
+-              float maxLuminance, float dstMaxLuminance, float dstRefLuminance, float srcRefLuminance, int tonemapMode
++              float maxLuminance, float dstMaxLuminance, float dstRefLuminance, int tonemapMode
+ #endif
+ #if USE_SDR_MOD
+               ,
+@@ -113,7 +113,7 @@
+ #endif
+ #if USE_TONEMAP
+                              ,
+-                             maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode
++                             maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                              ,
+diff --git a/src/render/shaders/glsl/cm_helpers.glsl b/src/render/shaders/glsl/cm_helpers.glsl
+--- a/src/render/shaders/glsl/cm_helpers.glsl
++++ b/src/render/shaders/glsl/cm_helpers.glsl
+@@ -220,7 +220,7 @@
+ #endif
+ #if USE_TONEMAP
+                        ,
+-                       float maxLuminance, float dstMaxLuminance, float dstRefLuminance, float srcRefLuminance, int tonemapMode
++                       float maxLuminance, float dstMaxLuminance, float dstRefLuminance, int tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                        ,
+@@ -246,7 +246,7 @@
+     pixColor.a   = finalAlpha;
+     pixColor.rgb *= pixColor.a;
+ #if USE_TONEMAP
+-    pixColor = tonemap(pixColor, dstxyz, maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode);
++    pixColor = tonemap(pixColor, dstxyz, maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode);
+ #endif
+ 
+ #if USE_MIRROR
+diff --git a/src/render/shaders/glsl/inner_glow.frag b/src/render/shaders/glsl/inner_glow.frag
+--- a/src/render/shaders/glsl/inner_glow.frag
++++ b/src/render/shaders/glsl/inner_glow.frag
+@@ -59,7 +59,7 @@
+ #endif
+ #if USE_TONEMAP
+                      ,
+-                     maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode
++                     maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                      ,
+diff --git a/src/render/shaders/glsl/inner_glow.glsl b/src/render/shaders/glsl/inner_glow.glsl
+--- a/src/render/shaders/glsl/inner_glow.glsl
++++ b/src/render/shaders/glsl/inner_glow.glsl
+@@ -47,7 +47,7 @@
+ #endif
+ #if USE_TONEMAP
+                  ,
+-                 float maxLuminance, float dstMaxLuminance, float dstRefLuminance, float srcRefLuminance, int tonemapMode
++                 float maxLuminance, float dstMaxLuminance, float dstRefLuminance, int tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                  ,
+@@ -101,7 +101,7 @@
+ #endif
+ #if USE_TONEMAP
+                              ,
+-                             maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode
++                             maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                              ,
+diff --git a/src/render/shaders/glsl/surface.frag b/src/render/shaders/glsl/surface.frag
+--- a/src/render/shaders/glsl/surface.frag
++++ b/src/render/shaders/glsl/surface.frag
+@@ -110,7 +110,7 @@
+ #endif
+ #if USE_TONEMAP
+                           ,
+-                          maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode
++                          maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                           ,
+diff --git a/src/render/shaders/glsl/tonemap.glsl b/src/render/shaders/glsl/tonemap.glsl
+--- a/src/render/shaders/glsl/tonemap.glsl
++++ b/src/render/shaders/glsl/tonemap.glsl
+@@ -41,7 +41,7 @@
+ // ) / 4096.0);
+ // const mat3 ICtCpHLGInv = inverse(ICtCpHLG);
+ 
+-vec4 tonemap(vec4 color, mat3 dstXYZ, float maxLuminance, float dstMaxLuminance, float dstRefLuminance, float srcRefLuminance, int tonemapMode) {
++vec4 tonemap(vec4 color, mat3 dstXYZ, float maxLuminance, float dstMaxLuminance, float dstRefLuminance, int tonemapMode) {
+     if (maxLuminance < dstMaxLuminance * 1.01 || tonemapMode == 2)
+         return vec4(clamp(color.rgb, vec3(0.0), vec3(dstMaxLuminance)), color[3]);
+ 
+diff --git a/src/render/types.hpp b/src/render/types.hpp
+--- a/src/render/types.hpp
++++ b/src/render/types.hpp
+@@ -130,7 +130,6 @@
+         NColorManagement::eTransferFunction  targetTF = NColorManagement::CM_TRANSFER_FUNCTION_GAMMA22;
+         STFRange                             srcTFRange;
+         STFRange                             dstTFRange;
+-        float                                srcRefLuminance = 80;
+         float                                dstRefLuminance = 80;
+         std::array<std::array<double, 3>, 3> convertMatrix;
+ 
+diff --git a/tests/helpers/ColorManagement.cpp b/tests/helpers/ColorManagement.cpp
+--- a/tests/helpers/ColorManagement.cpp
++++ b/tests/helpers/ColorManagement.cpp
+@@ -120,3 +120,18 @@
+     EXPECT_NEAR(color.c.b, 12500.0, 0.0001);
+     EXPECT_DOUBLE_EQ(color.c.a, 1.0);
+ }
++
++TEST(ColorManagement, ContentMaxLuminancePrefersMetadata) {
++    SImageDescription description;
++    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(10000.F), 10000.F);
++
++    description.masteringLuminances = {.min = 0.005F, .max = 1000};
++    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(10000.F), 1000.F);
++
++    description.maxCLL = 600;
++    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(10000.F), 600.F);
++
++    // Metadata can't push the peak past what the encoding can carry.
++    description.maxCLL = 4000;
++    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(1000.F), 1000.F);
++}
+diff --git a/tests/protocols/ColorManagement.cpp b/tests/protocols/ColorManagement.cpp
+--- a/tests/protocols/ColorManagement.cpp
++++ b/tests/protocols/ColorManagement.cpp
+@@ -248,9 +248,8 @@
+     EXPECT_EQ(settings.transferFunction, CM_TRANSFER_FUNCTION_EXT_LINEAR);
+     EXPECT_TRUE(settings.primariesNameSet);
+     EXPECT_EQ(settings.primariesNamed, CM_PRIMARIES_SRGB);
+-    // Stored metadata retains its default minimum, but Windows encoding starts at zero.
+-    EXPECT_FLOAT_EQ(settings.luminances.min, 0.2F);
+-    EXPECT_EQ(settings.luminances.max, 80U);
++    EXPECT_FLOAT_EQ(settings.luminances.min, 0.F);
++    EXPECT_EQ(settings.luminances.max, 10000U);
+     EXPECT_EQ(settings.luminances.reference, 203U);
+     EXPECT_FLOAT_EQ(settings.getTFMinLuminance(), 0.F);
+     EXPECT_FLOAT_EQ(settings.getTFMaxLuminance(), 80.F);

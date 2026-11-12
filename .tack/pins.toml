@@ -14,12 +14,8 @@ names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 
 # core
 [inputs.nixpkgs]
-url = "channel:nixos-unstable-small"
+url    = "channel:nixos-unstable-small"
 frozen = true
-patches = [
-  # nvtop: 3.3.2 -> 3.4.0, merge nvtopPackages into a single package
-  "https://github.com/NixOS/nixpkgs/pull/586196",
-]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.nixos-core]
@@ -73,6 +69,12 @@ patches = [
   "https://github.com/hyprwm/Hyprland/pull/16946",
   # cm: only prefer HDR for the fullscreen window with prefer_hdr
   "https://github.com/hyprwm/Hyprland/pull/16957",
+  # renderer: don't scale tonemap peak by ref luminance
+  "https://github.com/hyprwm/Hyprland/pull/16966",
+  # cm: use correct luminance ranges for scrgb and bt2100
+  # &
+  # cm: use hdr metadata for tonemap peak
+  "https://github.com/hyprwm/Hyprland/pull/16971",
 ]
 
 [inputs.niqspkgs]

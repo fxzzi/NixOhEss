@@ -56,8 +56,6 @@ in
         # improves cursor latency. doesn't help as much on higher rr though.
         # so just apply it on my laptop
         async_commit = config.cfg.core.isLaptop;
-        # use values from edid in autoHDR
-        cm_auto_hdr = 2;
       };
       quirks.skip_non_kms_dmabuf_formats = config.cfg.hardware.nvidia.enable;
       animations.enabled = true;
@@ -237,8 +235,6 @@ in
 
             -- apply to everything
             hl.window_rule({ match = { class = ".*"}, 
-              -- disable HDR tonemapping for now to get DS off and on to more closely match
-              tonemap = "off",
               -- thank god this can be disabled
               no_xdg_drags = true,
             })
@@ -298,7 +294,9 @@ in
               idle_inhibit = "fullscreen",
               -- allow tearing
               immediate = true,
-              sync_fullscreen = true,
+              -- disable tonemapping. configure luminances and stuff
+              -- in game instead.
+              -- tonemap = "off",
             })
 
             -- confine cursor to the monitor when a game is in fullscreen.

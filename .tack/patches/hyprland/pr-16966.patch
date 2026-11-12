@@ -1,0 +1,267 @@
+diff --git a/src/helpers/cm/ColorManagement.cpp b/src/helpers/cm/ColorManagement.cpp
+index 36089ed8169..5f9a6c62d37 100644
+--- a/src/helpers/cm/ColorManagement.cpp
++++ b/src/helpers/cm/ColorManagement.cpp
+@@ -486,7 +486,7 @@ static RGBAColor saturate(RGBAColor color, std::array<std::array<double, 3>, 3>
+     return color;
+ }
+ 
+-static RGBAColor tonemap(RGBAColor color, std::array<std::array<double, 3>, 3> dstXYZ, float maxLuminance, float dstMaxLuminance, float dstRefLuminance, float srcRefLuminance) {
++static RGBAColor tonemap(RGBAColor color, std::array<std::array<double, 3>, 3> dstXYZ, float maxLuminance, float dstMaxLuminance, float dstRefLuminance) {
+     // TODO source color is expected to be in sRGB colorspace and tonemapping shouldn't be needed
+     return color;
+ }
+@@ -507,7 +507,7 @@ RGBAColor NColorManagement::convertColor(RGBAColor color, PImageDescription srcD
+             color = toNit(color, settings.srcTFRange);
+         color *= color.c.a;
+         if (settings.needsTonemap)
+-            color = tonemap(color, settings.dstPrimaries2XYZ, settings.maxLuminance, settings.dstMaxLuminance, settings.dstRefLuminance, settings.srcRefLuminance);
++            color = tonemap(color, settings.dstPrimaries2XYZ, settings.maxLuminance, settings.dstMaxLuminance, settings.dstRefLuminance);
+ 
+         color = fromLinearNit(color, dstDesc->value().transferFunction, settings.dstTFRange);
+         if (settings.needsSDRmod) {
+diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
+index bde48185eb7..cb3aa23e6ae 100644
+--- a/src/render/OpenGL.cpp
++++ b/src/render/OpenGL.cpp
+@@ -1290,7 +1290,6 @@ void CHyprOpenGLImpl::passCMUniforms(WP<CShader> shader, const NColorManagement:
+                                      const SCMSettings& settings) {
+     shader->setUniformFloat2(SHADER_SRC_TF_RANGE, settings.srcTFRange.min, settings.srcTFRange.max);
+     shader->setUniformFloat2(SHADER_DST_TF_RANGE, settings.dstTFRange.min, settings.dstTFRange.max);
+-    shader->setUniformFloat(SHADER_SRC_REF_LUMINANCE, settings.srcRefLuminance);
+     shader->setUniformFloat(SHADER_DST_REF_LUMINANCE, settings.dstRefLuminance);
+     shader->setUniformFloat(SHADER_MAX_LUMINANCE, settings.maxLuminance);
+     shader->setUniformFloat(SHADER_DST_MAX_LUMINANCE, settings.dstMaxLuminance);
+diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
+index 63e17ca1519..fad148aacc1 100644
+--- a/src/render/Renderer.cpp
++++ b/src/render/Renderer.cpp
+@@ -2219,14 +2219,12 @@ SCMSettings IHyprRenderer::getCMSettings(CRenderContext& ctx, const NColorManage
+                             .max = imageDescription->value().getTFMaxLuminance(needsSDRmod ? sdrMaxLuminance : -1)},
+         .dstTFRange      = {.min = targetImageDescription->value().getTFMinLuminance(needsSDRmod ? sdrMinLuminance : -1),
+                             .max = targetImageDescription->value().getTFMaxLuminance(needsSDRmod ? sdrMaxLuminance : -1)},
+-        .srcRefLuminance = imageDescription->value().luminances.reference,
+         .dstRefLuminance = targetImageDescription->value().luminances.reference,
+         .convertMatrix   = matrix.mat(),
+ 
+         .needsTonemap            = tonemapMode != 0 && needsTonemap,
+         .tonemapMode             = tonemapMode,
+-        .maxLuminance            = needsTonemap && tonemapMode == 2 ? dstMaxLuminance :
+-                                                                      maxLuminance * targetImageDescription->value().luminances.reference / imageDescription->value().luminances.reference,
++        .maxLuminance            = needsTonemap && tonemapMode == 2 ? dstMaxLuminance : maxLuminance,
+         .dstMaxLuminance         = dstMaxLuminance,
+         .dstPrimaries2XYZ        = toXYZ.mat(),
+         .needsSDRmod             = needsMod,
+diff --git a/src/render/Shader.cpp b/src/render/Shader.cpp
+index 5a49d13e104..fcd6ba93cc6 100644
+--- a/src/render/Shader.cpp
++++ b/src/render/Shader.cpp
+@@ -135,7 +135,6 @@ void CShader::getUniformLocations() {
+     m_uniformLocations[SHADER_DST_TF_RANGE]         = getUniform("dstTFRange");
+     m_uniformLocations[SHADER_TARGET_PRIMARIES_XYZ] = getUniform("targetPrimariesXYZ");
+     m_uniformLocations[SHADER_MAX_LUMINANCE]        = getUniform("maxLuminance");
+-    m_uniformLocations[SHADER_SRC_REF_LUMINANCE]    = getUniform("srcRefLuminance");
+     m_uniformLocations[SHADER_DST_MAX_LUMINANCE]    = getUniform("dstMaxLuminance");
+     m_uniformLocations[SHADER_DST_REF_LUMINANCE]    = getUniform("dstRefLuminance");
+     m_uniformLocations[SHADER_SDR_SATURATION]       = getUniform("sdrSaturation");
+diff --git a/src/render/Shader.hpp b/src/render/Shader.hpp
+index 1d8feb9693b..ec08859c7fc 100644
+--- a/src/render/Shader.hpp
++++ b/src/render/Shader.hpp
+@@ -14,7 +14,6 @@ enum eShaderUniform : uint8_t {
+     SHADER_DST_TF_RANGE,
+     SHADER_TARGET_PRIMARIES_XYZ,
+     SHADER_MAX_LUMINANCE,
+-    SHADER_SRC_REF_LUMINANCE,
+     SHADER_DST_MAX_LUMINANCE,
+     SHADER_DST_REF_LUMINANCE,
+     SHADER_SDR_SATURATION,
+diff --git a/src/render/ShaderLoader.hpp b/src/render/ShaderLoader.hpp
+index 744e576109d..61f2dd6bfba 100644
+--- a/src/render/ShaderLoader.hpp
++++ b/src/render/ShaderLoader.hpp
+@@ -17,7 +17,7 @@ namespace Render {
+         SH_FEAT_DISCARD           = (1 << 1),  // RGBA/RGBX texture sampling
+         SH_FEAT_TINT              = (1 << 2),  // uniforms: tint; condition: applyTint
+         SH_FEAT_ROUNDING          = (1 << 3),  // uniforms: radius, roundingPower, topLeft, fullSize; condition: radius > 0
+-        SH_FEAT_CM                = (1 << 4),  // uniforms: srcTFRange, dstTFRange, srcRefLuminance, convertMatrix; condition: !skipCM
++        SH_FEAT_CM                = (1 << 4),  // uniforms: srcTFRange, dstTFRange, convertMatrix; condition: !skipCM
+         SH_FEAT_TONEMAP           = (1 << 5),  // uniforms: maxLuminance, dstMaxLuminance, dstRefLuminance; condition: maxLuminance < dstMaxLuminance * 1.01
+         SH_FEAT_SDR_MOD           = (1 << 6),  // uniforms: sdrSaturation, sdrBrightnessMultiplier; condition: SDR <-> HDR && (sdrSaturation != 1 || sdrBrightnessMultiplier != 1)
+         SH_FEAT_BLUR              = (1 << 7),  // condition: render:use_shader_blur_blend
+diff --git a/src/render/shaders/glsl/CM.glsl b/src/render/shaders/glsl/CM.glsl
+index 1104f72be67..a73284707d5 100644
+--- a/src/render/shaders/glsl/CM.glsl
++++ b/src/render/shaders/glsl/CM.glsl
+@@ -7,7 +7,6 @@
+ uniform vec2  srcTFRange;
+ uniform vec2  dstTFRange;
+ 
+-uniform float srcRefLuminance;
+ uniform mat3  convertMatrix;
+ 
+ #if USE_ICC
+diff --git a/src/render/shaders/glsl/blurprepare.frag b/src/render/shaders/glsl/blurprepare.frag
+index d2099025fb9..f7bb99444c8 100644
+--- a/src/render/shaders/glsl/blurprepare.frag
++++ b/src/render/shaders/glsl/blurprepare.frag
+@@ -18,7 +18,6 @@ const int         targetTF = TARGET_TF;
+ uniform vec2  srcTFRange;
+ uniform vec2  dstTFRange;
+ 
+-uniform float srcRefLuminance;
+ uniform mat3  convertMatrix;
+ 
+ uniform float sdrBrightnessMultiplier;
+@@ -32,7 +31,7 @@ void main() {
+     fragColor = fragColor = blurPrepare(texture(tex, v_texcoord), contrast, brightness
+ #if USE_CM
+                                         ,
+-                                        sourceTF, targetTF, convertMatrix, srcTFRange, dstTFRange, srcRefLuminance, sdrBrightnessMultiplier
++                                        sourceTF, targetTF, convertMatrix, srcTFRange, dstTFRange, sdrBrightnessMultiplier
+ #endif
+     );
+ }
+diff --git a/src/render/shaders/glsl/blurprepare.glsl b/src/render/shaders/glsl/blurprepare.glsl
+index b9a6199f604..19a0427620e 100644
+--- a/src/render/shaders/glsl/blurprepare.glsl
++++ b/src/render/shaders/glsl/blurprepare.glsl
+@@ -14,7 +14,7 @@
+ vec4 blurPrepare(vec4 pixColor, float contrast, float brightness
+ #if USE_CM
+                  ,
+-                 int sourceTF, int targetTF, mat3 convertMatrix, vec2 srcTFRange, vec2 dstTFRange, float srcRefLuminance, float sdrBrightnessMultiplier
++                 int sourceTF, int targetTF, mat3 convertMatrix, vec2 srcTFRange, vec2 dstTFRange, float sdrBrightnessMultiplier
+ #endif
+ ) {
+     if (pixColor.a <= 0.0)
+diff --git a/src/render/shaders/glsl/border.frag b/src/render/shaders/glsl/border.frag
+index 8b47d799d2f..61871a838aa 100644
+--- a/src/render/shaders/glsl/border.frag
++++ b/src/render/shaders/glsl/border.frag
+@@ -59,7 +59,7 @@ void main() {
+ #endif
+ #if USE_TONEMAP
+                   ,
+-                  maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode
++                  maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                   ,
+diff --git a/src/render/shaders/glsl/border.glsl b/src/render/shaders/glsl/border.glsl
+index ed4538bef5c..c36aba84afb 100644
+--- a/src/render/shaders/glsl/border.glsl
++++ b/src/render/shaders/glsl/border.glsl
+@@ -28,7 +28,7 @@ vec4
+ #endif
+ #if USE_TONEMAP
+               ,
+-              float maxLuminance, float dstMaxLuminance, float dstRefLuminance, float srcRefLuminance, int tonemapMode
++              float maxLuminance, float dstMaxLuminance, float dstRefLuminance, int tonemapMode
+ #endif
+ #if USE_SDR_MOD
+               ,
+@@ -113,7 +113,7 @@ vec4
+ #endif
+ #if USE_TONEMAP
+                              ,
+-                             maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode
++                             maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                              ,
+diff --git a/src/render/shaders/glsl/cm_helpers.glsl b/src/render/shaders/glsl/cm_helpers.glsl
+index 41c24f04116..11eb05b4a30 100644
+--- a/src/render/shaders/glsl/cm_helpers.glsl
++++ b/src/render/shaders/glsl/cm_helpers.glsl
+@@ -220,7 +220,7 @@ vec4
+ #endif
+ #if USE_TONEMAP
+                        ,
+-                       float maxLuminance, float dstMaxLuminance, float dstRefLuminance, float srcRefLuminance, int tonemapMode
++                       float maxLuminance, float dstMaxLuminance, float dstRefLuminance, int tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                        ,
+@@ -246,7 +246,7 @@ vec4
+     pixColor.a   = finalAlpha;
+     pixColor.rgb *= pixColor.a;
+ #if USE_TONEMAP
+-    pixColor = tonemap(pixColor, dstxyz, maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode);
++    pixColor = tonemap(pixColor, dstxyz, maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode);
+ #endif
+ 
+ #if USE_MIRROR
+diff --git a/src/render/shaders/glsl/inner_glow.frag b/src/render/shaders/glsl/inner_glow.frag
+index 9a2dfa30241..462eeeef679 100644
+--- a/src/render/shaders/glsl/inner_glow.frag
++++ b/src/render/shaders/glsl/inner_glow.frag
+@@ -59,7 +59,7 @@ void main() {
+ #endif
+ #if USE_TONEMAP
+                      ,
+-                     maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode
++                     maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                      ,
+diff --git a/src/render/shaders/glsl/inner_glow.glsl b/src/render/shaders/glsl/inner_glow.glsl
+index 61b20f326aa..5b6f836d55d 100644
+--- a/src/render/shaders/glsl/inner_glow.glsl
++++ b/src/render/shaders/glsl/inner_glow.glsl
+@@ -47,7 +47,7 @@ vec4
+ #endif
+ #if USE_TONEMAP
+                  ,
+-                 float maxLuminance, float dstMaxLuminance, float dstRefLuminance, float srcRefLuminance, int tonemapMode
++                 float maxLuminance, float dstMaxLuminance, float dstRefLuminance, int tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                  ,
+@@ -101,7 +101,7 @@ vec4
+ #endif
+ #if USE_TONEMAP
+                              ,
+-                             maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode
++                             maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                              ,
+diff --git a/src/render/shaders/glsl/surface.frag b/src/render/shaders/glsl/surface.frag
+index ceeab126dd9..dc092d3832c 100644
+--- a/src/render/shaders/glsl/surface.frag
++++ b/src/render/shaders/glsl/surface.frag
+@@ -110,7 +110,7 @@ void main() {
+ #endif
+ #if USE_TONEMAP
+                           ,
+-                          maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode
++                          maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode
+ #endif
+ #if USE_SDR_MOD
+                           ,
+diff --git a/src/render/shaders/glsl/tonemap.glsl b/src/render/shaders/glsl/tonemap.glsl
+index 46273220ca1..7fccecae64c 100644
+--- a/src/render/shaders/glsl/tonemap.glsl
++++ b/src/render/shaders/glsl/tonemap.glsl
+@@ -41,7 +41,7 @@ const mat3 ICtCpPQInv = mat3(                                                //
+ // ) / 4096.0);
+ // const mat3 ICtCpHLGInv = inverse(ICtCpHLG);
+ 
+-vec4 tonemap(vec4 color, mat3 dstXYZ, float maxLuminance, float dstMaxLuminance, float dstRefLuminance, float srcRefLuminance, int tonemapMode) {
++vec4 tonemap(vec4 color, mat3 dstXYZ, float maxLuminance, float dstMaxLuminance, float dstRefLuminance, int tonemapMode) {
+     if (maxLuminance < dstMaxLuminance * 1.01 || tonemapMode == 2)
+         return vec4(clamp(color.rgb, vec3(0.0), vec3(dstMaxLuminance)), color[3]);
+ 
+diff --git a/src/render/types.hpp b/src/render/types.hpp
+index 6bfef2d79d0..13c34cd6905 100644
+--- a/src/render/types.hpp
++++ b/src/render/types.hpp
+@@ -130,7 +130,6 @@ namespace Render {
+         NColorManagement::eTransferFunction  targetTF = NColorManagement::CM_TRANSFER_FUNCTION_GAMMA22;
+         STFRange                             srcTFRange;
+         STFRange                             dstTFRange;
+-        float                                srcRefLuminance = 80;
+         float                                dstRefLuminance = 80;
+         std::array<std::array<double, 3>, 3> convertMatrix;
+ 
