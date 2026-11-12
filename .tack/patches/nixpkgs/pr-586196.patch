@@ -1,0 +1,378 @@
+diff --git a/doc/release-notes/rl-2611.section.md b/doc/release-notes/rl-2611.section.md
+index 859346c6c9c28..024b27bbcbc2d 100644
+--- a/doc/release-notes/rl-2611.section.md
++++ b/doc/release-notes/rl-2611.section.md
+@@ -394,6 +394,12 @@
+ - Starting with v14, `flameshot` will primarily utilise xdg-desktop-portal calls for screenshotting. This will directly affect users on X11 window managers due to the lack of a compatible portal with Screenshot feature. See [upstream changelog](https://github.com/flameshot-org/flameshot/releases/tag/v14.0.0) or [NixOS Flameshot](https://wiki.nixos.org/wiki/Flameshot) wiki page for workarounds.
+ - `nim1` and respective aliases have been removed due to entering EOL; please migrate to `nim` or `nim-unwrapped` (nim 2).
+ - `nim-2_0` & `nim-2_2` and respective aliases have been removed; please migrate to `nim` or `nim-unwrapped` (nim 2.2.10).
++
++- `nvtopPackages` has been replaced by a single `nvtop` package that supports all GPU families.
++  `nvtopPackages.full` and the per-family variants are now deprecated aliases of `nvtop`.
++  Use `nvtop.override` to disable the GPU families you don't need, for example `nvtop.override { nvidia = false; }`.
++  The `cudaSupport` and `cudaPackages` arguments have been removed.
++
+ - `domoticz` has been updated from `2024.7` to `2026.x`, breaking third party applications and scripts using the old RType calls. Review the [release notes](https://github.com/domoticz/domoticz/blob/2026.2/History.txt#L398) for more information.
+ 
+ - `swift` is no longer wrapped.
+diff --git a/nixos/modules/services/monitoring/beszel-agent.nix b/nixos/modules/services/monitoring/beszel-agent.nix
+index 88ca335e953d5..2c83ef1b3a5b0 100644
+--- a/nixos/modules/services/monitoring/beszel-agent.nix
++++ b/nixos/modules/services/monitoring/beszel-agent.nix
+@@ -30,7 +30,7 @@ let
+       deviceAllow = [ "char-nvidia* rw" ];
+     };
+     "nvtop" = {
+-      package = lib.getBin pkgs.nvtopPackages.full;
++      package = lib.getBin pkgs.nvtop;
+       deviceAllow = [
+         "char-nvidia* rw"
+         "char-drm rw"
+diff --git a/pkgs/by-name/nv/nvtop/package.nix b/pkgs/by-name/nv/nvtop/package.nix
+new file mode 100644
+index 0000000000000..2c768150f0aa5
+--- /dev/null
++++ b/pkgs/by-name/nv/nvtop/package.nix
+@@ -0,0 +1,121 @@
++{
++  lib,
++  stdenv,
++  autoAddDriverRunpath,
++  cmake,
++  fetchFromGitHub,
++  fetchpatch2,
++  gtest,
++  libdrm,
++  ncurses,
++  pkg-config,
++  udev,
++  versionCheckHook,
++  amd ? stdenv.hostPlatform.isLinux,
++  apple ? stdenv.hostPlatform.isDarwin,
++  ascend ? false, # Requires libdcmi, which is not packaged yet
++  enflame ? stdenv.hostPlatform.isLinux,
++  intel ? stdenv.hostPlatform.isLinux,
++  ixml ? stdenv.hostPlatform.isLinux,
++  metax ? stdenv.hostPlatform.isLinux,
++  msm ? stdenv.hostPlatform.isLinux,
++  nvidia ? stdenv.hostPlatform.isLinux,
++  panfrost ? stdenv.hostPlatform.isLinux,
++  panthor ? stdenv.hostPlatform.isLinux,
++  radeon ? stdenv.hostPlatform.isLinux,
++  rockchip ? stdenv.hostPlatform.isLinux && stdenv.hostPlatform.isAarch,
++  tenstorrent ? stdenv.hostPlatform.isLinux,
++  tpu ? false, # Requires libtpuinfo, which is not packaged yet
++  v3d ? stdenv.hostPlatform.isLinux,
++}:
++
++let
++  needDrm = amd || radeon || intel || msm || panfrost || panthor;
++in
++stdenv.mkDerivation (finalAttrs: {
++  pname = "nvtop";
++  version = "3.4.0";
++
++  strictDeps = true;
++  __structuredAttrs = true;
++
++  src = fetchFromGitHub {
++    owner = "Syllo";
++    repo = "nvtop";
++    tag = finalAttrs.version;
++    hash = "sha256-1hWgFn2pkH1+YvvFOCGPKviZLwW6l6PqrP99ty1FRtU=";
++  };
++
++  patches = [
++    # tests: fix testLib build on Darwin
++    # https://github.com/Syllo/nvtop/pull/550
++    (fetchpatch2 {
++      url = "https://github.com/Syllo/nvtop/commit/ced04c2ad679b279753c9c83ef513c459ca84a7e.patch?full_index=1";
++      hash = "sha256-amA91FvgaRFqVgfw2KV6JsVqpva5kntlGjtlTUlwJjw=";
++    })
++  ];
++
++  cmakeFlags = [
++    (lib.cmakeBool "BUILD_TESTING" finalAttrs.finalPackage.doCheck)
++    (lib.cmakeBool "USE_LIBUDEV_OVER_LIBSYSTEMD" true)
++    (lib.cmakeBool "AMDGPU_SUPPORT" amd)
++    (lib.cmakeBool "APPLE_SUPPORT" apple)
++    (lib.cmakeBool "ASCEND_SUPPORT" ascend)
++    (lib.cmakeBool "ENFLAME_SUPPORT" enflame)
++    (lib.cmakeBool "INTEL_SUPPORT" intel)
++    (lib.cmakeBool "IXML_SUPPORT" ixml) # dlopens libixml.so from /usr/local/corex/lib{,64} or the library path; not packaged
++    (lib.cmakeBool "METAX_SUPPORT" metax) # dlopens libmxsml.so from /opt/{mxdriver,maca,mxn100}/lib only; not packaged
++    (lib.cmakeBool "MSM_SUPPORT" msm)
++    (lib.cmakeBool "NVIDIA_SUPPORT" nvidia)
++    (lib.cmakeBool "PANFROST_SUPPORT" panfrost)
++    (lib.cmakeBool "PANTHOR_SUPPORT" panthor)
++    (lib.cmakeBool "RADEON_SUPPORT" radeon)
++    (lib.cmakeBool "ROCKCHIP_SUPPORT" rockchip)
++    (lib.cmakeBool "TENSTORRENT_SUPPORT" tenstorrent)
++    (lib.cmakeBool "TPU_SUPPORT" tpu)
++    (lib.cmakeBool "V3D_SUPPORT" v3d)
++  ];
++
++  nativeBuildInputs = [
++    cmake
++    pkg-config
++  ]
++  ++ lib.optional nvidia autoAddDriverRunpath;
++
++  buildInputs = [
++    ncurses
++  ]
++  ++ lib.optional stdenv.hostPlatform.isLinux udev
++  ++ lib.optional needDrm libdrm;
++
++  # libdrm is dlopen'ed at runtime
++  postFixup = lib.optionalString needDrm ''
++    patchelf --add-rpath ${lib.makeLibraryPath [ libdrm ]} $out/bin/nvtop
++  '';
++
++  doCheck = true;
++  checkInputs = [ gtest ];
++
++  nativeInstallCheckInputs = [ versionCheckHook ];
++  doInstallCheck = true;
++
++  meta = {
++    description = "Task monitor for GPUs and accelerators, similar to htop";
++    longDescription = ''
++      Nvtop (Neat Videocard TOP) is an htop-like task monitor for GPUs and accelerators.
++      It can handle multiple GPUs and shows their usage and processes in an htop-like interface.
++      Supported GPU families include AMD, Apple, Intel, NVIDIA, Qualcomm Adreno, Arm Mali,
++      Broadcom VideoCore, Rockchip, MetaX, Enflame, Tenstorrent and Iluvatar CoreX.
++    '';
++    homepage = "https://github.com/Syllo/nvtop";
++    changelog = "https://github.com/Syllo/nvtop/releases/tag/${finalAttrs.src.tag}";
++    license = lib.licenses.gpl3Plus;
++    platforms = lib.platforms.linux ++ lib.platforms.darwin;
++    maintainers = with lib.maintainers; [
++      gbtb
++      anthonyroussel
++      moni
++    ];
++    mainProgram = "nvtop";
++  };
++})
+diff --git a/pkgs/tools/system/nvtop/build-nvtop.nix b/pkgs/tools/system/nvtop/build-nvtop.nix
+deleted file mode 100644
+index 3fadea5767ca9..0000000000000
+--- a/pkgs/tools/system/nvtop/build-nvtop.nix
++++ /dev/null
+@@ -1,124 +0,0 @@
+-{
+-  lib,
+-  stdenv,
+-  fetchFromGitHub,
+-  cmake,
+-  gtest,
+-  config,
+-  cudaPackages,
+-  cudaSupport ? config.cudaSupport,
+-  libdrm,
+-  ncurses,
+-  versionCheckHook,
+-  udev,
+-  addDriverRunpath,
+-  amd ? false,
+-  intel ? false,
+-  msm ? false,
+-  nvidia ? false,
+-  apple ? false,
+-  panfrost ? false,
+-  panthor ? false,
+-  ascend ? false,
+-  v3d ? false,
+-  tpu ? false,
+-  rockchip ? false,
+-  metax ? false,
+-  enflame ? false,
+-}:
+-
+-let
+-  drm-postFixup = ''
+-    patchelf \
+-      --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+-      --set-rpath "${
+-        lib.makeLibraryPath [
+-          libdrm
+-          ncurses
+-          udev
+-        ]
+-      }" \
+-      $out/bin/nvtop
+-  '';
+-  needDrm = (amd || msm || panfrost || panthor || intel);
+-in
+-stdenv.mkDerivation (finalAttrs: {
+-  pname = "nvtop";
+-  version = "3.3.2";
+-
+-  strictDeps = true;
+-  __structuredAttrs = true;
+-
+-  # between generation of multiple update PRs for each package flavor and manual updates I choose manual updates
+-  # nixpkgs-update: no auto update
+-  src = fetchFromGitHub {
+-    owner = "Syllo";
+-    repo = "nvtop";
+-    tag = finalAttrs.version;
+-    hash = "sha256-w3g/9VbZz1qrEMaBBHEf9Y93z0vo8LbWnENL2wEEaSw=";
+-  };
+-
+-  cmakeFlags = with lib.strings; [
+-    (cmakeBool "BUILD_TESTING" true)
+-    (cmakeBool "USE_LIBUDEV_OVER_LIBSYSTEMD" true)
+-    (cmakeBool "AMDGPU_SUPPORT" amd)
+-    (cmakeBool "NVIDIA_SUPPORT" nvidia)
+-    (cmakeBool "INTEL_SUPPORT" intel)
+-    (cmakeBool "APPLE_SUPPORT" apple)
+-    (cmakeBool "MSM_SUPPORT" msm)
+-    (cmakeBool "PANFROST_SUPPORT" panfrost)
+-    (cmakeBool "PANTHOR_SUPPORT" panthor)
+-    (cmakeBool "ASCEND_SUPPORT" ascend)
+-    (cmakeBool "V3D_SUPPORT" v3d)
+-    (cmakeBool "TPU_SUPPORT" tpu) # requires libtpuinfo which is not packaged yet
+-    (cmakeBool "ROCKCHIP_SUPPORT" rockchip)
+-    (cmakeBool "METAX_SUPPORT" metax)
+-    (cmakeBool "ENFLAME_SUPPORT" enflame)
+-  ];
+-  nativeBuildInputs = [
+-    cmake
+-  ]
+-  ++ lib.optionals finalAttrs.finalPackage.doCheck [
+-    gtest
+-  ]
+-  ++ lib.optional nvidia addDriverRunpath;
+-
+-  buildInputs = [
+-    ncurses
+-  ]
+-  ++ lib.optional stdenv.hostPlatform.isLinux udev
+-  ++ lib.optional (nvidia && cudaSupport) cudaPackages.cuda_nvml_dev
+-  ++ lib.optional needDrm libdrm;
+-
+-  # this helps cmake to find <drm.h>
+-  env.NIX_CFLAGS_COMPILE = lib.optionalString needDrm "-isystem ${lib.getDev libdrm}/include/libdrm";
+-
+-  # ordering of fixups is important
+-  postFixup =
+-    (lib.optionalString needDrm drm-postFixup)
+-    + (lib.optionalString nvidia "addDriverRunpath $out/bin/nvtop");
+-
+-  # https://github.com/Syllo/nvtop/commit/33ec008e26a00227a666ccb11321e9971a50daf8
+-  doCheck = !stdenv.hostPlatform.isDarwin;
+-
+-  nativeInstallCheckInputs = [ versionCheckHook ];
+-  doInstallCheck = true;
+-
+-  meta = {
+-    description = "htop-like task monitor for AMD, Adreno, Intel and NVIDIA GPUs";
+-    longDescription = ''
+-      Nvtop stands for Neat Videocard TOP, a (h)top like task monitor for AMD, Adreno, Intel and NVIDIA GPUs.
+-      It can handle multiple GPUs and print information about them in a htop familiar way.
+-    '';
+-    homepage = "https://github.com/Syllo/nvtop";
+-    changelog = "https://github.com/Syllo/nvtop/releases/tag/${finalAttrs.version}";
+-    license = lib.licenses.gpl3Only;
+-    platforms = if apple then lib.platforms.darwin else lib.platforms.linux;
+-    maintainers = with lib.maintainers; [
+-      gbtb
+-      anthonyroussel
+-      moni
+-    ];
+-    mainProgram = "nvtop";
+-  };
+-})
+diff --git a/pkgs/tools/system/nvtop/default.nix b/pkgs/tools/system/nvtop/default.nix
+deleted file mode 100644
+index 439c25c9d95ea..0000000000000
+--- a/pkgs/tools/system/nvtop/default.nix
++++ /dev/null
+@@ -1,43 +0,0 @@
+-{ callPackage, stdenv }:
+-let
+-  # this GPU families are supported "by-default" upstream (see https://github.com/Syllo/nvtop/blob/3a69c2d060298cd6f92cb09db944eded98be1c23/CMakeLists.txt#L81)
+-  # coincidentally, these families are also easy to build in nixpkgs at the moment
+-  defaultGPUFamilies = [
+-    "amd"
+-    "apple"
+-    "intel"
+-    "msm"
+-    "nvidia"
+-    "panfrost"
+-    "panthor"
+-    "v3d"
+-    "rockchip"
+-    "metax"
+-    "enflame"
+-  ];
+-  # these GPU families are partially supported upstream, they are also tricky to build in nixpkgs
+-  # volunteers with specific hardware needed to build and test these package variants
+-  additionalGPUFamilies = [
+-    "ascend"
+-    "tpu"
+-  ];
+-  defaultSupport = builtins.listToAttrs (
+-    # apple can only build on darwin, and it can't build everything else, and vice versa
+-    map (gpu: {
+-      name = gpu;
+-      value =
+-        (gpu == "apple" && stdenv.buildPlatform.isDarwin && stdenv.hostPlatform == stdenv.buildPlatform)
+-        || (gpu != "apple" && stdenv.buildPlatform.isLinux);
+-    }) defaultGPUFamilies
+-  );
+-in
+-{
+-  full = callPackage ./build-nvtop.nix defaultSupport; # this package supports all default GPU families
+-}
+-# additional packages with only one specific GPU family support
+-// builtins.listToAttrs (
+-  map (gpu: {
+-    name = gpu;
+-    value = (callPackage ./build-nvtop.nix { "${gpu}" = true; });
+-  }) defaultGPUFamilies
+-)
+diff --git a/pkgs/top-level/aliases.nix b/pkgs/top-level/aliases.nix
+index be2c4a82576b7..a74a87bc310ff 100644
+--- a/pkgs/top-level/aliases.nix
++++ b/pkgs/top-level/aliases.nix
+@@ -2019,6 +2019,24 @@ mapAliases {
+   numix-sx-gtk-theme = throw "'numix-sx-gtk-theme' has been removed because it depended on 'gtk-engine-murrine', which was removed because it was unmaintained upstream and depended on GTK 2."; # Added 2026-07-22
+   nushellFull = throw "'nushellFull' has been renamed to/replaced by 'nushell'"; # Converted to throw 2025-10-27
+   nuXmv = warnAlias "'nuXmv' has been renamed to 'nuxmv'" nuxmv; # Added 2026-02-08
++  nvtopPackages =
++    warnAlias "'nvtopPackages' has been replaced by 'nvtop' which now supports all GPU families"
++      (
++        lib.genAttrs [
++          "full"
++          "amd"
++          "apple"
++          "enflame"
++          "intel"
++          "metax"
++          "msm"
++          "nvidia"
++          "panfrost"
++          "panthor"
++          "rockchip"
++          "v3d"
++        ] (_: nvtop)
++      ); # Added 2026-11-10
+   o = throw "'o' has been renamed to/replaced by 'orbiton'"; # Converted to throw 2025-10-27
+   oam-tools = throw "'oam-tools' has been become part of amass"; # Added 2025-12-21
+   oathToolkit = throw "'oathToolkit' has been renamed to/replaced by 'oath-toolkit'"; # Converted to throw 2025-10-27
+diff --git a/pkgs/top-level/all-packages.nix b/pkgs/top-level/all-packages.nix
+index 16f763fffbec9..48388975cf141 100644
+--- a/pkgs/top-level/all-packages.nix
++++ b/pkgs/top-level/all-packages.nix
+@@ -5961,8 +5961,6 @@ with pkgs;
+ 
+   nvidia-vaapi-driver = hiPrio (callPackage ../development/libraries/nvidia-vaapi-driver { });
+ 
+-  nvtopPackages = recurseIntoAttrs (import ../tools/system/nvtop { inherit callPackage stdenv; });
+-
+   inherit (callPackages ../development/libraries/ogre { })
+     ogre_13
+     ogre_14
