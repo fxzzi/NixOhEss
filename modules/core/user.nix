@@ -51,6 +51,7 @@ in
             "autostart".type = "delete";
             # don't allow chromium to set itself as the DEFAULT BROWSER LMAO
             "mimeapps.list".text = "";
+            # makes thunar show lil glyphs for these dirs
             "user-dirs.dirs".text = ''
               XDG_DOWNLOAD_DIR="$HOME/Downloads"
               XDG_DOCUMENTS_DIR="$HOME/Documents"
@@ -70,8 +71,7 @@ in
       initialPassword = "1234";
       extraGroups = [
         "wheel" # sudo
-        "video"
-        "input"
+        "input" # extest and stuff
       ];
       uid = 1000;
     };

@@ -59,7 +59,8 @@ in
       alsa-utils
     ];
     users.users.${config.cfg.core.username}.extraGroups = [
-      "audio"
+      # user needs to be in pipewire group fo rtprio
+      # https://github.com/NixOS/nixpkgs/blob/177d0540942fb205af6993b1d5fa0b57799e09f8/nixos/modules/services/desktops/pipewire/pipewire.nix#L462
       "pipewire"
     ];
   };
