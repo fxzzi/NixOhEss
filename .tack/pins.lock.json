@@ -80,21 +80,14 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "8333bb7546c80e13b5c57e66ab72191d43b21505",
-    "narHash": "sha256-c/iIqiKwX9ysf0Vf92D82NvmoxhoUOEzpSzksH5SW0c=",
-    "lastModified": 1794520086,
+    "rev": "53f36f3b210705185fed67f15191c3f2ed936a11",
+    "narHash": "sha256-tu76WQrF7FTAGTiIXySqfGpUvXruFr6yuCIXcjc/Xvs=",
+    "lastModified": 1794568401,
     "patched": {
-      "path": "/nix/store/ksqmyl0fsg23q3g4gjgp154kma4w3v56-source",
-      "narHash": "sha256-tbqNGxF1v5+EQhnMMMne5/f1bt9asLn4l3Wi6J/e6/Q=",
-      "lastModified": 1794520086,
+      "path": "/nix/store/1cvp7wd3fjkmlz3in2sg8m5xc57mkb1w-source",
+      "narHash": "sha256-dH2NRygVWRfsntR5V5PmDxuK3x1hxyHk3agz7gxkDgY=",
+      "lastModified": 1794568401,
       "patches": [
-        {
-          "source": "https://github.com/hyprwm/Hyprland/pull/16941",
-          "url": "https://github.com/hyprwm/Hyprland/pull/16941",
-          "file": "patches/hyprland/pr-16941.patch",
-          "sha256": "9beafc71819861839888c250dcc21b6f03074446a1a295fea213c60f88cb8666",
-          "head": "d6ebb51c32e382d9ea6dd0ef05f44590efbc0476"
-        },
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16946",
           "url": "https://github.com/hyprwm/Hyprland/pull/16946",
@@ -124,7 +117,7 @@
           "head": "6390d13eabe24c385322477679810639efc75f1e"
         }
       ],
-      "diff": "ba04c9bc85f8c372771527d2531746537c877272007cb6102e0fd29cfebc74d9"
+      "diff": "d3120426925d1e933ef56d3aa337be183d1401325f555a4db708391f90afffa2"
     }
   },
   "niqspkgs": {
