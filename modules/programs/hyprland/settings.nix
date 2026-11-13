@@ -325,6 +325,14 @@ in
               end
             end
 
+            curves({
+              easeOutQuint = { { 0.23, 1 }, { 0.32, 1 } },
+              easeInOutCubic = { { 0.65, 0.05 }, { 0.36, 1 } },
+              linear = { { 0, 0 }, { 1, 1 } },
+              almostLinear = { { 0.5, 0.5 }, { 0.75, 1 } },
+              quick = { { 0.15, 0 }, { 0.1, 1 } },
+            })
+
             local function animations(items)
               for _, a in ipairs(items) do
                 hl.animation({
@@ -336,18 +344,6 @@ in
                 })
               end
             end
-
-            local function bind(keys, action, opts)
-              hl.bind(table.concat(keys, " + "), action, opts)
-            end
-
-            curves({
-              easeOutQuint = { { 0.23, 1 }, { 0.32, 1 } },
-              easeInOutCubic = { { 0.65, 0.05 }, { 0.36, 1 } },
-              linear = { { 0, 0 }, { 1, 1 } },
-              almostLinear = { { 0.5, 0.5 }, { 0.75, 1 } },
-              quick = { { 0.15, 0 }, { 0.1, 1 } },
-            })
 
             animations({
               { "windowsIn", true, 3, "easeOutQuint", "slide" },
@@ -401,6 +397,10 @@ in
                   monitor = monitor,
                 })
               end
+            end
+
+            local function bind(keys, action, opts)
+              hl.bind(table.concat(keys, " + "), action, opts)
             end
 
             local mainMod = "SUPER"
