@@ -24,8 +24,15 @@ let
 in
 {
   config = {
-    # start networking earlier in boot cycle to hopefully speed up boot
-    boot.initrd.network.enable = true;
+    boot = {
+      # start networking earlier in boot cycle to hopefully speed up boot
+      initrd.network.enable = true;
+      # bufferbloat mititgation
+      kernel.sysctl = {
+        "net.ipv4.tcp_congestion_control" = "bbr";
+        "net.core.default_qdisc" = "cake";
+      };
+    };
     networking = {
       # fork dhcpcd to background to speed up boot
       dhcpcd.wait = "background";
