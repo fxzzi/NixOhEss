@@ -12,10 +12,6 @@ let
       pkgs.linuxPackages_latest
     else if cfg.type == "lts" then
       pkgs.linuxPackages
-    else if cfg.type == "zen" then
-      pkgs.linuxKernel.packages.linux_zen
-    else if cfg.type == "xanmod" then
-      pkgs.linuxKernel.packages.linux_xanmod_latest
     else if cfg.type == "rc" then
       pkgs.linuxKernel.packages.linux_testing
     else
@@ -25,12 +21,10 @@ in
   options.cfg.core.kernel.type = mkOption {
     type = types.enum [
       "latest"
-      "zen"
       "lts"
-      "xanmod"
       "rc"
     ];
-    default = if config.cfg.core.isLaptop then "lts" else "latest";
+    default = "latest";
     description = "Selects which kernel to use";
   };
   config = {
