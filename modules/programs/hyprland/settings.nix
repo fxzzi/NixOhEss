@@ -194,6 +194,18 @@ in
               os.execute("pgrep --quiet Discord && pkill -9 Discord")
             end)
 
+            -- FIXME: Fix stale cursor position on window change
+            -- <https://github.com/hyprwm/Hyprland/issues/16783>
+            hl.on("window.active", function(w, reason)
+                hl.timer(function()
+                    local cp = hl.get_cursor_pos()
+                    if not cp then
+                        return
+                    end
+                    hl.dispatch(hl.dsp.cursor.move({ x = cp.x, y = cp.y }))
+                end, { timeout = 1, type = "oneshot" })
+            end)
+
             -- set primary monitor for xwayland apps too.
             if ${boolToString multiMonitor} then
               hl.on("monitor.layout_changed", function()
