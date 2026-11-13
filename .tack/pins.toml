@@ -14,8 +14,12 @@ names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 
 # core
 [inputs.nixpkgs]
-url    = "channel:nixos-unstable-small"
+url = "channel:nixos-unstable-small"
 frozen = true
+patches = [
+  # nh: 4.4.2 -> 4.5.0
+  "https://github.com/NixOS/nixpkgs/pull/578415",
+]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.nixos-core]
