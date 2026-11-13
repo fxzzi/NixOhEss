@@ -27,6 +27,8 @@ in
     # start networking earlier in boot cycle to hopefully speed up boot
     boot.initrd.network.enable = true;
     networking = {
+      # fork dhcpcd to background to speed up boot
+      dhcpcd.wait = "background";
       inherit hostName;
       nameservers = cloudflareDNS;
     };
