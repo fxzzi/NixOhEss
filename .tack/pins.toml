@@ -22,14 +22,17 @@ patches = [
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
+[inputs.hjem]
+url = "github:feel-co/hjem"
 [inputs.nixos-core]
 url = "github:manic-systems/nixos-core"
 patches = [
   # Remove support for scripted initrd
   "https://github.com/manic-systems/nixos-core/pull/84",
 ]
-[inputs.hjem]
-url = "github:feel-co/hjem"
+[inputs.ncro]
+url  = "github:manic-systems/ncro"
+type = "fetch"
 [inputs.tack]
 url  = "github:manic-systems/tack"
 type = "fetch"
