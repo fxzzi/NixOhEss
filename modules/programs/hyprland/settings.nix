@@ -136,7 +136,7 @@ in
       dwindle.preserve_split = true; # You probably want this
       debug = {
         # make sure to uncomment when debugging
-        # disable_logs = false;
+        disable_logs = false;
       };
     };
     hj.xdg.config.files = {
