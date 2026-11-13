@@ -7,6 +7,7 @@
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "hjem": "github:feel-co/hjem",
     "hyprland": "github:hyprwm/Hyprland",
+    "ncro": "github:manic-systems/ncro",
     "niqspkgs": "github:diniamo/niqspkgs",
     "nix-gaming": "github:fufexan/nix-gaming",
     "nixcord": "github:4evy/nixcord",
@@ -72,9 +73,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "28cec3017cc94842f919f8f294c8b7136216b79b",
-    "narHash": "sha256-tttNqwFIXsClznNv3uEltACsfBm8xIDo9bPl+BHqYZc=",
-    "lastModified": 1794190356
+    "rev": "5469a3ae3cd5cc182ddc4201a21a8de44b2c26f2",
+    "narHash": "sha256-N6aGkpxbDeisIUygDapIVX2aXZuGEK4kRmUPMhtu1zc=",
+    "lastModified": 1794572558
   },
   "hyprland": {
     "type": "github",
@@ -118,6 +119,18 @@
         }
       ],
       "diff": "d3120426925d1e933ef56d3aa337be183d1401325f555a4db708391f90afffa2"
+    }
+  },
+  "ncro": {
+    "type": "github",
+    "owner": "manic-systems",
+    "repo": "ncro",
+    "rev": "ad44cfbc00a6ed1fff20bb09407f21144f5d27fd",
+    "narHash": "sha256-/sw6LJGSbIytu/z/DX4mJYHfyNC2ZqOor1rxoEN5tD0=",
+    "lastModified": 1794564469,
+    "archive": {
+      "hash": "sha256-Eu0OvkDhvPZ87QnPOAgRUJQ6qPgqbeKhxDxb00M8m28=",
+      "outHash": "sha256-6iYv7dFQapUVKyVxY8y7rpnmC3Vl99ZZmlf8dvYX0LY="
     }
   },
   "niqspkgs": {
