@@ -45,7 +45,7 @@
         enable = true;
         dpmsTimeout = 300;
         lockTimeout = 480;
-        suspendTimeout = 0;
+        suspendTimeout = 600;
       };
       hyprpaper.enable = true;
       hyprsunset.enable = true;

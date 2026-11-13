@@ -81,13 +81,13 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "53f36f3b210705185fed67f15191c3f2ed936a11",
-    "narHash": "sha256-tu76WQrF7FTAGTiIXySqfGpUvXruFr6yuCIXcjc/Xvs=",
-    "lastModified": 1794568401,
+    "rev": "0767f6347a69607638a4f93b3cd613af15a121e0",
+    "narHash": "sha256-1I8u6r86xSBRVUd6qTFBffifRqS/DcUv4n7pdtL9M8c=",
+    "lastModified": 1794583226,
     "patched": {
-      "path": "/nix/store/1cvp7wd3fjkmlz3in2sg8m5xc57mkb1w-source",
-      "narHash": "sha256-dH2NRygVWRfsntR5V5PmDxuK3x1hxyHk3agz7gxkDgY=",
-      "lastModified": 1794568401,
+      "path": "/nix/store/i1pfbynz0jlkbqiqz6fr36ix72m2a29f-source",
+      "narHash": "sha256-e7PLvS38cPFnHh/GSN6ehxT0KhbXcpaOJGflQgdCpUQ=",
+      "lastModified": 1794583226,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16946",
@@ -172,12 +172,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "81c13bcdadbdd8528075b6df6f68cb78bc721b34",
-    "narHash": "sha256-RGrKRCdfDUTORgZpmWTAAxLPbTrL2QdaLu97WlKbxVk=",
-    "lastModified": 1794563098,
+    "rev": "8ea265ba80c469abc4ffa19e481dd2c4eeeed2a3",
+    "narHash": "sha256-gz5oXTAav6xfouhFrnB8aEFAUeF+XyQlJcFfzWlllv8=",
+    "lastModified": 1794591582,
     "archive": {
-      "hash": "sha256-1x86Z7c7NsZQGqQBZnMdFWMNPEYd5EAXJO93T92UeOM=",
-      "outHash": "sha256-juoJfp/ZyIT6rKF0xDHUdbDFppX+b1yDGb/AnUREt1A="
+      "hash": "sha256-BMiJS9Bp4SnxXMVgzGcJtkEyLwUQq+jCMCtECf7wpxk=",
+      "outHash": "sha256-PetwaTs495gg6Le3/UYNkrvis2iWbnrLgS+c+2i1+Oo="
     }
   },
   "nixos-core": {
