@@ -31,10 +31,10 @@
         };
       };
       ananicy.enable = true;
-      scx = {
-        enable = true;
-        scheduler = "scx_bpfland";
-      };
+      # scx = {
+      #   enable = true;
+      #   scheduler = "scx_bpfland";
+      # };
       syncthing.enable = true;
       mpd = {
         enable = true;

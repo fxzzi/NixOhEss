@@ -24,11 +24,6 @@
       };
 
       ananicy.enable = true;
-      scx = {
-        enable = true;
-        scheduler = "scx_bpfland";
-      };
-
       hyprsunset.enable = true;
       hypridle = {
         enable = true;
