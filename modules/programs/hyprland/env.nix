@@ -21,9 +21,6 @@ in
 
       # don't use libdecor as it's a little borken
       LIBDECOR_PLUGIN_DIR = "nope";
-
-      # FIXME: remove when https://github.com/hyprwm/Hyprland/pull/16843 is in a release
-      HYPRLAND_NO_RT = 1;
     };
   };
 }
