@@ -85,16 +85,16 @@
     "narHash": "sha256-1I8u6r86xSBRVUd6qTFBffifRqS/DcUv4n7pdtL9M8c=",
     "lastModified": 1794583226,
     "patched": {
-      "path": "/nix/store/i1pfbynz0jlkbqiqz6fr36ix72m2a29f-source",
-      "narHash": "sha256-e7PLvS38cPFnHh/GSN6ehxT0KhbXcpaOJGflQgdCpUQ=",
+      "path": "/nix/store/xwsdp11q0x19j5gymmvz8ywzj164sjms-source",
+      "narHash": "sha256-RGZ4rztmNsMgftaTCTDp2t4qMgJfMIauDGT5MeFry8Y=",
       "lastModified": 1794583226,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16946",
           "url": "https://github.com/hyprwm/Hyprland/pull/16946",
           "file": "patches/hyprland/pr-16946.patch",
-          "sha256": "d747e7bc48c0cfb3223f3785bd42b14d07043a33972e025dc2f25319d46aa90c",
-          "head": "806709b169660e26acb5abb93ad294e226e54711"
+          "sha256": "c375403f1d23294d05ac9f93d79276f9959d71f197f01d400ebb5b44302bf50a",
+          "head": "53a8f06cf7416deeeaae89dbd1d9896bf016a832"
         },
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16957",
@@ -107,8 +107,8 @@
           "source": "https://github.com/hyprwm/Hyprland/pull/16966",
           "url": "https://github.com/hyprwm/Hyprland/pull/16966",
           "file": "patches/hyprland/pr-16966.patch",
-          "sha256": "232a02f73eacf110e43f326ac54239f9c6f6a3878ad459334087e8a74768329b",
-          "head": "65af16ef57f07c14a3b66a5ed41eda56e362679e"
+          "sha256": "531a1a796c50bcef346353dc3e10b942df70068f7087cf2d666302c1db17690b",
+          "head": "47d9d908b04336f305cb38c98daee9a743d95e11"
         },
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16971",
@@ -118,7 +118,7 @@
           "head": "6390d13eabe24c385322477679810639efc75f1e"
         }
       ],
-      "diff": "d3120426925d1e933ef56d3aa337be183d1401325f555a4db708391f90afffa2"
+      "diff": "27bca443d9e1d4d12e06ff29e17f548b20d26b0e22391725f821edde60b7b627"
     }
   },
   "ncro": {
@@ -149,13 +149,13 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "3d460ece2fde6ba86a7f9deacc9a65e40f9ed19e",
-    "narHash": "sha256-x97M5XOV+IDcm7K9Bv6a7OUePyEVCjPeLpr3iD3BJD8=",
-    "lastModified": 1794375173,
+    "rev": "5760f2de87aa5209cf4c0d971dec9fe1c1a725a3",
+    "narHash": "sha256-sWKsklpNQ4zh1pFd+/uKrCo1u4G6lDhmRmLRZ8p+n9g=",
+    "lastModified": 1794635160,
     "patched": {
-      "path": "/nix/store/c6a8kvvzmpyfhbx9pqznw4m6v60nkck8-source",
-      "narHash": "sha256-nCKZv8/Mo3xUmC2yeyPlFnuygs/qtWo0RSIkhGXMYhI=",
-      "lastModified": 1794375173,
+      "path": "/nix/store/wq8ayx84w7fkmvqd43jrmwyy03mlhcsb-source",
+      "narHash": "sha256-cIyc8o1Ht1O06uC+6h/mwtOPdQwjV2+NjqAyPZmlxa4=",
+      "lastModified": 1794635160,
       "patches": [
         {
           "source": "https://github.com/fufexan/nix-gaming/pull/384",
@@ -172,36 +172,21 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "8ea265ba80c469abc4ffa19e481dd2c4eeeed2a3",
-    "narHash": "sha256-gz5oXTAav6xfouhFrnB8aEFAUeF+XyQlJcFfzWlllv8=",
-    "lastModified": 1794591582,
+    "rev": "1fd806254f5be790861b70f16c2ff9053dda6fcd",
+    "narHash": "sha256-Xz2IPM2IMNm0ztW5qXfeFazfxD/asZS1Rkz1sckNUMo=",
+    "lastModified": 1794658885,
     "archive": {
-      "hash": "sha256-BMiJS9Bp4SnxXMVgzGcJtkEyLwUQq+jCMCtECf7wpxk=",
-      "outHash": "sha256-PetwaTs495gg6Le3/UYNkrvis2iWbnrLgS+c+2i1+Oo="
+      "hash": "sha256-4IO6g1BhL5V/FzGW5wmSTqm5LzoB6pCWnxPg7lSckz8=",
+      "outHash": "sha256-n+AxirnI4zw/b6zmccTAJeLpwqjkD19Cap6QSNrvUvA="
     }
   },
   "nixos-core": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "411f45761a532a02f056bb1b366aa07abb7cf34e",
-    "narHash": "sha256-Vl9FOeAOqr94iSFnRpOUqI0P2nffULmtKj2wtnRvdFs=",
-    "lastModified": 1794025402,
-    "patched": {
-      "path": "/nix/store/rqxikc081xfwpm46lwih9vw136m76x5q-source",
-      "narHash": "sha256-xZhNR8nH1PJABLu44Mh854Uhc+J1B5qjjBWlWdIdCbM=",
-      "lastModified": 1794025402,
-      "patches": [
-        {
-          "source": "https://github.com/manic-systems/nixos-core/pull/84",
-          "url": "https://github.com/manic-systems/nixos-core/pull/84",
-          "file": "patches/nixos-core/pr-84.patch",
-          "sha256": "92c2a513639c014c1c236f87899f495c68ac89a5c49ca6cf25da5d92191c930a",
-          "head": "13e4d6d811e1e6fa3c9366613931e59ba10b3bd4"
-        }
-      ],
-      "diff": "85376248645d1167033675e22462bbf6fad7d7d310a9c235d4a01cb21190e06a"
-    }
+    "rev": "80edbeb8f8d45f72c4e788b586ce59fa4a2611b4",
+    "narHash": "sha256-vadrXCxy5s8uAZ+4bB5/gNuR71SbaIgHpGq0JeRY2g4=",
+    "lastModified": 1794651602
   },
   "nixpkgs": {
     "type": "tarball",
