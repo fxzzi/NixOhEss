@@ -8,9 +8,6 @@
 let
   inherit (lib) mkEnableOption mkIf concatStringsSep;
   cfg = config.cfg.hardware.nvidia;
-  azzipkgs = inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system};
-  # tom's clanker open-gpu-userspace-modules
-  open-userspace = azzipkgs.open-gpu-userspace-modules;
 in
 {
   options.cfg.hardware.nvidia.enable = mkEnableOption "nvidia";
@@ -23,7 +20,15 @@ in
       graphics = {
         enable = true;
         enable32Bit = true;
-        extraPackages = [ azzipkgs.nvidia-vaapi-driver ];
+        extraPackages = [
+          # nvidia-vaapi-driver from azzipkgs is more up to date
+          inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.nvidia-vaapi-driver
+          # use tom's clanker userspace modules
+          inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.open-gpu-userspace-modules
+        ];
+        extraPackages32 = [
+          inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.open-gpu-userspace-modules.lib32
+        ];
       };
       nvidia = {
         # we add nvidia-vaapi-driver manually above.
@@ -46,18 +51,6 @@ in
             # and it fixes a bunch of stuff and provides some good QOL improvements.
             inputs.tom-nvidia-patches
           ];
-          # replace the driver's libnvidia-allocator.so.1 with tom's open version
-          postInstall = ''
-            replaceAllocator() {
-              rm "$1"/lib/libnvidia-allocator.so*
-              ln -s "$2"/lib/libnvidia-allocator.so.1 "$1"/lib/libnvidia-allocator.so.1
-              ln -s libnvidia-allocator.so.1 "$1"/lib/libnvidia-allocator.so
-            }
-            replaceAllocator "$out" ${open-userspace}
-            replaceAllocator "$lib32" ${open-userspace.lib32}
-            # the 32-bit build is the allocator alone, with no GBM backend.
-            rm -rf "$lib32"/lib/gbm
-          '';
         };
         moduleParams = {
           nvidia = {
@@ -106,6 +99,9 @@ in
         # despite the name, it doesn't always use latest. it uses the "recommended" model for your GPU.
         # for example on my 3070 it will use preset K.
         DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION = "render_preset_latest";
+
+        # use tom's clanker userspace modules
+        GBM_BACKEND = "nvidia-open";
 
       };
       etc = {
