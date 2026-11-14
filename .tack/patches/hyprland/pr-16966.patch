@@ -21,7 +21,7 @@ index 36089ed8169..5f9a6c62d37 100644
          color = fromLinearNit(color, dstDesc->value().transferFunction, settings.dstTFRange);
          if (settings.needsSDRmod) {
 diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
-index bde48185eb7..cb3aa23e6ae 100644
+index bde48185eb7..f06dabb956a 100644
 --- a/src/render/OpenGL.cpp
 +++ b/src/render/OpenGL.cpp
 @@ -1290,7 +1290,6 @@ void CHyprOpenGLImpl::passCMUniforms(WP<CShader> shader, const NColorManagement:
@@ -32,12 +32,63 @@ index bde48185eb7..cb3aa23e6ae 100644
      shader->setUniformFloat(SHADER_DST_REF_LUMINANCE, settings.dstRefLuminance);
      shader->setUniformFloat(SHADER_MAX_LUMINANCE, settings.maxLuminance);
      shader->setUniformFloat(SHADER_DST_MAX_LUMINANCE, settings.dstMaxLuminance);
+@@ -1526,10 +1525,16 @@ WP<CShader> CHyprOpenGLImpl::renderToFBInternal(CRenderContext& ctx, SP<ITexture
+ 
+         shaderFeatures |= SH_FEAT_CM;
+ 
++        // the unmodified SDR copy of HDR content always needs an HDR -> SDR tonemap, even if the main target doesn't
++        const bool SRC_IS_HDR =
++            settings.sourceTF == CM_TRANSFER_FUNCTION_ST2084_PQ || settings.sourceTF == CM_TRANSFER_FUNCTION_HLG || settings.sourceTF == CM_TRANSFER_FUNCTION_EXT_LINEAR;
++        const bool MIRROR_ONLY_TONEMAP = !TARGET_IMAGE_DESCRIPTION->value().icc.present && !settings.needsTonemap && SRC_IS_HDR && (globalFeatures(ctx) & SH_FEAT_MIRROR) &&
++            (settings.tonemapMode == 1 || settings.tonemapMode == 3);
++
+         if (TARGET_IMAGE_DESCRIPTION->value().icc.present)
+             shaderFeatures |= SH_FEAT_ICC;
+         else {
+-            if (settings.needsTonemap) {
++            if (settings.needsTonemap || MIRROR_ONLY_TONEMAP) {
+                 shaderFeatures |= SH_FEAT_TONEMAP;
+                 if (settings.tonemapMode == 3)
+                     shaderFeatures |= SH_FEAT_ALT_TONEMAP;
+@@ -1544,6 +1549,10 @@ WP<CShader> CHyprOpenGLImpl::renderToFBInternal(CRenderContext& ctx, SP<ITexture
+         shader = useShader(shader);
+ 
+         passCMUniforms(shader, SOURCE_IMAGE_DESCRIPTION, TARGET_IMAGE_DESCRIPTION, true, ctx.m_data.pMonitor->m_sdrMinLuminance, ctx.m_data.pMonitor->m_sdrMaxLuminance, settings);
++
++        // negative mode tells the shader to skip the main tonemap and only tonemap the mirror
++        if (MIRROR_ONLY_TONEMAP)
++            shader->setUniformInt(SHADER_TONEMAP_MODE, -settings.tonemapMode);
+     } else {
+         if (!shader)
+             shader = getShaderVariant(SH_FRAG_SURFACE, shaderFeatures | globalFeatures(ctx));
 diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
-index 63e17ca1519..fad148aacc1 100644
+index 63e17ca1519..32ca3246a18 100644
 --- a/src/render/Renderer.cpp
 +++ b/src/render/Renderer.cpp
-@@ -2219,14 +2219,12 @@ SCMSettings IHyprRenderer::getCMSettings(CRenderContext& ctx, const NColorManage
-                             .max = imageDescription->value().getTFMaxLuminance(needsSDRmod ? sdrMaxLuminance : -1)},
+@@ -2210,23 +2210,30 @@ SCMSettings IHyprRenderer::getCMSettings(CRenderContext& ctx, const NColorManage
+         ((ctx.m_data.pMonitor->m_sdrSaturation > 0 && ctx.m_data.pMonitor->m_sdrSaturation != 1.0f) ||
+          (ctx.m_data.pMonitor->m_sdrBrightness > 0 && ctx.m_data.pMonitor->m_sdrBrightness != 1.0f));
+ 
+-    const bool needsTonemap = maxLuminance >= dstMaxLuminance * 1.01;
++    const float srcTFMin = imageDescription->value().getTFMinLuminance(needsSDRmod ? sdrMinLuminance : -1);
++    const float srcTFMax = imageDescription->value().getTFMaxLuminance(needsSDRmod ? sdrMaxLuminance : -1);
+ 
+-    auto       result = SCMSettings{
++    // in HDR, we need to map the sources reference white onto the target by scaling srcTFRange
++    const bool SRC_IS_HDR = srcTF == NColorManagement::CM_TRANSFER_FUNCTION_ST2084_PQ || srcTF == NColorManagement::CM_TRANSFER_FUNCTION_HLG ||
++        srcTF == NColorManagement::CM_TRANSFER_FUNCTION_EXT_LINEAR;
++    const float SRC_REF            = SRC_IS_HDR ? sc<float>(std::max(1U, imageDescription->value().luminances.reference)) : imageDescription->value().getTFRefLuminance();
++    const float REF_SCALE          = needsSDRmod ? 1.F : sc<float>(targetImageDescription->value().luminances.reference) / SRC_REF;
++    const float scaledMaxLuminance = (SRC_IS_HDR ? maxLuminance : srcTFMax) * REF_SCALE;
++
++    const bool  needsTonemap = scaledMaxLuminance >= dstMaxLuminance * 1.01;
++
++    auto        result = SCMSettings{
+         .sourceTF        = srcTF,
+         .targetTF        = targetImageDescription->value().transferFunction,
+-        .srcTFRange      = {.min = imageDescription->value().getTFMinLuminance(needsSDRmod ? sdrMinLuminance : -1),
+-                            .max = imageDescription->value().getTFMaxLuminance(needsSDRmod ? sdrMaxLuminance : -1)},
++        .srcTFRange      = {.min = srcTFMin * REF_SCALE, .max = srcTFMax * REF_SCALE},
          .dstTFRange      = {.min = targetImageDescription->value().getTFMinLuminance(needsSDRmod ? sdrMinLuminance : -1),
                              .max = targetImageDescription->value().getTFMaxLuminance(needsSDRmod ? sdrMaxLuminance : -1)},
 -        .srcRefLuminance = imageDescription->value().luminances.reference,
@@ -48,7 +99,7 @@ index 63e17ca1519..fad148aacc1 100644
          .tonemapMode             = tonemapMode,
 -        .maxLuminance            = needsTonemap && tonemapMode == 2 ? dstMaxLuminance :
 -                                                                      maxLuminance * targetImageDescription->value().luminances.reference / imageDescription->value().luminances.reference,
-+        .maxLuminance            = needsTonemap && tonemapMode == 2 ? dstMaxLuminance : maxLuminance,
++        .maxLuminance            = needsTonemap && tonemapMode == 2 ? dstMaxLuminance : scaledMaxLuminance,
          .dstMaxLuminance         = dstMaxLuminance,
          .dstPrimaries2XYZ        = toXYZ.mat(),
          .needsSDRmod             = needsMod,
@@ -89,6 +140,24 @@ index 744e576109d..61f2dd6bfba 100644
          SH_FEAT_TONEMAP           = (1 << 5),  // uniforms: maxLuminance, dstMaxLuminance, dstRefLuminance; condition: maxLuminance < dstMaxLuminance * 1.01
          SH_FEAT_SDR_MOD           = (1 << 6),  // uniforms: sdrSaturation, sdrBrightnessMultiplier; condition: SDR <-> HDR && (sdrSaturation != 1 || sdrBrightnessMultiplier != 1)
          SH_FEAT_BLUR              = (1 << 7),  // condition: render:use_shader_blur_blend
+diff --git a/src/render/gl/blur/Kawase.cpp b/src/render/gl/blur/Kawase.cpp
+index fd6c2968c59..c17d2e91c64 100644
+--- a/src/render/gl/blur/Kawase.cpp
++++ b/src/render/gl/blur/Kawase.cpp
+@@ -15,8 +15,12 @@ static SCMSettings blurIntermediateCMSettings(CRenderContext& ctx, bool toInterm
+     const auto WORKBUFFER   = g_pHyprRenderer->workBufferImageDescription(ctx);
+     const auto INTERMEDIATE = getDefaultImageDescription();
+ 
++    const auto SOURCE = toIntermediate ? WORKBUFFER : INTERMEDIATE;
++
+     auto       settings = toIntermediate ? g_pHyprRenderer->getCMSettings(ctx, WORKBUFFER, INTERMEDIATE) : g_pHyprRenderer->getCMSettings(ctx, INTERMEDIATE, WORKBUFFER);
+-    auto&      range    = toIntermediate ? settings.dstTFRange : settings.srcTFRange;
++
++    settings.srcTFRange = {.min = SOURCE->value().getTFMinLuminance(), .max = SOURCE->value().getTFMaxLuminance()};
++    auto& range         = toIntermediate ? settings.dstTFRange : settings.srcTFRange;
+     range.max           = std::max(range.max, sc<float>(WORKBUFFER->value().luminances.max));
+     return settings;
+ }
 diff --git a/src/render/shaders/glsl/CM.glsl b/src/render/shaders/glsl/CM.glsl
 index 1104f72be67..a73284707d5 100644
 --- a/src/render/shaders/glsl/CM.glsl
@@ -171,7 +240,7 @@ index ed4538bef5c..c36aba84afb 100644
  #if USE_SDR_MOD
                               ,
 diff --git a/src/render/shaders/glsl/cm_helpers.glsl b/src/render/shaders/glsl/cm_helpers.glsl
-index 41c24f04116..11eb05b4a30 100644
+index 41c24f04116..20f68629e3e 100644
 --- a/src/render/shaders/glsl/cm_helpers.glsl
 +++ b/src/render/shaders/glsl/cm_helpers.glsl
 @@ -220,7 +220,7 @@ vec4
@@ -183,15 +252,39 @@ index 41c24f04116..11eb05b4a30 100644
  #endif
  #if USE_SDR_MOD
                         ,
-@@ -246,7 +246,7 @@ vec4
+@@ -245,14 +245,28 @@ vec4
+         pixColor = toNit(pixColor, srcTFRange);
      pixColor.a   = finalAlpha;
      pixColor.rgb *= pixColor.a;
++#if USE_MIRROR
++    vec4 mirrorColor = pixColor;
++#endif
  #if USE_TONEMAP
 -    pixColor = tonemap(pixColor, dstxyz, maxLuminance, dstMaxLuminance, dstRefLuminance, srcRefLuminance, tonemapMode);
-+    pixColor = tonemap(pixColor, dstxyz, maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode);
++    // negative tonemapMode means that only the mirror needs to be tonemapped
++    if (tonemapMode > 0)
++        pixColor = tonemap(pixColor, dstxyz, maxLuminance, dstMaxLuminance, dstRefLuminance, tonemapMode);
  #endif
  
  #if USE_MIRROR
+-    // TODO HDR -> SDR tonemap
+-    vec4 mirrorColor = fromLinearNit(pixColor, CM_TRANSFER_FUNCTION_SRGB,
+-                                     srcTF == CM_TRANSFER_FUNCTION_GAMMA22 || srcTF == CM_TRANSFER_FUNCTION_SRGB ? srcTFRange : vec2(SDR_MIN_LUMINANCE, SDR_MAX_LUMINANCE));
++    if (srcTF != CM_TRANSFER_FUNCTION_ST2084_PQ && srcTF != CM_TRANSFER_FUNCTION_HLG && srcTF != CM_TRANSFER_FUNCTION_EXT_LINEAR)
++        mirrorColor = fromLinearNit(pixColor, CM_TRANSFER_FUNCTION_SRGB, srcTFRange);
++    else {
++#if USE_TONEMAP
++        // HDR -> SDR: map the targets reference white to our SDR white, and tonemap the rest (see getCMSettings)
++        mirrorColor.rgb *= SDR_MAX_LUMINANCE / dstRefLuminance;
++        mirrorColor = tonemap(mirrorColor, dstxyz, maxLuminance * SDR_MAX_LUMINANCE / dstRefLuminance, SDR_MAX_LUMINANCE, SDR_MAX_LUMINANCE, abs(tonemapMode));
++#else
++        mirrorColor = pixColor;
++#endif
++        mirrorColor = fromLinearNit(mirrorColor, CM_TRANSFER_FUNCTION_SRGB, vec2(SDR_MIN_LUMINANCE, SDR_MAX_LUMINANCE));
++    }
+ #endif
+     pixColor = fromLinearNit(pixColor, dstTF, dstTFRange);
+ #if USE_SDR_MOD
 diff --git a/src/render/shaders/glsl/inner_glow.frag b/src/render/shaders/glsl/inner_glow.frag
 index 9a2dfa30241..462eeeef679 100644
 --- a/src/render/shaders/glsl/inner_glow.frag

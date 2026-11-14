@@ -77,7 +77,7 @@ in
         # always try to use hw cursors whenever possible
         no_hardware_cursors = 0;
         # min refresh rate for the cursor in games.
-        min_refresh_rate = 48;
+        min_refresh_rate = 30;
       };
       input = {
         # Set characters to repeat on hold every Xms
