@@ -62,10 +62,10 @@ index bde48185eb7..f06dabb956a 100644
          if (!shader)
              shader = getShaderVariant(SH_FRAG_SURFACE, shaderFeatures | globalFeatures(ctx));
 diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
-index 63e17ca1519..32ca3246a18 100644
+index 4e074a19849..c9f312ad90a 100644
 --- a/src/render/Renderer.cpp
 +++ b/src/render/Renderer.cpp
-@@ -2210,23 +2210,30 @@ SCMSettings IHyprRenderer::getCMSettings(CRenderContext& ctx, const NColorManage
+@@ -2199,23 +2199,30 @@ SCMSettings IHyprRenderer::getCMSettings(CRenderContext& ctx, const NColorManage
          ((ctx.m_data.pMonitor->m_sdrSaturation > 0 && ctx.m_data.pMonitor->m_sdrSaturation != 1.0f) ||
           (ctx.m_data.pMonitor->m_sdrBrightness > 0 && ctx.m_data.pMonitor->m_sdrBrightness != 1.0f));
  
@@ -240,7 +240,7 @@ index ed4538bef5c..c36aba84afb 100644
  #if USE_SDR_MOD
                               ,
 diff --git a/src/render/shaders/glsl/cm_helpers.glsl b/src/render/shaders/glsl/cm_helpers.glsl
-index 41c24f04116..20f68629e3e 100644
+index 41c24f04116..dedb765843f 100644
 --- a/src/render/shaders/glsl/cm_helpers.glsl
 +++ b/src/render/shaders/glsl/cm_helpers.glsl
 @@ -220,7 +220,7 @@ vec4
@@ -271,7 +271,7 @@ index 41c24f04116..20f68629e3e 100644
 -    vec4 mirrorColor = fromLinearNit(pixColor, CM_TRANSFER_FUNCTION_SRGB,
 -                                     srcTF == CM_TRANSFER_FUNCTION_GAMMA22 || srcTF == CM_TRANSFER_FUNCTION_SRGB ? srcTFRange : vec2(SDR_MIN_LUMINANCE, SDR_MAX_LUMINANCE));
 +    if (srcTF != CM_TRANSFER_FUNCTION_ST2084_PQ && srcTF != CM_TRANSFER_FUNCTION_HLG && srcTF != CM_TRANSFER_FUNCTION_EXT_LINEAR)
-+        mirrorColor = fromLinearNit(pixColor, CM_TRANSFER_FUNCTION_SRGB, srcTFRange);
++        mirrorColor = fromLinearNit(mirrorColor, CM_TRANSFER_FUNCTION_SRGB, srcTFRange);
 +    else {
 +#if USE_TONEMAP
 +        // HDR -> SDR: map the targets reference white to our SDR white, and tonemap the rest (see getCMSettings)

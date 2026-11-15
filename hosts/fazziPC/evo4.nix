@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -25,16 +24,7 @@ in
   config = {
     # save the EVO4 options in ALSA, including mic gain, phantom power, etc.
     hardware.alsa.enablePersistence = true;
-    boot = {
-      extraModulePackages = [
-        # patched snd-usb-audio containing EVO4 mixer quirks
-        # this lets ALSA expose all the hardware controls to the system
-        # https://lore.kernel.org/lkml/20260919151840.24371-1-arc@gmx.li/
-        # also fixes hardware volume control not working properly
-        # https://lore.kernel.org/regressions/CANBVYRCL=8QdLxGg4S6qrahrFtwJxhv-aSGpW7-1S=+iOe4ZGA@mail.gmail.com/T/#u
-        (config.boot.kernelPackages.callPackage ./snd-usb-audio/_package.nix { })
-      ];
-    };
+    # use patched UCM conf
     systemd.user.services = {
       pipewire.environment = extraEnv;
       wireplumber.environment = extraEnv;

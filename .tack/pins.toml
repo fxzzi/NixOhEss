@@ -67,11 +67,8 @@ url = "github:hyprwm/Hyprland"
 patches = [
   # render/hdr: avoid metadata modeset in DS ins/outs
   "https://github.com/hyprwm/Hyprland/pull/16946",
-  # cm: only prefer HDR for the fullscreen window with prefer_hdr
-  "https://github.com/hyprwm/Hyprland/pull/16957",
   # renderer: HDR -> SDR tonemapping fixes
   "https://github.com/hyprwm/Hyprland/pull/16966",
-  # cm: use correct luminance ranges for scrgb and bt2100
   # cm: use hdr metadata for tonemap peak
   "https://github.com/hyprwm/Hyprland/pull/16971",
 ]
