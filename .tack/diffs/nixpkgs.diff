@@ -1,7 +1,7 @@
 diff --git a/pkgs/by-name/nh/nh/package.nix b/pkgs/by-name/nh/nh/package.nix
 --- a/pkgs/by-name/nh/nh/package.nix
 +++ b/pkgs/by-name/nh/nh/package.nix
-@@ -1,46 +1,140 @@
+@@ -1,46 +1,139 @@
  {
 +  stdenv,
    lib,
@@ -41,7 +41,6 @@ diff --git a/pkgs/by-name/nh/nh/package.nix b/pkgs/by-name/nh/nh/package.nix
 +  };
 +
 +  __structuredAttrs = true;
-+  strictDeps = true;
  
 -  paths = [
 -    unwrapped
@@ -62,15 +61,32 @@ diff --git a/pkgs/by-name/nh/nh/package.nix b/pkgs/by-name/nh/nh/package.nix
 +    sqlite
 +    aws-lc
 +    zstd
-+  ];
-+
+   ];
+ 
+-  postBuild = ''
+-    wrapProgram $out/bin/nh \
+-      --prefix PATH : ${lib.makeBinPath runtimeDeps}
+-  '';
 +  # pkgs.sudo is not available on the Darwin platform, and thus breaks build
 +  # if added to nativeCheckInputs. We must manually disable the tests that
 +  # *require* it, because they will fail when sudo is missing.
 +  nativeCheckInputs = lib.optionals (!stdenv.hostPlatform.isDarwin) [ sudo ];
-+
+ 
+-  meta = {
+-    inherit (unwrapped.meta)
+-      changelog
+-      description
+-      homepage
+-      license
+-      mainProgram
+-      maintainers
+-      ;
 +  useNextest = true;
-+
+ 
+-    # To prevent builds on hydra
+-    hydraPlatforms = [ ];
+-    # prefer wrapper over the package
+-    priority = (unwrapped.meta.priority or lib.meta.defaultPriority) - 1;
 +  checkFlags = [
 +    # These do not work in Nix's sandbox
 +    "--skip"
@@ -102,12 +118,8 @@ diff --git a/pkgs/by-name/nh/nh/package.nix b/pkgs/by-name/nh/nh/package.nix
 +    "test_elevation_strategy_passwordless_resolves"
 +    "--skip"
 +    "test_build_sudo_cmd_with_nix_config_spaces"
-   ];
- 
--  postBuild = ''
--    wrapProgram $out/bin/nh \
--      --prefix PATH : ${lib.makeBinPath runtimeDeps}
--  '';
++  ];
++
 +  nativeInstallCheckInputs = [ versionCheckHook ];
 +
 +  postInstall =
@@ -144,21 +156,8 @@ diff --git a/pkgs/by-name/nh/nh/package.nix b/pkgs/by-name/nh/nh/package.nix
 +  passthru.updateScript = nix-update-script { };
 +
 +  env.NH_REV = finalAttrs.src.rev;
- 
-   meta = {
--    inherit (unwrapped.meta)
--      changelog
--      description
--      homepage
--      license
--      mainProgram
--      maintainers
--      ;
--
--    # To prevent builds on hydra
--    hydraPlatforms = [ ];
--    # prefer wrapper over the package
--    priority = (unwrapped.meta.priority or lib.meta.defaultPriority) - 1;
++
++  meta = {
 +    changelog = "https://github.com/nix-community/nh/blob/${finalAttrs.src.rev}/CHANGELOG.md";
 +    description = "Yet another nix cli helper";
 +    homepage = "https://github.com/nix-community/nh";
@@ -321,7 +320,7 @@ deleted file mode 100644
 diff --git a/pkgs/top-level/aliases.nix b/pkgs/top-level/aliases.nix
 --- a/pkgs/top-level/aliases.nix
 +++ b/pkgs/top-level/aliases.nix
-@@ -1961,6 +1961,7 @@
+@@ -1962,6 +1962,7 @@
    nginxShibboleth = throw "'nginxShibboleth' was removed. Add the shibboleth module yourself via services.nginx.modules."; # Added 2026-10-19
    ngn-k = throw "'ngn-k' doesn't build with glibc 2.44 and upstream claims that the implementation is no longer supported"; # Added 2026-09-03
    ngrid = throw "'ngrid' has been removed as it has been unmaintained upstream and broken"; # Added 2025-11-15

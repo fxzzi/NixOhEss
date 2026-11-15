@@ -14,8 +14,7 @@ names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 
 # core
 [inputs.nixpkgs]
-url = "channel:nixos-unstable-small"
-frozen = true
+url = "channel:nixos-unstable"
 patches = [
   # nh: 4.4.2 -> 4.5.0
   "https://github.com/NixOS/nixpkgs/pull/578415",
@@ -73,7 +72,6 @@ patches = [
   # renderer: HDR -> SDR tonemapping fixes
   "https://github.com/hyprwm/Hyprland/pull/16966",
   # cm: use correct luminance ranges for scrgb and bt2100
-  # &
   # cm: use hdr metadata for tonemap peak
   "https://github.com/hyprwm/Hyprland/pull/16971",
 ]
