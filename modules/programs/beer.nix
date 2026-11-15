@@ -23,6 +23,9 @@ in
             main = {
               font-size = 17;
               subpixel = config.fonts.fontconfig.subpixel.rgba;
+              # glyphs in nh aren't followed by a space so they appear squished
+              # so allow glyphs to always overflow to fix that
+              glyph-overflow = "always";
 
               pad-x = 8;
               pad-y = 8;

@@ -143,10 +143,10 @@ index b295d141c7aee9..00000000000000
 -  };
 -})
 diff --git a/pkgs/by-name/nh/nh/package.nix b/pkgs/by-name/nh/nh/package.nix
-index 924c613dbc8b52..fbc3ff81c3c366 100644
+index 924c613dbc8b52..a9d7c304ef8dbb 100644
 --- a/pkgs/by-name/nh/nh/package.nix
 +++ b/pkgs/by-name/nh/nh/package.nix
-@@ -1,46 +1,140 @@
+@@ -1,46 +1,139 @@
  {
 +  stdenv,
    lib,
@@ -186,7 +186,6 @@ index 924c613dbc8b52..fbc3ff81c3c366 100644
 +  };
 +
 +  __structuredAttrs = true;
-+  strictDeps = true;
  
 -  paths = [
 -    unwrapped

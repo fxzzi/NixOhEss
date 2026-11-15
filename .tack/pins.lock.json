@@ -12,7 +12,7 @@
     "nix-gaming": "github:fufexan/nix-gaming",
     "nixcord": "github:4evy/nixcord",
     "nixos-core": "github:manic-systems/nixos-core",
-    "nixpkgs": "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.zst",
+    "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "nvf": "github:NotAShelf/nvf",
     "rags": "github:NotAShelf/rags",
     "startpage": "gitlab:fazzi/startpage",
@@ -149,13 +149,13 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "5760f2de87aa5209cf4c0d971dec9fe1c1a725a3",
-    "narHash": "sha256-sWKsklpNQ4zh1pFd+/uKrCo1u4G6lDhmRmLRZ8p+n9g=",
-    "lastModified": 1794635160,
+    "rev": "255da1777e9a19b37395187700a5032133b1ba6f",
+    "narHash": "sha256-/7eFBsnq6EGhLiJnhw9YVBDIPkiFH8bRs5J/eAWXtHY=",
+    "lastModified": 1794721624,
     "patched": {
-      "path": "/nix/store/wq8ayx84w7fkmvqd43jrmwyy03mlhcsb-source",
-      "narHash": "sha256-cIyc8o1Ht1O06uC+6h/mwtOPdQwjV2+NjqAyPZmlxa4=",
-      "lastModified": 1794635160,
+      "path": "/nix/store/qdy4myvw1al2b08iq89z813v0j2rgfwi-source",
+      "narHash": "sha256-GpjyaBn7wVnWmlsiUF7vxi8YlOHxD/37np9sgIP2Z80=",
+      "lastModified": 1794721624,
       "patches": [
         {
           "source": "https://github.com/fufexan/nix-gaming/pull/384",
@@ -172,12 +172,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "1fd806254f5be790861b70f16c2ff9053dda6fcd",
-    "narHash": "sha256-Xz2IPM2IMNm0ztW5qXfeFazfxD/asZS1Rkz1sckNUMo=",
-    "lastModified": 1794658885,
+    "rev": "af9ba18a522f33edb95b263e878752d9e7590922",
+    "narHash": "sha256-mNqTTdTOfQPUGwt0++v7wuJtAEVdq62rO21MAF0M0YI=",
+    "lastModified": 1794734891,
     "archive": {
-      "hash": "sha256-4IO6g1BhL5V/FzGW5wmSTqm5LzoB6pCWnxPg7lSckz8=",
-      "outHash": "sha256-n+AxirnI4zw/b6zmccTAJeLpwqjkD19Cap6QSNrvUvA="
+      "hash": "sha256-o0d5yu8n9RTmHyrbJDtGjpsyV5hAtWLwr2g3VabfbLo=",
+      "outHash": "sha256-eJMObsSgqaaTbYLdQHYiqnhtxWtKtuz+GGgY/uVLmoE="
     }
   },
   "nixos-core": {
@@ -190,24 +190,24 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable-small/nixos-26.11pre1118478.babbd6cb9101/nixexprs.tar.zst?rev=babbd6cb910119d644818372641a557f9330df1c&lastModified=1794464805",
-    "rev": "babbd6cb910119d644818372641a557f9330df1c",
-    "narHash": "sha256-c6VJz6lWXkWHFLHLEDSz5fyK8PV+CZIsG3VByAWLCBM=",
-    "lastModified": 1794464805,
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1119549.d5cc68339997/nixexprs.tar.zst?lastModified=1794537146&rev=d5cc6833999746cffdfe0598f7bc801a57b887a9",
+    "rev": "d5cc6833999746cffdfe0598f7bc801a57b887a9",
+    "narHash": "sha256-bTKSclXJAmo9qdxPedTBHUGr8awPr4BrbOoOutJsYIc=",
+    "lastModified": 1794537146,
     "patched": {
-      "path": "/nix/store/dfh5my3rl1y0j84z56zczhd3yan6vk3s-source",
-      "narHash": "sha256-oaYJLxGqyMBEV9dX7C9PrHpb86K2Sg+DH6e+w7OwtZM=",
-      "lastModified": 1794464805,
+      "path": "/nix/store/qibxz143ggzdywbfcipi04pfbg3i69s3-source",
+      "narHash": "sha256-vtWSTbSZ9fvhKibAcSuaK5LEFKXBTjesQtEMQLDwsME=",
+      "lastModified": 1794537146,
       "patches": [
         {
           "source": "https://github.com/NixOS/nixpkgs/pull/578415",
           "url": "https://github.com/NixOS/nixpkgs/pull/578415",
           "file": "patches/nixpkgs/pr-578415.patch",
-          "sha256": "5009578fb5170fbb5e769bbc1e416161d3ee832bb42f43408000f9a82eb04656",
-          "head": "a9fdf88f0013b0743fb94da1ca451e5d42d95843"
+          "sha256": "49f0497aed8dbe9dd8b057cee1fbe0a811ea2d1df375dce8270866d5eaec4d25",
+          "head": "b375382a1fa102bb2526ec70359001e3c0fba921"
         }
       ],
-      "diff": "a550966760d3a7fa8778d8e89fab1202174d148f6cfe07cdf5c27f0aa1853209"
+      "diff": "5a0691f39cf391b622a3c9ad641a3e61aacff2ee3ba8b61be50660ef01e42054"
     }
   },
   "nvf": {
@@ -250,15 +250,15 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "c107b0fc252b0b33b01e6b7d6111aaaedc49613e",
-    "narHash": "sha256-bdNCaHUF3c8hgsYw6FCI+lGcZanZIDxt2Sefu5AsERY=",
-    "lastModified": 1794450976,
+    "rev": "4bb81b579e2072b02f8a7a56e9da317e6faf5407",
+    "narHash": "sha256-PSwYLv40mPN9//mGLA+5Q3YUPfS16dMTrd4BARJhCuo=",
+    "lastModified": 1794730228,
     "archive": null
   },
   "tom-nvidia-patches": {
     "type": "fixed",
     "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff",
-    "sha256": "sha256-rgSddCiIiBP3mS+A+MEorP4aFrzVJ1+ZE1zS+YTwjco=",
+    "sha256": "sha256-M5l2PSAHZFJrTMWn1X/j0fIUfD/UpcdJEokqWAusQGs=",
     "unpack": "file"
   },
   "walls": {

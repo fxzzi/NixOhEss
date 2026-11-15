@@ -292,6 +292,7 @@ in
               { class = "love", title = "Freesync test" },
               { class = "dotnet", initial_title = "Terraria: .*" },
               { initial_title = "Clustertruck" },
+              { class = "dev.magicbean.Longshot" },
             }) do
               hl.window_rule({ match = match, tag = "+game", fullscreen = true })
               hl.window_rule({ match = match, tag = "+confine" })
@@ -308,7 +309,7 @@ in
               immediate = true,
               -- disable tonemapping. configure luminances and stuff
               -- in game instead.
-              -- tonemap = "off",
+              tonemap = "off",
             })
 
             -- confine cursor to the monitor when a game is in fullscreen.
