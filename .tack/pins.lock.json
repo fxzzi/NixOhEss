@@ -81,13 +81,13 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "0767f6347a69607638a4f93b3cd613af15a121e0",
-    "narHash": "sha256-1I8u6r86xSBRVUd6qTFBffifRqS/DcUv4n7pdtL9M8c=",
-    "lastModified": 1794583226,
+    "rev": "1d173d17200c687142363febc677c861ab7a201b",
+    "narHash": "sha256-ef5kUFwLPUV7LIt0MXN+zRMqFd15YdFVM3jh6D9MCSc=",
+    "lastModified": 1794763158,
     "patched": {
-      "path": "/nix/store/xwsdp11q0x19j5gymmvz8ywzj164sjms-source",
-      "narHash": "sha256-RGZ4rztmNsMgftaTCTDp2t4qMgJfMIauDGT5MeFry8Y=",
-      "lastModified": 1794583226,
+      "path": "/nix/store/sfn3mkh6rn0h7j9qf3xwlrywjdx8fxxq-source",
+      "narHash": "sha256-/NMjvTnWBdp4I5u7ZUKDxPRXi8iGIoxToG9+1f5RNw4=",
+      "lastModified": 1794763158,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16946",
@@ -97,28 +97,21 @@
           "head": "53a8f06cf7416deeeaae89dbd1d9896bf016a832"
         },
         {
-          "source": "https://github.com/hyprwm/Hyprland/pull/16957",
-          "url": "https://github.com/hyprwm/Hyprland/pull/16957",
-          "file": "patches/hyprland/pr-16957.patch",
-          "sha256": "0713a39bbb2b0f95603ecdacdaf0868093545797e9a5cc41452527a2b9c779f4",
-          "head": "0016c6e10492b6bdb92a18d25b5e43542fceadcc"
-        },
-        {
           "source": "https://github.com/hyprwm/Hyprland/pull/16966",
           "url": "https://github.com/hyprwm/Hyprland/pull/16966",
           "file": "patches/hyprland/pr-16966.patch",
-          "sha256": "531a1a796c50bcef346353dc3e10b942df70068f7087cf2d666302c1db17690b",
-          "head": "47d9d908b04336f305cb38c98daee9a743d95e11"
+          "sha256": "0f8ab8500591abea55c35f61a4a8585be79d4d06e2e29574ceae1c7cc3f2bb03",
+          "head": "5bc4c20a6b76f951236d9b0f4d16c493d4315910"
         },
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16971",
           "url": "https://github.com/hyprwm/Hyprland/pull/16971",
           "file": "patches/hyprland/pr-16971.patch",
-          "sha256": "73424d10035f5129ea646c607e0c8c6700890ac6b28723136f56af568c1e49cf",
-          "head": "6390d13eabe24c385322477679810639efc75f1e"
+          "sha256": "94513e497eab3b152bfbf1cd6646d88d8650f1a077a4c5782c8af8296a9e7648",
+          "head": "1ea61d92cd738ed3e267745f46e733012c6e1108"
         }
       ],
-      "diff": "27bca443d9e1d4d12e06ff29e17f548b20d26b0e22391725f821edde60b7b627"
+      "diff": "b6834e7079f13455e9c55f212fddf2259f4d83f8557f2d905249a454e83ac435"
     }
   },
   "ncro": {

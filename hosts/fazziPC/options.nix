@@ -2,7 +2,7 @@
   cfg = {
     core = {
       username = "faaris";
-      # kernel.type = "rc";
+      kernel.type = "rc";
       limine.timeout = 0.25;
     };
     hardware = {

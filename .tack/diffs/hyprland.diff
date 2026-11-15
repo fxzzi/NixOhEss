@@ -1,31 +1,3 @@
-diff --git a/src/Compositor.cpp b/src/Compositor.cpp
---- a/src/Compositor.cpp
-+++ b/src/Compositor.cpp
-@@ -1008,6 +1008,13 @@
-         DEFAULT_HDR_IMAGE_DESCRIPTION;
- }
- 
-+// whether quirks:prefer_hdr applies to window, which is nullptr for surfaces without one
-+bool CCompositor::shouldPreferHDR(PHLWINDOW window) {
-+    static const auto PPREFERHDR = CConfigValue<Config::INTEGER>("quirks:prefer_hdr");
-+
-+    return *PPREFERHDR == 1 || (*PPREFERHDR == 2 && window && window->metadata().appID() == "gamescope");
-+}
-+
- bool CCompositor::shouldChangePreferredImageDescription() {
-     LOG(Log::WARN, "FIXME: color management protocol is enabled and outputs changed, check preferred image description changes");
-     return false;
-diff --git a/src/Compositor.hpp b/src/Compositor.hpp
---- a/src/Compositor.hpp
-+++ b/src/Compositor.hpp
-@@ -84,6 +84,7 @@
- 
-     NColorManagement::PImageDescription getPreferredImageDescription();
-     NColorManagement::PImageDescription getHDRImageDescription();
-+    bool                                shouldPreferHDR(PHLWINDOW window);
-     bool                                shouldChangePreferredImageDescription();
- 
-     bool                                supportsDrmSyncobjTimeline() const;
 diff --git a/src/helpers/cm/ColorManagement.cpp b/src/helpers/cm/ColorManagement.cpp
 --- a/src/helpers/cm/ColorManagement.cpp
 +++ b/src/helpers/cm/ColorManagement.cpp
@@ -82,68 +54,10 @@ diff --git a/src/helpers/cm/ColorManagement.hpp b/src/helpers/cm/ColorManagement
          float getTFMinLuminance(float sdrMinLuminance = -1.0f) const {
              switch (transferFunction) {
                  case CM_TRANSFER_FUNCTION_EXT_LINEAR: return isWindows ? 0.0f : luminances.min;
-@@ -418,7 +420,7 @@
-         .primariesNameSet = true,
-         .primariesNamed   = NColorManagement::CM_PRIMARIES_SRGB,
-         .primaries        = NColorPrimaries::BT709,
--        .luminances       = {.reference = 203},
-+        .luminances       = {.min = 0, .max = 10000, .reference = 203},
-     });
- 
-     inline const auto BT2100_IMAGE_DESCRIPTION = CImageDescription::from(SImageDescription{
-@@ -427,7 +429,7 @@
-         .primariesNameSet = true,
-         .primariesNamed   = NColorManagement::CM_PRIMARIES_BT2020,
-         .primaries        = NColorPrimaries::BT2020,
--        .luminances       = {.reference = 203},
-+        .luminances       = {.min = HDR_MIN_LUMINANCE, .max = 10000, .reference = 203},
-     });
- 
-     inline const auto LINEAR_IMAGE_DESCRIPTION = CImageDescription::from(SImageDescription{
-diff --git a/src/output/Monitor.cpp b/src/output/Monitor.cpp
---- a/src/output/Monitor.cpp
-+++ b/src/output/Monitor.cpp
-@@ -2394,14 +2394,24 @@
- std::optional<NColorManagement::PImageDescription> CMonitor::getAutoHDRImageDescription(const SP<CWLSurfaceResource>& surface) {
-     static const auto PAUTOHDR = CConfigValue<Config::INTEGER>("render:cm_auto_hdr");
- 
-+    if (const auto WINDOW = getAutoHDRPreferWindow(); !WINDOW || WINDOW->wlSurface()->resource() != surface)
-+        return {};
-+
-+    return getHDRImageDescription(*PAUTOHDR == 2 ? NCMType::CM_HDR_EDID : NCMType::CM_HDR);
-+}
-+
-+// the fullscreen window that gets auto HDR's description as its preferred one, or nullptr if none should
-+PHLWINDOW CMonitor::getAutoHDRPreferWindow() {
-+    static const auto PAUTOHDR = CConfigValue<Config::INTEGER>("render:cm_auto_hdr");
-+
-     if (!*PAUTOHDR || !supportsHDR() || !m_activeMonitorRule.m_iccFile.empty() || m_cmType == NCMType::CM_HDR || m_cmType == NCMType::CM_HDR_EDID)
--        return {};
-+        return nullptr;
- 
-     const auto FS_WINDOW = Fullscreen::controller()->getFullscreenWindow(m_self.lock());
--    if (!FS_WINDOW || FS_WINDOW->wlSurface()->resource() != surface || FS_WINDOW->m_ruleApplicator->noAutoHDR().valueOrDefault())
--        return {};
-+    if (!FS_WINDOW || !g_pCompositor->shouldPreferHDR(FS_WINDOW) || FS_WINDOW->m_ruleApplicator->noAutoHDR().valueOrDefault())
-+        return nullptr;
- 
--    return getHDRImageDescription(*PAUTOHDR == 2 ? NCMType::CM_HDR_EDID : NCMType::CM_HDR);
-+    return FS_WINDOW;
- }
- 
- NColorManagement::SPCPRimaries CMonitor::getMasteringPrimaries() {
 diff --git a/src/output/Monitor.hpp b/src/output/Monitor.hpp
 --- a/src/output/Monitor.hpp
 +++ b/src/output/Monitor.hpp
-@@ -344,6 +344,7 @@
- 
-         std::optional<NColorManagement::PImageDescription>          getFSImageDescription();
-         std::optional<NColorManagement::PImageDescription>          getAutoHDRImageDescription(const SP<CWLSurfaceResource>& surface);
-+        PHLWINDOW                                                   getAutoHDRPreferWindow();
- 
-         NColorManagement::SPCPRimaries                              getMasteringPrimaries();
-         NColorManagement::SImageDescription::SPCMasteringLuminances getMasteringLuminances();
-@@ -363,6 +364,7 @@
+@@ -363,6 +363,7 @@
          PHLWINDOWREF                        m_autoHDRWindow;
          bool                                m_needsHDRupdate         = false;
          bool                                m_hdrMetadataFromSurface = false;
@@ -151,39 +65,6 @@ diff --git a/src/output/Monitor.hpp b/src/output/Monitor.hpp
  
          std::optional<dev_t>                m_cachedAllocatorDRMDev;
          std::optional<dev_t>                m_cachedCompositorDRMDev;
-diff --git a/src/protocols/core/Compositor.cpp b/src/protocols/core/Compositor.cpp
---- a/src/protocols/core/Compositor.cpp
-+++ b/src/protocols/core/Compositor.cpp
-@@ -711,12 +711,10 @@
- }
- 
- PImageDescription CWLSurfaceResource::getPreferredImageDescription() {
--    static const auto PFORCE_HDR = CConfigValue<Config::INTEGER>("quirks:prefer_hdr");
--    const auto        WINDOW     = m_hlSurface ? Desktop::View::CWindow::fromView(m_hlSurface->view()) : nullptr;
-+    const auto WINDOW     = m_hlSurface ? Desktop::View::CWindow::fromView(m_hlSurface->view()) : nullptr;
-+    const bool PREFER_HDR = g_pCompositor->shouldPreferHDR(WINDOW);
- 
--    if (*PFORCE_HDR == 1 || (*PFORCE_HDR == 2 && m_hlSurface && WINDOW && WINDOW->metadata().appID() == "gamescope"))
--        return g_pCompositor->getHDRImageDescription();
--
-+    // subsurfaces follow their toplevel surface
-     auto parent = m_self;
-     if (parent->m_role->role() == SURFACE_ROLE_SUBSURFACE) {
-         const auto subsurface = sc<CSubsurfaceRole*>(parent->m_role.get())->m_subsurface.lock();
-@@ -729,10 +727,10 @@
-         monitor = WINDOW->m_monitor;
- 
-     if (!monitor)
--        return g_pCompositor->getPreferredImageDescription();
-+        return PREFER_HDR ? g_pCompositor->getHDRImageDescription() : g_pCompositor->getPreferredImageDescription();
- 
--    // auto HDR only switches once a fullscreen client submits HDR content, so offer it the description it would switch to
--    return monitor->getAutoHDRImageDescription(parent.lock()).value_or(monitor->m_imageDescription);
-+    // with prefer_hdr, offer the fullscreen surface the exact description auto HDR would switch its monitor to
-+    return monitor->getAutoHDRImageDescription(parent.lock()).value_or(PREFER_HDR ? g_pCompositor->getHDRImageDescription() : monitor->m_imageDescription);
- }
- 
- void CWLSurfaceResource::sortSubsurfaces() {
 diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
 --- a/src/render/OpenGL.cpp
 +++ b/src/render/OpenGL.cpp
@@ -227,35 +108,17 @@ diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
 diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
 --- a/src/render/Renderer.cpp
 +++ b/src/render/Renderer.cpp
-@@ -2150,14 +2150,6 @@
-           ctx.m_data.pMonitor->m_imageDescription->value().transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_ST2084_PQ));
- }
- 
--static bool isHDR2SDR(const NColorManagement::SImageDescription& imageDescription, const NColorManagement::SImageDescription& targetImageDescription) {
--    // might be too strict
--    return (imageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_ST2084_PQ ||
--            imageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_HLG) &&
--        (targetImageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_SRGB ||
--         targetImageDescription.transferFunction == NColorManagement::CM_TRANSFER_FUNCTION_GAMMA22);
--}
--
- void IHyprRenderer::clearCMSettingsCache(CRenderContext& ctx) {
-     ctx.m_cmSettingsCache.clear();
- }
-@@ -2197,10 +2189,8 @@
+@@ -2189,7 +2189,8 @@
          srcTF = imageDescription->value().transferFunction;
  
      const bool  needsSDRmod     = modifySDR && isSDR2HDR(ctx, imageDescription->value(), targetImageDescription->value());
--    const bool  needsHDRmod     = !needsSDRmod && isHDR2SDR(imageDescription->value(), targetImageDescription->value());
--    const float maxLuminance    = needsHDRmod ?
--        imageDescription->value().getTFMaxLuminance(-1) :
--        (imageDescription->value().luminances.max > 0 ? imageDescription->value().luminances.max : imageDescription->value().luminances.reference);
+-    const float maxLuminance    = imageDescription->value().luminances.max > 0 ? imageDescription->value().luminances.max : imageDescription->value().luminances.reference;
 +    const float maxLuminance    = imageDescription->value().getContentMaxLuminance(imageDescription->value().luminances.max > 0 ? imageDescription->value().luminances.max :
 +                                                                                                                                  imageDescription->value().luminances.reference);
      const auto  dstMaxLuminance = targetImageDescription->value().luminances.max > 0 ? targetImageDescription->value().luminances.max : 10000;
  
      auto        matrix = imageDescription->getPrimaries()->convertMatrix(targetImageDescription->getPrimaries());
-@@ -2210,23 +2200,30 @@
+@@ -2199,23 +2200,30 @@
          ((ctx.m_data.pMonitor->m_sdrSaturation > 0 && ctx.m_data.pMonitor->m_sdrSaturation != 1.0f) ||
           (ctx.m_data.pMonitor->m_sdrBrightness > 0 && ctx.m_data.pMonitor->m_sdrBrightness != 1.0f));
  
@@ -293,7 +156,7 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
          .dstMaxLuminance         = dstMaxLuminance,
          .dstPrimaries2XYZ        = toXYZ.mat(),
          .needsSDRmod             = needsMod,
-@@ -2606,6 +2603,36 @@
+@@ -2595,6 +2603,36 @@
      return std::memcmp(&a.hdmi_metadata_type1, &b.hdmi_metadata_type1, sizeof(a.hdmi_metadata_type1)) == 0;
  }
  
@@ -330,7 +193,7 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
  void IHyprRenderer::handleFullscreenSettings(PHLMONITOR pMonitor) {
      static auto PCT        = CConfigValue<Config::INTEGER>("render:send_content_type");
      static auto PAUTOHDR   = CConfigValue<Config::INTEGER>("render:cm_auto_hdr");
-@@ -2625,13 +2652,13 @@
+@@ -2614,13 +2652,13 @@
          // HDR scRGB - monitor settings
          // HDR PQ surface & DS is active - surface settings
  
@@ -349,7 +212,7 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
                  const bool surfaceIsHDR = SURF->m_colorManagement->isHDR();
                  wantHDR                 = *PAUTOHDR && surfaceIsHDR;
                  if (FULLSCREEN_WINDOW && FULLSCREEN_WINDOW->m_ruleApplicator->noAutoHDR().valueOrDefault())
-@@ -2638,19 +2665,13 @@
+@@ -2627,19 +2665,13 @@
                      wantHDR = configuredHDR;
                  if (surfaceIsHDR && !SURF->m_colorManagement->isWindowsScRGB() && !pMonitor->m_lastScanout.expired()) {
                      // DS HDR
@@ -376,7 +239,7 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
                  }
              }
          }
-@@ -2662,25 +2683,28 @@
+@@ -2651,25 +2683,28 @@
          if (!hdrIsHandled) {
              const bool HDR_CHANGED = pMonitor->inHDR() != wantHDR;
  
@@ -388,12 +251,15 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
 -                pMonitor->m_previousFSWindow.reset(); // trigger CTM update
 -            }
 +            applyAutoHDR(pMonitor, wantHDR, configuredHDR);
-+
-+            const bool KEEP_SURFACE_METADATA =
-+                pMonitor->m_hdrMetadataFromSurface && wantHDR && pMonitor->inHDR() && FULLSCREEN_WINDOW && pMonitor->m_hdrMetadataWindow == FULLSCREEN_WINDOW && SURF_HAS_CM;
  
 -            const auto WANTED  = wantHDR ? createHDRMetadata(pMonitor->m_imageDescription->value(), pMonitor) : NO_HDR_METADATA;
 -            const auto CURRENT = pMonitor->m_output->state->state().hdrMetadata;
++            const bool KEEP_SURFACE_METADATA =
++                pMonitor->m_hdrMetadataFromSurface && wantHDR && pMonitor->inHDR() && FULLSCREEN_WINDOW && pMonitor->m_hdrMetadataWindow == FULLSCREEN_WINDOW && SURF_HAS_CM;
+ 
+-            // Required in order to clear stale HDR metadata
+-            const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
+-            const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
 +            // keep surface metadata across DS drop-outs, but follow the surface if its image description changes meanwhile
 +            if (KEEP_SURFACE_METADATA)
 +                applySurfaceHDRMetadata(SURF, pMonitor, false);
@@ -401,17 +267,14 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
 +                const auto WANTED  = wantHDR ? createHDRMetadata(pMonitor->m_imageDescription->value(), pMonitor) : NO_HDR_METADATA;
 +                const auto CURRENT = pMonitor->m_output->state->state().hdrMetadata;
  
--            // Required in order to clear stale HDR metadata
--            const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
--            const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
-+                // Required in order to clear stale HDR metadata
-+                const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
-+                const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
- 
 -            if (HDR_CHANGED || INITIAL_SDR || pMonitor->m_hdrMetadataFromSurface || HDR_METADATA_CHANGED) {
 -                LOG(Log::INFO, wantHDR ? "[CM] Updating HDR metadata from monitor" : "[CM] Restoring SDR mode");
 -                pMonitor->m_output->state->setHDRMetadata(WANTED);
 -                pMonitor->m_hdrMetadataFromSurface = false;
++                // Required in order to clear stale HDR metadata
++                const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
++                const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
++
 +                if (HDR_CHANGED || INITIAL_SDR || pMonitor->m_hdrMetadataFromSurface || HDR_METADATA_CHANGED) {
 +                    LOG(Log::INFO, wantHDR ? "[CM] Updating HDR metadata from monitor" : "[CM] Restoring SDR mode");
 +                    pMonitor->m_output->state->setHDRMetadata(WANTED);
@@ -421,24 +284,6 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
              }
  
              pMonitor->m_needsHDRupdate = true;
-@@ -2761,10 +2785,13 @@
-         pMonitor->m_output->state->setCTM(pMonitor->m_ctm);
-     }
- 
--    // the fullscreen surface's preferred description depends on the fullscreen window, see getPreferredImageDescription()
--    if (*PAUTOHDR && PROTO::colorManagement && pMonitor->supportsHDR() && FULLSCREEN_WINDOW != pMonitor->m_autoHDRWindow) {
--        pMonitor->m_autoHDRWindow = FULLSCREEN_WINDOW;
--        PROTO::colorManagement->recheckFeedbacks();
-+    // the fullscreen surface's preferred description depends on getAutoHDRPreferWindow(), see getPreferredImageDescription()
-+    if (PROTO::colorManagement) {
-+        const auto AUTO_HDR_WINDOW = pMonitor->getAutoHDRPreferWindow();
-+        if (AUTO_HDR_WINDOW != pMonitor->m_autoHDRWindow) {
-+            pMonitor->m_autoHDRWindow = AUTO_HDR_WINDOW;
-+            PROTO::colorManagement->recheckFeedbacks();
-+        }
-     }
- 
-     pMonitor->m_previousFSWindow = FULLSCREEN_WINDOW;
 diff --git a/src/render/Shader.cpp b/src/render/Shader.cpp
 --- a/src/render/Shader.cpp
 +++ b/src/render/Shader.cpp
@@ -597,7 +442,7 @@ diff --git a/src/render/shaders/glsl/cm_helpers.glsl b/src/render/shaders/glsl/c
 -    vec4 mirrorColor = fromLinearNit(pixColor, CM_TRANSFER_FUNCTION_SRGB,
 -                                     srcTF == CM_TRANSFER_FUNCTION_GAMMA22 || srcTF == CM_TRANSFER_FUNCTION_SRGB ? srcTFRange : vec2(SDR_MIN_LUMINANCE, SDR_MAX_LUMINANCE));
 +    if (srcTF != CM_TRANSFER_FUNCTION_ST2084_PQ && srcTF != CM_TRANSFER_FUNCTION_HLG && srcTF != CM_TRANSFER_FUNCTION_EXT_LINEAR)
-+        mirrorColor = fromLinearNit(pixColor, CM_TRANSFER_FUNCTION_SRGB, srcTFRange);
++        mirrorColor = fromLinearNit(mirrorColor, CM_TRANSFER_FUNCTION_SRGB, srcTFRange);
 +    else {
 +#if USE_TONEMAP
 +        // HDR -> SDR: map the targets reference white to our SDR white, and tonemap the rest (see getCMSettings)
@@ -701,18 +546,3 @@ diff --git a/tests/helpers/ColorManagement.cpp b/tests/helpers/ColorManagement.c
 +    description.maxCLL = 4000;
 +    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(1000.F), 1000.F);
 +}
-diff --git a/tests/protocols/ColorManagement.cpp b/tests/protocols/ColorManagement.cpp
---- a/tests/protocols/ColorManagement.cpp
-+++ b/tests/protocols/ColorManagement.cpp
-@@ -248,9 +248,8 @@
-     EXPECT_EQ(settings.transferFunction, CM_TRANSFER_FUNCTION_EXT_LINEAR);
-     EXPECT_TRUE(settings.primariesNameSet);
-     EXPECT_EQ(settings.primariesNamed, CM_PRIMARIES_SRGB);
--    // Stored metadata retains its default minimum, but Windows encoding starts at zero.
--    EXPECT_FLOAT_EQ(settings.luminances.min, 0.2F);
--    EXPECT_EQ(settings.luminances.max, 80U);
-+    EXPECT_FLOAT_EQ(settings.luminances.min, 0.F);
-+    EXPECT_EQ(settings.luminances.max, 10000U);
-     EXPECT_EQ(settings.luminances.reference, 203U);
-     EXPECT_FLOAT_EQ(settings.getTFMinLuminance(), 0.F);
-     EXPECT_FLOAT_EQ(settings.getTFMaxLuminance(), 80.F);
