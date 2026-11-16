@@ -73,6 +73,8 @@ patches = [
   "https://github.com/hyprwm/Hyprland/pull/16971",
   # pointer: simplify cpu-buffer cursor path
   "https://github.com/hyprwm/Hyprland/pull/17012",
+  # screenshare: DS fixes
+  "https://github.com/hyprwm/Hyprland/pull/17015",
 ]
 
 [inputs.niqspkgs]
