@@ -73,3 +73,34 @@ menu menuitem {
 .charging {
   color: @color6;
 }
+
+/* wallpaper picker */
+.wall-picker > box {
+  padding: 12px;
+  margin: 0;
+}
+
+.wall-picker .wall-scroll {
+  min-width: 1400px;
+  min-height: 720px;
+}
+
+.wall-picker flowboxchild {
+  padding: 6px;
+  border: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+}
+
+.wall-picker flowboxchild:hover {
+  border-color: @color8;
+}
+
+.wall-picker flowboxchild:selected {
+  border-color: @color4;
+  background: alpha(@color4, 0.15);
+}
+
+.wall-picker .wall.active label {
+  color: @color6;
+}

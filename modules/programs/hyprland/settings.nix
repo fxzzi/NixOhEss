@@ -417,7 +417,7 @@ in
             bind({ mainMod, "R" }, hl.dsp.exec_raw("${getExe selfPkgs.random-wall}"))
             bind({ mainMod, "SHIFT", "R" }, hl.dsp.exec_raw("hyprctl reload && ${getExe' pkgs.dunst "dunstify"} 'Hyprland' 'Reloaded Successfully.'"))
             bind({ mainMod, "K" }, hl.dsp.exec_raw("hyprctl kill"))
-            bind({ mainMod, "J" }, hl.dsp.exec_raw("xdg-terminal-exec ${getExe selfPkgs.wall-picker}"))
+            bind({ mainMod, "J" }, hl.dsp.exec_raw("ags -t wall-picker"))
             bind({ mainMod, "L" }, hl.dsp.exec_raw("loginctl lock-session"))
             bind({ mainMod, "V" }, hl.dsp.exec_raw("pkill fuzzel || (cliphist list | fuzzel --width 75 --dmenu --with-nth 2 -p ' ' | cliphist decode | wl-copy)"))
 

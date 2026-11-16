@@ -9,6 +9,7 @@
 let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.ags;
+  selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
   pkg = pkgs.callPackage "${inputs.rags}/nix/package.nix" {
     buildTypes = false;
     extraPackages = [
@@ -57,13 +58,19 @@ in
       systemd.services.ags = self.lib.mkGraphicalService {
         description = "Aylur's GTK Shell";
         exec = getExe pkg;
-        extra.restartTriggers = [
-          config.hj.xdg.config.files."ags/config.js".source
-          config.hj.xdg.config.files."ags/style.css".source
-          config.hj.xdg.config.files."ags/icons".source
-          config.hj.xdg.config.files."ags/modules".source
-          pkg
-        ];
+        extra = {
+          path = [
+            config.programs.hyprland.package # hyprctl, for logging out
+            selfPkgs.wallust-script # for the wallpaper picker
+          ];
+          restartTriggers = [
+            config.hj.xdg.config.files."ags/config.js".source
+            config.hj.xdg.config.files."ags/style.css".source
+            config.hj.xdg.config.files."ags/icons".source
+            config.hj.xdg.config.files."ags/modules".source
+            pkg
+          ];
+        };
       };
     };
     services.upower.enable = config.cfg.core.isLaptop;
