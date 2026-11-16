@@ -70,6 +70,7 @@ in
             config.hj.xdg.config.files."ags/modules".source
             config.hj.xdg.data.files."walls".source
             pkg
+            selfPkgs.wallust-script
           ];
         };
       };
