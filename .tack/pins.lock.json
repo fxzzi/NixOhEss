@@ -57,9 +57,9 @@
     "type": "git",
     "url": "https://forge.rysieko.pl/rysieko/beer",
     "ref": "HEAD",
-    "rev": "eae4c94432350d69ebbe749d2b2f860f447a8fcb",
-    "narHash": "sha256-1iHqo6XM8bViqiXDownEorSQ/ZCRuI+a+/L1M4LUGkM=",
-    "lastModified": 1794414607
+    "rev": "59d955641152626521e85dabe3271f511c9e0b28",
+    "narHash": "sha256-jvnC9+PYb+8mAvRPgTAR4OxRhwDRsuuSH9YDsT54yMk=",
+    "lastModified": 1794816000
   },
   "creamlinux": {
     "type": "github",
@@ -149,13 +149,13 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "255da1777e9a19b37395187700a5032133b1ba6f",
-    "narHash": "sha256-/7eFBsnq6EGhLiJnhw9YVBDIPkiFH8bRs5J/eAWXtHY=",
-    "lastModified": 1794721624,
+    "rev": "15d35729116985000ee5c3b2488bb800e4af50b2",
+    "narHash": "sha256-VFQXKm0nVF2AjRaxO9op6FAel7iTbYL+uuUegrFv2aE=",
+    "lastModified": 1794808030,
     "patched": {
-      "path": "/nix/store/qdy4myvw1al2b08iq89z813v0j2rgfwi-source",
-      "narHash": "sha256-GpjyaBn7wVnWmlsiUF7vxi8YlOHxD/37np9sgIP2Z80=",
-      "lastModified": 1794721624,
+      "path": "/nix/store/mlp84l6yc3aaam2l6b3fgmrdnzyvw4yd-source",
+      "narHash": "sha256-jTom4N3rPIP+lWKpOSjriXaLHRfGDJLhEKdfJFF0fFg=",
+      "lastModified": 1794808030,
       "patches": [
         {
           "source": "https://github.com/fufexan/nix-gaming/pull/384",
@@ -172,12 +172,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "03799afaed8e330114380bef2165f995ef74f138",
-    "narHash": "sha256-/+AgUzbLHREHhqVl4MwHgnNtxARBqqadETSDjrOg9Jg=",
-    "lastModified": 1794795111,
+    "rev": "7d5dadd19915c727b4cbae8d9c49030fed36950b",
+    "narHash": "sha256-3poZFY8YskX7WRIjZQp4g3fz9acKRUgR5u4t0woMSos=",
+    "lastModified": 1794822524,
     "archive": {
-      "hash": "sha256-pvIW1gnKtMumO6xf66wjQYvvV6KA4OwwVXNaEIMaUsQ=",
-      "outHash": "sha256-O9VNi/Q3r8JV3iKNlLBVNlMhqm3tbzNS6FjOV8939kI="
+      "hash": "sha256-idLK2amxlN6O0ardytmg9NOY8KqWmUOrjgh+vhm0EAk=",
+      "outHash": "sha256-2jd4pbkyibXcl8UOSJ2DCzPpX5G6D9C5GHj6dyR1W5c="
     }
   },
   "nixos-core": {
@@ -250,9 +250,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "4bb81b579e2072b02f8a7a56e9da317e6faf5407",
-    "narHash": "sha256-PSwYLv40mPN9//mGLA+5Q3YUPfS16dMTrd4BARJhCuo=",
-    "lastModified": 1794730228,
+    "rev": "adf2b67865789ffee0df3fae53197b2ee9db42cd",
+    "narHash": "sha256-FXRXMI4NvbhSZFKQn5fOg9f2IWnqL3rb6O1WmX8oUeA=",
+    "lastModified": 1794822728,
     "archive": null
   },
   "tom-nvidia-patches": {
