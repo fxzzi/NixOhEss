@@ -14,10 +14,10 @@ names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 
 # core
 [inputs.nixpkgs]
-url = "channel:nixos-unstable"
+url = "channel:nixos-unstable-small"
 patches = [
-  # nh: 4.4.2 -> 4.5.0
-  "https://github.com/NixOS/nixpkgs/pull/578415",
+  # stremio-linux-shell: 1.2.2 -> 1.2.3
+  "https://github.com/NixOS/nixpkgs/pull/589183",
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
