@@ -14,6 +14,7 @@ import { CpuTempWidget } from "./modules/CpuTemp.js";
 import { MemUsageWidget } from "./modules/MemUsage.js";
 import { GpuTempWidget } from "./modules/GpuTemp.js";
 import { SysTrayWidget } from "./modules/SysTray.js";
+import { WallPicker } from "./modules/WallPicker.js";
 
 // Add svg icons from the ./icons directory
 App.addIcons(`${App.configDir}/icons/`);
@@ -125,5 +126,7 @@ function monitorCssFile() {
 
 // on startup, create bars for all monitors
 InitBars(Bar);
+// hidden until toggled with `ags -t wall-picker`
+App.addWindow(WallPicker());
 // start monitoring colors_ags.css
 monitorCssFile();
