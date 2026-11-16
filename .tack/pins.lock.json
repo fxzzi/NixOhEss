@@ -172,12 +172,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "af9ba18a522f33edb95b263e878752d9e7590922",
-    "narHash": "sha256-mNqTTdTOfQPUGwt0++v7wuJtAEVdq62rO21MAF0M0YI=",
-    "lastModified": 1794734891,
+    "rev": "03799afaed8e330114380bef2165f995ef74f138",
+    "narHash": "sha256-/+AgUzbLHREHhqVl4MwHgnNtxARBqqadETSDjrOg9Jg=",
+    "lastModified": 1794795111,
     "archive": {
-      "hash": "sha256-o0d5yu8n9RTmHyrbJDtGjpsyV5hAtWLwr2g3VabfbLo=",
-      "outHash": "sha256-eJMObsSgqaaTbYLdQHYiqnhtxWtKtuz+GGgY/uVLmoE="
+      "hash": "sha256-pvIW1gnKtMumO6xf66wjQYvvV6KA4OwwVXNaEIMaUsQ=",
+      "outHash": "sha256-O9VNi/Q3r8JV3iKNlLBVNlMhqm3tbzNS6FjOV8939kI="
     }
   },
   "nixos-core": {
@@ -265,8 +265,8 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "walls",
-    "rev": "fe0bb9e42840603c19421a411417bc425a795f40",
-    "narHash": "sha256-tiFsPu3h1g6AFa2r4y8YpNkqp+L9AZoL+T8qFhvk2KY=",
-    "lastModified": 1787250691
+    "rev": "512de9d89d90a36140eba0d2ea42bfe5c437ea7d",
+    "narHash": "sha256-QZX9sc+LNQ1JvkReN/6id7maMsefH1pVu2hmH162vy0=",
+    "lastModified": 1794792190
   }
 }
