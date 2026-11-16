@@ -104,3 +104,38 @@ menu menuitem {
 .wall-picker .wall.active label {
   color: @color6;
 }
+
+/* power menu */
+.power-menu > box {
+  padding: 8px;
+  margin: 0;
+}
+
+.power-menu .action {
+  min-width: 128px;
+  padding: 16px 8px 12px 8px;
+  font-size: 17px;
+  border: 2px solid transparent;
+  border-radius: 0;
+}
+
+.power-menu .action .icon {
+  padding: 0;
+  margin-bottom: 2px;
+}
+
+.power-menu .action .key {
+  color: @color8;
+  font-size: 14px;
+}
+
+.power-menu .action:hover,
+.power-menu .action:focus {
+  border-color: @color4;
+  background: alpha(@color4, 0.15);
+}
+
+.power-menu .action:hover .key,
+.power-menu .action:focus .key {
+  color: @color6;
+}

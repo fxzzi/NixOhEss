@@ -107,7 +107,6 @@
       zoxide.enable = true;
       nh.enable = true;
       ncmpcpp.enable = true;
-      wleave.enable = true;
       hyprland = {
         enable = true;
         defaultMonitor = "DP-3";

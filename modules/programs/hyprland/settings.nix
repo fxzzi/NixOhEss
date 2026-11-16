@@ -202,7 +202,8 @@ in
             end
 
             hl.layer_rule({ match = { namespace = "launcher" }, blur = true, ignore_alpha = 0 })
-            hl.layer_rule({ match = { namespace = "wleave" }, blur = true, xray = true })
+            hl.layer_rule({ match = { namespace = "power-menu" }, blur = true, xray = true, ignore_alpha = 0 })
+            hl.layer_rule({ match = { namespace = "wall-picker" }, blur = true, xray = true, ignore_alpha = 0 })
             hl.layer_rule({ match = { namespace = "bar-.*" }, blur = true, xray = true, ignore_alpha = 0 })
             hl.layer_rule({ match = { namespace = "notifications" }, blur = true, animation = "slide" })
             -- show `still` below `slurp`, but above notifications
@@ -410,7 +411,7 @@ in
             bind({ mainMod, "SHIFT", "P" }, hl.dsp.exec_raw("librewolf --private-window"))
             bind({ mainMod, "W" }, hl.dsp.exec_raw("Discord"))
             bind({ mainMod, "D" }, hl.dsp.exec_raw("pkill fuzzel || fuzzel"))
-            bind({ mainMod, "SHIFT", "E" }, hl.dsp.exec_raw("pkill wleave || wleave"))
+            bind({ mainMod, "SHIFT", "E" }, hl.dsp.exec_raw("ags -t power-menu"))
             bind({ "CTRL", "SHIFT", "Escape" }, hl.dsp.exec_raw("xdg-terminal-exec btm"))
             -- extra schtuff
             bind({ mainMod, "N" }, hl.dsp.exec_raw("${getExe azzipkgs.sunset} 3000"))
