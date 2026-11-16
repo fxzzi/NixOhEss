@@ -47,7 +47,7 @@
         lockTimeout = 480;
         suspendTimeout = 0;
       };
-      hyprpaper.enable = true;
+      chroma.enable = true;
       hyprsunset.enable = true;
       xdph.enable = true;
       dunst.enable = true;

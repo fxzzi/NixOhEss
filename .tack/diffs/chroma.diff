@@ -1,0 +1,438 @@
+diff --git a/include/chroma.h b/include/chroma.h
+--- a/include/chroma.h
++++ b/include/chroma.h
+@@ -77,6 +77,7 @@
+   int ref_count;       // number of outputs using this image
+   int original_width, original_height;
+   int cache_output_width, cache_output_height;
++  bool cache_animation_enabled;
+ 
+   // Solid color support
+   bool is_solid_color;       // true if this is a generated solid color
+@@ -134,7 +135,7 @@
+   // Transition support
+   bool in_transition;             // whether crossfade transition is active
+   long long transition_start_ms;  // when transition began
+-  unsigned char *transition_prev; // previous frame pixel data (RGBA)
++  unsigned char *transition_prev; // read-only mapping of previous ARGB frame
+   size_t transition_prev_size;    // size of previous frame data
+   int transition_prev_width;      // width of previous frame
+   int transition_prev_height;     // height of previous frame
+diff --git a/src/image.c b/src/image.c
+--- a/src/image.c
++++ b/src/image.c
+@@ -137,12 +137,13 @@
+ }
+ 
+ static int decode_image(chroma_image_t *image, const char *path,
+-                        int output_width, int output_height) {
++                        int output_width, int output_height,
++                        bool animation_enabled) {
+   int channels = 0;
+   if (!stbi_info(path, &image->width, &image->height, &channels))
+     return load_with_alternate_loader(image, path, output_width, output_height);
+   const char *ext = strrchr(path, '.');
+-  if (ext && strcasecmp(ext + 1, "gif") == 0) {
++  if (animation_enabled && ext && strcasecmp(ext + 1, "gif") == 0) {
+     int result = chroma_anim_load_gif(image, path);
+     if (result != 1)
+       return result;
+@@ -213,7 +214,9 @@
+   long file_size = get_file_size(path);
+   chroma_log("DEBUG", "Loading image: %s (%ld bytes)", path, file_size);
+   stbi_set_flip_vertically_on_load(0);
+-  int result = decode_image(image, path, output_width, output_height);
++  bool animation_enabled = !config || config->animation_enabled;
++  int result =
++      decode_image(image, path, output_width, output_height, animation_enabled);
+   if (result != CHROMA_OK) {
+     const char *reason = stbi_failure_reason();
+     chroma_log("ERROR", "Failed to load image %s (error %d): %s", path, result,
+@@ -226,6 +229,7 @@
+   image->original_height = image->height;
+   image->cache_output_width = output_width;
+   image->cache_output_height = output_height;
++  image->cache_animation_enabled = animation_enabled;
+   int width, height;
+   calculate_optimal_size(image->width, image->height, config, output_width,
+                          output_height, &width, &height);
+@@ -324,6 +328,10 @@
+     return false;
+   if (image->is_solid_color)
+     return true;
++  const char *ext = strrchr(image->path, '.');
++  if (ext && strcasecmp(ext + 1, "gif") == 0 &&
++      image->cache_animation_enabled != config->animation_enabled)
++    return false;
+   if (is_svg_path(image->path))
+     return image->cache_output_width >= width && image->cache_output_height >= height;
+   int wanted_width, wanted_height;
+diff --git a/src/render.c b/src/render.c
+--- a/src/render.c
++++ b/src/render.c
+@@ -164,6 +164,9 @@
+     break;
+   }
+ 
++  if (a == 0xFF)
++    return 0xFF000000u | ((uint32_t)r << 16) | ((uint32_t)g << 8) | b;
++
+   return ((uint32_t)a << 24) | (((uint32_t)r * a + 127u) / 255u << 16) |
+          (((uint32_t)g * a + 127u) / 255u << 8) |
+          ((uint32_t)b * a + 127u) / 255u;
+@@ -211,27 +214,105 @@
+   return sample_pixel(source->image, x, y);
+ }
+ 
+-static uint32_t sample_filtered(const pixel_source_t *source, float x, float y,
+-                                chroma_filter_quality_t quality) {
+-  if (source->pixels) {
+-    x = (x + 0.5f) * (float)source->width / (float)source->image->width - 0.5f;
+-    y = (y + 0.5f) * (float)source->height / (float)source->image->height - 0.5f;
++typedef struct {
++  int first, second;
++  float fraction;
++} sample_axis_t;
++
++static sample_axis_t sample_axis(float position, int size, int original_size,
++                                 bool mip, chroma_filter_quality_t quality) {
++  if (mip)
++    position = (position + 0.5f) * (float)size / (float)original_size - 0.5f;
++  int first =
++      (int)floorf(position + (quality == CHROMA_FILTER_NEAREST ? 0.5f : 0.0f));
++  sample_axis_t axis = {.first = first,
++                        .second = first + 1,
++                        .fraction = quality == CHROMA_FILTER_NEAREST
++                                        ? 0.0f
++                                        : position - (float)first};
++  if (axis.first < 0)
++    axis.first = 0;
++  if (axis.first >= size)
++    axis.first = size - 1;
++  if (axis.second < 0)
++    axis.second = 0;
++  if (axis.second >= size)
++    axis.second = size - 1;
++  return axis;
++}
++
++static void sample_row(const pixel_source_t *source,
++                       const sample_axis_t *columns, int width, int y,
++                       uint32_t *row) {
++  for (int x = 0; x < width; x++) {
++    const sample_axis_t *axis = &columns[x];
++    uint32_t pixel = 0xFF000000u;
++    if (axis->first >= 0) {
++      pixel = sample_source(source, axis->first, y);
++      if (axis->fraction > 0.0f && axis->first != axis->second)
++        pixel = mix_pixels(pixel, sample_source(source, axis->second, y),
++                           axis->fraction);
++    }
++    row[x] = pixel;
+   }
+-  if (quality == CHROMA_FILTER_NEAREST) {
+-    return sample_source(source, (int)floorf(x + 0.5f),
+-                         (int)floorf(y + 0.5f));
++}
++
++static int draw_source(chroma_output_t *output, const pixel_source_t *source,
++                       const render_geometry_t *geometry, float alpha) {
++  size_t width = (size_t)geometry->width;
++  sample_axis_t *columns =
++      malloc(width * (sizeof(*columns) + 2 * sizeof(uint32_t)));
++  if (!columns)
++    return CHROMA_ERROR_MEMORY;
++  uint32_t *rows = (uint32_t *)(columns + width);
++  for (int x = 0; x < geometry->width; x++) {
++    float sx =
++        ((float)x + 0.5f - geometry->offset_x) / geometry->scale_x - 0.5f;
++    if (sx < -0.5f || sx >= (float)output->image->width - 0.5f)
++      columns[x] = (sample_axis_t){.first = -1};
++    else
++      columns[x] = sample_axis(sx, source->width, output->image->width,
++                               source->pixels != NULL, output->filter_quality);
+   }
+-
+-  // Texture linear filtering is bilinear for a two-dimensional image.
+-  int ix = (int)floorf(x);
+-  int iy = (int)floorf(y);
+-  float fx = x - (float)ix;
+-  float fy = y - (float)iy;
+-  uint32_t top = mix_pixels(sample_source(source, ix, iy),
+-                            sample_source(source, ix + 1, iy), fx);
+-  uint32_t bottom = mix_pixels(sample_source(source, ix, iy + 1),
+-                               sample_source(source, ix + 1, iy + 1), fx);
+-  return mix_pixels(top, bottom, fy);
++  uint32_t *top = rows, *bottom = rows + width;
++  int top_y = -1, bottom_y = -1;
++  uint32_t *dst = output->shm_data;
++  for (int y = 0; y < geometry->height; y++) {
++    float sy =
++        ((float)y + 0.5f - geometry->offset_y) / geometry->scale_y - 0.5f;
++    bool inside = sy >= -0.5f && sy < (float)output->image->height - 0.5f;
++    sample_axis_t axis = {0};
++    bool interpolate = false;
++    if (inside) {
++      axis = sample_axis(sy, source->height, output->image->height,
++                         source->pixels != NULL, output->filter_quality);
++      if (top_y != axis.first) {
++        if (bottom_y == axis.first) {
++          uint32_t *swap = top;
++          top = bottom;
++          bottom = swap;
++          bottom_y = top_y;
++        } else {
++          sample_row(source, columns, geometry->width, axis.first, top);
++        }
++        top_y = axis.first;
++      }
++      interpolate = axis.fraction > 0.0f && axis.first != axis.second;
++      if (interpolate && bottom_y != axis.second) {
++        sample_row(source, columns, geometry->width, axis.second, bottom);
++        bottom_y = axis.second;
++      }
++    }
++    for (int x = 0; x < geometry->width; x++) {
++      uint32_t pixel = inside ? top[x] : 0xFF000000u;
++      if (interpolate)
++        pixel = mix_pixels(pixel, bottom[x], axis.fraction);
++      size_t index = (size_t)y * width + (size_t)x;
++      dst[index] = alpha > 0.0f ? mix_pixels(dst[index], pixel, alpha) : pixel;
++    }
++  }
++  free(columns);
++  return CHROMA_OK;
+ }
+ 
+ static int downsample_level(const pixel_source_t *source,
+@@ -347,30 +428,32 @@
+   return CHROMA_OK;
+ }
+ 
+-static void draw_scaled_image(chroma_output_t *output,
+-                              const image_sampler_t *sampler,
+-                              const render_geometry_t *geometry) {
++static int draw_scaled_image(chroma_output_t *output,
++                             const image_sampler_t *sampler,
++                             const render_geometry_t *geometry) {
+   uint32_t *dst = output->shm_data;
+   int image_width = output->image->width;
+   int image_height = output->image->height;
+-  for (int y = 0; y < geometry->height; y++) {
+-    float sy = ((float)y + 0.5f - geometry->offset_y) / geometry->scale_y - 0.5f;
+-    for (int x = 0; x < geometry->width; x++) {
+-      float sx = ((float)x + 0.5f - geometry->offset_x) / geometry->scale_x - 0.5f;
+-      uint32_t pixel = 0xFF000000u;
+-      if (sx >= -0.5f && sy >= -0.5f && sx < (float)image_width - 0.5f &&
+-          sy < (float)image_height - 0.5f) {
+-        pixel = sample_filtered(&sampler->low, sx, sy, output->filter_quality);
+-        if (sampler->alpha > 0.0f) {
+-          pixel = mix_pixels(pixel,
+-                             sample_filtered(&sampler->high, sx, sy,
+-                                             CHROMA_FILTER_BILINEAR),
+-                             sampler->alpha);
+-        }
+-      }
+-      dst[(size_t)y * (size_t)geometry->width + (size_t)x] = pixel;
+-    }
++  size_t count = (size_t)geometry->width * (size_t)geometry->height;
++  if (output->image->is_solid_color) {
++    uint32_t pixel = sample_pixel(output->image, 0, 0);
++    for (size_t i = 0; i < count; i++)
++      dst[i] = pixel;
++    return CHROMA_OK;
++  }
++  if (geometry->scale_x == 1.0f && geometry->scale_y == 1.0f &&
++      geometry->offset_x == 0.0f && geometry->offset_y == 0.0f &&
++      image_width == geometry->width && image_height == geometry->height) {
++    for (int y = 0; y < geometry->height; y++)
++      for (int x = 0; x < geometry->width; x++)
++        dst[(size_t)y * (size_t)geometry->width + (size_t)x] =
++            sample_pixel(output->image, x, y);
++    return CHROMA_OK;
+   }
++  int ret = draw_source(output, &sampler->low, geometry, 0.0f);
++  if (ret == CHROMA_OK && sampler->alpha > 0.0f)
++    ret = draw_source(output, &sampler->high, geometry, sampler->alpha);
++  return ret;
+ }
+ 
+ static void blend_transition(chroma_output_t *output) {
+@@ -518,8 +601,12 @@
+     return ret;
+   }
+ 
+-  draw_scaled_image(output, &sampler, &geometry);
++  ret = draw_scaled_image(output, &sampler, &geometry);
+   free_sampler(&sampler);
++  if (ret != CHROMA_OK) {
++    chroma_buffer_unmap(output);
++    return ret;
++  }
+   blend_transition(output);
+ 
+   // Attach buffer to surface
+diff --git a/src/transition.c b/src/transition.c
+--- a/src/transition.c
++++ b/src/transition.c
+@@ -1,6 +1,4 @@
+ #include <errno.h>
+-#include <stdio.h>
+-#include <stdlib.h>
+ #include <string.h>
+ #include <sys/mman.h>
+ 
+@@ -16,27 +14,15 @@
+     return;
+   }
+ 
+-  unsigned char *snapshot = malloc(output->shm_size);
+-  if (!snapshot) {
+-    chroma_log("WARN", "Could not allocate transition snapshot for output %u",
+-               output->id);
+-    return;
+-  }
+-  const void *pixels = output->shm_data;
+-  bool temporary_mapping = pixels == NULL;
+-  if (temporary_mapping) {
+-    pixels = mmap(NULL, output->shm_size, PROT_READ, MAP_SHARED, output->shm_fd, 0);
+-  }
+-  if (pixels == MAP_FAILED) {
++  // Buffers are immutable after commit. Keep the old pages alive independently
++  // of the wl_buffer and fd, without duplicating a full output-sized frame.
++  void *snapshot =
++      mmap(NULL, output->shm_size, PROT_READ, MAP_SHARED, output->shm_fd, 0);
++  if (snapshot == MAP_FAILED) {
+     chroma_log("WARN", "Could not map transition snapshot for output %u: %s",
+                output->id, strerror(errno));
+-    free(snapshot);
+     return;
+   }
+-  memcpy(snapshot, pixels, output->shm_size);
+-  if (temporary_mapping) {
+-    munmap((void *)pixels, output->shm_size);
+-  }
+ 
+   output->transition_prev = snapshot;
+   output->transition_prev_size = output->shm_size;
+@@ -54,7 +40,8 @@
+     return;
+   }
+ 
+-  free(output->transition_prev);
++  if (output->transition_prev)
++    munmap(output->transition_prev, output->transition_prev_size);
+   output->transition_prev = NULL;
+   output->transition_prev_size = 0;
+   output->transition_prev_width = 0;
+diff --git a/tests/test.c b/tests/test.c
+--- a/tests/test.c
++++ b/tests/test.c
+@@ -78,6 +78,7 @@
+ 
+ static int test_gif_restore_previous(void) {
+   state.config.enable_downsampling = false;
++  state.config.animation_enabled = true;
+   TEST_ASSERT(chroma_image_load(&image, gif_path, &state.config, 2, 1) == CHROMA_OK,
+               "Production GIF load succeeds");
+   TEST_ASSERT(image.is_animated && image.frame_count == 3,
+@@ -98,6 +99,7 @@
+ 
+ static int test_gif_downsample(void) {
+   downsampling_config(&state.config, 1, 1, 0.1f);
++  state.config.animation_enabled = true;
+   TEST_ASSERT(chroma_image_load(&image, gif_path, &state.config, 1, 1) == CHROMA_OK,
+               "Animated image loads with downsampling enabled");
+   TEST_ASSERT(image.width == 1 && image.height == 1 && image.frame_count == 3,
+@@ -109,6 +111,82 @@
+   return TEST_PASSED;
+ }
+ 
++static int test_gif_animation_disabled(void) {
++  state.config.animation_enabled = false;
++  TEST_ASSERT(chroma_image_load(&image, gif_path, &state.config, 2, 1) == CHROMA_OK,
++              "GIF loads as a still image when animation is disabled");
++  TEST_ASSERT(!image.is_animated && image.frame_count == 0 &&
++              image.frames == NULL && image.frame_delays_ms == NULL,
++              "Disabled animation retains no frame collection or delays");
++  TEST_ASSERT(image.width == 2 && image.height == 1 && image.channels == 4,
++              "Still GIF retains its complete RGBA canvas");
++  TEST_ASSERT(pixel_is(image.data, 255, 0, 0, 255) &&
++              pixel_is(image.data + 4, 255, 0, 0, 255),
++              "Disabled animation displays first-frame pixels, not the last frame");
++  chroma_anim_advance_frame(&image, 1000);
++  chroma_anim_advance_frame(&image, 1100);
++  TEST_ASSERT(pixel_is(image.data, 255, 0, 0, 255),
++              "Still GIF cannot advance to a later frame");
++  return TEST_PASSED;
++}
++
++static int test_gif_cache_animation_toggles(void) {
++  state.config.animation_enabled = false;
++  for (int i = 0; i < 3; i++) {
++    state.outputs[i].width = 2;
++    state.outputs[i].height = 1;
++  }
++  TEST_ASSERT(chroma_image_assign(&state, &state.outputs[0], gif_path) == CHROMA_OK &&
++              chroma_image_assign(&state, &state.outputs[1], gif_path) == CHROMA_OK,
++              "Two outputs acquire the disabled GIF");
++  chroma_image_t *shared = state.outputs[0].image;
++  TEST_ASSERT(shared == state.outputs[1].image && shared->ref_count == 2 &&
++              !shared->is_animated && shared->frames == NULL,
++              "Disabled GIF cache shares one still allocation");
++
++  state.config.animation_enabled = true;
++  TEST_ASSERT(chroma_image_assign(&state, &state.outputs[0], gif_path) == CHROMA_OK,
++              "Enabling animation upgrades an already assigned path");
++  TEST_ASSERT(state.outputs[0].image == shared && state.outputs[1].image == shared &&
++              shared->ref_count == 2 && shared->is_animated && shared->frame_count == 3,
++              "Animation upgrade preserves shared ownership and loads all frames");
++  chroma_anim_advance_frame(shared, 1000);
++  chroma_anim_advance_frame(shared, 1100);
++  TEST_ASSERT(shared->current_frame == 1 && shared->data == shared->frames[1] &&
++              pixel_is(state.outputs[1].image->data, 0, 0, 255, 255),
++              "Upgraded cache plays with the original frame timing on both outputs");
++
++  TEST_ASSERT(chroma_image_assign(&state, &state.outputs[2], "color:#FF112233") == CHROMA_OK,
++              "Third output owns a different image before switching");
++  chroma_image_t *previous = state.outputs[2].image;
++  state.config.animation_enabled = false;
++  TEST_ASSERT(chroma_image_assign(&state, &state.outputs[2], gif_path) == CHROMA_OK,
++              "Disabling animation replaces a currently playing cached GIF");
++  TEST_ASSERT(state.outputs[0].image == shared && state.outputs[1].image == shared &&
++              state.outputs[2].image == shared && shared->ref_count == 3 && !previous->loaded,
++              "Mode replacement retains all owners and releases the switched-away image");
++  TEST_ASSERT(!shared->is_animated && shared->frames == NULL &&
++              shared->frame_delays_ms == NULL && shared->frame_count == 0 &&
++              shared->current_frame == 0 && shared->last_frame_ms == 0,
++              "Disabling animation drops frame storage and playback state");
++  TEST_ASSERT(pixel_is(shared->data, 255, 0, 0, 255) &&
++              pixel_is(shared->data + 4, 255, 0, 0, 255),
++              "Disabling playback restores the first frame for every cache owner");
++
++  chroma_image_release(state.outputs[2].image);
++  state.outputs[2].image = NULL;
++  chroma_image_release(state.outputs[1].image);
++  state.outputs[1].image = NULL;
++  TEST_ASSERT(shared->loaded && shared->ref_count == 1 &&
++              pixel_is(state.outputs[0].image->data, 255, 0, 0, 255),
++              "Releasing shared owners preserves the last output's pixels");
++  chroma_image_release(state.outputs[0].image);
++  state.outputs[0].image = NULL;
++  TEST_ASSERT(!shared->loaded && shared->data == NULL && shared->ref_count == 0,
++              "Final release frees the replacement still image");
++  return TEST_PASSED;
++}
++
+ static int test_truncated_gif(void) {
+   const size_t lengths[] = {6, 12, 24, 71, 72, 73, 74, 75, 76, 77};
+   for (size_t i = 0; i < sizeof(lengths) / sizeof(lengths[0]); i++) {
+@@ -412,6 +490,8 @@
+     {"Farbfeld common downsampling", test_farbfeld_downsample},
+     {"GIF restore-previous disposal and timing", test_gif_restore_previous},
+     {"GIF common downsampling", test_gif_downsample},
++    {"Disabled GIF first-frame pixels", test_gif_animation_disabled},
++    {"GIF cache animation toggles and ownership", test_gif_cache_animation_toggles},
+     {"Truncated GIF rejection", test_truncated_gif},
+     {"Full cache replacement", test_full_cache_replacement},
+     {"Failed cache replacement ownership", test_failed_cache_replacement},

@@ -4,6 +4,7 @@
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
     "beer": "git+https://forge.rysieko.pl/rysieko/beer",
+    "chroma": "git+https://forge.rysieko.pl/rysieko/chroma",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "hjem": "github:feel-co/hjem",
     "hyprland": "github:hyprwm/Hyprland",
@@ -60,6 +61,27 @@
     "rev": "59d955641152626521e85dabe3271f511c9e0b28",
     "narHash": "sha256-jvnC9+PYb+8mAvRPgTAR4OxRhwDRsuuSH9YDsT54yMk=",
     "lastModified": 1794816000
+  },
+  "chroma": {
+    "type": "git",
+    "url": "https://forge.rysieko.pl/rysieko/chroma",
+    "ref": "HEAD",
+    "rev": "94b109b8096616275c23eda753f53ffe18295422",
+    "narHash": "sha256-niuXe3aBEBIdT3ymTJf2IfcaIopKW7i1Xo+4uGaiI3k=",
+    "lastModified": 1793989061,
+    "patched": {
+      "path": "/nix/store/hjpmhq7j44m4j7fvb5s1js0hbxd98drz-source",
+      "narHash": "sha256-NTGTaYv/lyW30kUveIA07852bMK7wxBekLyFWuaVFjY=",
+      "lastModified": 1793989061,
+      "patches": [
+        {
+          "source": "patches/chroma/raf-speedup.diff",
+          "file": "patches/chroma/raf-speedup.diff",
+          "sha256": "2b96bca79d36b3c81a32a204032713934e55b5cededb2cd103bd67261f6a9f19"
+        }
+      ],
+      "diff": "5ab2eed96920f2e20ca9d50343b42b9f0026eb2b8226004fa5fa5c7a4958cd81"
+    }
   },
   "creamlinux": {
     "type": "github",

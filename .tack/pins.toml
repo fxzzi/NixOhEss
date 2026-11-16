@@ -60,6 +60,10 @@ type = "fetch"
 # url = "git+https://git.notashelf.dev/notashelf/beer.git"
 url  = "git+https://forge.rysieko.pl/rysieko/beer"
 type = "fetch"
+[inputs.chroma]
+url     = "git+https://forge.rysieko.pl/rysieko/chroma"
+type    = "fetch"
+patches = ["patches/chroma/raf-speedup.diff"]
 
 # everything else
 [inputs.hyprland]

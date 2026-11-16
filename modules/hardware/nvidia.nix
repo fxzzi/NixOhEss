@@ -111,7 +111,6 @@ in
             # work around it with the "No VidMem Reuse" profile.
             apps = [
               "Hyprland"
-              "hyprpaper"
               "Discord"
               "librewolf"
               "stremio"

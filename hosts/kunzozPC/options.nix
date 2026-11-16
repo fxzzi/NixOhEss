@@ -30,7 +30,7 @@
         lockTimeout = 620;
         suspendTimeout = 0;
       };
-      hyprpaper.enable = true;
+      chroma.enable = true;
       xdph.enable = true;
       dunst.enable = true;
       greetd.enable = true;
