@@ -3,13 +3,6 @@
   config,
   ...
 }:
-let
-  noRounding = ''
-    window {
-      border-radius: 0;
-    }
-  '';
-in
 {
   config = {
     hj = {
@@ -17,13 +10,6 @@ in
         pkgs.adw-gtk3
         pkgs.papirus-icon-theme
       ];
-      # remove all rounding on gtk windows
-      xdg.config.files."gtk-4.0/gtk.css".text = noRounding;
-      xdg.config.files."gtk-3.0/gtk.css".text = noRounding;
-    };
-    environment.sessionVariables = {
-      # mate-polkit seems to read from this env var. maybe other apps too
-      GTK_THEME = "adw-gtk3-dark:dark";
     };
     programs.dconf.profiles.user.databases = [
       {

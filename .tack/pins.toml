@@ -71,6 +71,8 @@ patches = [
   "https://github.com/hyprwm/Hyprland/pull/16966",
   # cm: use hdr metadata for tonemap peak
   "https://github.com/hyprwm/Hyprland/pull/16971",
+  # pointer: simplify cpu-buffer cursor path
+  "https://github.com/hyprwm/Hyprland/pull/17012",
 ]
 
 [inputs.niqspkgs]
