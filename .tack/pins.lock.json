@@ -73,9 +73,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "5469a3ae3cd5cc182ddc4201a21a8de44b2c26f2",
-    "narHash": "sha256-N6aGkpxbDeisIUygDapIVX2aXZuGEK4kRmUPMhtu1zc=",
-    "lastModified": 1794572558
+    "rev": "2f56c85f80a52c23fb3e956119ca80975a2b9ceb",
+    "narHash": "sha256-k/nDw1zTlCmhA2K3odt/gy4uDiS002x8Nc14lQxvpY8=",
+    "lastModified": 1794842388
   },
   "hyprland": {
     "type": "github",
@@ -125,12 +125,12 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "ncro",
-    "rev": "ad44cfbc00a6ed1fff20bb09407f21144f5d27fd",
-    "narHash": "sha256-/sw6LJGSbIytu/z/DX4mJYHfyNC2ZqOor1rxoEN5tD0=",
-    "lastModified": 1794564469,
+    "rev": "f4f0f1e47388edb04fe5a31193c6f475b9662be6",
+    "narHash": "sha256-GCzOJ0BG5VZQX129Q8MXXDBHAihfceV62AjL3JhVdaA=",
+    "lastModified": 1794839722,
     "archive": {
-      "hash": "sha256-Eu0OvkDhvPZ87QnPOAgRUJQ6qPgqbeKhxDxb00M8m28=",
-      "outHash": "sha256-6iYv7dFQapUVKyVxY8y7rpnmC3Vl99ZZmlf8dvYX0LY="
+      "hash": "sha256-6UP5SdJumVMjLVYBTMeYQdW+LHlS4SV1HKTbjQlsbBY=",
+      "outHash": "sha256-40lUIqg6j/bevZuC9kXPMHfD44hFAl9G8ncA3lG+guM="
     }
   },
   "niqspkgs": {
