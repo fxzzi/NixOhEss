@@ -9,7 +9,6 @@
 let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.ags;
-  selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
   pkg = pkgs.callPackage "${inputs.rags}/nix/package.nix" {
     buildTypes = false;
     extraPackages = [
@@ -59,10 +58,9 @@ in
         description = "Aylur's GTK Shell";
         exec = getExe pkg;
         extra = {
-          path = [
-            config.programs.hyprland.package # hyprctl, for logging out
-            selfPkgs.wallust-script # for the wallpaper picker
-          ];
+          # inherit the session's PATH instead of the minimal default one, so
+          # commands it spawns (wallust-script, hyprctl, wallust hooks) are found
+          enableDefaultPath = false;
           restartTriggers = [
             config.hj.xdg.config.files."ags/config.js".source
             config.hj.xdg.config.files."ags/style.css".source
@@ -70,7 +68,6 @@ in
             config.hj.xdg.config.files."ags/modules".source
             config.hj.xdg.data.files."walls".source
             pkg
-            selfPkgs.wallust-script
           ];
         };
       };

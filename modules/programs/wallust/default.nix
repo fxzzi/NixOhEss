@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  self,
   ...
 }:
 let
@@ -12,8 +13,9 @@ in
   options.cfg.programs.wallust.enable = mkEnableOption "wallust";
   config = mkIf cfg.enable {
     hj = {
-      packages = with pkgs; [
-        wallust
+      packages = [
+        pkgs.wallust
+        self.packages.${pkgs.stdenv.hostPlatform.system}.wallust-script
       ];
       xdg.config.files = {
         "wallust/wallust.toml" = {
