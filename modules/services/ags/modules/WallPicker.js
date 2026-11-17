@@ -5,8 +5,6 @@ import GLib from "gi://GLib";
 import Gtk from "gi://Gtk?version=3.0";
 import System from "system";
 
-export const WALL_PICKER = "wall-picker";
-
 const WALL_DIR = `${GLib.get_user_data_dir()}/walls`;
 const CURRENT_WALL = `${GLib.get_user_state_dir()}/wallpaper`;
 const THUMB_W = 320;
@@ -23,7 +21,7 @@ const listWalls = () => {
 };
 
 const applyWall = (path) => {
-  App.closeWindow(WALL_PICKER);
+  App.closeWindow("wall-picker");
   Utils.execAsync(["wallust-script", path]);
 };
 
@@ -101,7 +99,7 @@ export function WallPicker() {
   };
 
   return Widget.Window({
-    name: WALL_PICKER,
+    name: "wall-picker",
     class_name: "wall-picker",
     layer: "overlay",
     exclusivity: "ignore",
@@ -111,7 +109,7 @@ export function WallPicker() {
     child: Widget.Box({ children: [scroll] }),
     setup: (self) =>
       self.hook(App, (_, name, visible) => {
-        if (name === WALL_PICKER) visible ? open() : close();
+        if (name === "wall-picker") visible ? open() : close();
       }, "window-toggled"),
-  }).keybind("Escape", () => App.closeWindow(WALL_PICKER));
+  }).keybind("Escape", () => App.closeWindow("wall-picker"));
 }

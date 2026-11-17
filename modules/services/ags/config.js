@@ -106,6 +106,11 @@ hyprland.connect("event", (_, name, data) => {
 // App configuration
 App.config({
   style: "./style.css",
+  // popups, only built the first time they're toggled with `ags -t <name>`
+  lazyWindows: {
+    "wall-picker": WallPicker,
+    "power-menu": PowerMenu,
+  },
 });
 
 // Reload CSS when wallust updates colors
@@ -127,8 +132,5 @@ function monitorCssFile() {
 
 // on startup, create bars for all monitors
 InitBars(Bar);
-// popups, hidden until toggled with `ags -t <name>`
-App.addWindow(WallPicker());
-App.addWindow(PowerMenu());
 // start monitoring colors_ags.css
 monitorCssFile();
