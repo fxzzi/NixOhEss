@@ -202,7 +202,7 @@ in
             end
 
             hl.layer_rule({ match = { namespace = "launcher" }, blur = true, ignore_alpha = 0 })
-            hl.layer_rule({ match = { namespace = "power-menu" }, blur = true, xray = true, ignore_alpha = 0 })
+            hl.layer_rule({ match = { namespace = "power-menu" }, blur = true, xray = true, ignore_alpha = 0, dim_around = true; })
             hl.layer_rule({ match = { namespace = "wall-picker" }, blur = true, xray = true, ignore_alpha = 0 })
             hl.layer_rule({ match = { namespace = "bar-.*" }, blur = true, xray = true, ignore_alpha = 0 })
             hl.layer_rule({ match = { namespace = "notifications" }, blur = true, animation = "slide" })
