@@ -1,7 +1,5 @@
 import App from "resource:///com/github/Aylur/ags/app.js";
 
-export const POWER_MENU = "power-menu";
-
 const actions = [
   {
     label: "Shutdown",
@@ -30,7 +28,7 @@ const actions = [
 ];
 
 const run = ({ cmd }) => {
-  App.closeWindow(POWER_MENU);
+  App.closeWindow("power-menu");
   Utils.execAsync(cmd).catch((e) => console.error(`power-menu: ${e}`));
 };
 
@@ -56,7 +54,7 @@ export function PowerMenu() {
   const buttons = actions.map(ActionButton);
 
   const win = Widget.Window({
-    name: POWER_MENU,
+    name: "power-menu",
     class_name: "power-menu",
     layer: "overlay",
     exclusivity: "ignore",
@@ -71,11 +69,11 @@ export function PowerMenu() {
       self.hook(
         App,
         (_, name, visible) => {
-          if (name === POWER_MENU && visible) buttons[0].grab_focus();
+          if (name === "power-menu" && visible) buttons[0].grab_focus();
         },
         "window-toggled",
       ),
-  }).keybind("Escape", () => App.closeWindow(POWER_MENU));
+  }).keybind("Escape", () => App.closeWindow("power-menu"));
 
   for (const action of actions) win.keybind(action.key, () => run(action));
   return win;
