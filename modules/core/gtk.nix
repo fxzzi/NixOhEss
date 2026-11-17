@@ -30,6 +30,10 @@
             # hide all title bar buttons on gtk apps
             button-layout = ":";
           };
+          "com/stremio/stremio" = {
+            # hide window decor in stremio-linux-shell
+            no-window-decorations = true;
+          };
         };
       }
     ];

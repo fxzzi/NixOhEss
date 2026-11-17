@@ -257,9 +257,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "3cfa5c3f129b754c3f39f0dedc3fa2c352651e5b",
-    "narHash": "sha256-BIsamtBAElAO2TEMK6UsPHp2kCHpMwqULjBwSpq2hhI=",
-    "lastModified": 1794846300,
+    "rev": "bad78453288bfb5d890af856fa2429979e2b944c",
+    "narHash": "sha256-Jn+PT5iYnKcttgR5Rc6oWLNxhFGzyBY3/P3sgvqcQDU=",
+    "lastModified": 1794909624,
     "archive": null
   },
   "tom-nvidia-patches": {
