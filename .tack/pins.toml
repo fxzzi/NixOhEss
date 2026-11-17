@@ -19,6 +19,7 @@ patches = [
   # stremio-linux-shell: 1.2.2 -> 1.2.3
   "https://github.com/NixOS/nixpkgs/pull/589183",
 ]
+frozen = true
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
 [inputs.hjem]
@@ -71,8 +72,6 @@ patches = [
   "https://github.com/hyprwm/Hyprland/pull/16966",
   # cm: use hdr metadata for tonemap peak
   "https://github.com/hyprwm/Hyprland/pull/16971",
-  # pointer: simplify cpu-buffer cursor path
-  "https://github.com/hyprwm/Hyprland/pull/17012",
   # screenshare: DS fixes
   "https://github.com/hyprwm/Hyprland/pull/17015",
 ]

@@ -12,7 +12,7 @@ let
       })
       # USB-Audio/EVO4: correct typo for loopback priority
       (pkgs.fetchpatch {
-        url = "https://github.com/alsa-project/alsa-ucm-conf/pull/888.patch";
+        url = "https://github.com/alsa-project/alsa-ucm-conf/commit/5cfb36fdb86a9ca83093d92cba33f1045a172bcc.patch";
         hash = "sha256-kC0o0hnCumVqpYiSjhl0cjdI9+cDhaEnOruQLM1o/DY=";
       })
     ];
