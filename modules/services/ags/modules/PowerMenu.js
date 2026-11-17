@@ -1,5 +1,4 @@
 import App from "resource:///com/github/Aylur/ags/app.js";
-import Gdk from "gi://Gdk";
 
 export const POWER_MENU = "power-menu";
 
@@ -56,7 +55,7 @@ const ActionButton = (action) =>
 export function PowerMenu() {
   const buttons = actions.map(ActionButton);
 
-  return Widget.Window({
+  const win = Widget.Window({
     name: POWER_MENU,
     class_name: "power-menu",
     layer: "overlay",
@@ -67,29 +66,17 @@ export function PowerMenu() {
       spacing: 4,
       children: buttons,
     }),
-    setup: (self) => {
-      // focus the first button on open, so arrows + enter work too
+    // focus the first button on open, so arrows + enter work too
+    setup: (self) =>
       self.hook(
         App,
         (_, name, visible) => {
           if (name === POWER_MENU && visible) buttons[0].grab_focus();
         },
         "window-toggled",
-      );
-      self.on("key-press-event", (_, event) => {
-        const keyval = event.get_keyval()[1];
-        if (keyval === Gdk.KEY_Escape) {
-          App.closeWindow(POWER_MENU);
-          return true;
-        }
-        const name = Gdk.keyval_name(Gdk.keyval_to_lower(keyval));
-        const action = actions.find((a) => a.key === name);
-        if (action) {
-          run(action);
-          return true;
-        }
-        return false;
-      });
-    },
-  });
+      ),
+  }).keybind("Escape", () => App.closeWindow(POWER_MENU));
+
+  for (const action of actions) win.keybind(action.key, () => run(action));
+  return win;
 }
