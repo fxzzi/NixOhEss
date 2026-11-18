@@ -60,8 +60,12 @@
       # gamescope.enable = true;
       osu.enable = true;
       smoothScroll.enable = false;
-      proton-ge = {
+      proton = {
         enable = true;
+        settings = {
+          PROTON_FORCE_HDR = 1; # autoHDR for proton-ge
+          DXVK_HDR = 1; # autoHDR for proton-cachyos
+        };
         # nativeWayland = true;
       };
       mangohud = {

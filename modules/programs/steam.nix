@@ -34,8 +34,6 @@ in
             MANGOHUD = "1";
           };
       };
-      extraCompatPackages = mkIf config.cfg.programs.proton-ge.enable [ pkgs.proton-ge-bin ];
-
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;

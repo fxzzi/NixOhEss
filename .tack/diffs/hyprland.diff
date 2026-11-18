@@ -1,30 +1,7 @@
 diff --git a/src/helpers/cm/ColorManagement.cpp b/src/helpers/cm/ColorManagement.cpp
 --- a/src/helpers/cm/ColorManagement.cpp
 +++ b/src/helpers/cm/ColorManagement.cpp
-@@ -8,6 +8,7 @@
- #include <map>
- #include <vector>
- #include <numeric>
-+#include <algorithm>
- #include <numbers>
- 
- using namespace NColorManagement;
-@@ -177,6 +178,14 @@
-     return {ARR[0] * v[0] + ARR[1] * v[1] + ARR[2] * v[2], ARR[3] * v[0] + ARR[4] * v[1] + ARR[5] * v[2], ARR[6] * v[0] + ARR[7] * v[1] + ARR[8] * v[2]};
- }
- 
-+float NColorManagement::SImageDescription::getContentMaxLuminance(float fallback) const {
-+    if (maxCLL > 0)
-+        return std::min(sc<float>(maxCLL), fallback);
-+    if (masteringLuminances.max > 0)
-+        return std::min(sc<float>(masteringLuminances.max), fallback);
-+    return fallback;
-+}
-+
- std::optional<Mat3x3> NColorManagement::rgbToXYZFromPrimaries(SPCPRimaries pr) {
-     const auto R = Hyprgraphics::xy2xyz(pr.red);
-     const auto G = Hyprgraphics::xy2xyz(pr.green);
-@@ -486,7 +495,7 @@
+@@ -495,7 +495,7 @@
      return color;
  }
  
@@ -33,7 +10,7 @@ diff --git a/src/helpers/cm/ColorManagement.cpp b/src/helpers/cm/ColorManagement
      // TODO source color is expected to be in sRGB colorspace and tonemapping shouldn't be needed
      return color;
  }
-@@ -507,7 +516,7 @@
+@@ -516,7 +516,7 @@
              color = toNit(color, settings.srcTFRange);
          color *= color.c.a;
          if (settings.needsTonemap)
@@ -42,18 +19,6 @@ diff --git a/src/helpers/cm/ColorManagement.cpp b/src/helpers/cm/ColorManagement
  
          color = fromLinearNit(color, dstDesc->value().transferFunction, settings.dstTFRange);
          if (settings.needsSDRmod) {
-diff --git a/src/helpers/cm/ColorManagement.hpp b/src/helpers/cm/ColorManagement.hpp
---- a/src/helpers/cm/ColorManagement.hpp
-+++ b/src/helpers/cm/ColorManagement.hpp
-@@ -280,6 +280,8 @@
-             return primaries;
-         }
- 
-+        float getContentMaxLuminance(float fallback) const;
-+
-         float getTFMinLuminance(float sdrMinLuminance = -1.0f) const {
-             switch (transferFunction) {
-                 case CM_TRANSFER_FUNCTION_EXT_LINEAR: return isWindows ? 0.0f : luminances.min;
 diff --git a/src/managers/screenshare/ScreenshareManager.cpp b/src/managers/screenshare/ScreenshareManager.cpp
 --- a/src/managers/screenshare/ScreenshareManager.cpp
 +++ b/src/managers/screenshare/ScreenshareManager.cpp
@@ -158,17 +123,7 @@ diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
 diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
 --- a/src/render/Renderer.cpp
 +++ b/src/render/Renderer.cpp
-@@ -2190,7 +2190,8 @@
-         srcTF = imageDescription->value().transferFunction;
- 
-     const bool  needsSDRmod     = modifySDR && isSDR2HDR(ctx, imageDescription->value(), targetImageDescription->value());
--    const float maxLuminance    = imageDescription->value().luminances.max > 0 ? imageDescription->value().luminances.max : imageDescription->value().luminances.reference;
-+    const float maxLuminance    = imageDescription->value().getContentMaxLuminance(imageDescription->value().luminances.max > 0 ? imageDescription->value().luminances.max :
-+                                                                                                                                  imageDescription->value().luminances.reference);
-     const auto  dstMaxLuminance = targetImageDescription->value().luminances.max > 0 ? targetImageDescription->value().luminances.max : 10000;
- 
-     auto        matrix = imageDescription->getPrimaries()->convertMatrix(targetImageDescription->getPrimaries());
-@@ -2200,23 +2201,31 @@
+@@ -2201,23 +2201,31 @@
          ((ctx.m_data.pMonitor->m_sdrSaturation > 0 && ctx.m_data.pMonitor->m_sdrSaturation != 1.0f) ||
           (ctx.m_data.pMonitor->m_sdrBrightness > 0 && ctx.m_data.pMonitor->m_sdrBrightness != 1.0f));
  
@@ -183,10 +138,10 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
 +    const float REF_SCALE          = needsSDRmod ? 1.F : sc<float>(targetImageDescription->value().luminances.reference) / SRC_REF;
 +    const float SRC_MAX            = SRC_IS_HDR ? maxLuminance : (srcTF == NColorManagement::CM_TRANSFER_FUNCTION_EXT_SRGB ? std::max(srcTFMax, maxLuminance) : srcTFMax);
 +    const float scaledMaxLuminance = SRC_MAX * REF_SCALE;
++
++    const bool  needsTonemap = scaledMaxLuminance >= dstMaxLuminance * 1.01;
  
 -    auto       result = SCMSettings{
-+    const bool  needsTonemap = scaledMaxLuminance >= dstMaxLuminance * 1.01;
-+
 +    auto        result = SCMSettings{
          .sourceTF        = srcTF,
          .targetTF        = targetImageDescription->value().transferFunction,
@@ -207,7 +162,7 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
          .dstMaxLuminance         = dstMaxLuminance,
          .dstPrimaries2XYZ        = toXYZ.mat(),
          .needsSDRmod             = needsMod,
-@@ -2596,6 +2605,36 @@
+@@ -2597,6 +2605,36 @@
      return std::memcmp(&a.hdmi_metadata_type1, &b.hdmi_metadata_type1, sizeof(a.hdmi_metadata_type1)) == 0;
  }
  
@@ -244,21 +199,21 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
  void IHyprRenderer::handleFullscreenSettings(PHLMONITOR pMonitor) {
      static auto PCT        = CConfigValue<Config::INTEGER>("render:send_content_type");
      static auto PAUTOHDR   = CConfigValue<Config::INTEGER>("render:cm_auto_hdr");
-@@ -2615,32 +2654,28 @@
+@@ -2616,32 +2654,28 @@
          // HDR scRGB - monitor settings
          // HDR PQ surface & DS is active - surface settings
  
 -        bool hdrIsHandled = false;
+-        if (FULLSCREEN_WINDOW) {
+-            const auto ROOT_SURF = FULLSCREEN_WINDOW->wlSurface()->resource();
+-            const auto SURF      = ROOT_SURF->findWithCM();
 +        bool       hdrIsHandled = false;
 +        const auto SURF         = FULLSCREEN_WINDOW ? FULLSCREEN_WINDOW->wlSurface()->resource()->findWithCM() : nullptr;
 +        const bool SURF_HAS_CM  = SURF && SURF->m_colorManagement.valid() && SURF->m_colorManagement->hasImageDescription();
 +        // we can't DS scRGB
 +        const bool SURF_HDR_PASSTHROUGH = SURF_HAS_CM && SURF->m_colorManagement->isHDR() && !SURF->m_colorManagement->isWindowsScRGB();
-+
-         if (FULLSCREEN_WINDOW) {
--            const auto ROOT_SURF = FULLSCREEN_WINDOW->wlSurface()->resource();
--            const auto SURF      = ROOT_SURF->findWithCM();
--
+ 
++        if (FULLSCREEN_WINDOW) {
              // we have a surface with image description
 -            if (SURF && SURF->m_colorManagement.valid() && SURF->m_colorManagement->hasImageDescription()) {
 +            if (SURF_HAS_CM) {
@@ -292,7 +247,7 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
                  }
              }
          }
-@@ -2652,25 +2687,28 @@
+@@ -2653,25 +2687,28 @@
          if (!hdrIsHandled) {
              const bool HDR_CHANGED = pMonitor->inHDR() != wantHDR;
  
@@ -577,25 +532,3 @@ diff --git a/src/render/types.hpp b/src/render/types.hpp
          float                                dstRefLuminance = 80;
          std::array<std::array<double, 3>, 3> convertMatrix;
  
-diff --git a/tests/helpers/ColorManagement.cpp b/tests/helpers/ColorManagement.cpp
---- a/tests/helpers/ColorManagement.cpp
-+++ b/tests/helpers/ColorManagement.cpp
-@@ -120,3 +120,18 @@
-     EXPECT_NEAR(color.c.b, 12500.0, 0.0001);
-     EXPECT_DOUBLE_EQ(color.c.a, 1.0);
- }
-+
-+TEST(ColorManagement, ContentMaxLuminancePrefersMetadata) {
-+    SImageDescription description;
-+    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(10000.F), 10000.F);
-+
-+    description.masteringLuminances = {.min = 0.005F, .max = 1000};
-+    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(10000.F), 1000.F);
-+
-+    description.maxCLL = 600;
-+    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(10000.F), 600.F);
-+
-+    // Metadata can't push the peak past what the encoding can carry.
-+    description.maxCLL = 4000;
-+    EXPECT_FLOAT_EQ(description.getContentMaxLuminance(1000.F), 1000.F);
-+}

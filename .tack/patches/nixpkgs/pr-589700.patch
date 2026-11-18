@@ -1,5 +1,5 @@
 diff --git a/pkgs/by-name/st/stremio-linux-shell/package.nix b/pkgs/by-name/st/stremio-linux-shell/package.nix
-index d3ff71d29b539..45a1b706f0043 100644
+index d3ff71d29b5391..45a1b706f0043a 100644
 --- a/pkgs/by-name/st/stremio-linux-shell/package.nix
 +++ b/pkgs/by-name/st/stremio-linux-shell/package.nix
 @@ -27,7 +27,7 @@

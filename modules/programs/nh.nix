@@ -25,7 +25,6 @@ in
     environment.shellAliases = {
       # rb means rebuild
       rb = "nh os switch";
-      rbu = "nixupd; rb";
       rbb = "nh os boot";
     };
     hj.packages = [
