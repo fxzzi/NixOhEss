@@ -5,6 +5,7 @@
     "azzipkgs": "gitlab:fazzi/azzipkgs",
     "beer": "git+https://forge.rysieko.pl/rysieko/beer",
     "creamlinux": "github:fxzzi/creamlinux-installer",
+    "disblock-origin": "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
     "hjem": "github:feel-co/hjem",
     "hyprland": "github:hyprwm/Hyprland",
     "ncro": "github:manic-systems/ncro",
@@ -68,6 +69,36 @@
     "rev": "17ad517a459f1a41a40bef2642ee952859147ab5",
     "narHash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
     "lastModified": 1744901658
+  },
+  "disblock-origin": {
+    "type": "git",
+    "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
+    "ref": "HEAD",
+    "rev": "9e296814bc19505ae30c9a9e3d2c012b30b9d129",
+    "narHash": "sha256-Z8YnutSQszU2uyNj6xJ/z0L/xZFR3TrUmjWaAoyUFd8=",
+    "lastModified": 1793293798,
+    "patched": {
+      "path": "/nix/store/0ic8mqfliz0bpcs6ds9qyh2ssq99gl26-source",
+      "narHash": "sha256-gO69cCTJomjViowJZ2xiIrWvPEQJL+kqp62m97fda1o=",
+      "lastModified": 1793293798,
+      "patches": [
+        {
+          "source": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/155",
+          "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/155",
+          "file": "patches/disblock-origin/pr-155.patch",
+          "sha256": "cf2a3b62180009a6647c22943e8823e0406148dff6c2c2a08905524086d41c19",
+          "head": "4be356009348048078ae1600352e8eadae613173"
+        },
+        {
+          "source": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/161",
+          "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/161",
+          "file": "patches/disblock-origin/pr-161.patch",
+          "sha256": "ae69e6d83f64ae5ab85923a663fa2e9ab0be49aecedb74a197ea2363c693dcbd",
+          "head": "9b1afe9defd33e2181099ca9b7119af9bfd4de7b"
+        }
+      ],
+      "diff": "85e7d700580498a4487e84e8397fae57e03a7cebf8cd1bfbe4d418a5f381ca55"
+    }
   },
   "hjem": {
     "type": "github",

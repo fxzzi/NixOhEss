@@ -62,7 +62,7 @@ let
     # css
     ''
       /* Hide nitro begging */
-      @import url("https://allpurposemat.codeberg.page/Disblock-Origin/DisblockOrigin.theme.css");
+      ${builtins.readFile "${inputs.disblock-origin}/DisblockOrigin.theme.css"}
 
       /* Hide the Visual Refresh title bar */
       .visual-refresh {
