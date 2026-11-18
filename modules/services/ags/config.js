@@ -7,7 +7,12 @@ import { TimeWidget, DateWidget } from "./bar/Clock.js";
 import { BatteryWidget } from "./bar/Battery.js";
 import { SysTrayWidget } from "./bar/SysTray.js";
 import { VolumeWidget } from "./bar/Volume.js";
-import { CpuUsageWidget, CpuTempWidget, GpuTempWidget, MemUsageWidget } from "./bar/Stats.js";
+import {
+  CpuUsageWidget,
+  CpuTempWidget,
+  GpuTempWidget,
+  MemUsageWidget,
+} from "./bar/Stats.js";
 import { WallPicker } from "./windows/WallPicker.js";
 import { PowerMenu } from "./windows/PowerMenu.js";
 
@@ -71,7 +76,9 @@ const addBar = (name) => {
 
 // on monitor connects and disconnects, update only the affected bar
 hyprland.connect("monitor-added", (_, name) => addBar(name));
-hyprland.connect("monitor-removed", (_, name) => App.removeWindow(`bar-${name}`));
+hyprland.connect("monitor-removed", (_, name) =>
+  App.removeWindow(`bar-${name}`),
+);
 
 App.config({
   style: "./style.css",

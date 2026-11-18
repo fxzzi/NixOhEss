@@ -41,12 +41,18 @@ const sensorLabelPriority = [
 ];
 
 export function findCpuTempFile() {
-  const hwmons = listDir("/sys/class/hwmon").map((h) => `/sys/class/hwmon/${h}`);
+  const hwmons = listDir("/sys/class/hwmon").map(
+    (h) => `/sys/class/hwmon/${h}`,
+  );
   for (const { regex, labels } of sensorLabelPriority)
     for (const path of hwmons.filter((p) => regex.test(read(`${p}/name`))))
       for (const label of labels)
         for (const f of listDir(path))
-          if (f.startsWith("temp") && f.endsWith("_label") && read(`${path}/${f}`) === label)
+          if (
+            f.startsWith("temp") &&
+            f.endsWith("_label") &&
+            read(`${path}/${f}`) === label
+          )
             return `${path}/${f.replace("_label", "_input")}`;
   return null;
 }
