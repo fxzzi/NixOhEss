@@ -158,7 +158,7 @@ diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
 diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
 --- a/src/render/Renderer.cpp
 +++ b/src/render/Renderer.cpp
-@@ -2189,7 +2189,8 @@
+@@ -2190,7 +2190,8 @@
          srcTF = imageDescription->value().transferFunction;
  
      const bool  needsSDRmod     = modifySDR && isSDR2HDR(ctx, imageDescription->value(), targetImageDescription->value());
@@ -168,7 +168,7 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
      const auto  dstMaxLuminance = targetImageDescription->value().luminances.max > 0 ? targetImageDescription->value().luminances.max : 10000;
  
      auto        matrix = imageDescription->getPrimaries()->convertMatrix(targetImageDescription->getPrimaries());
-@@ -2199,23 +2200,30 @@
+@@ -2200,23 +2201,31 @@
          ((ctx.m_data.pMonitor->m_sdrSaturation > 0 && ctx.m_data.pMonitor->m_sdrSaturation != 1.0f) ||
           (ctx.m_data.pMonitor->m_sdrBrightness > 0 && ctx.m_data.pMonitor->m_sdrBrightness != 1.0f));
  
@@ -181,11 +181,12 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
 +        srcTF == NColorManagement::CM_TRANSFER_FUNCTION_EXT_LINEAR;
 +    const float SRC_REF            = SRC_IS_HDR ? sc<float>(std::max(1U, imageDescription->value().luminances.reference)) : imageDescription->value().getTFRefLuminance();
 +    const float REF_SCALE          = needsSDRmod ? 1.F : sc<float>(targetImageDescription->value().luminances.reference) / SRC_REF;
-+    const float scaledMaxLuminance = (SRC_IS_HDR ? maxLuminance : srcTFMax) * REF_SCALE;
-+
-+    const bool  needsTonemap = scaledMaxLuminance >= dstMaxLuminance * 1.01;
++    const float SRC_MAX            = SRC_IS_HDR ? maxLuminance : (srcTF == NColorManagement::CM_TRANSFER_FUNCTION_EXT_SRGB ? std::max(srcTFMax, maxLuminance) : srcTFMax);
++    const float scaledMaxLuminance = SRC_MAX * REF_SCALE;
  
 -    auto       result = SCMSettings{
++    const bool  needsTonemap = scaledMaxLuminance >= dstMaxLuminance * 1.01;
++
 +    auto        result = SCMSettings{
          .sourceTF        = srcTF,
          .targetTF        = targetImageDescription->value().transferFunction,
@@ -206,7 +207,7 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
          .dstMaxLuminance         = dstMaxLuminance,
          .dstPrimaries2XYZ        = toXYZ.mat(),
          .needsSDRmod             = needsMod,
-@@ -2595,6 +2603,36 @@
+@@ -2596,6 +2605,36 @@
      return std::memcmp(&a.hdmi_metadata_type1, &b.hdmi_metadata_type1, sizeof(a.hdmi_metadata_type1)) == 0;
  }
  
@@ -243,28 +244,30 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
  void IHyprRenderer::handleFullscreenSettings(PHLMONITOR pMonitor) {
      static auto PCT        = CConfigValue<Config::INTEGER>("render:send_content_type");
      static auto PAUTOHDR   = CConfigValue<Config::INTEGER>("render:cm_auto_hdr");
-@@ -2614,13 +2652,13 @@
+@@ -2615,32 +2654,28 @@
          // HDR scRGB - monitor settings
          // HDR PQ surface & DS is active - surface settings
  
 -        bool hdrIsHandled = false;
--        if (FULLSCREEN_WINDOW) {
--            const auto ROOT_SURF = FULLSCREEN_WINDOW->wlSurface()->resource();
--            const auto SURF      = ROOT_SURF->findWithCM();
 +        bool       hdrIsHandled = false;
 +        const auto SURF         = FULLSCREEN_WINDOW ? FULLSCREEN_WINDOW->wlSurface()->resource()->findWithCM() : nullptr;
 +        const bool SURF_HAS_CM  = SURF && SURF->m_colorManagement.valid() && SURF->m_colorManagement->hasImageDescription();
- 
-+        if (FULLSCREEN_WINDOW) {
++        // we can't DS scRGB
++        const bool SURF_HDR_PASSTHROUGH = SURF_HAS_CM && SURF->m_colorManagement->isHDR() && !SURF->m_colorManagement->isWindowsScRGB();
++
+         if (FULLSCREEN_WINDOW) {
+-            const auto ROOT_SURF = FULLSCREEN_WINDOW->wlSurface()->resource();
+-            const auto SURF      = ROOT_SURF->findWithCM();
+-
              // we have a surface with image description
 -            if (SURF && SURF->m_colorManagement.valid() && SURF->m_colorManagement->hasImageDescription()) {
 +            if (SURF_HAS_CM) {
                  const bool surfaceIsHDR = SURF->m_colorManagement->isHDR();
                  wantHDR                 = *PAUTOHDR && surfaceIsHDR;
                  if (FULLSCREEN_WINDOW && FULLSCREEN_WINDOW->m_ruleApplicator->noAutoHDR().valueOrDefault())
-@@ -2627,19 +2665,13 @@
                      wantHDR = configuredHDR;
-                 if (surfaceIsHDR && !SURF->m_colorManagement->isWindowsScRGB() && !pMonitor->m_lastScanout.expired()) {
+-                if (surfaceIsHDR && !SURF->m_colorManagement->isWindowsScRGB() && !pMonitor->m_lastScanout.expired()) {
++                if (SURF_HDR_PASSTHROUGH && !pMonitor->m_lastScanout.expired()) {
                      // DS HDR
 -                    bool needsHdrMetadataUpdate =
 -                        SURF->m_colorManagement->needsHdrMetadataUpdate() || pMonitor->m_previousFSWindow != FULLSCREEN_WINDOW || pMonitor->m_needsHDRupdate;
@@ -289,7 +292,7 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
                  }
              }
          }
-@@ -2651,25 +2683,28 @@
+@@ -2652,25 +2687,28 @@
          if (!hdrIsHandled) {
              const bool HDR_CHANGED = pMonitor->inHDR() != wantHDR;
  
@@ -301,15 +304,12 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
 -                pMonitor->m_previousFSWindow.reset(); // trigger CTM update
 -            }
 +            applyAutoHDR(pMonitor, wantHDR, configuredHDR);
++
++            const bool KEEP_SURFACE_METADATA = pMonitor->m_hdrMetadataFromSurface && wantHDR && pMonitor->inHDR() && FULLSCREEN_WINDOW &&
++                pMonitor->m_hdrMetadataWindow == FULLSCREEN_WINDOW && SURF_HDR_PASSTHROUGH;
  
 -            const auto WANTED  = wantHDR ? createHDRMetadata(pMonitor->m_imageDescription->value(), pMonitor) : NO_HDR_METADATA;
 -            const auto CURRENT = pMonitor->m_output->state->state().hdrMetadata;
-+            const bool KEEP_SURFACE_METADATA =
-+                pMonitor->m_hdrMetadataFromSurface && wantHDR && pMonitor->inHDR() && FULLSCREEN_WINDOW && pMonitor->m_hdrMetadataWindow == FULLSCREEN_WINDOW && SURF_HAS_CM;
- 
--            // Required in order to clear stale HDR metadata
--            const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
--            const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
 +            // keep surface metadata across DS drop-outs, but follow the surface if its image description changes meanwhile
 +            if (KEEP_SURFACE_METADATA)
 +                applySurfaceHDRMetadata(SURF, pMonitor, false);
@@ -317,14 +317,17 @@ diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
 +                const auto WANTED  = wantHDR ? createHDRMetadata(pMonitor->m_imageDescription->value(), pMonitor) : NO_HDR_METADATA;
 +                const auto CURRENT = pMonitor->m_output->state->state().hdrMetadata;
  
+-            // Required in order to clear stale HDR metadata
+-            const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
+-            const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
++                // Required in order to clear stale HDR metadata
++                const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
++                const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
+ 
 -            if (HDR_CHANGED || INITIAL_SDR || pMonitor->m_hdrMetadataFromSurface || HDR_METADATA_CHANGED) {
 -                LOG(Log::INFO, wantHDR ? "[CM] Updating HDR metadata from monitor" : "[CM] Restoring SDR mode");
 -                pMonitor->m_output->state->setHDRMetadata(WANTED);
 -                pMonitor->m_hdrMetadataFromSurface = false;
-+                // Required in order to clear stale HDR metadata
-+                const bool INITIAL_SDR          = !pMonitor->m_needsHDRupdate && !wantHDR;
-+                const bool HDR_METADATA_CHANGED = wantHDR && !hdrMetadataEqual(WANTED, CURRENT);
-+
 +                if (HDR_CHANGED || INITIAL_SDR || pMonitor->m_hdrMetadataFromSurface || HDR_METADATA_CHANGED) {
 +                    LOG(Log::INFO, wantHDR ? "[CM] Updating HDR metadata from monitor" : "[CM] Restoring SDR mode");
 +                    pMonitor->m_output->state->setHDRMetadata(WANTED);
