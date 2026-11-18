@@ -10,10 +10,8 @@ let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.ags;
   pkg = pkgs.callPackage "${inputs.rags}/nix/package.nix" {
+    # i'm a js chud
     buildTypes = false;
-    extraPackages = [
-      pkgs.libgtop
-    ];
   };
 in
 {
@@ -25,7 +23,9 @@ in
       ];
       xdg.config.files = {
         "ags/icons".source = ./icons;
-        "ags/modules".source = ./modules;
+        "ags/bar".source = ./bar;
+        "ags/windows".source = ./windows;
+        "ags/lib".source = ./lib;
         "ags/config.js".source = ./config.js;
         "ags/style.css".source = ./style.css;
         "wallust/wallust.toml".value.templates.ags = mkIf config.cfg.programs.wallust.enable {
@@ -65,7 +65,9 @@ in
             config.hj.xdg.config.files."ags/config.js".source
             config.hj.xdg.config.files."ags/style.css".source
             config.hj.xdg.config.files."ags/icons".source
-            config.hj.xdg.config.files."ags/modules".source
+            config.hj.xdg.config.files."ags/bar".source
+            config.hj.xdg.config.files."ags/windows".source
+            config.hj.xdg.config.files."ags/lib".source
             config.hj.xdg.data.files."walls".source
             pkg
           ];

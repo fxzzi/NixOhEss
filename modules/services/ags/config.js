@@ -1,24 +1,15 @@
-import App from "resource:///com/github/Aylur/ags/app.js";
 import Gdk from "gi://Gdk";
 import Gio from "gi://Gio";
 
-// import widget modules
-import { DateWidget } from "./modules/Date.js";
-import { TimeWidget } from "./modules/Time.js";
-import { BatteryWidget } from "./modules/Battery.js";
-import { VolumeWidget } from "./modules/Volume.js";
-import { Workspaces } from "./modules/Workspaces.js";
-import { ClientTitleWidget } from "./modules/ClientTitle.js";
-import { CpuUsageWidget } from "./modules/CpuUsage.js";
-import { CpuTempWidget } from "./modules/CpuTemp.js";
-import { MemUsageWidget } from "./modules/MemUsage.js";
-import { GpuTempWidget } from "./modules/GpuTemp.js";
-import { SysTrayWidget } from "./modules/SysTray.js";
-import { WallPicker } from "./modules/WallPicker.js";
-import { PowerMenu } from "./modules/PowerMenu.js";
-
-// Add svg icons from the ./icons directory
-App.addIcons(`${App.configDir}/icons/`);
+import { Workspaces } from "./bar/Workspaces.js";
+import { ClientTitleWidget } from "./bar/ClientTitle.js";
+import { TimeWidget, DateWidget } from "./bar/Clock.js";
+import { BatteryWidget } from "./bar/Battery.js";
+import { SysTrayWidget } from "./bar/SysTray.js";
+import { VolumeWidget } from "./bar/Volume.js";
+import { CpuUsageWidget, CpuTempWidget, GpuTempWidget, MemUsageWidget } from "./bar/Stats.js";
+import { WallPicker } from "./windows/WallPicker.js";
+import { PowerMenu } from "./windows/PowerMenu.js";
 
 const createBox = (spacing, children, hpack = null) =>
   Widget.Box({ spacing, children, hpack });
@@ -47,9 +38,8 @@ const Right = () =>
     "end",
   );
 
-const Bar = (gdkMonitor) => {
-  const monitorName = getMonitorName(gdkMonitor);
-  return Widget.Window({
+const Bar = (gdkMonitor, monitorName) =>
+  Widget.Window({
     name: `bar-${monitorName}`,
     class_name: "bar",
     gdkmonitor: gdkMonitor,
@@ -61,51 +51,31 @@ const Bar = (gdkMonitor) => {
       end_widget: Right(),
     }),
   });
-};
 
 const hyprland = await Service.import("hyprland");
 const display = Gdk.Display.get_default();
 
-const getMonitorName = (gdkmonitor) => {
+// match by connector name (DP-1 etc), since that's what hyprland reports
+const getMonitorByName = (name) => {
   const screen = display.get_default_screen();
   for (let i = 0; i < display.get_n_monitors(); ++i) {
-    if (gdkmonitor === display.get_monitor(i))
-      return screen.get_monitor_plug_name(i);
+    if (screen.get_monitor_plug_name(i) === name) return display.get_monitor(i);
   }
   return null;
 };
 
-const getMonitorByName = (name) => {
-  for (let i = 0; i < display.get_n_monitors(); ++i) {
-    const gdkMonitor = display.get_monitor(i);
-    if (getMonitorName(gdkMonitor) === name) return gdkMonitor;
-  }
-  return null;
+const addBar = (name) => {
+  const gdkMonitor = getMonitorByName(name);
+  if (gdkMonitor) App.addWindow(Bar(gdkMonitor, name));
 };
 
-const InitBars = (wdg) => {
-  hyprland.monitors.forEach((mon) => {
-    const gdkMonitor = getMonitorByName(mon.name);
-    if (gdkMonitor) App.addWindow(wdg(gdkMonitor));
-  });
-};
+// on monitor connects and disconnects, update only the affected bar
+hyprland.connect("monitor-added", (_, name) => addBar(name));
+hyprland.connect("monitor-removed", (_, name) => App.removeWindow(`bar-${name}`));
 
-// listen for monitor connects and disconnects, and update only the affected bar.
-hyprland.connect("event", (_, name, data) => {
-  if (name === "monitoradded") {
-    console.log(`monitor added: ${data}`);
-    const gdkMonitor = getMonitorByName(data);
-    if (gdkMonitor) App.addWindow(Bar(gdkMonitor));
-  } else if (name === "monitorremoved") {
-    console.log(`monitor removed: ${data}`);
-    const win = App.getWindow(`bar-${data}`);
-    if (win) App.removeWindow(win);
-  }
-});
-
-// App configuration
 App.config({
   style: "./style.css",
+  icons: "./icons",
   // popups, only built the first time they're toggled with `ags -t <name>`
   lazyWindows: {
     "wall-picker": WallPicker,
@@ -113,24 +83,11 @@ App.config({
   },
 });
 
-// Reload CSS when wallust updates colors
-function monitorCssFile() {
-  const cssFilePath = `${App.configDir}/colors_ags.css`;
-
-  const monitor = Utils.monitorFile(cssFilePath, (file, event) => {
-    if (event === Gio.FileMonitorEvent.CHANGES_DONE_HINT) {
-      console.log("Caught wallust reload, reloading CSS!");
-      App.resetCss();
-      App.applyCss(`${App.configDir}/style.css`);
-    }
-  });
-
-  if (!monitor) {
-    console.error("Failed to monitor CSS file.");
-  }
-}
-
 // on startup, create bars for all monitors
-InitBars(Bar);
-// start monitoring colors_ags.css
-monitorCssFile();
+hyprland.monitors.forEach(({ name }) => addBar(name));
+
+// reload CSS when wallust updates colors
+Utils.monitorFile(`${App.configDir}/colors_ags.css`, (_, event) => {
+  if (event === Gio.FileMonitorEvent.CHANGES_DONE_HINT)
+    App.applyCss(`${App.configDir}/style.css`, true);
+});

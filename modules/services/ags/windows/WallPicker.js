@@ -1,4 +1,3 @@
-import App from "resource:///com/github/Aylur/ags/app.js";
 import Gdk from "gi://Gdk";
 import GdkPixbuf from "gi://GdkPixbuf";
 import GLib from "gi://GLib";

@@ -7,9 +7,9 @@ export const Workspaces = (monitorName) =>
       ws
         .filter(({ monitor }) => monitor === monitorName)
         .sort((a, b) => a.id - b.id)
-        .map(({ address, id, name }) =>
+        .map(({ id, name }) =>
           Widget.Button({
-            on_clicked: () => hyprland.dispatch.focus({ workspace: address }),
+            on_clicked: () => hyprland.dispatch.focus({ workspace: `${id}` }),
             child: Widget.Label(name),
             class_name: hyprland.active.workspace
               .bind("id")
