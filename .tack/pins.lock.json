@@ -4,6 +4,7 @@
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
     "beer": "git+https://forge.rysieko.pl/rysieko/beer.git",
+    "chroma": "git+https://forge.rysieko.pl/rysieko/chroma",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "disblock-origin": "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
     "hjem": "github:feel-co/hjem",
@@ -58,9 +59,17 @@
     "type": "git",
     "url": "https://forge.rysieko.pl/rysieko/beer.git",
     "ref": "HEAD",
-    "rev": "3bc5703401f7887b907ce9b86c4654a59b03a7f7",
-    "narHash": "sha256-Uh/NCIcpix/5wwpm9nNcsZGccYs2MdeioDj5iF/BBlo=",
-    "lastModified": 1795026416
+    "rev": "f122692f4284e79b6e27604d076eb9968806ab5d",
+    "narHash": "sha256-rx1+Q4911BF6zueTBI9To4EwLdEgrZEUIOAeEejykN8=",
+    "lastModified": 1795030654
+  },
+  "chroma": {
+    "type": "git",
+    "url": "https://forge.rysieko.pl/rysieko/chroma",
+    "ref": "HEAD",
+    "rev": "94b109b8096616275c23eda753f53ffe18295422",
+    "narHash": "sha256-niuXe3aBEBIdT3ymTJf2IfcaIopKW7i1Xo+4uGaiI3k=",
+    "lastModified": 1793989061
   },
   "creamlinux": {
     "type": "github",
@@ -276,7 +285,7 @@
   "tom-nvidia-patches": {
     "type": "fixed",
     "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff",
-    "sha256": "sha256-M5l2PSAHZFJrTMWn1X/j0fIUfD/UpcdJEokqWAusQGs=",
+    "sha256": "sha256-YJJQur5tQoylR3pT/JTfrNWT7vUMzH25SskDybtzB3M=",
     "unpack": "file"
   },
   "walls": {
