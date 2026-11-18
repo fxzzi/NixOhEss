@@ -54,14 +54,24 @@ export function WallPicker() {
 
     const tiles = listWalls().map((name) => {
       const path = `${WALL_DIR}/${name}`;
-      const image = new Gtk.Image({ width_request: THUMB_W, height_request: THUMB_H });
+      const image = new Gtk.Image({
+        width_request: THUMB_W,
+        height_request: THUMB_H,
+      });
       grid.add(
         Widget.Box({
           class_names: path === active ? ["wall", "active"] : ["wall"],
           vertical: true,
           spacing: 4,
           attribute: path,
-          children: [image, Widget.Label({ label: name, truncate: "middle", max_width_chars: 30 })],
+          children: [
+            image,
+            Widget.Label({
+              label: name,
+              truncate: "middle",
+              max_width_chars: 30,
+            }),
+          ],
         }),
       );
       return { path, image };
@@ -81,8 +91,15 @@ export function WallPicker() {
     if (tiles.length)
       loader = GLib.idle_add(GLib.PRIORITY_LOW, () => {
         const { path, image } = tiles.shift();
-        const pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(path, THUMB_W * scale, THUMB_H * scale, true);
-        image.set_from_surface(Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale, null));
+        const pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
+          path,
+          THUMB_W * scale,
+          THUMB_H * scale,
+          true,
+        );
+        image.set_from_surface(
+          Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale, null),
+        );
         if (tiles.length) return GLib.SOURCE_CONTINUE;
         loader = 0;
         return GLib.SOURCE_REMOVE;
@@ -107,8 +124,12 @@ export function WallPicker() {
     // wrapped in a box so the shared `window > box` styling applies
     child: Widget.Box({ children: [scroll] }),
     setup: (self) =>
-      self.hook(App, (_, name, visible) => {
-        if (name === "wall-picker") visible ? open() : close();
-      }, "window-toggled"),
+      self.hook(
+        App,
+        (_, name, visible) => {
+          if (name === "wall-picker") visible ? open() : close();
+        },
+        "window-toggled",
+      ),
   }).keybind("Escape", () => App.closeWindow("wall-picker"));
 }

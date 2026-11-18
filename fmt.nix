@@ -5,6 +5,7 @@
   deadnix,
   statix,
   fd,
+  prettier,
 }:
 let
   exclusionList = [
@@ -29,9 +30,11 @@ writeShellApplication {
     deadnix
     statix
     fd
+    prettier
   ];
 
   text = ''
     fd "$@" ${excludeArgs} -t f -e nix -x sh -c ${lib.escapeShellArg (lib.concatStringsSep "; " commands)}
+    fd "$@" ${excludeArgs} -t f -e js -X prettier --write --log-level warn
   '';
 }

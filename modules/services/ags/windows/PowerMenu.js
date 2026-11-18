@@ -60,7 +60,11 @@ export function PowerMenu() {
     child: Widget.Box({ spacing: 4, children: buttons }),
     // focus the first button on open, so arrows + enter work too
     setup: (self) =>
-      self.hook(self, () => self.visible && buttons[0].grab_focus(), "notify::visible"),
+      self.hook(
+        self,
+        () => self.visible && buttons[0].grab_focus(),
+        "notify::visible",
+      ),
   }).keybind("Escape", () => App.closeWindow("power-menu"));
 
   for (const { key, exec } of actions) win.keybind(key, () => run(exec));
