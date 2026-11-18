@@ -1,0 +1,16 @@
+diff --git a/DisblockOrigin.theme.css b/DisblockOrigin.theme.css
+index 46f5767..2bd1bdb 100644
+--- a/DisblockOrigin.theme.css
++++ b/DisblockOrigin.theme.css
+@@ -413,9 +413,10 @@ div[id*="popout_"]:has(div[class*="imgWrapper__"] img[src^="https://cdn.discorda
+ }
+ 
+ /* Hide friends list 'Active now' quests */
+-#online-tab ~ div[class^=nowPlayingColumn] div[aria-haspopup="menu"] div[class^="body"] {
++div[class^=nowPlayingColumn] div[aria-haspopup="menu"] div[class^="body"] {
+   &> section:not(:last-child) { border-bottom: none; }
+   &> div:has(div[class^="ctas"]) { display: none; }
++  &> div[class^=wrapper]:has(div[class^=gameTile]) { display: none; }
+ }
+ 
+ /* Orbs (virtual currency) */

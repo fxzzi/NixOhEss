@@ -60,7 +60,7 @@ type = "fetch"
 # nix and tack fail to fetch from raf's git forge :(
 # so fetch from a mirror instead
 # url = "git+https://git.notashelf.dev/notashelf/beer.git"
-url  = "git+https://forge.rysieko.pl/rysieko/beer"
+url  = "git+https://forge.rysieko.pl/rysieko/beer.git"
 type = "fetch"
 
 # everything else
@@ -81,11 +81,11 @@ type = "fetch"
 
 [inputs.nix-gaming]
 url = "github:fufexan/nix-gaming"
+type = "fetch"
 patches = [
   # osu-lazer-bin: drop EGL bwrap override
   "https://github.com/fufexan/nix-gaming/pull/384",
 ]
-type = "fetch"
 
 [inputs.nixcord]
 url  = "github:4evy/nixcord"
@@ -100,3 +100,13 @@ type = "fetch"
 url    = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff"
 type   = "fixed"
 unpack = "file"
+
+[inputs.disblock-origin]
+url = "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git"
+type = "fetch"
+patches = [
+  # Fix Active Now quests CSS
+  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/155",
+  # Fix clan tags, boost upsells and dead selectors after Discord's class rename
+  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/161",
+]
