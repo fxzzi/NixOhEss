@@ -3,7 +3,7 @@
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
-    "beer": "git+https://forge.rysieko.pl/rysieko/beer",
+    "beer": "git+https://forge.rysieko.pl/rysieko/beer.git",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "disblock-origin": "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
     "hjem": "github:feel-co/hjem",
@@ -56,7 +56,7 @@
   },
   "beer": {
     "type": "git",
-    "url": "https://forge.rysieko.pl/rysieko/beer",
+    "url": "https://forge.rysieko.pl/rysieko/beer.git",
     "ref": "HEAD",
     "rev": "59d955641152626521e85dabe3271f511c9e0b28",
     "narHash": "sha256-jvnC9+PYb+8mAvRPgTAR4OxRhwDRsuuSH9YDsT54yMk=",
@@ -174,24 +174,9 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "87217390927bcb318bc706c542ba6848b07ed253",
-    "narHash": "sha256-ESQsgRlmj4VZxvKJ7u3/LZ+D1qUbz3eIp2p6I/lLzVI=",
-    "lastModified": 1794984441,
-    "patched": {
-      "path": "/nix/store/2bzggm3blv8v7zy09778yrf05pbfkn3c-source",
-      "narHash": "sha256-eVjQSaqz9KdhapOn0YTB9ejBCzbpIhvx/nZIWjmLV1g=",
-      "lastModified": 1794984441,
-      "patches": [
-        {
-          "source": "https://github.com/fufexan/nix-gaming/pull/384",
-          "url": "https://github.com/fufexan/nix-gaming/pull/384",
-          "file": "patches/nix-gaming/pr-384.patch",
-          "sha256": "292e7ec446bea191b7e2adfbdd433d247dc8d13f57a532c0efcc2627251040bc",
-          "head": "cecb8b6724f193df8f827a6a1f37c0262f188821"
-        }
-      ],
-      "diff": "db7c02986de6b2ef11530ffda14e454bcba71c07e5eb48f8003b29ca78bd6996"
-    }
+    "rev": "d4295b65efe42e63247145f643a2cc36493687a8",
+    "narHash": "sha256-eVjQSaqz9KdhapOn0YTB9ejBCzbpIhvx/nZIWjmLV1g=",
+    "lastModified": 1795013700
   },
   "nixcord": {
     "type": "github",

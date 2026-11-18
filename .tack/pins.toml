@@ -82,10 +82,6 @@ type = "fetch"
 [inputs.nix-gaming]
 url = "github:fufexan/nix-gaming"
 type = "fetch"
-patches = [
-  # osu-lazer-bin: drop EGL bwrap override
-  "https://github.com/fufexan/nix-gaming/pull/384",
-]
 
 [inputs.nixcord]
 url  = "github:4evy/nixcord"
