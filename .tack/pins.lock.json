@@ -58,9 +58,9 @@
     "type": "git",
     "url": "https://forge.rysieko.pl/rysieko/beer.git",
     "ref": "HEAD",
-    "rev": "59d955641152626521e85dabe3271f511c9e0b28",
-    "narHash": "sha256-jvnC9+PYb+8mAvRPgTAR4OxRhwDRsuuSH9YDsT54yMk=",
-    "lastModified": 1794816000
+    "rev": "3bc5703401f7887b907ce9b86c4654a59b03a7f7",
+    "narHash": "sha256-Uh/NCIcpix/5wwpm9nNcsZGccYs2MdeioDj5iF/BBlo=",
+    "lastModified": 1795026416
   },
   "creamlinux": {
     "type": "github",
