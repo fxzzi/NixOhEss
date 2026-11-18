@@ -1,5 +1,5 @@
 diff --git a/pkgs/by-name/st/stremio-linux-shell/out-path.patch b/pkgs/by-name/st/stremio-linux-shell/out-path.patch
-index db60b233ce0b45..681509f6190b73 100644
+index db60b233ce0b4..681509f6190b7 100644
 --- a/pkgs/by-name/st/stremio-linux-shell/out-path.patch
 +++ b/pkgs/by-name/st/stremio-linux-shell/out-path.patch
 @@ -1,25 +1,16 @@
@@ -57,7 +57,7 @@ index db60b233ce0b45..681509f6190b73 100644
   
  -exec /app/libexec/stremio/stremio "$@"
 diff --git a/pkgs/by-name/st/stremio-linux-shell/package.nix b/pkgs/by-name/st/stremio-linux-shell/package.nix
-index de53f2ec0bb6fc..d3ff71d29b5391 100644
+index de53f2ec0bb6f..d3ff71d29b539 100644
 --- a/pkgs/by-name/st/stremio-linux-shell/package.nix
 +++ b/pkgs/by-name/st/stremio-linux-shell/package.nix
 @@ -27,7 +27,7 @@
