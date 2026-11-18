@@ -1,51 +1,48 @@
-import App from "resource:///com/github/Aylur/ags/app.js";
+const hyprland = await Service.import("hyprland");
 
 const actions = [
   {
     label: "Shutdown",
     key: "s",
     icon: "power-outline-symbolic",
-    cmd: ["systemctl", "poweroff"],
+    exec: () => Utils.execAsync(["systemctl", "poweroff"]),
   },
   {
     label: "Reboot",
     key: "r",
     icon: "restart-outline-symbolic",
-    cmd: ["systemctl", "reboot"],
+    exec: () => Utils.execAsync(["systemctl", "reboot"]),
   },
   {
     label: "Suspend",
     key: "u",
     icon: "sleep-outline-symbolic",
-    cmd: ["systemctl", "suspend"],
+    exec: () => Utils.execAsync(["systemctl", "suspend"]),
   },
   {
     label: "Logout",
     key: "e",
     icon: "logout-outline-symbolic",
-    cmd: ["hyprctl", "dispatch", "hl.dsp.exit()"],
+    exec: () => hyprland.dispatch.exit(),
   },
 ];
 
-const run = ({ cmd }) => {
+const run = (exec) => {
   App.closeWindow("power-menu");
-  Utils.execAsync(cmd).catch((e) => console.error(`power-menu: ${e}`));
+  exec();
 };
 
-const ActionButton = (action) =>
+const ActionButton = ({ label, key, icon, exec }) =>
   Widget.Button({
     class_name: "action",
-    on_clicked: () => run(action),
+    on_clicked: () => run(exec),
     child: Widget.Box({
       vertical: true,
       spacing: 8,
       children: [
-        Widget.Icon({ icon: action.icon, size: 44, class_name: "icon" }),
-        Widget.Label({ label: action.label }),
-        Widget.Label({
-          class_name: "key",
-          label: `[${action.key.toUpperCase()}]`,
-        }),
+        Widget.Icon({ icon, size: 44, class_name: "icon" }),
+        Widget.Label({ label }),
+        Widget.Label({ class_name: "key", label: `[${key.toUpperCase()}]` }),
       ],
     }),
   });
@@ -60,21 +57,12 @@ export function PowerMenu() {
     exclusivity: "ignore",
     keymode: "exclusive",
     visible: false,
-    child: Widget.Box({
-      spacing: 4,
-      children: buttons,
-    }),
+    child: Widget.Box({ spacing: 4, children: buttons }),
     // focus the first button on open, so arrows + enter work too
     setup: (self) =>
-      self.hook(
-        App,
-        (_, name, visible) => {
-          if (name === "power-menu" && visible) buttons[0].grab_focus();
-        },
-        "window-toggled",
-      ),
+      self.hook(self, () => self.visible && buttons[0].grab_focus(), "notify::visible"),
   }).keybind("Escape", () => App.closeWindow("power-menu"));
 
-  for (const action of actions) win.keybind(action.key, () => run(action));
+  for (const { key, exec } of actions) win.keybind(key, () => run(exec));
   return win;
 }
