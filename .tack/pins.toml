@@ -18,6 +18,8 @@ url = "channel:nixos-unstable-small"
 patches = [
   # stremio-linux-shell: 1.2.2 -> 1.2.3
   "https://github.com/NixOS/nixpkgs/pull/589183",
+  # stremio-linux-shell: 1.2.3 -> 1.3.0
+  "https://github.com/NixOS/nixpkgs/pull/589700",
 ]
 frozen = true
 [inputs.systems]
