@@ -67,6 +67,20 @@ in
         };
       };
     };
+    cfg.programs.proton.settings = {
+      # Report support for D3D12 NVIDIA shader extensions when being supported by VKD3D-Proton.
+      # https://github.com/jp7677/dxvk-nvapi/releases/tag/v0.9.2
+      DXVK_NVAPI_D3D12_NV_SHADER_EXTN = 1;
+      # also enable descriptor heap
+      VKD3D_CONFIG = "descriptor_heap";
+
+      # upgrade DLSS DLL's automatically for the latest models
+      PROTON_DLSS_UPGRADE = 1;
+      # despite the name, it doesn't always use latest. it uses the "recommended" model for your GPU.
+      # for example on my 3070 it will use preset K.
+      DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION = "render_preset_latest";
+    };
+
     environment = {
       sessionVariables = {
         # disable vsync
@@ -87,18 +101,6 @@ in
         CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
         # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
-
-        # Report support for D3D12 NVIDIA shader extensions when being supported by VKD3D-Proton.
-        # https://github.com/jp7677/dxvk-nvapi/releases/tag/v0.9.2
-        DXVK_NVAPI_D3D12_NV_SHADER_EXTN = 1;
-        # also enable descriptor heap
-        VKD3D_CONFIG = "descriptor_heap";
-
-        # upgrade DLSS DLL's automatically for the latest models
-        PROTON_DLSS_UPGRADE = 1;
-        # despite the name, it doesn't always use latest. it uses the "recommended" model for your GPU.
-        # for example on my 3070 it will use preset K.
-        DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION = "render_preset_latest";
 
         # use tom's clanker userspace modules
         GBM_BACKEND = "nvidia-open";

@@ -14,9 +14,6 @@ in
     hj = {
       packages = [ pkgs.lutris-free ];
       xdg.data.files = {
-        "lutris/runners/wine/GE-Proton" = mkIf config.cfg.programs.proton-ge.enable {
-          source = pkgs.proton-ge-bin.steamcompattool;
-        };
         "lutris/system.yml" = {
           generator = lib.generators.toYAML { };
           value = {
@@ -38,8 +35,8 @@ in
               fsync = false;
               fsr = false;
             }
-            // optionalAttrs config.cfg.programs.proton-ge.enable {
-              # use the above sourced GE-Proton
+            // optionalAttrs config.cfg.programs.proton.enable {
+              # picked up from Steam/compatibilitytools.d
               version = "GE-Proton";
             };
           };

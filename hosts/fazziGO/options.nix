@@ -38,7 +38,7 @@
       codium.enable = true;
       # mangohud.enable = true;
       # steam.enable = true;
-      # proton-ge = {
+      # proton = {
       #   enable = true;
       #   nativeWayland = true;
       # };

@@ -72,7 +72,7 @@
         enable = true;
         waywall.enable = true;
       };
-      proton-ge = {
+      proton = {
         enable = true;
       };
       mpv.enable = true;
