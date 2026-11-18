@@ -62,10 +62,10 @@ index bde48185eb7..f06dabb956a 100644
          if (!shader)
              shader = getShaderVariant(SH_FRAG_SURFACE, shaderFeatures | globalFeatures(ctx));
 diff --git a/src/render/Renderer.cpp b/src/render/Renderer.cpp
-index 4e074a19849..c9f312ad90a 100644
+index f0ecfb4638f..864f63f3003 100644
 --- a/src/render/Renderer.cpp
 +++ b/src/render/Renderer.cpp
-@@ -2199,23 +2199,30 @@ SCMSettings IHyprRenderer::getCMSettings(CRenderContext& ctx, const NColorManage
+@@ -2199,23 +2199,31 @@ SCMSettings IHyprRenderer::getCMSettings(CRenderContext& ctx, const NColorManage
          ((ctx.m_data.pMonitor->m_sdrSaturation > 0 && ctx.m_data.pMonitor->m_sdrSaturation != 1.0f) ||
           (ctx.m_data.pMonitor->m_sdrBrightness > 0 && ctx.m_data.pMonitor->m_sdrBrightness != 1.0f));
  
@@ -79,7 +79,8 @@ index 4e074a19849..c9f312ad90a 100644
 +        srcTF == NColorManagement::CM_TRANSFER_FUNCTION_EXT_LINEAR;
 +    const float SRC_REF            = SRC_IS_HDR ? sc<float>(std::max(1U, imageDescription->value().luminances.reference)) : imageDescription->value().getTFRefLuminance();
 +    const float REF_SCALE          = needsSDRmod ? 1.F : sc<float>(targetImageDescription->value().luminances.reference) / SRC_REF;
-+    const float scaledMaxLuminance = (SRC_IS_HDR ? maxLuminance : srcTFMax) * REF_SCALE;
++    const float SRC_MAX            = SRC_IS_HDR ? maxLuminance : (srcTF == NColorManagement::CM_TRANSFER_FUNCTION_EXT_SRGB ? std::max(srcTFMax, maxLuminance) : srcTFMax);
++    const float scaledMaxLuminance = SRC_MAX * REF_SCALE;
 +
 +    const bool  needsTonemap = scaledMaxLuminance >= dstMaxLuminance * 1.01;
 +
