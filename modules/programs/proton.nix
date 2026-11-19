@@ -37,9 +37,7 @@ in
         ]);
       default = { };
       apply = mapAttrs (_: toString);
-      description = ''
-        Set environment variables for all proton builds
-      '';
+      description = "Set environment variables for all proton builds.";
     };
   };
 
@@ -47,7 +45,6 @@ in
     boot.kernelModules = [ "ntsync" ];
 
     cfg.programs.proton.settings = {
-      PROTON_ENABLE_WAYLAND = mkIf cfg.nativeWayland 1;
       PROTON_USE_WOW64 = 1;
     };
 
