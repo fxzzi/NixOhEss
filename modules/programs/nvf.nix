@@ -39,13 +39,8 @@ in
           luaConfigRC = {
             basic = ''
               -- Remove "disable mouse" entries from the context menu
-              vim.api.nvim_create_autocmd("VimEnter", {
-                callback = function()
-                  vim.cmd("aunmenu PopUp.How-to\\ disable\\ mouse")
-                  vim.cmd("aunmenu PopUp.-1-")
-                end,
-                desc = "Remove 'disable mouse' entries from context menu",
-              })
+              vim.cmd.aunmenu([[PopUp.How-to\ disable\ mouse]])
+              vim.cmd.aunmenu("PopUp.-2-")
             '';
           };
           lsp = {
