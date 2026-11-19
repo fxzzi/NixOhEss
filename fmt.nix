@@ -5,7 +5,7 @@
   deadnix,
   statix,
   fd,
-  prettier,
+  biome,
   stylua,
 }:
 let
@@ -31,13 +31,13 @@ writeShellApplication {
     deadnix
     statix
     fd
-    prettier
+    biome
     stylua
   ];
 
   text = ''
     fd "$@" ${excludeArgs} -t f -e nix -x sh -c ${lib.escapeShellArg (lib.concatStringsSep "; " commands)}
-    fd "$@" ${excludeArgs} -t f -e js -X prettier --write --log-level warn
-    fd "$@" ${excludeArgs} -t f -e lua -X stylua
+    fd "$@" ${excludeArgs} -t f -e js -X biome format --write --indent-style=space --indent-width=2
+    fd "$@" ${excludeArgs} -t f -e lua -X stylua --indent-type Spaces --indent-width 2
   '';
 }
