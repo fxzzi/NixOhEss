@@ -23,10 +23,8 @@ in
     nativeWayland = mkEnableOption "Wayland native proton";
     packages = mkOption {
       type = types.listOf types.package;
-      default = with pkgs; [
-        proton-ge-bin
-        proton-cachyos-bin
-        proton-wineland-bin
+      default = [
+        pkgs.proton-ge-bin
       ];
       description = "Proton builds to install into Steam's compatibilitytools.d.";
     };

@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   cfg = {
     core = {
       username = "faaris";
@@ -62,11 +62,16 @@
       smoothScroll.enable = false;
       proton = {
         enable = true;
+        # nativeWayland = true;
+        packages = [
+          pkgs.proton-ge-bin
+          pkgs.proton-cachyos-bin
+          pkgs.proton-wineland-bin
+        ];
         settings = {
           PROTON_FORCE_HDR = 1; # autoHDR for proton-ge
           DXVK_HDR = 1; # autoHDR for proton-cachyos
         };
-        # nativeWayland = true;
       };
       mangohud = {
         enable = true;
