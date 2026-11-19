@@ -62,7 +62,6 @@
       smoothScroll.enable = false;
       proton = {
         enable = true;
-        # nativeWayland = true;
         packages = [
           pkgs.proton-ge-bin
           pkgs.proton-cachyos-bin
