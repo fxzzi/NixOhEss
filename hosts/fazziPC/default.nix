@@ -67,7 +67,7 @@
 
   environment.sessionVariables = {
     # wtf is it with these clankers not following XDG
-    CLAUDE_CONFIG_DIR = "$XDG_CONFIG_HOME/claude";
+    CLAUDE_CONFIG_DIR = "$HOME/.config/claude";
   };
 
   # icc files used in Hyprland

@@ -101,7 +101,7 @@ in
 
     # include both the regular config and the wallust generated config
     environment.sessionVariables = mkIf config.cfg.programs.wallust.enable {
-      BEER_CONFIG = "$XDG_CONFIG_HOME/beer/beer.toml:$XDG_CONFIG_HOME/beer/colors_beer.toml";
+      BEER_CONFIG = "$HOME/.config/beer/beer.toml:$HOME/.config/beer/colors_beer.toml";
     };
 
     xdg.terminal-exec = {

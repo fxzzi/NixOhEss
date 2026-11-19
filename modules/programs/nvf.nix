@@ -16,7 +16,7 @@ in
       EDITOR = "nvim";
       MANPAGER = "nvim -n --cmd 'set laststatus=0 nonumber noruler noshowcmd' +Man!";
       # clanker always ruining my clean ~
-      COPILOT_HOME = "$XDG_CONFIG_HOME/copilot";
+      COPILOT_HOME = "$HOME/.config/copilot";
     };
     programs.nvf = {
       enable = true;

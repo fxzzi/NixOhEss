@@ -122,7 +122,7 @@ in
       ];
       sessionVariables = {
         # clean up ~
-        ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
+        ZDOTDIR = "$HOME/.config/zsh";
       };
     };
   };
