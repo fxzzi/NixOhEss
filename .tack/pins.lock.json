@@ -100,27 +100,20 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "62a56876be650c3e18f115cfd0048c9aeeb586e9",
-    "narHash": "sha256-0lY9DfOTLNwYTpTm8TC5QiaXAGgPLOIy9Zi3Vp6nrZ8=",
-    "lastModified": 1795091417,
+    "rev": "8487b4a3086272cdbe2c7fa2331ddc64bcdc244e",
+    "narHash": "sha256-eZPaOzs/CplrqbhBIqrN3X8Sdpg57Kz/Y0hRXQMwi48=",
+    "lastModified": 1795105539,
     "patched": {
-      "path": "/nix/store/p8ga7kcr2galavp9fx8cfwzl4x85znc0-source",
-      "narHash": "sha256-5JI49p8+EEfeGn3CxCS8qbXimdGJ8oay3PRloPNoWbA=",
-      "lastModified": 1795091417,
+      "path": "/nix/store/r407qfv21rnkh6yj1hgl6ha0lq2mkgaq-source",
+      "narHash": "sha256-tO5j/j/iYo+ino9UJ8z0/GNto+svUxIIwausC5juyPk=",
+      "lastModified": 1795105539,
       "patches": [
-        {
-          "source": "https://github.com/hyprwm/Hyprland/pull/16946",
-          "url": "https://github.com/hyprwm/Hyprland/pull/16946",
-          "file": "patches/hyprland/pr-16946.patch",
-          "sha256": "c428370a08d8cc4c412bad8d51552e39b515f3ea6c611bd5088de8e2a3180b46",
-          "head": "75a382f35d4f718dfeb994ba8b59c72912599c59"
-        },
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16966",
           "url": "https://github.com/hyprwm/Hyprland/pull/16966",
           "file": "patches/hyprland/pr-16966.patch",
-          "sha256": "e5910291ea9a1ac1f8bbe835c32c4c8d9e089d57294c7fb5f15398770556312f",
-          "head": "0a0adf43d74fbcde6e4a08c610fc05663c9b8bf7"
+          "sha256": "383907f15478c86476691a78509fa5f0f31b922235d694153b7007e6e7e6d207",
+          "head": "45bfbe495bb0be183d98bc8dd2867eacb28c63f1"
         },
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/17015",
@@ -137,7 +130,7 @@
           "head": "d3a2fca0d6d828eb3dcbfdb815736aa6e2dca879"
         }
       ],
-      "diff": "fccf9f2fd2a547893129ee7f89f037cf1a6998dcf20690c6702efc62a1f7a495"
+      "diff": "0b17a855a9d646772acd60e9235e23b0c92e32cb9594b6128cab33781d92e550"
     }
   },
   "ncro": {

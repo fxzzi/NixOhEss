@@ -85,7 +85,6 @@
         # waywall.enable = true;
       };
       lutris.enable = true;
-      heroic.enable = true;
       adb.enable = true;
       mpv.enable = true;
       obs-studio.enable = true;
