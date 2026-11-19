@@ -59,22 +59,9 @@
     "type": "git",
     "url": "ssh://git@git.notashelf.dev:33/notashelf/beer.git",
     "ref": "HEAD",
-    "rev": "da1de905194539a2c679bb65a21784df1a68ed24",
-    "narHash": "sha256-0GvROA2J+p3X85H6apAwWxIjz4WJv3O4s/Hnmg+IomQ=",
-    "lastModified": 1795042287,
-    "patched": {
-      "path": "/nix/store/3j0zki9g5nz3qpgbwbss11bbr1rds507-source",
-      "narHash": "sha256-6srmZkL7L0eBdYKxE2GjgbwHm69fOJuspEJSKdpda2c=",
-      "lastModified": 1795042287,
-      "patches": [
-        {
-          "source": "patches/beer/0001-xtask-jiff-1.0-breaking-change.patch",
-          "file": "patches/beer/0001-xtask-jiff-1.0-breaking-change.patch",
-          "sha256": "6cc51935d940a76d007318794ca24fc10e19fd3ed9720ca5a3df3c21d7a18506"
-        }
-      ],
-      "diff": "6d69069116699518ecce8261669acd9bd49df7705872a169469f2258b6dbdf35"
-    }
+    "rev": "6a14306d14e9de7d7c8cb4b9bbd2779dfc90ac24",
+    "narHash": "sha256-LFTyGENjehepEFIyhWxc5wY1Ntx+XSlHNzt1DU3sz8A=",
+    "lastModified": 1795080600
   },
   "chroma": {
     "type": "git",
@@ -126,9 +113,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "4725210df40dcf3673afe21453a3b0950bc4dd58",
-    "narHash": "sha256-wTZL65urkh6P1iYBZKEnmWGwzQoLCX8ye8V9iveye9M=",
-    "lastModified": 1794970964,
+    "rev": "2a28f37d253ea3866f85eabe482c68a84fc32ed5",
+    "narHash": "sha256-IjFbnKzAkaG+tiZxwpP5CfTYVNxKKYSMioLynWAaGd0=",
+    "lastModified": 1795054265,
     "public": true
   },
   "hyprland": {
@@ -203,9 +190,14 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "d4295b65efe42e63247145f643a2cc36493687a8",
-    "narHash": "sha256-eVjQSaqz9KdhapOn0YTB9ejBCzbpIhvx/nZIWjmLV1g=",
-    "lastModified": 1795013700
+    "rev": "7ffd3264b1301624a5eaca54aa92e8465d8a312a",
+    "narHash": "sha256-XBzXWalc797znhyyrunoVjHsK/5yy40sN4IZ51cVZaM=",
+    "lastModified": 1795070914,
+    "archive": {
+      "hash": "sha256-WG6GrYJdZCHNzikTVcMaNExk+RNyzhMmAIK+fW7TQC0=",
+      "outHash": "sha256-AjIAuPvK6jqLId1Bi+OfFadjohQfkxYxXViOZRNar8M="
+    },
+    "public": true
   },
   "nixcord": {
     "type": "github",
@@ -297,9 +289,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "7daf30b335c6eccfc44a7137052137506b85cae6",
-    "narHash": "sha256-3fMzTeUZsvMBy7cC3fu6Gy/TE++2n9MynCRZZ13ygHs=",
-    "lastModified": 1795049535,
+    "rev": "1424edc27b6e6f6d4f216410e0a2cc1419d96cb7",
+    "narHash": "sha256-z7m16oDAtHsgbBX6gadOpa6pGPXNEahjwyzPC0pbLvM=",
+    "lastModified": 1795064133,
     "archive": null,
     "public": true
   },
