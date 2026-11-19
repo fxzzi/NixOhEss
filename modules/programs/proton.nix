@@ -15,7 +15,7 @@ let
     ;
   cfg = config.cfg.programs.proton;
 
-  withSettings = p: p.overrideAttrs { userSettings = cfg.settings; };
+  withSettings = p: p.overrideAttrs { userSettings = cfg.environmentVariables; };
 in
 {
   options.cfg.programs.proton = {
@@ -28,7 +28,7 @@ in
       ];
       description = "Proton builds to install into Steam's compatibilitytools.d.";
     };
-    settings = mkOption {
+    environmentVariables = mkOption {
       type =
         with types;
         attrsOf (oneOf [
@@ -44,7 +44,7 @@ in
   config = mkIf cfg.enable {
     boot.kernelModules = [ "ntsync" ];
 
-    cfg.programs.proton.settings = {
+    cfg.programs.proton.environmentVariables = {
       PROTON_USE_WOW64 = 1;
     };
 
