@@ -98,7 +98,7 @@ diff --git a/src/protocols/core/DataDevice.cpp b/src/protocols/core/DataDevice.c
 diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
 --- a/src/render/OpenGL.cpp
 +++ b/src/render/OpenGL.cpp
-@@ -1290,7 +1290,6 @@
+@@ -1297,7 +1297,6 @@
                                       const SCMSettings& settings) {
      shader->setUniformFloat2(SHADER_SRC_TF_RANGE, settings.srcTFRange.min, settings.srcTFRange.max);
      shader->setUniformFloat2(SHADER_DST_TF_RANGE, settings.dstTFRange.min, settings.dstTFRange.max);
@@ -106,7 +106,7 @@ diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
      shader->setUniformFloat(SHADER_DST_REF_LUMINANCE, settings.dstRefLuminance);
      shader->setUniformFloat(SHADER_MAX_LUMINANCE, settings.maxLuminance);
      shader->setUniformFloat(SHADER_DST_MAX_LUMINANCE, settings.dstMaxLuminance);
-@@ -1526,10 +1525,16 @@
+@@ -1533,10 +1532,16 @@
  
          shaderFeatures |= SH_FEAT_CM;
  
@@ -124,7 +124,7 @@ diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
                  shaderFeatures |= SH_FEAT_TONEMAP;
                  if (settings.tonemapMode == 3)
                      shaderFeatures |= SH_FEAT_ALT_TONEMAP;
-@@ -1544,6 +1549,10 @@
+@@ -1551,6 +1556,10 @@
          shader = useShader(shader);
  
          passCMUniforms(shader, SOURCE_IMAGE_DESCRIPTION, TARGET_IMAGE_DESCRIPTION, true, ctx.m_data.pMonitor->m_sdrMinLuminance, ctx.m_data.pMonitor->m_sdrMaxLuminance, settings);
@@ -404,7 +404,7 @@ diff --git a/src/render/shaders/glsl/blurprepare.glsl b/src/render/shaders/glsl/
 diff --git a/src/render/shaders/glsl/border.frag b/src/render/shaders/glsl/border.frag
 --- a/src/render/shaders/glsl/border.frag
 +++ b/src/render/shaders/glsl/border.frag
-@@ -59,7 +59,7 @@
+@@ -61,7 +61,7 @@
  #endif
  #if USE_TONEMAP
                    ,
@@ -425,7 +425,7 @@ diff --git a/src/render/shaders/glsl/border.glsl b/src/render/shaders/glsl/borde
  #endif
  #if USE_SDR_MOD
                ,
-@@ -113,7 +113,7 @@
+@@ -114,7 +114,7 @@
  #endif
  #if USE_TONEMAP
                               ,

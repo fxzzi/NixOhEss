@@ -83,9 +83,9 @@
     "type": "git",
     "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
     "ref": "HEAD",
-    "rev": "f31b21631470b194aa76e7e290747712e8794fdd",
-    "narHash": "sha256-wOUDQhATMqFprsfweCMp0Y66CbWQElJclSnUg++f7aM=",
-    "lastModified": 1795085584
+    "rev": "d33e73cb8138cf2a89de640d2922a127f186ad86",
+    "narHash": "sha256-uumFHNizVz3GwqY3fL8/L4gYZYHwcmj+tlXDKaiJt54=",
+    "lastModified": 1795090573
   },
   "hjem": {
     "type": "github",
@@ -100,13 +100,13 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "5177d94ed31742849d9654da1d9d50e5ad05e26d",
-    "narHash": "sha256-C1srpWv9UQeYq9yPUCYlCVjsyUXPKp81a91N/kHtFV4=",
-    "lastModified": 1795001954,
+    "rev": "62a56876be650c3e18f115cfd0048c9aeeb586e9",
+    "narHash": "sha256-0lY9DfOTLNwYTpTm8TC5QiaXAGgPLOIy9Zi3Vp6nrZ8=",
+    "lastModified": 1795091417,
     "patched": {
-      "path": "/nix/store/va02pihfkijp2cd3s9iv1lzgxlaq6yi8-source",
-      "narHash": "sha256-GGsIl+v9PpEZUR1SvIwbAa17cx0a8SdVvpznfToViKU=",
-      "lastModified": 1795001954,
+      "path": "/nix/store/p8ga7kcr2galavp9fx8cfwzl4x85znc0-source",
+      "narHash": "sha256-5JI49p8+EEfeGn3CxCS8qbXimdGJ8oay3PRloPNoWbA=",
+      "lastModified": 1795091417,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16946",
@@ -137,7 +137,7 @@
           "head": "d3a2fca0d6d828eb3dcbfdb815736aa6e2dca879"
         }
       ],
-      "diff": "193ec9f1e2ab63d833afe6e6c0f6db28e595496992d98f2aaa3840caf07af508"
+      "diff": "fccf9f2fd2a547893129ee7f89f037cf1a6998dcf20690c6702efc62a1f7a495"
     }
   },
   "ncro": {
