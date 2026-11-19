@@ -74,7 +74,10 @@ in
             bash.enable = true;
             css.enable = true;
             html.enable = true;
-            typescript.enable = true;
+            typescript = {
+              enable = true;
+              format.type = [ "biome" ];
+            };
             lua.enable = true;
             python.enable = true;
             typst.enable = true;
