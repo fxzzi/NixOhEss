@@ -95,10 +95,10 @@ in
         # increase max size to xGB
         __GL_SHADER_DISK_CACHE_SIZE = 12 * 1024 * 1024 * 1024;
         # clean up ~
-        __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
+        __GL_SHADER_DISK_CACHE_PATH = "$HOME/.cache/nv";
 
         # avoid creation of $HOME/.nv dir
-        CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
+        CUDA_CACHE_PATH = "$HOME/.cache/nv";
         # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
 
