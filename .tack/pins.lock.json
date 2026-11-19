@@ -306,7 +306,7 @@
   "tom-nvidia-patches": {
     "type": "fixed",
     "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff",
-    "sha256": "sha256-YJJQur5tQoylR3pT/JTfrNWT7vUMzH25SskDybtzB3M=",
+    "sha256": "sha256-neyt/rVXPTLoson4g4wYnSYgDn4nKzAEI1na+holqvo=",
     "unpack": "file"
   },
   "walls": {

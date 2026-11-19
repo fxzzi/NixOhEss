@@ -40,9 +40,9 @@ in
         branch = "bleeding_edge"; # newest of latest and beta
         # NOTE: if a new nvidia driver isn't in nixpkgs yet, use below
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "620.70.06";
-          sha256_64bit = "sha256-KRGOOr0IwHVZvMo9nHYjjQOUkK8DYqLlvPy+cgSv1LE=";
-          openSha256 = "sha256-dV8vzniUl3UJoG2Q3KdoUJigLRuQeTniUfB670gb1Mw=";
+          version = "620.73.04";
+          sha256_64bit = "sha256-tfLi1dqENbMlOTBAFbib9+si/grsjNaQW3puip+bjxs=";
+          openSha256 = "sha256-+GPU2bXC/QWZTt0eH3dTvI0bMAta1GCdU2WFI4E4LWE=";
           usePersistenced = false;
           useSettings = false;
           patchesOpen = [
