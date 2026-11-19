@@ -6,7 +6,6 @@
 let
   inherit (lib)
     attrNames
-    flatten
     genAttrs
     nixosSystem
     filterAttrs
@@ -22,10 +21,10 @@ let
       specialArgs = {
         inherit self inputs hostName;
       };
-      modules = flatten [
+      modules = [
         self.nixosModules.default # all modules
-        (self.lib.nixFilesInRecursive ./${hostName}) # host-specific
-      ];
+      ]
+      ++ self.lib.nixFilesInRecursive ./${hostName}; # host-specific
     };
 in
 genAttrs hostNames mkSystem
