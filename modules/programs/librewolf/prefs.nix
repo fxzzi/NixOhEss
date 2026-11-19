@@ -98,8 +98,11 @@ let
     "browser.backup.scheduled.enabled" = true;
     "browser.backup.location" = "${config.hj.directory}/Documents/Restore LibreWolf";
 
-    # disable nova for now until it's a bit more useable
+    # nova looks like crap
     "browser.nova.enabled" = false;
+
+    # enable webrender, can help performance
+    "gfx.webrender.all" = true;
   };
   attrsToLines = f: attrs: concatMapAttrsStringSep "\n" f attrs;
   prefValue =
