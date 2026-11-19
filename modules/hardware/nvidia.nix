@@ -67,7 +67,7 @@ in
         };
       };
     };
-    cfg.programs.proton.settings = {
+    cfg.programs.proton.environmentVariables = {
       # Report support for D3D12 NVIDIA shader extensions when being supported by VKD3D-Proton.
       # https://github.com/jp7677/dxvk-nvapi/releases/tag/v0.9.2
       DXVK_NVAPI_D3D12_NV_SHADER_EXTN = 1;

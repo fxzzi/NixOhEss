@@ -67,7 +67,7 @@
           pkgs.proton-cachyos-bin
           pkgs.proton-wineland-bin
         ];
-        settings = {
+        environmentVariables = {
           PROTON_FORCE_HDR = 1; # autoHDR for proton-ge
           DXVK_HDR = 1; # autoHDR for proton-cachyos
         };
