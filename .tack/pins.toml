@@ -2,6 +2,7 @@
 
 [shorturls]
 fazzi   = "gitlab:fazzi/{path}"
+raf     = "git+ssh://git@git.notashelf.dev:33/notashelf/{path}.git"
 channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 
 [all_follow]
@@ -57,14 +58,14 @@ url = "github:NotAShelf/nvf"
 url  = "github:NotAShelf/rags"
 type = "fetch"
 [inputs.beer]
-url = "git+ssh://git@git.notashelf.dev:33/notashelf/beer.git"
+url = "raf:beer"
+type = "fetch"
 patches = [
   # xtask: jiff 1.0 breaking change
   "patches/beer/0001-xtask-jiff-1.0-breaking-change.patch",
 ]
-type = "fetch"
 [inputs.chroma]
-url  = "git+ssh://git@git.notashelf.dev:33/notashelf/chroma.git"
+url  = "raf:chroma"
 type = "fetch"
 
 # everything else
@@ -77,6 +78,9 @@ patches = [
   "https://github.com/hyprwm/Hyprland/pull/16966",
   # screenshare: DS fixes
   "https://github.com/hyprwm/Hyprland/pull/17015",
+
+  # protocols/data-device: send drop before notifying the source
+  "https://github.com/hyprwm/Hyprland/pull/17036",
 ]
 
 [inputs.niqspkgs]

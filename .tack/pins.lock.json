@@ -139,8 +139,8 @@
     "narHash": "sha256-C1srpWv9UQeYq9yPUCYlCVjsyUXPKp81a91N/kHtFV4=",
     "lastModified": 1795001954,
     "patched": {
-      "path": "/nix/store/yrb4jln91yiwb78zdcgbvkb546kaizqx-source",
-      "narHash": "sha256-Frvu1FY9YgLPL+HkIFBA+WmkvSSZOM798IHGnyTLsmQ=",
+      "path": "/nix/store/va02pihfkijp2cd3s9iv1lzgxlaq6yi8-source",
+      "narHash": "sha256-GGsIl+v9PpEZUR1SvIwbAa17cx0a8SdVvpznfToViKU=",
       "lastModified": 1795001954,
       "patches": [
         {
@@ -163,9 +163,16 @@
           "file": "patches/hyprland/pr-17015.patch",
           "sha256": "4335496ee9cd175abd0853bcc2d10152b129a04c29c11cf6d24d6c7f619b4f0e",
           "head": "ed02c426376573400b608b6f5947650b1812fcea"
+        },
+        {
+          "source": "https://github.com/hyprwm/Hyprland/pull/17036",
+          "url": "https://github.com/hyprwm/Hyprland/pull/17036",
+          "file": "patches/hyprland/pr-17036.patch",
+          "sha256": "e2be876198ef1cceee10bc269e498afc9032fba0213e5453790f9574ef658067",
+          "head": "d3a2fca0d6d828eb3dcbfdb815736aa6e2dca879"
         }
       ],
-      "diff": "01507aff305450fdc4c797314f59ae61d277885eba5d553943d3f23ea7cb5b46"
+      "diff": "193ec9f1e2ab63d833afe6e6c0f6db28e595496992d98f2aaa3840caf07af508"
     }
   },
   "ncro": {
@@ -290,10 +297,11 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "bad78453288bfb5d890af856fa2429979e2b944c",
-    "narHash": "sha256-Jn+PT5iYnKcttgR5Rc6oWLNxhFGzyBY3/P3sgvqcQDU=",
-    "lastModified": 1794909624,
-    "archive": null
+    "rev": "7daf30b335c6eccfc44a7137052137506b85cae6",
+    "narHash": "sha256-3fMzTeUZsvMBy7cC3fu6Gy/TE++2n9MynCRZZ13ygHs=",
+    "lastModified": 1795049535,
+    "archive": null,
+    "public": true
   },
   "tom-nvidia-patches": {
     "type": "fixed",
