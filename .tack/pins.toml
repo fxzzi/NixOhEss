@@ -102,11 +102,5 @@ type   = "fixed"
 unpack = "file"
 
 [inputs.disblock-origin]
-url = "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git"
+url  = "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git"
 type = "fetch"
-patches = [
-  # Fix Active Now quests CSS
-  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/155",
-  # Fix clan tags, boost upsells and dead selectors after Discord's class rename
-  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/161",
-]
