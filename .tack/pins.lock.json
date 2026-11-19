@@ -100,13 +100,13 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "8487b4a3086272cdbe2c7fa2331ddc64bcdc244e",
-    "narHash": "sha256-eZPaOzs/CplrqbhBIqrN3X8Sdpg57Kz/Y0hRXQMwi48=",
-    "lastModified": 1795105539,
+    "rev": "489b111974fc1ecf7f4cd84e7d995ce84804e11e",
+    "narHash": "sha256-853fTOkW5c3kLRMd49WcK/jMkPtM4PLbNo+QLA/koTw=",
+    "lastModified": 1795113678,
     "patched": {
-      "path": "/nix/store/r407qfv21rnkh6yj1hgl6ha0lq2mkgaq-source",
-      "narHash": "sha256-tO5j/j/iYo+ino9UJ8z0/GNto+svUxIIwausC5juyPk=",
-      "lastModified": 1795105539,
+      "path": "/nix/store/g74nl4xsd7gza2rhkhlxvwf50gn47vhv-source",
+      "narHash": "sha256-FdJBWlwxNHE/UPQTGpHEF4Ce/KkXDYZys4ZPWCdMU+E=",
+      "lastModified": 1795113678,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16966",
@@ -130,7 +130,7 @@
           "head": "d3a2fca0d6d828eb3dcbfdb815736aa6e2dca879"
         }
       ],
-      "diff": "0b17a855a9d646772acd60e9235e23b0c92e32cb9594b6128cab33781d92e550"
+      "diff": "4e66ec51707adc47f70687439c6fde6fff6b12ffd11632b241dde88a3cb76460"
     }
   },
   "ncro": {
@@ -174,13 +174,14 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "df4760926a00c087d94a6d10496487a3fd022cda",
-    "narHash": "sha256-AYGqOOVjojtd66sJSqjfwg3fJk95hBTDcF5PLTvjtUQ=",
-    "lastModified": 1794858011,
+    "rev": "8502898984d2715309e94b80249394a08c38d9ff",
+    "narHash": "sha256-qxjTZtT1r//z1qCBZLLvT1bRcpRBOnN4iyeuql4hzGs=",
+    "lastModified": 1795116900,
     "archive": {
-      "hash": "sha256-EOeCKXxZtrU0x/dKCuoQn26SVsjoZpZjj0hZnlDm038=",
-      "outHash": "sha256-f2wOktTFOPQZ83NtLpCR1MKmrKmibabNcXpCUn/rPhM="
-    }
+      "hash": "sha256-lCe5t23H0lEh6a3Nxhq2zVIMpJLHRo4gzQtkhrmlRGE=",
+      "outHash": "sha256-tQSBiv1jp33rUP/0ZyMkfiV2ru/TMmWHsx4VVgHId88="
+    },
+    "public": true
   },
   "nixos-core": {
     "type": "github",
