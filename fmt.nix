@@ -6,6 +6,7 @@
   statix,
   fd,
   prettier,
+  stylua,
 }:
 let
   exclusionList = [
@@ -31,10 +32,12 @@ writeShellApplication {
     statix
     fd
     prettier
+    stylua
   ];
 
   text = ''
     fd "$@" ${excludeArgs} -t f -e nix -x sh -c ${lib.escapeShellArg (lib.concatStringsSep "; " commands)}
     fd "$@" ${excludeArgs} -t f -e js -X prettier --write --log-level warn
+    fd "$@" ${excludeArgs} -t f -e lua -X stylua
   '';
 }
