@@ -9,6 +9,7 @@
   # host specific packages
   hj = {
     packages = with pkgs; [
+      heroic
       qbittorrent
       losslesscut
       steamguard-cli

@@ -7,13 +7,14 @@
   system.stateVersion = "25.05";
   hj = {
     packages = with pkgs; [
+      heroic
       losslesscut
       qbittorrent
       nvtopPackages.amd
       sgdboop
       cemu
       stremio-linux-shell
-      (pkgs.callPackage inputs.creamlinux { })
+      (callPackage inputs.creamlinux { })
     ];
   };
   hardware.display = {

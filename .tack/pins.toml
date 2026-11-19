@@ -68,8 +68,6 @@ type = "fetch"
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
 patches = [
-  # render/hdr: avoid metadata modeset in DS ins/outs
-  "https://github.com/hyprwm/Hyprland/pull/16946",
   # renderer: HDR -> SDR tonemapping fixes
   "https://github.com/hyprwm/Hyprland/pull/16966",
   # screenshare: DS fixes
