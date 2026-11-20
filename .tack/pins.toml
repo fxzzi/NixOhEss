@@ -1,9 +1,9 @@
 # tack pins. edit by hand or with tack add / rm / alias
 
 [shorturls]
-fazzi   = "gitlab:fazzi/{path}"
-raf     = "git+ssh://git@git.notashelf.dev:33/notashelf/{path}.git"
 channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
+fazzi   = "gitlab:fazzi/{path}"
+raf     = "git+https://git.notashelf.dev/notashelf/{path}.git"
 
 [all_follow]
 nixpkgs = "nixpkgs"

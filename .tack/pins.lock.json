@@ -3,8 +3,8 @@
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
-    "beer": "git+ssh://git@git.notashelf.dev:33/notashelf/beer.git",
-    "chroma": "git+ssh://git@git.notashelf.dev:33/notashelf/chroma.git",
+    "beer": "git+https://git.notashelf.dev/notashelf/beer.git",
+    "chroma": "git+https://git.notashelf.dev/notashelf/chroma.git",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "disblock-origin": "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
     "hjem": "github:feel-co/hjem",
@@ -57,7 +57,7 @@
   },
   "beer": {
     "type": "git",
-    "url": "ssh://git@git.notashelf.dev:33/notashelf/beer.git",
+    "url": "https://git.notashelf.dev/notashelf/beer.git",
     "ref": "HEAD",
     "rev": "4a034e9d13f4ad4b5bf2b8eed3a7873d08b66797",
     "narHash": "sha256-d2/sZGr+hlFhPwI52PvcbK8dTyuW/WolgqHGrmnQh00=",
@@ -65,7 +65,7 @@
   },
   "chroma": {
     "type": "git",
-    "url": "ssh://git@git.notashelf.dev:33/notashelf/chroma.git",
+    "url": "https://git.notashelf.dev/notashelf/chroma.git",
     "ref": "HEAD",
     "rev": "94b109b8096616275c23eda753f53ffe18295422",
     "narHash": "sha256-niuXe3aBEBIdT3ymTJf2IfcaIopKW7i1Xo+4uGaiI3k=",
