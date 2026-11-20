@@ -34,7 +34,6 @@ in
         # we add nvidia-vaapi-driver manually above.
         videoAcceleration = false;
         open = true;
-        gsp.enable = config.hardware.nvidia.open; # if using closed drivers, lets assume you don't want gsp
         powerManagement.enable = true;
         nvidiaSettings = false; # useless on wayland still
         branch = "bleeding_edge"; # newest of latest and beta
