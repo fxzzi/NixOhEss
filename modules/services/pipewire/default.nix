@@ -11,6 +11,7 @@ in
 {
   options.cfg.services.pipewire.enable = mkEnableOption "pipewire";
   config = mkIf cfg.enable {
+    security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
       pulse.enable = true;
