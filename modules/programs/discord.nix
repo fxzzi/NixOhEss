@@ -127,42 +127,44 @@ in
 
   config = mkIf cfg.enable {
     hj = {
-      xdg.config.files."discord/settings.json" = {
-        generator = lib.generators.toJSON { };
-        value = {
-          SKIP_HOST_UPDATE = true;
-          SKIP_MODULE_UPDATE = true;
-          USE_NEW_UPDATER = false;
+      xdg.config.files = {
+        "discord/settings.json" = {
+          generator = lib.generators.toJSON { };
+          value = {
+            SKIP_HOST_UPDATE = true;
+            SKIP_MODULE_UPDATE = true;
+            USE_NEW_UPDATER = false;
 
-          # access to inspect element
-          DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
+            # access to inspect element
+            DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING = true;
 
-          MINIMIZE_TO_TRAY = cfg.minimizeToTray;
-          OPEN_ON_STARTUP = false;
-          BACKGROUND_COLOR = "#121214";
+            MINIMIZE_TO_TRAY = cfg.minimizeToTray;
+            OPEN_ON_STARTUP = false;
+            BACKGROUND_COLOR = "#121214";
 
-          enableHardwareAcceleration = true;
-          openH264Enabled = true;
+            enableHardwareAcceleration = true;
+            openH264Enabled = true;
 
-          # no idea what these do, but they're there by default.
-          offloadAdmControls = true;
-          chromiumSwitches = { };
+            # no idea what these do, but they're there by default.
+            offloadAdmControls = true;
+            chromiumSwitches = { };
 
-          openasar = {
-            # don't show the OA setup wizard on launch
-            setup = true;
-            # using the performance preset breaks vaapi
-            cmdPreset = "balanced";
-            # quickstart is buggy and breaks discord sometimes.
-            quickstart = false;
-            inherit css;
+            openasar = {
+              # don't show the OA setup wizard on launch
+              setup = true;
+              # using the performance preset breaks vaapi
+              cmdPreset = "balanced";
+              # quickstart is buggy and breaks discord sometimes.
+              quickstart = false;
+            };
           };
         };
+        "Equicord/settings/quickCss.css".text = css;
       };
       packages = [
         (pkgs.callPackage "${inputs.nixcord}/pkgs/discord" {
           inherit commandLineArgs;
-          withOpenASAR = true;
+          # withOpenASAR = true;
           withEquicord = true;
           equicord = pkgs.callPackage "${inputs.nixcord}/pkgs/equicord" { };
         })
