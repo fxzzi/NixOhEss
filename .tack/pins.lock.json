@@ -104,16 +104,16 @@
     "narHash": "sha256-ryhzUfcWPTO5KsjQfHhx1C2tLI0ExjZfVK2RlDWGn3Y=",
     "lastModified": 1795120146,
     "patched": {
-      "path": "/nix/store/hlhkr8p7r5838ffl247bc6x0j001va9k-source",
-      "narHash": "sha256-7PO6G8NM3M1icnFryREFhiN4wbJokYwWOcGypIWEmlw=",
+      "path": "/nix/store/mxbgyqpbkcwcq1pw87i3qn9006xib1ls-source",
+      "narHash": "sha256-t0MeSsZ0ulsnzI7gNsVLG/LtV1Hp0ZtLNLm3wo+wi3E=",
       "lastModified": 1795120146,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/16966",
           "url": "https://github.com/hyprwm/Hyprland/pull/16966",
           "file": "patches/hyprland/pr-16966.patch",
-          "sha256": "383907f15478c86476691a78509fa5f0f31b922235d694153b7007e6e7e6d207",
-          "head": "45bfbe495bb0be183d98bc8dd2867eacb28c63f1"
+          "sha256": "00cce7611334aa85aaa1c9a9e19339fe95376da351547a83fedcb0c3d91846d3",
+          "head": "da77581d5f0fe5c87372cd7b1280d649d3652ff7"
         },
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/17015",
@@ -130,7 +130,7 @@
           "head": "d3a2fca0d6d828eb3dcbfdb815736aa6e2dca879"
         }
       ],
-      "diff": "4e66ec51707adc47f70687439c6fde6fff6b12ffd11632b241dde88a3cb76460"
+      "diff": "1defa5c3e1f26e6f10fea95491d0e8c7ddf3f016615583a3642a7bb1ba51b235"
     }
   },
   "ncro": {
