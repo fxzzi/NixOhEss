@@ -21,10 +21,10 @@ index 2c9464ef956..bc56c282452 100644
          color = fromLinearNit(color, dstDesc->value().transferFunction, settings.dstTFRange);
          if (settings.needsSDRmod) {
 diff --git a/src/render/OpenGL.cpp b/src/render/OpenGL.cpp
-index aacacb1c583..892b6c534f0 100644
+index 3bb171f41aa..131d354e70f 100644
 --- a/src/render/OpenGL.cpp
 +++ b/src/render/OpenGL.cpp
-@@ -1297,7 +1297,6 @@ void CHyprOpenGLImpl::passCMUniforms(WP<CShader> shader, const NColorManagement:
+@@ -1352,7 +1352,6 @@ void CHyprOpenGLImpl::passCMUniforms(WP<CShader> shader, const NColorManagement:
                                       const SCMSettings& settings) {
      shader->setUniformFloat2(SHADER_SRC_TF_RANGE, settings.srcTFRange.min, settings.srcTFRange.max);
      shader->setUniformFloat2(SHADER_DST_TF_RANGE, settings.dstTFRange.min, settings.dstTFRange.max);
@@ -32,15 +32,16 @@ index aacacb1c583..892b6c534f0 100644
      shader->setUniformFloat(SHADER_DST_REF_LUMINANCE, settings.dstRefLuminance);
      shader->setUniformFloat(SHADER_MAX_LUMINANCE, settings.maxLuminance);
      shader->setUniformFloat(SHADER_DST_MAX_LUMINANCE, settings.dstMaxLuminance);
-@@ -1533,10 +1532,16 @@ WP<CShader> CHyprOpenGLImpl::renderToFBInternal(CRenderContext& ctx, SP<ITexture
+@@ -1586,12 +1585,19 @@ WP<CShader> CHyprOpenGLImpl::renderToFBInternal(CRenderContext& ctx, SP<ITexture
  
          shaderFeatures |= SH_FEAT_CM;
  
 +        // the unmodified SDR copy of HDR content always needs an HDR -> SDR tonemap, even if the main target doesn't
 +        const bool SRC_IS_HDR = settings.sourceTF == CM_TRANSFER_FUNCTION_ST2084_PQ || settings.sourceTF == CM_TRANSFER_FUNCTION_HLG ||
 +            settings.sourceTF == CM_TRANSFER_FUNCTION_EXT_LINEAR || settings.sourceTF == CM_TRANSFER_FUNCTION_EXT_SRGB;
-+        const bool MIRROR_ONLY_TONEMAP =
-+            !TARGET_IMAGE_DESCRIPTION->value().icc.present && !settings.needsTonemap && SRC_IS_HDR && (globalFeatures(ctx) & SH_FEAT_MIRROR) && settings.tonemapMode != 0;
++        const bool MIRROR_ONLY_TONEMAP = !TARGET_IMAGE_DESCRIPTION->value().icc.present && !settings.needsTonemap && SRC_IS_HDR && (globalFeatures(ctx) & SH_FEAT_MIRROR);
++        // tonemap = off only applies to the main target, the mirror falls back to the default tonemapper
++        const int MIRROR_TONEMAP_MODE = settings.tonemapMode == 0 ? 1 : settings.tonemapMode;
 +
          if (TARGET_IMAGE_DESCRIPTION->value().icc.present)
              shaderFeatures |= SH_FEAT_ICC;
@@ -48,16 +49,19 @@ index aacacb1c583..892b6c534f0 100644
 -            if (settings.needsTonemap) {
 +            if (settings.needsTonemap || MIRROR_ONLY_TONEMAP) {
                  shaderFeatures |= SH_FEAT_TONEMAP;
-                 if (settings.tonemapMode == 3)
+-                if (settings.tonemapMode == 3)
++                if ((MIRROR_ONLY_TONEMAP ? MIRROR_TONEMAP_MODE : settings.tonemapMode) == 3)
                      shaderFeatures |= SH_FEAT_ALT_TONEMAP;
-@@ -1551,6 +1556,10 @@ WP<CShader> CHyprOpenGLImpl::renderToFBInternal(CRenderContext& ctx, SP<ITexture
+             }
+ 
+@@ -1604,6 +1610,10 @@ WP<CShader> CHyprOpenGLImpl::renderToFBInternal(CRenderContext& ctx, SP<ITexture
          shader = useShader(shader);
  
          passCMUniforms(shader, SOURCE_IMAGE_DESCRIPTION, TARGET_IMAGE_DESCRIPTION, true, ctx.m_data.pMonitor->m_sdrMinLuminance, ctx.m_data.pMonitor->m_sdrMaxLuminance, settings);
 +
 +        // negative mode tells the shader to skip the main tonemap and only tonemap the mirror
 +        if (MIRROR_ONLY_TONEMAP)
-+            shader->setUniformInt(SHADER_TONEMAP_MODE, -settings.tonemapMode);
++            shader->setUniformInt(SHADER_TONEMAP_MODE, -MIRROR_TONEMAP_MODE);
      } else {
          if (!shader)
              shader = getShaderVariant(SH_FRAG_SURFACE, shaderFeatures | globalFeatures(ctx));
@@ -129,10 +133,10 @@ index 0430ce6fa59..4affa282d87 100644
      SHADER_DST_REF_LUMINANCE,
      SHADER_SDR_SATURATION,
 diff --git a/src/render/ShaderLoader.hpp b/src/render/ShaderLoader.hpp
-index 744e576109d..61f2dd6bfba 100644
+index 8ff5fbceeec..7f4ef9701cd 100644
 --- a/src/render/ShaderLoader.hpp
 +++ b/src/render/ShaderLoader.hpp
-@@ -17,7 +17,7 @@ namespace Render {
+@@ -16,7 +16,7 @@ namespace Render {
          SH_FEAT_DISCARD           = (1 << 1),  // RGBA/RGBX texture sampling
          SH_FEAT_TINT              = (1 << 2),  // uniforms: tint; condition: applyTint
          SH_FEAT_ROUNDING          = (1 << 3),  // uniforms: radius, roundingPower, topLeft, fullSize; condition: radius > 0
@@ -322,10 +326,10 @@ index 61b20f326aa..5b6f836d55d 100644
  #if USE_SDR_MOD
                               ,
 diff --git a/src/render/shaders/glsl/surface.frag b/src/render/shaders/glsl/surface.frag
-index ceeab126dd9..dc092d3832c 100644
+index 87ea6e4f3fb..2a0cbbe526e 100644
 --- a/src/render/shaders/glsl/surface.frag
 +++ b/src/render/shaders/glsl/surface.frag
-@@ -110,7 +110,7 @@ void main() {
+@@ -118,7 +118,7 @@ void main() {
  #endif
  #if USE_TONEMAP
                            ,

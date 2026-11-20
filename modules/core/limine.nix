@@ -39,17 +39,14 @@ in
           style = {
             wallpaperStyle = "centered";
             wallpapers = map (file: "${inputs.walls}/images/${file}") [
-              "fuji.jpg"
+              "alpenglow-peaks.jpg"
               "cherry-blossom.jpg"
-              "clouds.jpg"
-              "austria_landscape.jpg"
-              "pink_flowers.jpg"
-              "wallhaven-9oxkwk_3840x2160.jpg"
-              "wallhaven-28v3mm_3840x2160.jpg"
-              "wallhaven-rqy1mm.jpg"
-              "wallhaven-og39mm.jpg"
-              "wallhaven-21dlrg.jpg"
-              "norway-lofoten-island.jpg"
+              "fuji.jpg"
+              "misty-forest-river.jpg"
+              "mountain-range-sunset.jpg"
+              "mount-cook-pink-sky.jpg"
+              "mount-fuji-city-lights.jpg"
+              "snowy-peaks-golden-hour.jpg"
             ];
             interface = {
               resolution = "max";
