@@ -163,7 +163,7 @@ in
       packages = [
         (pkgs.callPackage "${inputs.nixcord}/pkgs/discord" {
           inherit commandLineArgs;
-          # withOpenASAR = true;
+          withOpenASAR = true;
           withEquicord = true;
           equicord = pkgs.callPackage "${inputs.nixcord}/pkgs/equicord" { };
         })
