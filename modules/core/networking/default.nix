@@ -32,8 +32,6 @@ in
       };
     };
     networking = {
-      # fork dhcpcd to background to speed up boot
-      dhcpcd.wait = "background";
       inherit hostName;
       nameservers = cloudflareDNS;
     };
