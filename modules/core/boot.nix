@@ -28,7 +28,6 @@ in
     console = {
       earlySetup = true;
       font = "${pkgs.terminus_font}/share/consolefonts/ter-i32b.psf.gz";
-      packages = [ pkgs.terminus_font ];
       keyMap = config.cfg.core.keyLayout;
     };
 
@@ -50,9 +49,7 @@ in
         (mkIf config.cfg.core.isLaptop "amd_dynamic_epp=enable")
       ];
       # disable hardware watchdog present on my laptop
-      extraModprobeConfig = ''
-        blacklist sp5100_tco
-      '';
+      blacklistedKernelModules = [ "sp5100_tco" ];
     };
   };
 }

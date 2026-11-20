@@ -28,7 +28,7 @@ writeShellApplication {
         echo ""
         echo "Examples:"
         echo "  $0 video.mkv"
-        echo "  $0 --reencode-audio video. mkv"
+        echo "  $0 --reencode-audio video.mkv"
         echo "  $0 video.mkv 1280:720"
         echo "  $0 --reencode-audio video.mkv 1920:1080 23"
         echo "  $0 video.mkv 1920:1080 23 output.mp4"
@@ -92,7 +92,7 @@ writeShellApplication {
         if [ -n "$output_resolution" ]; then
             output_file="''${input_file%.*}-scaled.mp4"
         else
-            output_file="''${input_file%.*}-transcoded. mp4"
+            output_file="''${input_file%.*}-transcoded.mp4"
         fi
     fi
 

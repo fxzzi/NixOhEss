@@ -41,15 +41,10 @@ in
     };
     hj.systemd.services.mpd = {
       description = "Music Player Daemon";
-      after = [
-        "network.target"
-        "sound.target"
-      ];
       wantedBy = [
         "default.target"
       ];
       serviceConfig = {
-        Type = "simple";
         Restart = "always";
         ExecStart = "${getExe pkgs.mpd} --systemd";
       };

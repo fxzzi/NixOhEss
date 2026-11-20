@@ -18,7 +18,6 @@
           enable = true;
           vadThreshold = 97;
           vadGracePeriod = 50;
-          retroactiveVadGrace = 0;
         };
       };
 
@@ -109,7 +108,6 @@
       hyprland = {
         enable = true;
         defaultMonitor = "DP-3";
-        secondaryMonitor = null;
         # useGit = true;
         extraConfig = # lua
           ''
@@ -129,8 +127,6 @@
             # same with ds
             # direct_scanout = 0;
           };
-          # same with tearing
-          general.allow_tearing = 0;
         };
       };
       hyprlock.enable = true;

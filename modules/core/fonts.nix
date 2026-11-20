@@ -36,7 +36,6 @@ in
         };
         includeUserConf = false;
 
-        enable = true;
         defaultFonts = {
           sansSerif = [
             "Outfit"

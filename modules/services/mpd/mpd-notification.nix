@@ -34,7 +34,6 @@ in
       # make sure it starts and stops with mpd
       partOf = [ "mpd.service" ];
       serviceConfig = {
-        Type = "simple";
         Restart = "on-failure";
         ExecStart = "${getExe pkgs.mpd-notification}";
       };

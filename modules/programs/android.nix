@@ -11,9 +11,6 @@ in
 {
   options.cfg.programs.adb.enable = mkEnableOption "adb";
   config = mkIf cfg.enable {
-    users.users.${config.cfg.core.username} = {
-      extraGroups = [ "adbusers" ];
-    };
     hj = {
       packages = with pkgs; [
         android-tools

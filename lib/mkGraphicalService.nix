@@ -15,7 +15,6 @@ lib.recursiveUpdate {
   partOf = [ "graphical-session.target" ];
   unitConfig.ConditionEnvironment = "WAYLAND_DISPLAY";
   serviceConfig = {
-    Type = "simple";
     Restart = "always";
     ExecStart = exec;
   };

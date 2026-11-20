@@ -23,11 +23,6 @@
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
-    supportedFilesystems = lib.mkDefault [
-      "btrfs"
-      "vfat"
-      "ntfs"
-    ];
   };
   fileSystems = {
     "/" = {
