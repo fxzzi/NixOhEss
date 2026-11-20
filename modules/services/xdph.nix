@@ -12,11 +12,8 @@ in
   options.cfg.services.xdph.enable = mkEnableOption "xdph";
   config = mkIf cfg.enable {
     xdg = {
-      portal = {
-        enable = true;
-        # seems to help steam wanting to use chromium for some reason
-        xdgOpenUsePortal = true;
-      };
+      # seems to help steam wanting to use chromium for some reason
+      portal.xdgOpenUsePortal = true;
     };
     hj.xdg.config.files."hypr/xdph.conf" = {
       generator = self.lib.generators.toHyprlang { };

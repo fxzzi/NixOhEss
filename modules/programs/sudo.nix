@@ -2,7 +2,6 @@
   config = {
     security = {
       sudo = {
-        enable = true;
         execWheelOnly = true;
         extraConfig =
           # sh

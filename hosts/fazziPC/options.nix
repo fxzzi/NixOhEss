@@ -1,7 +1,6 @@
 { config, pkgs, ... }: {
   cfg = {
     core = {
-      username = "faaris";
       kernel.type = "rc";
       limine.timeout = 0.25;
     };
@@ -27,7 +26,6 @@
           enable = true;
           vadThreshold = 97;
           vadGracePeriod = 50;
-          retroactiveVadGrace = 0;
         };
       };
       ananicy.enable = true;
@@ -43,7 +41,6 @@
       };
       hypridle = {
         enable = true;
-        dpmsTimeout = 300;
         lockTimeout = 480;
         suspendTimeout = 0;
       };
@@ -96,10 +93,7 @@
         wootility.enable = true;
         scyrox-s-center.enable = true;
       };
-      startpage = {
-        enable = true;
-        user = "fazzi";
-      };
+      startpage.enable = true;
       fastfetch = {
         enable = true;
         shellIntegration = true;

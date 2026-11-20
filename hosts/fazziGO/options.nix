@@ -1,11 +1,8 @@
 {
   cfg = {
     core = {
-      username = "faaris";
-      kernel.type = "latest";
       isLaptop = true;
       keyLayout = "uk";
-      limine.timeout = 5;
       networkmanager.enable = true;
     };
     services = {
@@ -19,7 +16,6 @@
       mpd.enable = true;
       hypridle = {
         enable = true;
-        dpmsTimeout = 300;
         lockTimeout = 360;
         suspendTimeout = 420;
       };
@@ -56,10 +52,7 @@
       chromium = {
         enable = true;
       };
-      startpage = {
-        enable = true;
-        user = "fazzi";
-      };
+      startpage.enable = true;
       fastfetch = {
         enable = true;
         shellIntegration = true;
@@ -77,7 +70,6 @@
       hyprland = {
         enable = true;
         defaultMonitor = "eDP-1";
-        secondaryMonitor = null;
         # useGit = true;
         extraHlConfig = {
           # tearing kinda useful on 60hz

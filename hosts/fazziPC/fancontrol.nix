@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }:
 let
@@ -33,11 +32,7 @@ in
         MINSTART=${pwm2}=${toString minPwm} ${pwm1}=${toString minPwm}
         MINSTOP=${pwm2}=${toString minPwm} ${pwm1}=${toString minPwm}
         MINPWM=${pwm2}=${toString minPwm} ${pwm1}=${toString minPwm}
-        ${
-          lib.optionalString (maxPwm != null) ''
-            MAXPWM=${pwm2}=${toString maxPwm} ${pwm1}=${toString maxPwm}
-          ''
-        };
+        MAXPWM=${pwm2}=${toString maxPwm} ${pwm1}=${toString maxPwm}
       '';
     };
   };

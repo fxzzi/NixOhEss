@@ -25,8 +25,6 @@ in
 {
   config = {
     boot = {
-      # start networking earlier in boot cycle to hopefully speed up boot
-      initrd.network.enable = true;
       # bufferbloat mititgation
       kernel.sysctl = {
         "net.ipv4.tcp_congestion_control" = "bbr";

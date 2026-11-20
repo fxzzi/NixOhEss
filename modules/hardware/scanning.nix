@@ -15,9 +15,6 @@ in
       sane.enable = true;
       sane.extraBackends = [ pkgs.sane-airscan ];
     };
-    services = {
-      udev.packages = [ pkgs.sane-airscan ];
-    };
     environment.systemPackages = [ pkgs.simple-scan ];
     users.users.${config.cfg.core.username}.extraGroups = [
       "scanner"

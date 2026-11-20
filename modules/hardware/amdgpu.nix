@@ -27,9 +27,9 @@ in
         enable32Bit = true;
       };
     };
-    # enable HIP for packages which use it
+    # enable ROCm/HIP for packages which use it
     # (blender for the most part lol)
-    nixpkgs.config.hipSupport = true;
+    nixpkgs.config.rocmSupport = true;
     environment = {
       sessionVariables = {
         # Increase AMD's shader cache size to xGB
