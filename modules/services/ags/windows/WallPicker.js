@@ -16,7 +16,9 @@ const listWalls = () => {
   let name;
   while ((name = dir.read_name())) if (IMAGE_RE.test(name)) names.push(name);
   dir.close();
-  return names.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }));
+  return names.sort((a, b) =>
+    a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }),
+  );
 };
 
 const applyWall = (path) => {

@@ -10,17 +10,19 @@ let
     mkOption
     mkIf
     types
-    listToAttrs
+    genAttrs'
+    nameValuePair
     mapAttrs
     ;
   cfg = config.cfg.programs.proton;
 
+  # setting userSettings in mkProtonBinDerivation is a simple way
+  # to set environment variables for the proton build only.
   withSettings = p: p.overrideAttrs { userSettings = cfg.environmentVariables; };
 in
 {
   options.cfg.programs.proton = {
     enable = mkEnableOption "proton";
-    nativeWayland = mkEnableOption "Wayland native proton";
     packages = mkOption {
       type = types.listOf types.package;
       default = [
@@ -29,12 +31,7 @@ in
       description = "Proton builds to install into Steam's compatibilitytools.d.";
     };
     environmentVariables = mkOption {
-      type =
-        with types;
-        attrsOf (oneOf [
-          str
-          int
-        ]);
+      type = with types; attrsOf (either str int);
       default = { };
       apply = mapAttrs (_: toString);
       description = "Set environment variables for all proton builds.";
@@ -45,15 +42,16 @@ in
     boot.kernelModules = [ "ntsync" ];
 
     cfg.programs.proton.environmentVariables = {
+      # WOW64 by default should be fine
       PROTON_USE_WOW64 = 1;
     };
 
     # heroic and lutris both pick up protons from here too
-    hj.xdg.data.files = listToAttrs (
-      map (p: {
-        name = "Steam/compatibilitytools.d/${p.steamDisplayName}";
-        value.source = (withSettings p).steamcompattool;
-      }) cfg.packages
+    hj.xdg.data.files = genAttrs' cfg.packages (
+      p:
+      nameValuePair "Steam/compatibilitytools.d/${p.steamDisplayName}" {
+        source = (withSettings p).steamcompattool;
+      }
     );
   };
 }

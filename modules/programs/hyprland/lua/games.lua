@@ -4,6 +4,7 @@ for _, match in ipairs({
   { class = "org.eden_emu.eden" },
   { class = "dev.eden_emu.eden" },
   { class = "dolphin-emu" },
+  { initial_title = "PCSX2 v.*" },
 }) do
   hl.window_rule({ match = match, tag = "+game" })
 end

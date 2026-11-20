@@ -37,11 +37,7 @@
     programs = {
       codium.enable = true;
       # mangohud.enable = true;
-      # steam.enable = true;
-      # proton = {
-      #   enable = true;
-      #   nativeWayland = true;
-      # };
+      steam.enable = true;
       smoothScroll.enable = false;
       nvf.enable = true;
       adb.enable = true;
