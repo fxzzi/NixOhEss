@@ -18,15 +18,18 @@ in
       # clanker always ruining my clean ~
       COPILOT_HOME = "$HOME/.config/copilot";
     };
+    xdg.mime.defaultApplications = {
+      "text/*" = "nvim.desktop";
+    };
     programs.nvf = {
       enable = true;
       settings = {
         vim = {
+          # core
           options = {
             tabstop = 2;
             shiftwidth = 2;
           };
-          preventJunkFiles = true; # stop those weird ~ files from appearing
           undoFile.enable = true; # multi-session undo
           enableLuaLoader = true;
           clipboard = {
@@ -34,158 +37,101 @@ in
             providers.wl-copy.enable = true;
             registers = "unnamedplus";
           };
-          viAlias = true;
-          vimAlias = true;
-          luaConfigRC = {
-            basic = ''
-              -- Remove "disable mouse" entries from the context menu
-              vim.cmd.aunmenu([[PopUp.How-to\ disable\ mouse]])
-              vim.cmd.aunmenu("PopUp.-2-")
-            '';
-          };
+          luaConfigRC.popup-menu = ''
+            -- Remove "disable mouse" entries from the context menu
+            vim.cmd.aunmenu([[PopUp.How-to\ disable\ mouse]])
+            vim.cmd.aunmenu("PopUp.-2-")
+          '';
+
+          # lsp
           lsp = {
             enable = true;
             formatOnSave = true;
             trouble.enable = true;
             lspSignature.enable = true;
-            lightbulb.enable = true;
-            otter-nvim.enable = true;
           };
+          ui.fastaction.enable = true; # code actions
 
-          debugger = {
-            nvim-dap = {
-              enable = true;
-              ui.enable = true;
-            };
-          };
-
+          # languages
           languages = {
             enableFormat = true;
             enableTreesitter = true;
             enableExtraDiagnostics = true;
-            nix = {
-              enable = true;
-              format.type = [ "nixfmt" ];
-            };
+
+            bash.enable = true;
+            clang.enable = true;
+            css.enable = true;
+            html.enable = true;
+            lua.enable = true;
             markdown = {
               enable = true;
               extensions.render-markdown-nvim.enable = true;
             };
-            bash.enable = true;
-            css.enable = true;
-            html.enable = true;
+            nix = {
+              enable = true;
+              format.type = [ "nixfmt" ];
+            };
+            python.enable = true;
+            toml.enable = true;
             typescript = {
               enable = true;
               format.type = [ "biome" ];
             };
-            lua.enable = true;
-            python.enable = true;
             typst.enable = true;
-            toml.enable = true;
             yaml.enable = true;
-            clang.enable = true;
           };
 
-          notes = {
-            todo-comments.enable = true;
+          # completion & editing
+          autocomplete.nvim-cmp.enable = true;
+          snippets.luasnip.enable = true;
+          assistant.copilot = {
+            enable = true;
+            cmp.enable = true;
+          };
+          autopairs.nvim-autopairs.enable = true;
+          comments.comment-nvim.enable = true;
+          utility.motion.leap.enable = true;
+
+          # navigation
+          telescope.enable = true;
+          filetree.neo-tree.enable = true;
+          tabline.nvimBufferline.enable = true;
+          binds.whichKey.enable = true;
+
+          # git
+          git.enable = true;
+          utility.diffview-nvim.enable = true;
+          terminal.toggleterm = {
+            enable = true;
+            lazygit.enable = true;
           };
 
-          visuals = {
-            nvim-web-devicons.enable = true;
-            nvim-cursorline.enable = true;
-            fidget-nvim.enable = true;
-
-            highlight-undo.enable = true;
-            indent-blankline.enable = true;
-          };
-
-          statusline = {
-            lualine = {
-              enable = true;
-              integrations.breadcrumbs = {
-                navbuddy.enable = true;
-                nvim-navic.enable = true;
-              };
-            };
-          };
-
+          # looks
           theme = {
             enable = true;
             name = "catppuccin";
             style = "mocha";
             transparent = true;
           };
-
-          autopairs.nvim-autopairs.enable = true;
-          autocomplete.nvim-cmp = {
+          statusline.lualine = {
             enable = true;
-            sources = {
-              buffer = "[Buffer]";
-              nvim-cmp = null;
-              path = "[Path]";
-            };
+            integrations.breadcrumbs.navbuddy.enable = true;
           };
-          snippets.luasnip.enable = true;
-
-          filetree = {
-            neo-tree = {
-              enable = true;
-            };
+          visuals = {
+            nvim-web-devicons.enable = true;
+            fidget-nvim.enable = true;
+            highlight-undo.enable = true;
+            indent-blankline.enable = true;
           };
-
-          tabline = {
-            nvimBufferline.enable = true;
-          };
-
-          binds = {
-            whichKey.enable = true;
-            cheatsheet.enable = true;
-          };
-
-          telescope.enable = true;
-
-          git = {
-            enable = true;
-            gitsigns.enable = true;
-          };
-
-          utility = {
-            icon-picker.enable = true;
-            diffview-nvim.enable = true;
-            motion = {
-              leap.enable = true;
-            };
-          };
-
-          terminal = {
-            toggleterm = {
-              enable = true;
-              lazygit.enable = true;
-            };
-          };
-
           ui = {
             noice.enable = true;
             colorizer.enable = true;
             illuminate.enable = true;
-            fastaction.enable = true;
           };
-
-          assistant = {
-            copilot = {
-              enable = true;
-              cmp.enable = true;
-            };
-          };
-
-          comments = {
-            comment-nvim.enable = true;
-          };
+          notes.todo-comments.enable = true;
+          utility.icon-picker.enable = true;
         };
       };
-    };
-    xdg.mime.defaultApplications = {
-      "text/*" = "nvim.desktop";
     };
   };
 }
