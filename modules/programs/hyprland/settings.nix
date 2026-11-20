@@ -1,6 +1,6 @@
 {
-  self,
   lib,
+  pkgs,
   config,
   ...
 }:
@@ -16,15 +16,15 @@ let
     ;
 in
 {
-  options.cfg.programs.hyprland.extraHlConfig = mkOption {
-    type = types.attrsOf types.anything;
-    description = "Extra configuration for hl.config";
+  options.cfg.programs.hyprland.hlConfig = mkOption {
+    type = types.attrsOf (pkgs.formats.lua { }).type;
+    description = "Configuration passed to hl.config";
   };
   config = mkIf cfg.enable {
     # use mapAttrsRecursive here to make every attr in the config
     # a low prio. this means we can override / add any attr below
     # without erroneous mkDefault's or mkForce's everywhere
-    cfg.programs.hyprland.extraHlConfig = mapAttrsRecursive (_: mkDefault) {
+    cfg.programs.hyprland.hlConfig = mapAttrsRecursive (_: mkDefault) {
       general = {
         # Outer monitor gaps
         gaps_out = 4;
@@ -122,40 +122,6 @@ in
       debug = {
         # make sure to uncomment when debugging
         # disable_logs = false;
-      };
-    };
-    hj.xdg.config.files = {
-      "wallust/wallust.toml".value.templates = mkIf config.cfg.programs.wallust.enable {
-        hyprland = {
-          target = "~/.config/hypr/colors_hyprland.lua";
-          template = builtins.toFile "colors_hyprland.lua" ''
-            hl.config({
-            	general = {
-            		col = {
-            			active_border = "rgb({{color4 | strip}})",
-            			inactive_border = "rgba({{color0 | strip}}ff)",
-            		},
-            	},
-            })
-          '';
-        };
-        hyprtoolkit = mkIf config.cfg.programs.wallust.enable {
-          template = builtins.toFile "hyprtoolkit.conf" (
-            self.lib.generators.toHyprlang { } {
-              background = "0xFF{{background | strip}}";
-              base = "0xFF{{color0 | strip}}";
-              text = "0xFF{{foreground | strip}}";
-              alternate_base = "0xFF{{color8 | strip}}";
-              bright_text = "0xFF{{color15 | strip}}";
-              accent = "0xFF{{color2 | strip}}";
-              accent_secondary = "0xFF{{color4 | strip}}";
-
-              rounding_large = 4;
-              rounding_small = 2;
-            }
-          );
-          target = "~/.config/hypr/hyprtoolkit.conf";
-        };
       };
     };
   };

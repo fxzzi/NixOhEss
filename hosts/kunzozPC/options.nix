@@ -120,7 +120,7 @@
               supports_wide_color = -1,
             })
           '';
-        extraHlConfig = {
+        hlConfig = {
           render = {
             # sidestep all cm issues by just disabling it
             cm_enabled = 0;

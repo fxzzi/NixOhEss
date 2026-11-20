@@ -33,7 +33,7 @@ in
               "easeIn, 0.12, 0, 0.39, 0"
             ];
             animations = {
-              inherit (land.extraHlConfig.animations) enabled;
+              inherit (land.hlConfig.animations) enabled;
 
               animation = [
                 "fadeIn, 1, 3, easeIn"
