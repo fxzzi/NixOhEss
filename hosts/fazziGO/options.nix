@@ -71,7 +71,7 @@
         enable = true;
         defaultMonitor = "eDP-1";
         # useGit = true;
-        extraHlConfig = {
+        hlConfig = {
           # tearing kinda useful on 60hz
           general.allow_tearing = 1;
           render = {

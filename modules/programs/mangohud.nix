@@ -25,7 +25,7 @@ let
     let
       rr = cfg.refreshRate;
     in
-    if config.cfg.programs.hyprland.extraHlConfig.misc.vrr != 0 then
+    if config.cfg.programs.hyprland.hlConfig.misc.vrr != 0 then
       floor (min (rr * 0.985) (rr - 2))
     else
       rr;
