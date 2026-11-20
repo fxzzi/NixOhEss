@@ -18,7 +18,9 @@ writeShellApplication {
 
     hyprctl hyprpaper wallpaper ", $STATICWALL"
 
-    # generate colours and configs with colours
-    wallust run "$1"
+    # generate colours and configs with colours.
+    # -s skips sending OSC terminal sequences to set colors,
+    # instead the terminal (beer) reloads its config.
+    wallust run -s "$1"
   '';
 }
