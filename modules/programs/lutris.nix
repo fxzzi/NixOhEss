@@ -12,7 +12,15 @@ in
   options.cfg.programs.lutris.enable = mkEnableOption "lutris";
   config = mkIf cfg.enable {
     hj = {
-      packages = [ pkgs.lutris-free ];
+      packages = [
+        (pkgs.lutris.override {
+          steamSupport = false;
+          extraLibraries = p: [
+            # ToTK recomp
+            p.libdecor
+          ];
+        })
+      ];
       xdg.data.files = {
         "lutris/system.yml" = {
           generator = lib.generators.toYAML { };
