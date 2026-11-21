@@ -51,9 +51,9 @@
     "type": "gitlab",
     "owner": "fazzi",
     "repo": "azzipkgs",
-    "rev": "58ddcc0582fbace617e068901d0200d45f9311e2",
-    "narHash": "sha256-MoILCGs4olr5yM7x5LZfnTigQ1XyMHWmPRIS5KrbEVM=",
-    "lastModified": 1795004957
+    "rev": "d1ccc7189331aadf3ee8989a81ebac5d6bf37d4b",
+    "narHash": "sha256-Twjvsc78taC0KQ+O1xvmGFYalmQYMCsmdhjkBTmjs3w=",
+    "lastModified": 1795262714
   },
   "beer": {
     "type": "git",
@@ -210,12 +210,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "f3e90381e09a75d0c97f4680622dbb37b63452e1",
-    "narHash": "sha256-U+5GoTgPlQCnf6MIfwmW6LDh1iC+v/F7+lAaIWI756Y=",
-    "lastModified": 1795251560,
+    "rev": "2f56e7b17beedc6a02cca61322614755efa7aaac",
+    "narHash": "sha256-x25TGJv1DcbduxECj3EVJ3UhyWQbqvZo2gtG6AHepdk=",
+    "lastModified": 1795261233,
     "archive": {
-      "hash": "sha256-lsRcdDL8io3Za2yWfnUmD+/iIkz3nOFqQLiU+YaZfLY=",
-      "outHash": "sha256-PrHda1KmEO88o3q5YhTOVmfhKKxVVA03V7Zfuugs4dQ="
+      "hash": "sha256-zq+6qb5kfFqfXvuR2EtLpeb+4EGL+qOik4+4fRksqXQ=",
+      "outHash": "sha256-VfdF2899CILhWLf9z4EckknLPgOASg2Iy3cZXI6lelY="
     },
     "public": true
   },
