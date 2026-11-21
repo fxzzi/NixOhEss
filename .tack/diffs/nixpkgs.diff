@@ -360,7 +360,7 @@ diff --git a/pkgs/top-level/aliases.nix b/pkgs/top-level/aliases.nix
 diff --git a/pkgs/top-level/all-packages.nix b/pkgs/top-level/all-packages.nix
 --- a/pkgs/top-level/all-packages.nix
 +++ b/pkgs/top-level/all-packages.nix
-@@ -5839,8 +5839,6 @@
+@@ -5842,8 +5842,6 @@
  
    nvidia-vaapi-driver = hiPrio (callPackage ../development/libraries/nvidia-vaapi-driver { });
  

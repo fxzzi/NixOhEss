@@ -1,5 +1,5 @@
 diff --git a/src/managers/screenshare/ScreenshareManager.cpp b/src/managers/screenshare/ScreenshareManager.cpp
-index 6bc518adc9e..28a0098da4c 100644
+index 6bc518adc9e..8d91f5480a5 100644
 --- a/src/managers/screenshare/ScreenshareManager.cpp
 +++ b/src/managers/screenshare/ScreenshareManager.cpp
 @@ -194,10 +194,7 @@ bool CScreenshareManager::isOutputBeingSSd(PHLMONITOR monitor) {
@@ -14,7 +14,7 @@ index 6bc518adc9e..28a0098da4c 100644
          return true;
  
      return std::ranges::any_of(m_sessions, [monitor](const auto& s) {
-@@ -278,5 +275,18 @@ bool CScreenshareManager::needsWorkspaceCaptureSnapshot(PHLWINDOW window) const
+@@ -278,5 +275,20 @@ bool CScreenshareManager::needsWorkspaceCaptureSnapshot(PHLWINDOW window) const
  }
  
  CScreenshareManager::SManagedSession::SManagedSession(UP<CScreenshareSession>&& session) : m_session(std::move(session)) {
@@ -24,6 +24,8 @@ index 6bc518adc9e..28a0098da4c 100644
 +    wl_list_init(&clientDestroyListener.link);
 +    clientDestroyListener.notify = [](wl_listener* listener, void* data) {
 +        SManagedSession* managed = wl_container_of(listener, managed, clientDestroyListener);
++        wl_list_remove(&listener->link);
++        wl_list_init(&listener->link);
 +        managed->m_session->stop();
 +    };
 +

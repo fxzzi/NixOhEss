@@ -70,9 +70,8 @@ patches = [
   "https://github.com/hyprwm/Hyprland/pull/16966",
   # screenshare: DS fixes
   "https://github.com/hyprwm/Hyprland/pull/17015",
-
-  # protocols/data-device: send drop before notifying the source
-  "https://github.com/hyprwm/Hyprland/pull/17036",
+  # pointer: use plane size hints for HW cursor
+  "https://github.com/hyprwm/Hyprland/pull/17042",
 ]
 
 [inputs.niqspkgs]
@@ -98,11 +97,6 @@ type   = "fixed"
 unpack = "file"
 
 [inputs.disblock-origin]
-url = "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git"
-type = "fetch"
-patches = [
-  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/163",
-  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/165",
-  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/168",
-  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/169",
-]
+url     = "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git"
+type    = "fetch"
+patches = ["https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/163"]
