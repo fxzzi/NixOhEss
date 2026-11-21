@@ -72,15 +72,9 @@
   };
 
   # icc files used in Hyprland
-  age.secrets = {
-    m27q = {
-      file = "${self}/secrets/mub-M27Q_v1.icm.age";
-      mode = "744";
-    };
-    mo27q28g = {
-      file = "${self}/secrets/tft-gigabyte_mo27q28g.icm.age";
-      mode = "744";
-    };
+  age.secrets.m27q = {
+    file = "${self}/secrets/mub-M27Q_v1.icm.age";
+    mode = "744";
   };
 
   # fazziPC has a WOLED main monitor with subpixel layout RGWB,
