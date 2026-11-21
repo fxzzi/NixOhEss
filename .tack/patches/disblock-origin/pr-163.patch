@@ -1,0 +1,12 @@
+diff --git a/DisblockOrigin.theme.css b/DisblockOrigin.theme.css
+index 172ba79..903cc92 100644
+--- a/DisblockOrigin.theme.css
++++ b/DisblockOrigin.theme.css
+@@ -294,6 +294,7 @@ div[data-popout-animating] div[class^=picker] {
+     background-color: unset;
+   }
+   div[class*=upsellContainer] { display: none; } /* NOTE: this leaves an ugly space at the bottom, could fix but meh */
++  div[class*="gridNoticeWrapper_"]:has(div[class*="brandRefreshBanner_"]) { display: none; }
+ }
+ 
+ /* Modal for "Your message is too long" */

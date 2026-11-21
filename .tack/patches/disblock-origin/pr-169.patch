@@ -1,0 +1,17 @@
+diff --git a/DisblockOrigin.theme.css b/DisblockOrigin.theme.css
+index 516169b..95f0a05 100644
+--- a/DisblockOrigin.theme.css
++++ b/DisblockOrigin.theme.css
+@@ -51,10 +51,10 @@
+ /* ------------------ */
+ 
+ /* Voice chat custom entrance sound */
+-div[data-nav-anchor-key="entrance_sounds_setting"] { display: var(--nitro-features) }
++div[data-nav-anchor-key="entrance_sounds_setting"] { display: var(--display-nitro-features) }
+ 
+ /* Shop This Look */
+-div#user-profile-overflow-menu-shop-this-look { display: var(--nitro-features, flex) }
++div#user-profile-overflow-menu-shop-this-look { display: var(--display-nitro-features, flex) }
+ 
+ /* Profile frame */
+ div[class^=profileFrameContainer_] { display: var(--display-frame-border); }

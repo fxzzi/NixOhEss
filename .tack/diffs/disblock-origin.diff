@@ -1,0 +1,73 @@
+diff --git a/DisblockOrigin.theme.css b/DisblockOrigin.theme.css
+--- a/DisblockOrigin.theme.css
++++ b/DisblockOrigin.theme.css
+@@ -51,10 +51,10 @@
+ /* ------------------ */
+ 
+ /* Voice chat custom entrance sound */
+-div[data-nav-anchor-key="entrance_sounds_setting"] { display: var(--nitro-features) }
++div[data-nav-anchor-key="entrance_sounds_setting"] { display: var(--display-nitro-features) }
+ 
+ /* Shop This Look */
+-div#user-profile-overflow-menu-shop-this-look { display: var(--nitro-features, flex) }
++div#user-profile-overflow-menu-shop-this-look { display: var(--display-nitro-features, flex) }
+ 
+ /* Profile frame */
+ div[class^=profileFrameContainer_] { display: var(--display-frame-border); }
+@@ -294,6 +294,7 @@
+     background-color: unset;
+   }
+   div[class*=upsellContainer] { display: none; } /* NOTE: this leaves an ugly space at the bottom, could fix but meh */
++  div[class*="gridNoticeWrapper_"]:has(div[class*="brandRefreshBanner_"]) { display: none; }
+ }
+ 
+ /* Modal for "Your message is too long" */
+@@ -436,20 +437,28 @@
+ 
+ /* Hide the entire Quests container. This is on by default, as Discord changed the app landing page to Quests. Otherwise everyone is blasted with ads */
+ @container style(--bool-hide-available-quests: true) or style(--bool-hide-available-quests: 1) {
+-  div[class^=scroller]:has(section>div[class^=content]>div[class^=heroWrapper]>div[data-testid="quest-home-hero-banner"]) {
+-    /* The whole page content here */
+-    section>div[class^=content] {display: none; }
++  div[class^="page_"] > div > div[class^="scroller"] {
++    --quests-page: false;
+ 
+-    /* Add a notice so it's not just empty */
+-    &:before {
+-      content: "Quest (ads) hidden by Disblock Origin.";
+-      font-size: xx-large;
+-      padding: var(--space-16);
+-      color: var(--text-muted);
++    /* The CSS variable hack is needed because Chromium has performance issues with nested CSS in this :has() */
++    &:has(>section>div[class^="content"]>div[class^="heroWrapper"]>div[data-testid="quest-home-hero-banner"]) {
++      --quests-page: true;
+     }
+ 
+-    /* Nitro-branding background gradient */
+-    &>div[class^=gradient] { display: none; }
++    @container style(--quests-page: true) {
++      /* Add a notice so it's not just empty */
++      &::before {
++        content: "Quest (ads) hidden by Disblock Origin.";
++        font-size: xx-large;
++        padding: var(--space-16);
++        color: var(--text-muted);
++      }
++
++      /* The whole page content here, nitro-branding background gradient */
++      > section > div[class^="content"], > div[class^="gradient"] {
++        display: none;
++      }
++    }
+   }
+ }
+ 
+@@ -580,7 +589,7 @@
+ /* Hide clan tags next to the usernames */
+ span[class*="clanTag_"] { display: var(--display-clan-tags, inline-flex); } /* member list, DMs list */
+ span[class*="clanTagChiplet_"] { display: var(--display-clan-tags, inline); } /* chat messages */
+-span[class*="guildTagPill_"] { display: var(--display-clan-tags, block); } /* profile */
++span[class*="guildTagPill_"] { display: var(--display-clan-tags, inline-flex); } /* profile modal, popout profile */
+ 
+ /* Server tag row in the server dropdown */
+ @container style(--display-clan-tags: none) {
