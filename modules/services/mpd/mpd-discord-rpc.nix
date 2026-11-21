@@ -13,6 +13,7 @@ in
   options.cfg.services.mpd.discord-rpc.enable = mkEnableOption "discord-rpc";
   config = mkIf cfg.enable {
     hj = {
+
       xdg.config.files."discord-rpc/config.toml" = {
         generator = (pkgs.formats.toml { }).generate "config.toml";
         value = {
@@ -29,22 +30,26 @@ in
           };
         };
       };
-    };
-    hj.systemd.services.mpd-discord-rpc = {
-      description = "Discord Rich Presence for MPD";
-      documentation = [ "https://github.com/JakeStanger/mpd-discord-rpc" ];
-      wantedBy = [ "mpd.service" ];
-      requires = [ "mpd.service" ];
-      # make sure it starts and stops with mpd
-      partOf = [ "mpd.service" ];
-      serviceConfig = {
-        Restart = "on-failure";
-        ExecStart = getExe pkg;
+
+      systemd.services.mpd-discord-rpc = {
+        description = "Discord Rich Presence for MPD";
+        documentation = [ "https://github.com/JakeStanger/mpd-discord-rpc" ];
+        wantedBy = [ "mpd.service" ];
+        requires = [ "mpd.service" ];
+        # make sure it starts and stops with mpd
+        partOf = [ "mpd.service" ];
+        serviceConfig = {
+          Restart = "always";
+          # mpd-discord-rpc likes to get stuck sometimes
+          # restart it every x minutes to work around it
+          RuntimeMaxSec = "10m";
+          ExecStart = getExe pkg;
+        };
+        restartTriggers = [
+          config.hj.xdg.config.files."discord-rpc/config.toml".source
+          pkg
+        ];
       };
-      restartTriggers = [
-        config.hj.xdg.config.files."discord-rpc/config.toml".source
-        pkg
-      ];
     };
   };
 }
