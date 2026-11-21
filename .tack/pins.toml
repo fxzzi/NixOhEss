@@ -3,7 +3,7 @@
 [shorturls]
 channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 fazzi   = "gitlab:fazzi/{path}"
-raf     = "git+https://git.notashelf.dev/notashelf/{path}.git"
+raf     = "git+ssh://git@git.notashelf.dev:33/notashelf/{path}.git"
 
 [all_follow]
 nixpkgs = "nixpkgs"

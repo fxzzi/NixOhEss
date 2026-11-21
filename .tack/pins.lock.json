@@ -3,8 +3,8 @@
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
-    "beer": "git+https://git.notashelf.dev/notashelf/beer.git",
-    "chroma": "git+https://git.notashelf.dev/notashelf/chroma.git",
+    "beer": "git+ssh://git@git.notashelf.dev:33/notashelf/beer.git",
+    "chroma": "git+ssh://git@git.notashelf.dev:33/notashelf/chroma.git",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "disblock-origin": "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
     "hjem": "github:feel-co/hjem",
@@ -57,15 +57,15 @@
   },
   "beer": {
     "type": "git",
-    "url": "https://git.notashelf.dev/notashelf/beer.git",
+    "url": "ssh://git@git.notashelf.dev:33/notashelf/beer.git",
     "ref": "HEAD",
-    "rev": "4a034e9d13f4ad4b5bf2b8eed3a7873d08b66797",
-    "narHash": "sha256-d2/sZGr+hlFhPwI52PvcbK8dTyuW/WolgqHGrmnQh00=",
-    "lastModified": 1795170070
+    "rev": "99bab4a3a97f4473e3ff0a6e53b3508ccecf8fc7",
+    "narHash": "sha256-UU94EUpCtmMlDrtj/Af/FJRbqQ8mfYRhcoP8zU+qDoo=",
+    "lastModified": 1795239696
   },
   "chroma": {
     "type": "git",
-    "url": "https://git.notashelf.dev/notashelf/chroma.git",
+    "url": "ssh://git@git.notashelf.dev:33/notashelf/chroma.git",
     "ref": "HEAD",
     "rev": "94b109b8096616275c23eda753f53ffe18295422",
     "narHash": "sha256-niuXe3aBEBIdT3ymTJf2IfcaIopKW7i1Xo+4uGaiI3k=",
@@ -83,9 +83,9 @@
     "type": "git",
     "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
     "ref": "HEAD",
-    "rev": "d33e73cb8138cf2a89de640d2922a127f186ad86",
-    "narHash": "sha256-uumFHNizVz3GwqY3fL8/L4gYZYHwcmj+tlXDKaiJt54=",
-    "lastModified": 1795090573
+    "rev": "44e17c34d506a6b3804784d4f852b470c3273475",
+    "narHash": "sha256-xzS0X9LKLecBluwy3G6Pe6L4syOF43SXuQMJ2/7EFhI=",
+    "lastModified": 1795228893
   },
   "hjem": {
     "type": "github",
@@ -174,12 +174,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "0ddb1c558973efc6a5b4be8960bdcffca7269dbb",
-    "narHash": "sha256-YxcbpHvrOYWNE65gfQjNGX9RtDyjP/AfM5av8MsuWIQ=",
-    "lastModified": 1795215121,
+    "rev": "f3e90381e09a75d0c97f4680622dbb37b63452e1",
+    "narHash": "sha256-U+5GoTgPlQCnf6MIfwmW6LDh1iC+v/F7+lAaIWI756Y=",
+    "lastModified": 1795251560,
     "archive": {
-      "hash": "sha256-5QA1Tn0nJwLRilnkVaIYhszmxS2yUe970FSp4vMBITs=",
-      "outHash": "sha256-U+ezk3GvzfmCj00lz/D7t1CUsYIY2YRs1zUOvI55mkk="
+      "hash": "sha256-lsRcdDL8io3Za2yWfnUmD+/iIkz3nOFqQLiU+YaZfLY=",
+      "outHash": "sha256-PrHda1KmEO88o3q5YhTOVmfhKKxVVA03V7Zfuugs4dQ="
     },
     "public": true
   },
@@ -187,9 +187,10 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "80edbeb8f8d45f72c4e788b586ce59fa4a2611b4",
-    "narHash": "sha256-vadrXCxy5s8uAZ+4bB5/gNuR71SbaIgHpGq0JeRY2g4=",
-    "lastModified": 1794651602
+    "rev": "3abf3650ea38f697b3dd153e5c3dbf9a8ab0a450",
+    "narHash": "sha256-wUYrAm+xPO45noODb30u5d2K/WsAqJYGERQqbVEFgEo=",
+    "lastModified": 1795235003,
+    "public": true
   },
   "nixpkgs": {
     "type": "tarball",
