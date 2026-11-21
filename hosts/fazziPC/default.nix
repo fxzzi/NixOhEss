@@ -20,7 +20,7 @@
       sgdboop
       cemu
       dolphin-emu
-      nvtopPackages.nvidia
+      nvtop
       yt-dlp
       eden
       claude-code
