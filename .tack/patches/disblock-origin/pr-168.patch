@@ -1,0 +1,44 @@
+diff --git a/DisblockOrigin.theme.css b/DisblockOrigin.theme.css
+index 516169b..da2c124 100644
+--- a/DisblockOrigin.theme.css
++++ b/DisblockOrigin.theme.css
+@@ -436,20 +436,28 @@ div[class^=heroWrapper]:has(>div[data-testid="quest-home-hero-banner"]) { displa
+ 
+ /* Hide the entire Quests container. This is on by default, as Discord changed the app landing page to Quests. Otherwise everyone is blasted with ads */
+ @container style(--bool-hide-available-quests: true) or style(--bool-hide-available-quests: 1) {
+-  div[class^=scroller]:has(section>div[class^=content]>div[class^=heroWrapper]>div[data-testid="quest-home-hero-banner"]) {
+-    /* The whole page content here */
+-    section>div[class^=content] {display: none; }
++  div[class^="page_"] > div > div[class^="scroller"] {
++    --quests-page: false;
+ 
+-    /* Add a notice so it's not just empty */
+-    &:before {
+-      content: "Quest (ads) hidden by Disblock Origin.";
+-      font-size: xx-large;
+-      padding: var(--space-16);
+-      color: var(--text-muted);
++    /* The CSS variable hack is needed because Chromium has performance issues with nested CSS in this :has() */
++    &:has(>section>div[class^="content"]>div[class^="heroWrapper"]>div[data-testid="quest-home-hero-banner"]) {
++      --quests-page: true;
+     }
+ 
+-    /* Nitro-branding background gradient */
+-    &>div[class^=gradient] { display: none; }
++    @container style(--quests-page: true) {
++      /* Add a notice so it's not just empty */
++      &::before {
++        content: "Quest (ads) hidden by Disblock Origin.";
++        font-size: xx-large;
++        padding: var(--space-16);
++        color: var(--text-muted);
++      }
++
++      /* The whole page content here, nitro-branding background gradient */
++      > section > div[class^="content"], > div[class^="gradient"] {
++        display: none;
++      }
++    }
+   }
+ }
+ 

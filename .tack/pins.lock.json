@@ -85,7 +85,43 @@
     "ref": "HEAD",
     "rev": "44e17c34d506a6b3804784d4f852b470c3273475",
     "narHash": "sha256-xzS0X9LKLecBluwy3G6Pe6L4syOF43SXuQMJ2/7EFhI=",
-    "lastModified": 1795228893
+    "lastModified": 1795228893,
+    "patched": {
+      "path": "/nix/store/29ixvgc38j6rqib8wyflbvr7g0igild1-source",
+      "narHash": "sha256-a6+YsFfsGWdDt3L/zqg5TcqxFj40/jW+bb9SDlaraqM=",
+      "lastModified": 1795228893,
+      "patches": [
+        {
+          "source": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/163",
+          "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/163",
+          "file": "patches/disblock-origin/pr-163.patch",
+          "sha256": "26d6a83a2e441d3eb70d5ff6c0a921c9a9b2515e91e80498e678f9170445f2f2",
+          "head": "7749dd72c1ddad98061d0eb7674a7664c57d8c47"
+        },
+        {
+          "source": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/165",
+          "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/165",
+          "file": "patches/disblock-origin/pr-165.patch",
+          "sha256": "7d8680ee4625ed4b3c5db75ddd78bb41d2bb3ccec1b1560d5a0479bef77b7c40",
+          "head": "177bb08ebc7420f6fa590636faf1653386a41589"
+        },
+        {
+          "source": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/168",
+          "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/168",
+          "file": "patches/disblock-origin/pr-168.patch",
+          "sha256": "be29592c970702db7b76dc019ffdff1a41edaf147c760877a3039efec14e4643",
+          "head": "aed378a636b757fa92b909b21dc49237e984e964"
+        },
+        {
+          "source": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/169",
+          "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/169",
+          "file": "patches/disblock-origin/pr-169.patch",
+          "sha256": "198fdf986dd626fa005197091e41623b5b0ef6e39b08dbdd30388451fab0387d",
+          "head": "5a119c8011cb0ec617b723d00fc94acc7cb7e04b"
+        }
+      ],
+      "diff": "09e4390f97018fc53791e7d0002b5dcda49b91677df6e756c3c75f8c699b9fad"
+    }
   },
   "hjem": {
     "type": "github",

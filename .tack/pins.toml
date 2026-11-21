@@ -98,5 +98,11 @@ type   = "fixed"
 unpack = "file"
 
 [inputs.disblock-origin]
-url  = "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git"
+url = "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git"
 type = "fetch"
+patches = [
+  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/163",
+  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/165",
+  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/168",
+  "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/169",
+]
