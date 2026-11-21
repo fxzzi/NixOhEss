@@ -3,8 +3,6 @@ let
 in
 {
   "publicip.age".publicKeys = [ fazziPC ];
-  # monitor icc profiles from Monitors Unboxed and TFT Central
+  # monitor icc profile from Monitors Unboxed
   "mub-M27Q_v1.icm.age".publicKeys = [ fazziPC ];
-  "tft-gigabyte_m27q.icm.age".publicKeys = [ fazziPC ];
-  "tft-gigabyte_mo27q28g.icm.age".publicKeys = [ fazziPC ];
 }
