@@ -23,11 +23,6 @@ in
         extraPackages = [
           # nvidia-vaapi-driver from azzipkgs is more up to date
           inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.nvidia-vaapi-driver
-          # use tom's clanker userspace modules
-          inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.open-gpu-userspace-modules
-        ];
-        extraPackages32 = [
-          inputs.azzipkgs.packages.${pkgs.stdenv.hostPlatform.system}.open-gpu-userspace-modules.lib32
         ];
       };
       nvidia = {
@@ -45,9 +40,7 @@ in
           usePersistenced = false;
           useSettings = false;
           patchesOpen = [
-            # tom / gulafaran's patchset.
-            # yes, it's vibe coded to hell and back, but so is the NVIDIA driver itself.
-            # and it fixes a bunch of stuff and provides some good QOL improvements.
+            # the clankerpatchesTM
             inputs.tom-nvidia-patches
           ];
         };
@@ -100,10 +93,6 @@ in
         CUDA_CACHE_PATH = "$HOME/.cache/nv";
         # stop forcing high GPU clocks when CUDA is in use
         CUDA_DISABLE_PERF_BOOST = 1;
-
-        # use tom's clanker userspace modules
-        GBM_BACKEND = "nvidia-open";
-
       };
       etc = {
         "nvidia/nvidia-application-profiles-rc.d/50-vram-alloc-fixes.json".text =
