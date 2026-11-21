@@ -5,7 +5,12 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf getExe;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    getExe
+    getExe'
+    ;
   cfg = config.cfg.services.dunst;
 in
 {
@@ -148,11 +153,10 @@ in
         Type = "dbus";
         BusName = "org.freedesktop.Notifications";
         ExecStart = "${getExe pkgs.dunst}";
+        ExecReload = "${getExe' pkgs.dunst "dunstctl"} reload";
       };
-      restartTriggers = [
-        config.hj.xdg.config.files."dunst/dunstrc".source
-        pkgs.dunst
-      ];
+      restartTriggers = [ pkgs.dunst ];
+      reloadTriggers = [ config.hj.xdg.config.files."dunst/dunstrc".source ];
     };
   };
 }
