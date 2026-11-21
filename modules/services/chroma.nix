@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf getExe;
+  inherit (lib) mkEnableOption mkIf getExe getExe';
   cfg = config.cfg.services.chroma;
   chroma = pkgs.callPackage "${inputs.chroma}/nix/package.nix" { };
 in
@@ -36,10 +36,12 @@ in
       systemd.services.chroma = self.lib.mkGraphicalService {
         description = "Fast, lightweight and efficient wallpaper daemon for Wayland.";
         exec = getExe chroma;
-        extra.restartTriggers = [
-          config.hj.xdg.config.files."chroma/chroma.toml".source
-          chroma
-        ];
+        extra = {
+          restartTriggers = [ chroma ];
+          # chroma reloads its config on SIGHUP
+          reloadTriggers = [ config.hj.xdg.config.files."chroma/chroma.toml".source ];
+          serviceConfig.ExecReload = "${getExe' pkgs.coreutils "kill"} -HUP $MAINPID";
+        };
       };
     };
   };

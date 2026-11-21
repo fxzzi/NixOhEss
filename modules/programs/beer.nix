@@ -3,19 +3,33 @@
   config,
   pkgs,
   inputs,
+  self,
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf mkAfter;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkAfter
+    getExe
+    getExe'
+    ;
   cfg = config.cfg.programs.beer;
+  beer = pkgs.callPackage "${inputs.beer}/nix/package.nix" { };
 in
 {
   options.cfg.programs.beer.enable = mkEnableOption "beer";
   config = mkIf cfg.enable {
     hj = {
-      packages = [
-        (pkgs.callPackage "${inputs.beer}/nix/package.nix" { })
-      ];
+      packages = [ beer ];
+      systemd.services.beer = self.lib.mkGraphicalService {
+        description = "A terminal worth pouring time into";
+        exec = "${getExe beer} --server";
+        extra = {
+          reloadTriggers = [ config.hj.xdg.config.files."beer/beer.toml".source ];
+          serviceConfig.ExecReload = "${getExe' pkgs.coreutils "kill"} -USR1 $MAINPID";
+        };
+      };
       xdg.config.files = {
         "beer/beer.toml" = {
           generator = (pkgs.formats.toml { }).generate "beer.toml";
