@@ -44,6 +44,8 @@ in
     cfg.programs.proton.environmentVariables = {
       # WOW64 by default should be fine
       PROTON_USE_WOW64 = 1;
+      # Native pipewire instead of PA, available in GE and cachyOS
+      PROTON_USE_PIPEWIRE = 1;
     };
 
     # heroic and lutris both pick up protons from here too
