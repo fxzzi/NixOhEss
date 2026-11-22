@@ -38,7 +38,7 @@
       hypridle = {
         enable = true;
         lockTimeout = 480;
-        suspendTimeout = 0;
+        suspendTimeout = 900;
       };
       hyprpaper.enable = true;
       hyprsunset.enable = true;

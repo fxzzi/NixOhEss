@@ -79,8 +79,12 @@ url  = "github:diniamo/niqspkgs"
 type = "fetch"
 
 [inputs.nix-gaming]
-url  = "github:fufexan/nix-gaming"
+url = "github:fufexan/nix-gaming"
 type = "fetch"
+patches = [
+  # osu-lazer-bin: make tachyon always pick latest
+  "https://github.com/fufexan/nix-gaming/pull/386",
+]
 
 [inputs.nixcord]
 url  = "github:4evy/nixcord"

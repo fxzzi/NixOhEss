@@ -40,7 +40,8 @@ in
           usePersistenced = false;
           useSettings = false;
           patchesOpen = [
-            # the clankerpatchesTM
+            # the ClankerPatches™
+            # <https://github.com/gulafaran/open-gpu-kernel-modules/tree/patches>
             inputs.tom-nvidia-patches
           ];
         };
