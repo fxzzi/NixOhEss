@@ -189,12 +189,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "3f779cc20c52cd8f9dc44f300bbc3597246c6c57",
-    "narHash": "sha256-qrXtdd2BzaH68Zulak2DV7kmIjrg2KROtP+Gqu6rR7E=",
-    "lastModified": 1795279323,
+    "rev": "55c4acd100c04505644c189ff7a1bfdfa4befe3c",
+    "narHash": "sha256-2/K+oIxtvJYth0hL1xBxDY4ENgK6yh8C2ok76MyxJzg=",
+    "lastModified": 1795299153,
     "archive": {
-      "hash": "sha256-O1iw5LiMLflQkzZYmBdhfWEZebBNPc9eM91+c4gJZ4I=",
-      "outHash": "sha256-dgfRDUXxLnLsyUZ4ypij+c+AUe4YrHe5ZwYUizFhYI4="
+      "hash": "sha256-lfV81P0s3yQTDA3jxC0yF0nUNYIq0HF9bCMl9AKUEPQ=",
+      "outHash": "sha256-87m5jG6+M4Y5OSil5+F5F9idHCe/0TEM/iM/1ume1kk="
     },
     "public": true
   },

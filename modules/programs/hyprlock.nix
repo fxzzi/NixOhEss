@@ -102,9 +102,7 @@ in
                 text = "";
                 color = "0xffc8d3f5";
                 font_size = 42;
-                # needs the mono font specifically to avoid being
-                # cut off
-                font_family = "Lilex Nerd Font Mono";
+                font_family = "monospace";
                 shadow_passes = 2;
                 shadow_size = 2;
                 position = "0, 40";
