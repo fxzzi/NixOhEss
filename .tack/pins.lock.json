@@ -83,13 +83,13 @@
     "type": "git",
     "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
     "ref": "HEAD",
-    "rev": "86ec3d00da3bb51213109dc203d94c64f5dfbbe8",
-    "narHash": "sha256-7+Qy4xa5RJhpoVrg5KeoWDKgYkV8agxWcLgEhvrmxR4=",
-    "lastModified": 1795275407,
+    "rev": "bed65583cfe554e283fd0f9f640730fc950bb248",
+    "narHash": "sha256-UioBk/CpJaHtEjcuBgGIwpDvs9SA3pndxCLSvDDv3RA=",
+    "lastModified": 1795347231,
     "patched": {
-      "path": "/nix/store/29ixvgc38j6rqib8wyflbvr7g0igild1-source",
-      "narHash": "sha256-a6+YsFfsGWdDt3L/zqg5TcqxFj40/jW+bb9SDlaraqM=",
-      "lastModified": 1795275407,
+      "path": "/nix/store/swdh2yd906r2bcwfkgdrwc6x4klpj5hn-source",
+      "narHash": "sha256-eyunrcHrRBTM9iDK3h5v0mehH848Nsq7jFxLDYYkH0A=",
+      "lastModified": 1795347231,
       "patches": [
         {
           "source": "https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/163",
@@ -99,7 +99,7 @@
           "head": "7749dd72c1ddad98061d0eb7674a7664c57d8c47"
         }
       ],
-      "diff": "ad611c341c252dec2cc491066b5f676b6725013f8557603578670b48bff2fc24"
+      "diff": "f543002e97e66483b56ab9471fce10b8e57176369ac666f2255098025d0ae1db"
     }
   },
   "hjem": {
@@ -176,12 +176,12 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "fd0b5dbc9e15fefd867a713c06bd26a9309200ca",
-    "narHash": "sha256-1PIR+1usRAK02VQerxIJ0rNr0Mix792R41wE9sgPUsY=",
-    "lastModified": 1795156834,
+    "rev": "dedd14dce543af0bdad8a9a59aecc26e0e748b5c",
+    "narHash": "sha256-Z2b+S9/N73eKXR5VCyG7/xMoVq8LkDg9z2zh0H5GLP0=",
+    "lastModified": 1795327255,
     "archive": {
-      "hash": "sha256-au0f6o8AdBVhRTHpyszQwL1CKfLQhk00PPqnpBVrFVc=",
-      "outHash": "sha256-A/8+BOfFfQNs6m18wqBb7BnNJq+dIg1Dh2Q7clatfks="
+      "hash": "sha256-eUn3cExmr1n7GF8CtaifcBDwFBcskuavVrQcS2DFxZw=",
+      "outHash": "sha256-Jlw9q7n8W3fhUcoJqPbyw5nsqaq+D1gnIN7A1G+9rS0="
     },
     "public": true
   },
@@ -189,12 +189,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "55c4acd100c04505644c189ff7a1bfdfa4befe3c",
-    "narHash": "sha256-2/K+oIxtvJYth0hL1xBxDY4ENgK6yh8C2ok76MyxJzg=",
-    "lastModified": 1795299153,
+    "rev": "6197dc470b2d6b8922b0594e5e200afd8086cb86",
+    "narHash": "sha256-Vf/oXkQ+CJNQLdul03QVgjzAW356oJYlyRMSFrVrrKA=",
+    "lastModified": 1795344729,
     "archive": {
-      "hash": "sha256-lfV81P0s3yQTDA3jxC0yF0nUNYIq0HF9bCMl9AKUEPQ=",
-      "outHash": "sha256-87m5jG6+M4Y5OSil5+F5F9idHCe/0TEM/iM/1ume1kk="
+      "hash": "sha256-BTniPhHcoA4v2QSoAk3WO5TwHm0RnEc3CjMN8QP8Fyc=",
+      "outHash": "sha256-FaILH0hl6cdOr69uGIXFimzhpFV3+kxbvVSBDUUWc8g="
     },
     "public": true
   },

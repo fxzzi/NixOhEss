@@ -102,13 +102,13 @@ in
       "wallust/wallust.toml".value.templates.hyprland = mkIf config.cfg.programs.wallust.enable {
         target = "~/.config/hypr/colors_hyprland.lua";
         template = builtins.toFile "colors_hyprland.lua" ''
-          hl.config({
-          	general = {
-          		col = {
-          			active_border = "rgb({{color4 | strip}})",
-          			inactive_border = "rgba({{color0 | strip}}ff)",
-          		},
-          	},
+          hl.config(${
+            generators.toLua { } {
+              general.col = {
+                active_border = "rgb({{color4 | strip}})";
+                inactive_border = "rgba({{color0 | strip}}ff)";
+              };
+            }
           })
         '';
       };
