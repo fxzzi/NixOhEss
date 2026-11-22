@@ -30,6 +30,8 @@ in
           alternative_header_first_line_format=$b{%t}|{%f}$/b
           autocenter_mode=yes
           connected_message_on_startup=no
+          current_item_prefix="$(blue)▍$(end) $b"
+          current_item_suffix=$/b
           external_editor=nvim
           header_visibility=no
           lines_scrolled=1
