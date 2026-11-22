@@ -7,7 +7,12 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf getExe getExe';
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    getExe
+    getExe'
+    ;
   cfg = config.cfg.services.chroma;
   chroma = pkgs.callPackage "${inputs.chroma}/nix/package.nix" { };
 in

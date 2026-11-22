@@ -37,7 +37,7 @@ bind({ mainMod, "L" }, hl.dsp.exec_raw("loginctl lock-session"))
 bind(
   { mainMod, "V" },
   hl.dsp.exec_raw(
-    "pkill fuzzel || (cliphist list | fuzzel --width 75 --dmenu --with-nth 2 -p ' ' | cliphist decode | wl-copy)"
+    [[pkill fuzzel || (sel=$(cliphist list | fuzzel --width 75 --dmenu --with-nth 2 -p ' ') && [ -n "$sel" ] && printf '%s' "$sel" | cliphist decode | wl-copy)]]
   )
 )
 
