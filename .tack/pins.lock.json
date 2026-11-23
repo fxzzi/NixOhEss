@@ -3,10 +3,10 @@
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
-    "beer": "git+ssh://git@git.notashelf.dev:33/notashelf/beer.git",
-    "chroma": "git+ssh://git@git.notashelf.dev:33/notashelf/chroma.git",
+    "beer": "git+ssh://git@git.notashelf.dev:33/notashelf/beer?ref=notashelf/push-kntqwkmxprtt",
+    "chroma": "git+ssh://git@git.notashelf.dev:33/notashelf/chroma",
     "creamlinux": "github:fxzzi/creamlinux-installer",
-    "disblock-origin": "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
+    "disblock-origin": "git+https://codeberg.org/AllPurposeMat/Disblock-Origin",
     "hjem": "github:feel-co/hjem",
     "hyprland": "github:hyprwm/Hyprland",
     "ncro": "github:manic-systems/ncro",
@@ -57,28 +57,15 @@
   },
   "beer": {
     "type": "git",
-    "url": "ssh://git@git.notashelf.dev:33/notashelf/beer.git",
-    "ref": "HEAD",
-    "rev": "99bab4a3a97f4473e3ff0a6e53b3508ccecf8fc7",
-    "narHash": "sha256-UU94EUpCtmMlDrtj/Af/FJRbqQ8mfYRhcoP8zU+qDoo=",
-    "lastModified": 1795239696,
-    "patched": {
-      "path": "/nix/store/miyszdh9vqmm6yhd4wbk0j7958zqf15g-source",
-      "narHash": "sha256-seiOvzzO4riqqTqwl+FrRx1/kg+tn7q2zNIkvcjWrs4=",
-      "lastModified": 1795239696,
-      "patches": [
-        {
-          "source": "./patches/beer/0001-I-hate-SCTK.patch",
-          "file": "./patches/beer/0001-I-hate-SCTK.patch",
-          "sha256": "541222e7c292157acc4fcc5365109318c4c737bc3dd5542081c4685e20ebc174"
-        }
-      ],
-      "diff": "84ec7602c06654b613a176859e8cbdbd9927be13360be03d2b64b603cffd236b"
-    }
+    "url": "ssh://git@git.notashelf.dev:33/notashelf/beer",
+    "ref": "refs/heads/notashelf/push-kntqwkmxprtt",
+    "rev": "b2d88e7fca9f7ba3cece51577675d05610a227c6",
+    "narHash": "sha256-seiOvzzO4riqqTqwl+FrRx1/kg+tn7q2zNIkvcjWrs4=",
+    "lastModified": 1795444292
   },
   "chroma": {
     "type": "git",
-    "url": "ssh://git@git.notashelf.dev:33/notashelf/chroma.git",
+    "url": "ssh://git@git.notashelf.dev:33/notashelf/chroma",
     "ref": "HEAD",
     "rev": "94b109b8096616275c23eda753f53ffe18295422",
     "narHash": "sha256-niuXe3aBEBIdT3ymTJf2IfcaIopKW7i1Xo+4uGaiI3k=",
@@ -94,7 +81,7 @@
   },
   "disblock-origin": {
     "type": "git",
-    "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin.git",
+    "url": "https://codeberg.org/AllPurposeMat/Disblock-Origin",
     "ref": "HEAD",
     "rev": "bed65583cfe554e283fd0f9f640730fc950bb248",
     "narHash": "sha256-UioBk/CpJaHtEjcuBgGIwpDvs9SA3pndxCLSvDDv3RA=",
@@ -165,12 +152,12 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "ncro",
-    "rev": "b6d6396faa8de1cc0b84ba823a5ee2f369a0595a",
-    "narHash": "sha256-m93+qwpVxFF+EFQNv3b7bnInbY+B6qkHj+X3OmpJS0U=",
-    "lastModified": 1795351307,
+    "rev": "f973c8888dbd53334e2c42a782af43bb65e8b2fd",
+    "narHash": "sha256-KYLLZofXDLakJYZS5UjOO3vEt7D6w2HLSqFV4jBTR1M=",
+    "lastModified": 1795462421,
     "archive": {
-      "hash": "sha256-UsHluCVeb4ASIKm6Ztmim6+wsYIhsjwJ5FqinJvCwwc=",
-      "outHash": "sha256-lrB/JZzXuwqPkE9BC/JgHV0E++QJPigiRxVJI2eJU1E="
+      "hash": "sha256-gzjPrPZT6HtyCyhoTPqsgOiHnTdQH/2C/DJPgfBy7jQ=",
+      "outHash": "sha256-MueACyHB9gxfQs85maTt1A5XHZlnIK9JAxQDUtotk0k="
     },
     "public": true
   },
@@ -198,12 +185,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "b992d21f7b504ee1a274ae011b99d3639552df4c",
-    "narHash": "sha256-CO+q2GRK97s9JLnpSp3vWWVdiiErg03QnIfBaANM2g8=",
-    "lastModified": 1795436465,
+    "rev": "0b95ae717d3e0cefb45f9686d1be43f0d80366b5",
+    "narHash": "sha256-YcPmiyvA1ND1PRHduUrIcniGqx5ioX8TRDuAn4++CGU=",
+    "lastModified": 1795463887,
     "archive": {
-      "hash": "sha256-ZhmBy6Lw276pFMbqvEaIXIOmFpSrLbqahBtmoOROhG8=",
-      "outHash": "sha256-G2uRNyTj+CfUofGAQq2UJKrcJ+FjyFkVyQZtAQfUTV0="
+      "hash": "sha256-p2GkkyMfjQuSgTrmsU32xirN00J1EIJFUzh2aJ9iqbc=",
+      "outHash": "sha256-0cqDu9Bq4i9syUFMVPl6E05j9iUa8NH+u/wEUL3L8II="
     },
     "public": true
   },
@@ -286,9 +273,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "a992d76e8e9c906a3714b596ba3a9b8386a817d6",
-    "narHash": "sha256-u6gAZW/m9HnyiI/QpupurIB0L3SRUsBDRvrCrJp5EMU=",
-    "lastModified": 1795391791,
+    "rev": "35c1c4cb2653226de6bf7744d648549592ad341a",
+    "narHash": "sha256-sHc/kJwHpMcszaBMniAMAp5CiUEIph6pb49pQ6Amag8=",
+    "lastModified": 1795458252,
     "archive": null,
     "public": true
   },

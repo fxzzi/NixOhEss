@@ -3,7 +3,7 @@
 [shorturls]
 channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 fazzi   = "gitlab:fazzi/{path}"
-raf     = "git+ssh://git@git.notashelf.dev:33/notashelf/{path}.git"
+raf     = "git+ssh://git@git.notashelf.dev:33/notashelf/{path}"
 
 [all_follow]
 nixpkgs = "nixpkgs"
@@ -58,9 +58,8 @@ url = "github:NotAShelf/nvf"
 url  = "github:NotAShelf/rags"
 type = "fetch"
 [inputs.beer]
-url     = "raf:beer"
-type    = "fetch"
-patches = ["./patches/beer/0001-I-hate-SCTK.patch"]
+url  = "raf:beer?ref=notashelf/push-kntqwkmxprtt"
+type = "fetch"
 [inputs.chroma]
 url  = "raf:chroma"
 type = "fetch"
@@ -100,6 +99,6 @@ type   = "fixed"
 unpack = "file"
 
 [inputs.disblock-origin]
-url     = "git+https://codeberg.org/AllPurposeMat/Disblock-Origin.git"
+url     = "git+https://codeberg.org/AllPurposeMat/Disblock-Origin"
 type    = "fetch"
 patches = ["https://codeberg.org/AllPurposeMat/Disblock-Origin/pulls/163"]
