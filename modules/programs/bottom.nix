@@ -33,11 +33,9 @@ in
             sort_order = "Descending";
             sensor_filter = {
               list = [
-                # These all show up as 0 degrees.
-                "nct6775.656 (nct6798): PCH_CHIP_TEMP"
-                "nct6775.656 (nct6798): PCH_CPU_TEMP"
-                "nct6775.656 (nct6798): PCH_MCH_TEMP"
-                "nct6775.656 (nct6798): PCH_CHIP_CPU_MAX_TEMP"
+                # Unconnected or always 0 degrees. Entries match as substrings.
+                "PCH_"
+                "AUXTIN"
                 "asus-ec-sensors (asusec): T_Sensor"
                 "asus-ec-sensors (asusec): VRM"
               ];
