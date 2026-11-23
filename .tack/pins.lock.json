@@ -106,9 +106,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "2a28f37d253ea3866f85eabe482c68a84fc32ed5",
-    "narHash": "sha256-IjFbnKzAkaG+tiZxwpP5CfTYVNxKKYSMioLynWAaGd0=",
-    "lastModified": 1795054265,
+    "rev": "7ffcc9573d137fbfa59614af28104c63079c6349",
+    "narHash": "sha256-ASAEcGsBdWKf9zLvNlH/VxX/97dMoj4jk5R0/E6C4A0=",
+    "lastModified": 1795399391,
     "public": true
   },
   "hyprland": {
