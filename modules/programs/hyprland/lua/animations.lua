@@ -29,7 +29,7 @@ for _, a in ipairs({
   { "zoomFactor", true, 4, "quick" },
   -- wsAnim will be vertical if multi-monitor, otherwise the animation will be weird
   -- and it will look like windows are moving into each other across the monitors.
-  { "workspaces", true, 4, "easeOutQuint", nix.multiMonitor and "slidevert" or "slide" },
+  { "workspaces", true, 4, "easeOutQuint", nix.monitors.secondary and "slidevert" or "slide" },
   -- disable the bootup animation
   { "monitorAdded", false },
 }) do

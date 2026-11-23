@@ -21,18 +21,15 @@ let
   system = pkgs.stdenv.hostPlatform.system;
   hyprlandSet = if cfg.useGit then inputs.hyprland.packages.${system} else pkgs;
 
-  multiMonitor = cfg.secondaryMonitor != null;
-
   selfPkgs = self.packages.${system};
   azzipkgs = inputs.azzipkgs.packages.${system};
 
   # values exposed to the lua config as the global `nix` table.
   nixVars = {
     inherit (config.cfg.core) isLaptop;
-    inherit multiMonitor;
     monitors = {
       default = cfg.defaultMonitor;
-      secondary = if multiMonitor then cfg.secondaryMonitor else cfg.defaultMonitor;
+      secondary = cfg.secondaryMonitor; # nil in lua if unset
     };
     bin = {
       screenshot = getExe azzipkgs.screenshot;

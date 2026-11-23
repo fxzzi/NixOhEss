@@ -56,6 +56,6 @@ hl.window_rule({
 })
 
 -- confine cursor to the monitor when a game is in fullscreen.
-if nix.multiMonitor then
+if nix.monitors.secondary then
   hl.window_rule({ match = { tag = "confine", fullscreen = true }, confine_pointer = true })
 end

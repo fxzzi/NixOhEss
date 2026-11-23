@@ -6,7 +6,7 @@ hl.monitor({
   scale = "1",
 })
 
-if nix.multiMonitor then
+if nix.monitors.secondary then
   -- set primary monitor for xwayland apps too.
   hl.on("monitor.layout_changed", function()
     hl.exec_cmd(nix.bin.xrandr .. " --output " .. nix.monitors.default .. " --primary")
