@@ -12,7 +12,6 @@ let
         all
         isAttrs
         isList
-        removeAttrs
         ;
       inherit (lib.attrsets) filterAttrs mapAttrsToList;
       inherit (lib.generators) toKeyValue;

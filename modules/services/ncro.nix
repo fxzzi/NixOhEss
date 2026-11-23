@@ -6,7 +6,6 @@
 }:
 let
   inherit (lib) mkForce;
-  inherit (builtins) toString;
 
   cache-nixos-org = {
     url = "https://cache.nixos.org";

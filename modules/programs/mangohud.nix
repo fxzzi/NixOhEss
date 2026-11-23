@@ -14,7 +14,7 @@ let
     generators
     min
     ;
-  inherit (builtins) toString floor;
+  inherit (builtins) floor;
   cfg = config.cfg.programs.mangohud;
 
   # If VRR is enabled, cap FPS slightly *below* the refresh rate to avoid the FIFO filling up which would cause

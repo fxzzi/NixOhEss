@@ -15,7 +15,6 @@ let
     isBool
     isInt
     isString
-    toString
     ;
   prefs = {
     # Set home page
