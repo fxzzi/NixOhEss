@@ -17,8 +17,6 @@ in
     environment.sessionVariables = {
       EDITOR = "nvim";
       MANPAGER = "nvim -n --cmd 'set laststatus=0 nonumber noruler noshowcmd' +Man!";
-      # clanker always ruining my clean ~
-      COPILOT_HOME = "$HOME/.config/copilot";
     };
     xdg.mime.defaultApplications = {
       "text/*" = "nvim.desktop";
@@ -32,6 +30,7 @@ in
             tabstop = 2;
             shiftwidth = 2;
           };
+          searchCase = "smart";
           undoFile.enable = true; # multi-session undo
           enableLuaLoader = true;
           clipboard = {
@@ -50,13 +49,11 @@ in
             enable = true;
             formatOnSave = true;
             trouble.enable = true;
-            lspSignature.enable = true;
             servers.nixd.settings.nixd = {
               nixpkgs.expr = "${flake}.nixosConfigurations.${hostName}.pkgs";
               options.nixos.expr = "${flake}.nixosConfigurations.${hostName}.options";
             };
           };
-          ui.fastaction.enable = true; # code actions
 
           # languages
           languages = {
@@ -89,15 +86,12 @@ in
           };
 
           # completion & editing
-          autocomplete.nvim-cmp.enable = true;
-          snippets.luasnip.enable = true;
-          assistant.copilot = {
+          autocomplete.blink-cmp = {
             enable = true;
-            cmp.enable = true;
+            setupOpts.signature.enabled = true;
           };
+          snippets.luasnip.enable = true;
           autopairs.nvim-autopairs.enable = true;
-          comments.comment-nvim.enable = true;
-          utility.motion.leap.enable = true;
 
           # navigation
           telescope.enable = true;
@@ -107,7 +101,6 @@ in
 
           # git
           git.enable = true;
-          utility.diffview-nvim.enable = true;
           terminal.toggleterm = {
             enable = true;
             lazygit.enable = true;
@@ -134,9 +127,16 @@ in
             noice.enable = true;
             colorizer.enable = true;
             illuminate.enable = true;
+            fastaction.enable = true; # code actions
           };
           notes.todo-comments.enable = true;
-          utility.icon-picker.enable = true;
+
+          utility = {
+            motion.leap.enable = true;
+            sleuth.enable = true;
+            diffview-nvim.enable = true;
+            icon-picker.enable = true;
+          };
         };
       };
     };

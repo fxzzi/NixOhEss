@@ -6,7 +6,6 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
-  inherit (builtins) toString;
   cfg = config.cfg.programs.nh;
 in
 {
