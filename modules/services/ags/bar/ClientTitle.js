@@ -1,9 +1,14 @@
+import { IconLabel } from "../lib/IconLabel.js";
+
 const hyprland = await Service.import("hyprland");
 
+const title = hyprland.active.client.bind("title");
+
 export const ClientTitleWidget = () =>
-  Widget.Label({
-    class_name: "client-title",
-    label: hyprland.active.client.bind("title"),
-    truncate: "end",
-    max_width_chars: 96,
+  IconLabel({
+    class_name: "island",
+    visible: title.as(Boolean),
+    icon: "app-window-outline-symbolic",
+    label: title,
+    labelProps: { truncate: "end" },
   });

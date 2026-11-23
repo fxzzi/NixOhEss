@@ -1,26 +1,9 @@
 // finding and reading hardware sensors under /sys
-import Gio from "gi://Gio";
 import GLib from "gi://GLib";
+import { listDir } from "./fs.js";
 
 const read = (path) => Utils.readFile(path).trim();
 const exists = (path) => GLib.file_test(path, GLib.FileTest.EXISTS);
-
-// names of the entries in a directory, or [] if it can't be read
-export function listDir(path) {
-  try {
-    const iter = Gio.File.new_for_path(path).enumerate_children(
-      "standard::name",
-      Gio.FileQueryInfoFlags.NONE,
-      null,
-    );
-    const names = [];
-    let info;
-    while ((info = iter.next_file(null)) !== null) names.push(info.get_name());
-    return names;
-  } catch (e) {
-    return [];
-  }
-}
 
 // read a sensor's *_input file, formatted as whole degrees
 export const formatTemp = (path) => {
@@ -32,12 +15,6 @@ export const formatTemp = (path) => {
 const sensorLabelPriority = [
   { regex: /^k10temp|^zenpower/, labels: ["Tdie", "Tctl"] },
   { regex: /^coretemp/, labels: ["Package id 0"] },
-  { regex: /^atk0110/, labels: ["CPU Temperature"] },
-  { regex: /^it8603/, labels: ["temp1"] },
-  { regex: /^nct/, labels: ["TSI0_TEMP"] },
-  { regex: /^asusec/, labels: ["CPU"] },
-  { regex: /^l_pcs/, labels: ["Node 0 Max"] },
-  { regex: /^cpuss0_/, labels: ["temp1"] },
 ];
 
 export function findCpuTempFile() {

@@ -7,6 +7,7 @@ import { TimeWidget, DateWidget } from "./bar/Clock.js";
 import { BatteryWidget } from "./bar/Battery.js";
 import { SysTrayWidget } from "./bar/SysTray.js";
 import { VolumeWidget } from "./bar/Volume.js";
+import { MpdWidget } from "./bar/Mpd.js";
 import {
   CpuUsageWidget,
   CpuTempWidget,
@@ -16,29 +17,31 @@ import {
 import { WallPicker } from "./windows/WallPicker.js";
 import { PowerMenu } from "./windows/PowerMenu.js";
 
-const createBox = (spacing, children, hpack = null) =>
-  Widget.Box({ spacing, children, hpack });
+const island = (...children) =>
+  Widget.Box({ spacing: 10, children, class_name: "island" });
+
+// CenterBox packs its start and end widgets with expand, so pin them to the edges
+const section = (children, hpack) =>
+  Widget.Box({ spacing: 6, children, hpack });
 
 const Left = (monitorName) =>
-  createBox(10, [
-    Workspaces(monitorName),
-    TimeWidget(),
-    DateWidget(),
-    BatteryWidget(),
-  ]);
+  section([island(Workspaces(monitorName)), ClientTitleWidget()], "start");
 
-const Center = () => createBox(10, [ClientTitleWidget()]);
+const Center = () => island(TimeWidget(), DateWidget());
 
 const Right = () =>
-  createBox(
-    10,
+  section(
     [
+      MpdWidget(),
       SysTrayWidget(),
-      GpuTempWidget(),
-      CpuTempWidget(),
-      CpuUsageWidget(),
-      MemUsageWidget(),
-      VolumeWidget(),
+      island(
+        GpuTempWidget(),
+        CpuTempWidget(),
+        CpuUsageWidget(),
+        MemUsageWidget(),
+        BatteryWidget(),
+      ),
+      island(VolumeWidget()),
     ],
     "end",
   );

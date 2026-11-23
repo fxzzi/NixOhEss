@@ -11,10 +11,19 @@ function getVolumeIcon() {
   return "audio-volume-muted-symbolic";
 }
 
+const changeVolume = (delta) => {
+  const v = Math.round((audio.speaker.volume + delta) * 100) / 100;
+  audio.speaker.volume = Math.min(1, Math.max(0, v));
+};
+
 export const VolumeWidget = () =>
-  IconLabel({
-    hexpand: true,
-    icon: Utils.watch(getVolumeIcon(), audio.speaker, getVolumeIcon),
-    label: audio.speaker.bind("volume").as((v) => `${Math.round(v * 100)}%`),
-    className: "bar-button-label volume",
+  Widget.EventBox({
+    on_primary_click_release: () =>
+      (audio.speaker.is_muted = !audio.speaker.is_muted),
+    on_scroll_up: () => changeVolume(0.01),
+    on_scroll_down: () => changeVolume(-0.01),
+    child: IconLabel({
+      icon: Utils.watch(getVolumeIcon(), audio.speaker, getVolumeIcon),
+      label: audio.speaker.bind("volume").as((v) => `${Math.round(v * 100)}%`),
+    }),
   });

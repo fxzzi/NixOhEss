@@ -3,6 +3,7 @@ import GdkPixbuf from "gi://GdkPixbuf";
 import GLib from "gi://GLib";
 import Gtk from "gi://Gtk?version=3.0";
 import System from "system";
+import { listDir } from "../lib/fs.js";
 
 const WALL_DIR = `${GLib.get_user_data_dir()}/walls`;
 const CURRENT_WALL = `${GLib.get_user_state_dir()}/wallpaper`;
@@ -10,16 +11,12 @@ const THUMB_W = 320;
 const THUMB_H = 180;
 const IMAGE_RE = /\.(jpe?g|png|webp|gif|bmp|tiff?)$/i;
 
-const listWalls = () => {
-  const names = [];
-  const dir = GLib.Dir.open(WALL_DIR, 0);
-  let name;
-  while ((name = dir.read_name())) if (IMAGE_RE.test(name)) names.push(name);
-  dir.close();
-  return names.sort((a, b) =>
-    a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }),
-  );
-};
+const listWalls = () =>
+  listDir(WALL_DIR)
+    .filter((name) => IMAGE_RE.test(name))
+    .sort((a, b) =>
+      a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }),
+    );
 
 const applyWall = (path) => {
   App.closeWindow("wall-picker");
@@ -30,7 +27,6 @@ export function WallPicker() {
   let loader = 0;
 
   const grid = Widget.FlowBox({
-    class_name: "walls",
     homogeneous: true,
     min_children_per_line: 1,
     max_children_per_line: 4,
@@ -123,7 +119,7 @@ export function WallPicker() {
     exclusivity: "ignore",
     keymode: "exclusive",
     visible: false,
-    // wrapped in a box so the shared `window > box` styling applies
+    // wrapped in a box so the shared `.wall-picker > box` panel styling applies
     child: Widget.Box({ children: [scroll] }),
     setup: (self) =>
       self.hook(

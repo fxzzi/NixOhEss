@@ -24,26 +24,22 @@ export const CpuUsageWidget = () =>
   IconLabel({
     icon: "activity-outline-symbolic",
     label: cpuUsage.bind(),
-    className: "cpu-usage",
   });
 
 export const MemUsageWidget = () =>
   IconLabel({
     icon: "pie-chart-outline-symbolic",
     label: memUsage.bind(),
-    className: "memory-usage",
   });
 
 export const CpuTempWidget = () =>
   IconLabel({
     icon: "thermometer-outline-symbolic",
     label: cpuTemp.bind(),
-    className: "temperature-usage",
   });
 
 export const GpuTempWidget = () =>
   IconLabel({
     icon: "expansion-card-symbolic",
     label: gpuTemp.bind(),
-    className: "temperature-usage",
   });

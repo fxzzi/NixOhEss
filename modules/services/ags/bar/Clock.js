@@ -21,12 +21,10 @@ export const TimeWidget = () =>
   IconLabel({
     icon: "clock-analog-outline-symbolic",
     label: time.bind(),
-    className: "time",
   });
 
 export const DateWidget = () =>
   IconLabel({
     icon: "calendar-outline-symbolic",
     label: date.bind(),
-    className: "date",
   });

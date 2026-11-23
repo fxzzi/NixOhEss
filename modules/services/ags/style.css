@@ -8,20 +8,26 @@
   margin: unset;
 }
 
-window > box {
-  background: @background;
-  font: 15.5px monospace;
+.bar,
+.wall-picker,
+.power-menu {
+  font: 15px monospace;
   font-weight: 600;
   color: @foreground;
-  margin: 4px 4px 0 4px;
+}
+
+.island,
+.wall-picker > box,
+.power-menu > box {
+  background: @background;
   border: 2px solid @color4;
-  min-height: 28px;
+  border-radius: 6px;
 }
 
 button {
   background: transparent;
   box-shadow: none;
-  padding: 0 6px 0 6px;
+  padding: 0 6px;
 }
 
 menu {
@@ -35,20 +41,25 @@ menu menuitem {
   padding: 4px 6px;
 }
 
-.workspaces {
-  margin-left: 5px;
+/* bar */
+.bar > box {
+  margin: 5px;
+  min-height: 30px;
 }
 
-.volume {
-  margin-right: 5px;
+.island {
+  padding: 0 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.tray {
+  padding: 0 2px;
 }
 
 .workspaces button {
   border-radius: 0;
   padding: 0 1px;
-  box-shadow: none;
   color: @foreground;
-  background-color: transparent;
 }
 
 .workspaces button.focused {
@@ -65,22 +76,20 @@ menu menuitem {
   color: @color4;
 }
 
-.tray {
-  background: transparent;
-  margin-right: -4px;
-}
-
 .charging {
   color: @color6;
+}
+
+.paused label {
+  color: @color8;
 }
 
 /* wallpaper picker */
 .wall-picker > box {
   padding: 12px;
-  margin: 0;
 }
 
-.wall-picker .wall-scroll {
+.wall-scroll {
   min-width: 1400px;
   min-height: 720px;
 }
@@ -88,7 +97,7 @@ menu menuitem {
 .wall-picker flowboxchild {
   padding: 6px;
   border: 2px solid transparent;
-  border-radius: 0;
+  border-radius: 4px;
   background: transparent;
 }
 
@@ -101,41 +110,40 @@ menu menuitem {
   background: alpha(@color4, 0.15);
 }
 
-.wall-picker .wall.active label {
+.wall.active label {
   color: @color6;
 }
 
 /* power menu */
 .power-menu > box {
   padding: 8px;
-  margin: 0;
 }
 
-.power-menu .action {
+.action {
   min-width: 128px;
   padding: 16px 8px 12px 8px;
   font-size: 17px;
   border: 2px solid transparent;
-  border-radius: 0;
+  border-radius: 4px;
 }
 
-.power-menu .action .icon {
+.action .icon {
   padding: 0;
   margin-bottom: 2px;
 }
 
-.power-menu .action .key {
+.key {
   color: @color8;
   font-size: 14px;
 }
 
-.power-menu .action:hover,
-.power-menu .action:focus {
+.action:hover,
+.action:focus {
   border-color: @color4;
   background: alpha(@color4, 0.15);
 }
 
-.power-menu .action:hover .key,
-.power-menu .action:focus .key {
+.action:hover .key,
+.action:focus .key {
   color: @color6;
 }

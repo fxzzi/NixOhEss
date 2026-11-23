@@ -10,5 +10,4 @@ export const BatteryWidget = () =>
       .bind("charging")
       .as((ch) => (ch ? "charging icon" : "icon")),
     label: battery.bind("percent").as((p) => `${p}%`),
-    className: "battery",
   });
