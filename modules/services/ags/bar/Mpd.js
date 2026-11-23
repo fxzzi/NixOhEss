@@ -33,7 +33,7 @@ export const MpdWidget = () =>
     on_scroll_up: () => getPlayer()?.previous(),
     on_scroll_down: () => getPlayer()?.next(),
     child: IconLabel({
-      class_names: paused.as((p) => (p ? ["island", "paused"] : ["island"])),
+      class_name: paused.as((p) => (p ? "paused" : "")),
       icon: paused.as((p) =>
         p ? "media-playback-pause-symbolic" : "media-playback-start-symbolic",
       ),

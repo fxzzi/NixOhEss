@@ -4,7 +4,6 @@ export function SysTrayWidget() {
   // visible lives on the outer box: setting children calls show_all(),
   // which would undo it if both were on the same box
   return Widget.Box({
-    class_names: ["island", "tray"],
     visible: systemtray.bind("items").as((items) => items.length > 0),
     child: Widget.Box({
       children: systemtray.bind("items").as((items) =>

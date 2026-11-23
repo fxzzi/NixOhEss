@@ -6,7 +6,6 @@ const title = hyprland.active.client.bind("title");
 
 export const ClientTitleWidget = () =>
   IconLabel({
-    class_name: "island",
     visible: title.as(Boolean),
     icon: "app-window-outline-symbolic",
     label: title,

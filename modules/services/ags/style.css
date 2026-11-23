@@ -16,7 +16,7 @@
   color: @foreground;
 }
 
-.island,
+.bar > box,
 .wall-picker > box,
 .power-menu > box {
   background: @background;
@@ -42,26 +42,15 @@ menu menuitem {
 }
 
 /* bar */
-.bar {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
-}
-
-.center {
-  margin: 0 6px;
-}
-
 .bar > box {
   margin: 5px;
-  min-height: 30px;
-}
-
-.island {
-  padding: 0 8px;
+  min-height: 28px;
+  padding: 0 12px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
-.tray {
-  padding: 0 2px;
+.sep {
+  color: @color8;
 }
 
 .workspaces button {

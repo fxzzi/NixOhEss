@@ -17,38 +17,59 @@ import {
 import { WallPicker } from "./windows/WallPicker.js";
 import { PowerMenu } from "./windows/PowerMenu.js";
 
-const island = (...children) =>
-  Widget.Box({ spacing: 10, children, class_name: "island" });
-
-// CenterBox packs its start and end widgets with expand, so pin them to the edges
-const section = (children, hpack) =>
-  Widget.Box({ spacing: 6, children, hpack });
-
-const Left = (monitorName) =>
-  section([island(Workspaces(monitorName)), ClientTitleWidget()], "start");
-
-const Center = () =>
-  Widget.Box({
-    class_name: "center",
-    child: island(TimeWidget(), DateWidget()),
+// follows the visibility of the widget it separates, so hidden widgets
+// don't leave a stray separator behind
+const sep = (target) =>
+  Widget.Label({
+    label: "|",
+    class_name: "sep",
+    setup: (self) =>
+      self.hook(
+        target,
+        () => (self.visible = target.visible),
+        "notify::visible",
+      ),
   });
 
-const Right = () =>
-  section(
+const group = (children, props = {}) =>
+  Widget.Box({ spacing: 10, children, ...props });
+
+// CenterBox packs its start and end widgets with expand, so pin them to the edges
+const section = (children, props) =>
+  Widget.Box({ spacing: 8, children, ...props });
+
+const Left = (monitorName) => {
+  const title = ClientTitleWidget();
+  return section([Workspaces(monitorName), sep(title), title], {
+    hpack: "start",
+  });
+};
+
+const Center = () => group([TimeWidget(), DateWidget()]);
+
+const Right = () => {
+  const mpd = MpdWidget();
+  const tray = SysTrayWidget();
+  const volume = VolumeWidget();
+  return section(
     [
-      MpdWidget(),
-      SysTrayWidget(),
-      island(
+      mpd,
+      sep(mpd),
+      tray,
+      sep(tray),
+      group([
         GpuTempWidget(),
         CpuTempWidget(),
         CpuUsageWidget(),
         MemUsageWidget(),
         BatteryWidget(),
-      ),
-      island(VolumeWidget()),
+      ]),
+      sep(volume),
+      volume,
     ],
-    "end",
+    { hpack: "end" },
   );
+};
 
 const Bar = (gdkMonitor, monitorName) =>
   Widget.Window({
