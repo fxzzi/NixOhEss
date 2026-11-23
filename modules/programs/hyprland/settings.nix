@@ -61,9 +61,11 @@ in
         };
         blur = {
           enabled = true;
-          size = 3;
+          size = 5;
           passes = 3;
           noise = 0.1;
+          vibrancy = 0.2;
+          popups = true;
         };
       };
       cursor = {

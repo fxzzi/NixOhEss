@@ -4,7 +4,7 @@ hl.layer_rule({ match = { namespace = "power-menu" }, blur = true, xray = true, 
 hl.layer_rule({ match = { namespace = "wall-picker" }, blur = true, xray = true, ignore_alpha = 0 })
 -- 0.75 so the box shadows (max 0.7 alpha) don't get blurred
 hl.layer_rule({ match = { namespace = "bar-.*" }, blur = true, xray = true, ignore_alpha = 0.75 })
-hl.layer_rule({ match = { namespace = "notifications" }, blur = true, animation = "slide" })
+hl.layer_rule({ match = { namespace = "notifications" }, blur = true, ignore_alpha = 0, animation = "slide" })
 -- show `still` below `slurp`, but above notifications
 -- used to freeze screen during selection screenshots
 hl.layer_rule({ match = { namespace = "selection" }, no_anim = true, order = -2 })

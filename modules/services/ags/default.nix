@@ -32,7 +32,7 @@ in
           target = "~/.config/ags/colors_ags.css";
           template = builtins.toFile "colors_ags.css" ''
             @define-color cursor {{cursor}};
-            @define-color background rgba({{background | rgb}},0.85);
+            @define-color background rgba({{background | rgb}},0.8);
             @define-color foreground {{foreground}};
             @define-color color0  {{color0 }};
             @define-color color1  {{color1 }};

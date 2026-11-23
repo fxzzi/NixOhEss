@@ -41,7 +41,7 @@ in
             selection={{color0 | lighten(0.5) | strip}}55
             selection-match={{color4 | strip}}ff
             selection-text={{foreground | strip}}ff
-            border={{color4 | strip}}aa
+            border={{color4 | strip}}ff
             placeholder={{color12 | darken(0.3) | strip}}ff       
           '';
         };

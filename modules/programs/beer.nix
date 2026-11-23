@@ -45,7 +45,7 @@ in
               pad-y = 8;
             };
             colors = {
-              alpha = 0.85;
+              alpha = 0.8;
             };
             cursor.style = "beam";
           };
