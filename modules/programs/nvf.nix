@@ -2,11 +2,13 @@
   inputs,
   config,
   lib,
+  hostName,
   ...
 }:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.cfg.programs.nvf;
+  flake = ''(builtins.getFlake "${config.programs.nh.flake}")'';
 in
 {
   options.cfg.programs.nvf.enable = mkEnableOption "nvf";
@@ -49,6 +51,10 @@ in
             formatOnSave = true;
             trouble.enable = true;
             lspSignature.enable = true;
+            servers.nixd.settings.nixd = {
+              nixpkgs.expr = "${flake}.nixosConfigurations.${hostName}.pkgs";
+              options.nixos.expr = "${flake}.nixosConfigurations.${hostName}.options";
+            };
           };
           ui.fastaction.enable = true; # code actions
 
@@ -70,6 +76,7 @@ in
             nix = {
               enable = true;
               format.type = [ "nixfmt" ];
+              lsp.servers = [ "nixd" ];
             };
             python.enable = true;
             toml.enable = true;
