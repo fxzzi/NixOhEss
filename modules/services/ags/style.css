@@ -53,6 +53,11 @@ menu menuitem {
   color: @color8;
 }
 
+/* keeps the truncated title and song away from the clock */
+.center {
+  margin: 0 64px;
+}
+
 .workspaces button {
   border-radius: 0;
   padding: 0 1px;

@@ -45,7 +45,8 @@ const Left = (monitorName) => {
   });
 };
 
-const Center = () => group([TimeWidget(), DateWidget()]);
+const Center = () =>
+  group([TimeWidget(), DateWidget()], { class_name: "center" });
 
 const Right = () => {
   const mpd = MpdWidget();
