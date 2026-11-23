@@ -205,12 +205,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "a32e58f47eb4c569bdbad0b1fe2a7b8fb66599eb",
-    "narHash": "sha256-E+inxHVJB5qOh8SLhlgDlhYN+etdPe2mvpxwe3Po2kQ=",
-    "lastModified": 1795371348,
+    "rev": "7bb374b0b1f1978c1f957700dd3542e07c8ba566",
+    "narHash": "sha256-Vf/oXkQ+CJNQLdul03QVgjzAW356oJYlyRMSFrVrrKA=",
+    "lastModified": 1795392066,
     "archive": {
-      "hash": "sha256-Pcjgz07OIAzmb/6NqsGTqAxC5iUHXpxqvt4BGChQ1XA=",
-      "outHash": "sha256-w+ru4MeUrgYyoPi5EDnGzdJ0hpZX3vX8EFtFZO+ooaA="
+      "hash": "sha256-t8creP/9UaQ37oQx24WVpABkT/A37QiGP6rweWlQhDM=",
+      "outHash": "sha256-FaILH0hl6cdOr69uGIXFimzhpFV3+kxbvVSBDUUWc8g="
     },
     "public": true
   },
@@ -286,9 +286,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "1424edc27b6e6f6d4f216410e0a2cc1419d96cb7",
-    "narHash": "sha256-z7m16oDAtHsgbBX6gadOpa6pGPXNEahjwyzPC0pbLvM=",
-    "lastModified": 1795064133,
+    "rev": "a992d76e8e9c906a3714b596ba3a9b8386a817d6",
+    "narHash": "sha256-u6gAZW/m9HnyiI/QpupurIB0L3SRUsBDRvrCrJp5EMU=",
+    "lastModified": 1795391791,
     "archive": null,
     "public": true
   },
