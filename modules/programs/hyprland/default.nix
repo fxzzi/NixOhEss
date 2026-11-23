@@ -39,7 +39,7 @@ let
           getExe azzipkgs.brightness-laptop # uses brightnessctl
         else
           getExe azzipkgs.brightness; # uses hyprsunset instead
-      mpc = getExe pkgs.mpc;
+      playerctl = getExe pkgs.playerctl;
       swappy = getExe pkgs.swappy;
       xrandr = getExe pkgs.xrandr;
       sunset = getExe azzipkgs.sunset;

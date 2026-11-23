@@ -41,10 +41,11 @@ bind(
   )
 )
 
--- mpd media controls
-bind({ "XF86AudioPrev" }, hl.dsp.exec_raw(bin.mpc .. " prev"))
-bind({ "XF86AudioPlay" }, hl.dsp.exec_raw(bin.mpc .. " toggle"))
-bind({ "XF86AudioNext" }, hl.dsp.exec_raw(bin.mpc .. " next"))
+-- media controls
+local playerctl = bin.playerctl .. " -p mpd,%any "
+bind({ "XF86AudioPrev" }, hl.dsp.exec_raw(playerctl .. "previous"))
+bind({ "XF86AudioPlay" }, hl.dsp.exec_raw(playerctl .. "play-pause"))
+bind({ "XF86AudioNext" }, hl.dsp.exec_raw(playerctl .. "next"))
 
 -- shortcuts for OBS
 bind({ "CTRL", "SHIFT", "grave" }, hl.dsp.global("com.obsproject.Studio:_toggle_recording"))

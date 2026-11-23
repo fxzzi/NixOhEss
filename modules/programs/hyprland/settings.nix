@@ -27,9 +27,15 @@ in
     cfg.programs.hyprland.hlConfig = mapAttrsRecursive (_: mkDefault) {
       general = {
         # Outer monitor gaps
-        gaps_out = 4;
+        # top is 0 because the bar reserves its own gap below it, as room for its shadow
+        gaps_out = {
+          top = 0;
+          right = 5;
+          bottom = 5;
+          left = 5;
+        };
         # Inner window gaps
-        gaps_in = 2;
+        gaps_in = 3;
         # Set window border width
         border_size = 2;
         # tearing causes problems and is honestly useless most the time
@@ -45,8 +51,14 @@ in
       quirks.skip_non_kms_dmabuf_formats = config.cfg.hardware.nvidia.enable;
       animations.enabled = true;
       decoration = {
-        rounding = 0;
-        shadow.enabled = false;
+        rounding = 6;
+        shadow = {
+          enabled = true;
+          range = 10;
+          render_power = 3;
+          color = "rgba(00000073)";
+          color_inactive = "rgba(00000040)";
+        };
         blur = {
           enabled = true;
           size = 3;
