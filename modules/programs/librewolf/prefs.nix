@@ -105,6 +105,11 @@ let
 
     # enable webrender, can help performance
     "gfx.webrender.all" = true;
+
+    # DNS over HTTPS
+    "network.trr.mode" = 2; # 2: allows fallback to system DNS
+    "network.trr.uri" = "https://cloudflare-dns.com/dns-query";
+    "network.trr.custom_uri" = "https://cloudflare-dns.com/dns-query";
   };
   attrsToLines = f: attrs: concatMapAttrsStringSep "\n" f attrs;
   prefValue =
