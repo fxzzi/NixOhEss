@@ -5,7 +5,12 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf getExe;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    getExe
+    optionalString
+    ;
   cfg = config.cfg.services.mpd;
 in
 {
@@ -21,8 +26,10 @@ in
         sticker_file "~/.local/state/mpd/sticker.sql"
 
         bind_to_address "localhost"
-        auto_update "yes"
         zeroconf_enabled "no"
+        ${optionalString (!config.cfg.core.isLaptop) ''
+          auto_update "yes"
+        ''}
 
         audio_output {
           type "pipewire"
