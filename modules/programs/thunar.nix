@@ -9,21 +9,25 @@ let
     mkEnableOption
     mkOption
     mkIf
-    concatMapStrings
+    mkBefore
+    concatLines
+    types
     ;
   cfg = config.cfg.programs.thunar;
-  bookmarks = [
-    "file://${config.hj.directory}/Downloads Downloads"
-    "file://${config.hj.directory}/Videos Videos"
-    "file://${config.hj.directory}/Pictures/Screenshots Screenshots"
-    "file://${config.programs.nh.flake} NixOS"
-  ];
 in
 {
   options.cfg.programs.thunar = {
     enable = mkEnableOption "thunar";
+    bookmarks = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = ''
+        GTK sidebar bookmarks, as "<uri> <label>". Definitions from
+        multiple files are merged, so hosts can just add their own.
+      '';
+    };
     view = mkOption {
-      type = lib.types.enum [
+      type = types.enum [
         "Details"
         "Icon"
         "Compact"
@@ -33,6 +37,13 @@ in
     };
   };
   config = mkIf cfg.enable {
+    # mkBefore so these always come first, above any host bookmarks
+    cfg.programs.thunar.bookmarks = mkBefore [
+      "file://${config.hj.directory}/Downloads Downloads"
+      "file://${config.hj.directory}/Videos Videos"
+      "file://${config.hj.directory}/Pictures/Screenshots Screenshots"
+      "file://${config.programs.nh.flake} NixOS"
+    ];
     programs.thunar = {
       enable = true;
       plugins = with pkgs; [
@@ -55,7 +66,7 @@ in
         _7zip-zstd-rar
       ];
       xdg.config.files = {
-        "gtk-3.0/bookmarks".text = concatMapStrings (l: l + "\n") bookmarks;
+        "gtk-3.0/bookmarks".text = concatLines cfg.bookmarks;
         "Thunar/uca.xml".text = ''
           <?xml version="1.0" encoding="UTF-8"?>
           <actions>

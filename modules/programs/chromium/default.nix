@@ -38,10 +38,8 @@ let
   ++ optionals config.cfg.programs.startpage.enable [
     "--custom-ntp=${config.cfg.programs.startpage.page}"
   ]
-  ++ optionals (enableFeatures != [ ]) [
+  ++ [
     "--enable-features=${concatStringsSep "," enableFeatures}"
-  ]
-  ++ optionals (disableFeatures != [ ]) [
     "--disable-features=${concatStringsSep "," disableFeatures}"
   ]
   ++ optionals (!config.cfg.core.smoothScroll) [

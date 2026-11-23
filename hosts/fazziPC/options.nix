@@ -80,7 +80,13 @@
       adb.enable = true;
       mpv.enable = true;
       obs-studio.enable = true;
-      thunar.enable = true;
+      thunar = {
+        enable = true;
+        bookmarks = [
+          "file:///games Games"
+          "file://${config.hj.directory}/.local/torrents Torrents"
+        ];
+      };
       discord.enable = true;
       librewolf.enable = true;
       chromium = {

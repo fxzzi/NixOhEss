@@ -32,10 +32,8 @@ let
     # hdr, wcg
     "--enable-experimental-web-platform-features"
   ]
-  ++ optionals (enableFeatures != [ ]) [
+  ++ [
     "--enable-features=${concatStringsSep "," enableFeatures}"
-  ]
-  ++ optionals (disableFeatures != [ ]) [
     "--disable-features=${concatStringsSep "," disableFeatures}"
   ]
   ++ optionals (!config.cfg.core.smoothScroll) [
