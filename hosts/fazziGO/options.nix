@@ -14,7 +14,11 @@
       gcr-ssh-agent.enable = true;
       pipewire.enable = true;
       syncthing.enable = true;
-      mpd.enable = true;
+      mpd = {
+        enable = true;
+        mpris.enable = true;
+        notification.enable = true;
+      };
       hypridle = {
         enable = true;
         lockTimeout = 360;

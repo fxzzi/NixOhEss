@@ -21,6 +21,8 @@ in
         sticker_file "~/.local/state/mpd/sticker.sql"
 
         bind_to_address "localhost"
+        auto_update "yes"
+        zeroconf_enabled "no"
 
         audio_output {
           type "pipewire"
@@ -33,7 +35,7 @@ in
           enabled "no"
         }
 
-        replaygain "track"
+        replaygain "auto"
         replaygain_preamp "4"
         replaygain_missing_preamp "-10"
         restore_paused "yes"

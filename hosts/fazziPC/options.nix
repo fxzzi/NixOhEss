@@ -35,6 +35,7 @@
         enable = true;
         discord-rpc.enable = true;
         notification.enable = true;
+        mpris.enable = true;
       };
       hypridle = {
         enable = true;
