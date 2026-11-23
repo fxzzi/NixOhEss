@@ -1,13 +1,8 @@
 { lib, ... }:
 let
-  inherit (lib) mkDefault mkEnableOption;
+  inherit (lib) mkDefault;
 in
 {
-  options.cfg.programs.smoothScroll = {
-    enable = mkEnableOption "smooth scrolling" // {
-      default = true;
-    };
-  };
   config = {
     programs = {
       # nano is enabled by default. no.

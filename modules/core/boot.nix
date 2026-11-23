@@ -17,6 +17,11 @@ in
   options = {
     cfg.core = {
       isLaptop = mkEnableOption "laptop";
+      smoothScroll = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable smooth scrolling (and GTK animations) across the desktop.";
+      };
       keyLayout = mkOption {
         type = types.str;
         default = "us";

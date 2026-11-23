@@ -73,7 +73,7 @@
 
   # icc files used in Hyprland
   age.secrets.m27q = {
-    file = "${self}/secrets/mub-M27Q_v1.icm.age";
+    file = ../../secrets/mub-M27Q_v1.icm.age;
     mode = "744";
   };
 

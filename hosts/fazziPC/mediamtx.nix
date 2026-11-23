@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  self,
   ...
 }:
 let
@@ -10,7 +9,7 @@ let
 in
 {
   config = {
-    age.secrets.publicip.file = "${self}/secrets/publicip.age";
+    age.secrets.publicip.file = ../../secrets/publicip.age;
     networking.firewall = {
       allowedTCPPorts = [ (toInt port) ];
       allowedUDPPorts = [ (toInt port) ];

@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   ...
 }:
 {
@@ -24,7 +23,7 @@
             color-scheme = "prefer-dark";
 
             gtk-enable-primary-paste = false; # disable middle click paste
-            enable-animations = config.cfg.programs.smoothScroll.enable;
+            enable-animations = false;
           };
           "org/gnome/desktop/wm/preferences" = {
             # hide all title bar buttons on gtk apps

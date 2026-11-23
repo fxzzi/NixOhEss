@@ -38,7 +38,7 @@ let
   ++ optionals (disableFeatures != [ ]) [
     "--disable-features=${concatStringsSep "," disableFeatures}"
   ]
-  ++ optionals (!config.cfg.programs.smoothScroll.enable) [
+  ++ optionals (!config.cfg.core.smoothScroll) [
     "--disable-smooth-scrolling"
   ];
 

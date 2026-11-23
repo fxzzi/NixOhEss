@@ -54,7 +54,7 @@ let
     "apz.overscroll.enabled" = false;
 
     # Disable smooth scrolling
-    "general.smoothScroll" = config.cfg.programs.smoothScroll.enable;
+    "general.smoothScroll" = config.cfg.core.smoothScroll;
 
     # Enable Firefox accounts
     "identity.fxaccounts.enabled" = true;

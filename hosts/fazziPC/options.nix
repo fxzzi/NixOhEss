@@ -2,6 +2,7 @@
   cfg = {
     core = {
       kernel.type = "rc";
+      smoothScroll = false;
       limine.timeout = 0.25;
     };
     hardware = {
@@ -51,7 +52,6 @@
       tack.enable = true;
       # gamescope.enable = true;
       osu.enable = true;
-      smoothScroll.enable = false;
       proton = {
         enable = true;
         packages = [

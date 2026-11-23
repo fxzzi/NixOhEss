@@ -2,6 +2,7 @@
   cfg = {
     core = {
       isLaptop = true;
+      smoothScroll = false;
       keyLayout = "uk";
       networkmanager.enable = true;
     };
@@ -34,7 +35,6 @@
       codium.enable = true;
       # mangohud.enable = true;
       steam.enable = true;
-      smoothScroll.enable = false;
       nvf.enable = true;
       adb.enable = true;
       wallust.enable = true;

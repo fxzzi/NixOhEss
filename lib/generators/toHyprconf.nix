@@ -60,22 +60,7 @@ let
         + mkFields fields;
     in
     toHyprconf' initialIndent attrs;
-
-  # taken from https://github.com/hyprwm/Hyprland/blob/f4b148df1e2d8edc96bd878a4cfde32ca6515ac8/nix/module.nix#L185-L197
-  pluginsToHyprconf =
-    plugins: importantPrefixes:
-    toHyprconf {
-      attrs = {
-        plugin =
-          let
-            mkEntry =
-              entry: if lib.types.package.check entry then "${entry}/lib/lib${entry.pname}.so" else entry;
-          in
-          map mkEntry plugins;
-      };
-      inherit importantPrefixes;
-    };
 in
 {
-  inherit toHyprconf pluginsToHyprconf;
+  inherit toHyprconf;
 }

@@ -19,11 +19,7 @@ in
   options = {
     cfg.programs.fastfetch = {
       enable = mkEnableOption "fastfetch";
-      shellIntegration = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Makes fastfetch run on shell startup";
-      };
+      shellIntegration = mkEnableOption "running fastfetch on shell startup";
       icon = mkOption {
         type = types.enum [
           "kunzoz"
@@ -115,7 +111,7 @@ in
         };
       };
     };
-    programs.zsh = lib.mkIf cfg.shellIntegration {
+    programs.zsh = mkIf cfg.shellIntegration {
       interactiveShellInit = mkAfter ''
         if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
           ${getExe pkgs.fastfetch}

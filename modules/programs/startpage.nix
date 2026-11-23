@@ -29,7 +29,7 @@ in
     page = mkOption {
       type = types.str;
       internal = true;
-      default = "file://${config.hj.xdg.data.directory}/startpage/${config.cfg.programs.startpage.user}/index.html";
+      default = "file://${config.hj.xdg.data.directory}/startpage/${cfg.user}/index.html";
     };
   };
   config = mkIf cfg.enable {
