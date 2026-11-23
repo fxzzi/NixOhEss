@@ -43,7 +43,7 @@ in
             "Noto Serif"
           ];
           monospace = [
-            "Lilex Nerd Font Mono"
+            "Lilex Nerd Font"
           ];
           emoji = [
             "Noto Color Emoji"
