@@ -61,7 +61,20 @@
     "ref": "HEAD",
     "rev": "99bab4a3a97f4473e3ff0a6e53b3508ccecf8fc7",
     "narHash": "sha256-UU94EUpCtmMlDrtj/Af/FJRbqQ8mfYRhcoP8zU+qDoo=",
-    "lastModified": 1795239696
+    "lastModified": 1795239696,
+    "patched": {
+      "path": "/nix/store/miyszdh9vqmm6yhd4wbk0j7958zqf15g-source",
+      "narHash": "sha256-seiOvzzO4riqqTqwl+FrRx1/kg+tn7q2zNIkvcjWrs4=",
+      "lastModified": 1795239696,
+      "patches": [
+        {
+          "source": "./patches/beer/0001-I-hate-SCTK.patch",
+          "file": "./patches/beer/0001-I-hate-SCTK.patch",
+          "sha256": "541222e7c292157acc4fcc5365109318c4c737bc3dd5542081c4685e20ebc174"
+        }
+      ],
+      "diff": "84ec7602c06654b613a176859e8cbdbd9927be13360be03d2b64b603cffd236b"
+    }
   },
   "chroma": {
     "type": "git",
@@ -106,9 +119,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "7ffcc9573d137fbfa59614af28104c63079c6349",
-    "narHash": "sha256-ASAEcGsBdWKf9zLvNlH/VxX/97dMoj4jk5R0/E6C4A0=",
-    "lastModified": 1795399391,
+    "rev": "414dbed9d65167f7a062d6292fe24eaf3f359ac7",
+    "narHash": "sha256-m0Dmp18AtrsD+X4HXRQ/jfEU7jg89P+7kjUf+Raz0t0=",
+    "lastModified": 1795415752,
     "public": true
   },
   "hyprland": {
@@ -177,40 +190,20 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "dedd14dce543af0bdad8a9a59aecc26e0e748b5c",
-    "narHash": "sha256-Z2b+S9/N73eKXR5VCyG7/xMoVq8LkDg9z2zh0H5GLP0=",
-    "lastModified": 1795327255,
-    "archive": {
-      "hash": "sha256-eUn3cExmr1n7GF8CtaifcBDwFBcskuavVrQcS2DFxZw=",
-      "outHash": "sha256-Jlw9q7n8W3fhUcoJqPbyw5nsqaq+D1gnIN7A1G+9rS0="
-    },
-    "public": true,
-    "patched": {
-      "path": "/nix/store/2gmiqv272bc1x8mkm8sb9i3rcpc254vf-source",
-      "narHash": "sha256-Ao87Pft+njjk6rc5MCRpWekU+WUI5MgZaUI/udBapbE=",
-      "lastModified": 1795327255,
-      "patches": [
-        {
-          "source": "https://github.com/fufexan/nix-gaming/pull/386",
-          "url": "https://github.com/fufexan/nix-gaming/pull/386",
-          "file": "patches/nix-gaming/pr-386.patch",
-          "sha256": "ca453cb6fae980f201c8d2e812e3f4bd5dd36c4ced0d4382bb6b75933d0a7e86",
-          "head": "3cfd5f20aeb9475cd3006de6033bfe875cd460cb"
-        }
-      ],
-      "diff": "89c545885bcef3af99b13b28fe82bf555008122b991d37687efe829f02b56390"
-    }
+    "rev": "980a5716bcb59b3011382df13309553f27ea2b25",
+    "narHash": "sha256-Ao87Pft+njjk6rc5MCRpWekU+WUI5MgZaUI/udBapbE=",
+    "lastModified": 1795420353
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "7bb374b0b1f1978c1f957700dd3542e07c8ba566",
-    "narHash": "sha256-Vf/oXkQ+CJNQLdul03QVgjzAW356oJYlyRMSFrVrrKA=",
-    "lastModified": 1795392066,
+    "rev": "b992d21f7b504ee1a274ae011b99d3639552df4c",
+    "narHash": "sha256-CO+q2GRK97s9JLnpSp3vWWVdiiErg03QnIfBaANM2g8=",
+    "lastModified": 1795436465,
     "archive": {
-      "hash": "sha256-t8creP/9UaQ37oQx24WVpABkT/A37QiGP6rweWlQhDM=",
-      "outHash": "sha256-FaILH0hl6cdOr69uGIXFimzhpFV3+kxbvVSBDUUWc8g="
+      "hash": "sha256-ZhmBy6Lw276pFMbqvEaIXIOmFpSrLbqahBtmoOROhG8=",
+      "outHash": "sha256-G2uRNyTj+CfUofGAQq2UJKrcJ+FjyFkVyQZtAQfUTV0="
     },
     "public": true
   },
@@ -230,8 +223,8 @@
     "narHash": "sha256-pAEASBc6wof0S58XcSEdZoQ2iFQDkCnZwH+wFLrkd1Q=",
     "lastModified": 1795234589,
     "patched": {
-      "path": "/nix/store/4k8n7s0zkmdd2j3qj6d3l6pyhhy2zgg5-source",
-      "narHash": "sha256-6ZPggYLr95xBMeHPgAkdIVaNYMA8QCwD/h5l9nMBOnI=",
+      "path": "/nix/store/yjgnksa8hp7zyf775wjcw8si6cak88z3-source",
+      "narHash": "sha256-z4temv4EU6dp7QVGc3Ro+ChaUuKKQg2842ptWNJ2P90=",
       "lastModified": 1795234589,
       "patches": [
         {
@@ -240,9 +233,16 @@
           "file": "patches/nixpkgs/pr-586196.patch",
           "sha256": "30028af0354e03881c7172b6e440c241d955a70e655aff8a2110be9deae233ad",
           "head": "4999a7fe9e0eb305a3f0e6a2fda7467580971c6b"
+        },
+        {
+          "source": "https://github.com/NixOS/nixpkgs/pull/592049",
+          "url": "https://github.com/NixOS/nixpkgs/pull/592049",
+          "file": "patches/nixpkgs/pr-592049.patch",
+          "sha256": "0793a6d0ae2871329d3e3d633b9ccf7129e8cee592697ad9624cb0d95a4ce8a4",
+          "head": "6519b501380d695fc44d5643a31d6990c1abecfb"
         }
       ],
-      "diff": "b5f52c3b9b5a582d3b0b5afbf8925f908c4f42471a3f26333081cd163d0902c3"
+      "diff": "c3dd8904b071fa4a7649de8cbba9f20167d71f90c554f0af7f683a43c9a5adec"
     }
   },
   "nvf": {

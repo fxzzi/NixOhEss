@@ -19,6 +19,8 @@ url = "channel:nixos-unstable"
 patches = [
   # nvtop: 3.3.2 -> 3.4.0, merge nvtopPackages into a single package 
   "https://github.com/NixOS/nixpkgs/pull/586196",
+  # mpd: 0.24.18 -> 0.24.20
+  "https://github.com/NixOS/nixpkgs/pull/592049",
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
@@ -56,8 +58,9 @@ url = "github:NotAShelf/nvf"
 url  = "github:NotAShelf/rags"
 type = "fetch"
 [inputs.beer]
-url  = "raf:beer"
-type = "fetch"
+url     = "raf:beer"
+type    = "fetch"
+patches = ["./patches/beer/0001-I-hate-SCTK.patch"]
 [inputs.chroma]
 url  = "raf:chroma"
 type = "fetch"
@@ -79,12 +82,8 @@ url  = "github:diniamo/niqspkgs"
 type = "fetch"
 
 [inputs.nix-gaming]
-url = "github:fufexan/nix-gaming"
+url  = "github:fufexan/nix-gaming"
 type = "fetch"
-patches = [
-  # osu-lazer-bin: make tachyon always pick latest
-  "https://github.com/fufexan/nix-gaming/pull/386",
-]
 
 [inputs.nixcord]
 url  = "github:4evy/nixcord"
