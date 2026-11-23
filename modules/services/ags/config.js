@@ -27,7 +27,11 @@ const section = (children, hpack) =>
 const Left = (monitorName) =>
   section([island(Workspaces(monitorName)), ClientTitleWidget()], "start");
 
-const Center = () => island(TimeWidget(), DateWidget());
+const Center = () =>
+  Widget.Box({
+    class_name: "center",
+    child: island(TimeWidget(), DateWidget()),
+  });
 
 const Right = () =>
   section(
