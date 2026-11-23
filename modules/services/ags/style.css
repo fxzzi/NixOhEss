@@ -20,7 +20,7 @@
 .wall-picker > box,
 .power-menu > box {
   background: @background;
-  border: 2px solid @color4;
+  border: 2px solid @color0;
   border-radius: 6px;
 }
 
