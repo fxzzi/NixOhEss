@@ -28,13 +28,14 @@ in
               follow = "mouse";
               width = "(256,448)";
               origin = "top-right";
-              offset = "(4,4)";
+              offset = "(11,6)";
               notification_limit = 0;
               progress_bar = true;
               progress_bar_height = 10;
               progress_bar_frame_width = 0;
               progress_bar_corner_radius = 5;
-              icon_corner_radius = 0;
+              corner_radius = 6;
+              icon_corner_radius = 6;
               indicate_hidden = true;
               separator_height = 2;
               padding = 6;

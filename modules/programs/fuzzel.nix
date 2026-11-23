@@ -69,7 +69,7 @@ in
 
             };
             border = {
-              radius = "0";
+              radius = "6";
               width = "2";
             };
           };
