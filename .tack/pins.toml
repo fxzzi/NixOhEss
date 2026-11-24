@@ -69,10 +69,6 @@ type = "fetch"
 # everything else
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
-patches = [
-  # renderer: HDR -> SDR tonemapping fixes
-  "https://github.com/hyprwm/Hyprland/pull/17042",
-]
 
 [inputs.niqspkgs]
 url  = "github:diniamo/niqspkgs"
