@@ -69,10 +69,6 @@ type = "fetch"
 url = "github:hyprwm/Hyprland"
 patches = [
   # renderer: HDR -> SDR tonemapping fixes
-  "https://github.com/hyprwm/Hyprland/pull/16966",
-  # screenshare: DS fixes
-  "https://github.com/hyprwm/Hyprland/pull/17015",
-  # pointer: use plane size hints for HW cursor
   "https://github.com/hyprwm/Hyprland/pull/17042",
 ]
 
