@@ -9,6 +9,7 @@ let
     mkOption
     types
     mkIf
+    replaceStrings
     ;
   cfg = config.cfg.programs.git;
 in
@@ -23,7 +24,8 @@ in
     email = mkOption {
       type = types.str;
       default = "${config.cfg.core.username}@example.com";
-      description = "Sets your email for git.";
+      apply = replaceStrings [ "<at>" "<dot>" ] [ "@" "." ];
+      description = "Sets your email for git. `<at>` and `<dot>` are decoded, to keep it away from scrapers.";
     };
   };
   config = mkIf cfg.enable {
@@ -48,20 +50,6 @@ in
         };
         push.autoSetupRemote = true;
         pull.rebase = true;
-        url = {
-          "https://github.com/" = {
-            insteadOf = [
-              "gh:"
-              "github:"
-            ];
-          };
-          "https://gitlab.com/" = {
-            insteadOf = [
-              "gl:"
-              "gitlab:"
-            ];
-          };
-        };
       };
     };
   };
