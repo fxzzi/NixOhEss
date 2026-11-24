@@ -69,6 +69,10 @@ type = "fetch"
 # everything else
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
+patches = [
+  # compositor: stop graphical-session synchronously
+  "https://github.com/hyprwm/Hyprland/pull/17098",
+]
 
 [inputs.niqspkgs]
 url  = "github:diniamo/niqspkgs"
