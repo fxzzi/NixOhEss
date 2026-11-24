@@ -5,8 +5,9 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe';
   cfg = config.cfg.services.syncthing;
+  systemctl = getExe' config.systemd.package "systemctl";
 in
 {
   options.cfg.services.syncthing.enable = mkEnableOption "syncthing";
@@ -53,6 +54,14 @@ in
         "syncthing.service"
         "default.target"
       ];
+      unitConfig.ConditionACPower = true;
     };
+
+    # only sync on laptops whilst plugged in
+    systemd.services.syncthing.unitConfig.ConditionACPower = true;
+    services.udev.extraRules = ''
+      SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", RUN+="${systemctl} --no-block stop syncthing.service"
+      SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", RUN+="${systemctl} --no-block start syncthing.service syncthing-init.service"
+    '';
   };
 }
