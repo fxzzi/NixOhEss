@@ -36,14 +36,10 @@ let
     "browser.sessionstore.resume_from_crash" = false;
     "browser.startup.couldRestoreSession.count" = 0;
 
-    # Force hardware acceleration (NVIDIA)
-    "media.hardware-video-decoding.force-enabled" = true;
-
-    # enable vulkan video decoding for NVIDIA only
-    "media.hardware-video-decoding-vulkan.enabled" = config.cfg.hardware.nvidia.enable;
-    "media.hardware-video-decoding-vulkan.direct-export.enabled" = config.cfg.hardware.nvidia.enable;
+    # enable vulkan video decoding
+    "media.hardware-video-decoding-vulkan.enabled" = true;
+    "media.hardware-video-decoding-vulkan.direct-export.enabled" = true;
     "media.hardware-video-decoding-vulkan.force-enabled" = config.cfg.hardware.nvidia.enable;
-    "media.hardware-video-decoding-vulkan.prefer-system-ffmpeg" = config.cfg.hardware.nvidia.enable;
 
     # Mouse behavior
     "middlemouse.paste" = false;

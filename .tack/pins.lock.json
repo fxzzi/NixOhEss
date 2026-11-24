@@ -115,13 +115,13 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "b5abd60ccb99c786d2ff369e7f1f765d38487a02",
-    "narHash": "sha256-0GqH2uAVdBDQTxcARttset5LgKsqyoiQLLRvuXtvr38=",
-    "lastModified": 1795528228,
+    "rev": "60a66a14d13788fc07293eccb697eb0bdcebd5be",
+    "narHash": "sha256-AKs+xxjWN3mjRYnUPziB+JsXJAKucM6+jQekcsWpDx0=",
+    "lastModified": 1795533072,
     "patched": {
-      "path": "/nix/store/9rlfl16pbp714m08flffll377k06hdxl-source",
-      "narHash": "sha256-aFqTGx5O0Iol0nyYySYMaDFJ82cI8sZfUalK2AW0TyU=",
-      "lastModified": 1795528228,
+      "path": "/nix/store/x7942jyrf213lf10cci1nyazk8pcy57m-source",
+      "narHash": "sha256-R/7V6ya2A5ycN0Dpna03X/kyDDGbTX3m0iT5T3L9H9M=",
+      "lastModified": 1795533072,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/17042",
@@ -171,12 +171,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "30826fa4157dc9d2753fc1b0e2d0cc83c4efa0ce",
-    "narHash": "sha256-a9C8FwAhs3iywcUemPHji1LbFIVqN/g+urTSiTOSYQ8=",
-    "lastModified": 1795497561,
+    "rev": "5d97cb99ebb458e985b69996b90c78e3ca1270b2",
+    "narHash": "sha256-KT6yKUgJGXjLEZr8FYu6vQ8Dj5Ihb+JwA3QVl0P5Cgo=",
+    "lastModified": 1795537996,
     "archive": {
-      "hash": "sha256-r1wyky2/O8jslWc5RNU2Pat1QNwoW0aS9XGhagCsjRw=",
-      "outHash": "sha256-URnens4H2HTummdWZHOQ8+GXGs6wY3GNYeOTkRGj75o="
+      "hash": "sha256-sJoFO6czUulaz5wAnx8GcDS07lkbLCtDOLbtwmDECqU=",
+      "outHash": "sha256-Gz+BYdPQllPKHXoTYrhEzZsMjHNhI8A4CwjkgRqWBq0="
     },
     "public": true
   },
@@ -196,8 +196,8 @@
     "narHash": "sha256-pAEASBc6wof0S58XcSEdZoQ2iFQDkCnZwH+wFLrkd1Q=",
     "lastModified": 1795234589,
     "patched": {
-      "path": "/nix/store/yjgnksa8hp7zyf775wjcw8si6cak88z3-source",
-      "narHash": "sha256-z4temv4EU6dp7QVGc3Ro+ChaUuKKQg2842ptWNJ2P90=",
+      "path": "/nix/store/9rxil46s1gvpnda2anqblkvzq8i0m713-source",
+      "narHash": "sha256-0Uv3ve4giUlnjIB6tsTocHN1Yth6svUqumCqbgyTxdU=",
       "lastModified": 1795234589,
       "patches": [
         {
@@ -213,9 +213,16 @@
           "file": "patches/nixpkgs/pr-592049.patch",
           "sha256": "0793a6d0ae2871329d3e3d633b9ccf7129e8cee592697ad9624cb0d95a4ce8a4",
           "head": "6519b501380d695fc44d5643a31d6990c1abecfb"
+        },
+        {
+          "source": "https://github.com/NixOS/nixpkgs/pull/592033",
+          "url": "https://github.com/NixOS/nixpkgs/pull/592033",
+          "file": "patches/nixpkgs/pr-592033.patch",
+          "sha256": "dbdc602ea8c432bd78a24ece4b3453fcfe1c471abe8e594ea7a1df5b928581bf",
+          "head": "56dfc67a8be8da79a3583ff0c75b3b14c8858b45"
         }
       ],
-      "diff": "c3dd8904b071fa4a7649de8cbba9f20167d71f90c554f0af7f683a43c9a5adec"
+      "diff": "b4250609bc455068890ae2edd435a251570bcf99b3f43bf6887a1d63bf13e17d"
     }
   },
   "nvf": {

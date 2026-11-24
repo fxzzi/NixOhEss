@@ -21,6 +21,8 @@ patches = [
   "https://github.com/NixOS/nixpkgs/pull/586196",
   # mpd: 0.24.18 -> 0.24.20
   "https://github.com/NixOS/nixpkgs/pull/592049",
+  # librewolf-bin-unwrapped: 160.0-1 -> 160.0.1-1
+  "https://github.com/NixOS/nixpkgs/pull/592033",
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
