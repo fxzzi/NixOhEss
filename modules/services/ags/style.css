@@ -55,7 +55,7 @@ menu menuitem {
 
 /* keeps the truncated title and song away from the clock */
 .center {
-  margin: 0 64px;
+  margin: 0 128px;
 }
 
 .workspaces button {
