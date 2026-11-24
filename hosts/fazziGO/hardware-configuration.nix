@@ -29,27 +29,39 @@
     "/" = {
       device = "/dev/disk/by-uuid/fef8f90b-499b-4089-8eea-c4ecbf1cc8a8";
       fsType = "btrfs";
-      options = [ "noatime,ssd,discard=async,subvol=@" ];
+      options = [
+        "subvol=@"
+        "noatime"
+        "compress=zstd:1"
+      ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/fef8f90b-499b-4089-8eea-c4ecbf1cc8a8";
       fsType = "btrfs";
-      options = [ "noatime,ssd,discard=async,subvol=@home" ];
+      options = [
+        "subvol=@home"
+        "noatime"
+        "compress=zstd:1"
+      ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/fef8f90b-499b-4089-8eea-c4ecbf1cc8a8";
       fsType = "btrfs";
-      options = [ "noatime,ssd,discard=async,subvol=@nix" ];
+      options = [
+        "subvol=@nix"
+        "noatime"
+        "compress=zstd:1"
+      ];
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/36DB-E3AD";
       fsType = "vfat";
       options = [
-        "fmask=0022"
-        "dmask=0022"
+        "fmask=0077"
+        "dmask=0077"
       ];
     };
   };

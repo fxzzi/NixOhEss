@@ -77,10 +77,6 @@
       thunar = {
         enable = true;
         view = "Details"; # weirdo...
-        bookmarks = [
-          "file:///mnt/windows-kunzoz Windoes"
-          "file:///mnt/windows-dad Job"
-        ];
       };
       discord.enable = true;
       librewolf = {

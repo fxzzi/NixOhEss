@@ -28,27 +28,39 @@
     "/" = {
       device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
       fsType = "btrfs";
-      options = [ "noatime,ssd,discard=async,subvol=@" ];
+      options = [
+        "subvol=@"
+        "noatime"
+        "compress=zstd:1"
+      ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
       fsType = "btrfs";
-      options = [ "noatime,ssd,discard=async,subvol=@home" ];
+      options = [
+        "subvol=@home"
+        "noatime"
+        "compress=zstd:1"
+      ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/65487017-8d84-4a7d-ba17-a0e8536ff39a";
       fsType = "btrfs";
-      options = [ "noatime,ssd,discard=async,subvol=@nix" ];
+      options = [
+        "subvol=@nix"
+        "noatime"
+        "compress=zstd:1"
+      ];
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/4638-FB30";
       fsType = "vfat";
       options = [
-        "fmask=0022"
-        "dmask=0022"
+        "fmask=0077"
+        "dmask=0077"
       ];
     };
 
@@ -56,12 +68,14 @@
       device = "/dev/disk/by-uuid/DC2C38A72C387F18";
       fsType = "ntfs";
       options = [
-        "rw"
         "uid=1000"
         # don't fail boot if the drives fail to mount
         "nofail"
-        # continue boot after 10s
         "x-systemd.mount-timeout=10"
+        "native_symlink=rel"
+        "windows_names"
+        "x-gvfs-show"
+        "x-gvfs-name=Windoes"
       ];
     };
 
@@ -69,12 +83,14 @@
       device = "/dev/disk/by-uuid/84B25357B2534CB4";
       fsType = "ntfs";
       options = [
-        "rw"
         "uid=1000"
         # don't fail boot if the drives fail to mount
         "nofail"
-        # continue boot after 10s
         "x-systemd.mount-timeout=10"
+        "native_symlink=rel"
+        "windows_names"
+        "x-gvfs-show"
+        "x-gvfs-name=Job"
       ];
     };
   };

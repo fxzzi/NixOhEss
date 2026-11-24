@@ -24,33 +24,63 @@
     "/" = {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "noatime,ssd,discard=async,subvol=@" ];
+      options = [
+        "subvol=@"
+        "noatime"
+        "compress=zstd:1"
+      ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "noatime,ssd,discard=async,subvol=@home" ];
+      options = [
+        "subvol=@home"
+        "noatime"
+        "compress=zstd:1"
+      ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "noatime,ssd,discard=async,subvol=@nix" ];
+      options = [
+        "subvol=@nix"
+        "noatime"
+        "compress=zstd:1"
+      ];
     };
 
     "/games" = {
       device = "/dev/disk/by-uuid/0e488fe7-cc5a-44c3-8289-588a02ff9dcc";
       fsType = "btrfs";
-      options = [ "noatime,ssd,discard=async,subvol=@games" ];
+      options = [
+        "subvol=@games"
+        "noatime"
+        "compress=zstd:1"
+      ];
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/8026-A204";
       fsType = "vfat";
       options = [
-        "fmask=0022"
-        "dmask=0022"
+        "fmask=0077"
+        "dmask=0077"
+      ];
+    };
+
+    "/windows" = {
+      device = "/dev/disk/by-uuid/50064BB3064B98BC";
+      fsType = "ntfs";
+      options = [
+        "uid=1000"
+        "nofail"
+        "x-systemd.mount-timeout=10"
+        "native_symlink=rel"
+        "windows_names"
+        "x-gvfs-show"
+        "x-gvfs-name=Windows"
       ];
     };
   };
