@@ -52,7 +52,7 @@ in
       };
     };
     environment.shellAliases = {
-      ncm = "${getExe pkgs.ncmpcpp}";
+      ncm = getExe pkgs.ncmpcpp;
     };
   };
 }
