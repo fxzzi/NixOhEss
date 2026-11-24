@@ -34,6 +34,7 @@ in
     networking = {
       inherit hostName;
       nameservers = cloudflareDNS;
+      dhcpcd.wait = "background";
     };
     services.resolved = {
       enable = true;

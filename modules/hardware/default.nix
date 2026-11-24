@@ -2,6 +2,7 @@
   config = {
     # enable microcode updates n stuff
     hardware.enableRedistributableFirmware = true;
+    services.fwupd.enable = true;
 
     # don't use ini generator, order matters here
     # disable debounce in libinput, so you can click fast :D

@@ -8,6 +8,9 @@
     nix = {
       package = pkgs.nixVersions.latest;
       channel.enable = false; # we use le flakes
+      # run builds at idle priority so they don't make the desktop/games laggy
+      daemonCPUSchedPolicy = "idle";
+      daemonIOSchedClass = "idle";
       registry = {
         nixpkgs.flake = inputs.nixpkgs;
         azzipkgs.flake = inputs.azzipkgs;
@@ -33,13 +36,5 @@
 
     # remove useless docs .desktop
     documentation.nixos.enable = false;
-
-    # thanks raf!
-    # <https://github.com/NotAShelf/nyx/blob/d407b4d6e5ab7f60350af61a3d73a62a5e9ac660/modules/core/common/system/nix/module.nix#L236>
-    systemd.services = {
-      nh-clean = {
-        unitConfig.ConditionACPower = true;
-      };
-    };
   };
 }
