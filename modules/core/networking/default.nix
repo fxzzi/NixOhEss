@@ -41,6 +41,8 @@ in
       settings.Resolve = {
         DNSOverTLS = "opportunistic";
         DNSSEC = "allow-downgrade";
+        # avahi already does mDNS, two stacks on the same port make discovery unreliable
+        MulticastDNS = false;
         FallbackDNS = quad9DNS ++ googleDNS;
       };
     };
