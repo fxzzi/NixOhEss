@@ -25,10 +25,6 @@ in
               hash = "sha256-+h1kp81kP+aIc3dDDrrySmT/Rn0Yiojq5OdHaxdJdPA=";
               excludes = [ "CHANGELOG.md" ];
             })
-            (pkgs.fetchpatch {
-              url = "https://codeberg.org/dnkl/fuzzel/pulls/805.patch";
-              hash = "sha256-JYIiHJNv8OVGNoWq6wmbTvPKVa+LXr+tL2dJACES74Q=";
-            })
           ];
         }))
       ];
