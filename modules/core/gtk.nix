@@ -9,6 +9,13 @@
         pkgs.adw-gtk3
         pkgs.papirus-icon-theme
       ];
+      # this one setting is for some reason not
+      # exposed through dconf
+      # show icons in thunar context menus
+      xdg.config.files."gtk-3.0/settings.ini".text = ''
+        [Settings]
+        gtk-menu-images=true
+      '';
     };
     programs.dconf.profiles.user.databases = [
       {
