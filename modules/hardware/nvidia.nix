@@ -61,12 +61,6 @@ in
       };
     };
     cfg.programs.proton.environmentVariables = {
-      # Report support for D3D12 NVIDIA shader extensions when being supported by VKD3D-Proton.
-      # https://github.com/jp7677/dxvk-nvapi/releases/tag/v0.9.2
-      DXVK_NVAPI_D3D12_NV_SHADER_EXTN = 1;
-      # also enable descriptor heap
-      VKD3D_CONFIG = "descriptor_heap";
-
       # upgrade DLSS DLL's automatically for the latest models
       PROTON_DLSS_UPGRADE = 1;
       # despite the name, it doesn't always use latest. it uses the "recommended" model for your GPU.

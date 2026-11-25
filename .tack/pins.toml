@@ -78,6 +78,8 @@ patches = [
   "https://github.com/hyprwm/Hyprland/pull/17042",
   # compositor: session stop changes
   "https://github.com/hyprwm/Hyprland/pull/17098",
+  # input: pointer focus from bg layer fixes
+  "https://github.com/hyprwm/Hyprland/pull/17106",
 ]
 
 [inputs.niqspkgs]

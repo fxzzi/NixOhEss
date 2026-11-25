@@ -119,8 +119,8 @@
     "narHash": "sha256-348lB6kUwiSzMO6UCcb+0H3aW67643DlVLMN5w61/a0=",
     "lastModified": 1795615055,
     "patched": {
-      "path": "/nix/store/156nm3mf80c26bj775qy4sf0s63pg9fy-source",
-      "narHash": "sha256-CHtJRGvDtJgTRlQ+c0ewQMDpGhOJs55ATN8hZhz7cyg=",
+      "path": "/nix/store/43fc6wad71mp1rydmz1zl65fpdc3xhmc-source",
+      "narHash": "sha256-F69KP64h13HBMjOYpkbwn/mXGo/UEPzehHJyoBqg87c=",
       "lastModified": 1795615055,
       "patches": [
         {
@@ -136,9 +136,16 @@
           "file": "patches/hyprland/pr-17098.patch",
           "sha256": "67dc9082751a1b1137cb16b1707095c8215b1cb265a529e835b8c95cfd20d9c6",
           "head": "fa68452f7fa44a699b4167840ffa05112eeee6a7"
+        },
+        {
+          "source": "https://github.com/hyprwm/Hyprland/pull/17106",
+          "url": "https://github.com/hyprwm/Hyprland/pull/17106",
+          "file": "patches/hyprland/pr-17106.patch",
+          "sha256": "3307e6d7bdf8693560ae29735d10777831415d5e944fa1aa1b13f8e48a18e6cb",
+          "head": "99b5cf4626361bfe755e27b749e05fd960c385a4"
         }
       ],
-      "diff": "53586e0b988c36771913207e903443f26bb03919ce1107d8ad97ee0e19e04e6f"
+      "diff": "f2601bc2818f7aea81475b4c7ebd51993299b25270d1ac7f7043870add6daeb3"
     }
   },
   "ncro": {
@@ -178,12 +185,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "fd254258468672bf5132e1e78e4db2d2af804540",
-    "narHash": "sha256-JcYGp3Y1ZkRyU+faJ1nzQbztPe2w9oh8zhb/fWAjJes=",
-    "lastModified": 1795636047,
+    "rev": "597928c4b4f959c9d4e79620795fbd521597d164",
+    "narHash": "sha256-XOoVe7jgVnpILXgA2PO9KddPKxfQKC1eht9nrZ0ZRBg=",
+    "lastModified": 1795640718,
     "archive": {
-      "hash": "sha256-MYXlZiwOPyq2lqU2ewjDFd9/8jAwQhB8GJer0lRrQ2A=",
-      "outHash": "sha256-YZ5HRJlrn6WL2SA6rzdycwgdzWtpqldXY7+zjWkrXLY="
+      "hash": "sha256-VAFjr4iOjEmKFqJU81jhRAv8wQtLCu2CWM03WN/CUog=",
+      "outHash": "sha256-e+GrRQ5fL3cO7A8fPMi4NuNGXcYEiQcbPrunLiWlThs="
     },
     "public": true
   },
