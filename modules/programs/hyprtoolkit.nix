@@ -27,6 +27,8 @@ in
 
           rounding_large = 6;
           rounding_small = 4;
+
+          icon_theme = "Papirus-Dark";
         }
       );
       target = "~/.config/hypr/hyprtoolkit.conf";
