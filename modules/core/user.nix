@@ -79,15 +79,12 @@ in
       ];
       uid = 1000;
     };
-    xdg.mime.defaultApplications = {
-      "application/pdf" = "atril.desktop";
-      "image/*" = "org.gnome.Loupe.desktop";
-    };
-    environment.sessionVariables = {
-      XDG_CONFIG_HOME = "$HOME/.config";
-      XDG_DATA_HOME = "$HOME/.local/share";
-      XDG_CACHE_HOME = "$HOME/.cache";
-      XDG_STATE_HOME = "$HOME/.local/state";
+    xdg = {
+      directories.enable = true;
+      mime.defaultApplications = {
+        "application/pdf" = "atril.desktop";
+        "image/*" = "org.gnome.Loupe.desktop";
+      };
     };
   };
 }
