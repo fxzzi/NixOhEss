@@ -1,4 +1,4 @@
-{
+{ config, ... }: {
   cfg = {
     core = {
       isLaptop = true;
@@ -45,7 +45,10 @@
       beer.enable = true;
       fuzzel.enable = true;
       mpv.enable = true;
-      thunar.enable = true;
+      thunar = {
+        enable = true;
+        bookmarks = [ "file://${config.hj.directory}/.local/packages Packages" ];
+      };
       discord = {
         enable = true;
         minimizeToTray = false;

@@ -40,7 +40,9 @@ in
     # mkBefore so these always come first, above any host bookmarks
     cfg.programs.thunar.bookmarks = mkBefore [
       "file://${config.hj.directory}/Downloads Downloads"
+      "file://${config.hj.directory}/Documents Documents"
       "file://${config.hj.directory}/Videos Videos"
+      "file://${config.hj.directory}/Pictures Pictures"
       "file://${config.hj.directory}/Pictures/Screenshots Screenshots"
       "file://${config.programs.nh.flake} NixOS"
     ];
@@ -127,8 +129,12 @@ in
         <property name="last-window-maximized" type="bool" value="true" locked="*" unlocked="root"/>
         <property name="last-show-hidden" type="bool" value="true" locked="*" unlocked="root"/>
 
+        <property name="shortcuts-icon-size" type="string" value="THUNAR_ICON_SIZE_24" locked="*" unlocked="root"/>
         <property name="hidden-bookmarks" type="array" locked="*" unlocked="root">
           <value type="string" value="network:///"/>
+          <value type="string" value="computer:///"/>
+          <value type="string" value="recent:///"/>
+          <value type="string" value="file://${config.hj.directory}/Desktop"/>
         </property>
 
         <property name="misc-single-click" type="bool" value="false" locked="*" unlocked="root"/>

@@ -85,6 +85,7 @@
         enable = true;
         bookmarks = [
           "file:///games Games"
+          "file://${config.hj.directory}/.local/packages Packages"
           "file://${config.hj.directory}/.local/torrents Torrents"
         ];
       };
