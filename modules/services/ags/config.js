@@ -36,7 +36,7 @@ const group = (children, props = {}) =>
 
 // CenterBox packs its start and end widgets with expand, so pin them to the edges
 const section = (children, props) =>
-  Widget.Box({ spacing: 8, children, ...props });
+  Widget.Box({ spacing: 6, children, ...props });
 
 const Left = (monitorName) => {
   const title = ClientTitleWidget();

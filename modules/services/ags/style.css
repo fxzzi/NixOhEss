@@ -45,7 +45,7 @@ menu menuitem {
 .bar > box {
   margin: 5px;
   min-height: 26px;
-  padding: 0 12px;
+  padding: 0 10px 0 9px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
@@ -56,6 +56,16 @@ menu menuitem {
 /* keeps the truncated title and song away from the clock */
 .center {
   margin: 0 128px;
+}
+
+/* the theme's button min-width and padding leave empty space around the
+   outer workspace numbers and tray icons; pull it back so every gap matches */
+.workspaces {
+  margin: 0 -6px 0 -4px;
+}
+
+.tray {
+  margin: 0 -8px;
 }
 
 .workspaces button {
