@@ -3,7 +3,7 @@
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
-    "beer": "git+ssh://git@git.notashelf.dev:33/notashelf/beer?ref=notashelf/push-kntqwkmxprtt",
+    "beer": "git+ssh://git@git.notashelf.dev:33/notashelf/beer?ref=notashelf/push-rnynxsuztkou",
     "chroma": "git+ssh://git@git.notashelf.dev:33/notashelf/chroma",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "disblock-origin": "git+https://codeberg.org/AllPurposeMat/Disblock-Origin",
@@ -58,10 +58,10 @@
   "beer": {
     "type": "git",
     "url": "ssh://git@git.notashelf.dev:33/notashelf/beer",
-    "ref": "refs/heads/notashelf/push-kntqwkmxprtt",
-    "rev": "b2d88e7fca9f7ba3cece51577675d05610a227c6",
-    "narHash": "sha256-seiOvzzO4riqqTqwl+FrRx1/kg+tn7q2zNIkvcjWrs4=",
-    "lastModified": 1795444292
+    "ref": "refs/heads/notashelf/push-rnynxsuztkou",
+    "rev": "6e9851cc5d3f51beaa6beec68cae4581e2c19f18",
+    "narHash": "sha256-6dkUe6lCFh5Peza03/jK6WSumgDaY0kFfA45C2DV7TI=",
+    "lastModified": 1795622697
   },
   "chroma": {
     "type": "git",
