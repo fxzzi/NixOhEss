@@ -51,7 +51,7 @@ in
           };
         };
         "wallust/wallust.toml".value = {
-          hooks.beer = "pkill -USR1 .beer-wrapped"; # reload beer config
+          hooks.beer = "systemctl --user reload beer";
           templates.beer = mkIf config.cfg.programs.wallust.enable {
             target = "~/.config/beer/beer.d/colors_beer.toml";
             template = (pkgs.formats.toml { }).generate "colors_beer.toml" {
