@@ -14,7 +14,7 @@
     in
     {
       # our internal lib which has some generators and useful funcs
-      lib = import ./lib { inherit lib inputs; };
+      lib = import ./lib { inherit lib; };
 
       nixosModules.default = {
         imports = self.lib.nixFilesInRecursive ./modules;
