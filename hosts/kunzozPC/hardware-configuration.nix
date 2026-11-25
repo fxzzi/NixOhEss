@@ -76,6 +76,8 @@
         "windows_names"
         "x-gvfs-show"
         "x-gvfs-name=Windoes"
+        "x-gvfs-icon=distributor-logo-windows"
+        "x-gvfs-symbolic-icon=view-grid-symbolic"
       ];
     };
 
@@ -91,6 +93,8 @@
         "windows_names"
         "x-gvfs-show"
         "x-gvfs-name=Job"
+        "x-gvfs-icon=applications-office"
+        "x-gvfs-symbolic-icon=applications-office-symbolic"
       ];
     };
   };

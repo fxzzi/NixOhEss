@@ -81,6 +81,8 @@
         "windows_names"
         "x-gvfs-show"
         "x-gvfs-name=Windows"
+        "x-gvfs-icon=distributor-logo-windows"
+        "x-gvfs-symbolic-icon=view-grid-symbolic"
       ];
     };
   };
