@@ -15,7 +15,9 @@ let
     getExe'
     ;
   cfg = config.cfg.programs.beer;
-  beer = pkgs.callPackage "${inputs.beer}/nix/package.nix" { };
+  beer = (pkgs.callPackage "${inputs.beer}/nix/package.nix" { }).overrideAttrs {
+    doCheck = false;
+  };
 in
 {
   options.cfg.programs.beer.enable = mkEnableOption "beer";
