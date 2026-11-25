@@ -1,43 +1,63 @@
 {
   lib,
-  writeShellApplication,
+  treefmt,
   nixfmt,
   deadnix,
   statix,
-  fd,
   biome,
   stylua,
 }:
-let
-  exclusionList = [
-    "**/.tack/*"
-  ];
+treefmt.withConfig {
+  settings = {
+    tree-root-file = "flake.nix";
+    on-unmatched = "info";
+    excludes = [ ".tack/**" ];
 
-  excludeArgs = lib.concatMapStringsSep " " (
-    pattern: "--exclude ${lib.escapeShellArg pattern}"
-  ) exclusionList;
+    formatter = {
+      # statix only takes one file at a time
+      statix = {
+        command = "sh";
+        options = [
+          "-c"
+          ''for f; do ${lib.getExe statix} fix -- "$f"; done''
+          "--"
+        ];
+        includes = [ "*.nix" ];
+        priority = 1;
+      };
 
-  fdNix = ''fd "$@" ${excludeArgs} -t f -e nix'';
-in
-writeShellApplication {
-  name = "nix-formatter";
+      deadnix = {
+        command = lib.getExe deadnix;
+        options = [ "-e" ];
+        includes = [ "*.nix" ];
+        priority = 2;
+      };
 
-  runtimeInputs = [
-    nixfmt
-    deadnix
-    statix
-    fd
-    biome
-    stylua
-  ];
+      nixfmt = {
+        command = lib.getExe nixfmt;
+        includes = [ "*.nix" ];
+        priority = 3;
+      };
 
-  text = ''
-    # statix only takes one file at a time, so run it per file (in parallel).
-    # deadnix and nixfmt take many files, so batch them into single calls.
-    ${fdNix} -x statix fix --
-    ${fdNix} -X deadnix -e --
-    ${fdNix} -X nixfmt
-    fd "$@" ${excludeArgs} -t f -e js -X biome format --write --indent-style=space --indent-width=2
-    fd "$@" ${excludeArgs} -t f -e lua -X stylua --indent-type Spaces --indent-width 2
-  '';
+      biome = {
+        command = lib.getExe biome;
+        options = [
+          "format"
+          "--write"
+          "--indent-style=space"
+          "--indent-width=2"
+        ];
+        includes = [ "*.js" ];
+      };
+
+      stylua = {
+        command = lib.getExe stylua;
+        options = [
+          "--indent-type=Spaces"
+          "--indent-width=2"
+        ];
+        includes = [ "*.lua" ];
+      };
+    };
+  };
 }
