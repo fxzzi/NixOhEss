@@ -21,6 +21,8 @@
           "flakes"
           "auto-allocate-uids"
         ];
+        # builds get uids on demand instead of using the nixbld users
+        auto-allocate-uids = true;
         auto-optimise-store = true; # save some storage space
         warn-dirty = false;
         allow-import-from-derivation = false; # don't allow IFD, they're slow asf
