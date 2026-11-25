@@ -16,6 +16,7 @@ export const IconLabel = ({
   ...props
 }) =>
   Widget.Box({
+    spacing: 4,
     ...props,
     children: [
       Widget.Icon({ icon, class_name: iconClass, size: 16 }),

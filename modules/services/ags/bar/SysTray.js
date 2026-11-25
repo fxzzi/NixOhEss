@@ -7,6 +7,7 @@ export function SysTrayWidget() {
     class_name: "tray",
     visible: systemtray.bind("items").as((items) => items.length > 0),
     child: Widget.Box({
+      spacing: 10,
       children: systemtray.bind("items").as((items) =>
         items.map((item) =>
           Widget.Button({

@@ -20,9 +20,9 @@ import { PowerMenu } from "./windows/PowerMenu.js";
 // follows the visibility of the widget it separates, so hidden widgets
 // don't leave a stray separator behind
 const sep = (target) =>
-  Widget.Label({
-    label: "|",
-    class_name: "sep",
+  Widget.Separator({
+    vertical: true,
+    vpack: "center",
     setup: (self) =>
       self.hook(
         target,
@@ -31,40 +31,33 @@ const sep = (target) =>
       ),
   });
 
-const group = (children, props = {}) =>
+const row = (children, props = {}) =>
   Widget.Box({ spacing: 10, children, ...props });
 
 // CenterBox packs its start and end widgets with expand, so pin them to the edges
-const section = (children, props) =>
-  Widget.Box({ spacing: 6, children, ...props });
-
 const Left = (monitorName) => {
   const title = ClientTitleWidget();
-  return section([Workspaces(monitorName), sep(title), title], {
-    hpack: "start",
-  });
+  return row([Workspaces(monitorName), sep(title), title], { hpack: "start" });
 };
 
 const Center = () =>
-  group([TimeWidget(), DateWidget()], { class_name: "center" });
+  row([TimeWidget(), DateWidget()], { class_name: "center" });
 
 const Right = () => {
   const mpd = MpdWidget();
   const tray = SysTrayWidget();
   const volume = VolumeWidget();
-  return section(
+  return row(
     [
       mpd,
       sep(mpd),
       tray,
       sep(tray),
-      group([
-        GpuTempWidget(),
-        CpuTempWidget(),
-        CpuUsageWidget(),
-        MemUsageWidget(),
-        BatteryWidget(),
-      ]),
+      GpuTempWidget(),
+      CpuTempWidget(),
+      CpuUsageWidget(),
+      MemUsageWidget(),
+      BatteryWidget(),
       sep(volume),
       volume,
     ],

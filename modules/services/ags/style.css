@@ -27,7 +27,6 @@
 button {
   background: transparent;
   box-shadow: none;
-  padding: 0 6px;
 }
 
 menu {
@@ -45,12 +44,20 @@ menu menuitem {
 .bar > box {
   margin: 4px;
   min-height: 28px;
-  padding: 0 10px 0 9px;
+  padding: 0 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-.sep {
-  color: @color8;
+.bar button {
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+}
+
+.bar separator {
+  min-width: 2px;
+  min-height: 14px;
+  background: @color8;
 }
 
 /* keeps the truncated title and song away from the clock */
@@ -58,19 +65,15 @@ menu menuitem {
   margin: 0 128px;
 }
 
-/* the theme's button min-width and padding leave empty space around the
-   outer workspace numbers and tray icons; pull it back so every gap matches */
+/* the padding widens the focus underline past the digit; the margin lets it
+   bleed into the surrounding gap so the digits still line up with it */
 .workspaces {
-  margin: 0 -6px 0 -4px;
-}
-
-.tray {
-  margin: 0 -8px;
+  margin: 0 -4px;
 }
 
 .workspaces button {
   border-radius: 0;
-  padding: 0 1px;
+  padding: 0 4px;
   color: @foreground;
 }
 
@@ -84,7 +87,6 @@ menu menuitem {
 }
 
 .icon {
-  padding-right: 4px;
   color: @color4;
 }
 
@@ -137,11 +139,6 @@ menu menuitem {
   font-size: 17px;
   border: 2px solid transparent;
   border-radius: 4px;
-}
-
-.action .icon {
-  padding: 0;
-  margin-bottom: 2px;
 }
 
 .key {
