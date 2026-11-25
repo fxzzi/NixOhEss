@@ -22,6 +22,7 @@ in
           generator = (pkgs.formats.toml { }).generate "wallust.toml";
           value = {
             check_contrast = true;
+            palette = "dark16";
             templates = {
               # contains one hex of the accent colour of current theme.
               # currently used in screenshot script for the border colour.

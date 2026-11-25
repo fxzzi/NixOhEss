@@ -138,7 +138,7 @@ in
               [urgency_critical]
                   background = "{{background}}CC"
                   foreground = "{{foreground}}"
-                  frame_color = "{{color12}}"
+                  frame_color = "{{color1}}"
             '';
           };
         };
