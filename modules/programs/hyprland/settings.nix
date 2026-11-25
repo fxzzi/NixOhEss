@@ -30,12 +30,12 @@ in
         # top is 0 because the bar reserves its own gap below it, as room for its shadow
         gaps_out = {
           top = 0;
-          right = 5;
-          bottom = 5;
-          left = 5;
+          right = 4;
+          bottom = 4;
+          left = 4;
         };
         # Inner window gaps
-        gaps_in = 3;
+        gaps_in = 2;
         # Set window border width
         border_size = 2;
         # tearing causes problems and is honestly useless most the time

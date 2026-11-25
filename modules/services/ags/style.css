@@ -43,10 +43,10 @@ menu menuitem {
 
 /* bar */
 .bar > box {
-  margin: 5px;
-  min-height: 26px;
+  margin: 4px;
+  min-height: 28px;
   padding: 0 10px 0 9px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .sep {
