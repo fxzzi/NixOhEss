@@ -1,25 +1,23 @@
 {
-  lib,
   config,
   ...
 }:
 let
-  inherit (lib) toInt;
-  port = "4200";
+  port = 4200;
 in
 {
   config = {
     age.secrets.publicip.file = ../../secrets/publicip.age;
     networking.firewall = {
-      allowedTCPPorts = [ (toInt port) ];
-      allowedUDPPorts = [ (toInt port) ];
+      allowedTCPPorts = [ port ];
+      allowedUDPPorts = [ port ];
     };
     services.mediamtx = {
       enable = true;
       settings = {
         webrtc = true;
-        webrtcAddress = ":${port}";
-        webrtcLocalUDPAddress = ":${port}";
+        webrtcAddress = ":${toString port}";
+        webrtcLocalUDPAddress = ":${toString port}";
         paths = {
           fazzi = { };
         };

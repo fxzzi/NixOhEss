@@ -54,14 +54,14 @@ in
             main = {
               font = "monospace:size=16";
               use-bold = true;
-              line-height = "28";
+              line-height = 28;
               prompt = "' '";
               layer = "overlay";
-              lines = "12";
+              lines = 12;
               icon-theme = "Papirus-Dark";
-              horizontal-pad = "8";
-              vertical-pad = "8";
-              inner-pad = "6";
+              horizontal-pad = 8;
+              vertical-pad = 8;
+              inner-pad = 6;
               filter-desktop = true;
               terminal = "xdg-terminal-exec";
               placeholder = "Search...";
@@ -72,8 +72,8 @@ in
 
             };
             border = {
-              radius = "6";
-              width = "2";
+              radius = 6;
+              width = 2;
             };
           };
         };
