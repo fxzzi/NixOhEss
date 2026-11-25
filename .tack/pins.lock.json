@@ -115,14 +115,21 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "6dd1ddbea2f881aa5da7f2350cf09b76a470286a",
-    "narHash": "sha256-j3CcM9UmLIf6a6biVQLNwb4W/pBT2lSQ+XWqrk9T12Q=",
-    "lastModified": 1795610054,
+    "rev": "c58dd14e8a826a130bbe71194215ae63881569cc",
+    "narHash": "sha256-348lB6kUwiSzMO6UCcb+0H3aW67643DlVLMN5w61/a0=",
+    "lastModified": 1795615055,
     "patched": {
-      "path": "/nix/store/k19qknd98mvfd0jl8b29aw4jdd5zizdf-source",
-      "narHash": "sha256-Ir4Z6VamSIpCRhXc3/OVqFTGAh/D2jF2aHs4l5+YMwc=",
-      "lastModified": 1795610054,
+      "path": "/nix/store/156nm3mf80c26bj775qy4sf0s63pg9fy-source",
+      "narHash": "sha256-CHtJRGvDtJgTRlQ+c0ewQMDpGhOJs55ATN8hZhz7cyg=",
+      "lastModified": 1795615055,
       "patches": [
+        {
+          "source": "https://github.com/hyprwm/Hyprland/pull/17042",
+          "url": "https://github.com/hyprwm/Hyprland/pull/17042",
+          "file": "patches/hyprland/pr-17042.patch",
+          "sha256": "ea9fc4899a8248703fbc930a3bc375eb276a89fc54416371a7a291073054c4b0",
+          "head": "f77b5881b088fcf1639264ca4260dba59019a3c6"
+        },
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/17098",
           "url": "https://github.com/hyprwm/Hyprland/pull/17098",
@@ -131,7 +138,7 @@
           "head": "fa68452f7fa44a699b4167840ffa05112eeee6a7"
         }
       ],
-      "diff": "967806bee4fca95f3e38cb8815dddea309ed681159561d42199484d2f01eb27b"
+      "diff": "53586e0b988c36771913207e903443f26bb03919ce1107d8ad97ee0e19e04e6f"
     }
   },
   "ncro": {
@@ -266,9 +273,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "35c1c4cb2653226de6bf7744d648549592ad341a",
-    "narHash": "sha256-sHc/kJwHpMcszaBMniAMAp5CiUEIph6pb49pQ6Amag8=",
-    "lastModified": 1795458252,
+    "rev": "5fba22058c07e258e77005144373845df04aa420",
+    "narHash": "sha256-4y/PrwhX1+kEbYyD9++i03/xjeJiTp0rbD3IEwgAkfI=",
+    "lastModified": 1795612357,
     "archive": null,
     "public": true
   },

@@ -70,7 +70,9 @@ type = "fetch"
 [inputs.hyprland]
 url = "github:hyprwm/Hyprland"
 patches = [
-  # compositor: stop graphical-session synchronously
+  # pointer: use plane size hints for HW cursor
+  "https://github.com/hyprwm/Hyprland/pull/17042",
+  # compositor: session stop changes
   "https://github.com/hyprwm/Hyprland/pull/17098",
 ]
 
