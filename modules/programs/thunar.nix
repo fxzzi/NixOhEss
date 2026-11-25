@@ -127,7 +127,6 @@ in
           <value type="string" value="network:///"/>
           <value type="string" value="computer:///"/>
           <value type="string" value="recent:///"/>
-          <value type="string" value="file://${config.hj.directory}/Desktop"/>
         </property>
 
         <property name="misc-directory-specific-settings" type="bool" value="true" locked="*" unlocked="root"/>

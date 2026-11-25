@@ -52,7 +52,11 @@ in
             # don't allow chromium to set itself as the DEFAULT BROWSER LMAO
             "mimeapps.list".text = "";
             # makes thunar show lil glyphs for these dirs
+            #
+            # desktop is simply set to $HOME because I don't want it
+            # this makes thunar hide it too
             "user-dirs.dirs".text = ''
+              XDG_DESKTOP_DIR="$HOME"
               XDG_DOWNLOAD_DIR="$HOME/Downloads"
               XDG_DOCUMENTS_DIR="$HOME/Documents"
               XDG_MUSIC_DIR="$HOME/Music"
