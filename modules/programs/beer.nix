@@ -16,6 +16,7 @@ let
     ;
   cfg = config.cfg.programs.beer;
   beer = (pkgs.callPackage "${inputs.beer}/nix/package.nix" { }).overrideAttrs {
+    # disable tests to speed up build for now
     doCheck = false;
   };
 in

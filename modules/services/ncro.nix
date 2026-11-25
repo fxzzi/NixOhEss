@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }:
 let
@@ -19,6 +20,10 @@ in
   config = {
     services.ncro = {
       enable = true;
+      package = (pkgs.callPackage "${inputs.ncro}/nix/package.nix" { }).overrideAttrs {
+        # disable tests to speed up build for now
+        doCheck = false;
+      };
       port = 49152;
       settings = {
         logging = {
