@@ -25,6 +25,8 @@ patches = [
   "https://github.com/NixOS/nixpkgs/pull/592033",
   # proton-ge-bin: GE-Proton11-12 -> GE-Proton11-14
   "https://github.com/NixOS/nixpkgs/pull/593147",
+  # tuigreet: 0.11.1 -> 0.11.2
+  "https://github.com/NixOS/nixpkgs/pull/593205",
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"

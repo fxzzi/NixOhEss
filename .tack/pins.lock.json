@@ -178,12 +178,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "c02f0383b836c13d4560ea811a3d01eef3c40c99",
-    "narHash": "sha256-XNEzwQ9U7jb4zkrcyW/2uscu0yBZDAyZl07OmhgWt8M=",
-    "lastModified": 1795602246,
+    "rev": "fd254258468672bf5132e1e78e4db2d2af804540",
+    "narHash": "sha256-JcYGp3Y1ZkRyU+faJ1nzQbztPe2w9oh8zhb/fWAjJes=",
+    "lastModified": 1795636047,
     "archive": {
-      "hash": "sha256-6dq7PkDpunT98bxwMCuPGtmnv0pRuIywrBlOU1mIgps=",
-      "outHash": "sha256-ApytBk9LrxYF5z1uKQZ8gVW1OQO3q5KgkBCB3dGjt+0="
+      "hash": "sha256-MYXlZiwOPyq2lqU2ewjDFd9/8jAwQhB8GJer0lRrQ2A=",
+      "outHash": "sha256-YZ5HRJlrn6WL2SA6rzdycwgdzWtpqldXY7+zjWkrXLY="
     },
     "public": true
   },
@@ -203,8 +203,8 @@
     "narHash": "sha256-pAEASBc6wof0S58XcSEdZoQ2iFQDkCnZwH+wFLrkd1Q=",
     "lastModified": 1795234589,
     "patched": {
-      "path": "/nix/store/ra7pnl1fayzivcx52yhpz0vanrvrczld-source",
-      "narHash": "sha256-0fMDiOqqZ9GGks2JJGD2aOat3jt6wVMCv9hQqGsV7hs=",
+      "path": "/nix/store/isi1ii61kdwzp1y9c0bx4rl4n7gkpw29-source",
+      "narHash": "sha256-NMl1gSsIWoyIgb+INShYFrNcsVx7Q+eRDqU3VZcwVeA=",
       "lastModified": 1795234589,
       "patches": [
         {
@@ -234,9 +234,16 @@
           "file": "patches/nixpkgs/pr-593147.patch",
           "sha256": "663e9e9c69edce99296e83df15a5fcd68944a5393f743dbfa1c909d391650645",
           "head": "780f28337054a04ce88e2486efe87dd1abbd4aad"
+        },
+        {
+          "source": "https://github.com/NixOS/nixpkgs/pull/593205",
+          "url": "https://github.com/NixOS/nixpkgs/pull/593205",
+          "file": "patches/nixpkgs/pr-593205.patch",
+          "sha256": "ff989899e0d94936ae4c3ea85a41ae5f19ebf4ae0b6a2aa78d139cbf8b803128",
+          "head": "daca485e5b2f537deecdb15365fc1343109a3c67"
         }
       ],
-      "diff": "fb6e2aaf4c2fc79867108a56ee00f77bf5d04d5b522755538b09c1ea764bf2a0"
+      "diff": "82d8715b96acbc580da0ec48709e645e30547ad5899fc3552bb3f14211ade46d"
     }
   },
   "nvf": {
@@ -289,7 +296,7 @@
   "tom-nvidia-patches": {
     "type": "fixed",
     "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff",
-    "sha256": "sha256-MlZ2iB+JDZuNwGrlrgFAkm/adYFHTgRQjcZucKFW2Lc=",
+    "sha256": "sha256-7XDO04AQV6Dqt38k0tbFCLV0XuXJThfEzmIOhAbzBI4=",
     "unpack": "file"
   },
   "walls": {
