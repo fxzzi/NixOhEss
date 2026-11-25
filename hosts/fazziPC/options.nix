@@ -17,7 +17,7 @@
       ags.enable = true;
       # kdeconnect.enable = true;
       lact.enable = true;
-      cliphist.enable = true;
+      stash.enable = true;
       mullvad.enable = true;
       mate-polkit.enable = true;
       gcr-ssh-agent.enable = true;
