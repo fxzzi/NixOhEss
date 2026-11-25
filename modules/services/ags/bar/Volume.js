@@ -3,12 +3,11 @@ import { IconLabel } from "../lib/IconLabel.js";
 const audio = await Service.import("audio");
 
 function getVolumeIcon() {
-  if (audio.speaker.is_muted) return "audio-volume-muted-symbolic";
+  if (audio.speaker.is_muted) return "speaker-x-outline-symbolic";
   const v = audio.speaker.volume * 100;
-  if (v >= 70) return "audio-volume-high-symbolic";
-  if (v >= 40) return "audio-volume-medium-symbolic";
-  if (v > 0) return "audio-volume-low-symbolic";
-  return "audio-volume-muted-symbolic";
+  if (v >= 50) return "speaker-high-outline-symbolic";
+  if (v > 0) return "speaker-low-outline-symbolic";
+  return "speaker-none-outline-symbolic";
 }
 
 const changeVolume = (delta) => {

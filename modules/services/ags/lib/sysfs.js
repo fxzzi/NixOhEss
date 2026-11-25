@@ -5,11 +5,10 @@ import { listDir } from "./fs.js";
 const read = (path) => Utils.readFile(path).trim();
 const exists = (path) => GLib.file_test(path, GLib.FileTest.EXISTS);
 
-// read a sensor's *_input file, formatted as whole degrees
-export const formatTemp = (path) => {
-  const t = path ? Utils.temperature(path) : -1;
-  return t < 0 ? "N/A" : `${t.toFixed(0)}°C`;
-};
+// read a sensor's *_input file in °C, or -1 if unavailable
+export const readTemp = (path) => (path ? Utils.temperature(path) : -1);
+
+export const formatTemp = (t) => (t < 0 ? "N/A" : `${t.toFixed(0)}°C`);
 
 // hwmon driver name -> the temp labels that mean "the CPU", best first
 const sensorLabelPriority = [

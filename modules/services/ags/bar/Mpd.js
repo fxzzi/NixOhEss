@@ -35,7 +35,7 @@ export const MpdWidget = () =>
     child: IconLabel({
       class_name: paused.as((p) => (p ? "paused" : "")),
       icon: paused.as((p) =>
-        p ? "media-playback-pause-symbolic" : "media-playback-start-symbolic",
+        p ? "pause-outline-symbolic" : "play-outline-symbolic",
       ),
       label: state.bind().as((s) => s?.label ?? ""),
       labelProps: { truncate: "end" },

@@ -1,5 +1,10 @@
 import { IconLabel } from "../lib/IconLabel.js";
-import { findCpuTempFile, findGpuTempFile, formatTemp } from "../lib/sysfs.js";
+import {
+  findCpuTempFile,
+  findGpuTempFile,
+  formatTemp,
+  readTemp,
+} from "../lib/sysfs.js";
 
 const cpuTempFile = findCpuTempFile();
 const gpuTempFile = findGpuTempFile();
@@ -17,8 +22,14 @@ const cpuUsage = Variable("", {
 const memUsage = Variable("", {
   poll: [2000, () => `${(memUsedKiB() / (1024 * 1024)).toFixed(2)}GiB`],
 });
-const cpuTemp = Variable("", { poll: [5000, () => formatTemp(cpuTempFile)] });
-const gpuTemp = Variable("", { poll: [5000, () => formatTemp(gpuTempFile)] });
+const cpuTemp = Variable(-1, { poll: [5000, () => readTemp(cpuTempFile)] });
+const gpuTemp = Variable(-1, { poll: [5000, () => readTemp(gpuTempFile)] });
+
+const thermometerIcon = (t) => {
+  if (t >= 80) return "thermometer-hot-outline-symbolic";
+  if (t >= 0 && t < 50) return "thermometer-cold-outline-symbolic";
+  return "thermometer-outline-symbolic";
+};
 
 export const CpuUsageWidget = () =>
   IconLabel({
@@ -34,12 +45,12 @@ export const MemUsageWidget = () =>
 
 export const CpuTempWidget = () =>
   IconLabel({
-    icon: "thermometer-outline-symbolic",
-    label: cpuTemp.bind(),
+    icon: cpuTemp.bind().as(thermometerIcon),
+    label: cpuTemp.bind().as(formatTemp),
   });
 
 export const GpuTempWidget = () =>
   IconLabel({
-    icon: "expansion-card-symbolic",
-    label: gpuTemp.bind(),
+    icon: "graphics-card-outline-symbolic",
+    label: gpuTemp.bind().as(formatTemp),
   });
