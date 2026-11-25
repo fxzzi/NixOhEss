@@ -149,5 +149,14 @@ in
       "application/x-xz" = "org.gnome.FileRoller.desktop";
       "application/x-rar-compressed" = "org.gnome.FileRoller.desktop";
     };
+
+    # launch thunar.service at login
+    systemd.user.services.thunar = {
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      # inherit the session PATH so "open with" and custom actions work
+      enableDefaultPath = false;
+    };
   };
 }
