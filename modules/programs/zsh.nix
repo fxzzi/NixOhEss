@@ -14,12 +14,10 @@ in
     programs = {
       zsh = {
         enable = true;
-        enableGlobalCompInit = false; # we add to fpath after
         enableLsColors = false; # we use eza instead :D
         histFile = "$XDG_DATA_HOME/zsh/zsh_history";
         histSize = 10000;
         promptInit = ''
-          fpath+=(${pkgs.pure-prompt}/share/zsh/site-functions)
           autoload -U promptinit; promptinit
           prompt pure
         '';
@@ -30,15 +28,9 @@ in
           # match files beginning with . without explicitly specifying the dot
           "GLOBDOTS"
 
-          # history options to ignore dups
-          "HIST_EXPIRE_DUPS_FIRST"
           "HIST_IGNORE_ALL_DUPS"
-          "HIST_FIND_NO_DUPS"
           "HIST_IGNORE_SPACE"
-
-          # share history between open shells
           "SHARE_HISTORY"
-          "INC_APPEND_HISTORY"
         ];
         shellAliases = {
           grep = getExe pkgs.ripgrep;
@@ -100,10 +92,6 @@ in
             # these keybinds have to be set after the plugin is sourced
             bindkey "''${key[Up]}" history-substring-search-up
             bindkey "''${key[Down]}" history-substring-search-down
-
-            # completions
-            fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
-            autoload -U compinit && compinit
           '';
       };
       fzf = {
@@ -119,6 +107,9 @@ in
         ripgrep
         bat
         eza
+
+        pure-prompt
+        zsh-completions
       ];
       sessionVariables = {
         # clean up ~
