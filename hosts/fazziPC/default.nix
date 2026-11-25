@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   self,
   inputs,
@@ -70,6 +71,9 @@
     # wtf is it with these clankers not following XDG
     CLAUDE_CONFIG_DIR = "$HOME/.config/claude";
   };
+
+  # symlink the games subvolume to ~
+  systemd.tmpfiles.rules = [ "L ${config.hj.directory}/Games - - - - /games" ];
 
   # icc files used in Hyprland
   age.secrets.m27q = {
