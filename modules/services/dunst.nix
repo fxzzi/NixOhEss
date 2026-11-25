@@ -117,29 +117,28 @@ in
           hooks.dunst = "dunstctl reload";
           templates.dunst = mkIf config.cfg.programs.wallust.enable {
             target = "~/.config/dunst/dunstrc.d/99-colors.conf";
-            template = builtins.toFile "99-colors.conf" ''
-              [global]
-                  # Defines color of the frame around the notification window.
-                  frame_color = "{{color4}}"
-
-                  # Defines color of the Progress Bar.
-                  highlight = "{{color4}}"
-
-              [urgency_low]
-                  # IMPORTANT: colors have to be defined in quotation marks.
-                  # Otherwise the "#" and following would be interpreted as a comment.
-                  background = "{{background}}CC"
-                  foreground = "{{foreground}}"
-
-              [urgency_normal]
-                  background = "{{background}}CC"
-                  foreground = "{{foreground}}"
-
-              [urgency_critical]
-                  background = "{{background}}CC"
-                  foreground = "{{foreground}}"
-                  frame_color = "{{color1}}"
-            '';
+            template = pkgs.writeText "99-colors.conf" (
+              lib.generators.toINI { } (
+                let
+                  # colors must be quoted, otherwise dunst reads the # as a comment
+                  urgency = {
+                    background = ''"{{background}}CC"'';
+                    foreground = ''"{{foreground}}"'';
+                  };
+                in
+                {
+                  global = {
+                    frame_color = ''"{{color4}}"'';
+                    highlight = ''"{{color4}}"'';
+                  };
+                  urgency_low = urgency;
+                  urgency_normal = urgency;
+                  urgency_critical = urgency // {
+                    frame_color = ''"{{color1}}"'';
+                  };
+                }
+              )
+            );
           };
         };
       };

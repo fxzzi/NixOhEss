@@ -30,7 +30,7 @@ in
         "ags/style.css".source = ./style.css;
         "wallust/wallust.toml".value.templates.ags = mkIf config.cfg.programs.wallust.enable {
           target = "~/.config/ags/colors_ags.css";
-          template = builtins.toFile "colors_ags.css" ''
+          template = pkgs.writeText "colors_ags.css" ''
             @define-color cursor {{cursor}};
             @define-color background rgba({{background | rgb}},0.8);
             @define-color foreground {{foreground}};

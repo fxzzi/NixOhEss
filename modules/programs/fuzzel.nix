@@ -31,19 +31,22 @@ in
       xdg.config.files = {
         "wallust/wallust.toml".value.templates.fuzzel = mkIf config.cfg.programs.wallust.enable {
           target = "~/.cache/wallust/colors_fuzzel.ini";
-          template = builtins.toFile "colors_fuzzel.ini" ''
-            [colors]
-            background={{background | saturate(0.2) | strip}}cc
-            text={{foreground | strip}}ff
-            prompt={{color4 | strip}}ff
-            input={{foreground | strip}}ff
-            match={{color12 | strip}}ff
-            selection={{color0 | lighten(0.5) | strip}}55
-            selection-match={{color4 | strip}}ff
-            selection-text={{foreground | strip}}ff
-            border={{color4 | strip}}ff
-            placeholder={{color12 | darken(0.3) | strip}}ff       
-          '';
+          template = pkgs.writeText "colors_fuzzel.ini" (
+            lib.generators.toINI { } {
+              colors = {
+                background = "{{background | saturate(0.2) | strip}}cc";
+                text = "{{foreground | strip}}ff";
+                prompt = "{{color4 | strip}}ff";
+                input = "{{foreground | strip}}ff";
+                match = "{{color12 | strip}}ff";
+                selection = "{{color0 | lighten(0.5) | strip}}55";
+                selection-match = "{{color4 | strip}}ff";
+                selection-text = "{{foreground | strip}}ff";
+                border = "{{color4 | strip}}ff";
+                placeholder = "{{color12 | darken(0.3) | strip}}ff";
+              };
+            }
+          );
         };
         "fuzzel/fuzzel.ini" = {
           generator = lib.generators.toINI { };

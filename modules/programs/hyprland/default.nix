@@ -98,7 +98,7 @@ in
         '';
       "wallust/wallust.toml".value.templates.hyprland = mkIf config.cfg.programs.wallust.enable {
         target = "~/.config/hypr/colors_hyprland.lua";
-        template = builtins.toFile "colors_hyprland.lua" ''
+        template = pkgs.writeText "colors_hyprland.lua" ''
           hl.config(${
             generators.toLua { } {
               general.col = {

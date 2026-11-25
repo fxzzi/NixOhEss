@@ -1,5 +1,6 @@
 {
   self,
+  pkgs,
   lib,
   config,
   ...
@@ -14,7 +15,7 @@ in
   };
   config = mkIf (cfg.enable && config.cfg.programs.wallust.enable) {
     hj.xdg.config.files."wallust/wallust.toml".value.templates.hyprtoolkit = {
-      template = builtins.toFile "hyprtoolkit.conf" (
+      template = pkgs.writeText "hyprtoolkit.conf" (
         self.lib.generators.toHyprlang { } {
           background = "0xFF{{background | strip}}";
           base = "0xFF{{background | lighten(0.05) | strip}}";
