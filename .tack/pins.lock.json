@@ -203,8 +203,8 @@
     "narHash": "sha256-pAEASBc6wof0S58XcSEdZoQ2iFQDkCnZwH+wFLrkd1Q=",
     "lastModified": 1795234589,
     "patched": {
-      "path": "/nix/store/9rxil46s1gvpnda2anqblkvzq8i0m713-source",
-      "narHash": "sha256-0Uv3ve4giUlnjIB6tsTocHN1Yth6svUqumCqbgyTxdU=",
+      "path": "/nix/store/ra7pnl1fayzivcx52yhpz0vanrvrczld-source",
+      "narHash": "sha256-0fMDiOqqZ9GGks2JJGD2aOat3jt6wVMCv9hQqGsV7hs=",
       "lastModified": 1795234589,
       "patches": [
         {
@@ -227,9 +227,16 @@
           "file": "patches/nixpkgs/pr-592033.patch",
           "sha256": "dbdc602ea8c432bd78a24ece4b3453fcfe1c471abe8e594ea7a1df5b928581bf",
           "head": "56dfc67a8be8da79a3583ff0c75b3b14c8858b45"
+        },
+        {
+          "source": "https://github.com/NixOS/nixpkgs/pull/593147",
+          "url": "https://github.com/NixOS/nixpkgs/pull/593147",
+          "file": "patches/nixpkgs/pr-593147.patch",
+          "sha256": "663e9e9c69edce99296e83df15a5fcd68944a5393f743dbfa1c909d391650645",
+          "head": "780f28337054a04ce88e2486efe87dd1abbd4aad"
         }
       ],
-      "diff": "b4250609bc455068890ae2edd435a251570bcf99b3f43bf6887a1d63bf13e17d"
+      "diff": "fb6e2aaf4c2fc79867108a56ee00f77bf5d04d5b522755538b09c1ea764bf2a0"
     }
   },
   "nvf": {
@@ -282,7 +289,7 @@
   "tom-nvidia-patches": {
     "type": "fixed",
     "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff",
-    "sha256": "sha256-rQG3B3zOPjArWio/uL1jrQWC2VQoaUk82RIpc4RkDWk=",
+    "sha256": "sha256-MlZ2iB+JDZuNwGrlrgFAkm/adYFHTgRQjcZucKFW2Lc=",
     "unpack": "file"
   },
   "walls": {

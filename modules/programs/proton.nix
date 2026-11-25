@@ -46,6 +46,9 @@ in
       PROTON_USE_WOW64 = 1;
       # Native pipewire instead of PA, available in GE and cachyOS
       PROTON_USE_PIPEWIRE = 1;
+      # use native HDR colorspace so that steam overlay and mangohud
+      # aren't oversaturated and blown out
+      WINE_WAYLAND_HDR_NATIVE = 1;
     };
 
     # heroic and lutris both pick up protons from here too
