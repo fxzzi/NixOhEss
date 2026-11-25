@@ -98,16 +98,19 @@ const getMonitorByName = (name) => {
   return null;
 };
 
+const hasBar = (name) => App.windows.some((w) => w.name === `bar-${name}`);
+
 const addBar = (name) => {
+  if (hasBar(name)) return;
   const gdkMonitor = getMonitorByName(name);
   if (gdkMonitor) App.addWindow(Bar(gdkMonitor, name));
 };
 
 // on monitor connects and disconnects, update only the affected bar
 hyprland.connect("monitor-added", (_, name) => addBar(name));
-hyprland.connect("monitor-removed", (_, name) =>
-  App.removeWindow(`bar-${name}`),
-);
+hyprland.connect("monitor-removed", (_, name) => {
+  if (hasBar(name)) App.removeWindow(`bar-${name}`);
+});
 
 App.config({
   style: "./style.css",
