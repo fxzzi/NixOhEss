@@ -9,17 +9,17 @@ lineHeight.insert(Pango.attr_line_height_new_absolute(20 * Pango.SCALE));
 // icon, label and iconClass can be plain values or bindings, labelProps go to
 // the label, and anything else is passed through to the outer box
 export const IconLabel = ({
-  icon,
-  label,
-  iconClass = "icon",
-  labelProps = {},
-  ...props
+	icon,
+	label,
+	iconClass = "icon",
+	labelProps = {},
+	...props
 }) =>
-  Widget.Box({
-    spacing: 4,
-    ...props,
-    children: [
-      Widget.Icon({ icon, class_name: iconClass, size: 16 }),
-      Widget.Label({ label, attributes: lineHeight, ...labelProps }),
-    ],
-  });
+	Widget.Box({
+		spacing: 4,
+		...props,
+		children: [
+			Widget.Icon({ icon, class_name: iconClass, size: 16 }),
+			Widget.Label({ label, attributes: lineHeight, ...labelProps }),
+		],
+	});

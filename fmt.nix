@@ -44,18 +44,12 @@ treefmt.withConfig {
         options = [
           "format"
           "--write"
-          "--indent-style=space"
-          "--indent-width=2"
         ];
         includes = [ "*.js" ];
       };
 
       stylua = {
         command = lib.getExe stylua;
-        options = [
-          "--indent-type=Spaces"
-          "--indent-width=2"
-        ];
         includes = [ "*.lua" ];
       };
     };

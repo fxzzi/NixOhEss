@@ -35,9 +35,9 @@ hl.window_rule({ match = { class = "org.gnome.FileRoller", title = "Extract.*" }
 
 -- apply to everything
 hl.window_rule({
-  match = { class = ".*" },
-  -- thank god this can be disabled
-  no_xdg_drags = true,
+	match = { class = ".*" },
+	-- thank god this can be disabled
+	no_xdg_drags = true,
 })
 
 -- disable blur for slow apps
