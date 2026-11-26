@@ -15,12 +15,11 @@ let
 in
 {
   imports = [
-    "${inputs.ncro}/nix/module.nix"
+    inputs.ncro.nixosModules.default
   ];
   config = {
     services.ncro = {
       enable = true;
-      package = pkgs.callPackage "${inputs.ncro}/nix/package.nix" { };
       port = 49152;
       settings = {
         logging = {

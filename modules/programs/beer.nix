@@ -15,7 +15,7 @@ let
     getExe'
     ;
   cfg = config.cfg.programs.beer;
-  beer = pkgs.callPackage "${inputs.beer}/nix/package.nix" { };
+  beer = inputs.beer.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   options.cfg.programs.beer.enable = mkEnableOption "beer";

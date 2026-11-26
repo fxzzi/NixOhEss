@@ -37,14 +37,11 @@ url = "github:feel-co/hjem"
 [inputs.nixos-core]
 url = "github:manic-systems/nixos-core"
 [inputs.ncro]
-url  = "github:manic-systems/ncro"
-type = "fetch"
+url = "github:manic-systems/ncro"
 [inputs.tack]
-url  = "github:manic-systems/tack"
-type = "fetch"
+url = "github:manic-systems/tack"
 [inputs.agenix]
-url  = "github:ryantm/agenix"
-type = "fetch"
+url = "github:ryantm/agenix"
 
 # things from yours truly
 [inputs.azzipkgs]
@@ -56,21 +53,17 @@ type = "fetch"
 url  = "fazzi:walls"
 type = "fetch"
 [inputs.creamlinux]
-url  = "github:fxzzi/creamlinux-installer"
-type = "fetch"
+url = "github:fxzzi/creamlinux-installer"
 
 # raf stuff :D
 [inputs.nvf]
 url = "github:NotAShelf/nvf"
 [inputs.rags]
-url  = "github:NotAShelf/rags"
-type = "fetch"
+url = "github:NotAShelf/rags"
 [inputs.beer]
-url  = "raf:beer"
-type = "fetch"
+url = "raf:beer"
 [inputs.chroma]
-url  = "raf:chroma"
-type = "fetch"
+url = "raf:chroma"
 
 # everything else
 [inputs.hyprland]

@@ -10,7 +10,7 @@
   config = lib.mkIf config.cfg.programs.tack.enable {
     programs.tack = {
       enable = true;
-      package = pkgs.callPackage "${inputs.tack}/nix/package.nix" { };
+      package = inputs.tack.packages.${pkgs.stdenv.hostPlatform.system}.default;
       nixConfTokens = true;
     };
   };

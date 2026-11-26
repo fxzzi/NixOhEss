@@ -9,10 +9,7 @@
 let
   inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.cfg.services.ags;
-  pkg = pkgs.callPackage "${inputs.rags}/nix/package.nix" {
-    # i'm a js chud
-    buildTypes = false;
-  };
+  pkg = inputs.rags.packages.${pkgs.stdenv.hostPlatform.system}.agsNoTypes;
 in
 {
   options.cfg.services.ags.enable = mkEnableOption "ags";

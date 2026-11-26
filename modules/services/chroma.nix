@@ -14,7 +14,7 @@ let
     getExe'
     ;
   cfg = config.cfg.services.chroma;
-  chroma = pkgs.callPackage "${inputs.chroma}/nix/package.nix" { };
+  chroma = inputs.chroma.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   options.cfg.services.chroma.enable = mkEnableOption "chroma";

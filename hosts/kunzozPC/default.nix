@@ -14,7 +14,7 @@
       sgdboop
       cemu
       stremio-linux-shell
-      (callPackage inputs.creamlinux { })
+      inputs.creamlinux.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
   hardware.display = {

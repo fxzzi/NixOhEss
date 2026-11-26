@@ -75,9 +75,14 @@
     "type": "github",
     "owner": "fxzzi",
     "repo": "creamlinux-installer",
-    "rev": "17ad517a459f1a41a40bef2642ee952859147ab5",
-    "narHash": "sha256-CpWtlyyif55aeW4MtrtFWjBI5XEa4p5IQQ981xABDt4=",
-    "lastModified": 1744901658
+    "rev": "cce5249ea07b65b200abeb9b1237619d5f1a8153",
+    "narHash": "sha256-llRUOQl0fBDH49z+zFSolQtWKKR+iCqDNImSsxFBIco=",
+    "lastModified": 1795721081,
+    "archive": {
+      "hash": "sha256-x2hQ7DkWtYs6iZqjQOPl0YsDCqG0usLd9gtRdlEZlmU=",
+      "outHash": "sha256-J21NkVA89cN4ImkZZETvJ9gJwUsmQ6XFpHTDjquQAgU="
+    },
+    "public": true
   },
   "disblock-origin": {
     "type": "git",

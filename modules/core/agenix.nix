@@ -6,9 +6,9 @@
 }:
 {
   environment.systemPackages = [
-    (pkgs.callPackage "${inputs.agenix}/pkgs/agenix.nix" { })
+    inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
-  imports = [ "${inputs.agenix}/modules/age.nix" ];
+  imports = [ inputs.agenix.nixosModules.default ];
   age.identityPaths = [
     "${config.hj.directory}/.ssh/agenix"
     "/etc/ssh/ssh_host_ed25519_key"
