@@ -74,6 +74,7 @@ in
             border = {
               radius = 6;
               width = 2;
+              selection-radius = 6;
             };
           };
         };
