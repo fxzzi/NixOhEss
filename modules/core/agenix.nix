@@ -10,7 +10,7 @@
   ];
   imports = [ inputs.agenix.nixosModules.default ];
   age.identityPaths = [
-    "${config.hj.directory}/.ssh/agenix"
+    "${config.hj.directory}/.ssh/id_ed25519"
     "/etc/ssh/ssh_host_ed25519_key"
   ];
 }

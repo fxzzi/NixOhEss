@@ -1,11 +1,21 @@
 {
+  config,
   inputs,
   pkgs,
   ...
 }:
 {
   config = {
+    age.secrets.nix-access-tokens = {
+      file = ../../secrets/nix-access-tokens.age;
+      owner = config.cfg.core.username;
+    };
+
     nix = {
+      # `!include` silently skips the file if it is missing
+      extraOptions = ''
+        !include ${config.age.secrets.nix-access-tokens.path}
+      '';
       package = pkgs.nixVersions.latest;
       channel.enable = false; # we use le flakes
       # run builds at idle priority so they don't make the desktop/games laggy
