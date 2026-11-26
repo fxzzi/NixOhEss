@@ -1,6 +1,6 @@
 lib:
 let
-  inherit (lib) filesystem hasSuffix hasPrefix;
+  inherit (lib) filesystem hasSuffix;
 in
 path:
 let
@@ -10,6 +10,6 @@ let
     let
       name = baseNameOf file;
     in
-    hasSuffix ".nix" name && !(hasPrefix "_" name);
+    hasSuffix ".nix" name;
 in
 builtins.filter nixFilter files
