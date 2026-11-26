@@ -81,7 +81,7 @@
     mode = "744";
   };
 
-  # fazziPC has a WOLED main monitor with subpixel layout RGWB,
+  # kappa has a WOLED main monitor with subpixel layout RGWB,
   # and a secondary monitor of layout BGR. Therefore we shouldn't
   # use subpixel rendering.
   fonts.fontconfig.subpixel.rgba = "none";

@@ -1,12 +1,12 @@
 let
-  fazziPC = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE5nYcFyV3319s+34IMUDTu8g04H0yjPHQwmhIOKI1GD root@fazziPC";
+  kappa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE5nYcFyV3319s+34IMUDTu8g04H0yjPHQwmhIOKI1GD root@kappa";
   faaris = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIhE7wYZ6juPg1uPs8hTJJMjzWVlMB4maX2K7rE9X84I faaris";
   kunzoz = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIrsRN7pAhabnFZfBZC8xxGbqS+hjGDGKlPSDujEHXw+ kunzoz@kunzozPC";
 in
 {
-  "publicip.age".publicKeys = [ fazziPC ];
+  "publicip.age".publicKeys = [ kappa ];
   # monitor icc profile from Monitors Unboxed
-  "mub-M27Q_v1.icm.age".publicKeys = [ fazziPC ];
+  "mub-M27Q_v1.icm.age".publicKeys = [ kappa ];
   "nix-access-tokens.age".publicKeys = [
     faaris
     kunzoz
