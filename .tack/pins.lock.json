@@ -59,9 +59,9 @@
     "type": "git",
     "url": "ssh://git@git.notashelf.dev:33/notashelf/beer",
     "ref": "HEAD",
-    "rev": "d6c1201ff6b99d95b03e9adc5df7c9916fd6d120",
-    "narHash": "sha256-6dkUe6lCFh5Peza03/jK6WSumgDaY0kFfA45C2DV7TI=",
-    "lastModified": 1795695272
+    "rev": "92c854e36f027fb6c5a9e391748ee07c22ae6823",
+    "narHash": "sha256-0G+gFYYACi8TrFblBcgW4b747UXyC5tZzRnFEnMGh2M=",
+    "lastModified": 1795717896
   },
   "chroma": {
     "type": "git",

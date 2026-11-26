@@ -20,10 +20,7 @@ in
   config = {
     services.ncro = {
       enable = true;
-      package = (pkgs.callPackage "${inputs.ncro}/nix/package.nix" { }).overrideAttrs {
-        # disable tests to speed up build for now
-        doCheck = false;
-      };
+      package = pkgs.callPackage "${inputs.ncro}/nix/package.nix" { };
       port = 49152;
       settings = {
         logging = {
