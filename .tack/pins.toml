@@ -29,6 +29,10 @@ patches = [
   "https://github.com/NixOS/nixpkgs/pull/593205",
   # lutris-unwrapped: 0.5.22 -> 0.5.23
   "https://github.com/NixOS/nixpkgs/pull/593409",
+  # tack: 1.0.1 -> 2.0.0
+  "https://github.com/NixOS/nixpkgs/pull/593888",
+  # ncro: init at 2.4.0; init module
+  "https://github.com/NixOS/nixpkgs/pull/533027",
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
@@ -36,10 +40,6 @@ url = "github:nix-systems/x86_64-linux"
 url = "github:feel-co/hjem"
 [inputs.nixos-core]
 url = "github:manic-systems/nixos-core"
-[inputs.ncro]
-url = "github:manic-systems/ncro"
-[inputs.tack]
-url = "github:manic-systems/tack"
 [inputs.agenix]
 url = "github:ryantm/agenix"
 
