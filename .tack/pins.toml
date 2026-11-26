@@ -27,6 +27,8 @@ patches = [
   "https://github.com/NixOS/nixpkgs/pull/593147",
   # tuigreet: 0.11.1 -> 0.11.2
   "https://github.com/NixOS/nixpkgs/pull/593205",
+  # lutris-unwrapped: 0.5.22 -> 0.5.23
+  "https://github.com/NixOS/nixpkgs/pull/593409",
 ]
 [inputs.systems]
 url = "github:nix-systems/x86_64-linux"
