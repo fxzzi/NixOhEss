@@ -3,7 +3,7 @@
     "KvLibadwaita": "github:GabePoel/KvLibadwaita",
     "agenix": "github:ryantm/agenix",
     "azzipkgs": "gitlab:fazzi/azzipkgs",
-    "beer": "git+ssh://git@git.notashelf.dev:33/notashelf/beer?ref=notashelf/push-rnynxsuztkou",
+    "beer": "git+ssh://git@git.notashelf.dev:33/notashelf/beer",
     "chroma": "git+ssh://git@git.notashelf.dev:33/notashelf/chroma",
     "creamlinux": "github:fxzzi/creamlinux-installer",
     "disblock-origin": "git+https://codeberg.org/AllPurposeMat/Disblock-Origin",
@@ -58,10 +58,10 @@
   "beer": {
     "type": "git",
     "url": "ssh://git@git.notashelf.dev:33/notashelf/beer",
-    "ref": "refs/heads/notashelf/push-rnynxsuztkou",
-    "rev": "6e9851cc5d3f51beaa6beec68cae4581e2c19f18",
+    "ref": "HEAD",
+    "rev": "d6c1201ff6b99d95b03e9adc5df7c9916fd6d120",
     "narHash": "sha256-6dkUe6lCFh5Peza03/jK6WSumgDaY0kFfA45C2DV7TI=",
-    "lastModified": 1795622697
+    "lastModified": 1795695272
   },
   "chroma": {
     "type": "git",
@@ -115,13 +115,13 @@
     "type": "github",
     "owner": "hyprwm",
     "repo": "Hyprland",
-    "rev": "c58dd14e8a826a130bbe71194215ae63881569cc",
-    "narHash": "sha256-348lB6kUwiSzMO6UCcb+0H3aW67643DlVLMN5w61/a0=",
-    "lastModified": 1795615055,
+    "rev": "e537b2fce29e4bac191e73fd3c77ec3de80b7ffe",
+    "narHash": "sha256-QLEXTg5DzVweldER27L+ou/ElxQlD1kI6dpz7lu2FM4=",
+    "lastModified": 1795693842,
     "patched": {
-      "path": "/nix/store/43fc6wad71mp1rydmz1zl65fpdc3xhmc-source",
-      "narHash": "sha256-F69KP64h13HBMjOYpkbwn/mXGo/UEPzehHJyoBqg87c=",
-      "lastModified": 1795615055,
+      "path": "/nix/store/34qwicx70jxpggn77pr0dl8gmh3xdjj6-source",
+      "narHash": "sha256-GwRjWAMv7zCgjU/ur+y8dsEVINxQfjJmaJp2kg1WyqA=",
+      "lastModified": 1795693842,
       "patches": [
         {
           "source": "https://github.com/hyprwm/Hyprland/pull/17042",
@@ -185,12 +185,12 @@
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "597928c4b4f959c9d4e79620795fbd521597d164",
-    "narHash": "sha256-XOoVe7jgVnpILXgA2PO9KddPKxfQKC1eht9nrZ0ZRBg=",
-    "lastModified": 1795640718,
+    "rev": "269b7256c0028a5e64346e89713957be60989e08",
+    "narHash": "sha256-i5SPijAdveXp6fr6vBQqlnpXZNXfQGBGHHf4j4YMEYw=",
+    "lastModified": 1795694968,
     "archive": {
-      "hash": "sha256-VAFjr4iOjEmKFqJU81jhRAv8wQtLCu2CWM03WN/CUog=",
-      "outHash": "sha256-e+GrRQ5fL3cO7A8fPMi4NuNGXcYEiQcbPrunLiWlThs="
+      "hash": "sha256-c8m/pzIm7hn/y//gRc+M3+qAOMxZOTE6csHxbKUVKFU=",
+      "outHash": "sha256-qGo1y79s31M0X/ZwPWB7Sad5UVb0ug0PUCa3g5H15Zg="
     },
     "public": true
   },
@@ -266,13 +266,14 @@
     "type": "github",
     "owner": "NotAShelf",
     "repo": "rags",
-    "rev": "168fca6e6dec1ffd19797c29d9b74dcd19222750",
-    "narHash": "sha256-Ahp28Nq5SBG7EmEeIZ/bPrR7+Zcx/ZuS7tjUFuiAH68=",
-    "lastModified": 1793948047,
+    "rev": "df8a6091ffe6bc8bf226e1c3559ecde175b43216",
+    "narHash": "sha256-qMU2i6EOqJFzfyW0pZ30bVMb1qCuD3bNS51twymcu7g=",
+    "lastModified": 1795675976,
     "archive": {
-      "hash": "sha256-4E+3wHsGP0X8VF5qsbKOtB8RjVI+UwwyZTn2EKdNaIw=",
-      "outHash": "sha256-NLlgakM/GHhhz2foMtYhVfeaXCUIJdtdOi+Za17jzvQ="
-    }
+      "hash": "sha256-rdWBgu0e6TpvNxAoEts0zK3eSifH3h3hCqMHri0+lio=",
+      "outHash": "sha256-nVEJtWa5fc+BjeztkuyFyeggygk6yXEjEcasC+V4bgc="
+    },
+    "public": true
   },
   "startpage": {
     "type": "gitlab",
@@ -294,16 +295,16 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "5fba22058c07e258e77005144373845df04aa420",
-    "narHash": "sha256-4y/PrwhX1+kEbYyD9++i03/xjeJiTp0rbD3IEwgAkfI=",
-    "lastModified": 1795612357,
+    "rev": "147cec2879505729dbcf2d8ff9848be19b6f7094",
+    "narHash": "sha256-qGjfI0mOgZ1WXjocPeDCL0WqjWy2v0/VyMgYqwfmf6k=",
+    "lastModified": 1795654496,
     "archive": null,
     "public": true
   },
   "tom-nvidia-patches": {
     "type": "fixed",
     "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff",
-    "sha256": "sha256-7XDO04AQV6Dqt38k0tbFCLV0XuXJThfEzmIOhAbzBI4=",
+    "sha256": "sha256-50KrRCKNsux5oRTTOU9LAbG5p8nZbuR6/h3ppXl19YI=",
     "unpack": "file"
   },
   "walls": {
