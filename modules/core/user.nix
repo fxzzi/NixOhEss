@@ -74,7 +74,7 @@ in
       # PLEASE change this after logging in :prayge:
       initialPassword = "1234";
       extraGroups = [
-        "wheel" # sudo
+        "wheel" # run0
         "input" # extest and stuff
       ];
       uid = 1000;

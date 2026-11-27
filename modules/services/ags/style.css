@@ -182,9 +182,3 @@ menu menuitem {
 .polkit entry:focus {
   border-color: @color4;
 }
-
-.polkit .action {
-  min-width: 0;
-  padding: 6px 12px;
-  font-size: 15px;
-}
