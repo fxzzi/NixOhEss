@@ -7,7 +7,6 @@ let
     owner = config.cfg.core.username;
     group = "users";
     mode = "600";
-    symlink = false;
   };
 in
 lib.mkIf (config.cfg.core.username == "faaris") {
