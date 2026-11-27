@@ -1,6 +1,7 @@
 -- layer rules
 hl.layer_rule({ match = { namespace = "launcher" }, blur = true, ignore_alpha = 0 })
 hl.layer_rule({ match = { namespace = "power-menu" }, blur = true, xray = true, ignore_alpha = 0, dim_around = true })
+hl.layer_rule({ match = { namespace = "polkit" }, blur = true, ignore_alpha = 0, dim_around = true })
 hl.layer_rule({ match = { namespace = "wall-picker" }, blur = true, xray = true, ignore_alpha = 0 })
 -- 0.75 so the box shadows (max 0.7 alpha) don't get blurred
 hl.layer_rule({ match = { namespace = "bar-.*" }, blur = true, xray = true, ignore_alpha = 0.75 })

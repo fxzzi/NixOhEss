@@ -16,6 +16,7 @@ import {
 } from "./bar/Stats.js";
 import { WallPicker } from "./windows/WallPicker.js";
 import { PowerMenu } from "./windows/PowerMenu.js";
+import { Polkit } from "./windows/Polkit.js";
 
 // follows the visibility of the widget it separates, so hidden widgets
 // don't leave a stray separator behind
@@ -108,12 +109,16 @@ hyprland.connect("monitor-removed", (_, name) => {
 App.config({
 	style: "./style.css",
 	icons: "./icons",
+	windows: [Polkit()],
 	// popups, only built the first time they're toggled with `ags -t <name>`
 	lazyWindows: {
 		"wall-picker": WallPicker,
 		"power-menu": PowerMenu,
 	},
 });
+
+const polkit = await Service.import("polkit");
+polkit.registerAgent();
 
 // on startup, create bars for all monitors
 hyprland.monitors.forEach(({ name }) => addBar(name));

@@ -10,7 +10,8 @@
 
 .bar,
 .wall-picker,
-.power-menu {
+.power-menu,
+.polkit {
   font: 15px monospace;
   font-weight: 600;
   color: @foreground;
@@ -18,7 +19,8 @@
 
 .bar > box,
 .wall-picker > box,
-.power-menu > box {
+.power-menu > box,
+.polkit > box {
   background: @background;
   border: 2px solid @color0;
   border-radius: 6px;
@@ -155,4 +157,34 @@ menu menuitem {
 .action:hover .key,
 .action:focus .key {
   color: @color6;
+}
+
+/* polkit */
+.polkit > box {
+  min-width: 420px;
+  padding: 16px;
+}
+
+.polkit .title {
+  font-size: 17px;
+  color: @color4;
+}
+
+.polkit entry {
+  padding: 6px 8px;
+  color: @foreground;
+  background: alpha(@color0, 0.5);
+  border: 2px solid @color8;
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.polkit entry:focus {
+  border-color: @color4;
+}
+
+.polkit .action {
+  min-width: 0;
+  padding: 6px 12px;
+  font-size: 15px;
 }

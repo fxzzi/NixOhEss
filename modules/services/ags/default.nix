@@ -71,6 +71,7 @@ in
         };
       };
     };
+    security.polkit.enable = true;
     services.upower.enable = config.cfg.core.isLaptop;
   };
 }

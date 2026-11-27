@@ -10,7 +10,6 @@
       ags.enable = true;
       kdeconnect.enable = true;
       stash.enable = true;
-      mate-polkit.enable = true;
       gcr-ssh-agent.enable = true;
       pipewire = {
         enable = true;
