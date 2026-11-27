@@ -2,6 +2,8 @@
   config = {
     security = {
       sudo.enable = false;
+      # persist auth for 10 mins instead of default 5
+      polkit.settings.Polkitd.ExpirationSeconds = 600;
       run0 = {
         enable = true;
         sudo-shim.enable = true;
