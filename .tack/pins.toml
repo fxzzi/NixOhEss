@@ -15,23 +15,13 @@ names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 
 # core
 [inputs.nixpkgs]
-url = "channel:nixos-unstable"
+url = "channel:nixos-unstable-small"
 patches = [
   # nvtop: 3.3.2 -> 3.4.0, merge nvtopPackages into a single package 
   "https://github.com/NixOS/nixpkgs/pull/586196",
-  # mpd: 0.24.18 -> 0.24.20
-  "https://github.com/NixOS/nixpkgs/pull/592049",
-  # librewolf-bin-unwrapped: 160.0-1 -> 160.0.1-1
-  "https://github.com/NixOS/nixpkgs/pull/592033",
   # proton-ge-bin: GE-Proton11-12 -> GE-Proton11-14
   "https://github.com/NixOS/nixpkgs/pull/593147",
-  # tuigreet: 0.11.1 -> 0.11.2
-  "https://github.com/NixOS/nixpkgs/pull/593205",
-  # lutris-unwrapped: 0.5.22 -> 0.5.23
-  "https://github.com/NixOS/nixpkgs/pull/593409",
-  # tack: 1.0.1 -> 2.0.0
-  "https://github.com/NixOS/nixpkgs/pull/593888",
-  # # tack: install shell completions, add qweered to maintainers
+  # tack: install shell completions, add qweered to maintainers
   "https://github.com/NixOS/nixpkgs/pull/593975",
   # ncro: init at 2.4.0; init module
   "https://github.com/NixOS/nixpkgs/pull/533027",

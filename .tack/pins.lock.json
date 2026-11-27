@@ -13,7 +13,7 @@
     "nix-gaming": "github:fufexan/nix-gaming",
     "nixcord": "github:4evy/nixcord",
     "nixos-core": "github:manic-systems/nixos-core",
-    "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
+    "nixpkgs": "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.zst",
     "nvf": "github:NotAShelf/nvf",
     "rags": "github:NotAShelf/rags",
     "startpage": "gitlab:fazzi/startpage",
@@ -200,35 +200,21 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1125864.2786a2a72088/nixexprs.tar.zst?lastModified=1795234589&rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
-    "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
-    "narHash": "sha256-pAEASBc6wof0S58XcSEdZoQ2iFQDkCnZwH+wFLrkd1Q=",
-    "lastModified": 1795234589,
+    "url": "https://releases.nixos.org/nixos/unstable-small/nixos-27.05pre1131378.7387b85bd88e/nixexprs.tar.zst?lastModified=1795772528&rev=7387b85bd88ea125935fc231d98dbeec84ca33da",
+    "rev": "7387b85bd88ea125935fc231d98dbeec84ca33da",
+    "narHash": "sha256-LM64qR9QdRlncqHnH0HJl1d1Y4MIrgyUp5vKQMWy0tc=",
+    "lastModified": 1795772528,
     "patched": {
-      "path": "/nix/store/y90bn4bw72bffx351r9vy2v74l5mmd8p-source",
-      "narHash": "sha256-N6NaaUOEeyLJwpy0e9nTImHYH8ES4uRIQBqrDtDBc+A=",
-      "lastModified": 1795234589,
+      "path": "/nix/store/xw1awppmns5kjv41axs8w3wisb41bmqz-source",
+      "narHash": "sha256-ICd5JQ8sj9SMEdU3Da831NkMo24K3Xa2m+PQyvy04Nc=",
+      "lastModified": 1795772528,
       "patches": [
         {
           "source": "https://github.com/NixOS/nixpkgs/pull/586196",
           "url": "https://github.com/NixOS/nixpkgs/pull/586196",
           "file": "patches/nixpkgs/pr-586196.patch",
-          "sha256": "30028af0354e03881c7172b6e440c241d955a70e655aff8a2110be9deae233ad",
-          "head": "4999a7fe9e0eb305a3f0e6a2fda7467580971c6b"
-        },
-        {
-          "source": "https://github.com/NixOS/nixpkgs/pull/592049",
-          "url": "https://github.com/NixOS/nixpkgs/pull/592049",
-          "file": "patches/nixpkgs/pr-592049.patch",
-          "sha256": "0793a6d0ae2871329d3e3d633b9ccf7129e8cee592697ad9624cb0d95a4ce8a4",
-          "head": "6519b501380d695fc44d5643a31d6990c1abecfb"
-        },
-        {
-          "source": "https://github.com/NixOS/nixpkgs/pull/592033",
-          "url": "https://github.com/NixOS/nixpkgs/pull/592033",
-          "file": "patches/nixpkgs/pr-592033.patch",
-          "sha256": "dbdc602ea8c432bd78a24ece4b3453fcfe1c471abe8e594ea7a1df5b928581bf",
-          "head": "56dfc67a8be8da79a3583ff0c75b3b14c8858b45"
+          "sha256": "c5e0306b07d7f805ac5415b38a4c53d28d97ad2259987602faf0eeb0ae2cccbd",
+          "head": "a0ba4e4821a731c98286c342b622a678bab2a2c1"
         },
         {
           "source": "https://github.com/NixOS/nixpkgs/pull/593147",
@@ -236,27 +222,6 @@
           "file": "patches/nixpkgs/pr-593147.patch",
           "sha256": "663e9e9c69edce99296e83df15a5fcd68944a5393f743dbfa1c909d391650645",
           "head": "780f28337054a04ce88e2486efe87dd1abbd4aad"
-        },
-        {
-          "source": "https://github.com/NixOS/nixpkgs/pull/593205",
-          "url": "https://github.com/NixOS/nixpkgs/pull/593205",
-          "file": "patches/nixpkgs/pr-593205.patch",
-          "sha256": "ff989899e0d94936ae4c3ea85a41ae5f19ebf4ae0b6a2aa78d139cbf8b803128",
-          "head": "daca485e5b2f537deecdb15365fc1343109a3c67"
-        },
-        {
-          "source": "https://github.com/NixOS/nixpkgs/pull/593409",
-          "url": "https://github.com/NixOS/nixpkgs/pull/593409",
-          "file": "patches/nixpkgs/pr-593409.patch",
-          "sha256": "5aa8780a9a1e104433a720fe2cf7ea811c80a027d596b60bf381f8205a342d23",
-          "head": "3ea19a1b2bbafe4a9c520472fccca62709a850cc"
-        },
-        {
-          "source": "https://github.com/NixOS/nixpkgs/pull/593888",
-          "url": "https://github.com/NixOS/nixpkgs/pull/593888",
-          "file": "patches/nixpkgs/pr-593888.patch",
-          "sha256": "868db304c53b12ed6706113ae013b9447728855defe4343a3330558fda9e6549",
-          "head": "67d54b2212941c0d5b42baba0fb125c2d5bec44e"
         },
         {
           "source": "https://github.com/NixOS/nixpkgs/pull/593975",
@@ -273,7 +238,7 @@
           "head": "b459c017d60f42f967d1754f40020a3a8da18926"
         }
       ],
-      "diff": "c0f20c5628d0838e631d9ed2c36d537a4e59a7eba4092c6b9a05b663196c211b"
+      "diff": "84400a979c6358786f85e049c3469e210f656c5254792f20f9934639260bb7f1"
     }
   },
   "nvf": {

@@ -1,19 +1,18 @@
-diff --git a/doc/release-notes/rl-2611.section.md b/doc/release-notes/rl-2611.section.md
---- a/doc/release-notes/rl-2611.section.md
-+++ b/doc/release-notes/rl-2611.section.md
-@@ -409,6 +409,12 @@
- - Starting with v14, `flameshot` will primarily utilise xdg-desktop-portal calls for screenshotting. This will directly affect users on X11 window managers due to the lack of a compatible portal with Screenshot feature. See [upstream changelog](https://github.com/flameshot-org/flameshot/releases/tag/v14.0.0) or [NixOS Flameshot](https://wiki.nixos.org/wiki/Flameshot) wiki page for workarounds.
- - `nim1` and respective aliases have been removed due to entering EOL; please migrate to `nim` or `nim-unwrapped` (nim 2).
- - `nim-2_0` & `nim-2_2` and respective aliases have been removed; please migrate to `nim` or `nim-unwrapped` (nim 2.2.10).
-+
+diff --git a/doc/release-notes/rl-2705.section.md b/doc/release-notes/rl-2705.section.md
+--- a/doc/release-notes/rl-2705.section.md
++++ b/doc/release-notes/rl-2705.section.md
+@@ -9,6 +9,11 @@
+ 
+ <!-- To avoid merge conflicts, consider adding your item at an arbitrary place in the list instead. -->
+ 
 +- `nvtopPackages` has been replaced by a single `nvtop` package that supports all GPU families.
 +  `nvtopPackages.full` and the per-family variants are now deprecated aliases of `nvtop`.
 +  Use `nvtop.override` to disable the GPU families you don't need, for example `nvtop.override { nvidia = false; }`.
-+  The `cudaSupport` and `cudaPackages` arguments have been removed.
++  The `cudaSupport` and `cudaPackages` arguments have been removed, as CUDA is no longer needed at build time.
 +
- - `domoticz` has been updated from `2024.7` to `2026.x`, breaking third party applications and scripts using the old RType calls. Review the [release notes](https://github.com/domoticz/domoticz/blob/2026.2/History.txt#L398) for more information.
+ - `mangohud` now names its Vulkan layers as upstream does, `VK_LAYER_MANGOHUD_overlay_x86_64` and `VK_LAYER_MANGOHUD_overlay_x86`, instead of `VK_LAYER_MANGOHUD_overlay_64_x86_64` and `VK_LAYER_MANGOHUD_overlay_32_x86`.
+   Configurations that name these layers in `VK_INSTANCE_LAYERS`, `VK_LOADER_LAYERS_ENABLE`, `VK_LOADER_LAYERS_DISABLE` or a Vulkan loader settings file need the new names.
  
- - `swift` is no longer wrapped.
 diff --git a/nixos/modules/module-list.nix b/nixos/modules/module-list.nix
 --- a/nixos/modules/module-list.nix
 +++ b/nixos/modules/module-list.nix
@@ -607,93 +606,6 @@ new file mode 100644
 +    };
 +  };
 +}
-diff --git a/pkgs/by-name/li/librewolf-bin-unwrapped/package.nix b/pkgs/by-name/li/librewolf-bin-unwrapped/package.nix
---- a/pkgs/by-name/li/librewolf-bin-unwrapped/package.nix
-+++ b/pkgs/by-name/li/librewolf-bin-unwrapped/package.nix
-@@ -36,7 +36,7 @@
- 
-   pname = "librewolf-bin-unwrapped";
- 
--  version = "160.0-1";
-+  version = "160.0.1-1";
- in
- 
- stdenv.mkDerivation {
-@@ -46,8 +46,8 @@
-     url = "https://codeberg.org/api/packages/librewolf/generic/librewolf/${version}/librewolf-${version}-${arch}-package.tar.xz";
-     hash =
-       {
--        x86_64-linux = "sha256-fHUdTSefBaJRQphZmtPEPU6F3QEa0uzAcxnFqMNKcuU=";
--        aarch64-linux = "sha256-w52FHZMKWyA57Dnp67vTZFAmH2RWhn1Q7/C84btKOgg=";
-+        x86_64-linux = "sha256-B6tPxz9AF2SJDrXIfde1gVx3g7HHN46nicoTMNNiIJs=";
-+        aarch64-linux = "sha256-VImbbVjZvHnRo/kr8+D64/mvlk4lazaiAcs2Nm0Vggo=";
-       }
-       .${stdenv.hostPlatform.system} or throwSystem;
-   };
-diff --git a/pkgs/by-name/lu/lutris-unwrapped/package.nix b/pkgs/by-name/lu/lutris-unwrapped/package.nix
---- a/pkgs/by-name/lu/lutris-unwrapped/package.nix
-+++ b/pkgs/by-name/lu/lutris-unwrapped/package.nix
-@@ -2,7 +2,6 @@
-   python3Packages,
-   lib,
-   fetchFromGitHub,
--  fetchpatch,
- 
-   # build inputs
-   atk,
-@@ -64,23 +63,15 @@
- in
- python3Packages.buildPythonApplication (finalAttrs: {
-   pname = "lutris-unwrapped";
--  version = "0.5.22";
-+  version = "0.5.23";
- 
-   src = fetchFromGitHub {
-     owner = "lutris";
-     repo = "lutris";
-     tag = "v${finalAttrs.version}";
--    hash = "sha256-4mNknvfJQJEPZjQoNdKLQcW4CI93D6BUDPj8LtD940A=";
-+    hash = "sha256-3kR7I9vG7bWbuqn5luomn3f6nuJIc+9z90NLXRFolRY=";
-   };
- 
--  patches = [
--    (fetchpatch {
--      name = "fix-GnomeDesktop-AttributeError.patch";
--      url = "https://github.com/lutris/lutris/commit/fd91646fbae9b0f7ce90fb5d7dda34e8f13856fe.patch";
--      hash = "sha256-FCIEawp58JR9ImsFod2TMvWdXo2PmBi+4eoJz7rgcMo=";
--    })
--  ];
--
-   pyproject = false;
- 
-   nativeBuildInputs = [
-@@ -125,7 +116,6 @@
-     pypresence
-     pyyaml
-     requests
--    protobuf
-     moddb
-   ];
- 
-diff --git a/pkgs/by-name/mp/mpd/package.nix b/pkgs/by-name/mp/mpd/package.nix
---- a/pkgs/by-name/mp/mpd/package.nix
-+++ b/pkgs/by-name/mp/mpd/package.nix
-@@ -197,13 +197,13 @@
- in
- stdenv.mkDerivation (finalAttrs: {
-   pname = "mpd";
--  version = "0.24.18";
-+  version = "0.24.20";
- 
-   src = fetchFromGitHub {
-     owner = "MusicPlayerDaemon";
-     repo = "MPD";
-     rev = "v${finalAttrs.version}";
--    sha256 = "sha256-Qc0aJTfUoOXCmxPqfdvTNTqGyzdJ41ixxRS5d4VhyAw=";
-+    sha256 = "sha256-+Beui0eOdXrtdK4uCO34Kat/YCZlArgMHB7FxxLNC9g=";
-   };
- 
-   buildInputs = [
 diff --git a/pkgs/by-name/nc/ncro/package.nix b/pkgs/by-name/nc/ncro/package.nix
 new file mode 100644
 --- /dev/null
@@ -936,7 +848,7 @@ diff --git a/pkgs/by-name/pr/proton-ge-bin/package.nix b/pkgs/by-name/pr/proton-
 diff --git a/pkgs/by-name/ta/tack/package.nix b/pkgs/by-name/ta/tack/package.nix
 --- a/pkgs/by-name/ta/tack/package.nix
 +++ b/pkgs/by-name/ta/tack/package.nix
-@@ -1,26 +1,32 @@
+@@ -1,10 +1,13 @@
  {
    lib,
 +  stdenv,
@@ -950,20 +862,9 @@ diff --git a/pkgs/by-name/ta/tack/package.nix b/pkgs/by-name/ta/tack/package.nix
  }:
  rustPlatform.buildRustPackage (finalAttrs: {
    pname = "tack";
--  version = "1.0.1";
-+  version = "2.0.0";
-   src = fetchFromGitHub {
-     owner = "manic-systems";
-     repo = "tack";
-     tag = "v${finalAttrs.version}";
--    hash = "sha256-2wwH6pzL2vzffXKuMQwVMbUhfRubDwjPbrqdcbcJZqA=";
-+    hash = "sha256-CUECELH3ty3Imlmbt88IC+ZkUxHPyd3FHuN9WWG4P+c=";
-   };
+@@ -20,7 +23,10 @@
  
-   __structuredAttrs = true;
- 
--  cargoHash = "sha256-xTSLcORGg6nUzi+1Th74+/egs/zKT4qmnemLUosCtXQ=";
-+  cargoHash = "sha256-J0U1vSjiqMMFhSJTJlOmV/9BY8Bzc/ijG2HRcgSqm+w=";
+   cargoHash = "sha256-J0U1vSjiqMMFhSJTJlOmV/9BY8Bzc/ijG2HRcgSqm+w=";
  
 -  nativeBuildInputs = [ pkg-config ];
 +  nativeBuildInputs = [
@@ -1007,31 +908,6 @@ diff --git a/pkgs/by-name/ta/tack/package.nix b/pkgs/by-name/ta/tack/package.nix
      ];
    };
  })
-diff --git a/pkgs/by-name/tu/tuigreet/package.nix b/pkgs/by-name/tu/tuigreet/package.nix
---- a/pkgs/by-name/tu/tuigreet/package.nix
-+++ b/pkgs/by-name/tu/tuigreet/package.nix
-@@ -8,7 +8,7 @@
- }:
- rustPlatform.buildRustPackage (finalAttrs: {
-   pname = "tuigreet";
--  version = "0.11.1";
-+  version = "0.11.2";
- 
-   __structuredAttrs = true;
- 
-@@ -16,10 +16,10 @@
-     owner = "tuigreet";
-     repo = "tuigreet";
-     tag = finalAttrs.version;
--    hash = "sha256-nZkZY4ZlywDUbOWmDpj1ubjoiLQamYCwTV72N0Lgb8g=";
-+    hash = "sha256-zBuauiyIc/Z9QKFkx8m/3sro0vRy/Glrqx2gD7wtfhY=";
-   };
- 
--  cargoHash = "sha256-5Q4E8nnmQ109gcfxxctn/rne5N4Qvz2Pft6o7as2fSc=";
-+  cargoHash = "sha256-pH2Chqa7Pl9Oj+9YcwXtK21EUvSF7rp7lmT12Vg8ud4=";
- 
-   nativeBuildInputs = [
-     installShellFiles
 diff --git a/pkgs/tools/system/nvtop/build-nvtop.nix b/pkgs/tools/system/nvtop/build-nvtop.nix
 deleted file mode 100644
 --- a/pkgs/tools/system/nvtop/build-nvtop.nix
@@ -1212,35 +1088,29 @@ deleted file mode 100644
 diff --git a/pkgs/top-level/aliases.nix b/pkgs/top-level/aliases.nix
 --- a/pkgs/top-level/aliases.nix
 +++ b/pkgs/top-level/aliases.nix
-@@ -2037,6 +2037,24 @@
+@@ -2047,6 +2047,18 @@
    numix-sx-gtk-theme = throw "'numix-sx-gtk-theme' has been removed because it depended on 'gtk-engine-murrine', which was removed because it was unmaintained upstream and depended on GTK 2."; # Added 2026-07-22
    nushellFull = throw "'nushellFull' has been renamed to/replaced by 'nushell'"; # Converted to throw 2025-10-27
    nuXmv = warnAlias "'nuXmv' has been renamed to 'nuxmv'" nuxmv; # Added 2026-02-08
-+  nvtopPackages =
-+    warnAlias "'nvtopPackages' has been replaced by 'nvtop' which now supports all GPU families"
-+      (
-+        lib.genAttrs [
-+          "full"
-+          "amd"
-+          "apple"
-+          "enflame"
-+          "intel"
-+          "metax"
-+          "msm"
-+          "nvidia"
-+          "panfrost"
-+          "panthor"
-+          "rockchip"
-+          "v3d"
-+        ] (_: nvtop)
-+      ); # Added 2026-11-10
++  nvtopPackages.amd = warnAlias "'nvtopPackages.amd' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.apple = warnAlias "'nvtopPackages.apple' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.enflame = warnAlias "'nvtopPackages.enflame' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.full = warnAlias "'nvtopPackages.full' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.intel = warnAlias "'nvtopPackages.intel' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.metax = warnAlias "'nvtopPackages.metax' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.msm = warnAlias "'nvtopPackages.msm' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.nvidia = warnAlias "'nvtopPackages.nvidia' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.panfrost = warnAlias "'nvtopPackages.panfrost' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.panthor = warnAlias "'nvtopPackages.panthor' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.rockchip = warnAlias "'nvtopPackages.rockchip' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.v3d = warnAlias "'nvtopPackages.v3d' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
    o = throw "'o' has been renamed to/replaced by 'orbiton'"; # Converted to throw 2025-10-27
    oam-tools = throw "'oam-tools' has been become part of amass"; # Added 2025-12-21
    oathToolkit = throw "'oathToolkit' has been renamed to/replaced by 'oath-toolkit'"; # Converted to throw 2025-10-27
 diff --git a/pkgs/top-level/all-packages.nix b/pkgs/top-level/all-packages.nix
 --- a/pkgs/top-level/all-packages.nix
 +++ b/pkgs/top-level/all-packages.nix
-@@ -5842,8 +5842,6 @@
+@@ -5792,8 +5792,6 @@
  
    nvidia-vaapi-driver = hiPrio (callPackage ../development/libraries/nvidia-vaapi-driver { });
  

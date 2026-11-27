@@ -1,20 +1,19 @@
-diff --git a/doc/release-notes/rl-2611.section.md b/doc/release-notes/rl-2611.section.md
-index 859346c6c9c283..024b27bbcbc2d5 100644
---- a/doc/release-notes/rl-2611.section.md
-+++ b/doc/release-notes/rl-2611.section.md
-@@ -394,6 +394,12 @@
- - Starting with v14, `flameshot` will primarily utilise xdg-desktop-portal calls for screenshotting. This will directly affect users on X11 window managers due to the lack of a compatible portal with Screenshot feature. See [upstream changelog](https://github.com/flameshot-org/flameshot/releases/tag/v14.0.0) or [NixOS Flameshot](https://wiki.nixos.org/wiki/Flameshot) wiki page for workarounds.
- - `nim1` and respective aliases have been removed due to entering EOL; please migrate to `nim` or `nim-unwrapped` (nim 2).
- - `nim-2_0` & `nim-2_2` and respective aliases have been removed; please migrate to `nim` or `nim-unwrapped` (nim 2.2.10).
-+
+diff --git a/doc/release-notes/rl-2705.section.md b/doc/release-notes/rl-2705.section.md
+index e6f4325f9fe8fb..2f588d9030005f 100644
+--- a/doc/release-notes/rl-2705.section.md
++++ b/doc/release-notes/rl-2705.section.md
+@@ -9,6 +9,11 @@
+ 
+ <!-- To avoid merge conflicts, consider adding your item at an arbitrary place in the list instead. -->
+ 
 +- `nvtopPackages` has been replaced by a single `nvtop` package that supports all GPU families.
 +  `nvtopPackages.full` and the per-family variants are now deprecated aliases of `nvtop`.
 +  Use `nvtop.override` to disable the GPU families you don't need, for example `nvtop.override { nvidia = false; }`.
-+  The `cudaSupport` and `cudaPackages` arguments have been removed.
++  The `cudaSupport` and `cudaPackages` arguments have been removed, as CUDA is no longer needed at build time.
 +
- - `domoticz` has been updated from `2024.7` to `2026.x`, breaking third party applications and scripts using the old RType calls. Review the [release notes](https://github.com/domoticz/domoticz/blob/2026.2/History.txt#L398) for more information.
+ - `mangohud` now names its Vulkan layers as upstream does, `VK_LAYER_MANGOHUD_overlay_x86_64` and `VK_LAYER_MANGOHUD_overlay_x86`, instead of `VK_LAYER_MANGOHUD_overlay_64_x86_64` and `VK_LAYER_MANGOHUD_overlay_32_x86`.
+   Configurations that name these layers in `VK_INSTANCE_LAYERS`, `VK_LOADER_LAYERS_ENABLE`, `VK_LOADER_LAYERS_DISABLE` or a Vulkan loader settings file need the new names.
  
- - `swift` is no longer wrapped.
 diff --git a/nixos/modules/services/monitoring/beszel-agent.nix b/nixos/modules/services/monitoring/beszel-agent.nix
 index 88ca335e953d5c..2c83ef1b3a5b07 100644
 --- a/nixos/modules/services/monitoring/beszel-agent.nix
@@ -335,39 +334,33 @@ index 439c25c9d95ea1..00000000000000
 -  }) defaultGPUFamilies
 -)
 diff --git a/pkgs/top-level/aliases.nix b/pkgs/top-level/aliases.nix
-index be2c4a82576b77..a74a87bc310ff3 100644
+index aaabab694a3de9..11cbade0d7f880 100644
 --- a/pkgs/top-level/aliases.nix
 +++ b/pkgs/top-level/aliases.nix
-@@ -2019,6 +2019,24 @@ mapAliases {
+@@ -2045,6 +2045,18 @@ mapAliases {
    numix-sx-gtk-theme = throw "'numix-sx-gtk-theme' has been removed because it depended on 'gtk-engine-murrine', which was removed because it was unmaintained upstream and depended on GTK 2."; # Added 2026-07-22
    nushellFull = throw "'nushellFull' has been renamed to/replaced by 'nushell'"; # Converted to throw 2025-10-27
    nuXmv = warnAlias "'nuXmv' has been renamed to 'nuxmv'" nuxmv; # Added 2026-02-08
-+  nvtopPackages =
-+    warnAlias "'nvtopPackages' has been replaced by 'nvtop' which now supports all GPU families"
-+      (
-+        lib.genAttrs [
-+          "full"
-+          "amd"
-+          "apple"
-+          "enflame"
-+          "intel"
-+          "metax"
-+          "msm"
-+          "nvidia"
-+          "panfrost"
-+          "panthor"
-+          "rockchip"
-+          "v3d"
-+        ] (_: nvtop)
-+      ); # Added 2026-11-10
++  nvtopPackages.amd = warnAlias "'nvtopPackages.amd' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.apple = warnAlias "'nvtopPackages.apple' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.enflame = warnAlias "'nvtopPackages.enflame' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.full = warnAlias "'nvtopPackages.full' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.intel = warnAlias "'nvtopPackages.intel' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.metax = warnAlias "'nvtopPackages.metax' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.msm = warnAlias "'nvtopPackages.msm' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.nvidia = warnAlias "'nvtopPackages.nvidia' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.panfrost = warnAlias "'nvtopPackages.panfrost' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.panthor = warnAlias "'nvtopPackages.panthor' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.rockchip = warnAlias "'nvtopPackages.rockchip' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
++  nvtopPackages.v3d = warnAlias "'nvtopPackages.v3d' has been replaced by 'nvtop', which supports all GPU families" nvtop; # Added 2026-11-26
    o = throw "'o' has been renamed to/replaced by 'orbiton'"; # Converted to throw 2025-10-27
    oam-tools = throw "'oam-tools' has been become part of amass"; # Added 2025-12-21
    oathToolkit = throw "'oathToolkit' has been renamed to/replaced by 'oath-toolkit'"; # Converted to throw 2025-10-27
 diff --git a/pkgs/top-level/all-packages.nix b/pkgs/top-level/all-packages.nix
-index 16f763fffbec90..48388975cf1417 100644
+index 143f23fc7750c9..219ed9a7408e28 100644
 --- a/pkgs/top-level/all-packages.nix
 +++ b/pkgs/top-level/all-packages.nix
-@@ -5961,8 +5961,6 @@ with pkgs;
+@@ -5792,8 +5792,6 @@ with pkgs;
  
    nvidia-vaapi-driver = hiPrio (callPackage ../development/libraries/nvidia-vaapi-driver { });
  
