@@ -57,9 +57,9 @@
     "type": "git",
     "url": "ssh://git@git.notashelf.dev:33/notashelf/beer",
     "ref": "HEAD",
-    "rev": "bdb07c80664e2f52c0d68901190cb86ac138da95",
-    "narHash": "sha256-y5H8LDEUmOt8jrqyvXyItocSVVr3JI7ufkK7et++kC0=",
-    "lastModified": 1795766312
+    "rev": "5e572a828a63e092dece1eea374c6584f2112109",
+    "narHash": "sha256-b3ovFGOXidphPpnNy2bpw4Iz1OaQ4z3ieVCOxOmGmxI=",
+    "lastModified": 1795787876
   },
   "chroma": {
     "type": "git",
@@ -205,8 +205,8 @@
     "narHash": "sha256-pAEASBc6wof0S58XcSEdZoQ2iFQDkCnZwH+wFLrkd1Q=",
     "lastModified": 1795234589,
     "patched": {
-      "path": "/nix/store/dr9sdq0y7d5aiin9rbb4lg8w8x30nafa-source",
-      "narHash": "sha256-DfsjGIfixtzH1N6TYiINMyqRehu0QHugXufJrssQnG4=",
+      "path": "/nix/store/y90bn4bw72bffx351r9vy2v74l5mmd8p-source",
+      "narHash": "sha256-N6NaaUOEeyLJwpy0e9nTImHYH8ES4uRIQBqrDtDBc+A=",
       "lastModified": 1795234589,
       "patches": [
         {
@@ -259,6 +259,13 @@
           "head": "67d54b2212941c0d5b42baba0fb125c2d5bec44e"
         },
         {
+          "source": "https://github.com/NixOS/nixpkgs/pull/593975",
+          "url": "https://github.com/NixOS/nixpkgs/pull/593975",
+          "file": "patches/nixpkgs/pr-593975.patch",
+          "sha256": "c7b4c868dd9791bd5792aed279bdbdbc48b3608e8d6e85ce0cfb67bd51055e51",
+          "head": "cad3623aab9e807f62b574c1341c2337dd899279"
+        },
+        {
           "source": "https://github.com/NixOS/nixpkgs/pull/533027",
           "url": "https://github.com/NixOS/nixpkgs/pull/533027",
           "file": "patches/nixpkgs/pr-533027.patch",
@@ -266,7 +273,7 @@
           "head": "b459c017d60f42f967d1754f40020a3a8da18926"
         }
       ],
-      "diff": "f977df3e8c72f56626d5e33349f4a2a6d62927cea7c71d10e70201579fc998d6"
+      "diff": "c0f20c5628d0838e631d9ed2c36d537a4e59a7eba4092c6b9a05b663196c211b"
     }
   },
   "nvf": {

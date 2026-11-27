@@ -31,6 +31,8 @@ patches = [
   "https://github.com/NixOS/nixpkgs/pull/593409",
   # tack: 1.0.1 -> 2.0.0
   "https://github.com/NixOS/nixpkgs/pull/593888",
+  # # tack: install shell completions, add qweered to maintainers
+  "https://github.com/NixOS/nixpkgs/pull/593975",
   # ncro: init at 2.4.0; init module
   "https://github.com/NixOS/nixpkgs/pull/533027",
 ]
