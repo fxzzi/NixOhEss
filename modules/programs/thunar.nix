@@ -77,7 +77,7 @@ in
             <name>Copy as Path</name>
             <submenu></submenu>
             <unique-id>1653335357081852-1</unique-id>
-            <command>echo -n &apos;"%f"&apos; | wl-copy</command>
+            <command>wl-copy %f</command>
             <description></description>
             <range></range>
             <patterns>*</patterns>

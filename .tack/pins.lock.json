@@ -57,9 +57,9 @@
     "type": "git",
     "url": "ssh://git@git.notashelf.dev:33/notashelf/beer",
     "ref": "HEAD",
-    "rev": "92c854e36f027fb6c5a9e391748ee07c22ae6823",
-    "narHash": "sha256-0G+gFYYACi8TrFblBcgW4b747UXyC5tZzRnFEnMGh2M=",
-    "lastModified": 1795717896
+    "rev": "bdb07c80664e2f52c0d68901190cb86ac138da95",
+    "narHash": "sha256-y5H8LDEUmOt8jrqyvXyItocSVVr3JI7ufkK7et++kC0=",
+    "lastModified": 1795766312
   },
   "chroma": {
     "type": "git",
@@ -167,19 +167,24 @@
     "type": "github",
     "owner": "fufexan",
     "repo": "nix-gaming",
-    "rev": "980a5716bcb59b3011382df13309553f27ea2b25",
-    "narHash": "sha256-Ao87Pft+njjk6rc5MCRpWekU+WUI5MgZaUI/udBapbE=",
-    "lastModified": 1795420353
+    "rev": "dce762bfd816caec61eb3dd8485a7f00d2b9d00f",
+    "narHash": "sha256-TWf82dJLhbxSlfZVX6TwAn8i83/LqEGakTzGsK7J5/8=",
+    "lastModified": 1795765283,
+    "archive": {
+      "hash": "sha256-A03SUqu5etvTMXOgOsLK4vsPAjo9aB6yKahsn5UdHtA=",
+      "outHash": "sha256-ynEr790hNWJUxHC7PUTksAaNJ/u1hLLqV4LPjXRjG6Y="
+    },
+    "public": true
   },
   "nixcord": {
     "type": "github",
     "owner": "4evy",
     "repo": "nixcord",
-    "rev": "4a3ad2425382350113e280539c5cfba3fd0a1320",
+    "rev": "1a78753f3f2c343d22125dcfae22e401261b4949",
     "narHash": "sha256-R46UOm6Rk5+8tLkc2mRzqm4o3/6fw2fukMh0NUG51Os=",
-    "lastModified": 1795727326,
+    "lastModified": 1795786858,
     "archive": {
-      "hash": "sha256-BVLzDLqZLPH/HRPSTvtp0LvZYAHP2+1rvWwQhMeuAQw=",
+      "hash": "sha256-Ur991goH1QD+PiSm+cPA+E03dDbyH9/F3/tahsiEw3Y=",
       "outHash": "sha256-bPKK9Pp+wtEBxB790MBQ5JKBYLC2rUuPC3MWbcvqJ98="
     },
     "public": true
