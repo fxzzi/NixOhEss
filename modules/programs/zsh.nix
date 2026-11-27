@@ -16,7 +16,7 @@ in
         enable = true;
         enableLsColors = false; # we use eza instead :D
         histFile = "$XDG_DATA_HOME/zsh/zsh_history";
-        histSize = 10000;
+        histSize = 100000;
         promptInit = ''
           autoload -U promptinit; promptinit
           prompt pure
@@ -28,8 +28,10 @@ in
           # match files beginning with . without explicitly specifying the dot
           "GLOBDOTS"
 
+          "HIST_FCNTL_LOCK"
           "HIST_IGNORE_ALL_DUPS"
           "HIST_IGNORE_SPACE"
+          "HIST_REDUCE_BLANKS"
           "SHARE_HISTORY"
         ];
         shellAliases = {
