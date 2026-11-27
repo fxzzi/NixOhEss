@@ -57,9 +57,9 @@
     "type": "git",
     "url": "ssh://git@git.notashelf.dev:33/notashelf/beer",
     "ref": "HEAD",
-    "rev": "5e572a828a63e092dece1eea374c6584f2112109",
-    "narHash": "sha256-b3ovFGOXidphPpnNy2bpw4Iz1OaQ4z3ieVCOxOmGmxI=",
-    "lastModified": 1795787876
+    "rev": "ec0977e837c144815c9bb728eb48f4bb4b4f1fdc",
+    "narHash": "sha256-jKg3LFKR/e+EH3DpsfCxl15bzPcKSRqbmD0BdWqYkjY=",
+    "lastModified": 1795795884
   },
   "chroma": {
     "type": "git",
@@ -317,7 +317,7 @@
   "tom-nvidia-patches": {
     "type": "fixed",
     "url": "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff",
-    "sha256": "sha256-50KrRCKNsux5oRTTOU9LAbG5p8nZbuR6/h3ppXl19YI=",
+    "sha256": "sha256-vAvY6THsga1UpFkczibgLwqUBSyItBHBCdSHEToteJU=",
     "unpack": "file"
   },
   "walls": {
