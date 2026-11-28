@@ -73,6 +73,7 @@
     "/windows" = {
       device = "/dev/disk/by-uuid/50064BB3064B98BC";
       fsType = "ntfs";
+      noCheck = true;
       options = [
         "uid=1000"
         "nofail"

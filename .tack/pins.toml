@@ -16,6 +16,7 @@ names = ["nixpkgs-ci", "flake-compat", "pre-commit-hooks"]
 # core
 [inputs.nixpkgs]
 url = "channel:nixos-unstable-small"
+frozen = true
 patches = [
   # nvtop: 3.3.2 -> 3.4.0, merge nvtopPackages into a single package 
   "https://github.com/NixOS/nixpkgs/pull/586196",

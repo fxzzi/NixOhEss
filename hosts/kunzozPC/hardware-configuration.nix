@@ -67,6 +67,7 @@
     "/mnt/windows-kunzoz" = {
       device = "/dev/disk/by-uuid/DC2C38A72C387F18";
       fsType = "ntfs";
+      noCheck = true;
       options = [
         "uid=1000"
         # don't fail boot if the drives fail to mount
@@ -84,6 +85,7 @@
     "/mnt/windows-dad" = {
       device = "/dev/disk/by-uuid/84B25357B2534CB4";
       fsType = "ntfs";
+      noCheck = true;
       options = [
         "uid=1000"
         # don't fail boot if the drives fail to mount

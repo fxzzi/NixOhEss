@@ -37,13 +37,10 @@
     "type": "github",
     "owner": "ryantm",
     "repo": "agenix",
-    "rev": "5e5b88a0c8e56f291a108c2fe9934054d9745b2e",
-    "narHash": "sha256-8tKjSQajD3mUND1GaAuaWTcuyUpgcGsh5V+l4ibzC7U=",
-    "lastModified": 1792507013,
-    "archive": {
-      "hash": "sha256-XbPSwFHX132ZG+VQUibhHkXqqg5khUkAgmHyheBIPBA=",
-      "outHash": "sha256-jyjihZaUUToWhXdKJ7Q7u3yyZ7ClOQFslEGYsGiirto="
-    }
+    "rev": "60b6a60f2503f93d131b74c2f7f8600dc6ffbb28",
+    "narHash": "sha256-yPlK2RCDORlzdflKxIudPZ1fspEGTvHxrdUl54R1mOk=",
+    "lastModified": 1795823210,
+    "public": true
   },
   "azzipkgs": {
     "type": "gitlab",
@@ -109,9 +106,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "414dbed9d65167f7a062d6292fe24eaf3f359ac7",
-    "narHash": "sha256-m0Dmp18AtrsD+X4HXRQ/jfEU7jg89P+7kjUf+Raz0t0=",
-    "lastModified": 1795415752,
+    "rev": "d18b69ac5007602089b91714c194ce77dab7d10a",
+    "narHash": "sha256-1pa5tFqUKFkUtAap+wqET93Zvjc11lSN6EUeCXpk4yY=",
+    "lastModified": 1795817280,
     "public": true
   },
   "hyprland": {
