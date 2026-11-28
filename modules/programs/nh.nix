@@ -32,11 +32,11 @@ in
     hj.packages = [
       (pkgs.writeShellApplication {
         name = "crb";
-        runtimeInputs = with pkgs; [
+        runtimeInputs = [
           config.nix.package
           config.programs.nh.package
           config.programs.tack.package
-          git
+          pkgs.git
         ];
         text = ''
           # Save the current commit hash of origin/main before fetching
@@ -66,14 +66,20 @@ in
 
       (pkgs.writeShellApplication {
         name = "evaltime";
+        runtimeInputs = [
+          config.nix.package
+          pkgs.jaq
+        ];
         text = ''
           # use current host if one isn't given
           HOST="''${1:-$(hostname)}"
-          time nix eval \
+          # stats go to fd 3 so stderr warnings don't mix into the json
+          NIX_SHOW_STATS=1 NIX_SHOW_STATS_PATH=/dev/fd/3 nix eval \
             "$NH_FLAKE"#nixosConfigurations."$HOST".config.system.build.toplevel \
             --substituters " " \
             --option eval-cache false \
-            --raw --read-only
+            --raw --read-only 3>&1 >/dev/null |
+            jaq -r '"\(.cpuTime)s"'
         '';
       })
     ];
