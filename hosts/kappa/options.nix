@@ -49,7 +49,6 @@
       printing.enable = true;
     };
     programs = {
-      tack.enable = true;
       # gamescope.enable = true;
       osu.enable = true;
       proton = {
@@ -132,7 +131,7 @@
               sdr_min_luminance = 0.005,
               -- in essence, set the brightness of SDR windows.
               -- 203 is a good value, or 280 if you want it brighter.
-              sdr_max_luminance = 280,
+              sdr_max_luminance = 203,
             })
 
             hl.monitor({

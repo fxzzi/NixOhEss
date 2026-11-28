@@ -42,7 +42,7 @@ in
           patchesOpen = [
             # the ClankerPatches™
             # <https://github.com/gulafaran/open-gpu-kernel-modules/tree/patches>
-            inputs.tom-nvidia-patches
+            inputs.clankerpatches
           ];
         };
         moduleParams = {

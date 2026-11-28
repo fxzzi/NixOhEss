@@ -87,7 +87,7 @@ type = "fetch"
 url  = "github:GabePoel/KvLibadwaita"
 type = "fetch"
 
-[inputs.tom-nvidia-patches]
+[inputs.clankerpatches]
 url    = "https://github.com/gulafaran/open-gpu-kernel-modules/compare/main...patches.diff"
 type   = "fixed"
 unpack = "file"

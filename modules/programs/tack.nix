@@ -1,11 +1,5 @@
 {
-  lib,
-  config,
-  ...
-}:
-{
-  options.cfg.programs.tack.enable = lib.mkEnableOption "tack";
-  config = lib.mkIf config.cfg.programs.tack.enable {
+  config = {
     programs.tack = {
       enable = true;
       nixConfTokens = true;
